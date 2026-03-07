@@ -3,788 +3,1343 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Nemveil — 20,000人以上が愛用するユニセックス香水。どこでも褒められる香り。30日返金保証・送料無料。">
-<title>Nemveil — どこでも褒められる香り</title>
+<meta name="description" content="PURELAYER Oud Stallion — 香水で失敗したくない人へ。嫌われない近距離設計の香り。20,000人が選んだユニセックス香水。30日返金保証・送料無料。">
+<title>PURELAYER — Oud Stallion</title>
 <style>
+/* ──────────────────────────────────────────
+   DESIGN TOKENS  ·  Japanese Atelier Minimal
+────────────────────────────────────────── */
 :root{
-  --w:#FFFFFF;--off:#F8F7F5;--stone:#F0EDE8;--linen:#E8E3DB;
-  --ink:#161412;--i80:rgba(22,20,18,.8);--i50:rgba(22,20,18,.5);
-  --i20:rgba(22,20,18,.2);--i10:rgba(22,20,18,.1);--i05:rgba(22,20,18,.05);
-  --gold:#A07840;--gl:#C09858;--gd:#7A5C2A;
-  --gp:rgba(160,120,64,.14);--gb:rgba(160,120,64,.28);
-  --ok:#1A6640;--ng:#9A2A18;
-  --f:'Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
-  --s:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Noto Sans JP',sans-serif;
-  --max:520px;--px:20px;
-  --sh:0 1px 12px rgba(22,20,18,.07),0 1px 3px rgba(22,20,18,.04);
-  --sh2:0 6px 32px rgba(22,20,18,.09),0 2px 8px rgba(22,20,18,.05);
-  --r:10px;--rl:18px;--rx:26px;--rp:100px;
+  /* Palette */
+  --milk:   #FDFCF9;
+  --parch:  #F6F3EE;
+  --linen:  #EDE8DF;
+  --ash:    #E2DDD5;
+  --ink:    #1A1714;
+  --ink75:  rgba(26,23,20,.75);
+  --ink50:  rgba(26,23,20,.50);
+  --ink30:  rgba(26,23,20,.30);
+  --ink15:  rgba(26,23,20,.15);
+  --ink08:  rgba(26,23,20,.08);
+  --ink04:  rgba(26,23,20,.04);
+  --gold:   #9C7640;
+  --gold-l: #BFA060;
+  --gold-d: #7A5C28;
+  --gp:     rgba(156,118,64,.11);
+  --gb:     rgba(156,118,64,.24);
+  --ok:     #1B6A40;
+  --ng:     #962A18;
+
+  /* Type */
+  --serif: 'Didot','Bodoni MT','Playfair Display','Book Antiqua',
+           'Palatino Linotype',Palatino,Georgia,serif;
+  --body:  -apple-system,BlinkMacSystemFont,'Hiragino Sans',
+           'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;
+
+  /* Geometry */
+  --max: 540px;
+  --px:  22px;
+  --r:   8px;
+  --rl:  14px;
+  --rx:  20px;
+  --rp:  100px;
+
+  /* Shadows */
+  --sh:  0 1px 8px rgba(26,23,20,.06),0 1px 2px rgba(26,23,20,.04);
+  --sh2: 0 4px 24px rgba(26,23,20,.09),0 1px 6px rgba(26,23,20,.05);
 }
+
+/* ── RESET ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:var(--s);background:var(--w);color:var(--ink);
-  line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:var(--body);background:var(--milk);color:var(--ink);
+     line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+svg{display:block;flex-shrink:0}
 a{color:inherit;text-decoration:none}
 ul,ol{list-style:none}
+strong{font-weight:700}
+button{font-family:inherit}
 
-/* layout */
-.z{max-width:var(--max);margin:0 auto;padding:0 var(--px)}
-.bg0{background:var(--w)}
-.bg1{background:var(--off)}
-.bg2{background:var(--stone)}
-.bgd{background:var(--ink);color:var(--w)}
-.sec{padding:68px 0}
+/* ── LAYOUT ── */
+.w{max-width:var(--max);margin:0 auto;padding:0 var(--px)}
+.sec{padding:72px 0}
+.bg-p{background:var(--parch)}
+.bg-l{background:var(--linen)}
+.bg-a{background:var(--ash)}
+.bg-d{background:var(--ink);color:var(--milk)}
 
-/* type */
-.kk{display:block;font-family:var(--s);font-size:9.5px;letter-spacing:.34em;
-  text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:11px}
-.kk-lt{color:rgba(192,152,88,.8)}
-.hn{font-family:var(--f);font-size:clamp(36px,10vw,54px);
-  line-height:1.06;letter-spacing:-.03em;margin-bottom:18px}
-.hm{font-family:var(--f);font-size:clamp(26px,7vw,40px);
-  line-height:1.1;letter-spacing:-.025em;margin-bottom:14px}
-.hs{font-size:16px;font-weight:700;margin-bottom:5px;letter-spacing:-.01em}
-.bd{font-size:14.5px;color:var(--i50);line-height:1.75}
-.bdw{font-size:14px;color:rgba(248,247,245,.5);line-height:1.75}
+/* ── TYPOGRAPHY ── */
+.kicker{display:block;font-family:var(--body);font-size:9.5px;
+  letter-spacing:.38em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:12px}
+.kicker-lt{color:rgba(191,160,96,.8)}
+
+.h1{font-family:var(--serif);font-size:clamp(38px,10.5vw,58px);
+  line-height:1.04;letter-spacing:-.04em;margin-bottom:18px}
+.h2{font-family:var(--serif);font-size:clamp(28px,7.5vw,42px);
+  line-height:1.1;letter-spacing:-.03em;margin-bottom:14px}
+
+.lead{font-size:14.5px;color:var(--ink50);line-height:1.78}
 .sh{text-align:center;margin-bottom:40px}
-.bar{width:30px;height:1.5px;background:var(--gold);
-  margin:0 auto 20px;border-radius:2px;display:block;opacity:.7}
-.bar-l{margin:0 0 18px}
-.ag{background:linear-gradient(135deg,var(--gold),var(--gl));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.aw{background:linear-gradient(135deg,var(--gl),var(--gold));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-/* sticky bar */
-.stk{position:fixed;bottom:0;left:0;right:0;z-index:900;
-  padding:11px var(--px) max(11px,env(safe-area-inset-bottom));
-  background:linear-gradient(to top,rgba(255,255,255,1) 60%,rgba(255,255,255,0))}
+/* Gold gradient text */
+.ag{background:linear-gradient(135deg,var(--gold),var(--gold-l));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text}
+.ag-lt{background:linear-gradient(135deg,var(--gold-l),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text}
+
+/* Thin rule */
+.rule{width:24px;height:1px;background:var(--gold);
+  margin:0 auto 18px;opacity:.65;display:block}
+.rule-l{margin:0 0 16px}
+
+/* ── STICKY CTA ── */
+.stk{
+  position:fixed;bottom:0;left:0;right:0;z-index:900;
+  padding:12px var(--px) max(12px,env(safe-area-inset-bottom));
+  background:linear-gradient(to top,rgba(253,252,249,1) 55%,rgba(253,252,249,0));
+  transform:translateY(110%);
+  transition:transform .38s cubic-bezier(.22,1,.36,1);
+  pointer-events:none;
+}
+.stk.vis{transform:translateY(0);pointer-events:auto}
 .stk-i{max-width:var(--max);margin:0 auto}
 
-/* nav */
-.nav{position:sticky;top:0;z-index:800;
-  background:rgba(255,255,255,.93);backdrop-filter:blur(20px);
+/* ── NAV ── */
+.nav{
+  position:sticky;top:0;z-index:800;
+  background:rgba(253,252,249,.94);backdrop-filter:blur(20px);
   -webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--i10);
-  padding:14px var(--px);display:flex;align-items:center;justify-content:center}
-.logo{font-family:var(--f);font-size:22px;letter-spacing:.36em;
+  border-bottom:1px solid var(--ink08);
+  padding:14px var(--px);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{font-family:var(--serif);font-size:18px;letter-spacing:.42em;
   text-transform:uppercase;color:var(--ink)}
+.nav-sub{font-size:9px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--ink30);display:block;margin-top:-1px}
+.nav-act{font-size:11.5px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--gold);
+  padding:7px 14px;border:1px solid var(--gb);border-radius:var(--rp);
+  white-space:nowrap}
 
-/* buttons */
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;
+/* ── BUTTONS ── */
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
   width:100%;padding:17px 24px;min-height:56px;border-radius:var(--rp);
-  border:none;cursor:pointer;font-family:var(--s);font-size:15px;
-  font-weight:700;letter-spacing:.02em;
-  background:var(--ink);color:var(--w);
-  box-shadow:0 4px 16px rgba(22,20,18,.2);
-  transition:transform .1s,box-shadow .12s;
-  -webkit-tap-highlight-color:transparent}
-.btn:active{transform:scale(.97);box-shadow:0 2px 6px rgba(22,20,18,.12)}
-.btn-g{background:linear-gradient(135deg,var(--gold),var(--gl));
-  color:var(--w);box-shadow:0 4px 18px rgba(160,120,64,.28)}
-.btn-g:active{box-shadow:0 2px 8px rgba(160,120,64,.16)}
+  border:none;cursor:pointer;font-family:var(--body);font-size:15px;
+  font-weight:700;letter-spacing:.03em;
+  background:var(--ink);color:var(--milk);
+  box-shadow:0 3px 14px rgba(26,23,20,.2);
+  transition:transform .1s,box-shadow .12s,opacity .12s;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:active{transform:scale(.97);box-shadow:0 1px 6px rgba(26,23,20,.12)}
+.btn-g{
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-l) 100%);
+  color:#fff;box-shadow:0 3px 16px rgba(156,118,64,.30);
+}
+.btn-g:active{box-shadow:0 1px 6px rgba(156,118,64,.16)}
 .btn-o{background:transparent;color:var(--ink);
-  border:1.5px solid var(--i20);box-shadow:none}
-.btn-o:active{background:var(--i05)}
-.btn-sm{font-size:13.5px;padding:14px 20px;min-height:48px}
-.btn-lg{font-size:16px;padding:20px 26px;min-height:62px}
-.btn-dk{background:rgba(248,247,245,.1);color:rgba(248,247,245,.8);
-  border:1px solid rgba(248,247,245,.18);box-shadow:none}
-.btn-dkl{background:transparent;color:rgba(248,247,245,.45);
-  border:1px solid rgba(248,247,245,.12);box-shadow:none}
+  border:1.5px solid var(--ink15);box-shadow:none}
+.btn-o:active{background:var(--ink04)}
+.btn-sm{font-size:13px;padding:13px 20px;min-height:46px}
+.btn-lg{font-size:16px;padding:19px 26px;min-height:60px}
+.btn-dk{background:rgba(253,252,249,.09);color:rgba(253,252,249,.8);
+  border:1px solid rgba(253,252,249,.16);box-shadow:none}
+.btn-dkl{background:transparent;color:rgba(253,252,249,.38);
+  border:1px solid rgba(253,252,249,.1);box-shadow:none}
 
-/* stars */
-.st{color:var(--gold);font-size:18px;letter-spacing:2.5px}
-.st-sm{font-size:13px;letter-spacing:2px}
+/* ── STARS ── */
+.stars{color:var(--gold);letter-spacing:2px}
+.stars-sm{font-size:12px;letter-spacing:1.5px}
 .rate-row{display:flex;align-items:center;justify-content:center;
-  gap:9px;flex-wrap:wrap;margin-bottom:22px}
+  gap:10px;flex-wrap:wrap;margin-bottom:22px}
 .rate-n{font-size:15px;font-weight:700}
-.rate-c{font-size:13px;color:var(--i50)}
+.rate-c{font-size:13px;color:var(--ink30)}
 
-/* trust strip */
+/* ── TRUST ── */
 .trust{display:flex;align-items:center;justify-content:center;
   flex-wrap:wrap;gap:5px 13px;font-size:11.5px;
-  color:var(--i50);margin-top:13px}
-.trust b{color:var(--i80)}
-.td{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.3}
-.trust-lt b{color:rgba(248,247,245,.7)}
-.trust-lt{color:rgba(248,247,245,.4)}
+  color:var(--ink30);margin-top:14px}
+.trust b{color:var(--ink75)}
+.dot{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.3}
+.trust-lt b{color:rgba(253,252,249,.75)}
+.trust-lt{color:rgba(253,252,249,.35)}
 
-/* live badge */
+/* ── LIVE ── */
 .live{display:inline-flex;align-items:center;gap:6px;
   padding:5px 13px;border-radius:var(--rp);
-  background:rgba(26,102,64,.09);border:1px solid rgba(26,102,64,.22);
-  font-size:10.5px;letter-spacing:.07em;color:var(--ok);margin-bottom:20px}
-.lv-dot{width:6px;height:6px;border-radius:50%;background:var(--ok);
-  animation:pu 2.2s ease infinite}
-@keyframes pu{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.25;transform:scale(.55)}}
+  background:rgba(27,106,64,.08);border:1px solid rgba(27,106,64,.2);
+  font-size:10.5px;letter-spacing:.07em;color:var(--ok);
+  margin-bottom:20px}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--ok);
+  animation:pulse 2.2s ease infinite}
 
-/* urgency tag */
-.ut{display:inline-flex;align-items:center;gap:6px;
-  padding:6px 14px;border-radius:var(--rp);
-  background:rgba(154,42,24,.07);border:1px solid rgba(154,42,24,.2);
-  font-size:11px;letter-spacing:.07em;color:var(--ng);margin-bottom:20px}
-.ud{width:6px;height:6px;border-radius:50%;background:var(--ng);
-  animation:pu 1.6s ease infinite}
+/* ── URGENCY ── */
+.urgency{display:inline-flex;align-items:center;gap:6px;
+  padding:5px 13px;border-radius:var(--rp);
+  background:rgba(150,42,24,.07);border:1px solid rgba(150,42,24,.18);
+  font-size:11px;letter-spacing:.06em;color:var(--ng);
+  margin-bottom:20px}
+.urgency-dot{width:6px;height:6px;border-radius:50%;background:var(--ng);
+  animation:pulse 1.6s ease infinite}
 
-/* ── HERO ── */
-.hero{padding:46px var(--px) 90px;max-width:var(--max);margin:0 auto;
-  text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-50px;right:-70px;
-  width:320px;height:320px;border-radius:50%;
-  background:radial-gradient(circle,rgba(160,120,64,.09) 0%,transparent 68%);
-  pointer-events:none;z-index:0}
-.hero > *{position:relative;z-index:1}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.22;transform:scale(.52)}
+}
 
-/* CSS bottle */
-.btl{width:88px;margin:0 auto 28px;display:flex;flex-direction:column;align-items:center}
-.bc{width:44px;height:13px;border-radius:3px;
-  background:linear-gradient(135deg,#C0944E,#DEC068,#987028);
-  box-shadow:0 3px 10px rgba(160,120,64,.28)}
-.bn{width:28px;height:23px;margin:0 auto;border-radius:2px 2px 0 0;
-  background:linear-gradient(180deg,#3A2812,#684818)}
-.bb{width:88px;height:154px;border-radius:5px 5px 12px 12px;
-  background:linear-gradient(158deg,#1A0E06 0%,#3C1E0E 18%,#7E4E28 46%,#583818 72%,#120A02 100%);
+/* ──────────────────────────────────────────
+   HERO  ·  Asymmetric layout
+────────────────────────────────────────── */
+.hero{
+  max-width:var(--max);margin:0 auto;
+  padding:0 var(--px) 80px;
   position:relative;overflow:hidden;
-  box-shadow:inset 5px 0 18px rgba(255,255,255,.055),
-    0 20px 50px rgba(22,20,18,.26),0 5px 14px rgba(22,20,18,.13)}
-.bs{position:absolute;top:7%;left:7%;width:13%;height:79%;
-  background:linear-gradient(180deg,rgba(255,255,255,.12),transparent);border-radius:50%}
-.bl{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  text-align:center;width:75%}
-.bl-b{font-family:var(--f);font-size:11px;letter-spacing:.42em;
-  color:rgba(216,190,144,.9);display:block;text-transform:uppercase}
-.bl-s{font-size:6.5px;letter-spacing:.19em;text-transform:uppercase;
-  color:rgba(160,120,64,.68);display:block;margin-top:5px}
-.bg{width:118px;height:17px;margin:-2px auto 0;
-  background:radial-gradient(ellipse,rgba(160,120,64,.18),transparent 70%);
-  filter:blur(7px)}
+}
+/* Decorative large serif glyph */
+.hero-deco{
+  position:absolute;top:-20px;right:-10px;
+  font-family:var(--serif);font-size:clamp(160px,45vw,260px);
+  line-height:1;color:rgba(26,23,20,.04);
+  pointer-events:none;z-index:0;user-select:none;
+  letter-spacing:-.08em;
+}
+.hero-inner{position:relative;z-index:1;padding-top:40px}
 
-/* kpi grid */
+/* Bottle + copy in row on wide, stack on narrow */
+.hero-layout{
+  display:grid;
+  grid-template-columns:80px 1fr;
+  gap:0 20px;
+  align-items:start;
+}
+@media(min-width:400px){
+  .hero-layout{grid-template-columns:96px 1fr;gap:0 24px}
+}
+
+/* CSS BOTTLE */
+.btl{width:100%;display:flex;flex-direction:column;align-items:center;
+  padding-top:10px}
+.b-cap{width:42px;height:12px;border-radius:3px;
+  background:linear-gradient(135deg,#BA8E44,#D9B85A,#8C6420);
+  box-shadow:0 3px 8px rgba(156,118,64,.28)}
+.b-neck{width:26px;height:21px;margin:0 auto;border-radius:2px 2px 0 0;
+  background:linear-gradient(180deg,#38240E,#623E18)}
+.b-body{
+  width:68px;height:148px;border-radius:4px 4px 10px 10px;
+  background:linear-gradient(155deg,
+    #170B03 0%,#371806 18%,#7C4A22 46%,#513010 72%,#0E0700 100%);
+  position:relative;overflow:hidden;
+  box-shadow:inset 4px 0 16px rgba(255,255,255,.05),
+    0 16px 40px rgba(26,23,20,.28),0 4px 10px rgba(26,23,20,.12);
+}
+.b-shine{position:absolute;top:7%;left:7%;width:13%;height:80%;
+  background:linear-gradient(180deg,rgba(255,255,255,.11),transparent);
+  border-radius:50%}
+.b-label{position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);text-align:center;width:80%}
+.b-brand{font-family:var(--serif);font-size:7.5px;letter-spacing:.4em;
+  color:rgba(210,178,128,.9);display:block;text-transform:uppercase}
+.b-product{font-size:5.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(156,118,64,.7);display:block;margin-top:4px}
+.b-glow{width:96px;height:14px;margin:-1px auto 0;
+  background:radial-gradient(ellipse,rgba(156,118,64,.18),transparent 68%);
+  filter:blur(5px)}
+
+/* Hero copy side */
+.hero-copy{padding-top:8px}
+.hero-eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;display:block;margin-bottom:12px}
+
+/* ── PROOF NUMBERS ── */
 .kpi{display:grid;grid-template-columns:repeat(3,1fr);
-  gap:2px;border:1px solid var(--i10);border-radius:var(--rl);
-  overflow:hidden;margin-bottom:32px}
-.kpi-c{background:var(--w);padding:17px 10px;text-align:center}
-.kpi-c+.kpi-c{border-left:1px solid var(--i10)}
-.kpi-n{font-family:var(--f);font-size:25px;color:var(--ink);
+  gap:2px;border:1px solid var(--ink08);border-radius:var(--rl);
+  overflow:hidden;margin-bottom:28px}
+.kpi-c{background:var(--milk);padding:16px 10px;text-align:center}
+.kpi-c+.kpi-c{border-left:1px solid var(--ink08)}
+.kpi-n{font-family:var(--serif);font-size:24px;color:var(--ink);
   line-height:1;margin-bottom:4px;display:block}
-.kpi-l{font-size:10.5px;color:var(--i50);letter-spacing:.03em}
+.kpi-l{font-size:10px;color:var(--ink30);letter-spacing:.03em}
 
-/* horizontal scroll */
-.hs-wrap{display:flex;gap:12px;overflow-x:auto;
-  padding:0 var(--px) 5px;scrollbar-width:none;
-  -webkit-overflow-scrolling:touch}
-.hs-wrap::-webkit-scrollbar{display:none}
+/* ── HORIZONTAL SCROLL ── */
+.hscroll{
+  display:flex;gap:14px;overflow-x:auto;
+  padding:0 var(--px) 8px;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.hscroll::-webkit-scrollbar{display:none}
 
-/* tiktok cards */
-.tk{flex-shrink:0;width:206px;background:var(--w);
-  border:1px solid var(--i10);border-radius:var(--rl);
-  padding:17px 15px;box-shadow:var(--sh);position:relative;overflow:hidden}
-.tk::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--gold),var(--gl),var(--gold))}
-.tk-u{display:flex;align-items:center;gap:9px;margin-bottom:11px}
-.tk-av{width:33px;height:33px;min-width:33px;border-radius:50%;
-  background:linear-gradient(135deg,var(--gold),var(--gl));
+/* SNS-style mini cards */
+.snsc{
+  flex-shrink:0;width:196px;
+  background:var(--milk);border:1px solid var(--ink08);
+  border-radius:var(--rl);padding:16px 14px;
+  box-shadow:var(--sh);position:relative;overflow:hidden;
+}
+.snsc::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-l),var(--gold))}
+.snsc-u{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.snsc-av{width:30px;height:30px;min-width:30px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold-l));
   display:flex;align-items:center;justify-content:center;
-  font-size:13px;font-weight:700;color:var(--w);flex-shrink:0}
-.tk-nm{font-size:12px;font-weight:700}
-.tk-hd{font-size:10px;color:var(--i50)}
-.tk-tx{font-size:12.5px;color:var(--i80);line-height:1.55;margin-top:7px}
-.tk-sc{display:inline-block;margin-top:9px;font-size:9.5px;
+  font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.snsc-name{font-size:11.5px;font-weight:700}
+.snsc-hdl{font-size:9.5px;color:var(--ink30)}
+.snsc-tx{font-size:12px;color:var(--ink75);line-height:1.55}
+.snsc-tag{display:inline-block;margin-top:8px;font-size:9px;
   color:var(--gold);background:var(--gp);border:1px solid var(--gb);
   padding:2px 8px;border-radius:20px;letter-spacing:.06em}
 
-/* switch cards */
-.sw2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.sw{background:var(--w);border:1px solid var(--i10);
-  border-radius:var(--rl);padding:22px 17px;box-shadow:var(--sh)}
-.sw-i{font-size:26px;display:block;margin-bottom:11px}
-.sw-t{font-size:14.5px;font-weight:700;margin-bottom:5px}
-.sw-d{font-size:12.5px;color:var(--i50);line-height:1.55}
+/* Large review cards (full-width scroll) */
+.rvc{
+  flex-shrink:0;
+  width:calc(84vw);max-width:380px;
+  background:var(--milk);border:1px solid var(--ink08);
+  border-radius:var(--rl);padding:22px 20px;
+  box-shadow:var(--sh);
+}
+.rvc-stars{display:block;font-size:14px;letter-spacing:2px;margin-bottom:10px}
+.rvc-pull{font-family:var(--serif);font-size:17px;font-style:italic;
+  color:var(--ink);line-height:1.38;margin-bottom:10px}
+.rvc-body{font-size:13px;color:var(--ink50);line-height:1.68;margin-bottom:14px}
+.rvc-meta{display:flex;align-items:center;justify-content:space-between}
+.rvc-name{font-size:12px;font-weight:600;color:var(--ink75)}
+.rvc-tag{font-size:9px;color:var(--gold);background:var(--gp);
+  border:1px solid var(--gb);padding:2px 8px;border-radius:20px}
 
-/* benefits */
-.ben-l{display:flex;flex-direction:column;gap:12px}
-.ben{background:var(--w);border:1px solid var(--i10);
-  border-radius:var(--rl);padding:19px 17px;
-  display:flex;align-items:flex-start;gap:14px;box-shadow:var(--sh)}
-.ben-ico{font-size:22px;width:44px;height:44px;min-width:44px;
-  background:var(--stone);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+/* ── SWITCH GRID ── */
+.sw-g{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sw{background:var(--milk);border:1px solid var(--ink08);
+  border-radius:var(--rl);padding:20px 16px;box-shadow:var(--sh)}
+.sw-icon{color:var(--gold);margin-bottom:11px}
+.sw-t{font-size:14px;font-weight:700;margin-bottom:5px}
+.sw-d{font-size:12.5px;color:var(--ink50);line-height:1.55}
+
+/* ── BENEFITS ── */
+.ben-list{display:flex;flex-direction:column;gap:12px}
+.ben{background:var(--milk);border:1px solid var(--ink08);
+  border-radius:var(--rl);padding:18px 16px;
+  display:flex;align-items:flex-start;gap:13px;box-shadow:var(--sh)}
+.ben-icon{width:40px;height:40px;min-width:40px;border-radius:50%;
+  background:var(--parch);display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;color:var(--gold)}
 .ben-t{font-size:15px;font-weight:700;margin-bottom:4px}
-.ben-d{font-size:13px;color:var(--i50);line-height:1.55}
+.ben-d{font-size:13px;color:var(--ink50);line-height:1.55}
 
-/* smell profile */
-.sm-rows{display:flex;flex-direction:column}
-.sm-row{display:grid;grid-template-columns:58px 1fr;
-  padding:19px 0;border-bottom:1px solid var(--i10)}
-.sm-row:last-child{border-bottom:none}
-.sm-lbl{font-size:9px;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--gold);font-weight:700;padding-top:3px;line-height:1.4}
-.sm-nm{font-family:var(--f);font-size:20px;font-style:italic;
-  color:var(--ink);margin-bottom:4px}
-.sm-ds{font-size:12.5px;color:var(--i50);line-height:1.55;margin-bottom:8px}
+/* ── SMELL ── */
+.smell{display:flex;flex-direction:column}
+.smell-row{display:grid;grid-template-columns:56px 1fr;
+  padding:18px 0;border-bottom:1px solid var(--ink08)}
+.smell-row:last-child{border-bottom:none}
+.smell-lbl{font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);font-weight:700;padding-top:2px;line-height:1.4}
+.smell-nm{font-family:var(--serif);font-size:19px;font-style:italic;
+  margin-bottom:4px}
+.smell-ds{font-size:12.5px;color:var(--ink50);line-height:1.55;margin-bottom:8px}
 .pills{display:flex;flex-wrap:wrap;gap:4px}
-.pl{font-size:10px;border:1px solid var(--i20);border-radius:20px;
-  padding:3px 9px;color:var(--i50)}
+.pill{font-size:9.5px;border:1px solid var(--ink15);border-radius:20px;
+  padding:3px 9px;color:var(--ink30)}
 
-/* comparison */
-.comp-wr{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:24px}
-.comp{width:100%;border-collapse:collapse;font-size:13.5px}
-.comp th{padding:12px 10px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
-  text-align:center;border-bottom:1.5px solid var(--i20);font-weight:700}
+/* ── SCENE CARDS ── */
+.scene-scroll{
+  display:flex;gap:10px;overflow-x:auto;
+  padding:0 var(--px) 6px;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.scene-scroll::-webkit-scrollbar{display:none}
+.scene-c{
+  flex-shrink:0;width:116px;
+  background:var(--milk);border:1px solid var(--ink08);
+  border-radius:var(--rl);padding:18px 12px;
+  box-shadow:var(--sh);text-align:center;
+}
+.scene-c--dk{
+  background:rgba(253,252,249,.06);border-color:rgba(253,252,249,.1);
+}
+.scene-ico{width:38px;height:38px;border-radius:50%;
+  background:var(--parch);display:flex;align-items:center;
+  justify-content:center;margin:0 auto 10px;color:var(--gold)}
+.scene-c--dk .scene-ico{background:rgba(253,252,249,.08);color:var(--gold-l)}
+.scene-t{font-size:13px;font-weight:700;margin-bottom:3px}
+.scene-c--dk .scene-t{color:rgba(253,252,249,.85)}
+.scene-d{font-size:11px;color:var(--ink50);line-height:1.4}
+.scene-c--dk .scene-d{color:rgba(253,252,249,.4)}
+
+/* ── COMPARISON ── */
+.comp-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:24px}
+.comp{width:100%;border-collapse:collapse;font-size:13px}
+.comp th{padding:11px 10px;font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;text-align:center;
+  border-bottom:1.5px solid var(--ink15);font-weight:700}
 .comp th:first-child{text-align:left;width:36%}
 .comp th.hl{color:var(--gold);background:var(--gp)}
-.comp td{padding:13px 10px;text-align:center;
-  border-bottom:1px solid var(--i05);vertical-align:middle}
-.comp td:first-child{text-align:left;font-size:12px;color:var(--i50)}
+.comp td{padding:12px 10px;text-align:center;
+  border-bottom:1px solid var(--ink04);vertical-align:middle}
+.comp td:first-child{text-align:left;font-size:12px;color:var(--ink50)}
 .comp td.hl{background:var(--gp)}
 .comp tr:last-child td{border-bottom:none}
-.ck{color:var(--ok);font-size:19px;font-weight:700}
-.cx{color:var(--ng);font-size:19px}
-.cs{display:block;font-size:10px;color:var(--i50);margin-top:2px}
+.ck{color:var(--ok);font-size:18px;font-weight:700}
+.cx{color:var(--ng);font-size:18px}
+.cs{display:block;font-size:9.5px;color:var(--ink30);margin-top:2px}
 
-/* reviews */
-.rv-g{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-.rv{background:var(--w);border:1px solid var(--i10);
-  border-radius:var(--rl);padding:16px 14px;box-shadow:var(--sh)}
-.rv-st{font-size:12px;color:var(--gold);letter-spacing:1.5px;margin-bottom:8px}
-.rv-tx{font-size:12.5px;color:var(--i80);line-height:1.55;margin-bottom:9px}
-.rv-hl{font-weight:700;color:var(--ink)}
-.rv-mt{font-size:11px;color:var(--i50)}
-.rv-sc{display:inline-block;margin-top:5px;font-size:9.5px;
-  color:var(--gold);background:var(--gp);border:1px solid var(--gb);
-  padding:2px 7px;border-radius:20px}
-
-/* offer cards */
-.of-l{display:flex;flex-direction:column;gap:15px}
-.of{background:var(--w);border:1.5px solid var(--i10);
-  border-radius:var(--rx);padding:23px 19px;
-  box-shadow:var(--sh);position:relative;overflow:hidden}
-.of-hl{border-color:var(--gold);
-  box-shadow:var(--sh2),0 0 0 1px rgba(160,120,64,.16)}
-.of-hl::before{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;
-  background:linear-gradient(90deg,rgba(160,120,64,0),var(--gold),var(--gl),var(--gold),rgba(160,120,64,0))}
-.of-bdg{position:absolute;top:14px;right:14px;
-  font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  background:var(--gold);color:var(--w);padding:4px 10px;border-radius:20px}
-.of-hd{display:flex;align-items:flex-end;gap:8px;margin-bottom:4px}
-.of-vol{font-family:var(--f);font-size:44px;line-height:1;color:var(--ink)}
-.of-ml{font-size:15px;color:var(--i50);padding-bottom:5px}
-.of-pr{margin-left:auto;text-align:right}
-.of-pn{font-family:var(--f);font-size:27px;color:var(--ink);line-height:1}
-.of-ps{font-size:10.5px;color:var(--i50);margin-top:2px}
-.of-sp{font-size:11.5px;color:var(--gold);font-weight:600;margin-bottom:13px}
-.of-in{display:flex;flex-direction:column;gap:5px;margin-bottom:16px}
-.of-it{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--i80)}
-.of-ck{color:var(--ok);font-weight:700;flex-shrink:0;font-size:14px}
-
-/* presell */
-.ps{background:var(--stone);border-radius:var(--rx);
-  padding:28px 20px;margin-bottom:26px;text-align:center;
-  border:1px solid var(--i10)}
-.ps-q{font-family:var(--f);font-size:21px;line-height:1.2;margin-bottom:20px}
-.ps-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
-.ps-i{font-size:22px;display:block;margin-bottom:5px}
-.ps-t{font-size:11px;color:var(--i80);line-height:1.4}
-.ps-rv{background:var(--w);border-radius:var(--rl);
-  padding:16px 18px;text-align:left;box-shadow:var(--sh);border:1px solid var(--i10)}
-.ps-rt{font-size:13.5px;color:var(--i80);line-height:1.65;margin-bottom:8px}
-.ps-rm{font-size:11px;color:var(--i50)}
-
-/* faq */
-.fq-it{border-bottom:1px solid var(--i10);padding:19px 0}
-.fq-it:last-child{border-bottom:none}
-.fq-q{font-size:15px;font-weight:700;margin-bottom:8px;line-height:1.4}
-.fq-a{font-size:13.5px;color:var(--i50);line-height:1.75}
-
-/* footer */
-.ft{padding:22px var(--px) 84px;text-align:center;border-top:1px solid var(--i10)}
-.ft-t{font-size:11px;color:var(--i50);line-height:1.7}
-.ft-a{color:var(--i50);text-decoration:underline;text-underline-offset:3px}
-
-@media(min-width:480px){:root{--px:32px}}
-@media(max-width:360px){
-  :root{--px:16px}
-  .rv-g{grid-template-columns:1fr}
-  .sw2{grid-template-columns:1fr}
+/* ── OFFER CARDS ── */
+.offers{display:flex;flex-direction:column;gap:14px}
+.offer{
+  background:var(--milk);border:1.5px solid var(--ink08);
+  border-radius:var(--rx);padding:22px 18px;
+  box-shadow:var(--sh);position:relative;overflow:hidden;
 }
-@media(prefers-reduced-motion:reduce){.lv-dot,.ud{animation:none}}
+.offer-hl{
+  border-color:var(--gold);
+  box-shadow:var(--sh2),0 0 0 1px rgba(156,118,64,.14);
+}
+.offer-hl::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,
+    rgba(156,118,64,0),var(--gold),var(--gold-l),var(--gold),rgba(156,118,64,0));
+}
+.offer-badge{position:absolute;top:13px;right:13px;
+  font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--gold);color:#fff;padding:4px 10px;border-radius:20px}
+.offer-hd{display:flex;align-items:flex-end;gap:8px;margin-bottom:4px}
+.offer-vol{font-family:var(--serif);font-size:42px;line-height:1;color:var(--ink)}
+.offer-ml{font-size:14px;color:var(--ink30);padding-bottom:5px}
+.offer-pr{margin-left:auto;text-align:right}
+.offer-pn{font-family:var(--serif);font-size:26px;color:var(--ink);line-height:1}
+.offer-ps{font-size:10px;color:var(--ink30);margin-top:2px}
+.offer-spray{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:13px}
+.offer-inc{display:flex;flex-direction:column;gap:5px;margin-bottom:15px}
+.offer-it{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink75)}
+.offer-ck{color:var(--ok);font-weight:700;flex-shrink:0;font-size:14px}
+
+/* ── PRESELL ── */
+.presell{background:var(--parch);border-radius:var(--rx);
+  padding:26px 20px;margin-bottom:24px;text-align:center;
+  border:1px solid var(--ink08)}
+.presell-q{font-family:var(--serif);font-size:22px;
+  line-height:1.18;margin-bottom:22px}
+.presell-row{display:grid;grid-template-columns:repeat(3,1fr);
+  gap:8px;margin-bottom:20px}
+.presell-ico{width:36px;height:36px;border-radius:50%;
+  background:var(--milk);display:flex;align-items:center;
+  justify-content:center;margin:0 auto 7px;
+  box-shadow:var(--sh);color:var(--gold)}
+.presell-t{font-size:11px;color:var(--ink75);line-height:1.4}
+.presell-rv{background:var(--milk);border-radius:var(--rl);
+  padding:16px;text-align:left;box-shadow:var(--sh);
+  border:1px solid var(--ink08)}
+.presell-rv-tx{font-size:13.5px;color:var(--ink75);
+  line-height:1.65;margin-bottom:8px}
+.presell-rv-meta{font-size:11px;color:var(--ink30)}
+
+/* ── FAQ ACCORDION ── */
+.faq{display:flex;flex-direction:column}
+.faq-item{border-bottom:1px solid var(--ink08)}
+.faq-item:first-child{border-top:1px solid var(--ink08)}
+.faq-btn{
+  width:100%;background:none;border:none;cursor:pointer;
+  font-family:var(--body);font-size:14.5px;font-weight:700;
+  color:var(--ink);text-align:left;
+  padding:18px 0;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  -webkit-tap-highlight-color:transparent;
+}
+.faq-icon{flex-shrink:0;color:var(--gold);
+  transition:transform .28s cubic-bezier(.22,1,.36,1)}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-panel{overflow:hidden;max-height:0;
+  transition:max-height .32s ease,padding .3s ease}
+.faq-item.open .faq-panel{max-height:280px}
+.faq-panel-inner{
+  padding:0 0 18px;
+  font-size:13.5px;color:var(--ink50);line-height:1.75;
+}
+
+/* ── FOOTER ── */
+.footer{padding:22px var(--px) 80px;
+  text-align:center;border-top:1px solid var(--ink08)}
+.footer-t{font-size:11px;color:var(--ink30);line-height:1.75}
+.footer-a{color:var(--ink30);text-decoration:underline;text-underline-offset:3px}
+
+/* ── RESPONSIVE ── */
+@media(min-width:480px){:root{--px:32px}}
+@media(max-width:360px){:root{--px:16px}}
+@media(prefers-reduced-motion:reduce){
+  .live-dot,.urgency-dot{animation:none}
+}
 </style>
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
 </head>
 <body>
 
-<!-- sticky CTA -->
-<div class="stk">
+<!-- ════════════════════════════════
+     STICKY BOTTOM CTA
+     (hidden until 400px scroll)
+════════════════════════════════ -->
+<div class="stk" id="js-stk" aria-hidden="true">
   <div class="stk-i">
     <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
-       class="btn btn-g btn-lg" aria-label="今すぐ試す・テストキット付き100ml">
-      🛒 今すぐ試す — テストキット付き
+       class="btn btn-g btn-lg"
+       aria-label="ボトルを選ぶ – 100ml テストキット付き">
+      ボトルを選ぶ — テストキット付き
     </a>
   </div>
 </div>
 
-<!-- nav -->
-<nav class="nav" aria-label="ブランド">
-  <span class="logo">Nemveil</span>
+<!-- ════════════════════════════════
+     NAV
+════════════════════════════════ -->
+<nav class="nav" aria-label="メインナビ">
+  <div>
+    <span class="nav-logo">PURELAYER</span>
+    <span class="nav-sub">Oud Stallion</span>
+  </div>
+  <a href="#offer" class="nav-act" aria-label="ボトルを選ぶ">ボトルを選ぶ</a>
 </nav>
 
-<!-- ══ §1 HERO ══ -->
-<section aria-label="ヒーロー">
+<!-- ════════════════════════════════
+     §1  HERO
+════════════════════════════════ -->
+<section id="hero" aria-label="ヒーロー">
   <div class="hero">
-    <div class="live" aria-live="polite">
-      <span class="lv-dot" aria-hidden="true"></span>今 247人が閲覧中
-    </div>
-    <div class="btl" role="img" aria-label="Nemveil ボトル">
-      <div class="bc"></div><div class="bn"></div>
-      <div class="bb">
-        <div class="bs"></div>
-        <div class="bl"><span class="bl-b">Nemveil</span><span class="bl-s">Eau de Parfum</span></div>
+    <!-- Decorative background letter -->
+    <div class="hero-deco" aria-hidden="true">S</div>
+
+    <div class="hero-inner">
+      <div class="live" aria-live="polite">
+        <span class="live-dot" aria-hidden="true"></span>今 247人が閲覧中
       </div>
-    </div>
-    <div class="bg" aria-hidden="true"></div>
-    <h1 class="hn">どこでも<br><span class="ag">褒められる</span><br>香り。</h1>
-    <p style="font-size:15px;color:var(--i50);line-height:1.75;max-width:340px;margin:0 auto 22px">
-      電車でも、職場でも、デートでも。<br>20,000人以上が選んだユニセックス香水。
-    </p>
-    <div class="rate-row" aria-label="評価4.9">
-      <div class="st" aria-hidden="true">★★★★★</div>
-      <span class="rate-n">4.9</span>
-      <span class="rate-c">/ 5.0 &nbsp;·&nbsp; 1,240件</span>
-    </div>
-    <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
-       class="btn btn-g" style="max-width:400px;margin:0 auto" aria-label="ボトルを選ぶ">
-      ボトルを選ぶ →
-    </a>
-    <div class="trust">
-      <b>✓</b>送料無料<span class="td" aria-hidden="true"></span>
-      <b>✓</b>30日返金保証<span class="td" aria-hidden="true"></span>
-      <b>✓</b>即日発送
+
+      <div class="hero-layout">
+        <!-- Bottle -->
+        <div>
+          <div class="btl" role="img" aria-label="PURELAYER Oud Stallion ボトル">
+            <div class="b-cap"></div>
+            <div class="b-neck"></div>
+            <div class="b-body">
+              <div class="b-shine"></div>
+              <div class="b-label">
+                <span class="b-brand">PURELAYER</span>
+                <span class="b-product">Oud Stallion</span>
+              </div>
+            </div>
+          </div>
+          <div class="b-glow" aria-hidden="true"></div>
+        </div>
+
+        <!-- Copy -->
+        <div class="hero-copy">
+          <span class="hero-eyebrow">香水で失敗したくない人へ</span>
+          <h1 class="h1">
+            <span class="ag">嫌われない</span><br>香り。
+          </h1>
+          <p style="font-size:14px;color:var(--ink50);line-height:1.75;margin-bottom:20px">
+            電車でも、職場でも、デートでも。<br>
+            20,000人が選んだユニセックス香水。
+          </p>
+          <div class="rate-row" style="justify-content:flex-start" aria-label="評価4.9">
+            <div class="stars" style="font-size:15px" aria-hidden="true">★★★★★</div>
+            <span class="rate-n">4.9</span>
+            <span class="rate-c">/ 5.0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA (always visible in hero) -->
+      <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
+         class="btn btn-g" style="margin-top:24px;max-width:420px"
+         aria-label="ボトルを選ぶ">
+        ボトルを選ぶ →
+      </a>
+
+      <div class="trust">
+        <b>✓</b>送料無料
+        <span class="dot" aria-hidden="true"></span>
+        <b>✓</b>30日返金保証
+        <span class="dot" aria-hidden="true"></span>
+        <b>✓</b>即日発送
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ══ §2 SOCIAL PROOF ══ -->
-<section class="sec bg1" aria-label="実績・ソーシャルプルーフ">
-  <div class="z" style="margin-bottom:24px">
+<!-- ════════════════════════════════
+     §2  SOCIAL PROOF
+════════════════════════════════ -->
+<section class="sec bg-p" aria-label="ソーシャルプルーフ">
+  <div class="w" style="margin-bottom:24px">
     <div class="sh">
-      <span class="kk">Social Proof</span>
-      <h2 class="hm">実際に<span class="ag">使った人</span>の声</h2>
-      <span class="bar" aria-hidden="true"></span>
+      <span class="kicker">Social Proof</span>
+      <h2 class="h2">実際に<span class="ag">使った人</span>の声</h2>
+      <span class="rule" aria-hidden="true"></span>
     </div>
     <div class="kpi" role="list" aria-label="実績数値">
-      <div class="kpi-c" role="listitem"><span class="kpi-n">20,000+</span><span class="kpi-l">愛用者数</span></div>
-      <div class="kpi-c" role="listitem"><span class="kpi-n">4.9★</span><span class="kpi-l">平均評価</span></div>
-      <div class="kpi-c" role="listitem"><span class="kpi-n">98%</span><span class="kpi-l">リピート率</span></div>
+      <div class="kpi-c" role="listitem">
+        <span class="kpi-n">20,000+</span><span class="kpi-l">愛用者数</span>
+      </div>
+      <div class="kpi-c" role="listitem">
+        <span class="kpi-n">4.9★</span><span class="kpi-l">平均評価</span>
+      </div>
+      <div class="kpi-c" role="listitem">
+        <span class="kpi-n">98%</span><span class="kpi-l">リピート率</span>
+      </div>
     </div>
   </div>
-  <div class="hs-wrap" role="list" aria-label="SNSレビュー">
-    <div class="tk" role="listitem">
-      <div class="tk-u"><div class="tk-av" aria-hidden="true">S</div>
-      <div><p class="tk-nm">sakura.daily</p><p class="tk-hd">@sakura_daily</p></div></div>
-      <div class="st-sm" style="color:var(--gold)" aria-label="5つ星">★★★★★</div>
-      <p class="tk-tx">「電車で知らない人に"いい香り"と言われた。人生初！」</p>
-      <span class="tk-sc">電車</span>
+
+  <div class="hscroll" role="list" aria-label="SNSレビュー">
+    <div class="snsc" role="listitem">
+      <div class="snsc-u">
+        <div class="snsc-av" aria-hidden="true">S</div>
+        <div><p class="snsc-name">sakura.daily</p><p class="snsc-hdl">@sakura_daily</p></div>
+      </div>
+      <div class="stars-sm stars" aria-label="5つ星">★★★★★</div>
+      <p class="snsc-tx" style="margin-top:7px">「電車で知らない人に"いい香り"と言われた。人生初！」</p>
+      <span class="snsc-tag">電車</span>
     </div>
-    <div class="tk" role="listitem">
-      <div class="tk-u"><div class="tk-av" aria-hidden="true">R</div>
-      <div><p class="tk-nm">riku.style</p><p class="tk-hd">@riku_style</p></div></div>
-      <div class="st-sm" style="color:var(--gold)" aria-label="5つ星">★★★★★</div>
-      <p class="tk-tx">「香水苦手な上司に"清潔感がある"と言われた。これは革命」</p>
-      <span class="tk-sc">職場</span>
+    <div class="snsc" role="listitem">
+      <div class="snsc-u">
+        <div class="snsc-av" aria-hidden="true">R</div>
+        <div><p class="snsc-name">riku.style</p><p class="snsc-hdl">@riku_style</p></div>
+      </div>
+      <div class="stars-sm stars" aria-label="5つ星">★★★★★</div>
+      <p class="snsc-tx" style="margin-top:7px">「香水苦手な上司に"清潔感ある"と言われた。これは革命」</p>
+      <span class="snsc-tag">職場</span>
     </div>
-    <div class="tk" role="listitem">
-      <div class="tk-u"><div class="tk-av" aria-hidden="true">M</div>
-      <div><p class="tk-nm">mio.fragrance</p><p class="tk-hd">@mio_frag</p></div></div>
-      <div class="st-sm" style="color:var(--gold)" aria-label="5つ星">★★★★★</div>
-      <p class="tk-tx">「デートで"その香水どこの？"って聞かれた。絶対リピします」</p>
-      <span class="tk-sc">デート</span>
+    <div class="snsc" role="listitem">
+      <div class="snsc-u">
+        <div class="snsc-av" aria-hidden="true">M</div>
+        <div><p class="snsc-name">mio.frag</p><p class="snsc-hdl">@mio_frag</p></div>
+      </div>
+      <div class="stars-sm stars" aria-label="5つ星">★★★★★</div>
+      <p class="snsc-tx" style="margin-top:7px">「デートで"その香水どこの？"と聞かれた！リピ確定」</p>
+      <span class="snsc-tag">デート</span>
     </div>
-    <div class="tk" role="listitem">
-      <div class="tk-u"><div class="tk-av" aria-hidden="true">Y</div>
-      <div><p class="tk-nm">yuki.life</p><p class="tk-hd">@yuki_life</p></div></div>
-      <div class="st-sm" style="color:var(--gold)" aria-label="5つ星">★★★★★</div>
-      <p class="tk-tx">「友達に"雰囲気変わった？"って言われた。香りって大事だな」</p>
-      <span class="tk-sc">友達</span>
+    <div class="snsc" role="listitem">
+      <div class="snsc-u">
+        <div class="snsc-av" aria-hidden="true">Y</div>
+        <div><p class="snsc-name">yuki.life</p><p class="snsc-hdl">@yuki_life</p></div>
+      </div>
+      <div class="stars-sm stars" aria-label="5つ星">★★★★★</div>
+      <p class="snsc-tx" style="margin-top:7px">「友達に"雰囲気変わった？"と言われた。香りって大事」</p>
+      <span class="snsc-tag">友達</span>
     </div>
   </div>
 </section>
 
-<!-- ══ §3 WHY SWITCH ══ -->
-<section class="sec bg0" aria-label="なぜNemveilに乗り換えるのか">
-  <div class="z">
+<!-- ════════════════════════════════
+     §3  WHY SWITCH
+════════════════════════════════ -->
+<section class="sec" aria-label="乗り換え理由">
+  <div class="w">
     <div class="sh">
-      <span class="kk">Why People Switch</span>
-      <h2 class="hm">なぜ多くの人が<br><span class="ag">Nemveil</span>に乗り換えるのか</h2>
-      <span class="bar" aria-hidden="true"></span>
+      <span class="kicker">Why People Switch</span>
+      <h2 class="h2">なぜ<span class="ag">PURELAYER</span>に換えるのか</h2>
+      <span class="rule" aria-hidden="true"></span>
     </div>
-    <div class="sw2" role="list">
-      <div class="sw" role="listitem"><span class="sw-i" aria-hidden="true">⏱</span>
-        <p class="sw-t">長時間続く香り</p><p class="sw-d">6〜8時間持続。朝つければ夜まで続く。</p></div>
-      <div class="sw" role="listitem"><span class="sw-i" aria-hidden="true">✨</span>
-        <p class="sw-t">他人とかぶらない</p><p class="sw-d">「どこの香水？」と聞かれる個性ある香り。</p></div>
-      <div class="sw" role="listitem"><span class="sw-i" aria-hidden="true">💬</span>
-        <p class="sw-t">褒められが増える</p><p class="sw-d">「いい香り」と言われた体験が増えると報告多数。</p></div>
-      <div class="sw" role="listitem"><span class="sw-i" aria-hidden="true">🎁</span>
-        <p class="sw-t">ミニサイズ付き</p><p class="sw-d">持ち歩き用アトマイザー同梱。外出先で使いやすい。</p></div>
+    <div class="sw-g" role="list">
+      <div class="sw" role="listitem">
+        <div class="sw-icon">
+          <!-- clock -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <p class="sw-t">6〜8h 続く香り</p>
+        <p class="sw-d">朝につければ夜まで続く。つけ直し不要。</p>
+      </div>
+      <div class="sw" role="listitem">
+        <div class="sw-icon">
+          <!-- shield -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <p class="sw-t">嫌われない強さ</p>
+        <p class="sw-d">近距離設計で職場・電車も安心。</p>
+      </div>
+      <div class="sw" role="listitem">
+        <div class="sw-icon">
+          <!-- message-circle -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <p class="sw-t">褒められが増える</p>
+        <p class="sw-d">「いい香り」と言われた体験が増えると多数報告。</p>
+      </div>
+      <div class="sw" role="listitem">
+        <div class="sw-icon">
+          <!-- package -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <p class="sw-t">ミニサイズ付き</p>
+        <p class="sw-d">持ち歩き用アトマイザー同梱。外出先でも。</p>
+      </div>
     </div>
     <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
-       class="btn" style="margin-top:28px;max-width:400px" aria-label="今すぐ試す">今すぐ試す →</a>
+       class="btn" style="margin-top:26px;max-width:420px"
+       aria-label="香りを試す">
+      香りを試す →
+    </a>
   </div>
 </section>
 
-<!-- ══ §4 BENEFITS ══ -->
-<section class="sec bg1" aria-label="ベネフィット">
-  <div class="z">
+<!-- ════════════════════════════════
+     §4  BENEFITS
+════════════════════════════════ -->
+<section class="sec bg-p" aria-label="ベネフィット">
+  <div class="w">
     <div class="sh">
-      <span class="kk">Benefits</span>
-      <h2 class="hm">Nemveilが<br><span class="ag">あなたを変える</span></h2>
-      <span class="bar" aria-hidden="true"></span>
+      <span class="kicker">Benefits</span>
+      <h2 class="h2">Oud Stallionが<br><span class="ag">印象を変える</span></h2>
+      <span class="rule" aria-hidden="true"></span>
     </div>
-    <div class="ben-l" role="list">
+    <div class="ben-list" role="list">
       <div class="ben" role="listitem">
-        <div class="ben-ico" aria-hidden="true">🦁</div>
-        <div><p class="ben-t">自信が出る</p>
-        <p class="ben-d">「いい香りがする」と思われると自然と姿勢が変わる。印象が変わる。</p></div>
-      </div>
-      <div class="ben" role="listitem">
-        <div class="ben-ico" aria-hidden="true">🧠</div>
-        <div><p class="ben-t">記憶に残る</p>
-        <p class="ben-d">香りは記憶と直結。「あの人の香り」として印象に残り続ける。</p></div>
-      </div>
-      <div class="ben" role="listitem">
-        <div class="ben-ico" aria-hidden="true">🌟</div>
-        <div><p class="ben-t">日常が特別になる</p>
-        <p class="ben-d">毎朝のルーティンに加えるだけで気分が上がる。いい一日のスタートに。</p></div>
+        <div class="ben-icon">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+        </div>
+        <div>
+          <p class="ben-t">自信が出る</p>
+          <p class="ben-d">「いい香りがする」と思われると姿勢と印象が変わる。</p>
+        </div>
       </div>
       <div class="ben" role="listitem">
-        <div class="ben-ico" aria-hidden="true">👏</div>
-        <div><p class="ben-t">周囲から褒められる</p>
-        <p class="ben-d">職場でも、電車でも、デートでも。「いい香り」と言われる体験が増える。</p></div>
+        <div class="ben-icon">
+          <!-- heart -->
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div>
+          <p class="ben-t">記憶に残る</p>
+          <p class="ben-d">香りは記憶と直結。「あの人の香り」として残り続ける。</p>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ §5 SMELL PROFILE ══ -->
-<section class="sec bg0" aria-label="香りのプロファイル">
-  <div class="z">
-    <div class="sh">
-      <span class="kk">Smell Profile</span>
-      <h2 class="hm">香りの<span class="ag">3段階</span></h2>
-      <span class="bar" aria-hidden="true"></span>
-      <p class="bd">時間とともに変化します</p>
-    </div>
-    <div class="sm-rows">
-      <div class="sm-row">
-        <div class="sm-lbl">最初<br>0–2h</div>
-        <div><p class="sm-nm">石鹸の清潔感</p>
-        <p class="sm-ds">「清潔な人だな」と思わせる第一印象。</p>
-        <div class="pills"><span class="pl">ムスク</span><span class="pl">シトラス</span><span class="pl">グリーン</span></div></div>
+      <div class="ben" role="listitem">
+        <div class="ben-icon">
+          <!-- sun -->
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </div>
+        <div>
+          <p class="ben-t">日常が特別になる</p>
+          <p class="ben-d">毎朝のルーティンに加えるだけ。気分が上がる一日に。</p>
+        </div>
       </div>
-      <div class="sm-row">
-        <div class="sm-lbl">途中<br>2–5h</div>
-        <div><p class="sm-nm">温かみのある甘さ</p>
-        <p class="sm-ds">「もっと近くにいたい」と思わせる温もり。</p>
-        <div class="pills"><span class="pl">アンバー</span><span class="pl">ウッド</span><span class="pl">バニラ</span></div></div>
-      </div>
-      <div class="sm-row">
-        <div class="sm-lbl">夕方以降<br>5–8h</div>
-        <div><p class="sm-nm">深みのある余韻</p>
-        <p class="sm-ds">「あの人の香り」として記憶に残る。</p>
-        <div class="pills"><span class="pl">サンダルウッド</span><span class="pl">セダー</span><span class="pl">ムスク</span></div></div>
+      <div class="ben" role="listitem">
+        <div class="ben-icon">
+          <!-- users -->
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <p class="ben-t">周囲から褒められる</p>
+          <p class="ben-d">電車・職場・デートで「いい香り」と言われる体験が増える。</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ §6 COMPARISON ══ -->
-<section class="sec bg2" aria-label="比較表">
-  <div class="z">
+<!-- ════════════════════════════════
+     §5  SMELL PROFILE
+════════════════════════════════ -->
+<section class="sec" aria-label="香りのプロファイル">
+  <div class="w">
     <div class="sh">
-      <span class="kk">Comparison</span>
-      <h2 class="hm">他の香水と<br><span class="ag">何が違う？</span></h2>
-      <span class="bar" aria-hidden="true"></span>
+      <span class="kicker">Smell Profile</span>
+      <h2 class="h2">香りの<span class="ag">3段階</span></h2>
+      <span class="rule" aria-hidden="true"></span>
+      <p class="lead">時間とともに変化します</p>
     </div>
-    <div class="comp-wr">
-      <table class="comp" aria-label="Nemveilと一般香水の比較">
+    <div class="smell">
+      <div class="smell-row">
+        <div class="smell-lbl">最初<br>0–2h</div>
+        <div>
+          <p class="smell-nm">石鹸の清潔感</p>
+          <p class="smell-ds">「清潔な人だな」と思わせる第一印象。</p>
+          <div class="pills"><span class="pill">ムスク</span><span class="pill">シトラス</span><span class="pill">グリーン</span></div>
+        </div>
+      </div>
+      <div class="smell-row">
+        <div class="smell-lbl">途中<br>2–5h</div>
+        <div>
+          <p class="smell-nm">温かみのある甘さ</p>
+          <p class="smell-ds">「もっと近くにいたい」と思わせる温もり。</p>
+          <div class="pills"><span class="pill">アンバー</span><span class="pill">ウッド</span><span class="pill">バニラ</span></div>
+        </div>
+      </div>
+      <div class="smell-row">
+        <div class="smell-lbl">夕方以降<br>5–8h</div>
+        <div>
+          <p class="smell-nm">深みのある余韻</p>
+          <p class="smell-ds">「あの人の香り」として記憶に残る。</p>
+          <div class="pills"><span class="pill">サンダルウッド</span><span class="pill">セダー</span><span class="pill">ムスク</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     §6  WHEN TO WEAR
+════════════════════════════════ -->
+<section class="sec bg-l" aria-label="使用シーン">
+  <div class="w" style="margin-bottom:24px">
+    <div class="sh">
+      <span class="kicker">When to Wear</span>
+      <h2 class="h2">こんな場面で<span class="ag">使われています</span></h2>
+      <span class="rule" aria-hidden="true"></span>
+    </div>
+  </div>
+  <div class="scene-scroll" role="list" aria-label="使用シーン">
+    <div class="scene-c" role="listitem">
+      <div class="scene-ico">
+        <!-- briefcase -->
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/></svg>
+      </div>
+      <p class="scene-t">通勤</p>
+      <p class="scene-d">毎朝のルーティンに</p>
+    </div>
+    <div class="scene-c" role="listitem">
+      <div class="scene-ico">
+        <!-- heart -->
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <p class="scene-t">デート</p>
+      <p class="scene-d">特別な夜に</p>
+    </div>
+    <div class="scene-c" role="listitem">
+      <div class="scene-ico">
+        <!-- train -->
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="17" rx="2"/><path d="M9 21h6m-6 0-1 1m7-1 1 1M12 7v4m-4 0h8"/><circle cx="8.5" cy="14.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="14.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+      </div>
+      <p class="scene-t">電車</p>
+      <p class="scene-d">近距離でも安心</p>
+    </div>
+    <div class="scene-c" role="listitem">
+      <div class="scene-ico">
+        <!-- users -->
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <p class="scene-t">友達</p>
+      <p class="scene-d">会話が弾む香り</p>
+    </div>
+    <div class="scene-c" role="listitem">
+      <div class="scene-ico">
+        <!-- coffee -->
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      </div>
+      <p class="scene-t">カフェ</p>
+      <p class="scene-d">リラックスした時間に</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     §7  COMPLIMENT MOMENTS
+════════════════════════════════ -->
+<section class="sec bg-d" aria-label="褒められる瞬間">
+  <div class="w" style="margin-bottom:24px">
+    <div class="sh">
+      <span class="kicker kicker-lt">Compliment Moments</span>
+      <h2 class="h2" style="color:var(--milk)">こんな瞬間に<span class="ag-lt">褒められる</span></h2>
+      <span class="rule" aria-hidden="true"></span>
+    </div>
+  </div>
+  <div class="scene-scroll" role="list" aria-label="褒められる瞬間">
+    <div class="scene-c scene-c--dk" role="listitem">
+      <div class="scene-ico">
+        <!-- maximize-2 / elevator metaphor -->
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+      </div>
+      <p class="scene-t">エレベーター</p>
+      <p class="scene-d">密閉空間で好印象</p>
+    </div>
+    <div class="scene-c scene-c--dk" role="listitem">
+      <div class="scene-ico">
+        <!-- coffee -->
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      </div>
+      <p class="scene-t">カフェ</p>
+      <p class="scene-d">隣の席から声がかかる</p>
+    </div>
+    <div class="scene-c scene-c--dk" role="listitem">
+      <div class="scene-ico">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <p class="scene-t">デート</p>
+      <p class="scene-d">「その香水は？」</p>
+    </div>
+    <div class="scene-c scene-c--dk" role="listitem">
+      <div class="scene-ico">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/></svg>
+      </div>
+      <p class="scene-t">職場</p>
+      <p class="scene-d">上司・同僚に好印象</p>
+    </div>
+    <div class="scene-c scene-c--dk" role="listitem">
+      <div class="scene-ico">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="17" rx="2"/><path d="M9 21h6m-6 0-1 1m7-1 1 1M12 7v4m-4 0h8"/><circle cx="8.5" cy="14.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.5" cy="14.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+      </div>
+      <p class="scene-t">電車</p>
+      <p class="scene-d">隣の人が振り向く</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     §8  COMPARISON TABLE
+════════════════════════════════ -->
+<section class="sec bg-a" aria-label="比較表">
+  <div class="w">
+    <div class="sh">
+      <span class="kicker">Comparison</span>
+      <h2 class="h2">他の香水と<span class="ag">何が違う？</span></h2>
+      <span class="rule" aria-hidden="true"></span>
+    </div>
+    <div class="comp-wrap">
+      <table class="comp" aria-label="PURELAYERと一般香水の比較">
         <thead>
           <tr>
             <th scope="col"></th>
             <th scope="col">一般香水</th>
-            <th scope="col" class="hl">Nemveil ✦</th>
+            <th scope="col" class="hl">PURELAYER ✦</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>持続時間</td>
+          <tr>
+            <td>持続時間</td>
             <td><span class="cx">✗</span><span class="cs">2〜3時間</span></td>
-            <td class="hl"><span class="ck">✓</span><span class="cs">6〜8時間</span></td></tr>
-          <tr><td>香りの個性</td>
-            <td><span class="cx">✗</span><span class="cs">ありがち</span></td>
-            <td class="hl"><span class="ck">✓</span><span class="cs">ユニーク</span></td></tr>
-          <tr><td>携帯アトマイザー</td>
+            <td class="hl"><span class="ck">✓</span><span class="cs">6〜8時間</span></td>
+          </tr>
+          <tr>
+            <td>香りの強さ</td>
+            <td><span class="cx">✗</span><span class="cs">強すぎる</span></td>
+            <td class="hl"><span class="ck">✓</span><span class="cs">近距離設計</span></td>
+          </tr>
+          <tr>
+            <td>携帯アトマイザー</td>
             <td><span class="cx">✗</span><span class="cs">別売り</span></td>
-            <td class="hl"><span class="ck">✓</span><span class="cs">無料同梱</span></td></tr>
-          <tr><td>男女兼用</td>
+            <td class="hl"><span class="ck">✓</span><span class="cs">無料同梱</span></td>
+          </tr>
+          <tr>
+            <td>男女兼用</td>
             <td><span class="cx">✗</span><span class="cs">性別限定</span></td>
-            <td class="hl"><span class="ck">✓</span><span class="cs">ユニセックス</span></td></tr>
-          <tr><td>顧客満足度</td>
+            <td class="hl"><span class="ck">✓</span><span class="cs">ユニセックス</span></td>
+          </tr>
+          <tr>
+            <td>顧客満足度</td>
             <td><span class="cx">✗</span><span class="cs">平均4.2★</span></td>
-            <td class="hl"><span class="ck">✓</span><span class="cs">★4.9 / 5.0</span></td></tr>
-          <tr><td>返金保証</td>
+            <td class="hl"><span class="ck">✓</span><span class="cs">★4.9 / 5.0</span></td>
+          </tr>
+          <tr>
+            <td>返金保証</td>
             <td><span class="cx">✗</span><span class="cs">なし</span></td>
-            <td class="hl"><span class="ck">✓</span><span class="cs">30日間</span></td></tr>
-          <tr><td>テスト確認</td>
+            <td class="hl"><span class="ck">✓</span><span class="cs">30日間</span></td>
+          </tr>
+          <tr>
+            <td>テスト確認</td>
             <td><span class="cx">✗</span><span class="cs">買うまで不明</span></td>
-            <td class="hl"><span class="ck">✓</span><span class="cs">テストキット付</span></td></tr>
+            <td class="hl"><span class="ck">✓</span><span class="cs">テストキット付</span></td>
+          </tr>
         </tbody>
       </table>
     </div>
     <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
-       class="btn btn-g" style="max-width:400px" aria-label="今すぐ試す">今すぐ試す →</a>
+       class="btn btn-g" style="max-width:420px"
+       aria-label="香りを試す">
+      香りを試す →
+    </a>
   </div>
 </section>
 
-<!-- ══ §7 REVIEWS ══ -->
-<section class="sec bg1" aria-label="カスタマーレビュー">
-  <div class="z">
+<!-- ════════════════════════════════
+     §9  REVIEWS (横スクロール)
+════════════════════════════════ -->
+<section class="sec bg-p" aria-label="カスタマーレビュー">
+  <div class="w" style="margin-bottom:24px">
     <div class="sh">
-      <span class="kk">Reviews</span>
-      <h2 class="hm"><span class="ag">★4.9</span> · 1,240件の声</h2>
-      <span class="bar" aria-hidden="true"></span>
+      <span class="kicker">Reviews</span>
+      <h2 class="h2"><span class="ag">★4.9</span> · 1,240件の声</h2>
+      <span class="rule" aria-hidden="true"></span>
     </div>
-    <div class="rv-g" role="list">
-      <div class="rv" role="listitem">
-        <p class="rv-st" aria-label="5つ星">★★★★★</p>
-        <p class="rv-tx">「電車で<span class="rv-hl">知らない人に褒められた</span>。人生初」</p>
-        <p class="rv-mt">Kotone · 26歳</p><span class="rv-sc">電車</span>
-      </div>
-      <div class="rv" role="listitem">
-        <p class="rv-st" aria-label="5つ星">★★★★★</p>
-        <p class="rv-tx">「上司に<span class="rv-hl">清潔感あると言われた</span>。昇進した気分」</p>
-        <p class="rv-mt">Riku · 31歳</p><span class="rv-sc">職場</span>
-      </div>
-      <div class="rv" role="listitem">
-        <p class="rv-st" aria-label="5つ星">★★★★★</p>
-        <p class="rv-tx">「彼女が<span class="rv-hl">毎回嗅いでくる</span>ようになった笑」</p>
-        <p class="rv-mt">Daiki · 28歳</p><span class="rv-sc">デート</span>
-      </div>
-      <div class="rv" role="listitem">
-        <p class="rv-st" aria-label="5つ星">★★★★★</p>
-        <p class="rv-tx">「友達に<span class="rv-hl">雰囲気変わったね</span>と言われた」</p>
-        <p class="rv-mt">Haruka · 24歳</p><span class="rv-sc">友達</span>
-      </div>
-      <div class="rv" role="listitem">
-        <p class="rv-st" aria-label="5つ星">★★★★★</p>
-        <p class="rv-tx">「就活面接で<span class="rv-hl">面接官に褒められた</span>。縁起が良い」</p>
-        <p class="rv-mt">Sota · 22歳</p><span class="rv-sc">就活</span>
-      </div>
-      <div class="rv" role="listitem">
-        <p class="rv-st" aria-label="5つ星">★★★★★</p>
-        <p class="rv-tx">「会議室でも<span class="rv-hl">苦情ゼロ</span>。3本リピート中」</p>
-        <p class="rv-mt">Kenji · 35歳</p><span class="rv-sc">職場</span>
-      </div>
-      <div class="rv" role="listitem">
-        <p class="rv-st" aria-label="5つ星">★★★★★</p>
-        <p class="rv-tx">「彼女と<span class="rv-hl">シェアして使ってる</span>。コスパ最強」</p>
-        <p class="rv-mt">Taro · 27歳</p><span class="rv-sc">カップル</span>
-      </div>
-      <div class="rv" role="listitem">
-        <p class="rv-st" aria-label="5つ星">★★★★★</p>
-        <p class="rv-tx">「夜まで<span class="rv-hl">つけ直しゼロ</span>。飲み会もそのまま行けた」</p>
-        <p class="rv-mt">Jun · 30歳</p><span class="rv-sc">日常</span>
-      </div>
-      <div class="rv" role="listitem">
-        <p class="rv-st" aria-label="5つ星">★★★★★</p>
-        <p class="rv-tx">「テストキットで<span class="rv-hl">確認してから購入</span>。安心した」</p>
-        <p class="rv-mt">Mana · 25歳</p><span class="rv-sc">初購入</span>
-      </div>
-      <div class="rv" role="listitem">
-        <p class="rv-st" aria-label="5つ星">★★★★★</p>
-        <p class="rv-tx">「彼氏が<span class="rv-hl">毎朝チェックしてくれる</span>。プレゼントにも◎」</p>
-        <p class="rv-mt">Saki · 23歳</p><span class="rv-sc">彼氏</span>
-      </div>
-      <div class="rv" role="listitem">
-        <p class="rv-st" aria-label="5つ星">★★★★★</p>
-        <p class="rv-tx">「<span class="rv-hl">返金保証があって</span>思い切って購入。大正解でした」</p>
-        <p class="rv-mt">Aya · 34歳</p><span class="rv-sc">初購入</span>
-      </div>
-      <div class="rv" role="listitem">
-        <p class="rv-st" aria-label="5つ星">★★★★★</p>
-        <p class="rv-tx">「アトマイザーが<span class="rv-hl">バッグに入れっぱなし</span>で便利」</p>
-        <p class="rv-mt">Kei · 33歳</p><span class="rv-sc">通勤</span>
-      </div>
-      <div class="rv" role="listitem">
-        <p class="rv-st" aria-label="5つ星">★★★★★</p>
-        <p class="rv-tx">「<span class="rv-hl">香水初心者でも失敗しなかった</span>。強すぎないのが◎」</p>
-        <p class="rv-mt">Yuna · 21歳</p><span class="rv-sc">初心者</span>
-      </div>
-      <div class="rv" role="listitem">
-        <p class="rv-st" aria-label="5つ星">★★★★★</p>
-        <p class="rv-tx">「<span class="rv-hl">ギフトにも最適</span>。男女問わず喜ばれる」</p>
-        <p class="rv-mt">Nana · 29歳</p><span class="rv-sc">ギフト</span>
+  </div>
+
+  <div class="hscroll" id="js-rv" role="list" aria-label="レビュー">
+    <div class="rvc" role="listitem">
+      <span class="rvc-stars stars" aria-label="5つ星">★★★★★</span>
+      <p class="rvc-pull">「電車で褒められた。人生初！」</p>
+      <p class="rvc-body">香水で何度か失敗した経験があって不安でしたが、電車で知らない人に"いい香り"と言われた。本当に嬉しかった。</p>
+      <div class="rvc-meta">
+        <span class="rvc-name">Kotone T. · 26歳</span>
+        <span class="rvc-tag">電車</span>
       </div>
     </div>
+    <div class="rvc" role="listitem">
+      <span class="rvc-stars stars" aria-label="5つ星">★★★★★</span>
+      <p class="rvc-pull">「上司に清潔感あると言われた」</p>
+      <p class="rvc-body">香水が苦手な上司でも「清潔感がある」と言ってくれた。職場でも全く苦情なし。3本リピート中。</p>
+      <div class="rvc-meta">
+        <span class="rvc-name">Riku M. · 31歳</span>
+        <span class="rvc-tag">職場</span>
+      </div>
+    </div>
+    <div class="rvc" role="listitem">
+      <span class="rvc-stars stars" aria-label="5つ星">★★★★★</span>
+      <p class="rvc-pull">「デートで毎回聞かれる」</p>
+      <p class="rvc-body">彼女に"その香水どこの？"と毎回聞かれるようになった。二人でシェアして使っています。コスパ最強。</p>
+      <div class="rvc-meta">
+        <span class="rvc-name">Daiki · 28歳</span>
+        <span class="rvc-tag">デート</span>
+      </div>
+    </div>
+    <div class="rvc" role="listitem">
+      <span class="rvc-stars stars" aria-label="5つ星">★★★★★</span>
+      <p class="rvc-pull">「就活面接でも褒められた」</p>
+      <p class="rvc-body">就活中に面接官に「清潔感がある」と言ってもらえた。テストキットで事前確認できたのも安心でした。</p>
+      <div class="rvc-meta">
+        <span class="rvc-name">Sota K. · 22歳</span>
+        <span class="rvc-tag">就活</span>
+      </div>
+    </div>
+    <div class="rvc" role="listitem">
+      <span class="rvc-stars stars" aria-label="5つ星">★★★★★</span>
+      <p class="rvc-pull">「返金保証があったから買えた」</p>
+      <p class="rvc-body">いつも香水で失敗してきたので半信半疑でした。返金保証があったから思い切って購入。届いてから毎日使っています。</p>
+      <div class="rvc-meta">
+        <span class="rvc-name">Aya H. · 34歳</span>
+        <span class="rvc-tag">初購入</span>
+      </div>
+    </div>
+    <div class="rvc" role="listitem">
+      <span class="rvc-stars stars" aria-label="5つ星">★★★★★</span>
+      <p class="rvc-pull">「夜までつけ直しゼロ」</p>
+      <p class="rvc-body">朝2プッシュで夜まで続いた。飲み会にそのまま行っても大丈夫。アトマイザーも通勤バッグに入れっぱなしで便利。</p>
+      <div class="rvc-meta">
+        <span class="rvc-name">Jun Y. · 30歳</span>
+        <span class="rvc-tag">日常</span>
+      </div>
+    </div>
+    <div class="rvc" role="listitem">
+      <span class="rvc-stars stars" aria-label="5つ星">★★★★★</span>
+      <p class="rvc-pull">「香水初心者でも失敗しない」</p>
+      <p class="rvc-body">これまでの香水は強すぎて困っていたけど、Oud Stallionは程よくて誰にも何も言われない。むしろ褒められる。初心者に最適。</p>
+      <div class="rvc-meta">
+        <span class="rvc-name">Yuna A. · 21歳</span>
+        <span class="rvc-tag">初心者</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="w" style="margin-top:24px">
     <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
-       class="btn btn-g" style="margin-top:24px;max-width:400px" aria-label="今すぐ試す">今すぐ試す →</a>
+       class="btn btn-g" style="max-width:420px"
+       aria-label="香りを試す">
+      香りを試す →
+    </a>
   </div>
 </section>
 
-<!-- ══ §8 CTA — OFFER ══ -->
-<section class="sec bg0" id="offer" aria-label="商品を選ぶ">
-  <div class="z">
+<!-- ════════════════════════════════
+     §10  CHOOSE YOUR SIZE
+════════════════════════════════ -->
+<section class="sec" id="offer" aria-label="商品を選ぶ">
+  <div class="w">
     <div class="sh">
-      <span class="kk">Choose Your Size</span>
-      <h2 class="hm">サイズを<span class="ag">選ぶ</span></h2>
-      <span class="bar" aria-hidden="true"></span>
+      <span class="kicker">Choose Your Size</span>
+      <h2 class="h2">ボトルを<span class="ag">選ぶ</span></h2>
+      <span class="rule" aria-hidden="true"></span>
     </div>
-    <div class="ut" role="alert" aria-live="polite">
-      <span class="ud" aria-hidden="true"></span>本日の残り：あと38セット
+
+    <div class="urgency" role="alert" aria-live="polite">
+      <span class="urgency-dot" aria-hidden="true"></span>
+      本日の残り：あと38セット
     </div>
-    <div class="of-l">
+
+    <div class="offers">
       <!-- 10ml -->
-      <div class="of">
-        <div class="of-hd">
-          <span class="of-vol">10</span><span class="of-ml">ml</span>
-          <div class="of-pr"><p class="of-pn">¥1,750</p><p class="of-ps">税込・送料無料</p></div>
+      <div class="offer">
+        <div class="offer-hd">
+          <span class="offer-vol">10</span>
+          <span class="offer-ml">ml</span>
+          <div class="offer-pr">
+            <p class="offer-pn">¥1,750</p>
+            <p class="offer-ps">税込・送料無料</p>
+          </div>
         </div>
-        <p class="of-sp">1プッシュ約17円</p>
-        <ul class="of-in" aria-label="セット内容">
-          <li class="of-it"><span class="of-ck" aria-label="含む">✓</span>10ml本体（約100プッシュ）</li>
-          <li class="of-it"><span class="of-ck" aria-label="含む">✓</span>30日返金保証</li>
+        <p class="offer-spray">1プッシュ約17円</p>
+        <ul class="offer-inc" aria-label="セット内容">
+          <li class="offer-it"><span class="offer-ck" aria-label="含む">✓</span>10ml本体（約100プッシュ）</li>
+          <li class="offer-it"><span class="offer-ck" aria-label="含む">✓</span>30日返金保証</li>
         </ul>
         <a href="https://nemveil.com/cart/53230989574512:1"
-           class="btn btn-o btn-sm" role="button" aria-label="10mlをカートに追加">10mlを試す</a>
+           class="btn btn-o btn-sm" role="button"
+           aria-label="10mlで香りを試す">
+          香りを試す — 10ml
+        </a>
       </div>
+
       <!-- 50ml -->
-      <div class="of">
-        <div class="of-hd">
-          <span class="of-vol">50</span><span class="of-ml">ml</span>
-          <div class="of-pr"><p class="of-pn">¥5,980</p><p class="of-ps">税込・送料無料</p></div>
+      <div class="offer">
+        <div class="offer-hd">
+          <span class="offer-vol">50</span>
+          <span class="offer-ml">ml</span>
+          <div class="offer-pr">
+            <p class="offer-pn">¥5,980</p>
+            <p class="offer-ps">税込・送料無料</p>
+          </div>
         </div>
-        <p class="of-sp">1プッシュ約11円</p>
-        <ul class="of-in" aria-label="セット内容">
-          <li class="of-it"><span class="of-ck" aria-label="含む">✓</span>50ml本体（約500プッシュ）</li>
-          <li class="of-it"><span class="of-ck" aria-label="含む">✓</span>10mlアトマイザー付き</li>
-          <li class="of-it"><span class="of-ck" aria-label="含む">✓</span>30日返金保証</li>
+        <p class="offer-spray">1プッシュ約11円</p>
+        <ul class="offer-inc" aria-label="セット内容">
+          <li class="offer-it"><span class="offer-ck" aria-label="含む">✓</span>50ml本体（約500プッシュ）</li>
+          <li class="offer-it"><span class="offer-ck" aria-label="含む">✓</span>10mlアトマイザー付き</li>
+          <li class="offer-it"><span class="offer-ck" aria-label="含む">✓</span>30日返金保証</li>
         </ul>
         <a href="https://nemveil.com/cart/53230985937264:1,53231016182128:1"
-           class="btn btn-sm" role="button" aria-label="50mlをカートに追加">50mlを選ぶ</a>
+           class="btn btn-sm" role="button"
+           aria-label="50mlボトルを選ぶ">
+          ボトルを選ぶ — 50ml
+        </a>
       </div>
+
       <!-- 100ml HERO -->
-      <div class="of of-hl">
-        <span class="of-bdg" aria-label="最も人気">一番人気</span>
-        <div class="of-hd">
-          <span class="of-vol">100</span><span class="of-ml">ml</span>
-          <div class="of-pr"><p class="of-pn">¥14,800</p><p class="of-ps">税込・送料無料</p></div>
+      <div class="offer offer-hl">
+        <span class="offer-badge" aria-label="最も人気">一番人気</span>
+        <div class="offer-hd">
+          <span class="offer-vol">100</span>
+          <span class="offer-ml">ml</span>
+          <div class="offer-pr">
+            <p class="offer-pn">¥14,800</p>
+            <p class="offer-ps">税込・送料無料</p>
+          </div>
         </div>
-        <p class="of-sp">テストキット付き · 最大セット</p>
-        <ul class="of-in" aria-label="セット内容">
-          <li class="of-it"><span class="of-ck" aria-label="含む">✓</span>100ml本体（約1,000プッシュ）</li>
-          <li class="of-it"><span class="of-ck" aria-label="含む">✓</span><strong style="color:var(--gold)">2mlテストキット</strong>（開封前に確認）</li>
-          <li class="of-it"><span class="of-ck" aria-label="含む">✓</span>10mlアトマイザー付き</li>
-          <li class="of-it"><span class="of-ck" aria-label="含む">✓</span>30日全額返金保証</li>
+        <p class="offer-spray">テストキット付き · 最大セット</p>
+        <ul class="offer-inc" aria-label="セット内容">
+          <li class="offer-it"><span class="offer-ck" aria-label="含む">✓</span>100ml本体（約1,000プッシュ）</li>
+          <li class="offer-it"><span class="offer-ck" aria-label="含む">✓</span><strong style="color:var(--gold)">2mlテストキット</strong>（開封前に確認）</li>
+          <li class="offer-it"><span class="offer-ck" aria-label="含む">✓</span>10mlアトマイザー付き</li>
+          <li class="offer-it"><span class="offer-ck" aria-label="含む">✓</span>30日全額返金保証</li>
         </ul>
         <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
-           class="btn btn-g" role="button" aria-label="100mlをカートに追加">🎁 今すぐ試す（テストキット付き）</a>
+           class="btn btn-g" role="button"
+           aria-label="100mlボトルを選ぶ・テストキット付き">
+          ボトルを選ぶ — 100ml
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ §9 PRE-SELL ══ -->
-<section class="sec bg1" aria-label="安心して試せます">
-  <div class="z">
-    <div class="ps">
-      <p class="ps-q">まだ迷っていますか？</p>
-      <div class="ps-row" role="list">
-        <div role="listitem"><span class="ps-i" aria-hidden="true">🛡</span><p class="ps-t">30日<br>返金保証</p></div>
-        <div role="listitem"><span class="ps-i" aria-hidden="true">🚚</span><p class="ps-t">送料<br>無料</p></div>
-        <div role="listitem"><span class="ps-i" aria-hidden="true">👥</span><p class="ps-t">20,000人<br>以上が愛用</p></div>
+<!-- ════════════════════════════════
+     §11  PRE-SELL MICRO
+════════════════════════════════ -->
+<section class="sec bg-p" aria-label="安心して試せます">
+  <div class="w">
+    <div class="presell">
+      <p class="presell-q">まだ迷っていますか？</p>
+      <div class="presell-row" role="list">
+        <div role="listitem">
+          <div class="presell-ico">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <p class="presell-t">30日<br>返金保証</p>
+        </div>
+        <div role="listitem">
+          <div class="presell-ico">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <p class="presell-t">送料<br>無料</p>
+        </div>
+        <div role="listitem">
+          <div class="presell-ico">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <p class="presell-t">20,000人<br>が愛用</p>
+        </div>
       </div>
-      <div class="ps-rv">
-        <div style="color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:8px" aria-label="5つ星">★★★★★</div>
-        <p class="ps-rt">「返金保証があったから思い切って買えました。届いてから毎日使ってます。本当にどこでも褒められます」</p>
-        <p class="ps-rm">Yui · 29歳 · 購入済み</p>
+      <div class="presell-rv">
+        <div class="stars" style="font-size:13px;display:block;margin-bottom:8px" aria-label="5つ星">★★★★★</div>
+        <p class="presell-rv-tx">「返金保証があったから思い切って買えました。届いてから毎日使っています。本当にどこでも褒められます」</p>
+        <p class="presell-rv-meta">Yui T. · 29歳 · 購入済み</p>
       </div>
     </div>
     <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
-       class="btn btn-g" style="max-width:400px" aria-label="リスクゼロで試す">リスクゼロで試す →</a>
+       class="btn btn-g" style="max-width:420px"
+       aria-label="リスクゼロで香りを試す">
+      リスクゼロで香りを試す →
+    </a>
   </div>
 </section>
 
-<!-- ══ §10 FAQ ══ -->
-<section class="sec bg0" aria-label="よくある質問">
-  <div class="z">
+<!-- ════════════════════════════════
+     §12  FAQ (アコーディオン)
+════════════════════════════════ -->
+<section class="sec" aria-label="よくある質問">
+  <div class="w">
     <div class="sh">
-      <span class="kk">FAQ</span>
-      <h2 class="hm">よくある<span class="ag">質問</span></h2>
-      <span class="bar" aria-hidden="true"></span>
+      <span class="kicker">FAQ</span>
+      <h2 class="h2">よくある<span class="ag">質問</span></h2>
+      <span class="rule" aria-hidden="true"></span>
     </div>
-    <div role="list">
-      <div class="fq-it" role="listitem">
-        <p class="fq-q">香りはどれくらい続きますか？</p>
-        <p class="fq-a">6〜8時間持続します。朝1〜2プッシュつければ夜まで続きます。つけ直し不要です。</p>
+
+    <div class="faq" id="js-faq" role="list">
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-btn" aria-expanded="false" aria-controls="fp1">
+          香りはどれくらい続きますか？
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-panel" id="fp1" role="region">
+          <p class="faq-panel-inner">6〜8時間持続します。朝1〜2プッシュつければ夜まで続きます。つけ直し不要です。</p>
+        </div>
       </div>
-      <div class="fq-it" role="listitem">
-        <p class="fq-q">返品・返金できますか？</p>
-        <p class="fq-a">はい。購入から30日以内なら理由を問わず全額返金します。開封後でも対応可能です。</p>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-btn" aria-expanded="false" aria-controls="fp2">
+          返品・返金できますか？
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-panel" id="fp2" role="region">
+          <p class="faq-panel-inner">はい。購入から30日以内なら理由を問わず全額返金します。開封後でも対応可能です。</p>
+        </div>
       </div>
-      <div class="fq-it" role="listitem">
-        <p class="fq-q">男性でも女性でも使えますか？</p>
-        <p class="fq-a">はい。ユニセックス設計です。カップルでシェアしている方も多いです。</p>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-btn" aria-expanded="false" aria-controls="fp3">
+          男性でも女性でも使えますか？
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-panel" id="fp3" role="region">
+          <p class="faq-panel-inner">はい。ユニセックス設計です。カップルでシェアして使っている方も多いです。</p>
+        </div>
       </div>
-      <div class="fq-it" role="listitem">
-        <p class="fq-q">配送はどれくらいかかりますか？</p>
-        <p class="fq-a">注文確定後、翌営業日に発送します。お届けは2〜4営業日です。追跡番号付きでお知らせします。</p>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-btn" aria-expanded="false" aria-controls="fp4">
+          配送はどれくらいかかりますか？
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-panel" id="fp4" role="region">
+          <p class="faq-panel-inner">注文確定後、翌営業日に発送します。お届けは2〜4営業日です。追跡番号付きでお知らせします。</p>
+        </div>
       </div>
-      <div class="fq-it" role="listitem">
-        <p class="fq-q">テストキットとは何ですか？</p>
-        <p class="fq-a">100mlセットに付属する2mlのサンプルです。本体を開封する前に香りを確認できます。失敗を防ぐための仕組みです。</p>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-btn" aria-expanded="false" aria-controls="fp5">
+          テストキットとは何ですか？
+          <svg class="faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-panel" id="fp5" role="region">
+          <p class="faq-panel-inner">100mlセットに付属する2mlのサンプルです。本体を開封する前に香りを確認できます。「買ったけど合わなかった」という失敗を防ぐための仕組みです。</p>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- ══ §11 FINAL CTA ══ -->
-<section class="sec bgd" aria-label="最終CTA" style="padding-bottom:96px">
-  <div class="z" style="text-align:center">
-    <span class="kk kk-lt">今すぐ始める</span>
-    <h2 class="hm" style="color:var(--w);margin-bottom:12px">
-      今日から、<br><span class="aw">褒められる</span>香りを。
+<!-- ════════════════════════════════
+     §13  FINAL CTA
+════════════════════════════════ -->
+<section class="sec bg-d" aria-label="最終CTA" style="padding-bottom:90px">
+  <div class="w" style="text-align:center">
+    <span class="kicker kicker-lt">今すぐ始める</span>
+    <h2 class="h2" style="color:var(--milk);margin-bottom:14px">
+      今日から、<br>
+      <span class="ag-lt">嫌われない</span>香りを。
     </h2>
-    <p style="font-size:14.5px;color:rgba(248,247,245,.5);line-height:1.75;
+    <p style="font-size:14px;color:rgba(253,252,249,.48);line-height:1.78;
        max-width:320px;margin:0 auto 28px">
       試すリスクはゼロ。30日以内なら全額返金。
     </p>
-    <div class="ut" style="display:inline-flex" role="alert">
-      <span class="ud" aria-hidden="true"></span>本日の残り：あと38セット
+
+    <div class="urgency" style="display:inline-flex" role="alert">
+      <span class="urgency-dot" aria-hidden="true"></span>
+      本日の残り：あと38セット
     </div>
-    <div style="display:flex;flex-direction:column;gap:12px;max-width:400px;margin:0 auto">
+
+    <div style="display:flex;flex-direction:column;gap:11px;max-width:420px;margin:0 auto">
       <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
-         class="btn btn-g btn-lg" aria-label="100ml・テストキット付きで試す">🎁 今すぐ試す（テストキット付き）</a>
+         class="btn btn-g btn-lg" aria-label="100mlボトルを選ぶ">
+        ボトルを選ぶ — テストキット付き
+      </a>
       <a href="https://nemveil.com/cart/53230985937264:1,53231016182128:1"
-         class="btn btn-dk" aria-label="50mlを選ぶ">50mlを選ぶ</a>
+         class="btn btn-dk" aria-label="50mlで香りを試す">
+        香りを試す — 50ml
+      </a>
       <a href="https://nemveil.com/cart/53230989574512:1"
-         class="btn btn-sm btn-dkl" aria-label="まず10mlで試す">まず10mlで試す</a>
+         class="btn btn-sm btn-dkl" aria-label="10mlで試す">
+        まず10mlで試す
+      </a>
     </div>
-    <div class="trust trust-lt" style="margin-top:20px">
-      <b>✓</b>送料無料<span class="td" aria-hidden="true"></span>
-      <b>✓</b>30日全額返金<span class="td" aria-hidden="true"></span>
-      <b>✓</b>即日発送<span class="td" aria-hidden="true"></span>
+
+    <div class="trust trust-lt" style="margin-top:18px">
+      <b>✓</b>送料無料
+      <span class="dot" aria-hidden="true"></span>
+      <b>✓</b>30日全額返金
+      <span class="dot" aria-hidden="true"></span>
+      <b>✓</b>即日発送
+      <span class="dot" aria-hidden="true"></span>
       <b>✓</b>★4.9 / 1,240件
     </div>
   </div>
 </section>
 
-<footer class="ft" role="contentinfo">
-  <p class="ft-t">© 2025 Nemveil · nemveil.com<br>
-    <a href="https://nemveil.com/policies/privacy-policy" class="ft-a">プライバシーポリシー</a>
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <p class="footer-t">
+    © 2025 PURELAYER · nemveil.com<br>
+    <a href="https://nemveil.com/policies/privacy-policy" class="footer-a">プライバシーポリシー</a>
     &ensp;·&ensp;
-    <a href="https://nemveil.com/policies/refund-policy" class="ft-a">返金ポリシー</a>
+    <a href="https://nemveil.com/policies/refund-policy" class="footer-a">返金ポリシー</a>
     &ensp;·&ensp;
-    <a href="https://nemveil.com/policies/shipping-policy" class="ft-a">配送ポリシー</a>
+    <a href="https://nemveil.com/policies/shipping-policy" class="footer-a">配送ポリシー</a>
   </p>
 </footer>
+
+<!-- ════════════════════════════════
+     JAVASCRIPT (minimal, inline)
+════════════════════════════════ -->
+<script>
+/* ① Sticky CTA: hidden on hero, show after 400px */
+!function(){
+  var el=document.getElementById('js-stk'),on=false;
+  function ck(){
+    var y=window.scrollY||document.documentElement.scrollTop;
+    if(y>400&&!on){el.classList.add('vis');el.removeAttribute('aria-hidden');on=true}
+    else if(y<=400&&on){el.classList.remove('vis');el.setAttribute('aria-hidden','true');on=false}
+  }
+  window.addEventListener('scroll',ck,{passive:true});
+  ck();
+}();
+
+/* ③ FAQ accordion */
+!function(){
+  document.querySelectorAll('#js-faq .faq-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var item=this.closest('.faq-item'),open=item.classList.contains('open');
+      // close all
+      document.querySelectorAll('#js-faq .faq-item.open').forEach(function(it){
+        it.classList.remove('open');
+        it.querySelector('.faq-btn').setAttribute('aria-expanded','false');
+      });
+      if(!open){
+        item.classList.add('open');
+        this.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+}();
+
+/* Drag-scroll for review strip */
+!function(){
+  var el=document.getElementById('js-rv');
+  if(!el)return;
+  var dn=false,sx,sl;
+  el.addEventListener('mousedown',function(e){dn=true;sx=e.pageX-el.offsetLeft;sl=el.scrollLeft;el.style.cursor='grabbing'});
+  el.addEventListener('mouseleave',function(){dn=false;el.style.cursor=''});
+  el.addEventListener('mouseup',function(){dn=false;el.style.cursor=''});
+  el.addEventListener('mousemove',function(e){
+    if(!dn)return;e.preventDefault();
+    el.scrollLeft=sl-(e.pageX-el.offsetLeft-sx)*1.2;
+  });
+}();
+</script>
 </body>
 </html>
