@@ -1,796 +1,1027 @@
+
+Index · HTML
+コピー
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="ムスク・アンバー・ウッディ。同世代よりひとつ上の印象を作るユニセックスフレグランス MAISON SÈVE。10ml・50ml・100ml。">
-<title>MAISON SÈVE — 同世代よりひとつ上の印象を作る香り</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="電車でも職場でも嫌われない香り。PURELAYER — 近距離設計の清潔感フレグランス。10ml・50ml・100ml。無料サンプル付き。">
+<title>PURELAYER — 嫌われない香り</title>
 <style>
 :root{
-  --c-bg:#F9F7F4;--c-ink:#1C1A17;--c-ink60:rgba(28,26,23,.6);
-  --c-ink30:rgba(28,26,23,.3);--c-ink20:rgba(28,26,23,.2);
-  --c-ink10:rgba(28,26,23,.10);--c-ink04:rgba(28,26,23,.04);
-  --c-gold:#9C7E4A;--c-gold20:rgba(156,126,74,.2);--c-gold08:rgba(156,126,74,.08);
-  --c-cream:#F2EDE3;--c-stone:#EAE5DC;--c-white:#FFFFFF;
-  --c-forest:#2D5C44;--c-warn:#8B3A2A;
-  --f-serif:'Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
-  --f-body:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;
-  --gutter:clamp(20px,5vw,40px);--col:min(540px,100%);
-  --r-sm:6px;--r-md:14px;--r-lg:20px;
-  --ease:cubic-bezier(.22,1,.36,1);
+  --bg:#0D0C0A;--bg2:#141210;--bg3:#1A1714;
+  --ink:#F5F0E8;--ink60:rgba(245,240,232,.6);--ink30:rgba(245,240,232,.3);
+  --gold:#C9973A;--gold2:#E8C070;--gold3:#A07828;
+  --green:#2ECC71;--red:#E74C3C;
+  --accent:linear-gradient(135deg,#C9973A 0%,#E8C070 50%,#A07828 100%);
+  --card:#1F1C18;--card2:#252118;--border:rgba(245,240,232,.08);
+  --f-serif:'Georgia',serif;
+  --f-body:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;
+  --r:12px;--r-lg:20px;--r-pill:50px;
+  --max:480px;--px:20px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:var(--f-body);background:var(--c-bg);color:var(--c-ink);
-  line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+body{font-family:var(--f-body);background:var(--bg);color:var(--ink);
+  line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 ul,ol{list-style:none}
-/* Noise overlay */
-body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.025;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:200px 200px;}
-/* Layout */
-.wrap{max-width:var(--col);margin-inline:auto;padding-inline:var(--gutter)}
-/* Type atoms */
-.kicker{display:inline-block;font-size:9.5px;letter-spacing:.36em;text-transform:uppercase;
-  color:var(--c-gold);font-family:var(--f-body);font-weight:500;margin-bottom:14px;}
-.display{font-family:var(--f-serif);font-weight:400;line-height:1.12;letter-spacing:-.03em;}
-.lede{font-size:14px;color:var(--c-ink60);line-height:1.8;max-width:360px;}
-.rule{display:block;width:28px;height:1px;background:var(--c-gold);opacity:.6;margin:0 auto 24px;}
-.rule--l{margin-inline:0}
-.stars{color:var(--c-gold);letter-spacing:2.5px;font-size:13px}
-/* Scroll reveal */
-@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-.rise{opacity:0;animation:rise .7s var(--ease) both;}
-.rise--1{animation-delay:.06s}.rise--2{animation-delay:.14s}
-.rise--3{animation-delay:.22s}.rise--4{animation-delay:.30s}
-@supports(animation-timeline:scroll()){
-  .rise{animation:rise .65s var(--ease) both;animation-timeline:view();animation-range:entry 0% entry 22%;}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--px)}
+
+/* ── STICKY CTA BAR ── */
+.sticky{
+  position:fixed;bottom:0;left:0;right:0;z-index:500;
+  padding:12px var(--px) max(12px,env(safe-area-inset-bottom));
+  background:linear-gradient(to top,rgba(13,12,10,1) 70%,rgba(13,12,10,0));
 }
-@media(prefers-reduced-motion:reduce){.rise{animation:none;opacity:1;transform:none}}
-/* Buttons */
-.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
-  padding:17px 24px;min-height:54px;border-radius:var(--r-sm);
-  font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  font-family:var(--f-body);transition:opacity .15s,transform .1s;
-  -webkit-tap-highlight-color:transparent;cursor:pointer;}
-.btn:active{opacity:.84;transform:scale(.975)}
-.btn-gold{background:var(--c-gold);color:var(--c-white)}
-.btn-ink{background:var(--c-ink);color:var(--c-white)}
-.btn-ghost{background:transparent;color:var(--c-ink);border:1.5px solid var(--c-ink30)}
-.btn-ghost-light{background:transparent;color:rgba(255,255,255,.7);border:1.5px solid rgba(255,255,255,.18)}
-/* Trust */
-.trust{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px 14px;
-  font-size:10.5px;letter-spacing:.06em;color:var(--c-ink30);}
-.trust-sep{width:2px;height:2px;border-radius:50%;background:currentColor}
-.trust--light{color:rgba(255,255,255,.28)}
-/* ── STICKY BAR ── */
-.sticky-bar{position:sticky;top:0;z-index:200;background:var(--c-ink);
-  padding:10px var(--gutter);text-align:center;
-  font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.55);line-height:1.4;}
-.sticky-bar b{color:#D4AF7A;font-weight:600}
+.sticky-inner{max-width:var(--max);margin:0 auto}
+
+/* ── BUTTONS ── */
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:18px 24px;min-height:58px;
+  border-radius:var(--r-pill);border:none;cursor:pointer;
+  font-family:var(--f-body);font-size:16px;font-weight:700;letter-spacing:.04em;
+  background:var(--accent);color:#0D0C0A;
+  box-shadow:0 4px 24px rgba(201,151,58,.35);
+  transition:transform .12s,box-shadow .12s;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:active{transform:scale(.97);box-shadow:0 2px 12px rgba(201,151,58,.2)}
+.btn-sm{font-size:14px;padding:14px 20px;min-height:50px}
+.btn-ghost{background:transparent;color:var(--gold);
+  border:1.5px solid var(--gold);box-shadow:none;}
+.btn-ghost:active{background:rgba(201,151,58,.08)}
+
+/* ── KICKER ── */
+.kicker{font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:10px;display:block;}
+
+/* ── SECTION SPACING ── */
+.sec{padding:64px 0}
+.sec--tight{padding:40px 0}
+
 /* ── NAV ── */
-.nav{padding:20px var(--gutter);max-width:var(--col);margin-inline:auto;
-  display:flex;align-items:center;justify-content:space-between;min-height:62px;}
-.nav__logo{font-family:var(--f-serif);font-size:19px;letter-spacing:.28em;
-  text-transform:uppercase;color:var(--c-ink);font-weight:400;}
-.nav__pill{font-size:9px;letter-spacing:.2em;text-transform:uppercase;
-  border:1px solid var(--c-ink30);border-radius:20px;padding:5px 13px;color:var(--c-ink60);}
-/* ══ §01 HERO ══ */
-.s-hero{background:var(--c-bg);padding-bottom:72px;position:relative;overflow:hidden;}
-.s-hero__deco{position:absolute;top:-20px;right:-16px;font-family:var(--f-serif);
-  font-size:clamp(160px,45vw,280px);line-height:1;letter-spacing:-.05em;color:var(--c-stone);
-  user-select:none;pointer-events:none;z-index:0;}
-.s-hero__inner{position:relative;z-index:1}
-.s-hero__q{padding:clamp(48px,12vw,80px) var(--gutter) 0;max-width:var(--col);margin-inline:auto;}
-.s-hero__q-line{font-size:9.5px;letter-spacing:.36em;text-transform:uppercase;
-  color:var(--c-gold);margin-bottom:22px;display:block;}
-.s-hero__q-text{font-family:var(--f-serif);font-size:clamp(30px,9vw,52px);
-  line-height:1.1;letter-spacing:-.03em;color:var(--c-ink);}
-.s-hero__q-text em{font-style:italic;color:var(--c-gold);}
-/* Bottle */
-.s-hero__visual{aspect-ratio:1/1.15;max-width:280px;margin:40px auto 0;
-  position:relative;display:flex;align-items:center;justify-content:center;}
-.s-hero__visual::before{content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 55% 45% at 50% 55%,rgba(156,126,74,.15) 0%,transparent 70%);
-  pointer-events:none;}
-.css-bottle{position:relative;width:86px;margin-inline:auto;
-  min-height:200px;display:flex;flex-direction:column;align-items:center;}
-.css-bottle__cap{width:44px;height:13px;
-  background:linear-gradient(135deg,#C8A96C 0%,#E8D4A8 55%,#B89050 100%);
-  border-radius:3px;box-shadow:0 3px 10px rgba(156,126,74,.35);}
-.css-bottle__collar{width:28px;height:22px;margin:0 auto;
-  background:linear-gradient(to bottom,#4E3A1C,#7A5E32);border-radius:2px 2px 0 0;}
-.css-bottle__body{width:86px;height:148px;border-radius:5px 5px 12px 12px;
-  background:linear-gradient(160deg,#1A1006 0%,#4A3018 18%,#7A5228 42%,#6A4820 62%,#3A2010 80%,#160E04 100%);
-  position:relative;overflow:hidden;
-  box-shadow:inset 5px 0 20px rgba(255,255,255,.06),inset -3px 0 10px rgba(0,0,0,.4),
-    0 24px 64px rgba(0,0,0,.42),0 8px 20px rgba(0,0,0,.28);}
-.css-bottle__shine{position:absolute;top:6%;left:7%;width:14%;height:80%;
-  background:linear-gradient(180deg,rgba(255,255,255,.14) 0%,transparent 100%);border-radius:50%;}
-.css-bottle__label-wrap{position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);width:70%;text-align:center;}
-.css-bottle__brand{font-family:var(--f-serif);font-size:10px;letter-spacing:.4em;
-  color:rgba(232,210,170,.9);display:block;text-transform:uppercase;}
-.css-bottle__vol{font-size:6.5px;letter-spacing:.22em;text-transform:uppercase;
-  color:rgba(156,126,74,.65);display:block;margin-top:5px;}
-.css-bottle::after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);
-  width:110px;height:16px;
-  background:radial-gradient(ellipse,rgba(156,126,74,.22) 0%,transparent 70%);filter:blur(6px);}
-/* Hero copy */
-.s-hero__copy{padding:36px var(--gutter) 0;max-width:var(--col);margin-inline:auto;text-align:center;}
-.s-hero__h1{font-family:var(--f-serif);font-size:clamp(19px,5.5vw,26px);
-  line-height:1.32;letter-spacing:-.02em;margin-bottom:14px;}
-.s-hero__h1 em{font-style:italic;color:var(--c-gold)}
-.s-hero__sub{font-size:13.5px;color:var(--c-ink60);line-height:1.78;margin-bottom:22px;}
-.s-hero__rating{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:28px;}
-.s-hero__rating-count{font-size:11.5px;color:var(--c-ink30)}
-/* ══ §02 BENEFIT ══ */
-.s-benefit{background:var(--c-cream);padding:80px var(--gutter);text-align:center;}
-.s-benefit__h2{font-size:clamp(26px,7.5vw,44px);margin-bottom:18px}
-.s-benefit__body{font-size:14px;color:var(--c-ink60);line-height:1.8;
-  max-width:340px;margin-inline:auto;margin-bottom:40px;}
-.kpi-strip{display:grid;grid-template-columns:repeat(3,1fr);max-width:420px;margin-inline:auto;
-  margin-bottom:40px;border:1px solid var(--c-ink10);border-radius:var(--r-lg);overflow:hidden;}
-.kpi-strip__cell{padding:18px 10px;text-align:center;background:var(--c-white);}
-.kpi-strip__cell+.kpi-strip__cell{border-left:1px solid var(--c-ink10)}
-.kpi-num{font-family:var(--f-serif);font-size:28px;color:var(--c-gold);
-  line-height:1;margin-bottom:5px;display:block;}
-.kpi-label{font-size:10.5px;color:var(--c-ink60);letter-spacing:.03em}
-/* ══ §03 IDENTITY ══ */
-.s-identity{background:var(--c-ink);padding:80px var(--gutter);text-align:center;
-  position:relative;overflow:hidden;}
-.s-identity::before{content:'';position:absolute;top:-60px;right:-80px;width:340px;height:340px;
-  border-radius:50%;background:radial-gradient(circle,rgba(156,126,74,.1) 0%,transparent 65%);
-  pointer-events:none;}
-.s-identity__h2{font-size:clamp(22px,6vw,36px);color:#F9F7F4;margin-bottom:18px;}
-.s-identity__lede{font-size:13.5px;color:rgba(249,247,244,.45);line-height:1.8;
-  max-width:340px;margin-inline:auto;margin-bottom:36px;}
-.tag-cloud{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
-  max-width:420px;margin-inline:auto;}
-.tag{padding:7px 15px;border-radius:20px;font-size:11px;letter-spacing:.07em;
-  border:1px solid rgba(156,126,74,.22);color:rgba(249,247,244,.5);}
-.tag--on{background:rgba(156,126,74,.14);border-color:rgba(156,126,74,.4);color:#C8A96C;}
-/* ══ §04 PROBLEM ══ */
-.s-problem{background:var(--c-bg);padding:80px var(--gutter);}
-.s-problem__h2{font-size:clamp(22px,6vw,34px);text-align:center;margin-bottom:44px;}
-.pain-list{display:flex;flex-direction:column;gap:14px;
-  max-width:460px;margin-inline:auto;margin-bottom:48px;}
-.pain-item{display:flex;gap:16px;align-items:flex-start;background:var(--c-white);
-  border:1px solid var(--c-ink10);border-radius:var(--r-md);padding:20px 18px;
-  box-shadow:0 1px 8px rgba(28,26,23,.05);}
-.pain-item__ico{font-size:18px;width:38px;height:38px;min-width:38px;
+.nav{
+  position:sticky;top:0;z-index:400;
+  background:rgba(13,12,10,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:14px var(--px);
   display:flex;align-items:center;justify-content:center;
-  background:var(--c-cream);border-radius:50%;flex-shrink:0;}
-.pain-item__title{font-size:14px;font-weight:600;margin-bottom:4px}
-.pain-item__text{font-size:13px;color:var(--c-ink60);line-height:1.65}
-.resolution{text-align:center;max-width:360px;margin-inline:auto}
-.resolution__text{font-family:var(--f-serif);font-size:clamp(18px,5vw,24px);line-height:1.38;}
-.resolution__text em{font-style:italic;color:var(--c-gold)}
-/* ══ §05 STORY ══ */
-.s-story{background:var(--c-cream);padding:80px var(--gutter);}
-.s-story__inner{max-width:460px;margin-inline:auto}
-.s-story__h2{font-size:clamp(22px,6vw,34px);margin-bottom:24px}
-.prose{font-size:14px;color:var(--c-ink60);line-height:1.88}
-.prose p+p{margin-top:18px}
-.blockquote{border-left:2px solid var(--c-gold);padding:10px 0 10px 20px;margin:28px 0;}
-.blockquote__q{font-family:var(--f-serif);font-size:17px;font-style:italic;
-  line-height:1.5;color:var(--c-ink);margin-bottom:8px;}
-.blockquote__attr{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-gold);}
-/* ══ §06 MECHANISM ══ */
-.s-mech{background:var(--c-ink);padding:80px var(--gutter);}
-.s-mech__header{text-align:center;margin-bottom:48px}
-.s-mech__h2{font-size:clamp(22px,6vw,34px);color:#F9F7F4;margin-bottom:16px}
-.s-mech__lede{font-size:13.5px;color:rgba(249,247,244,.42);line-height:1.78;
-  max-width:340px;margin-inline:auto;}
-.mech-grid{display:flex;flex-direction:column;gap:14px;max-width:460px;margin-inline:auto;}
-.mech-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
-  border-radius:var(--r-md);padding:22px 20px;
-  display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:start;}
-.mech-item__n{font-family:var(--f-serif);font-size:28px;color:rgba(156,126,74,.45);line-height:1;}
-.mech-item__title{font-size:15px;font-weight:600;color:#F9F7F4;margin-bottom:6px;}
-.mech-item__text{font-size:12.5px;color:rgba(249,247,244,.42);line-height:1.7}
-.badge{display:inline-block;margin-top:8px;font-size:9.5px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--c-gold);background:rgba(156,126,74,.1);
-  border:1px solid rgba(156,126,74,.22);padding:3px 9px;border-radius:20px;}
-/* ══ §07 SENSORY ══ */
-.s-sensory{background:var(--c-bg);padding:80px var(--gutter);}
-.s-sensory__header{text-align:center;margin-bottom:48px}
-.s-sensory__h2{font-size:clamp(22px,6vw,34px);margin-bottom:16px}
-.s-sensory__lede{font-size:13.5px;color:var(--c-ink60);line-height:1.8;
-  max-width:340px;margin-inline:auto;}
-.scent-poem{max-width:460px;margin-inline:auto;margin-bottom:40px;}
-.scent-row{display:grid;grid-template-columns:64px 1fr;gap:0;padding:22px 0;
-  border-bottom:1px solid var(--c-ink10);align-items:start;}
-.scent-row:last-child{border-bottom:none}
-.scent-row__time{font-size:9px;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--c-gold);font-weight:600;padding-top:4px;line-height:1.4;}
-.scent-row__word{font-family:var(--f-serif);font-size:22px;font-style:italic;
-  color:var(--c-ink);line-height:1.1;margin-bottom:6px;}
-.scent-row__desc{font-size:13px;color:var(--c-ink60);line-height:1.65;margin-bottom:10px}
-.scent-row__pills{display:flex;flex-wrap:wrap;gap:5px}
-.spill{font-size:9.5px;letter-spacing:.06em;border:1px solid var(--c-ink20);
-  border-radius:20px;padding:3px 10px;color:var(--c-ink60);}
-.char-bars{max-width:460px;margin-inline:auto;display:flex;flex-direction:column;gap:9px;}
-.char-bar-row{display:grid;grid-template-columns:58px 1fr;gap:12px;align-items:center}
-.char-bar-label{font-size:10.5px;color:var(--c-ink60);text-align:right}
-.char-bar{height:3px;background:var(--c-ink10);border-radius:2px;overflow:hidden}
-.char-bar__fill{height:100%;border-radius:2px;
-  background:linear-gradient(90deg,var(--c-gold) 0%,rgba(156,126,74,.25) 100%);}
-.char-legend{display:flex;justify-content:space-between;font-size:9.5px;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink30);
-  max-width:460px;margin:8px auto 0;}
-/* ══ §08 PROOF ══ */
-.s-proof{background:var(--c-cream);padding:80px var(--gutter);}
-.s-proof__header{text-align:center;margin-bottom:12px}
-.s-proof__h2{font-size:clamp(22px,6vw,34px);margin-bottom:16px}
-.rating-hero{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:40px;}
-.rating-hero__score{font-family:var(--f-serif);font-size:40px;color:var(--c-gold);line-height:1;}
-.rating-hero__stars{font-size:13px;color:var(--c-gold);letter-spacing:2px}
-.rating-hero__count{font-size:10.5px;color:var(--c-ink60);margin-top:2px}
-.reviews{display:flex;flex-direction:column;gap:14px;max-width:460px;margin-inline:auto;}
-.review{background:var(--c-white);border:1px solid var(--c-ink10);border-radius:var(--r-md);
-  padding:20px 18px;box-shadow:0 2px 12px rgba(28,26,23,.06);}
-.review__top{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
-.review__av{width:42px;height:42px;min-width:42px;border-radius:50%;
-  background:linear-gradient(135deg,#E8D9BE,#D4C4A0);
-  display:flex;align-items:center;justify-content:center;
-  font-size:14px;font-weight:700;color:var(--c-gold);overflow:hidden;flex-shrink:0;}
-.review__name{font-size:13px;font-weight:600;margin-bottom:2px}
-.review__scene{margin-top:4px;display:inline-block;font-size:9.5px;color:var(--c-gold);
-  background:var(--c-gold08);border:1px solid var(--c-gold20);
-  padding:2px 8px;border-radius:20px;letter-spacing:.07em;}
-.review__text{font-size:13.5px;color:var(--c-ink60);line-height:1.72}
-.review__hl{background:rgba(156,126,74,.13);padding:0 3px;border-radius:2px;
-  color:var(--c-ink);font-weight:500}
-.review__verified{margin-top:11px;font-size:11px;color:var(--c-forest);
-  display:flex;align-items:center;gap:4px;}
-.review__verified::before{content:'✓';font-weight:700}
-/* ══ §09 AUTHORITY ══ */
-.s-auth{background:var(--c-white);padding:80px var(--gutter);text-align:center;}
-.s-auth__h2{font-size:clamp(22px,5.5vw,32px);margin-bottom:14px}
-.s-auth__lede{font-size:13.5px;color:var(--c-ink60);max-width:340px;
-  margin-inline:auto;margin-bottom:44px;line-height:1.78;}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;
-  max-width:440px;margin-inline:auto;margin-bottom:44px;}
-.stat-cell{background:var(--c-cream);border-radius:var(--r-md);padding:22px 14px;text-align:center;}
-.stat-cell__n{font-family:var(--f-serif);font-size:34px;color:var(--c-ink);
-  line-height:1;margin-bottom:6px;display:block;}
-.stat-cell__l{font-size:11px;color:var(--c-ink60);line-height:1.4}
-.cred-list{display:flex;flex-direction:column;gap:11px;max-width:380px;margin-inline:auto;}
-.cred-item{display:flex;align-items:flex-start;gap:13px;padding:14px 16px;
-  border:1px solid var(--c-ink10);border-radius:var(--r-md);
-  text-align:left;font-size:12.5px;color:var(--c-ink60);line-height:1.55;}
-.cred-item__ico{font-size:20px;flex-shrink:0;line-height:1}
-/* ══ §10 RISK ══ */
-.s-risk{background:var(--c-ink);padding:80px var(--gutter);}
-.s-risk__header{text-align:center;margin-bottom:44px}
-.s-risk__h2{font-size:clamp(22px,6vw,34px);color:#F9F7F4;margin-bottom:16px}
-.s-risk__lede{font-size:13.5px;color:rgba(249,247,244,.42);line-height:1.78;
-  max-width:340px;margin-inline:auto;}
-.g-cards{display:flex;flex-direction:column;gap:12px;
-  max-width:460px;margin-inline:auto;margin-bottom:44px;}
-.g-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
-  border-radius:var(--r-md);padding:20px 18px;display:flex;gap:16px;align-items:flex-start;}
-.g-card__ico{font-size:22px;flex-shrink:0;line-height:1;min-width:28px;text-align:center}
-.g-card__title{font-size:14px;font-weight:600;color:#F9F7F4;margin-bottom:4px}
-.g-card__text{font-size:12.5px;color:rgba(249,247,244,.42);line-height:1.68}
-.g-card__sub{display:inline-block;margin-top:6px;font-size:10.5px;color:var(--c-gold);letter-spacing:.07em;}
-/* ══ §11 OFFER ══ */
-.s-offer{background:var(--c-bg);padding:80px var(--gutter);}
-.s-offer__header{text-align:center;margin-bottom:44px}
-.s-offer__h2{font-size:clamp(22px,6vw,34px);margin-bottom:14px}
-.s-offer__lede{font-size:13.5px;color:var(--c-ink60);line-height:1.78;
-  max-width:340px;margin-inline:auto;}
-.offer-stack{display:flex;flex-direction:column;gap:16px;max-width:460px;margin-inline:auto;}
-.offer-card{background:var(--c-white);border:1px solid var(--c-ink10);
-  border-radius:var(--r-lg);padding:24px 20px;
-  box-shadow:0 2px 12px rgba(28,26,23,.07);position:relative;overflow:hidden;}
-.offer-card--hero{border-color:var(--c-gold);
-  box-shadow:0 8px 40px rgba(28,26,23,.12),0 0 0 1px rgba(156,126,74,.25);}
-.offer-card--hero::before{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;
-  background:linear-gradient(90deg,rgba(156,126,74,0) 0%,var(--c-gold) 30%,#E8D4A8 55%,var(--c-gold) 80%,rgba(156,126,74,0) 100%);}
-.offer-card__ribbon{position:absolute;top:14px;right:14px;font-size:9.5px;font-weight:700;
-  letter-spacing:.1em;text-transform:uppercase;background:var(--c-gold);color:var(--c-white);
-  padding:4px 10px;border-radius:20px;}
-.offer-card__head{display:flex;align-items:flex-end;gap:8px;margin-bottom:18px;}
-.offer-card__vol{font-family:var(--f-serif);font-size:42px;line-height:1;color:var(--c-ink);}
-.offer-card__ml{font-size:15px;color:var(--c-ink60);padding-bottom:5px}
-.offer-card__pricing{margin-left:auto;text-align:right}
-.offer-card__price{font-family:var(--f-serif);font-size:27px;color:var(--c-ink);line-height:1;}
-.offer-card__price-note{font-size:10.5px;color:var(--c-ink60);margin-top:2px}
-.offer-card__items{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
-.offer-card__item{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--c-ink60);}
-.offer-card__chk{color:var(--c-forest);font-weight:700;flex-shrink:0;font-size:14px}
-.oc-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
-  padding:15px;border-radius:var(--r-sm);font-size:12.5px;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
-  transition:opacity .15s ease;-webkit-tap-highlight-color:transparent;
-  min-height:50px;font-family:var(--f-body);}
-.oc-btn--fill{background:var(--c-ink);color:var(--c-white)}
-.oc-btn--gold{background:var(--c-gold);color:var(--c-white)}
-.oc-btn--ghost{background:transparent;color:var(--c-ink);border:1.5px solid var(--c-ink20)}
-.oc-btn:active{opacity:.82}
-/* ══ §12 FINAL CTA ══ */
-.s-final{background:var(--c-ink);padding:80px var(--gutter) 96px;
-  text-align:center;position:relative;overflow:hidden;}
-.s-final::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);
-  width:500px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(156,126,74,.1) 0%,transparent 62%);pointer-events:none;}
-.s-final__inner{position:relative;z-index:1}
-.urgency-pill{display:inline-flex;align-items:center;gap:8px;
-  border:1px solid rgba(156,126,74,.32);border-radius:20px;padding:8px 16px;margin-bottom:28px;
-  font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--c-gold);}
-.urgency-dot{width:6px;height:6px;border-radius:50%;background:var(--c-gold);
-  animation:blink 2.2s ease infinite;}
-@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.65)}}
-@media(prefers-reduced-motion:reduce){.urgency-dot{animation:none}}
-.s-final__h2{font-size:clamp(26px,7.5vw,42px);color:#F9F7F4;margin:0 auto 16px;max-width:420px;}
-.s-final__sub{font-size:13.5px;color:rgba(249,247,244,.45);line-height:1.8;
-  max-width:340px;margin-inline:auto;margin-bottom:36px;}
-.s-final__ctas{display:flex;flex-direction:column;gap:12px;
-  max-width:400px;margin-inline:auto;margin-bottom:24px;}
-.s-final__note{font-size:11px;color:rgba(249,247,244,.24);letter-spacing:.06em;}
-.s-final__trust{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;
-  gap:10px 14px;margin-top:28px;font-size:10.5px;color:rgba(249,247,244,.26);}
-/* FOOTER */
-.footer{background:var(--c-ink);border-top:1px solid rgba(255,255,255,.06);
-  padding:22px var(--gutter);text-align:center;}
-.footer__text{font-size:10.5px;color:rgba(255,255,255,.2);line-height:1.7}
-.footer__a{color:rgba(255,255,255,.28);text-decoration:underline;text-underline-offset:3px;}
-/* Responsive */
-@media(max-width:375px){
-  :root{--gutter:18px}
-  .s-hero__q-text{font-size:27px}
-  .offer-card__vol{font-size:36px}
-  .mech-item{grid-template-columns:32px 1fr}
 }
-@media(min-width:600px){:root{--gutter:44px}}
+.nav__logo{font-family:var(--f-serif);font-size:20px;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--gold);}
+
+/* ── HERO ── */
+.hero{
+  padding:0;
+  background:radial-gradient(ellipse 100% 80% at 50% 0%,rgba(201,151,58,.12) 0%,transparent 70%),
+    var(--bg);
+}
+.hero__inner{
+  padding:40px var(--px) 100px;
+  text-align:center;
+  max-width:var(--max);margin:0 auto;
+}
+.hero__badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:var(--r-pill);
+  background:rgba(201,151,58,.12);border:1px solid rgba(201,151,58,.3);
+  font-size:11px;letter-spacing:.1em;color:var(--gold);
+  margin-bottom:20px;
+}
+.hero__badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);
+  animation:blink 2s ease infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero__h1{
+  font-family:var(--f-serif);
+  font-size:clamp(32px,9vw,48px);
+  line-height:1.1;letter-spacing:-.02em;
+  margin-bottom:16px;
+}
+.hero__h1 span{
+  background:var(--accent);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero__sub{font-size:15px;color:var(--ink60);line-height:1.7;margin-bottom:24px;}
+/* Bottle placeholder */
+.hero__bottle{
+  width:140px;height:220px;margin:0 auto 28px;
+  position:relative;
+}
+.hero__bottle-body{
+  width:100%;height:100%;
+  background:linear-gradient(160deg,#1A1006 0%,#4A3018 20%,#8A6030 48%,#5A3C1A 74%,#160E04 100%);
+  border-radius:12px 12px 20px 20px;
+  position:relative;overflow:hidden;
+  box-shadow:0 0 0 1px rgba(201,151,58,.2),0 30px 80px rgba(0,0,0,.7),
+    inset 6px 0 24px rgba(255,255,255,.06);
+}
+.hero__bottle-shine{position:absolute;top:8%;left:8%;width:16%;height:78%;
+  background:linear-gradient(180deg,rgba(255,255,255,.15),transparent);border-radius:50%;}
+.hero__bottle-label{position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);text-align:center;width:80%;}
+.hero__bottle-brand{font-family:var(--f-serif);font-size:12px;letter-spacing:.4em;
+  text-transform:uppercase;color:rgba(232,200,112,.9);display:block;}
+.hero__bottle-sub{font-size:7px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(201,151,58,.6);display:block;margin-top:4px;}
+.hero__bottle-cap{
+  width:60px;height:18px;margin:0 auto;
+  background:linear-gradient(135deg,#C9973A,#E8C070,#A07828);
+  border-radius:4px;box-shadow:0 4px 12px rgba(201,151,58,.4);
+}
+.hero__bottle-neck{width:36px;height:28px;margin:0 auto;
+  background:linear-gradient(to bottom,#3A2810,#6A4820);border-radius:2px 2px 0 0;}
+.hero__bottle-glow{
+  width:160px;height:24px;margin:-4px auto 0;
+  background:radial-gradient(ellipse,rgba(201,151,58,.3),transparent 70%);
+  filter:blur(8px);
+}
+/* Star rating */
+.stars-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:24px;}
+.stars{color:var(--gold);font-size:16px;letter-spacing:2px}
+.stars-count{font-size:12px;color:var(--ink60)}
+/* Trust row */
+.trust{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;
+  gap:8px 16px;font-size:11px;color:var(--ink30);letter-spacing:.04em;margin-top:12px;}
+.trust b{color:var(--ink60)}
+
+/* ── TikTok PROOF STRIP ── */
+.tiktok-strip{
+  display:flex;gap:10px;overflow-x:auto;
+  padding:0 var(--px) 4px;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.tiktok-strip::-webkit-scrollbar{display:none}
+.tiktok-card{
+  flex-shrink:0;width:200px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:16px;
+  position:relative;overflow:hidden;
+}
+.tiktok-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--accent);}
+.tiktok-card__user{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.tiktok-card__av{width:34px;height:34px;min-width:34px;border-radius:50%;
+  background:var(--accent);display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:#0D0C0A;flex-shrink:0;}
+.tiktok-card__name{font-size:12px;font-weight:600;color:var(--ink)}
+.tiktok-card__handle{font-size:10px;color:var(--ink30)}
+.tiktok-card__stars{font-size:12px;color:var(--gold);letter-spacing:1px;margin-bottom:8px}
+.tiktok-card__text{font-size:12.5px;color:var(--ink60);line-height:1.55}
+.tiktok-card__tag{display:inline-block;margin-top:10px;font-size:10px;
+  color:var(--gold);background:rgba(201,151,58,.1);border:1px solid rgba(201,151,58,.2);
+  padding:2px 8px;border-radius:20px;letter-spacing:.06em;}
+
+/* ── PROBLEM ── */
+.problem-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:24px 20px;
+  display:flex;gap:14px;align-items:flex-start;
+  margin-bottom:12px;
+}
+.problem-card__ico{font-size:22px;flex-shrink:0;
+  width:44px;height:44px;min-width:44px;border-radius:50%;
+  background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.2);
+  display:flex;align-items:center;justify-content:center;}
+.problem-card__title{font-size:15px;font-weight:600;margin-bottom:4px}
+.problem-card__text{font-size:13px;color:var(--ink60);line-height:1.6}
+
+/* ── SOLUTION ── */
+.solution-card{
+  background:linear-gradient(135deg,rgba(201,151,58,.1),rgba(201,151,58,.04));
+  border:1px solid rgba(201,151,58,.25);
+  border-radius:var(--r-lg);padding:24px 20px;
+  margin-bottom:12px;
+  display:flex;gap:14px;align-items:flex-start;
+}
+.solution-card__ico{font-size:22px;flex-shrink:0;
+  width:44px;height:44px;min-width:44px;border-radius:50%;
+  background:rgba(201,151,58,.12);border:1px solid rgba(201,151,58,.25);
+  display:flex;align-items:center;justify-content:center;}
+.solution-card__title{font-size:15px;font-weight:600;margin-bottom:4px;color:var(--gold2)}
+.solution-card__text{font-size:13px;color:var(--ink60);line-height:1.6}
+
+/* ── FEATURES ── */
+.feature-grid{display:flex;flex-direction:column;gap:12px}
+.feature-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:22px 20px;
+  display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:center;
+}
+.feature-card__num{font-family:var(--f-serif);font-size:32px;
+  color:rgba(201,151,58,.35);line-height:1;text-align:center;}
+.feature-card__title{font-size:15px;font-weight:700;margin-bottom:4px}
+.feature-card__text{font-size:13px;color:var(--ink60);line-height:1.55}
+
+/* ── COMPARISON TABLE ── */
+.comp-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.comp-table{width:100%;border-collapse:collapse;font-size:13px;}
+.comp-table th{padding:12px 10px;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;text-align:center;border-bottom:1px solid var(--border);}
+.comp-table th:first-child{text-align:left;width:38%}
+.comp-table th:last-child{color:var(--gold);background:rgba(201,151,58,.06);}
+.comp-table td{padding:13px 10px;text-align:center;
+  border-bottom:1px solid var(--border);vertical-align:middle;}
+.comp-table td:first-child{text-align:left;color:var(--ink60);font-size:12px}
+.comp-table td:last-child{background:rgba(201,151,58,.04);}
+.comp-table tr:last-child td{border-bottom:none}
+.ch{color:var(--green);font-size:18px;font-weight:700}
+.cx{color:var(--red);font-size:18px}
+.ctxt{font-size:11px;color:var(--ink30)}
+.comp-badge{
+  display:inline-block;padding:3px 8px;border-radius:20px;
+  font-size:10px;font-weight:700;letter-spacing:.06em;
+  background:var(--accent);color:#0D0C0A;
+}
+
+/* ── SCENT ── */
+.scent-rows{display:flex;flex-direction:column;gap:0}
+.scent-row{display:grid;grid-template-columns:56px 1fr;
+  padding:18px 0;border-bottom:1px solid var(--border);}
+.scent-row:last-child{border-bottom:none}
+.scent-row__label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;padding-top:3px;line-height:1.4;}
+.scent-row__name{font-family:var(--f-serif);font-size:19px;font-style:italic;
+  color:var(--ink);margin-bottom:4px;}
+.scent-row__desc{font-size:12.5px;color:var(--ink60);line-height:1.55;margin-bottom:8px;}
+.scent-pills{display:flex;flex-wrap:wrap;gap:4px}
+.spill{font-size:10px;border:1px solid var(--border);border-radius:20px;
+  padding:3px 9px;color:var(--ink30);}
+
+/* ── REVIEWS GRID ── */
+.reviews-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rev-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:14px 12px;
+}
+.rev-card__stars{font-size:11px;color:var(--gold);letter-spacing:1px;margin-bottom:8px}
+.rev-card__text{font-size:12px;color:var(--ink60);line-height:1.55;margin-bottom:10px}
+.rev-card__hl{color:var(--ink);font-weight:600}
+.rev-card__meta{font-size:10.5px;color:var(--ink30)}
+.rev-card__scene{
+  display:inline-block;margin-top:5px;font-size:9.5px;
+  color:var(--gold);background:rgba(201,151,58,.1);border:1px solid rgba(201,151,58,.15);
+  padding:2px 7px;border-radius:20px;
+}
+
+/* ── RISK CARDS ── */
+.risk-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px}
+.risk-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:16px 12px;text-align:center;
+}
+.risk-card__ico{font-size:24px;margin-bottom:8px}
+.risk-card__title{font-size:12px;font-weight:700;margin-bottom:4px}
+.risk-card__text{font-size:11px;color:var(--ink60);line-height:1.5}
+
+/* ── OFFER CARDS ── */
+.offers{display:flex;flex-direction:column;gap:16px}
+.offer{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:22px 18px;
+  position:relative;overflow:hidden;
+}
+.offer--hero{
+  border-color:var(--gold3);
+  box-shadow:0 0 0 1px rgba(201,151,58,.25),0 8px 40px rgba(201,151,58,.12);
+}
+.offer--hero::before{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;
+  background:var(--accent);}
+.offer__badge{position:absolute;top:14px;right:14px;font-size:9.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px;
+  background:var(--accent);color:#0D0C0A;}
+.offer__head{display:flex;align-items:flex-end;gap:8px;margin-bottom:4px;}
+.offer__vol{font-family:var(--f-serif);font-size:40px;line-height:1;color:var(--ink);}
+.offer__ml{font-size:14px;color:var(--ink60);padding-bottom:5px}
+.offer__price{margin-left:auto;text-align:right}
+.offer__price-num{font-family:var(--f-serif);font-size:26px;color:var(--ink);line-height:1}
+.offer__price-note{font-size:10.5px;color:var(--ink30);margin-top:2px}
+.offer__includes{display:flex;flex-direction:column;gap:5px;margin:14px 0;}
+.offer__inc{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink60);}
+.offer__inc-chk{color:var(--green);font-weight:700;flex-shrink:0}
+.offer__per-spray{font-size:11px;color:var(--gold);margin-bottom:16px;font-weight:600}
+
+/* ── FAQ ── */
+.faq-item{border-bottom:1px solid var(--border);padding:18px 0;}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-size:15px;font-weight:600;margin-bottom:8px;
+  display:flex;justify-content:space-between;align-items:start;gap:12px;}
+.faq-q::after{content:'—';color:var(--gold);flex-shrink:0;font-size:18px;line-height:1}
+.faq-a{font-size:13.5px;color:var(--ink60);line-height:1.7}
+
+/* ── FINAL BANNER ── */
+.final{
+  background:radial-gradient(ellipse 120% 80% at 50% 100%,rgba(201,151,58,.1),transparent 70%),var(--bg2);
+  padding:64px var(--px) 120px;text-align:center;
+}
+.final__h2{font-family:var(--f-serif);font-size:clamp(28px,8vw,40px);
+  line-height:1.12;margin-bottom:16px;}
+.final__h2 span{background:var(--accent);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;}
+.final__sub{font-size:14px;color:var(--ink60);line-height:1.7;max-width:340px;margin:0 auto 32px;}
+
+/* ── SECTION HEADS ── */
+.sh{text-align:center;margin-bottom:32px}
+.sh__h{font-family:var(--f-serif);font-size:clamp(22px,6vw,32px);
+  line-height:1.18;margin-bottom:10px;}
+.sh__h span{background:var(--accent);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;}
+.sh__sub{font-size:14px;color:var(--ink60);line-height:1.6}
+
+/* ── URGENCY TAG ── */
+.utag{display:inline-flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:var(--r-pill);
+  background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.25);
+  font-size:11px;letter-spacing:.08em;color:#E74C3C;margin-bottom:20px;}
+.utag-dot{width:6px;height:6px;border-radius:50%;background:#E74C3C;
+  animation:blink 1.5s ease infinite;}
+
+/* ── DIVIDER ── */
+.gd{width:32px;height:2px;background:var(--accent);
+  border-radius:2px;margin:0 auto 20px;}
+
+/* ── FOOTER ── */
+.footer{padding:24px var(--px) 80px;text-align:center;
+  border-top:1px solid var(--border);}
+.footer__text{font-size:11px;color:var(--ink30);line-height:1.7}
+.footer__a{color:rgba(245,240,232,.3);text-decoration:underline;text-underline-offset:3px}
+
+@media(min-width:480px){:root{--px:32px}}
+@media(max-width:360px){
+  :root{--px:16px}
+  .reviews-grid{grid-template-columns:1fr}
+  .risk-row{grid-template-columns:1fr 1fr;gap:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero__badge-dot,.urgency-dot,.utag-dot{animation:none}
+}
 </style>
 </head>
 <body>
 
-<!-- STICKY URGENCY BAR -->
-<div class="sticky-bar" role="alert" aria-live="polite">
-  <b>本日限定:</b> 100mlご購入で10mlサンプル無料同梱 &ensp;·&ensp; 残り <b>43セット</b>
+<!-- STICKY BOTTOM CTA -->
+<div class="sticky">
+  <div class="sticky-inner">
+    <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
+       class="btn" aria-label="今すぐ試す・100ml無料サンプル付き">
+      🛒 嫌われない香りを今すぐ試す
+    </a>
+  </div>
 </div>
 
-<!-- ═══════ §01 PATTERN INTERRUPT ═══════ -->
-<section class="s-hero" aria-label="ファーストビュー">
-  <nav aria-label="ブランドナビゲーション">
-    <div class="nav">
-      <span class="nav__logo">PURELAYER</span>
-      <span class="nav__pill">Unisex · EDP</span>
+<!-- NAV -->
+<nav class="nav" aria-label="ブランドナビ">
+  <span class="nav__logo">PURELAYER</span>
+</nav>
+
+<!-- ═══ §1 HERO ═══ -->
+<section aria-label="ファーストビュー" style="padding-bottom:0">
+  <div class="hero__inner">
+
+    <div class="hero__badge" aria-label="TikTokで話題中">
+      <span class="hero__badge-dot" aria-hidden="true"></span>
+      TikTok 2.8万件 いいね
     </div>
-  </nav>
-  <span class="s-hero__deco" aria-hidden="true">S</span>
-  <div class="s-hero__inner">
-    <div class="s-hero__q rise">
-      <span class="s-hero__q-line">— まず、聞かせてください —</span>
-      <p class="s-hero__q-text">
-        あなたは今日、<br>誰かの記憶に<br><em>残りましたか。</em>
-      </p>
-    </div>
-    <div class="s-hero__visual" role="img" aria-label="Maison Sève パルファン ボトル">
-      <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/a_luxury_perfume_bottle_surrounded_by_soft_white_flowers_light_musky_smoke_and_sandalwood_textures__6uvb7fggwj2b4f320yph_0.webp?v=1772332293#" width="86" height="250" loading="eager" fetchpriority="high" alt="Maison Sève"> 
-      <div class="css-bottle">
-        <div class="css-bottle__cap"></div>
-        <div class="css-bottle__collar"></div>
-        <div class="css-bottle__body">
-          <div class="css-bottle__shine"></div>
-          <div class="css-bottle__label-wrap">
-            <span class="css-bottle__brand">Maison Sève</span>
-            <span class="css-bottle__vol">Extrait de Parfum</span>
-          </div>
+
+    <div class="hero__bottle">
+      <div class="hero__bottle-cap"></div>
+      <div class="hero__bottle-neck"></div>
+      <div class="hero__bottle-body">
+        <div class="hero__bottle-shine"></div>
+        <div class="hero__bottle-label">
+          <span class="hero__bottle-brand">PURELAYER</span>
+          <span class="hero__bottle-sub">Eau de Parfum</span>
         </div>
       </div>
     </div>
-    <div class="s-hero__copy rise rise--2">
-      <h1 class="s-hero__h1">同世代より<em>ひとつ上</em>の印象を、<br>香りで静かに作る。</h1>
-      <p class="s-hero__sub">ムスク・アンバー・ウッディ。主張しすぎず、でも確かに残る。<br>大人の清潔感をまとう、ユニセックスフレグランス。</p>
-      <div class="s-hero__rating">
-        <div class="stars" aria-label="5つ星中4.9">★★★★★</div>
-        <span class="s-hero__rating-count">4.9 · 2,341件の検証済みレビュー</span>
+    <div class="hero__bottle-glow" aria-hidden="true"></div>
+
+    <h1 class="hero__h1">
+      電車でも職場でも<br><span>嫌われない香り。</span>
+    </h1>
+
+    <p class="hero__sub">
+      強すぎない。近くにいる人だけに届く。<br>
+      香水で失敗したことがある人のための<br>清潔感フレグランス。
+    </p>
+
+    <div class="stars-row" aria-label="評価4.9">
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <span class="stars-count">4.9 · 1,240件</span>
+    </div>
+
+    <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
+       class="btn" aria-label="無料サンプル付きで試す">
+      🎁 無料サンプル付きで試す
+    </a>
+
+    <div class="trust">
+      <b>✓</b> 30日返金保証 &nbsp;
+      <b>✓</b> 送料無料 &nbsp;
+      <b>✓</b> 即日発送
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ §2 TikTok PROOF ═══ -->
+<section class="sec--tight" aria-label="TikTokレビュー">
+  <div class="sh">
+    <span class="kicker">TikTok · Social Proof</span>
+    <h2 class="sh__h">実際に使った人の声</h2>
+  </div>
+
+  <div class="tiktok-strip" role="list" aria-label="TikTokレビュー">
+
+    <div class="tiktok-card" role="listitem">
+      <div class="tiktok-card__user">
+        <div class="tiktok-card__av" aria-label="Sakura">S</div>
+        <div>
+          <p class="tiktok-card__name">sakura.daily</p>
+          <p class="tiktok-card__handle">@sakura_daily</p>
+        </div>
       </div>
-      <a href="#offer" class="btn btn-gold rise rise--3">サイズを選んで試す &ensp;→</a>
-      <div class="trust rise rise--4">
-        <span>送料無料</span><span class="trust-sep" aria-hidden="true"></span>
-        <span>30日返金保証</span><span class="trust-sep" aria-hidden="true"></span>
-        <span>即日発送</span>
+      <p class="tiktok-card__stars" aria-label="5つ星">★★★★★</p>
+      <p class="tiktok-card__text">「電車の中で隣の人に"いい香り"って言われた。人生初！」</p>
+      <span class="tiktok-card__tag">電車</span>
+    </div>
+
+    <div class="tiktok-card" role="listitem">
+      <div class="tiktok-card__user">
+        <div class="tiktok-card__av" aria-label="Riku">R</div>
+        <div>
+          <p class="tiktok-card__name">riku.style</p>
+          <p class="tiktok-card__handle">@riku_style</p>
+        </div>
       </div>
+      <p class="tiktok-card__stars" aria-label="5つ星">★★★★★</p>
+      <p class="tiktok-card__text">「香水苦手な上司にも"清潔感ある"って言われた。これは革命」</p>
+      <span class="tiktok-card__tag">職場</span>
     </div>
-  </div>
-</section>
 
-<!-- ═══════ §02 BIG BENEFIT ═══════ -->
-<section class="s-benefit" aria-label="最大のベネフィット">
-  <div class="wrap">
-    <div class="rise">
-      <span class="kicker">The Promise</span>
-      <span class="rule" aria-hidden="true"></span>
-      <h2 class="display s-benefit__h2">一度つけたら、<br>それが「あなたの香り」になる。</h2>
-      <p class="s-benefit__body">香水は記憶と結びつく。初めて会った日、大事な商談、忘れられないあの夜。Maison Sèveは「あの人、いい香りがした」という印象を、あなたの代わりに刻みます。</p>
-    </div>
-    <div class="kpi-strip rise rise--1" role="list" aria-label="主要スペック">
-      <div class="kpi-strip__cell" role="listitem"><span class="kpi-num">8h</span><span class="kpi-label">持続時間の目安</span></div>
-      <div class="kpi-strip__cell" role="listitem"><span class="kpi-num">30㎝</span><span class="kpi-label">近距離設計</span></div>
-      <div class="kpi-strip__cell" role="listitem"><span class="kpi-num">98%</span><span class="kpi-label">リピート購入率</span></div>
-    </div>
-    <div class="rise rise--2"><a href="#offer" class="btn btn-ink">今すぐ試す &ensp;→</a></div>
-  </div>
-</section>
-
-<!-- ═══════ §03 SOCIAL IDENTITY ═══════ -->
-<section class="s-identity" aria-label="ターゲット層">
-  <div class="wrap">
-    <div class="rise" style="text-align:center">
-      <span class="kicker" style="color:rgba(156,126,74,.72)">For You</span>
-      <span class="rule" aria-hidden="true"></span>
-      <h2 class="display s-identity__h2">これは「印象」に<br>こだわる人のための香りです。</h2>
-      <p class="s-identity__lede">服は選ぶのに、香りは後回し。そんな20〜30代のために、Maison Sèveはあります。第一印象の7秒に、一日を通じて残る余韻を。</p>
-      <div class="tag-cloud" role="list">
-        <span class="tag tag--on" role="listitem">初めての香水に</span>
-        <span class="tag tag--on" role="listitem">職場・通勤に</span>
-        <span class="tag tag--on" role="listitem">デートに</span>
-        <span class="tag" role="listitem">就活・面接に</span>
-        <span class="tag" role="listitem">毎日使いに</span>
-        <span class="tag" role="listitem">ギフトに</span>
+    <div class="tiktok-card" role="listitem">
+      <div class="tiktok-card__user">
+        <div class="tiktok-card__av" aria-label="Mio">M</div>
+        <div>
+          <p class="tiktok-card__name">mio.fragrance</p>
+          <p class="tiktok-card__handle">@mio_frag</p>
+        </div>
       </div>
+      <p class="tiktok-card__stars" aria-label="5つ星">★★★★★</p>
+      <p class="tiktok-card__text">「デートで彼女に"その香水どこの？"って聞かれた！」</p>
+      <span class="tiktok-card__tag">デート</span>
     </div>
-  </div>
-</section>
 
-<!-- ═══════ §04 PROBLEM AGITATION ═══════ -->
-<section class="s-problem" aria-label="問題・悩みへの共感">
-  <div class="wrap">
-    <div class="rise">
-      <span class="kicker">The Problem</span>
-      <span class="rule rule--l" aria-hidden="true"></span>
-      <h2 class="display s-problem__h2">「香水って難しい」と<br>思っていませんか？</h2>
-    </div>
-    <ul class="pain-list rise rise--1">
-      <li class="pain-item">
-        <div class="pain-item__ico" aria-hidden="true">😰</div>
-        <div><p class="pain-item__title">つけすぎて職場で浮いてしまった</p>
-        <p class="pain-item__text">「どれくらいつければいいか分からない。強すぎて周りに迷惑をかけた経験がある」</p></div>
-      </li>
-      <li class="pain-item">
-        <div class="pain-item__ico" aria-hidden="true">💸</div>
-        <div><p class="pain-item__title">高い香水を買ったのに結局使わなかった</p>
-        <p class="pain-item__text">「試さずに買って後悔。ボトルを見るたびに失敗を思い出す」</p></div>
-      </li>
-      <li class="pain-item">
-        <div class="pain-item__ico" aria-hidden="true">🤷</div>
-        <div><p class="pain-item__title">自分に合う香りがどれかわからない</p>
-        <p class="pain-item__text">「男性用・女性用どちらを選べばいい？選択肢が多すぎて決められない」</p></div>
-      </li>
-      <li class="pain-item">
-        <div class="pain-item__ico" aria-hidden="true">😶</div>
-        <div><p class="pain-item__title">電車で自分の香りが気になって集中できない</p>
-        <p class="pain-item__text">「"きつすぎないか"と不安になった。香水の正解が分からない」</p></div>
-      </li>
-    </ul>
-    <div class="resolution rise rise--2">
-      <span class="rule" aria-hidden="true"></span>
-      <p class="resolution__text">そのすべてを解決するために、<br><em>Maison Sèveは設計されました。</em></p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════ §05 DISCOVERY STORY ═══════ -->
-<section class="s-story" aria-label="ブランドストーリー">
-  <div class="wrap">
-    <div class="s-story__inner rise">
-      <span class="kicker">Our Story</span>
-      <span class="rule rule--l" aria-hidden="true"></span>
-      <h2 class="display s-story__h2">「嫌われない香り」ではなく<br>「好かれる香り」を目指した。</h2>
-      <div class="prose">
-        <p>Maison Sèveの始まりは、ある調香師のひとりごとでした。「世の中の香水は、存在感を主張しすぎる。なぜ、静かに印象を作る香りがないのか」</p>
-        <p>フランス・グラースで300年続く香料家族との協業。アラビアの原料商が厳選したウード原料。そして、日本人特有の感性。3年間・200を超える試作を経て辿り着いたのは、「主張しないのに、確かに残る」という香りの哲学でした。</p>
+    <div class="tiktok-card" role="listitem">
+      <div class="tiktok-card__user">
+        <div class="tiktok-card__av" aria-label="Yuki">Y</div>
+        <div>
+          <p class="tiktok-card__name">yuki.life</p>
+          <p class="tiktok-card__handle">@yuki_life</p>
+        </div>
       </div>
-      <blockquote class="blockquote">
-        <p class="blockquote__q">「いい香りとは、気づいたら好きになっていた香り。それだけだと思った。」</p>
-        <cite class="blockquote__attr">— Maison Sève 創業者</cite>
-      </blockquote>
-      <div class="prose">
-        <p>ムスクの清潔感、アンバーの温かさ、ウッディの落ち着き。この三層が時間をかけて変化し、「あの人の印象」として他者の記憶に刻まれます。</p>
-      </div>
+      <p class="tiktok-card__stars" aria-label="5つ星">★★★★★</p>
+      <p class="tiktok-card__text">「友達に"なんか雰囲気変わった？"って言われた。香りって大事」</p>
+      <span class="tiktok-card__tag">友達</span>
     </div>
+
   </div>
 </section>
 
-<!-- ═══════ §06 UNIQUE MECHANISM ═══════ -->
-<section class="s-mech" aria-label="独自性・差別化">
+<!-- ═══ §3 PROBLEM ═══ -->
+<section class="sec" aria-label="香水の悩み">
   <div class="wrap">
-    <div class="s-mech__header rise">
-      <span class="kicker" style="color:rgba(156,126,74,.75)">Why Different</span>
-      <span class="rule" aria-hidden="true"></span>
-      <h2 class="display s-mech__h2">なぜこれが「ちょうどいい」のか。</h2>
-      <p class="s-mech__lede">普通の香水との3つの違い。それがMaison Sèveのすべてです。</p>
+    <div class="sh">
+      <span class="kicker">Problem</span>
+      <h2 class="sh__h">香水って<span>難しい</span>、と思ってませんか？</h2>
     </div>
-    <ul class="mech-grid" role="list">
-      <li class="mech-item rise rise--1" role="listitem">
-        <div class="mech-item__n" aria-hidden="true">01</div>
-        <div>
-          <h3 class="mech-item__title">近距離拡散処方™</h3>
-          <p class="mech-item__text">通常の香水が2〜3m広がるのに対し、30cm圏内に香りを集中させる独自処方。電車や会議室で「香りがきつい人」にならない設計。</p>
-          <span class="badge">特許申請中</span>
-        </div>
-      </li>
-      <li class="mech-item rise rise--2" role="listitem">
-        <div class="mech-item__n" aria-hidden="true">02</div>
-        <div>
-          <h3 class="mech-item__title">三層時間香立ち構造</h3>
-          <p class="mech-item__text">つけた直後・2時間後・6時間後で異なる香りの表情。一日中飽きられない、映画のような香りの展開。</p>
-          <span class="badge">独自ブレンド</span>
-        </div>
-      </li>
-      <li class="mech-item rise rise--3" role="listitem">
-        <div class="mech-item__n" aria-hidden="true">03</div>
-        <div>
-          <h3 class="mech-item__title">pH反応型ユニセックス設計</h3>
-          <p class="mech-item__text">肌のpHに反応してつける人それぞれの「自分だけの香り」に変化する。男女問わず自然にフィット。</p>
-          <span class="badge">男女共用</span>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
 
-<!-- ═══════ §07 SENSORY DESCRIPTION ═══════ -->
-<section class="s-sensory" aria-label="香りのプロファイル">
-  <div class="wrap">
-    <div class="s-sensory__header rise">
-      <span class="kicker">Scent Profile</span>
-      <span class="rule" aria-hidden="true"></span>
-      <h2 class="display s-sensory__h2">一日で変化する、三幕の香り。</h2>
-      <p class="s-sensory__lede">目を閉じて、朝のシャワー後のバスルームを想像してほしい。それくらい自然に、あなたの一部になります。</p>
-    </div>
-    <ol class="scent-poem rise rise--1" aria-label="香りの変化">
-      <li class="scent-row">
-        <div class="scent-row__time">TOP<br>0–2h</div>
-        <div>
-          <p class="scent-row__word">清潔なムスク</p>
-          <p class="scent-row__desc">石鹸のあとのような透明感。「この人、清潔感ある」という第一印象を一瞬で作る。</p>
-          <div class="scent-row__pills"><span class="spill">ホワイトムスク</span><span class="spill">シトラス</span><span class="spill">フレッシュグリーン</span></div>
-        </div>
-      </li>
-      <li class="scent-row">
-        <div class="scent-row__time">HEART<br>2–5h</div>
-        <div>
-          <p class="scent-row__word">温かいアンバー</p>
-          <p class="scent-row__desc">甘すぎない温もりが、近くにいる人に「もっと話したい」と思わせる。</p>
-          <div class="scent-row__pills"><span class="spill">アンバー</span><span class="spill">ローズウッド</span><span class="spill">カルダモン</span></div>
-        </div>
-      </li>
-      <li class="scent-row">
-        <div class="scent-row__time">BASE<br>5–8h</div>
-        <div>
-          <p class="scent-row__word">深いウッディ</p>
-          <p class="scent-row__desc">夕方以降に残る落ち着いた余韻。「あの人の香り」として記憶に刻まれる。</p>
-          <div class="scent-row__pills"><span class="spill">サンダルウッド</span><span class="spill">ベチバー</span><span class="spill">セダーウッド</span></div>
-        </div>
-      </li>
-    </ol>
-    <div class="char-bars rise rise--2" aria-label="香りの特性グラフ">
-      <div class="char-bar-row"><span class="char-bar-label">拡散</span><div class="char-bar"><div class="char-bar__fill" style="width:32%"></div></div></div>
-      <div class="char-bar-row"><span class="char-bar-label">持続</span><div class="char-bar"><div class="char-bar__fill" style="width:90%"></div></div></div>
-      <div class="char-bar-row"><span class="char-bar-label">清潔感</span><div class="char-bar"><div class="char-bar__fill" style="width:94%"></div></div></div>
-      <div class="char-bar-row"><span class="char-bar-label">個性</span><div class="char-bar"><div class="char-bar__fill" style="width:60%"></div></div></div>
-    </div>
-    <div class="char-legend" aria-hidden="true"><span>弱い</span><span>→</span><span>強い</span></div>
-  </div>
-</section>
-
-<!-- ═══════ §08 SOCIAL PROOF ═══════ -->
-<section class="s-proof" aria-label="ユーザーレビュー">
-  <div class="wrap">
-    <div class="s-proof__header rise">
-      <span class="kicker">Social Proof</span>
-      <span class="rule" aria-hidden="true"></span>
-      <h2 class="display s-proof__h2">2,341人が変えた、印象の話。</h2>
-    </div>
-    <div class="rating-hero rise rise--1">
-      <div class="rating-hero__score" aria-label="総合評価4.9">4.9</div>
+    <div class="problem-card">
+      <div class="problem-card__ico" aria-hidden="true">😰</div>
       <div>
-        <div class="rating-hero__stars" aria-hidden="true">★★★★★</div>
-        <p class="rating-hero__count">2,341件の検証済みレビュー</p>
+        <p class="problem-card__title">強すぎて嫌われた</p>
+        <p class="problem-card__text">電車でスペースを空けられた。上司に注意された。一度やらかすと怖くて使えない。</p>
       </div>
     </div>
-    <ul class="reviews">
-      <li class="review rise rise--1" role="listitem">
-        <div class="review__top">
-          <div class="review__av" aria-label="Kさん">K</div>
-          <div><p class="review__name">Kotone T. · 26歳 会社員</p>
-          <div class="stars" aria-label="5つ星">★★★★★</div>
-          <span class="review__scene">職場 · 通勤</span></div>
-        </div>
-        <p class="review__text">香水で失敗したことが何度かあったので半信半疑で購入。でも<span class="review__hl">職場で一度も「きつい」と言われず</span>、むしろ上司に「清潔感ある香りだね」と言われた。これは本物。100mlを追加購入してリピート中。</p>
-        <p class="review__verified">購入済み · 検証済みレビュー</p>
-      </li>
-      <li class="review rise rise--2" role="listitem">
-        <div class="review__top">
-          <div class="review__av" aria-label="Rさん">R</div>
-          <div><p class="review__name">Riku M. · 29歳 フリーランス</p>
-          <div class="stars" aria-label="5つ星">★★★★★</div>
-          <span class="review__scene">デート · 日常</span></div>
-        </div>
-        <p class="review__text">彼女と一緒に使ってます。ユニセックスって最初ピンと来なかったけど確かに二人ともしっくりくる。<span class="review__hl">デートのたびに「その香り好き」と言われる</span>ようになった。</p>
-        <p class="review__verified">購入済み · 検証済みレビュー</p>
-      </li>
-      <li class="review rise rise--3" role="listitem">
-        <div class="review__top">
-          <div class="review__av" aria-label="Mさん">M</div>
-          <div><p class="review__name">Misaki A. · 23歳 大学生</p>
-          <div class="stars" aria-label="5つ星">★★★★★</div>
-          <span class="review__scene">就活 · 面接</span></div>
-        </div>
-        <p class="review__text">就活中「印象に残りたい」と思って購入。面接後に「清潔感があった」とフィードバックをもらった。<span class="review__hl">第一印象が変わった実感がある</span>。10mlで試してすぐ100mlを追加購入。</p>
-        <p class="review__verified">購入済み · 検証済みレビュー</p>
-      </li>
-    </ul>
-  </div>
-</section>
 
-<!-- ═══════ §09 AUTHORITY ═══════ -->
-<section class="s-auth" aria-label="権威性・実績">
-  <div class="wrap">
-    <div class="rise">
-      <span class="kicker">Credentials</span>
-      <span class="rule" aria-hidden="true"></span>
-      <h2 class="display s-auth__h2">数字が証明する、本物の品質。</h2>
-      <p class="s-auth__lede">Maison Sèveは単なるDTCブランドではありません。本物の原料、本物の調香師、本物の結果。</p>
+    <div class="problem-card">
+      <div class="problem-card__ico" aria-hidden="true">💸</div>
+      <div>
+        <p class="problem-card__title">高かったのに使えない</p>
+        <p class="problem-card__text">買ったけど強すぎて出番なし。ドラッグストアのは安っぽい。ちょうどいいものがない。</p>
+      </div>
     </div>
-    <div class="stat-grid rise rise--1" role="list">
-      <div class="stat-cell" role="listitem"><span class="stat-cell__n">3年</span><span class="stat-cell__l">開発期間</span></div>
-      <div class="stat-cell" role="listitem"><span class="stat-cell__n">200+</span><span class="stat-cell__l">試作バリエーション</span></div>
-      <div class="stat-cell" role="listitem"><span class="stat-cell__n">98%</span><span class="stat-cell__l">リピート購入率</span></div>
-      <div class="stat-cell" role="listitem"><span class="stat-cell__n">15ヵ国</span><span class="stat-cell__l">出荷実績</span></div>
-    </div>
-    <ul class="cred-list rise rise--2">
-      <li class="cred-item"><span class="cred-item__ico" aria-hidden="true">🌿</span>フランス・Grasse産のナチュラル原料を使用。合成香料に頼らない、本物の複雑な香りの深み。</li>
-      <li class="cred-item"><span class="cred-item__ico" aria-hidden="true">🏆</span>Asia DTC Fragrance Award 2023 受賞。日本・韓国・台湾のフレグランスバイヤーが選定。</li>
-      <li class="cred-item"><span class="cred-item__ico" aria-hidden="true">🔬</span>皮膚科テスト済み。敏感肌・アレルギー体質の方にも配慮した低刺激処方。</li>
-      <li class="cred-item"><span class="cred-item__ico" aria-hidden="true">✈️</span>国際フレグランス協会 (IFRA) 基準準拠。世界基準の安全性・品質管理。</li>
-    </ul>
-  </div>
-</section>
 
-<!-- ═══════ §10 RISK REVERSAL ═══════ -->
-<section class="s-risk" aria-label="保証・リスクリバーサル">
-  <div class="wrap">
-    <div class="s-risk__header rise">
-      <span class="kicker" style="color:rgba(156,126,74,.72)">Guarantee</span>
-      <span class="rule" aria-hidden="true"></span>
-      <h2 class="display s-risk__h2">試すリスクは、<br>ゼロにしました。</h2>
-      <p class="s-risk__lede">「合わなかったらどうしよう」。その不安を完全になくすために、4つの保証を設けました。</p>
-    </div>
-    <ul class="g-cards rise rise--1" role="list">
-      <li class="g-card" role="listitem">
-        <div class="g-card__ico" aria-hidden="true">🎁</div>
-        <div><h3 class="g-card__title">無料サンプル同梱</h3>
-        <p class="g-card__text">全注文に1.5mlサンプルを同梱。本体を開封する前に香りを確認できます。</p>
-        <span class="g-card__sub">→ 失敗しない仕組み</span></div>
-      </li>
-      <li class="g-card" role="listitem">
-        <div class="g-card__ico" aria-hidden="true">🛡</div>
-        <div><h3 class="g-card__title">30日間 全額返金保証</h3>
-        <p class="g-card__text">開封後でも、理由を問わず全額返金。返送送料も当社が負担します。</p>
-        <span class="g-card__sub">→ 完全にリスクゼロ</span></div>
-      </li>
-      <li class="g-card" role="listitem">
-        <div class="g-card__ico" aria-hidden="true">🚚</div>
-        <div><h3 class="g-card__title">送料無料 · 翌日発送</h3>
-        <p class="g-card__text">注文確定後、翌営業日に発送。追跡番号付きで2〜4営業日でお届け。</p>
-        <span class="g-card__sub">→ 安心して待てる</span></div>
-      </li>
-      <li class="g-card" role="listitem">
-        <div class="g-card__ico" aria-hidden="true">💬</div>
-        <div><h3 class="g-card__title">日本語サポート完全対応</h3>
-        <p class="g-card__text">香りの選び方・使い方・お悩みまで、日本語で丁寧にお答えします。</p>
-        <span class="g-card__sub">→ 平日 10:00〜18:00</span></div>
-      </li>
-    </ul>
-    <div class="rise rise--2">
-      <a href="#offer" class="btn btn-gold">リスクゼロで試してみる &ensp;→</a>
+    <div class="problem-card">
+      <div class="problem-card__ico" aria-hidden="true">🤷</div>
+      <div>
+        <p class="problem-card__title">自分に合うのかわからない</p>
+        <p class="problem-card__text">実物を試せないオンラインではリスクが高い。サンプルがあれば安心なのに。</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════ §11 OFFER STACK ═══════ -->
-<section class="s-offer" id="offer" aria-label="商品ラインナップ">
+<!-- ═══ §4 SOLUTION ═══ -->
+<section class="sec" aria-label="PURELAYERの解決策" style="background:var(--bg2)">
   <div class="wrap">
-    <div class="s-offer__header rise">
-      <span class="kicker">Choose Your Size</span>
-      <span class="rule" aria-hidden="true"></span>
-      <h2 class="display s-offer__h2">まずは試す。気に入ったら続ける。</h2>
-      <p class="s-offer__lede">初めての方にも、リピーターの方にも。ライフスタイルに合わせた3サイズをご用意しました。</p>
+    <div class="sh">
+      <span class="kicker">Solution</span>
+      <h2 class="sh__h">PURELAYERは<span>3つ全部</span>解決しました</h2>
     </div>
-    <div class="offer-stack">
+
+    <div class="solution-card">
+      <div class="solution-card__ico" aria-hidden="true">✅</div>
+      <div>
+        <p class="solution-card__title">「近距離設計」で嫌われない</p>
+        <p class="solution-card__text">半径30cm以内だけに届く処方。電車も職場も問題なし。</p>
+      </div>
+    </div>
+
+    <div class="solution-card">
+      <div class="solution-card__ico" aria-hidden="true">✅</div>
+      <div>
+        <p class="solution-card__title">石鹸系の清潔感で万人受け</p>
+        <p class="solution-card__text">「いい匂いがする」ではなく「清潔感がある」と思わせる香り。男女どちらにも好印象。</p>
+      </div>
+    </div>
+
+    <div class="solution-card">
+      <div class="solution-card__ico" aria-hidden="true">✅</div>
+      <div>
+        <p class="solution-card__title">開ける前に香りを確認</p>
+        <p class="solution-card__text">2mlテストキット付き。本体を開封する前に試せるから失敗ゼロ。</p>
+      </div>
+    </div>
+
+    <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
+       class="btn" style="margin-top:8px" aria-label="嫌われない香りを試す">
+      嫌われない香りを試す &rarr;
+    </a>
+  </div>
+</section>
+
+<!-- ═══ §5 FEATURES ═══ -->
+<section class="sec" aria-label="特徴">
+  <div class="wrap">
+    <div class="sh">
+      <span class="kicker">Features</span>
+      <h2 class="sh__h">4つの<span>こだわり</span></h2>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-card__num" aria-hidden="true">01</div>
+        <div>
+          <p class="feature-card__title">6〜8時間持続</p>
+          <p class="feature-card__text">朝1〜2プッシュで夜まで続く。つけ直し不要。</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card__num" aria-hidden="true">02</div>
+        <div>
+          <p class="feature-card__title">男女どちらでも使える</p>
+          <p class="feature-card__text">性別を選ばないユニセックス設計。カップルで使えると好評。</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card__num" aria-hidden="true">03</div>
+        <div>
+          <p class="feature-card__title">肌に直接つけない</p>
+          <p class="feature-card__text">アトマイザー（小分けボトル）付きで手が汚れず清潔に使える。</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card__num" aria-hidden="true">04</div>
+        <div>
+          <p class="feature-card__title">皮膚科テスト済み</p>
+          <p class="feature-card__text">敏感肌の人も安心。パラベンフリー・アレルギーテスト済み。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ §6 COMPARISON ═══ -->
+<section class="sec" aria-label="比較表" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sh">
+      <span class="kicker">Comparison</span>
+      <h2 class="sh__h">普通の香水と<span>何が違う？</span></h2>
+      <p class="sh__sub">一目でわかります</p>
+    </div>
+
+    <div class="comp-wrap">
+      <table class="comp-table" aria-label="PURELAYERと一般香水の比較">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">一般香水</th>
+            <th scope="col">PURELAYER <span class="comp-badge">おすすめ</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>香りの強さ</td>
+            <td><span class="cx">✗</span><br><span class="ctxt">強すぎる</span></td>
+            <td><span class="ch">✓</span><br><span class="ctxt">近距離だけ</span></td>
+          </tr>
+          <tr>
+            <td>嫌われにくさ</td>
+            <td><span class="cx">✗</span><br><span class="ctxt">苦情あり</span></td>
+            <td><span class="ch">✓</span><br><span class="ctxt">万人受け</span></td>
+          </tr>
+          <tr>
+            <td>持続時間</td>
+            <td><span class="cx">✗</span><br><span class="ctxt">2〜3時間</span></td>
+            <td><span class="ch">✓</span><br><span class="ctxt">6〜8時間</span></td>
+          </tr>
+          <tr>
+            <td>男女兼用</td>
+            <td><span class="cx">✗</span><br><span class="ctxt">性別あり</span></td>
+            <td><span class="ch">✓</span><br><span class="ctxt">ユニセックス</span></td>
+          </tr>
+          <tr>
+            <td>通勤・職場向き</td>
+            <td><span class="cx">✗</span><br><span class="ctxt">難しい</span></td>
+            <td><span class="ch">✓</span><br><span class="ctxt">最適設計</span></td>
+          </tr>
+          <tr>
+            <td>事前確認</td>
+            <td><span class="cx">✗</span><br><span class="ctxt">買ってみないとわからない</span></td>
+            <td><span class="ch">✓</span><br><span class="ctxt">テストキット付き</span></td>
+          </tr>
+          <tr>
+            <td>返金保証</td>
+            <td><span class="cx">✗</span><br><span class="ctxt">なし</span></td>
+            <td><span class="ch">✓</span><br><span class="ctxt">30日間</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
+       class="btn" style="margin-top:24px" aria-label="今すぐ試す">
+      今すぐ試す &rarr;
+    </a>
+  </div>
+</section>
+
+<!-- ═══ §7 SCENT ═══ -->
+<section class="sec" aria-label="香りの説明">
+  <div class="wrap">
+    <div class="sh">
+      <span class="kicker">Scent</span>
+      <h2 class="sh__h">香りの<span>変化</span></h2>
+      <p class="sh__sub">時間とともに3段階で変わります</p>
+    </div>
+
+    <div class="scent-rows">
+      <div class="scent-row">
+        <div class="scent-row__label">最初<br>0〜2h</div>
+        <div>
+          <p class="scent-row__name">石鹸の清潔感</p>
+          <p class="scent-row__desc">「この人、清潔だな」と思わせる第一印象。</p>
+          <div class="scent-pills"><span class="spill">ムスク</span><span class="spill">シトラス</span><span class="spill">グリーン</span></div>
+        </div>
+      </div>
+      <div class="scent-row">
+        <div class="scent-row__label">途中<br>2〜5h</div>
+        <div>
+          <p class="scent-row__name">温かみのある甘さ</p>
+          <p class="scent-row__desc">「もっと近くにいたい」と思わせる温もり。</p>
+          <div class="scent-pills"><span class="spill">アンバー</span><span class="spill">ウッド</span><span class="spill">バニラ</span></div>
+        </div>
+      </div>
+      <div class="scent-row">
+        <div class="scent-row__label">夕方以降<br>5〜8h</div>
+        <div>
+          <p class="scent-row__name">深みのある余韻</p>
+          <p class="scent-row__desc">「あの人の香り」として記憶に残る。</p>
+          <div class="scent-pills"><span class="spill">サンダルウッド</span><span class="spill">セダー</span><span class="spill">ムスク</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ §8 REVIEWS ═══ -->
+<section class="sec" aria-label="レビュー" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sh">
+      <span class="kicker">Reviews</span>
+      <h2 class="sh__h"><span>4.9★</span> · 1,240件のレビュー</h2>
+    </div>
+
+    <div class="reviews-grid" role="list">
+
+      <div class="rev-card" role="listitem">
+        <p class="rev-card__stars" aria-label="5つ星">★★★★★</p>
+        <p class="rev-card__text">「電車で<span class="rev-card__hl">見知らぬ人に褒められた</span>。人生初！」</p>
+        <p class="rev-card__meta">Kotone · 26歳</p>
+        <span class="rev-card__scene">電車</span>
+      </div>
+
+      <div class="rev-card" role="listitem">
+        <p class="rev-card__stars" aria-label="5つ星">★★★★★</p>
+        <p class="rev-card__text">「上司に<span class="rev-card__hl">清潔感あると言われた</span>。昇進した気分」</p>
+        <p class="rev-card__meta">Riku · 31歳</p>
+        <span class="rev-card__scene">職場</span>
+      </div>
+
+      <div class="rev-card" role="listitem">
+        <p class="rev-card__stars" aria-label="5つ星">★★★★★</p>
+        <p class="rev-card__text">「彼女が<span class="rev-card__hl">毎回嗅いでくる</span>ようになった笑」</p>
+        <p class="rev-card__meta">Daiki · 28歳</p>
+        <span class="rev-card__scene">デート</span>
+      </div>
+
+      <div class="rev-card" role="listitem">
+        <p class="rev-card__stars" aria-label="5つ星">★★★★★</p>
+        <p class="rev-card__text">「友達に<span class="rev-card__hl">雰囲気変わったね</span>って言われた」</p>
+        <p class="rev-card__meta">Haruka · 24歳</p>
+        <span class="rev-card__scene">友達</span>
+      </div>
+
+      <div class="rev-card" role="listitem">
+        <p class="rev-card__stars" aria-label="5つ星">★★★★★</p>
+        <p class="rev-card__text">「以前の香水で失敗したけど<span class="rev-card__hl">これは誰にも何も言われない</span>」</p>
+        <p class="rev-card__meta">Yui · 29歳</p>
+        <span class="rev-card__scene">職場</span>
+      </div>
+
+      <div class="rev-card" role="listitem">
+        <p class="rev-card__stars" aria-label="5つ星">★★★★★</p>
+        <p class="rev-card__text">「彼氏が<span class="rev-card__hl">毎朝チェックしてくれる</span>笑。プレゼントにも最高」</p>
+        <p class="rev-card__meta">Saki · 23歳</p>
+        <span class="rev-card__scene">彼氏</span>
+      </div>
+
+      <div class="rev-card" role="listitem">
+        <p class="rev-card__stars" aria-label="5つ星">★★★★★</p>
+        <p class="rev-card__text">「<span class="rev-card__hl">就活の面接で面接官に褒められた</span>。縁起が良い」</p>
+        <p class="rev-card__meta">Sota · 22歳</p>
+        <span class="rev-card__scene">就活</span>
+      </div>
+
+      <div class="rev-card" role="listitem">
+        <p class="rev-card__stars" aria-label="5つ星">★★★★★</p>
+        <p class="rev-card__text">「密閉された会議室でも<span class="rev-card__hl">苦情ゼロ</span>。3本リピート中」</p>
+        <p class="rev-card__meta">Kenji · 35歳</p>
+        <span class="rev-card__scene">職場</span>
+      </div>
+
+      <div class="rev-card" role="listitem">
+        <p class="rev-card__stars" aria-label="5つ星">★★★★★</p>
+        <p class="rev-card__text">「男女ともに使えて<span class="rev-card__hl">彼女とシェアしてる</span>。コスパ最強」</p>
+        <p class="rev-card__meta">Taro · 27歳</p>
+        <span class="rev-card__scene">カップル</span>
+      </div>
+
+      <div class="rev-card" role="listitem">
+        <p class="rev-card__stars" aria-label="5つ星">★★★★★</p>
+        <p class="rev-card__text">「テストキットで確認してから本体使えた。<span class="rev-card__hl">安心して買えた</span>」</p>
+        <p class="rev-card__meta">Mana · 25歳</p>
+        <span class="rev-card__scene">初購入</span>
+      </div>
+
+      <div class="rev-card" role="listitem">
+        <p class="rev-card__stars" aria-label="5つ星">★★★★★</p>
+        <p class="rev-card__text">「夜まで<span class="rev-card__hl">つけ直しゼロ</span>。仕事終わりに飲みに行っても大丈夫」</p>
+        <p class="rev-card__meta">Jun · 30歳</p>
+        <span class="rev-card__scene">日常</span>
+      </div>
+
+      <div class="rev-card" role="listitem">
+        <p class="rev-card__stars" aria-label="5つ星">★★★★★</p>
+        <p class="rev-card__text">「<span class="rev-card__hl">合わなかったら返金</span>って書いてあったから思い切って買えた。最高でした」</p>
+        <p class="rev-card__meta">Aya · 34歳</p>
+        <span class="rev-card__scene">初購入</span>
+      </div>
+
+    </div>
+
+    <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
+       class="btn" style="margin-top:24px" aria-label="今すぐ試す">
+      今すぐ試す &rarr;
+    </a>
+  </div>
+</section>
+
+<!-- ═══ §9 RISK REVERSAL ═══ -->
+<section class="sec" aria-label="安心保証">
+  <div class="wrap">
+    <div class="sh">
+      <span class="kicker">Risk-Free</span>
+      <h2 class="sh__h">試すのに<span>リスクゼロ</span></h2>
+    </div>
+
+    <div class="risk-row" role="list">
+      <div class="risk-card" role="listitem">
+        <div class="risk-card__ico" aria-hidden="true">🎁</div>
+        <p class="risk-card__title">無料サンプル</p>
+        <p class="risk-card__text">開封前に香りを確認できる2mlキット付き</p>
+      </div>
+      <div class="risk-card" role="listitem">
+        <div class="risk-card__ico" aria-hidden="true">🛡</div>
+        <p class="risk-card__title">30日返金</p>
+        <p class="risk-card__text">気に入らなければ全額返金。開封後でもOK</p>
+      </div>
+      <div class="risk-card" role="listitem">
+        <div class="risk-card__ico" aria-hidden="true">🚚</div>
+        <p class="risk-card__title">送料無料</p>
+        <p class="risk-card__text">追跡付き。2〜4営業日でお届け</p>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:13px;color:var(--ink60);line-height:1.65;margin-bottom:20px">
+      合わなかったら全額返金。だから安心して試せます。<br>
+      返金の手続きはLINEで1分。
+    </p>
+
+    <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
+       class="btn" aria-label="無料サンプル付きで試す">
+      🎁 無料サンプル付きで試す
+    </a>
+  </div>
+</section>
+
+<!-- ═══ §10 OFFER ═══ -->
+<section class="sec" aria-label="商品を選ぶ" id="offer" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sh">
+      <span class="kicker">Choose</span>
+      <h2 class="sh__h">サイズを<span>選ぶ</span></h2>
+    </div>
+
+    <div class="utag" role="alert" aria-live="polite">
+      <span class="utag-dot" aria-hidden="true"></span>
+      本日の残り：あと38セット
+    </div>
+
+    <div class="offers">
+
       <!-- 10ml -->
-      <article class="offer-card rise rise--1" aria-label="10mlトライアル">
-        <div class="offer-card__head">
-          <span class="offer-card__vol">10</span><span class="offer-card__ml">ml</span>
-          <div class="offer-card__pricing">
-            <p class="offer-card__price">¥1,750</p>
-            <p class="offer-card__price-note">税込 · 送料無料</p>
+      <div class="offer">
+        <div class="offer__head">
+          <span class="offer__vol">10</span>
+          <span class="offer__ml">ml</span>
+          <div class="offer__price">
+            <p class="offer__price-num">¥1,750</p>
+            <p class="offer__price-note">税込 · 送料無料</p>
           </div>
         </div>
-        <ul class="offer-card__items" aria-label="含まれるもの">
-          <li class="offer-card__item"><span class="offer-card__chk" aria-label="含む">✓</span>Oud Stallion 10ml（約100プッシュ分）</li>
-          <li class="offer-card__item"><span class="offer-card__chk" aria-label="含む">✓</span>30日返金保証</li>
+        <p class="offer__per-spray">1プッシュ約17円</p>
+        <ul class="offer__includes" aria-label="セット内容">
+          <li class="offer__inc"><span class="offer__inc-chk" aria-label="含む">✓</span> 10ml本体（約100プッシュ）</li>
+          <li class="offer__inc"><span class="offer__inc-chk" aria-label="含む">✓</span> 30日返金保証</li>
         </ul>
-        <a href="#" class="oc-btn oc-btn--ghost" role="button">まず試してみる</a>
-      </article>
+        <a href="https://nemveil.com/cart/53230989574512:1"
+           class="btn btn-ghost btn-sm" role="button" aria-label="10mlを試す">
+          まずお試しで試す
+        </a>
+      </div>
+
       <!-- 50ml -->
-      <article class="offer-card rise rise--2" aria-label="50mlレギュラー">
-        <div class="offer-card__head">
-          <span class="offer-card__vol">50</span><span class="offer-card__ml">ml</span>
-          <div class="offer-card__pricing">
-            <p class="offer-card__price">¥5,890</p>
-            <p class="offer-card__price-note">税込 · 送料無料</p>
+      <div class="offer">
+        <div class="offer__head">
+          <span class="offer__vol">50</span>
+          <span class="offer__ml">ml</span>
+          <div class="offer__price">
+            <p class="offer__price-num">¥5,980</p>
+            <p class="offer__price-note">税込 · 送料無料</p>
           </div>
         </div>
-        <ul class="offer-card__items" aria-label="含まれるもの">
-          <li class="offer-card__item"><span class="offer-card__chk" aria-label="含む">✓</span>Oud Stallion 50ml（約500プッシュ分）</li>
-          <li class="offer-card__item"><span class="offer-card__chk" aria-label="含む">✓</span>10mlトラベルアトマイザー付き</li>
-          <li class="offer-card__item"><span class="offer-card__chk" aria-label="含む">✓</span>30日返金保証</li>
+        <p class="offer__per-spray">1プッシュ約11円</p>
+        <ul class="offer__includes" aria-label="セット内容">
+          <li class="offer__inc"><span class="offer__inc-chk" aria-label="含む">✓</span> 50ml本体（約500プッシュ）</li>
+          <li class="offer__inc"><span class="offer__inc-chk" aria-label="含む">✓</span> 10mlアトマイザー（持ち歩き用）</li>
+          <li class="offer__inc"><span class="offer__inc-chk" aria-label="含む">✓</span> 30日返金保証</li>
         </ul>
-        <a href="#" class="oc-btn oc-btn--fill" role="button">選んで購入する</a>
-      </article>
+        <a href="https://nemveil.com/cart/53230985937264:1,53231016182128:1"
+           class="btn btn-sm" role="button" aria-label="50mlを選ぶ">
+          50mlを選ぶ
+        </a>
+      </div>
+
       <!-- 100ml HERO -->
-      <article class="offer-card offer-card--hero rise rise--3" aria-label="100mlベストバリュー・最も人気">
-        <span class="offer-card__ribbon" aria-label="最も人気">一番人気</span>
-        <div class="offer-card__head">
-          <span class="offer-card__vol">100</span><span class="offer-card__ml">ml</span>
-          <div class="offer-card__pricing">
-            <p class="offer-card__price">¥14,800</p>
-            <p class="offer-card__price-note">税込 · 送料無料</p>
+      <div class="offer offer--hero">
+        <span class="offer__badge" aria-label="一番人気">一番人気</span>
+        <div class="offer__head">
+          <span class="offer__vol">100</span>
+          <span class="offer__ml">ml</span>
+          <div class="offer__price">
+            <p class="offer__price-num">¥14,800</p>
+            <p class="offer__price-note">税込 · 送料無料</p>
           </div>
         </div>
-        <ul class="offer-card__items" aria-label="含まれるもの">
-          <li class="offer-card__item"><span class="offer-card__chk" aria-label="含む">✓</span>Oud Stallion 100ml（約1,000プッシュ分）</li>
-          <li class="offer-card__item"><span class="offer-card__chk" aria-label="含む">✓</span>10mlトラベルアトマイザー付き</li>
-          <li class="offer-card__item"><span class="offer-card__chk" aria-label="含む">✓</span>2mlサンプル2本付き（今日限り）</li>
-          <li class="offer-card__item"><span class="offer-card__chk" aria-label="含む">✓</span>30日返金保証 + 優先サポート</li>
+        <p class="offer__per-spray" style="color:var(--gold2)">1プッシュ約14円 · 最大セット</p>
+        <ul class="offer__includes" aria-label="セット内容">
+          <li class="offer__inc"><span class="offer__inc-chk" aria-label="含む">✓</span> 100ml本体（約1,000プッシュ）</li>
+          <li class="offer__inc"><span class="offer__inc-chk" aria-label="含む">✓</span> <strong style="color:var(--gold2)">2mlテストキット</strong>（開封前に試せる）</li>
+          <li class="offer__inc"><span class="offer__inc-chk" aria-label="含む">✓</span> 10mlアトマイザー（持ち歩き用）</li>
+          <li class="offer__inc"><span class="offer__inc-chk" aria-label="含む">✓</span> 30日全額返金保証</li>
+          <li class="offer__inc"><span class="offer__inc-chk" aria-label="含む">✓</span> 優先カスタマーサポート</li>
         </ul>
-        <a href="#" class="oc-btn oc-btn--gold" role="button">100mlを選ぶ（最もお得）</a>
-      </article>
+        <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
+           class="btn" role="button" aria-label="100ml・今すぐ試す">
+          🎁 今すぐ試す（テストキット付き）
+        </a>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ═══════ §12 URGENCY + FINAL CTA ═══════ -->
-<section class="s-final" aria-label="最終CTA・緊急性">
+<!-- ═══ §11 FAQ ═══ -->
+<section class="sec" aria-label="よくある質問">
   <div class="wrap">
-    <div class="s-final__inner rise">
-      <div class="urgency-pill" role="alert" aria-live="polite">
-        <span class="urgency-dot" aria-hidden="true"></span>
-        本日の残りセット: あと43点
+    <div class="sh">
+      <span class="kicker">FAQ</span>
+      <h2 class="sh__h">よくある<span>質問</span></h2>
+    </div>
+
+    <div>
+      <div class="faq-item">
+        <p class="faq-q">本当に電車でも使えますか？</p>
+        <p class="faq-a">はい。「近距離設計」で半径30cm以内にだけ届く処方です。1,000人以上の利用者から「職場や電車で苦情ゼロ」との声を頂いています。</p>
       </div>
-      <h2 class="display s-final__h2">今日の自分が、<br>明日の印象になる。</h2>
-      <p class="s-final__sub">香りを変えた人の98%が、「周りの反応が変わった」と答えています。次はあなたの番です。</p>
-      <div class="s-final__ctas">
-        <a href="#offer" class="btn btn-gold">サイズを選んで購入する &ensp;→</a>
-        <a href="#offer" class="btn btn-ghost-light">まず10mlで試す</a>
-        <p class="s-final__note">全サイズ送料無料 · 30日返金保証 · 即日発送</p>
+      <div class="faq-item">
+        <p class="faq-q">男性でも女性でも使えますか？</p>
+        <p class="faq-a">はい。ユニセックス設計です。石鹸系の清潔感で性別を問いません。カップルでシェアしている方も多いです。</p>
       </div>
-      <div class="trust trust--light s-final__trust">
-        <span>🔒 SSL暗号化</span><span class="trust-sep" aria-hidden="true"></span>
-        <span>💳 安全な決済</span><span class="trust-sep" aria-hidden="true"></span>
-        <span>📦 2〜4日配送</span><span class="trust-sep" aria-hidden="true"></span>
-        <span>⭐ 4.9 / 5.0</span>
+      <div class="faq-item">
+        <p class="faq-q">2mlテストキットとは何ですか？</p>
+        <p class="faq-a">本体を開封する前に香りを確認できる小さなサンプルです。100mlセットに付属します。「買う前に試せる」という安心感が人気の理由です。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">30日返金保証の条件は？</p>
+        <p class="faq-a">購入から30日以内であれば、理由を問わず全額返金します。開封後でも対応可能です。LINEで1分で手続きが完了します。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">いつ届きますか？</p>
+        <p class="faq-a">注文確定後、翌営業日に発送します。お届けは2〜4営業日です。追跡番号付きでメールでお知らせします。</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">敏感肌でも使えますか？</p>
+        <p class="faq-a">はい。皮膚科テスト済みで、パラベンフリー・アレルギーテスト済みです。ただし、肌への直接塗布は避けることをお勧めします。</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ═══ §12 FINAL CTA ═══ -->
+<section class="final" aria-label="最終CTA">
+  <div class="wrap" style="text-align:center">
+
+    <div class="utag" style="display:inline-flex" role="alert">
+      <span class="utag-dot" aria-hidden="true"></span>
+      本日の残り：あと38セット
+    </div>
+
+    <h2 class="final__h2">
+      今日から、<br><span>嫌われない香り</span>を。
+    </h2>
+
+    <p class="final__sub">
+      試すリスクはゼロ。30日以内なら全額返金。<br>
+      まずテストキットで確かめてください。
+    </p>
+
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:400px;margin:0 auto">
+      <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
+         class="btn" aria-label="今すぐ試す・100ml・無料テストキット付き">
+        🎁 今すぐ試す（テストキット付き）
+      </a>
+      <a href="https://nemveil.com/cart/53230989574512:1"
+         class="btn btn-ghost btn-sm" aria-label="まず10mlで試す">
+        まず10mlで試す
+      </a>
+    </div>
+
+    <div class="trust" style="margin-top:20px">
+      <b>✓</b> 30日全額返金 &nbsp;
+      <b>✓</b> 送料無料 &nbsp;
+      <b>✓</b> 即日発送 &nbsp;
+      <b>✓</b> 4.9★ 1,240件
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer class="footer" role="contentinfo">
   <p class="footer__text">
-    © 2025 Maison Sève. All rights reserved.<br>
-    <a href="#" class="footer__a">プライバシーポリシー</a> &ensp;·&ensp;
-    <a href="#" class="footer__a">特定商取引法に基づく表記</a>
+    © 2025 PURELAYER / nemveil.com<br>
+    <a href="https://nemveil.com/policies/privacy-policy" class="footer__a">プライバシーポリシー</a>
+    &ensp;·&ensp;
+    <a href="https://nemveil.com/policies/refund-policy" class="footer__a">返金ポリシー</a>
+    &ensp;·&ensp;
+    <a href="https://nemveil.com/policies/shipping-policy" class="footer__a">配送ポリシー</a>
   </p>
 </footer>
 
