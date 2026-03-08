@@ -191,6 +191,378 @@ button{font-family:inherit}
   0%,100%{opacity:1;transform:scale(1)}
   50%{opacity:.22;transform:scale(.52)}
 }
+   
+/* ══════════════════════════════════════════
+   PURELAYER · Oud Stallion — HERO CSS
+   Scoped with .h- prefix to avoid conflicts
+══════════════════════════════════════════ */
+
+/* ── Tokens ── */
+.h-hero {
+  --hc-bg:    #FDFCF9;
+  --hc-ink:   #1A1612;
+  --hc-i65:   rgba(26,22,18,.65);
+  --hc-i40:   rgba(26,22,18,.40);
+  --hc-i20:   rgba(26,22,18,.20);
+  --hc-i10:   rgba(26,22,18,.10);
+  --hc-gold:  #9E7840;
+  --hc-gold-l:#C09A58;
+  --hc-gold-d:#7C5C28;
+  --hc-green: #1B6840;
+  --hc-serif: 'Didot','Bodoni MT','Playfair Display',
+              'Book Antiqua','Palatino Linotype',Georgia,serif;
+  --hc-sans:  -apple-system,BlinkMacSystemFont,'Hiragino Sans',
+              'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;
+}
+
+/* ── Section Shell ── */
+.h-hero {
+  position: relative;
+  min-height: 100svh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--hc-bg);
+  overflow: hidden;
+}
+
+/* Ambient warm glow */
+.h-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 42%,
+      rgba(158,120,64,.10) 0%,
+      rgba(158,120,64,.03) 50%,
+      transparent 72%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── FOMO Badge ── */
+.h-fomo {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 15px;
+  border-radius: 100px;
+  background: rgba(253,252,249,.95);
+  border: 1px solid rgba(27,104,64,.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-family: var(--hc-sans);
+  font-size: 10.5px;
+  letter-spacing: .07em;
+  color: var(--hc-green);
+  white-space: nowrap;
+  box-shadow: 0 2px 14px rgba(26,22,18,.07);
+}
+.h-fomo-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--hc-green);
+  flex-shrink: 0;
+  animation: hpulse 2.1s ease infinite;
+}
+@keyframes hpulse {
+  0%,100% { opacity:1; transform:scale(1) }
+  50%      { opacity:.22; transform:scale(.5) }
+}
+
+/* ── Image Block ── */
+.h-img-block {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 68px 32px 0;
+  /* ~40% of 100vh */
+  min-height: 40svh;
+  min-height: 40vh;
+}
+
+/* Gold halo behind bottle */
+.h-halo {
+  position: absolute;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(158,120,64,.16) 0%,
+    rgba(158,120,64,.05) 48%,
+    transparent 70%);
+  filter: blur(22px);
+  pointer-events: none;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.h-bottle {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: auto;
+  height: clamp(190px, 40vw, 240px);
+  object-fit: contain;
+  filter:
+    drop-shadow(0 20px 44px rgba(26,22,18,.18))
+    drop-shadow(0 4px 10px rgba(26,22,18,.10));
+  animation: h-rise .85s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes h-rise {
+  from { opacity:0; transform:translateY(22px) }
+  to   { opacity:1; transform:translateY(0)  }
+}
+
+/* Reflection line under bottle */
+.h-bottle-ref {
+  position: absolute;
+  bottom: -1px; left: 50%;
+  transform: translateX(-50%);
+  width: 80px; height: 1px;
+  background: linear-gradient(90deg,
+    transparent, rgba(158,120,64,.3), transparent);
+}
+
+/* ── Copy Block ── */
+.h-copy {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 26px 36px;
+  animation: h-fadein .7s .18s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes h-fadein {
+  from { opacity:0; transform:translateY(12px) }
+  to   { opacity:1; transform:translateY(0)   }
+}
+
+/* Eyebrow */
+.h-eyebrow {
+  display: block;
+  font-family: var(--hc-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .36em;
+  text-transform: uppercase;
+  color: var(--hc-gold);
+  margin-bottom: 11px;
+}
+
+/* H1 */
+.h-h1 {
+  font-family: var(--hc-serif);
+  font-size: clamp(44px, 12vw, 60px);
+  line-height: 1.01;
+  letter-spacing: -.04em;
+  color: var(--hc-ink);
+  margin-bottom: 14px;
+}
+.h-h1 em {
+  font-style: normal;
+  background: linear-gradient(130deg, var(--hc-gold-d) 0%, var(--hc-gold) 45%, var(--hc-gold-l) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Description */
+.h-desc {
+  font-family: var(--hc-sans);
+  font-size: 14px;
+  color: var(--hc-i40);
+  line-height: 1.75;
+  margin-bottom: 16px;
+  max-width: 310px;
+}
+
+/* Stars row */
+.h-stars-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+.h-stars {
+  color: var(--hc-gold);
+  font-size: 16px;
+  letter-spacing: 2.5px;
+  line-height: 1;
+}
+.h-rate-n {
+  font-family: var(--hc-sans);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--hc-ink);
+}
+.h-rate-c {
+  font-family: var(--hc-sans);
+  font-size: 12px;
+  color: var(--hc-i20);
+}
+
+/* ── CTA Button ── */
+.h-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  padding: 19px 32px;
+  min-height: 60px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--hc-sans);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(
+    132deg,
+    var(--hc-gold-d)  0%,
+    var(--hc-gold)   45%,
+    var(--hc-gold-l) 100%
+  );
+  box-shadow:
+    0 6px 28px rgba(158,120,64,.36),
+    0 2px 8px  rgba(158,120,64,.18),
+    inset 0 1px 0 rgba(255,255,255,.20);
+  position: relative;
+  overflow: hidden;
+  transition: transform .12s ease, box-shadow .14s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+/* Shimmer sweep */
+.h-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -80%;
+  width: 55%; height: 100%;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0),
+    rgba(255,255,255,.20),
+    rgba(255,255,255,0));
+  animation: h-shimmer 3.6s 1.4s ease infinite;
+}
+@keyframes h-shimmer {
+  0%      { left: -80% }
+  38%,100%{ left: 140% }
+}
+.h-cta:active {
+  transform: scale(.97);
+  box-shadow:
+    0 3px 12px rgba(158,120,64,.24),
+    0 1px 4px  rgba(158,120,64,.12);
+}
+
+/* ── Trust Badges ── */
+.h-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 13px;
+  font-family: var(--hc-sans);
+  font-size: 11px;
+  color: var(--hc-i20);
+}
+.h-trust-item { display: flex; align-items: center; gap: 4px }
+.h-trust-item b { color: var(--hc-i65); font-weight: 600 }
+.h-trust-sep {
+  display: inline-block;
+  width: 2px; height: 2px;
+  border-radius: 50%;
+  background: var(--hc-i10);
+}
+
+/* ── Scroll Hint ── */
+.h-scroll {
+  position: absolute;
+  bottom: 20px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 5;
+}
+.h-scroll-line {
+  width: 1px; height: 30px;
+  background: linear-gradient(to bottom, var(--hc-gold), transparent);
+  animation: h-sline 1.9s ease infinite;
+}
+@keyframes h-sline {
+  0%  { transform:scaleY(0); transform-origin:top;    opacity:1 }
+  55% { transform:scaleY(1); transform-origin:top;    opacity:1 }
+  100%{ transform:scaleY(1); transform-origin:bottom; opacity:0 }
+}
+.h-scroll-label {
+  font-family: var(--hc-sans);
+  font-size: 8.5px;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--hc-i20);
+}
+
+/* ── Desktop (≥ 600px) : side-by-side ── */
+@media (min-width: 600px) {
+  .h-hero          { flex-direction: row; align-items: stretch }
+  .h-img-block     {
+    flex: 0 0 42%;
+    min-height: unset;
+    padding: 72px 0 72px 48px;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .h-bottle        { height: clamp(260px, 34vw, 370px) }
+  .h-halo          { width: 340px; height: 340px }
+  .h-copy          {
+    flex: 1;
+    align-items: flex-start;
+    text-align: left;
+    justify-content: center;
+    padding: 72px 64px 72px 52px;
+  }
+  .h-desc          { margin-left: 0 }
+  .h-stars-row     { justify-content: flex-start }
+  .h-cta           { margin-left: 0; margin-right: auto }
+  .h-trust         { justify-content: flex-start }
+  .h-fomo          { top: 24px; left: 28px; transform: none }
+  .h-h1            { font-size: clamp(46px, 5.6vw, 66px) }
+}
+
+@media (min-width: 900px) {
+  .h-img-block  { padding-left: 80px }
+  .h-copy       { padding: 72px 100px 72px 60px }
+  .h-bottle     { height: clamp(320px, 32vw, 420px) }
+  .h-halo       { width: 400px; height: 400px }
+  .h-h1         { font-size: clamp(56px, 5.2vw, 76px) }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .h-fomo-dot,
+  .h-bottle,
+  .h-copy,
+  .h-cta::before,
+  .h-scroll-line { animation: none }
+}
+
 
 /* ──────────────────────────────────────────
    HERO  ·  Asymmetric layout
@@ -475,7 +847,7 @@ button{font-family:inherit}
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
 </head>
 <body>
-
+  
 <!-- ════════════════════════════════
      STICKY BOTTOM CTA
      (hidden until 400px scroll)
@@ -501,69 +873,66 @@ button{font-family:inherit}
   <a href="#offer" class="nav-act" aria-label="ボトルを選ぶ">ボトルを選ぶ</a>
 </nav>
 
-<!-- ════════════════════════════════
-     §1  HERO
-════════════════════════════════ -->
-<section id="hero" aria-label="ヒーロー">
-  <div class="hero">
-    <!-- Decorative background letter -->
-    <div class="hero-deco" aria-hidden="true">S</div>
+ <section class="h-hero" id="hero" aria-label="ヒーロー">
+  <!-- FOMO -->
+  <div class="h-fomo" role="status" aria-live="polite">
+    <span class="h-fomo-dot" aria-hidden="true"></span>
+    今 247人が閲覧中
+  </div>
+  <!-- IMAGE -->
+  <div class="h-img-block">
+    <div class="h-halo" aria-hidden="true"></div>
+    <img
+      class="h-bottle"
+      src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2824_430x.webp?v=1772884462"
+      alt="PURELAYER Oud Stallion Eau de Parfum"
+      width="430"
+      height="430"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    >
+    <div class="h-bottle-ref" aria-hidden="true"></div>
+  </div>
+  <!-- COPY + CTA -->
+  <div class="h-copy">
+<span class="h-eyebrow">香水で失敗したくない人へ</span>
 
-    <div class="hero-inner">
-      <div class="live" aria-live="polite">
-        <span class="live-dot" aria-hidden="true"></span>今 247人が閲覧中
-      </div>
+<h1 class="h-h1">
+  <em>嫌われない</em><br>香り。
+</h1>
 
-      <div class="hero-layout">
-        <!-- Bottle -->
-        <div>
-          <div class="btl" role="img" aria-label="PURELAYER Oud Stallion ボトル">
-            <div class="b-cap"></div>
-            <div class="b-neck"></div>
-            <div class="b-body">
-              <div class="b-shine"></div>
-              <div class="b-label">
-                <span class="b-brand">PURELAYER</span>
-                <span class="b-product">Oud Stallion</span>
-              </div>
-            </div>
-          </div>
-          <div class="b-glow" aria-hidden="true"></div>
-        </div>
+<p class="h-desc">
+  電車でも、職場でも、デートでも。<br>
+  20,000人が選んだユニセックス香水。
+</p>
 
-        <!-- Copy -->
-        <div class="hero-copy">
-          <span class="hero-eyebrow">香水で失敗したくない人へ</span>
-          <h1 class="h1">
-            <span class="ag">嫌われない</span><br>香り。
-          </h1>
-          <p style="font-size:14px;color:var(--ink50);line-height:1.75;margin-bottom:20px">
-            電車でも、職場でも、デートでも。<br>
-            20,000人が選んだユニセックス香水。
-          </p>
-          <div class="rate-row" style="justify-content:flex-start" aria-label="評価4.9">
-            <div class="stars" style="font-size:15px" aria-hidden="true">★★★★★</div>
-            <span class="rate-n">4.9</span>
-            <span class="rate-c">/ 5.0</span>
-          </div>
-        </div>
-      </div>
+<div class="h-stars-row" aria-label="評価4.9 / 5.0、1,240件のレビュー">
+  <span class="h-stars" aria-hidden="true">★★★★★</span>
+  <span class="h-rate-n">4.9</span>
+  <span class="h-rate-c">/ 5.0 &nbsp;·&nbsp; 1,240件のレビュー</span>
+</div>
 
-      <!-- CTA (always visible in hero) -->
-      <a href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
-         class="btn btn-g" style="margin-top:24px;max-width:420px"
-         aria-label="ボトルを選ぶ">
-        ボトルを選ぶ →
-      </a>
 
-      <div class="trust">
-        <b>✓</b>送料無料
-        <span class="dot" aria-hidden="true"></span>
-        <b>✓</b>30日返金保証
-        <span class="dot" aria-hidden="true"></span>
-        <b>✓</b>即日発送
-      </div>
-    </div>
+  href="https://nemveil.com/cart/53231016182128:1,53230989541744:1,53230989214064:1"
+  class="h-cta"
+  aria-label="ボトルを選ぶ"
+>
+  ボトルを選ぶ →
+</a>
+
+<div class="h-trust" aria-label="ご安心ポイント">
+  <span class="h-trust-item"><b>✓</b> 送料無料</span>
+  <span class="h-trust-sep" aria-hidden="true"></span>
+  <span class="h-trust-item"><b>✓</b> 30日返金保証</span>
+  <span class="h-trust-sep" aria-hidden="true"></span>
+  <span class="h-trust-item"><b>✓</b> 即日発送</span>
+</div>
+  </div>
+  <!-- Scroll hint -->
+  <div class="h-scroll" aria-hidden="true">
+    <div class="h-scroll-line"></div>
+    <span class="h-scroll-label">scroll</span>
   </div>
 </section>
 
