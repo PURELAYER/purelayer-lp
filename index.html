@@ -192,6 +192,7 @@ button{font-family:inherit}
   50%{opacity:.22;transform:scale(.52)}
 }
    
+<style>
 /* ══════════════════════════════════════════
    PURELAYER · Oud Stallion — HERO CSS
    Scoped with .h- prefix to avoid conflicts
@@ -218,8 +219,8 @@ button{font-family:inherit}
 /* ── Section Shell ── */
 .h-hero {
   position: relative;
-  min-height: 100svh;
-  min-height: 100vh;
+  /* 画像を上部に配置するため、min-heightはautoに */
+  min-height: auto; 
   display: flex;
   flex-direction: column;
   background: var(--hc-bg);
@@ -243,7 +244,8 @@ button{font-family:inherit}
 /* ── FOMO Badge ── */
 .h-fomo {
   position: absolute;
-  top: 16px;
+  /* 画像の上に重ねるため、少し位置を調整 */
+  top: 10px; 
   left: 50%;
   transform: translateX(-50%);
   z-index: 20;
@@ -281,36 +283,25 @@ button{font-family:inherit}
   z-index: 1;
   flex: 0 0 auto;
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 68px 32px 0;
-  /* ~40% of 100vh */
-  min-height: 40svh;
-  min-height: 40vh;
+  /* align-items: flex-end; を削除（上部に配置するため） */
+  /* padding: 68px 32px 0; を変更 */
+  padding: 0; 
+  /* min-height: 40svh; などを削除 */
 }
 
-/* Gold halo behind bottle */
-.h-halo {
-  position: absolute;
-  width: 260px; height: 260px;
-  border-radius: 50%;
-  background: radial-gradient(circle,
-    rgba(158,120,64,.16) 0%,
-    rgba(158,120,64,.05) 48%,
-    transparent 70%);
-  filter: blur(22px);
-  pointer-events: none;
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-}
+/* Gold halo behind bottle 削除 */
 
 .h-bottle {
   position: relative;
   z-index: 1;
   display: block;
-  width: auto;
-  height: clamp(190px, 40vw, 240px);
-  object-fit: contain;
+  /* width: auto; から変更 */
+  width: 100%; 
+  /* height: clamp(190px, 40vw, 240px); から変更 */
+  height: auto; 
+  /* max-widthを追加 */
+  max-width: 100%; 
+  /* object-fit: contain; を削除 */
   filter:
     drop-shadow(0 20px 44px rgba(26,22,18,.18))
     drop-shadow(0 4px 10px rgba(26,22,18,.10));
@@ -321,15 +312,7 @@ button{font-family:inherit}
   to   { opacity:1; transform:translateY(0)  }
 }
 
-/* Reflection line under bottle */
-.h-bottle-ref {
-  position: absolute;
-  bottom: -1px; left: 50%;
-  transform: translateX(-50%);
-  width: 80px; height: 1px;
-  background: linear-gradient(90deg,
-    transparent, rgba(158,120,64,.3), transparent);
-}
+/* Reflection line under bottle 削除 */
 
 /* ── Copy Block ── */
 .h-copy {
@@ -340,7 +323,8 @@ button{font-family:inherit}
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 20px 26px 36px;
+  /* padding: 20px 26px 36px; を調整 */
+  padding: 30px 26px 36px; 
   animation: h-fadein .7s .18s cubic-bezier(.22,1,.36,1) both;
 }
 @keyframes h-fadein {
@@ -522,16 +506,20 @@ button{font-family:inherit}
 
 /* ── Desktop (≥ 600px) : side-by-side ── */
 @media (min-width: 600px) {
-  .h-hero          { flex-direction: row; align-items: stretch }
+  .h-hero          { flex-direction: row; align-items: stretch; min-height: 100svh; }
   .h-img-block     {
     flex: 0 0 42%;
-    min-height: unset;
+    /* min-height: unset; を削除 */
     padding: 72px 0 72px 48px;
     align-items: center;
     justify-content: flex-end;
   }
-  .h-bottle        { height: clamp(260px, 34vw, 370px) }
-  .h-halo          { width: 340px; height: 340px }
+  .h-bottle        {
+    /* height: clamp(260px, 34vw, 370px) から変更 */
+    height: clamp(260px, 34vw, 370px); 
+    width: auto;
+  }
+  /* .h-halo  削除 */
   .h-copy          {
     flex: 1;
     align-items: flex-start;
@@ -543,16 +531,17 @@ button{font-family:inherit}
   .h-stars-row     { justify-content: flex-start }
   .h-cta           { margin-left: 0; margin-right: auto }
   .h-trust         { justify-content: flex-start }
-  .h-fomo          { top: 24px; left: 28px; transform: none }
+  /* .h-fomo 位置調整 */
+  .h-fomo          { top: 24px; left: 28px; transform: none; z-index: 30; }
   .h-h1            { font-size: clamp(46px, 5.6vw, 66px) }
 }
 
 @media (min-width: 900px) {
   .h-img-block  { padding-left: 80px }
-  .h-copy       { padding: 72px 100px 72px 60px }
-  .h-bottle     { height: clamp(320px, 32vw, 420px) }
-  .h-halo       { width: 400px; height: 400px }
-  .h-h1         { font-size: clamp(56px, 5.2vw, 76px) }
+  .h-copy        { padding: 72px 100px 72px 60px }
+  /* .h-bottle      { height: clamp(320px, 32vw, 420px) } を調整 */
+  /* .h-halo  削除 */
+  .h-h1          { font-size: clamp(56px, 5.2vw, 76px) }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -562,6 +551,7 @@ button{font-family:inherit}
   .h-cta::before,
   .h-scroll-line { animation: none }
 }
+
 
 
 /* ──────────────────────────────────────────
