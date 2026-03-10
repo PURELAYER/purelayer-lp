@@ -188,19 +188,23 @@ body::after{content:"";position:fixed;inset:0;z-index:998;pointer-events:none;
   z-index: 1;
   margin-top: 20px;
   flex-shrink: 0;
-  width: 100%; /* 横幅いっぱいを使う指定を追加 */
-  max-width: 460px; /* PCなど広い画面での最大幅を設定 */
+  width: 100%;       /* 幅を確保 */
+  display: flex;     /* flexボックスにして中身を制御 */
+  justify-content: center; /* 子要素（画像）を水平中央に配置 */
 }
 
 /* --- [修正箇所] ボトル画像の高さを調整（1.2〜1.3倍に） --- */
 .hero-bottle {
-  /* 元: clamp(170px, 44vw, 240px) */
-  height: clamp(210px, 55vw, 300px); /* 最小・標準・最大高さをそれぞれ大きく設定 */
+  /* 高さを拡大（1.2〜1.3倍相当） */
+  height: clamp(210px, 55vw, 300px); 
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 22px 44px rgba(26, 24, 21, .14)) drop-shadow(0 4px 10px rgba(26, 24, 21, .08));
-  animation: bottleIn .85s cubic-bezier(.2, 1, .3, 1) both;
+  /* 画像そのものの配置を安定させる */
+  margin: 0 auto; 
+  filter: drop-shadow(0 22px 44px rgba(26,24,21,.14)) drop-shadow(0 4px 10px rgba(26,24,21,.08));
+  animation: bottleIn .85s cubic-bezier(.2,1,.3,1) both;
 }
+   
 @keyframes bottleIn {
   from { opacity: 0; transform: translateY(24px) scale(.94) }
   to { opacity: 1; transform: none }
