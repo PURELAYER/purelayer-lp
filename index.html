@@ -318,6 +318,29 @@ body::after{content:"";position:fixed;inset:0;z-index:998;pointer-events:none;
   font-size: 11px;
   color: var(--c-ink-38);
 }
+
+   /* 横スクロール + scroll-snap */
+.hero-reviews__track {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+/* カード: 280px固定・snap */
+.hr-card {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  background: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  padding: 16px;
+}
+
+/* 星: #C59A5C */
+.hr-stars { color: #C59A5C; }
    
 /* ═══════════════════════════════════════════════
    §2  SOCIAL PROOF STRIP (Hero直下)
@@ -593,6 +616,80 @@ decoding="async">
   </div><!-- /.hero-copy -->
 
 </section><!-- /§1 Hero -->
+
+   <!-- ═══════════════════════════════════════════════
+     §1.5  先出レビューセクション（Hero直下）
+     目的: Heroを見た直後に社会的証明を提示
+     UI: CSS scroll-snap 横スクロール / JS不要
+     カード幅280px / 1.2枚表示でスワイプ誘導
+     位置: HeroのCTA直後 → 統計バーの前
+═══════════════════════════════════════════════ -->
+<div class="hero-reviews" aria-label="購入者の声">
+  <div class="hero-reviews__track" role="list">
+
+    <!-- レビュー1 -->
+    <div class="hr-card" role="listitem">
+      <span class="hr-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <p class="hr-text">「石鹸みたいな清潔感で職場でも安心して使えます」</p>
+      <div class="hr-foot">
+        <span style="font-size:10.5px;color:var(--c-ink-38)">26歳 男性</span>
+        <span class="hr-ver">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          購入済み
+        </span>
+      </div>
+    </div>
+
+    <!-- レビュー2 -->
+    <div class="hr-card" role="listitem">
+      <span class="hr-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <p class="hr-text">「香水苦手な彼女にもいい匂いって言われました」</p>
+      <div class="hr-foot">
+        <span style="font-size:10.5px;color:var(--c-ink-38)">24歳 男性</span>
+        <span class="hr-ver">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          購入済み
+        </span>
+      </div>
+    </div>
+
+    <!-- レビュー3 -->
+    <div class="hr-card" role="listitem">
+      <span class="hr-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <p class="hr-text">「強すぎないのにちゃんと一日続くのがすごい」</p>
+      <div class="hr-foot">
+        <span style="font-size:10.5px;color:var(--c-ink-38)">29歳 女性</span>
+        <span class="hr-ver">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          購入済み
+        </span>
+      </div>
+    </div>
+
+    <!-- レビュー4 -->
+    <div class="hr-card" role="listitem">
+      <span class="hr-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <p class="hr-text">「近づいた時だけふわっと香る感じがちょうどいい」</p>
+      <div class="hr-foot">
+        <span style="font-size:10.5px;color:var(--c-ink-38)">22歳 女性</span>
+        <span class="hr-ver">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          購入済み
+        </span>
+      </div>
+    </div>
+
+  </div><!-- /.hero-reviews__track -->
+
+  <!-- スクロール誘導ドット（CSS装飾のみ） -->
+  <div class="hero-reviews__dots" aria-hidden="true">
+    <span class="hr-dot"></span>
+    <span class="hr-dot"></span>
+    <span class="hr-dot"></span>
+    <span class="hr-dot"></span>
+  </div>
+
+</div><!-- /§1.5 先出レビューセクション -->
 
 
 <!-- ═══════════════════════════════════════════════
