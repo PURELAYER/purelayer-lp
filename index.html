@@ -132,40 +132,186 @@ body::after{content:"";position:fixed;inset:0;z-index:998;pointer-events:none;
 #sbar.up{transform:translateY(0);pointer-events:auto}
 #sbar .wrap{max-width:460px}
 
-/* ═══════════════════════════════════════════════
+/* =============================================================================
    §1  HERO
-═══════════════════════════════════════════════ */
-.hero{background:var(--c-bg);display:flex;flex-direction:column;align-items:center;text-align:center;min-height:100svh;min-height:100vh;position:relative;overflow:hidden;padding:0 var(--px) 60px}
+============================================================================= */
+.hero {
+  background: var(--c-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 100svh;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding: 0 var(--px) 60px;
+}
 
 /* ambient glow */
-.hero::before{content:"";position:absolute;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(155,113,48,.09) 0%,transparent 68%);filter:blur(46px);top:38%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0}
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(155, 113, 48, .09) 0%, transparent 68%);
+  filter: blur(46px);
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
 
 /* large decorative letter */
-.hero-bg-letter{position:absolute;font-family:var(--f-disp);font-size:min(88vw,500px);font-style:italic;font-weight:300;line-height:1;color:rgba(26,24,21,.028);right:-6%;top:50%;transform:translateY(-52%);pointer-events:none;user-select:none;z-index:0;letter-spacing:-.06em}
+.hero-bg-letter {
+  position: absolute;
+  font-family: var(--f-disp);
+  font-size: min(88vw, 500px);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1;
+  color: rgba(26, 24, 21, .028);
+  right: -6%;
+  top: 50%;
+  transform: translateY(-52%);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  letter-spacing: -.06em;
+}
 
-/* product image */
-.hero-img{position:relative;z-index:1;margin-top:20px;flex-shrink:0}
-.hero-bottle{height:clamp(170px,44vw,240px);width:auto;object-fit:contain;filter:drop-shadow(0 22px 44px rgba(26,24,21,.14)) drop-shadow(0 4px 10px rgba(26,24,21,.08));animation:bottleIn .85s cubic-bezier(.2,1,.3,1) both}
-@keyframes bottleIn{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:none}}
+/* --- [修正箇所] プロダクト画像のサイズを拡大 --- */
+.hero-img {
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+  flex-shrink: 0;
+  width: 100%; /* 横幅いっぱいを使う指定を追加 */
+  max-width: 460px; /* PCなど広い画面での最大幅を設定 */
+}
+
+/* --- [修正箇所] ボトル画像の高さを調整（1.2〜1.3倍に） --- */
+.hero-bottle {
+  /* 元: clamp(170px, 44vw, 240px) */
+  height: clamp(210px, 55vw, 300px); /* 最小・標準・最大高さをそれぞれ大きく設定 */
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 22px 44px rgba(26, 24, 21, .14)) drop-shadow(0 4px 10px rgba(26, 24, 21, .08));
+  animation: bottleIn .85s cubic-bezier(.2, 1, .3, 1) both;
+}
+@keyframes bottleIn {
+  from { opacity: 0; transform: translateY(24px) scale(.94) }
+  to { opacity: 1; transform: none }
+}
 
 /* copy block */
-.hero-copy{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;padding-top:18px;max-width:380px;animation:copyIn .65s .18s cubic-bezier(.2,1,.3,1) both}
-@keyframes copyIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.hero-eyebrow{font-size:9px;font-weight:600;letter-spacing:.48em;text-transform:uppercase;color:var(--c-gold);margin-bottom:14px}
-.hero-h1{font-family:var(--f-disp);font-size:clamp(42px,12vw,64px);font-weight:300;font-style:italic;letter-spacing:-.03em;line-height:1.00;color:var(--c-ink);margin-bottom:10px}
-.hero-h1 strong{font-weight:400;font-style:normal;display:block;font-size:.72em;letter-spacing:.01em}
-.hero-sub{font-size:13.5px;font-weight:300;color:var(--c-ink-60);line-height:1.80;margin-bottom:18px;max-width:280px}
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* --- [修正箇所] 画像が大きくなった分、上の余白を少し詰める --- */
+  padding-top: 10px; /* 元: 18px */
+  max-width: 380px;
+  animation: copyIn .65s .18s cubic-bezier(.2, 1, .3, 1) both;
+}
+@keyframes copyIn {
+  from { opacity: 0; transform: translateY(14px) }
+  to { opacity: 1; transform: none }
+}
+.hero-eyebrow {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .48em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin-bottom: 14px;
+}
+
+/* --- [修正箇所] H1のフォントサイズを画像に合わせて調整 --- */
+.hero-h1 {
+  font-family: var(--f-disp);
+  /* 元: clamp(42px, 12vw, 64px) */
+  font-size: clamp(36px, 11vw, 56px); /* スマホで少し小さく、PCでも上品なサイズに */
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: -.03em;
+  line-height: 1.1; /* 行間を少し広げて読みやすく */
+  color: var(--c-ink);
+  margin-bottom: 10px;
+}
+.hero-h1 strong {
+  font-weight: 400;
+  font-style: normal;
+  display: block;
+  font-size: .72em;
+  letter-spacing: .01em;
+}
+
+/* --- [修正箇所] サブコピーのサイズと行間を微調整 --- */
+.hero-sub {
+  /* 元: 13.5px */
+  font-size: 14px; /* わずかに大きく */
+  font-weight: 300;
+  color: var(--c-ink-60);
+  /* 元: 1.80 */
+  line-height: 1.7; /* 行間を少し詰める */
+  margin-bottom: 18px;
+  max-width: 280px;
+}
 
 /* scent tags row */
-.hero-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:20px}
-.htag{display:inline-flex;align-items:center;gap:4px;padding:5px 13px;border-radius:var(--pill);background:rgba(26,24,21,.055);border:1px solid var(--c-ink-18);font-size:11.5px;color:var(--c-ink-60);font-weight:400;letter-spacing:.02em}
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.htag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 13px;
+  border-radius: var(--pill);
+  background: rgba(26, 24, 21, .055);
+  border: 1px solid var(--c-ink-18);
+  font-size: 11.5px;
+  color: var(--c-ink-60);
+  font-weight: 400;
+  letter-spacing: .02em;
+}
 
 /* star row */
-.hero-stars{display:flex;align-items:center;gap:7px;justify-content:center;margin-bottom:20px}
-.stars{font-size:13px;color:var(--c-gold);letter-spacing:2px}
-.hero-stars-num{font-family:var(--f-disp);font-size:22px;font-style:italic;font-weight:400;color:var(--c-gold);line-height:1}
-.hero-stars-meta{font-size:11px;color:var(--c-ink-38)}
-
+.hero-stars {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.stars {
+  font-size: 13px;
+  color: var(--c-gold);
+  letter-spacing: 2px;
+}
+.hero-stars-num {
+  font-family: var(--f-disp);
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--c-gold);
+  line-height: 1;
+}
+.hero-stars-meta {
+  font-size: 11px;
+  color: var(--c-ink-38);
+}
+   
 /* ═══════════════════════════════════════════════
    §2  SOCIAL PROOF STRIP (Hero直下)
 ═══════════════════════════════════════════════ */
