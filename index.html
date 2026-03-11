@@ -124,11 +124,26 @@ body::after{content:"";position:fixed;inset:0;z-index:999;pointer-events:none;
 .hero::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(157,113,48,.09) 0%,transparent 68%);filter:blur(50px);top:30%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0}
 .hero-deco{position:absolute;right:-7%;top:50%;transform:translateY(-50%);font-family:var(--fd);font-style:italic;font-weight:300;font-size:min(88vw,540px);line-height:1;color:rgba(34,32,27,.027);letter-spacing:-.05em;pointer-events:none;user-select:none;z-index:0}
 
-.hero-img{position:relative;z-index:1;flex-shrink:0;margin-top:20px}
-.hbottle{height:clamp(190px,46vw,268px);width:auto;object-fit:contain;filter:drop-shadow(0 24px 52px rgba(34,32,27,.14)) drop-shadow(0 4px 12px rgba(34,32,27,.08));animation:bup .9s cubic-bezier(.16,1,.3,1) both}
+.hero-img{position:relative;z-index:1;flex-shrink:0;margin-top:34px}
+.hbottle{
+  height:clamp(260px,64vw,380px);
+  width:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 24px 52px rgba(34,32,27,.14)) drop-shadow(0 4px 12px rgba(34,32,27,.08));
+  animation:bup .9s cubic-bezier(.16,1,.3,1) both
+}
 @keyframes bup{from{opacity:0;transform:translateY(26px) scale(.94)}to{opacity:1;transform:none}}
-.hph{height:clamp(190px,46vw,268px);width:clamp(120px,30vw,175px);background:linear-gradient(160deg,var(--ln),var(--sf));border-radius:clamp(22px,6vw,38px);display:flex;align-items:center;justify-content:center;box-shadow:var(--s3);animation:bup .9s cubic-bezier(.16,1,.3,1) both}
-.hph svg{opacity:.28}
+.hph{
+height:clamp(260px,64vw,380px);
+width:clamp(170px,42vw,250px);
+background:linear-gradient(160deg,var(--ln),var(--sf));
+border-radius:clamp(22px,6vw,38px);
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:var(--s3);
+animation:bup .9s cubic-bezier(.16,1,.3,1) both
+}
 
 .hero-copy{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;padding-top:22px;max-width:360px;animation:cup .7s .18s cubic-bezier(.16,1,.3,1) both}
 @keyframes cup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
