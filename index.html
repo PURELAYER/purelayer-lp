@@ -120,218 +120,40 @@ body::after{content:"";position:fixed;inset:0;z-index:999;pointer-events:none;
 /* ══════════════════════════════════════════════════
    §1  HERO — Problem Hook
 ══════════════════════════════════════════════════ */
-/* paddingの左右を0にし、上部の隙間を無くすために調整 */
-.hero {
-  min-height: 100svh;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background: var(--bg);
-  position: relative;
-  overflow: hidden;
-  padding: 0 0 64px; /* 左右の var(--px) を 0 に変更 */
-}
+.hero{min-height:100svh;min-height:100vh;display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--bg);position:relative;overflow:hidden;padding:0 var(--px) 64px}
+.hero::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(157,113,48,.09) 0%,transparent 68%);filter:blur(50px);top:30%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0}
+.hero-deco{position:absolute;right:-7%;top:50%;transform:translateY(-50%);font-family:var(--fd);font-style:italic;font-weight:300;font-size:min(88vw,540px);line-height:1;color:rgba(34,32,27,.027);letter-spacing:-.05em;pointer-events:none;user-select:none;z-index:0}
 
-.hero::before {
-  content: "";
-  position: absolute;
-  width: 520px;
-  height: 520px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(157,113,48,.09) 0%, transparent 68%);
-  filter: blur(50px);
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 0;
-}
+.hero-img{position:relative;z-index:1;flex-shrink:0;margin-top:20px}
+.hbottle{height:clamp(190px,46vw,268px);width:auto;object-fit:contain;filter:drop-shadow(0 24px 52px rgba(34,32,27,.14)) drop-shadow(0 4px 12px rgba(34,32,27,.08));animation:bup .9s cubic-bezier(.16,1,.3,1) both}
+@keyframes bup{from{opacity:0;transform:translateY(26px) scale(.94)}to{opacity:1;transform:none}}
+.hph{height:clamp(190px,46vw,268px);width:clamp(120px,30vw,175px);background:linear-gradient(160deg,var(--ln),var(--sf));border-radius:clamp(22px,6vw,38px);display:flex;align-items:center;justify-content:center;box-shadow:var(--s3);animation:bup .9s cubic-bezier(.16,1,.3,1) both}
+.hph svg{opacity:.28}
 
-.hero-deco {
-  position: absolute;
-  right: -7%;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--fd);
-  font-style: italic;
-  font-weight: 300;
-  font-size: min(88vw, 540px);
-  line-height: 1;
-  color: rgba(34, 32, 27, .027);
-  letter-spacing: -.05em;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-}
-
-/* margin-top を 0 にして上端に密着させる */
-.hero-img {
-  position: relative;
-  z-index: 1;
-  flex-shrink: 0;
-  margin-top: 0; 
-  width: 100%; /* 横いっぱいに広げる */
-}
-
-.hbottle {
-  height: clamp(190px, 46vw, 268px);
-  width: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 24px 52px rgba(34, 32, 27, .14)) drop-shadow(0 4px 12px rgba(34, 32, 27, .08));
-  animation: bup .9s cubic-bezier(.16, 1, .3, 1) both;
-  margin-top: 20px; /* ボトル自体に少し余裕を持たせる場合はここで調整 */
-}
-
-@keyframes bup {
-  from { opacity: 0; transform: translateY(26px) scale(.94) }
-  to { opacity: 1; transform: none }
-}
-
-.hph {
-  height: clamp(190px, 46vw, 268px);
-  width: clamp(120px, 30vw, 175px);
-  background: linear-gradient(160deg, var(--ln), var(--sf));
-  border-radius: clamp(22px, 6vw, 38px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--s3);
-  animation: bup .9s cubic-bezier(.16, 1, .3, 1) both;
-}
-
-.hph svg { opacity: .28 }
-
-/* コピー部分には適宜左右の余白（var(--px)相当）を持たせて読みやすくする */
-.hero-copy {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 22px var(--px) 0; 
-  max-width: 360px;
-  animation: cup .7s .18s cubic-bezier(.16, 1, .3, 1) both;
-}
-
-@keyframes cup {
-  from { opacity: 0; transform: translateY(14px) }
-  to { opacity: 1; transform: none }
-}
-
-.hero-ey {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: .50em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 12px;
-}
-
-.hero-h1 {
-  font-family: var(--fd);
-  font-size: clamp(36px, 10.5vw, 58px);
-  font-style: italic;
-  font-weight: 300;
-  letter-spacing: -.03em;
-  line-height: 1.06;
-  color: var(--ink);
-  margin-bottom: 12px;
-}
-
-.hero-sub {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--i70);
-  line-height: 1.82;
-  margin-bottom: 22px;
-  max-width: 272px;
-}
-
-.hero-sub strong { font-weight: 600; color: var(--ink) }
-
-.hero-r {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  justify-content: center;
-  margin-bottom: 24px;
-}
-
-.hero-rn {
-  font-family: var(--fd);
-  font-size: 22px;
-  font-style: italic;
-  color: var(--gold);
-  font-weight: 300;
-  line-height: 1;
-}
-
-.hero-rl { font-size: 11px; color: var(--i45) }
+.hero-copy{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;padding-top:22px;max-width:360px;animation:cup .7s .18s cubic-bezier(.16,1,.3,1) both}
+@keyframes cup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero-ey{font-size:9px;font-weight:600;letter-spacing:.50em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.hero-h1{font-family:var(--fd);font-size:clamp(36px,10.5vw,58px);font-style:italic;font-weight:300;letter-spacing:-.03em;line-height:1.06;color:var(--ink);margin-bottom:12px}
+.hero-sub{font-size:14px;font-weight:300;color:var(--i70);line-height:1.82;margin-bottom:22px;max-width:272px}
+.hero-sub strong{font-weight:600;color:var(--ink)}
+.hero-r{display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:24px}
+.hero-rn{font-family:var(--fd);font-size:22px;font-style:italic;color:var(--gold);font-weight:300;line-height:1}
+.hero-rl{font-size:11px;color:var(--i45)}
 
 /* scroll hint */
-.shint {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  z-index: 2;
-  opacity: 0;
-  animation: fi .4s 1.8s forwards;
-}
+.shint{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;z-index:2;opacity:0;animation:fi .4s 1.8s forwards}
+@keyframes fi{to{opacity:1}}
+.sline{width:1px;height:28px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sa 2.8s ease infinite}
+@keyframes sa{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.slbl{font-size:7px;letter-spacing:.44em;text-transform:uppercase;color:var(--i45)}
 
-@keyframes fi { to { opacity: 1 } }
-
-.sline {
-  width: 1px;
-  height: 28px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: sa 2.8s ease infinite;
-}
-
-@keyframes sa {
-  0% { transform: scaleY(0); transform-origin: top }
-  50% { transform: scaleY(1); transform-origin: top }
-  51% { transform: scaleY(1); transform-origin: bottom }
-  100% { transform: scaleY(0); transform-origin: bottom }
-}
-
-.slbl {
-  font-size: 7px;
-  letter-spacing: .44em;
-  text-transform: uppercase;
-  color: var(--i45);
-}
-
-@media(min-width:680px) {
-  .hero {
-    flex-direction: row;
-    text-align: left;
-    min-height: 100vh;
-    padding: 0;
-  }
-  .hero-img {
-    flex: 0 0 44%;
-    padding: 100px 0 60px 48px;
-    display: flex;
-    align-items: center;
-    margin-top: 0;
-  }
-  .hero-copy {
-    flex: 1;
-    align-items: flex-start;
-    padding: 100px 52px 60px 40px;
-    justify-content: center;
-  }
-  .hero-r { justify-content: flex-start }
-  .hero::before { left: 22% }
-  .shint { left: 64px; transform: none }
+@media(min-width:680px){
+  .hero{flex-direction:row;text-align:left;min-height:100vh}
+  .hero-img{flex:0 0 44%;padding:100px 0 60px 48px;display:flex;align-items:center;margin-top:0}
+  .hero-copy{flex:1;align-items:flex-start;padding:100px 52px 60px 40px;justify-content:center}
+  .hero-r{justify-content:flex-start}
+  .hero::before{left:22%}
+  .shint{left:64px;transform:none}
 }
 
 
