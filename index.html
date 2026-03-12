@@ -124,26 +124,11 @@ body::after{content:"";position:fixed;inset:0;z-index:999;pointer-events:none;
 .hero::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(157,113,48,.09) 0%,transparent 68%);filter:blur(50px);top:30%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0}
 .hero-deco{position:absolute;right:-7%;top:50%;transform:translateY(-50%);font-family:var(--fd);font-style:italic;font-weight:300;font-size:min(88vw,540px);line-height:1;color:rgba(34,32,27,.027);letter-spacing:-.05em;pointer-events:none;user-select:none;z-index:0}
 
-.hero-img{position:relative;z-index:1;flex-shrink:0;margin-top:34px}
-.hbottle{
-  height:clamp(260px,64vw,380px);
-  width:auto;
-  object-fit:contain;
-  filter:drop-shadow(0 24px 52px rgba(34,32,27,.14)) drop-shadow(0 4px 12px rgba(34,32,27,.08));
-  animation:bup .9s cubic-bezier(.16,1,.3,1) both
-}
+.hero-img{position:relative;z-index:1;flex-shrink:0;margin-top:20px}
+.hbottle{height:clamp(190px,46vw,268px);width:auto;object-fit:contain;filter:drop-shadow(0 24px 52px rgba(34,32,27,.14)) drop-shadow(0 4px 12px rgba(34,32,27,.08));animation:bup .9s cubic-bezier(.16,1,.3,1) both}
 @keyframes bup{from{opacity:0;transform:translateY(26px) scale(.94)}to{opacity:1;transform:none}}
-.hph{
-height:clamp(260px,64vw,380px);
-width:clamp(170px,42vw,250px);
-background:linear-gradient(160deg,var(--ln),var(--sf));
-border-radius:clamp(22px,6vw,38px);
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:var(--s3);
-animation:bup .9s cubic-bezier(.16,1,.3,1) both
-}
+.hph{height:clamp(190px,46vw,268px);width:clamp(120px,30vw,175px);background:linear-gradient(160deg,var(--ln),var(--sf));border-radius:clamp(22px,6vw,38px);display:flex;align-items:center;justify-content:center;box-shadow:var(--s3);animation:bup .9s cubic-bezier(.16,1,.3,1) both}
+.hph svg{opacity:.28}
 
 .hero-copy{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;padding-top:22px;max-width:360px;animation:cup .7s .18s cubic-bezier(.16,1,.3,1) both}
 @keyframes cup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
@@ -348,8 +333,222 @@ footer a{color:var(--i45);text-decoration:underline;text-underline-offset:3px}
 @media(min-width:480px){:root{--px:28px}}
 @media(max-width:360px){:root{--px:15px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ─────────────────────────────────────────────────────
+   v6 PATCH  ·  4 sections only
+   §1 Hero · §1.5 What Is · §2 Reviews · §8 Use Scenes
+───────────────────────────────────────────────────── */
+
+/* ── §1 HERO v6 ── */
+.hv6{min-height:100svh;min-height:100vh;background:var(--bg);
+  display:flex;flex-direction:column;align-items:stretch;
+  position:relative;overflow:hidden}
+.hv6::before{content:"";position:absolute;
+  width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(157,113,48,.08) 0%,transparent 68%);
+  filter:blur(50px);top:30%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;z-index:0}
+/* 1. logo strip */
+.hv6-logo{position:relative;z-index:2;text-align:center;
+  padding:18px var(--px) 12px}
+.hv6-logo-name{font-family:var(--fd);font-size:19px;font-style:italic;
+  font-weight:400;letter-spacing:.04em;color:var(--ink);line-height:1}
+.hv6-logo-name span{display:block;font-family:var(--fu);font-size:7px;
+  letter-spacing:.38em;text-transform:uppercase;color:var(--i45);
+  margin-top:3px;font-style:normal}
+/* 2. hero visual: person + overlapping bottle */
+.hv6-visual{position:relative;z-index:1;flex-shrink:0}
+.hv6-person-zone{
+  width:100%;height:clamp(220px,56vw,340px);
+  overflow:hidden;position:relative;background:var(--sf)}
+.hv6-person-zone img{
+  width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block}
+/* fade bottom edge into bg */
+.hv6-person-zone::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(245,242,236,0) 50%,var(--bg) 100%)}
+/* person placeholder */
+.hv6-person-ph{
+  width:100%;height:100%;
+  background:linear-gradient(145deg,var(--ln) 0%,var(--sf) 100%);
+  display:flex;align-items:center;justify-content:center}
+/* bottle overlapping below person zone */
+.hv6-bottle-row{
+  display:flex;justify-content:center;
+  margin-top:-44px;position:relative;z-index:2}
+.hv6-bottle-row img{
+  height:clamp(130px,32vw,185px);width:auto;object-fit:contain;
+  filter:drop-shadow(0 16px 42px rgba(34,32,27,.16)) drop-shadow(0 4px 10px rgba(34,32,27,.08));
+  animation:v6bup .9s cubic-bezier(.16,1,.3,1) both}
+@keyframes v6bup{from{opacity:0;transform:translateY(20px) scale(.93)}to{opacity:1;transform:none}}
+.hv6-bottle-ph{
+  height:clamp(130px,32vw,185px);width:clamp(86px,22vw,126px);
+  background:linear-gradient(160deg,var(--ln),var(--sf));
+  border-radius:clamp(14px,4vw,24px);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--s3);
+  animation:v6bup .9s cubic-bezier(.16,1,.3,1) both}
+/* 3-8. copy block */
+.hv6-copy{position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:20px var(--px) 48px;max-width:var(--max);margin:0 auto;width:100%;
+  animation:v6cup .7s .2s cubic-bezier(.16,1,.3,1) both}
+@keyframes v6cup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hv6-ey{font-size:8.5px;font-weight:600;letter-spacing:.52em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.hv6-h1{font-family:var(--fd);
+  font-size:clamp(34px,9vw,54px);
+  font-style:italic;font-weight:300;
+  letter-spacing:-.025em;line-height:1.07;
+  color:var(--ink);margin-bottom:10px}
+.hv6-sub{font-size:14px;font-weight:300;color:var(--i70);
+  line-height:1.80;margin-bottom:20px;max-width:278px}
+.hv6-sub strong{font-weight:600;color:var(--ink)}
+.hv6-rating{display:flex;align-items:center;justify-content:center;
+  gap:8px;margin-bottom:22px}
+.hv6-rn{font-family:var(--fd);font-size:21px;font-style:italic;
+  color:var(--gold);font-weight:300;line-height:1}
+.hv6-rl{font-size:11px;color:var(--i45)}
+/* scroll hint */
+.hv6-hint{margin-top:20px;
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  opacity:0;animation:v6fi .4s 1.9s forwards}
+@keyframes v6fi{to{opacity:1}}
+.hv6-hint-line{width:1px;height:26px;
+  background:linear-gradient(to bottom,var(--gold),transparent);
+  animation:v6sa 2.8s ease infinite}
+@keyframes v6sa{
+  0%{transform:scaleY(0);transform-origin:top}
+  50%{transform:scaleY(1);transform-origin:top}
+  51%{transform:scaleY(1);transform-origin:bottom}
+  100%{transform:scaleY(0);transform-origin:bottom}}
+.hv6-hint-lbl{font-size:7px;letter-spacing:.44em;text-transform:uppercase;color:var(--i45)}
+
+/* ── §1.5 WHAT IS OUD STALLION ── */
+.wis{padding:72px 0;background:var(--sf);position:relative;overflow:hidden}
+.wis::before{content:"";position:absolute;
+  width:360px;height:360px;border-radius:50%;
+  background:radial-gradient(circle,rgba(157,113,48,.07) 0%,transparent 68%);
+  filter:blur(40px);top:50%;right:-8%;transform:translateY(-50%);
+  pointer-events:none}
+.wis-inner{max-width:var(--max);margin:0 auto;padding:0 var(--px);
+  text-align:center;position:relative;z-index:1}
+.wis-kicker{display:block;font-size:8px;font-weight:700;
+  letter-spacing:.60em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px}
+.wis-title{font-family:var(--fd);
+  font-size:clamp(20px,5.5vw,30px);
+  font-style:italic;font-weight:300;
+  letter-spacing:-.02em;line-height:1.20;
+  color:var(--ink);margin-bottom:28px}
+/* product card */
+.wis-card{background:var(--wh);border:1px solid var(--i08);
+  border-radius:var(--rx);overflow:hidden;box-shadow:var(--s3);
+  position:relative;margin-bottom:28px}
+.wis-card::before{content:"";position:absolute;top:0;left:0;right:0;
+  height:3px;background:var(--gg);z-index:2}
+/* lifestyle photo zone */
+.wis-photo{width:100%;height:clamp(200px,50vw,290px);
+  position:relative;overflow:hidden;background:var(--sf)}
+.wis-photo img{width:100%;height:100%;object-fit:cover;
+  object-position:center 30%;display:block}
+.wis-photo::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(27,25,22,0) 38%,rgba(27,25,22,.40) 100%)}
+/* placeholder */
+.wis-photo-ph{width:100%;height:100%;
+  background:linear-gradient(145deg,var(--ln) 0%,#CECCBF 100%);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:10px}
+/* bottle floating at bottom of photo */
+.wis-bottle-float{position:absolute;bottom:-12px;left:50%;
+  transform:translateX(-50%);z-index:3}
+.wis-bottle-float img{
+  height:clamp(100px,25vw,148px);width:auto;object-fit:contain;
+  filter:drop-shadow(0 10px 30px rgba(34,32,27,.22))}
+.wis-bottle-float-ph{
+  height:clamp(100px,25vw,148px);width:clamp(66px,16vw,98px);
+  background:linear-gradient(160deg,rgba(227,221,210,.92),rgba(237,234,226,.96));
+  border-radius:clamp(10px,3vw,16px);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 28px rgba(34,32,27,.18)}
+/* card body */
+.wis-body{padding:clamp(30px,9vw,46px) 22px 24px}
+.wis-copy{font-family:var(--fd);
+  font-size:clamp(16px,4.5vw,20px);
+  font-style:italic;font-weight:300;
+  line-height:1.70;color:var(--ink);text-align:center}
+.wis-copy strong{font-style:normal;font-weight:400;color:var(--gold)}
+.wis-copy em{font-style:italic;font-weight:400}
+.wis-tags{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:16px}
+.wis-tag{font-size:11px;font-weight:500;letter-spacing:.05em;
+  padding:5px 14px;border-radius:var(--pill);
+  background:var(--sf);border:1px solid var(--i18);color:var(--i70)}
+
+/* ── §2 REAL REVIEWS v6 — fixed 3-card grid ── */
+.rvg-outer{padding:72px 0;background:var(--bg)}
+.rvg-head{text-align:center;padding:0 var(--px);margin-bottom:30px}
+.rvg-rating{display:flex;align-items:center;justify-content:center;
+  gap:8px;margin-top:7px}
+.rvg-rn{font-family:var(--fd);font-size:20px;font-style:italic;
+  color:var(--gold);font-weight:300}
+.rvg-rl{font-size:11px;color:var(--i45)}
+/* grid */
+.rvg-grid{display:flex;flex-direction:column;gap:12px;
+  max-width:var(--max);margin:0 auto;padding:0 var(--px)}
+@media(min-width:460px){.rvg-grid{flex-direction:row;align-items:stretch}}
+.rvg-card{flex:1;background:var(--wh);border:1px solid var(--i08);
+  border-radius:var(--rl);padding:20px 16px;box-shadow:var(--s2);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;gap:10px}
+.rvg-card::before{content:"";position:absolute;top:0;left:0;right:0;
+  height:2.5px;background:var(--gg)}
+.rvg-s{color:var(--star);font-size:12px;letter-spacing:1.5px;display:block}
+.rvg-q{font-family:var(--fd);font-style:italic;
+  font-size:15px;font-weight:300;
+  line-height:1.55;color:var(--ink);flex:1}
+.rvg-q::before{content:'\201C';font-size:22px;line-height:1;
+  color:var(--gold);opacity:.45;font-family:var(--fd);
+  vertical-align:-.08em;margin-right:2px}
+.rvg-foot{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
+.rvg-meta{font-size:10.5px;color:var(--i45);line-height:1.4}
+.rvg-badge{display:inline-flex;align-items:center;gap:3px;
+  font-size:9.5px;color:var(--ok);font-weight:600;letter-spacing:.04em}
+
+/* ── §8 USE SCENES v6 — photo 2×2 grid ── */
+.scph-sec{padding:72px 0;background:var(--sf)}
+.scph-head{text-align:center;padding:0 var(--px);margin-bottom:30px}
+.scph-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  max-width:var(--max);margin:0 auto;padding:0 var(--px)}
+.scph-card{border-radius:var(--rl);overflow:hidden;
+  box-shadow:var(--s2);background:var(--wh);
+  display:flex;flex-direction:column}
+/* photo zone */
+.scph-img{width:100%;height:clamp(108px,27vw,162px);
+  position:relative;overflow:hidden;flex-shrink:0;background:var(--ln)}
+.scph-img img{width:100%;height:100%;object-fit:cover;
+  object-position:center;display:block;
+  transition:transform .5s ease}
+.scph-card:hover .scph-img img{transform:scale(1.05)}
+.scph-img::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(27,25,22,0) 35%,rgba(27,25,22,.28) 100%)}
+/* gradient placeholder per scene */
+.scph-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.scph-ph svg{opacity:.32}
+.scph-ph--off{background:linear-gradient(145deg,#D8D2C8,#E8E3DC)}
+.scph-ph--com{background:linear-gradient(145deg,#C8CDD5,#DDE0E7)}
+.scph-ph--dat{background:linear-gradient(145deg,#D3C8BC,#E7E0D6)}
+.scph-ph--caf{background:linear-gradient(145deg,#CEC5B6,#E3DDD0)}
+/* card body */
+.scph-body{padding:12px 13px 14px;flex:1}
+.scph-t{font-size:13px;font-weight:600;color:var(--ink);
+  margin-bottom:3px;letter-spacing:.02em}
+.scph-d{font-size:11.5px;color:var(--i70);line-height:1.52}
+
+@media(prefers-reduced-motion:reduce){
+  .hv6-bottle-row img,.hv6-copy{animation:none!important;opacity:1!important;transform:none!important}
+}
+
 </style>
-   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
 </head>
 <body>
 
@@ -363,122 +562,227 @@ footer a{color:var(--i45);text-decoration:underline;text-underline-offset:3px}
 
 
 <!-- ══════════════════════════════════════════════════
-     §1  HERO — Problem Hook
-     心理: 「香水で失敗したくない」不安に直接訴える
+     §1  HERO v6
+     構造: ロゴ / 人物上+ボトル下 / コピー / 評価 / CTA / 安心要素
 ══════════════════════════════════════════════════ -->
-<section id="hero" class="hero" aria-label="ヒーロー">
-  <span class="hero-deco" aria-hidden="true">O</span>
+<section id="hero" class="hv6" aria-label="ヒーロー">
 
-  <div class="hero-img">
-    <img class="hbottle"
-      src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/BE301C04-6653-4A63-9727-D8A1597AC424.webp?v=1773230266"
-      alt="PURELAYER Oud Stallion Eau de Parfum" width="430" height="430"
-      loading="eager" fetchpriority="high" decoding="async"
-      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div class="hph" style="display:none">
-      <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M9 3h6l1 5H8L9 3z"/><path d="M8 8v12a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8"/>
-        <path d="M10 12s.5 1 2 1 2-1 2-1"/>
-      </svg>
+  <!-- 1. ブランドロゴ -->
+  <div class="hv6-logo">
+    <div class="hv6-logo-name">
+      Oud Stallion
+      <span>PURELAYER · Eau de Parfum</span>
     </div>
   </div>
 
-  <div class="hero-copy">
-    <p class="hero-ey">Oud Stallion EDP — PURELAYER</p>
-    <h1 class="hero-h1">香水で失敗したくない人へ</h1>
-    <p class="hero-sub"><strong>「香水強いね」</strong>と言われない<br>近距離でふわっと香る香水</p>
-    <div class="hero-r" aria-label="評価4.9 1240件">
+  <!-- 2. ヒーロー画像：人物上 / ボトル下 -->
+  <div class="hv6-visual">
+
+    <!-- 人物（清潔感ある人物イメージ） -->
+    <div class="hv6-person-zone" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1514866747592-c2d279258a78?w=600&q=80"
+        alt="" loading="eager" fetchpriority="high" decoding="async"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="hv6-person-ph" style="display:none">
+        <svg width="64" height="80" viewBox="0 0 64 80" fill="none" aria-hidden="true" style="opacity:.20;color:var(--gold)">
+          <ellipse cx="32" cy="18" rx="20" ry="18" fill="currentColor"/>
+          <path d="M12 36C12 36 6 50 4 66C2 80 62 80 60 66C58 50 52 36 52 36" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 香水ボトル（人物画像にオーバーラップ） -->
+    <div class="hv6-bottle-row">
+      <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2824_430x.webp?v=1772884462"
+        alt="PURELAYER Oud Stallion Eau de Parfum"
+        width="430" height="430"
+        loading="eager" decoding="async"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="hv6-bottle-ph" style="display:none">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)">
+          <path d="M9 3h6l1 5H8L9 3z"/>
+          <path d="M8 8v12a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8"/>
+        </svg>
+      </div>
+    </div>
+
+  </div><!-- /.hv6-visual -->
+
+  <!-- 3–8. コピー・評価・CTA -->
+  <div class="hv6-copy">
+
+    <!-- 3. 商品名 -->
+    <p class="hv6-ey">Oud Stallion EDP</p>
+
+    <!-- 4. メインコピー -->
+    <h1 class="hv6-h1">香水で失敗したくない人へ</h1>
+
+    <!-- 5. サブコピー -->
+    <p class="hv6-sub">
+      <strong>「香水強いね」</strong>と言われない<br>
+      近距離でふわっと香る香水
+    </p>
+
+    <!-- 6. レビュー評価 -->
+    <div class="hv6-rating" aria-label="評価4.9 1240件">
       <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <span class="hero-rn">4.9</span>
-      <span class="hero-rl">/ 5 &nbsp;&middot;&nbsp; 1,240 reviews</span>
+      <span class="hv6-rn">4.9</span>
+      <span class="hv6-rl">/ 5 &nbsp;&middot;&nbsp; 1,240 reviews</span>
     </div>
-    <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women" class="btn btn-g">この香りを試す &rarr;</a>
+
+    <!-- 7. CTAボタン（角丸・ゴールドグラデ・横幅100%） -->
+    <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
+       class="btn btn-g"
+       style="width:100%;max-width:100%"
+       aria-label="この香りを試す">
+      この香りを試す &rarr;
+    </a>
+
+    <!-- 8. 安心要素 -->
     <div class="trust" style="margin-top:12px">
-      <b>&#10003;</b>&nbsp;送料無料<span class="ts" aria-hidden="true"></span><b>&#10003;</b>&nbsp;30日返金保証
+      <b>&#10003;</b>&nbsp;送料無料
+      <span class="ts" aria-hidden="true"></span>
+      <b>&#10003;</b>&nbsp;30日返金保証
     </div>
+
+    <div class="hv6-hint" aria-hidden="true">
+      <div class="hv6-hint-line"></div>
+      <span class="hv6-hint-lbl">scroll</span>
+    </div>
+
   </div>
 
-  <div class="shint" aria-hidden="true">
-    <div class="sline"></div>
-    <span class="slbl">scroll</span>
-  </div>
-</section>
-
+</section><!-- /§1 HERO v6 -->
 
 <!-- ══════════════════════════════════════════════════
-     §2  REAL REVIEWS — 横スクロール 10件
-     心理: 早期に社会的証明を提示し不安を和らげる
+     §1.5  WHAT IS OUD STALLION（Hero直下・新規追加）
 ══════════════════════════════════════════════════ -->
-<div class="rv-outer" aria-label="購入者レビュー">
-  <div class="rv-head">
+<section class="wis" aria-label="What is Oud Stallion">
+  <div class="wis-inner">
+
+    <span class="wis-kicker">What Is Oud Stallion</span>
+    <h2 class="wis-title">
+      近距離でふわっと香る<br>
+      清潔感のホワイトムスク
+    </h2>
+
+    <div class="wis-card">
+      <!-- ライフスタイル写真 -->
+      <div class="wis-photo">
+        <img src="https://images.unsplash.com/photo-1556228724-8053d4f32174?w=600&q=80"
+          alt="Oud Stallion ライフスタイルイメージ"
+          loading="lazy" decoding="async"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="wis-photo-ph" style="display:none">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true" style="color:var(--gold);opacity:.35">
+            <path d="M9 3h6l1 5H8L9 3z"/>
+            <path d="M8 8v12a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8"/>
+            <path d="M10 12s.5 1 2 1 2-1 2-1"/>
+          </svg>
+        </div>
+        <!-- 香水ボトル（ライフスタイル写真に重ねて表示） -->
+        <div class="wis-bottle-float">
+          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2824_430x.webp?v=1772884462"
+            alt="Oud Stallion ボトル"
+            loading="lazy" decoding="async"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="wis-bottle-float-ph" style="display:none">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" style="color:var(--gold)">
+              <path d="M9 3h6l1 5H8L9 3z"/>
+              <path d="M8 8v12a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8"/>
+            </svg>
+          </div>
+        </div>
+      </div><!-- /.wis-photo -->
+
+      <div class="wis-body">
+        <p class="wis-copy">
+          「香水強いね」と言われないために<br>
+          作られた香水。<br><br>
+          近距離だけでふわっと香る<br>
+          <strong>清潔感のホワイトムスク。</strong><br><br>
+          <em>電車でも<br>
+          職場でも<br>
+          デートでも。</em><br><br>
+          安心して使える香りです。
+        </p>
+        <div class="wis-tags" role="list">
+          <span class="wis-tag" role="listitem">電車・通勤</span>
+          <span class="wis-tag" role="listitem">職場・会議</span>
+          <span class="wis-tag" role="listitem">デート</span>
+          <span class="wis-tag" role="listitem">日常使い</span>
+        </div>
+      </div>
+    </div><!-- /.wis-card -->
+
+    <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
+       class="btn btn-g" style="max-width:100%"
+       aria-label="この香りを試す">
+      この香りを試す &rarr;
+    </a>
+
+  </div>
+</section><!-- /§1.5 WHAT IS OUD STALLION -->
+<!-- ══════════════════════════════════════════════════
+     §2  REAL REVIEWS v6 — 固定3カードグリッド
+══════════════════════════════════════════════════ -->
+<div class="rvg-outer" aria-label="購入者レビュー">
+
+  <div class="rvg-head">
     <span class="kicker">Real Reviews</span>
-    <div class="rv-rating">
+    <div class="rvg-rating">
       <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <span class="rv-rn">4.9</span>
-      <span class="rv-rl">/ 5 &nbsp;&middot;&nbsp; 1,240 reviews</span>
+      <span class="rvg-rn">4.9</span>
+      <span class="rvg-rl">/ 5 &nbsp;&middot;&nbsp; 1,240 reviews</span>
     </div>
   </div>
 
-  <div class="rv-track" role="list">
-    <div class="rvc" role="listitem">
-      <span class="rvc-s" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <p class="rvc-q">「職場でも安心して使える香り」</p>
-      <span class="rvc-m">30代 男性 &nbsp;&middot;&nbsp; 職場</span>
+  <div class="rvg-grid" role="list">
+
+    <div class="rvg-card" role="listitem">
+      <span class="rvg-s" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <p class="rvg-q">職場でも安心して使える香り</p>
+      <div class="rvg-foot">
+        <span class="rvg-meta">30代 男性 &nbsp;&middot;&nbsp; 職場</span>
+        <span class="rvg-badge">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>購入済み
+        </span>
+      </div>
     </div>
-    <div class="rvc" role="listitem">
-      <span class="rvc-s" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <p class="rvc-q">「香水苦手でもこれは大丈夫」</p>
-      <span class="rvc-m">20代 女性 &nbsp;&middot;&nbsp; 日常</span>
+
+    <div class="rvg-card" role="listitem">
+      <span class="rvg-s" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <p class="rvg-q">彼女に褒められた</p>
+      <div class="rvg-foot">
+        <span class="rvg-meta">20代 男性 &nbsp;&middot;&nbsp; デート</span>
+        <span class="rvg-badge">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>購入済み
+        </span>
+      </div>
     </div>
-    <div class="rvc" role="listitem">
-      <span class="rvc-s" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <p class="rvc-q">「彼女に褒められた」</p>
-      <span class="rvc-m">20代 男性 &nbsp;&middot;&nbsp; デート</span>
+
+    <div class="rvg-card" role="listitem">
+      <span class="rvg-s" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <p class="rvg-q">香水苦手でもこれは大丈夫</p>
+      <div class="rvg-foot">
+        <span class="rvg-meta">20代 女性 &nbsp;&middot;&nbsp; 日常</span>
+        <span class="rvg-badge">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>購入済み
+        </span>
+      </div>
     </div>
-    <div class="rvc" role="listitem">
-      <span class="rvc-s" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <p class="rvc-q">「清潔感あるって言われる」</p>
-      <span class="rvc-m">30代 女性 &nbsp;&middot;&nbsp; 日常</span>
-    </div>
-    <div class="rvc" role="listitem">
-      <span class="rvc-s" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <p class="rvc-q">「石鹸みたいな清潔感が最高」</p>
-      <span class="rvc-m">20代 女性 &nbsp;&middot;&nbsp; 通勤</span>
-    </div>
-    <div class="rvc" role="listitem">
-      <span class="rvc-s" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <p class="rvc-q">「強すぎないのが嬉しい」</p>
-      <span class="rvc-m">40代 男性 &nbsp;&middot;&nbsp; 職場</span>
-    </div>
-    <div class="rvc" role="listitem">
-      <span class="rvc-s" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <p class="rvc-q">「電車でも気にならない香り」</p>
-      <span class="rvc-m">30代 男性 &nbsp;&middot;&nbsp; 通勤</span>
-    </div>
-    <div class="rvc" role="listitem">
-      <span class="rvc-s" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <p class="rvc-q">「彼氏と2人でシェアしてます」</p>
-      <span class="rvc-m">20代 女性 &nbsp;&middot;&nbsp; 日常</span>
-    </div>
-    <div class="rvc" role="listitem">
-      <span class="rvc-s" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <p class="rvc-q">「初めての香水にぴったりでした」</p>
-      <span class="rvc-m">20代 男性 &nbsp;&middot;&nbsp; 初購入</span>
-    </div>
-    <div class="rvc" role="listitem" style="margin-right:var(--px)">
-      <span class="rvc-s" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <p class="rvc-q">「2mlで試せたから安心でした」</p>
-      <span class="rvc-m">30代 女性 &nbsp;&middot;&nbsp; 初購入</span>
-    </div>
+
   </div>
-
-  <div class="rv-dots" aria-hidden="true">
-    <span class="rv-dot"></span><span class="rv-dot"></span><span class="rv-dot"></span>
-    <span class="rv-dot"></span><span class="rv-dot"></span>
-  </div>
-</div>
-
-
+</div><!-- /§2 Real Reviews v6 -->
 <!-- ══════════════════════════════════════════════════
      §3  PROBLEM — 共感セクション
      心理: 「そうそう！」と思わせ共感を獲得する
@@ -685,58 +989,91 @@ footer a{color:var(--i45);text-decoration:underline;text-underline-offset:3px}
 
 
 <!-- ══════════════════════════════════════════════════
-     §8  USE SCENES
-     心理: 日常シーンを想起させ「自分も使える」と感じさせる
+     §8  USE SCENES v6 — 写真ベース2×2グリッド
 ══════════════════════════════════════════════════ -->
-<section class="sec" aria-label="使用シーン">
-  <div class="w">
-    <div class="sh">
-      <span class="kicker">Use Scenes</span>
-      <h2 class="h2" style="text-align:center">どんな場面でも<br><em>使える香り</em></h2>
-      <span class="rule" aria-hidden="true"></span>
-    </div>
-    <div class="scene-g">
-      <div class="scc">
-        <div class="scc-ico" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+<section class="scph-sec" aria-label="使用シーン">
+  <div class="scph-head">
+    <span class="kicker">Use Scenes</span>
+    <h2 class="h2" style="text-align:center">どんな場面でも<br><em>使える香り</em></h2>
+    <span class="rule" aria-hidden="true"></span>
+  </div>
+
+  <div class="scph-grid" role="list">
+
+    <!-- ① 職場 -->
+    <div class="scph-card" role="listitem">
+      <div class="scph-img">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=72"
+          alt="職場のシーン" loading="lazy" decoding="async"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="scph-ph scph-ph--off" style="display:none">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
             <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
           </svg>
         </div>
-        <p class="scc-t">職場</p>
-        <p class="scc-d">清潔感だけが漂う近距離設計</p>
       </div>
-      <div class="scc">
-        <div class="scc-ico" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <div class="scph-body">
+        <p class="scph-t">職場</p>
+        <p class="scph-d">清潔感だけが漂う<br>近距離設計</p>
+      </div>
+    </div>
+
+    <!-- ② 通勤 -->
+    <div class="scph-card" role="listitem">
+      <div class="scph-img">
+        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&q=72"
+          alt="通勤・電車のシーン" loading="lazy" decoding="async"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="scph-ph scph-ph--com" style="display:none">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
             <rect x="2" y="7" width="20" height="13" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/>
           </svg>
         </div>
-        <p class="scc-t">通勤</p>
-        <p class="scc-d">満員電車でも不快にならない</p>
       </div>
-      <div class="scc">
-        <div class="scc-ico" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <div class="scph-body">
+        <p class="scph-t">通勤</p>
+        <p class="scph-d">満員電車でも<br>不快にならない香り</p>
+      </div>
+    </div>
+
+    <!-- ③ デート -->
+    <div class="scph-card" role="listitem">
+      <div class="scph-img">
+        <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=400&q=72"
+          alt="デートのシーン" loading="lazy" decoding="async"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="scph-ph scph-ph--dat" style="display:none">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
           </svg>
         </div>
-        <p class="scc-t">デート</p>
-        <p class="scc-d">「どこの香水？」と聞かれる</p>
       </div>
-      <div class="scc">
-        <div class="scc-ico" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <div class="scph-body">
+        <p class="scph-t">デート</p>
+        <p class="scph-d">「どこの香水？」と<br>聞かれる香り</p>
+      </div>
+    </div>
+
+    <!-- ④ カフェ -->
+    <div class="scph-card" role="listitem">
+      <div class="scph-img">
+        <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&q=72"
+          alt="カフェのシーン" loading="lazy" decoding="async"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="scph-ph scph-ph--caf" style="display:none">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
             <path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/>
           </svg>
         </div>
-        <p class="scc-t">カフェ</p>
-        <p class="scc-d">日常に溶け込む自然な香り</p>
+      </div>
+      <div class="scph-body">
+        <p class="scph-t">カフェ</p>
+        <p class="scph-d">日常に溶け込む<br>自然な香り</p>
       </div>
     </div>
+
   </div>
-</section>
-
-
+</section><!-- /§8 USE SCENES v6 -->
 <!-- ══════════════════════════════════════════════════
      §9  RISK FREE
      心理: 購入ハードルを最大限下げる
