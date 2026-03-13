@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="PURELAYER Oud Stallion — 香水で失敗したくない人へ。近距離でふわっと香る清潔感の香り。30日返金保証・送料無料。">
 <title>PURELAYER Oud Stallion | 香水で失敗したくない人へ</title>
- <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
 
@@ -547,6 +547,54 @@ footer a{color:var(--i45);text-decoration:underline;text-underline-offset:3px}
   .hv6-bottle-row img,.hv6-copy{animation:none!important;opacity:1!important;transform:none!important}
 }
 
+
+/* ─── v7 patch · §1 Hero · §1.5 What Is · §2 Reviews ─── */
+/* Hero copy width */
+.hv6-h1   { max-width: 680px; }
+.hv6-sub  { max-width: 600px; font-size: 14.5px; }
+
+/* What Is description prose */
+.wis-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--i70);
+  line-height: 1.92;
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto;
+}
+.wis-desc p           { margin-bottom: 16px; }
+.wis-desc p:last-child{ margin-bottom: 0; }
+.wis-desc strong      { color: var(--ink); font-weight: 500; }
+
+/* Review card avatar row */
+.rvg-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 1.5px solid var(--i08);
+  flex-shrink: 0;
+}
+.rvg-avatar-ph {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--sf);
+  display: flex; align-items: center; justify-content: center;
+  border: 1.5px solid var(--i08);
+  flex-shrink: 0;
+  color: var(--i45);
+}
+.rvg-header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 11px;
+}
+.rvg-header-info       { display: flex; flex-direction: column; gap: 3px; }
+.rvg-name              { font-size: 12px; font-weight: 600; color: var(--ink); line-height: 1.2; }
+.rvg-s-sm              { color: var(--star); font-size: 11px; letter-spacing: 1.2px; line-height: 1; }
+
 </style>
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
 </head>
@@ -562,8 +610,9 @@ footer a{color:var(--i45);text-decoration:underline;text-underline-offset:3px}
 
 
 <!-- ══════════════════════════════════════════════════
-     §1  HERO v6
-     構造: ロゴ / 人物上+ボトル下 / コピー / 評価 / CTA / 安心要素
+     §1  HERO v7 — コピー更新
+     Headline : 香水初心者でも失敗しない、清潔感の香り。
+     Subcopy  : 強すぎない、でも確かに香る
 ══════════════════════════════════════════════════ -->
 <section id="hero" class="hv6" aria-label="ヒーロー">
 
@@ -577,50 +626,47 @@ footer a{color:var(--i45);text-decoration:underline;text-underline-offset:3px}
 
   <!-- 2. ヒーロー画像：人物上 / ボトル下 -->
   <div class="hv6-visual">
-
-    <!-- 人物（清潔感ある人物イメージ） -->
     <div class="hv6-person-zone" aria-hidden="true">
       <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/9B0AB6A7-011E-41BF-851B-7F4BA8265932.webp?v=1773317864"
         alt="" loading="eager" fetchpriority="high" decoding="async"
         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="hv6-person-ph" style="display:none">
-        <svg width="64" height="80" viewBox="0 0 64 80" fill="none" aria-hidden="true" style="opacity:.20;color:var(--gold)">
+        <svg width="64" height="80" viewBox="0 0 64 80" fill="none" aria-hidden="true"
+          style="opacity:.20;color:var(--gold)">
           <ellipse cx="32" cy="18" rx="20" ry="18" fill="currentColor"/>
           <path d="M12 36C12 36 6 50 4 66C2 80 62 80 60 66C58 50 52 36 52 36" fill="currentColor"/>
         </svg>
       </div>
     </div>
-
-
-
+   
   </div><!-- /.hv6-visual -->
 
   <!-- 3–8. コピー・評価・CTA -->
   <div class="hv6-copy">
 
-    <!-- 3. 商品名 -->
-    <p class="hv6-ey">Oud Stallion EDP</p>
+    <!-- eyebrow -->
+    <p class="hv6-ey">香水初心者でも安心して使える</p>
 
-    <!-- 4. メインコピー -->
-    <h1 class="hv6-h1">香水で失敗したくない人へ</h1>
+    <!-- 4. メインヘッドライン -->
+    <h1 class="hv6-h1">香水初心者でも失敗しない、<br>清潔感の香り。</h1>
 
     <!-- 5. サブコピー -->
     <p class="hv6-sub">
-      <strong>「香水強いね」</strong>と言われない<br>
-      近距離でふわっと香る香水
+      香水初心者でも安心して使えるように作りました。<br>
+      <strong>「強すぎない、でも確かに香る」</strong><br>
+      そのちょうどよさが、選ばれている理由です。
     </p>
 
-    <!-- 6. レビュー評価 -->
+    <!-- 6. 評価 -->
     <div class="hv6-rating" aria-label="評価4.9 1240件">
       <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
       <span class="hv6-rn">4.9</span>
       <span class="hv6-rl">/ 5 &nbsp;&middot;&nbsp; 1,240 reviews</span>
     </div>
 
-    <!-- 7. CTAボタン（角丸・ゴールドグラデ・横幅100%） -->
+    <!-- 7. CTA -->
     <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
-       class="btn btn-g"
-       style="width:100%;max-width:100%"
+       class="btn btn-g" style="width:100%;max-width:100%"
        aria-label="この香りを試す">
       この香りを試す &rarr;
     </a>
@@ -637,58 +683,74 @@ footer a{color:var(--i45);text-decoration:underline;text-underline-offset:3px}
       <span class="hv6-hint-lbl">scroll</span>
     </div>
 
-  </div>
+  </div><!-- /.hv6-copy -->
 
-</section><!-- /§1 HERO v6 -->
-
+</section><!-- /§1 HERO v7 -->
 <!-- ══════════════════════════════════════════════════
-     §1.5  WHAT IS OUD STALLION（Hero直下・新規追加）
+     §1.5  WHAT IS OUD STALLION v7 — コピー更新
+     Title: 香水初心者が、いちばん最初に選んでいい香り。
 ══════════════════════════════════════════════════ -->
 <section class="wis" aria-label="What is Oud Stallion">
   <div class="wis-inner">
 
     <span class="wis-kicker">What Is Oud Stallion</span>
+
+    <!-- ▼ 更新タイトル ▼ -->
     <h2 class="wis-title">
-      近距離でふわっと香る<br>
-      清潔感のホワイトムスク
+      香水初心者が、<br>
+      いちばん最初に選んでいい香り。
     </h2>
 
     <div class="wis-card">
+
       <!-- ライフスタイル写真 -->
       <div class="wis-photo">
         <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/BA46FCE4-53C4-4E9A-BEF7-0E90519E8543.webp?v=1773317864"
-          alt="Oud Stallion ライフスタイルイメージ"
-          loading="lazy" decoding="async"
+          alt="Oud Stallion ライフスタイルイメージ" loading="lazy" decoding="async"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="wis-photo-ph" style="display:none">
-          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true" style="color:var(--gold);opacity:.35">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.2" stroke-linecap="round" aria-hidden="true"
+            style="color:var(--gold);opacity:.35">
             <path d="M9 3h6l1 5H8L9 3z"/>
             <path d="M8 8v12a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8"/>
             <path d="M10 12s.5 1 2 1 2-1 2-1"/>
           </svg>
         </div>
-        <!-- 香水ボトル（ライフスタイル写真に重ねて表示） -->
-        
+        <!-- ボトル浮かせ -->
+ 
       </div><!-- /.wis-photo -->
 
       <div class="wis-body">
-        <p class="wis-copy">
-          「香水強いね」と言われないために<br>
-          作られた香水。<br><br>
-          近距離だけでふわっと香る<br>
-          <strong>清潔感のホワイトムスク。</strong><br><br>
-          <em>電車でも<br>
-          職場でも<br>
-          デートでも。</em><br><br>
-          安心して使える香りです。
-        </p>
-        <div class="wis-tags" role="list">
-          <span class="wis-tag" role="listitem">電車・通勤</span>
-          <span class="wis-tag" role="listitem">職場・会議</span>
-          <span class="wis-tag" role="listitem">デート</span>
-          <span class="wis-tag" role="listitem">日常使い</span>
+
+        <!-- ▼ 更新ディスクリプション ▼ -->
+        <div class="wis-desc">
+          <p>
+            香水初心者が一番悩むのは<strong>「強さ」</strong>です。<br>
+            多すぎると嫌われる。少なすぎると意味がない。
+          </p>
+          <p>
+            Oud Stallionはその問題を解決するために作られました。
+          </p>
+          <p>
+            ホワイトムスクの清潔感が、近距離でだけ、<br>
+            <strong>自然にふわっと香ります。</strong>
+          </p>
+          <p>
+            初めての香水にも、毎日の香水にも。<br>
+            安心して使い続けられる一本です。
+          </p>
         </div>
-      </div>
+
+        <!-- ▼ 更新タグ ▼ -->
+        <div class="wis-tags" role="list">
+          <span class="wis-tag" role="listitem">香水初心者でも安心</span>
+          <span class="wis-tag" role="listitem">強すぎない設計</span>
+          <span class="wis-tag" role="listitem">職場・通勤OK</span>
+          <span class="wis-tag" role="listitem">ユニセックス</span>
+        </div>
+
+      </div><!-- /.wis-body -->
     </div><!-- /.wis-card -->
 
     <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
@@ -697,10 +759,10 @@ footer a{color:var(--i45);text-decoration:underline;text-underline-offset:3px}
       この香りを試す &rarr;
     </a>
 
-  </div>
-</section><!-- /§1.5 WHAT IS OUD STALLION -->
+  </div><!-- /.wis-inner -->
+</section><!-- /§1.5 WHAT IS v7 -->
 <!-- ══════════════════════════════════════════════════
-     §2  REAL REVIEWS v6 — 固定3カードグリッド
+     §2  REAL REVIEWS v7 — アバター追加・コピー更新（構造変更なし）
 ══════════════════════════════════════════════════ -->
 <div class="rvg-outer" aria-label="購入者レビュー">
 
@@ -716,49 +778,104 @@ footer a{color:var(--i45);text-decoration:underline;text-underline-offset:3px}
   <div class="rvg-grid" role="list">
 
     <div class="rvg-card" role="listitem">
-      <span class="rvg-s" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <p class="rvg-q">もともと香水って苦手で、強い匂いのイメージしかなかったんですよね。友達に勧められて半信半疑で試したんですが、これは全然違いました。本当にふわっとしていて、自分でも"あ、これは使えるな"って感じた香水です。職場にも付けていったら、同僚に「なんかいい匂いするね」って言われて、それから毎日使ってます。</p>
+      <!-- アバター行 -->
+      <div class="rvg-header">
+        <img class="rvg-avatar" src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2602.webp?v=1773367670" alt="28歳 男性" loading="lazy" decoding="async"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="rvg-avatar-ph" style="display:none" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div class="rvg-header-info">
+          <span class="rvg-name">28歳 男性</span>
+          <span class="rvg-s-sm" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        </div>
+      </div>
+      <!-- レビュー本文 -->
+      <p class="rvg-q">香水って強すぎるイメージがあって苦手でした。でもこれは本当にふわっと香る感じで使いやすいです。職場でも安心して使えます。</p>
+      <!-- フッター -->
       <div class="rvg-foot">
-        <span class="rvg-meta">28歳 男性 &nbsp;&middot;&nbsp; 職場</span>
+        <span class="rvg-meta">職場使い</span>
         <span class="rvg-badge">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-            <polyline points="22 4 12 14.01 9 11.01"/>
-          </svg>購入済み
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>購入済み
         </span>
       </div>
     </div>
 
     <div class="rvg-card" role="listitem">
-      <span class="rvg-s" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <p class="rvg-q">彼女に褒められた</p>
+      <!-- アバター行 -->
+      <div class="rvg-header">
+        <img class="rvg-avatar" src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670" alt="31歳 男性" loading="lazy" decoding="async"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="rvg-avatar-ph" style="display:none" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div class="rvg-header-info">
+          <span class="rvg-name">31歳 男性</span>
+          <span class="rvg-s-sm" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        </div>
+      </div>
+      <!-- レビュー本文 -->
+      <p class="rvg-q">香水を何本も買って失敗してきましたが、これはやっと見つけた「ちょうどいい香り」。強すぎないのにちゃんと清潔感があります。</p>
+      <!-- フッター -->
       <div class="rvg-foot">
-        <span class="rvg-meta">20代 男性 &nbsp;&middot;&nbsp; デート</span>
+        <span class="rvg-meta">通勤・職場</span>
         <span class="rvg-badge">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-            <polyline points="22 4 12 14.01 9 11.01"/>
-          </svg>購入済み
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>購入済み
         </span>
       </div>
     </div>
 
     <div class="rvg-card" role="listitem">
-      <span class="rvg-s" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <p class="rvg-q">香水苦手でもこれは大丈夫</p>
+      <!-- アバター行 -->
+      <div class="rvg-header">
+        <img class="rvg-avatar" src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670" alt="24歳 女性" loading="lazy" decoding="async"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="rvg-avatar-ph" style="display:none" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div class="rvg-header-info">
+          <span class="rvg-name">24歳 女性</span>
+          <span class="rvg-s-sm" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        </div>
+      </div>
+      <!-- レビュー本文 -->
+      <p class="rvg-q">彼氏にプレゼントしたらすごく気に入ってくれました。強くないのにちゃんと香る感じがちょうどいいです。デートのときにつけてほしい香り。</p>
+      <!-- フッター -->
       <div class="rvg-foot">
-        <span class="rvg-meta">20代 女性 &nbsp;&middot;&nbsp; 日常</span>
+        <span class="rvg-meta">デート・カップル使い</span>
         <span class="rvg-badge">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-            <polyline points="22 4 12 14.01 9 11.01"/>
-          </svg>購入済み
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>購入済み
         </span>
       </div>
     </div>
 
-  </div>
-</div><!-- /§2 Real Reviews v6 -->
+  </div><!-- /.rvg-grid -->
+
+</div><!-- /§2 Real Reviews v7 -->
 <!-- ══════════════════════════════════════════════════
      §3  PROBLEM — 共感セクション
      心理: 「そうそう！」と思わせ共感を獲得する
@@ -979,7 +1096,7 @@ footer a{color:var(--i45);text-decoration:underline;text-underline-offset:3px}
     <!-- ① 職場 -->
     <div class="scph-card" role="listitem">
       <div class="scph-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_dkfh0odkfh0odkfh.webp?v=1773310963"
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=72"
           alt="職場のシーン" loading="lazy" decoding="async"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="scph-ph scph-ph--off" style="display:none">
@@ -997,7 +1114,7 @@ footer a{color:var(--i45);text-decoration:underline;text-underline-offset:3px}
     <!-- ② 通勤 -->
     <div class="scph-card" role="listitem">
       <div class="scph-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_s49rb5s49rb5s49r.webp?v=1773310963"
+        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&q=72"
           alt="通勤・電車のシーン" loading="lazy" decoding="async"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="scph-ph scph-ph--com" style="display:none">
@@ -1015,7 +1132,7 @@ footer a{color:var(--i45);text-decoration:underline;text-underline-offset:3px}
     <!-- ③ デート -->
     <div class="scph-card" role="listitem">
       <div class="scph-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_eci670eci670eci6.webp?v=1773310963"
+        <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=400&q=72"
           alt="デートのシーン" loading="lazy" decoding="async"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="scph-ph scph-ph--dat" style="display:none">
@@ -1033,7 +1150,7 @@ footer a{color:var(--i45);text-decoration:underline;text-underline-offset:3px}
     <!-- ④ カフェ -->
     <div class="scph-card" role="listitem">
       <div class="scph-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_3jgbt43jgbt43jgb.webp?v=1773310963"
+        <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&q=72"
           alt="カフェのシーン" loading="lazy" decoding="async"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="scph-ph scph-ph--caf" style="display:none">
