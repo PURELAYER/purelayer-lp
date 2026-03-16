@@ -2,748 +2,322 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>これマイナーだから知らない人多いけど、本当に香水はこれ一本でいい</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="香水初心者が知らない清潔感のルール。近距離フレグランスで好印象をつくる方法。">
+<title>香水初心者が知らない清潔感のルール</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600&display=swap');
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ═══════════════════════════════════════
+   PRESALES LP — Advertorial Style
+   Design: Story-first · Minimal · Dark accent
+   JS: ZERO
+═══════════════════════════════════════ */
 
-  :root {
-    --gold: #c8a46b;
-    --gold-light: #e8c98a;
-    --bg: #ffffff;
-    --text: #111111;
-    --muted: #666666;
-    --light-bg: #f7f5f2;
-    --border: #e8e0d5;
-    --card-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    --radius: 14px;
-  }
+:root{
+  --bg:   #FFFFFF;
+  --sf:   #F5F5F5;
+  --ink:  #111111;
+  --i60:  rgba(17,17,17,.60);
+  --i35:  rgba(17,17,17,.35);
+  --i12:  rgba(17,17,17,.12);
+  --i06:  rgba(17,17,17,.06);
+  --acc:  #111111;
+  --star: #F0A500;
+  --ok:   #1A7A45;
 
-  html { scroll-behavior: smooth; }
+  --fu: -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",system-ui,sans-serif;
+  --px: 20px;
+  --mxw: 640px;
+  --sec: 64px;
+}
 
-  body {
-    font-family: 'Noto Sans JP', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 15px;
-    line-height: 1.7;
-    max-width: 480px;
-    margin: 0 auto;
-    -webkit-font-smoothing: antialiased;
-  }
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--fu);background:var(--bg);color:var(--ink);line-height:1.70;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
 
-  /* ─── HEADER BAR ─── */
-  .header-bar {
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .header-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold), #a07840);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    color: white;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-  .header-info { flex: 1; }
-  .header-name {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1;
-  }
-  .header-sub {
-    font-size: 10px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-  .header-tag {
-    font-size: 10px;
-    background: var(--light-bg);
-    color: var(--muted);
-    padding: 3px 8px;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-  }
+/* ── LAYOUT ── */
+.w{max-width:var(--mxw);margin:0 auto;padding:0 var(--px)}
+.sec{padding:var(--sec) 0}
+.sf{background:var(--sf)}
 
-  /* ─── SECTION SPACING ─── */
-  section { padding: 28px 16px; }
-  section + section { padding-top: 0; }
+/* ── DIVIDER ── */
+.div{width:32px;height:2px;background:var(--ink);margin:16px 0;opacity:.16}
+.div-c{margin:16px auto}
 
-  /* ─── ① FIRST VIEW ─── */
-  .fv {
-    padding: 20px 16px 28px;
-    background: var(--bg);
-  }
-  .fv-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-  .fv-label span {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #ff4a4a;
-    animation: pulse 1.5s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-  .product-image-card {
-    background: var(--light-bg);
-    border-radius: var(--radius);
-    padding: 32px 24px;
-    text-align: center;
-    margin-bottom: 20px;
-    border: 1px solid var(--border);
-    position: relative;
-    overflow: hidden;
-  }
-  .product-image-card::before {
-    content: '';
-    position: absolute;
-    top: -40px;
-    right: -40px;
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle, rgba(200,164,107,0.15), transparent 70%);
-    border-radius: 50%;
-  }
-  .product-bottle {
-    font-size: 80px;
-    line-height: 1;
-    filter: drop-shadow(0 8px 16px rgba(200,164,107,0.25));
-  }
-  .product-name-sm {
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: var(--gold);
-    font-weight: 700;
-    margin-top: 12px;
-    text-transform: uppercase;
-  }
-  .fv-badge {
-    display: inline-block;
-    background: #fff8ee;
-    color: var(--gold);
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 20px;
-    border: 1px solid var(--gold);
-    margin-bottom: 12px;
-  }
-  .fv-headline {
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 900;
-    font-size: 26px;
-    line-height: 1.4;
-    color: var(--text);
-    margin-bottom: 10px;
-  }
-  .fv-headline em {
-    font-style: normal;
-    color: var(--gold);
-  }
-  .fv-sub {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-  .fv-social-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid var(--border);
-  }
-  .fv-stars { color: var(--gold); font-size: 14px; }
-  .fv-social-text { font-size: 12px; color: var(--muted); }
-  .fv-social-text strong { color: var(--text); }
+/* ── READING PROGRESS BAR ── */
+.prog{position:fixed;top:0;left:0;right:0;height:2.5px;z-index:90;background:var(--i06)}
+.prog-fill{height:100%;width:0;background:var(--ink);
+  /* CSS scroll-driven animation — supported in modern browsers, degrades gracefully */
+  animation:prog-anim linear;
+  animation-timeline:scroll();
+}
+@keyframes prog-anim{from{width:0}to{width:100%}}
 
-  /* ─── INTRO / REVIEW BLOG STYLE ─── */
-  .intro-section {
-    padding: 24px 16px;
-    background: var(--light-bg);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .intro-quote {
-    font-size: 15px;
-    line-height: 1.8;
-    color: var(--text);
-  }
-  .intro-quote .highlight {
-    display: inline-block;
-    background: #fff8ee;
-    color: var(--gold);
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 6px;
-    font-size: 16px;
-  }
-  .intro-quote p + p { margin-top: 12px; }
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:80;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--i06);
+  height:48px;display:flex;align-items:center;padding:0 var(--px)}
+.nav-in{width:100%;max-width:var(--mxw);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between}
+.nav-tag{font-size:10px;font-weight:600;letter-spacing:.10em;text-transform:uppercase;
+  color:var(--i35);background:var(--sf);padding:4px 10px;border-radius:4px}
+.nav-read{font-size:11px;color:var(--i35);letter-spacing:.04em}
 
-  /* ─── PROBLEM SECTION ─── */
-  .problem-section { padding: 28px 16px; }
-  .section-label {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 8px;
-  }
-  .section-title {
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 1.4;
-    margin-bottom: 16px;
-  }
-  .problem-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .problem-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    background: #fff5f5;
-    border: 1px solid #ffe0e0;
-    border-radius: 10px;
-    padding: 12px 14px;
-    font-size: 14px;
-    color: #c0392b;
-  }
-  .problem-item::before {
-    content: '✕';
-    font-size: 13px;
-    font-weight: 700;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
+/* ── BUTTONS ── */
+.btn{display:flex;align-items:center;justify-content:center;
+  width:100%;height:50px;border-radius:8px;border:none;
+  font-family:var(--fu);font-size:15px;font-weight:700;
+  letter-spacing:.05em;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;text-decoration:none;
+  transition:transform .10s,opacity .12s}
+.btn:active{transform:scale(.976);opacity:.88}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-out{background:transparent;border:1.5px solid var(--ink);color:var(--ink)}
+.btn-wrap{margin-top:28px}
 
-  /* ─── DISCOVERY ─── */
-  .discovery-section { padding: 0 16px 28px; }
-  .discovery-card {
-    background: #fffdf8;
-    border: 2px solid var(--gold);
-    border-radius: var(--radius);
-    padding: 20px;
-    position: relative;
-    overflow: hidden;
-  }
-  .discovery-card::before {
-    content: 'DISCOVERY';
-    position: absolute;
-    top: 12px;
-    right: 14px;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--gold);
-    opacity: 0.5;
-  }
-  .discovery-story {
-    font-size: 14px;
-    line-height: 1.8;
-    color: var(--text);
-  }
-  .discovery-story p + p { margin-top: 12px; }
-  .discovery-product {
-    margin-top: 16px;
-    padding: 14px;
-    background: white;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    border: 1px solid var(--border);
-  }
-  .discovery-product-icon {
-    font-size: 36px;
-    flex-shrink: 0;
-  }
-  .discovery-product-name {
-    font-family: 'Noto Serif JP', serif;
-    font-weight: 600;
-    font-size: 17px;
-    line-height: 1.3;
-    color: var(--text);
-  }
-  .discovery-product-sub {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 3px;
-  }
-  .discovery-product-badge {
-    display: inline-block;
-    background: var(--gold);
-    color: white;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 20px;
-    margin-top: 4px;
-  }
+/* ── CTA ARROW ── */
+.scroll-cta{display:flex;flex-direction:column;align-items:center;gap:6px;
+  margin-top:32px;cursor:default}
+.sc-txt{font-size:13px;font-weight:500;color:var(--i60);letter-spacing:.08em}
+.sc-arr{font-size:20px;color:var(--i35);
+  animation:bounce 2s ease infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 
-  /* ─── UGC REVIEWS ─── */
-  .ugc-section { padding: 28px 16px; background: var(--light-bg); }
-  .ugc-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 16px;
-  }
-  .ugc-card {
-    background: white;
-    border-radius: var(--radius);
-    padding: 16px;
-    box-shadow: var(--card-shadow);
-    border: 1px solid var(--border);
-  }
-  .ugc-card-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  .ugc-avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 700;
-    color: white;
-    flex-shrink: 0;
-  }
-  .ugc-user-info { flex: 1; }
-  .ugc-username {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text);
-  }
-  .ugc-date {
-    font-size: 11px;
-    color: var(--muted);
-  }
-  .ugc-platform {
-    font-size: 18px;
-  }
-  .ugc-stars {
-    color: var(--gold);
-    font-size: 13px;
-    margin-bottom: 8px;
-  }
-  .ugc-text {
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--text);
-  }
-  .ugc-text .keyword {
-    font-weight: 700;
-    color: var(--gold);
-  }
-  .ugc-likes {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-top: 10px;
-    font-size: 12px;
-    color: var(--muted);
-  }
+/* ═══════════════════════════════════════
+   SECTION 1 — PROBLEM HOOK (Hero)
+═══════════════════════════════════════ */
+.hero{padding:48px 0 var(--sec)}
+.hero-label{display:inline-block;font-size:11px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--i35);
+  background:var(--sf);padding:4px 12px;border-radius:4px;margin-bottom:20px}
+.hero-h1{font-size:clamp(28px,8vw,36px);font-weight:800;line-height:1.16;
+  letter-spacing:-.025em;color:var(--ink);margin-bottom:16px;
+  max-width:var(--mxw)}
+.hero-h1 em{font-style:normal;
+  background:linear-gradient(to bottom,transparent 60%,rgba(17,17,17,.12) 60%);
+  padding-bottom:1px}
+.hero-sub{font-size:18px;font-weight:400;line-height:1.68;color:var(--i60);
+  margin-bottom:10px;max-width:480px}
+.hero-note{font-size:13px;color:var(--i35);
+  display:flex;align-items:center;gap:6px}
+.hero-note::before{content:"※";font-size:11px}
+/* situation image */
+.sit-img{width:100%;height:clamp(220px,42vw,340px);
+  object-fit:cover;object-position:center 30%;
+  border-radius:10px;margin-top:26px;
+  display:block}
+.sit-img-ph{width:100%;height:clamp(220px,42vw,340px);
+  background:linear-gradient(145deg,#E8E8E8,#D0D0D0);
+  border-radius:10px;margin-top:26px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.sit-img-ph svg{opacity:.22}
+.sit-img-ph span{font-size:11px;color:var(--i35);letter-spacing:.08em;text-transform:uppercase}
 
-  /* ─── USE CASE ─── */
-  .usecase-section { padding: 28px 16px; }
-  .usecase-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 16px;
-  }
-  .usecase-card {
-    background: var(--light-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 16px 14px;
-    text-align: center;
-  }
-  .usecase-icon { font-size: 28px; margin-bottom: 8px; }
-  .usecase-title {
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-  .usecase-desc {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.5;
-  }
+/* ═══════════════════════════════════════
+   SECTION 2 — EMPATHY (共感)
+═══════════════════════════════════════ */
+.emp-title{font-size:22px;font-weight:700;line-height:1.28;margin-bottom:22px}
+/* situation image for this section */
+.sec-img{width:100%;height:clamp(180px,38vw,290px);
+  object-fit:cover;border-radius:10px;margin-bottom:24px}
+.sec-img-ph{width:100%;height:clamp(180px,38vw,290px);
+  background:linear-gradient(145deg,#EAEAEA,#D8D8D8);
+  border-radius:10px;margin-bottom:24px;
+  display:flex;align-items:center;justify-content:center}
+.sec-img-ph svg{opacity:.20}
+.emp-cards{display:flex;flex-direction:column;gap:12px}
+.ec{background:var(--bg);border-radius:12px;padding:18px 18px;
+  box-shadow:0 2px 12px rgba(17,17,17,.06),0 1px 3px rgba(17,17,17,.04);
+  position:relative;overflow:hidden}
+.ec::before{content:"";position:absolute;left:0;top:0;bottom:0;
+  width:3px;background:var(--ink)}
+.ec-scene{font-size:11px;font-weight:600;letter-spacing:.10em;text-transform:uppercase;
+  color:var(--i35);margin-bottom:6px;display:block}
+.ec-main{font-size:15px;font-weight:600;color:var(--ink);line-height:1.38;margin-bottom:5px}
+.ec-sub{font-size:13px;color:var(--i60);line-height:1.55}
 
-  /* ─── PRODUCT FEATURES ─── */
-  .features-section { padding: 28px 16px; background: var(--light-bg); }
-  .features-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 16px;
-  }
-  .feature-card {
-    background: white;
-    border-radius: var(--radius);
-    padding: 16px 18px;
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    box-shadow: var(--card-shadow);
-  }
-  .feature-icon {
-    font-size: 28px;
-    flex-shrink: 0;
-  }
-  .feature-title {
-    font-weight: 700;
-    font-size: 15px;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-  .feature-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
+/* ═══════════════════════════════════════
+   SECTION 3 — PROBLEM TRUTH (問題の正体)
+═══════════════════════════════════════ */
+.truth-title{font-size:22px;font-weight:700;line-height:1.28;margin-bottom:18px}
+.truth-body{font-size:16px;line-height:1.80;color:var(--i60);margin-bottom:24px}
+.truth-body strong{color:var(--ink);font-weight:700}
+/* figure / diagram */
+.fig{border-radius:12px;overflow:hidden;border:1px solid var(--i12);margin-bottom:10px}
+.fig-row{display:flex;align-items:stretch}
+.fig-col{flex:1;padding:20px 16px;text-align:center;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:8px}
+.fig-col:first-child{border-right:1px solid var(--i12)}
+.fig-sep{position:relative}
+.fig-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  opacity:.35;margin-bottom:4px}
+.fig-ico{width:48px;height:48px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;margin-bottom:4px}
+.fig-ico-bad{background:#FEF2F2}
+.fig-ico-good{background:#F0FAF4}
+.fig-main{font-size:14px;font-weight:700;line-height:1.2}
+.fig-main-bad{color:#B91C1C}
+.fig-main-good{color:#15803D}
+.fig-desc{font-size:12px;color:var(--i60);line-height:1.50}
+.fig-note{font-size:12px;color:var(--i35);text-align:center;padding:10px 16px;
+  background:var(--sf);border-top:1px solid var(--i06)}
 
-  /* ─── RISK REVERSAL ─── */
-  .risk-section { padding: 28px 16px; }
-  .risk-banner {
-    background: linear-gradient(135deg, #fffdf8, #fff8ee);
-    border: 2px solid var(--gold);
-    border-radius: var(--radius);
-    padding: 20px;
-    text-align: center;
-    margin-bottom: 16px;
-  }
-  .risk-banner-title {
-    font-size: 16px;
-    font-weight: 900;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-  .risk-banner-sub {
-    font-size: 13px;
-    color: var(--muted);
-  }
-  .risk-banner-badge {
-    display: inline-block;
-    background: var(--gold);
-    color: white;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 20px;
-    margin-top: 10px;
-  }
-  .risk-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .risk-card {
-    background: var(--light-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 14px;
-    text-align: center;
-  }
-  .risk-card-icon { font-size: 24px; margin-bottom: 6px; }
-  .risk-card-title {
-    font-weight: 700;
-    font-size: 13px;
-    color: var(--text);
-    margin-bottom: 2px;
-  }
-  .risk-card-sub {
-    font-size: 11px;
-    color: var(--muted);
-  }
+/* ═══════════════════════════════════════
+   SECTION 4 — REFRAME (常識のリフレーム)
+═══════════════════════════════════════ */
+.reframe-title{font-size:22px;font-weight:700;line-height:1.28;margin-bottom:20px}
+.reframe-sub{font-size:16px;color:var(--i60);line-height:1.75;margin-bottom:24px}
+/* comparison */
+.comp{border-radius:12px;overflow:hidden;border:1px solid var(--i12)}
+.comp-head{display:grid;grid-template-columns:1fr 1fr}
+.comp-h{padding:10px 16px;text-align:center;font-size:11px;font-weight:700;
+  letter-spacing:.10em;text-transform:uppercase}
+.comp-h-bad{background:#FEF2F2;color:#B91C1C;border-right:1px solid var(--i12)}
+.comp-h-good{background:#F0FAF4;color:#15803D}
+.comp-body{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--i12)}
+.comp-col{padding:18px 14px;display:flex;flex-direction:column;gap:10px}
+.comp-col:first-child{border-right:1px solid var(--i12)}
+.comp-item{display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.45;color:var(--i60)}
+.comp-item svg{flex-shrink:0;margin-top:2px}
+.reframe-copy{font-size:15px;line-height:1.82;color:var(--i60);margin-top:22px}
+.reframe-copy strong{color:var(--ink);font-weight:700}
 
-  /* ─── CTA ─── */
-  .cta-section { padding: 28px 16px; }
-  .cta-btn {
-    display: block;
-    width: 100%;
-    background: var(--gold);
-    color: white;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 900;
-    font-size: 18px;
-    padding: 18px 20px;
-    border-radius: 14px;
-    text-align: center;
-    text-decoration: none;
-    letter-spacing: 0.5px;
-    box-shadow: 0 6px 24px rgba(200,164,107,0.4);
-    cursor: pointer;
-    border: none;
-    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
-  }
-  .cta-btn:active {
-    transform: scale(0.98);
-    box-shadow: 0 3px 12px rgba(200,164,107,0.3);
-  }
-  .cta-btn.large {
-    font-size: 20px;
-    padding: 20px;
-  }
-  .cta-sub-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin-top: 12px;
-    flex-wrap: wrap;
-  }
-  .cta-sub-item {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 500;
-  }
-  .cta-sub-item::before {
-    content: '✓';
-    color: #27ae60;
-    font-weight: 700;
-    font-size: 13px;
-  }
-  .cta-social-proof {
-    text-align: center;
-    margin-bottom: 16px;
-    padding: 12px;
-    background: var(--light-bg);
-    border-radius: 10px;
-    border: 1px solid var(--border);
-  }
-  .cta-social-proof .num {
-    font-size: 22px;
-    font-weight: 900;
-    color: var(--text);
-  }
-  .cta-social-proof .label {
-    font-size: 12px;
-    color: var(--muted);
-  }
-  .cta-social-stars {
-    color: var(--gold);
-    font-size: 16px;
-  }
+/* ═══════════════════════════════════════
+   SECTION 5 — SOLUTION CATEGORY (近距離フレグランス)
+═══════════════════════════════════════ */
+.sol-eyebrow{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--i35);margin-bottom:12px;display:block}
+.sol-title{font-size:clamp(22px,6vw,30px);font-weight:800;line-height:1.20;
+  letter-spacing:-.02em;margin-bottom:14px}
+.sol-body{font-size:16px;line-height:1.80;color:var(--i60);margin-bottom:24px}
+/* fragrance image — first product-adjacent image */
+.frag-img{width:100%;height:clamp(240px,48vw,360px);
+  object-fit:cover;object-position:center;border-radius:12px;margin-bottom:24px}
+.frag-img-ph{width:100%;height:clamp(240px,48vw,360px);
+  background:linear-gradient(160deg,#E8E4DC,#D4CFC4);
+  border-radius:12px;margin-bottom:24px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.frag-img-ph svg{opacity:.20}
+.frag-img-ph span{font-size:11px;color:var(--i35);letter-spacing:.08em;text-transform:uppercase}
+.note-pill{display:inline-flex;align-items:center;gap:6px;
+  background:var(--sf);border-radius:var(--pill,999px);
+  padding:6px 14px;font-size:13px;font-weight:600;color:var(--i60);margin:4px 4px 4px 0}
+.notes-row{display:flex;flex-wrap:wrap;margin-bottom:6px}
 
-  /* ─── MORE UGC ─── */
-  .more-ugc-section {
-    padding: 28px 16px;
-    background: var(--light-bg);
-  }
-  .tiktok-comment-card {
-    background: white;
-    border-radius: var(--radius);
-    padding: 14px 16px;
-    box-shadow: var(--card-shadow);
-    border: 1px solid var(--border);
-    margin-bottom: 10px;
-  }
-  .tiktok-comment-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-  .tiktok-mini-avatar {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    font-weight: 700;
-    color: white;
-    flex-shrink: 0;
-  }
-  .tiktok-username {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--text);
-  }
-  .tiktok-verified {
-    font-size: 11px;
-    color: var(--gold);
-    margin-left: 4px;
-  }
-  .tiktok-comment-text {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--text);
-  }
-  .tiktok-comment-text .em {
-    font-weight: 700;
-  }
-  .tiktok-engagement {
-    display: flex;
-    gap: 14px;
-    margin-top: 10px;
-  }
-  .tiktok-eng-item {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 12px;
-    color: var(--muted);
-  }
+/* ═══════════════════════════════════════
+   SECTION 6 — PRODUCT (商品紹介)
+═══════════════════════════════════════ */
+.prod-kicker{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--i35);margin-bottom:8px;display:block}
+.prod-name{font-size:clamp(30px,8vw,42px);font-weight:800;letter-spacing:-.04em;
+  line-height:1.04;color:var(--ink);margin-bottom:6px}
+.prod-tagline{font-size:18px;font-weight:400;color:var(--i60);margin-bottom:22px}
+/* product image */
+.prod-img{width:100%;height:clamp(280px,60vw,400px);
+  object-fit:contain;object-position:center;
+  background:var(--sf);border-radius:12px;margin-bottom:22px}
+.prod-img-ph{width:100%;height:clamp(280px,60vw,400px);
+  background:linear-gradient(160deg,#EEECE6,#E0DDD5);
+  border-radius:12px;margin-bottom:22px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+.prod-img-ph svg{opacity:.20}
+.feat-list{display:flex;flex-direction:column;gap:10px;margin-bottom:26px}
+.feat{display:flex;align-items:center;gap:12px;
+  padding:12px 16px;background:var(--sf);border-radius:8px}
+.feat-ico{width:34px;height:34px;border-radius:50%;background:var(--bg);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  box-shadow:0 1px 4px rgba(17,17,17,.08)}
+.feat-t{font-size:14px;font-weight:600;color:var(--ink)}
+.feat-d{font-size:12px;color:var(--i60)}
+.prod-price{font-size:28px;font-weight:800;letter-spacing:-.02em;
+  color:var(--ink);margin-bottom:6px}
+.prod-price span{font-size:13px;font-weight:400;color:var(--i35);margin-left:4px}
+.prod-trust{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:12px}
+.pt{font-size:12px;color:var(--i60);display:flex;align-items:center;gap:4px}
+.pt::before{content:"✓";font-weight:700;color:var(--ok)}
 
-  /* ─── FINAL CTA ─── */
-  .final-cta {
-    padding: 32px 16px 40px;
-    text-align: center;
-  }
-  .final-cta-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 8px;
-  }
-  .final-cta-headline {
-    font-weight: 900;
-    font-size: 22px;
-    line-height: 1.5;
-    color: var(--text);
-    margin-bottom: 20px;
-  }
-  .final-cta-headline em {
-    font-style: normal;
-    color: var(--gold);
-  }
-  .final-cta-review-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 14px;
-  }
+/* ═══════════════════════════════════════
+   SECTION 7 — SOCIAL PROOF (レビュー)
+═══════════════════════════════════════ */
+.reviews-head{display:flex;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.rev-agg{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.rev-stars{display:flex;gap:2px}
+.rev-star{color:var(--star);font-size:16px}
+.rev-count{font-size:13px;color:var(--i35)}
+.rev-cards{display:flex;flex-direction:column;gap:12px}
+.rcard{background:var(--bg);border:1px solid var(--i12);border-radius:12px;padding:18px 18px}
+.rcard-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.rcard-av{width:38px;height:38px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--sf)}
+.rcard-av img{width:100%;height:100%;object-fit:cover}
+.rcard-av-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--sf)}
+.rcard-av-ph svg{opacity:.30}
+.rcard-info{display:flex;flex-direction:column;gap:2px}
+.rcard-name{font-size:12.5px;font-weight:700;color:var(--ink)}
+.rcard-stars{display:flex;gap:1px}
+.rcard-star{color:var(--star);font-size:11px}
+.rcard-verified{font-size:10px;color:var(--ok);font-weight:600}
+.rcard-q{font-size:15px;font-weight:500;line-height:1.55;color:var(--ink);margin-bottom:6px}
+.rcard-meta{font-size:12px;color:var(--i35)}
 
-  /* ─── FOOTER ─── */
-  .footer {
-    padding: 20px 16px;
-    border-top: 1px solid var(--border);
-    text-align: center;
-  }
-  .footer p {
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-  .footer a {
-    color: var(--muted);
-    text-decoration: underline;
-  }
+/* ═══════════════════════════════════════
+   SECTION 8 — FAQ (アコーディオン CSS-only)
+═══════════════════════════════════════ */
+.faq-title{font-size:22px;font-weight:700;line-height:1.28;margin-bottom:20px}
+.faq-list{display:flex;flex-direction:column;gap:1px;border:1px solid var(--i12);border-radius:12px;overflow:hidden}
+.fi{background:var(--bg)}
+.fcb{display:none}
+.flb{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:16px 18px;cursor:pointer;
+  font-size:15px;font-weight:600;color:var(--ink);
+  border-bottom:1px solid var(--i06);
+  user-select:none;-webkit-tap-highlight-color:transparent}
+.fi:last-child .flb{border-bottom:none}
+.fcb:checked + .flb{border-bottom:1px solid var(--i06)}
+.fic{width:22px;height:22px;flex-shrink:0;position:relative}
+.fic::before,.fic::after{content:"";position:absolute;top:50%;left:50%;
+  background:var(--i35);border-radius:1px;transition:transform .20s ease,opacity .20s ease}
+.fic::before{width:10px;height:1.5px;transform:translate(-50%,-50%)}
+.fic::after{width:1.5px;height:10px;transform:translate(-50%,-50%)}
+.fans{max-height:0;overflow:hidden;transition:max-height .28s ease;
+  font-size:14px;color:var(--i60);line-height:1.75;padding:0 18px}
+.fcb:checked + .flb .fic::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
+.fcb:checked + .flb + .fans{max-height:200px;padding:14px 18px 18px}
 
-  /* ─── DIVIDER ─── */
-  .divider {
-    height: 1px;
-    background: var(--border);
-    margin: 0 16px;
-  }
+/* ═══════════════════════════════════════
+   SECTION 9 — FINAL CTA
+═══════════════════════════════════════ */
+.final-sec{background:var(--ink);padding:var(--sec) 0;text-align:center}
+.final-sec .w{display:flex;flex-direction:column;align-items:center}
+.final-kicker{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.38);margin-bottom:14px}
+.final-h{font-size:clamp(28px,7.5vw,36px);font-weight:800;letter-spacing:-.025em;
+  line-height:1.14;color:#fff;margin-bottom:10px}
+.final-sub{font-size:16px;color:rgba(255,255,255,.50);line-height:1.68;
+  margin-bottom:28px;max-width:320px}
+.btn-light{background:#fff;color:var(--ink)}
+.btn-lt-out{background:transparent;border:1.5px solid rgba(255,255,255,.24);color:rgba(255,255,255,.60);margin-top:10px}
+.final-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;margin-top:18px}
+.ft{font-size:12px;color:rgba(255,255,255,.32);display:flex;align-items:center;gap:4px}
+.ft b{color:rgba(255,255,255,.54);font-weight:600}
 
-  /* ─── FLOATING CTA ─── */
-  .floating-cta {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 12px 16px 16px;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(8px);
-    border-top: 1px solid var(--border);
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
-    z-index: 99;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-  @media (max-width: 480px) {
-    .floating-cta {
-      max-width: 100%;
-    }
-  }
-  .floating-cta-inner {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-  }
-  .floating-cta-text { flex: 1; }
-  .floating-cta-text .top {
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 1;
-  }
-  .floating-cta-text .bottom {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text);
-    margin-top: 2px;
-  }
-  .floating-cta-btn {
-    background: var(--gold);
-    color: white;
-    font-weight: 900;
-    font-size: 14px;
-    padding: 12px 18px;
-    border-radius: 10px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(200,164,107,0.4);
-  }
+/* FOOTER */
+footer{padding:22px var(--px) max(24px,env(safe-area-inset-bottom));
+  border-top:1px solid var(--i06);text-align:center}
+footer p{font-size:11px;color:var(--i35);line-height:1.90}
+footer a{color:var(--i35);text-decoration:underline;text-underline-offset:3px}
 
-  /* SPACER for floating bar */
-  .float-spacer { height: 72px; }
+/* ── RESPONSIVE ── */
+@media(min-width:640px){:root{--px:32px}}
+@media(max-width:360px){:root{--px:16px;--sec:52px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
-       <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
+   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
    <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -751,347 +325,540 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "vvn8p99ehp");
 </script>
+
 </head>
 <body>
 
-<!-- HEADER BAR: Blog/Review Style -->
-<header class="header-bar">
-  <div class="header-avatar">M</div>
-  <div class="header-info">
-    <div class="header-name">@miyu_perfume_log</div>
-    <div class="header-sub">香水レビュー・フォロワー2.8万人</div>
+<!-- reading progress bar -->
+<div class="prog" aria-hidden="true"><div class="prog-fill"></div></div>
+
+<!-- NAV -->
+<nav class="nav" aria-label="ナビゲーション">
+  <div class="nav-in">
+    <span class="nav-tag">読み物</span>
+    <span class="nav-read">30秒で読めます</span>
   </div>
-  <div class="header-tag">レビュー記事</div>
-</header>
+</nav>
 
-<!-- ① FIRST VIEW: Pattern Interrupt -->
-<section class="fv">
-  <div class="fv-label">
-    <span></span>TikTokで話題
-  </div>
 
-  <div class="product-image-card">
-    <div class="product-bottle">🫧</div>
-    <div class="product-name-sm">PURELAYER · Oud Stallion</div>
-  </div>
+<!-- ═══════════════════════════════════════
+     SECTION 1 — PROBLEM HOOK (Hero)
+     目的: 不安を刺激してスクロールさせる
+═══════════════════════════════════════ -->
+<section class="hero" aria-label="問題フック">
+  <div class="w">
 
-  <div class="fv-badge">🤫 マイナーだから知られていない</div>
-  <h1 class="fv-headline">
-    これマイナーだから<br>知らない人多いけど<br><br>
-    本当に香水は<br><em>これ一本でいい</em>
-  </h1>
-  <p class="fv-sub">香水を10個以上買った私が<br>最後に残した香水。その理由を正直に書きます。</p>
+    <span class="hero-label">香水初心者へ</span>
 
-  <div class="fv-social-row">
-    <div class="fv-stars">★★★★★</div>
-    <div class="fv-social-text"><strong>4.9</strong> ・レビュー1,200件以上</div>
-  </div>
-</section>
+    <h1 class="hero-h1">
+      実はそれ、<br>
+      <em>「つけすぎ」</em>と<br>思われているかも。
+    </h1>
 
-<!-- ② REVIEW INTRO -->
-<section class="intro-section">
-  <div class="intro-quote">
-    <p>正直、最初は<br>「また普通の香水かな」と思いました。</p>
-    <p>でも使ってみたら<br><span class="highlight">「清潔感の塊」</span>だったんです。</p>
-    <p>強い香りが苦手な私でも、<br>丸一日心地よく使えた香水は<br>これが初めてです。</p>
-  </div>
-</section>
+    <div class="div"></div>
 
-<!-- ③ PROBLEM: 共感 -->
-<section class="problem-section">
-  <div class="section-label">こんな経験ありませんか</div>
-  <h2 class="section-title">香水って<br>難しい…と思ってた</h2>
-  <div class="problem-list">
-    <div class="problem-item">香りが強すぎて周りに迷惑</div>
-    <div class="problem-item">電車の中で気まずい思いをした</div>
-    <div class="problem-item">職場では使えないと諦めていた</div>
-    <div class="problem-item">好みが分かれて自信が持てない</div>
-    <div class="problem-item">せっかく買ったのに使えない</div>
-  </div>
-</section>
+    <p class="hero-sub">
+      香水初心者が知らない<br>
+      <strong>清潔感のルール</strong>
+    </p>
 
-<!-- ④ DISCOVERY: 商品発見ストーリー -->
-<section class="discovery-section">
-  <div class="discovery-card">
-    <div class="discovery-story">
-      <p>香水を10種類以上試してきました。<br>でも毎回「強すぎる」か「すぐ消える」か。</p>
-      <p>「職場でも使えて、清潔感が出る香水」を探し続けて、ようやく見つけたのがこれです。</p>
-      <p>友人に教えてもらったとき、<br>最初は半信半疑でした。<br>でも一度つけたら、もう他に戻れなかった。</p>
+    <p class="hero-note">30秒で読めます</p>
+
+    <!-- 状況画像：人物・電車・通勤シーン -->
+    <img class="sit-img"
+      src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=700&q=78"
+      alt="通勤シーン" loading="eager" fetchpriority="high" decoding="async"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="sit-img-ph" style="display:none" aria-hidden="true">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/></svg>
+      <span>通勤イメージ</span>
     </div>
-    <div class="discovery-product">
-      <div class="discovery-product-icon">🫧</div>
-      <div>
-        <div class="discovery-product-name">PURELAYER<br>Oud Stallion</div>
-        <div class="discovery-product-sub">近距離でだけ香る・清潔感の香水</div>
-        <div class="discovery-product-badge">ユニセックス対応</div>
+
+    <div class="scroll-cta" aria-hidden="true">
+      <span class="sc-txt">続きを読む</span>
+      <span class="sc-arr">↓</span>
+    </div>
+
+  </div>
+</section><!-- /SECTION 1 -->
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 2 — EMPATHY (共感)
+     目的: 「自分もそう思われている？」不安を具体化する
+═══════════════════════════════════════ -->
+<section class="sec sf" aria-label="共感セクション">
+  <div class="w">
+
+    <h2 class="emp-title">こんな経験ありませんか？</h2>
+
+    <!-- 状況画像：オフィスシーン -->
+    <img class="sec-img"
+      src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=78"
+      alt="オフィスシーン" loading="lazy" decoding="async"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="sec-img-ph" style="display:none" aria-hidden="true">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    </div>
+
+    <div class="emp-cards">
+
+      <div class="ec">
+        <span class="ec-scene">電車</span>
+        <p class="ec-main">「この人の香水、きつい…」</p>
+        <p class="ec-sub">そう思ったことがある人は多い。<br>でも、自分もそう思われていたら？</p>
       </div>
+
+      <div class="ec">
+        <span class="ec-scene">日常</span>
+        <p class="ec-main">香水をつけたいけど<br>つけすぎが不安</p>
+        <p class="ec-sub">量が分からなくて、結局やめてしまう</p>
+      </div>
+
+      <div class="ec">
+        <span class="ec-scene">職場</span>
+        <p class="ec-main">香水が職場で浮かないか心配</p>
+        <p class="ec-sub">好印象にしたいのに、逆効果になりそうで使えない</p>
+      </div>
+
     </div>
+
   </div>
-</section>
+</section><!-- /SECTION 2 -->
 
-<!-- ⑤ UGC REVIEWS: Social Proof -->
-<section class="ugc-section">
-  <div class="section-label">みんなのレビュー</div>
-  <h2 class="section-title">1,200人以上が<br>実際に使ってみた</h2>
 
-  <div class="ugc-grid">
-    <div class="ugc-card">
-      <div class="ugc-card-header">
-        <div class="ugc-avatar" style="background:linear-gradient(135deg,#e07b7b,#c04040);">K</div>
-        <div class="ugc-user-info">
-          <div class="ugc-username">@kosei_daily</div>
-          <div class="ugc-date">3日前</div>
+<!-- ═══════════════════════════════════════
+     SECTION 3 — PROBLEM TRUTH (問題の正体)
+     目的: 認知を書き換える「ファクト」を提示する
+═══════════════════════════════════════ -->
+<section class="sec" aria-label="問題の正体">
+  <div class="w">
+
+    <h2 class="truth-title">多くの人が知らない<br>事実</h2>
+    <div class="div"></div>
+
+    <p class="truth-body">
+      香水は、強く香らせるほど<br>
+      <strong>良いわけではありません。</strong><br><br>
+      むしろ強すぎる香りは<br>
+      <strong>清潔感を下げる可能性があります。</strong><br><br>
+      好印象を作る香りとは<br>
+      「気づかれるかどうかの強さ」です。
+    </p>
+
+    <!-- 図解: 強い香水 vs 自然な香り -->
+    <div class="fig" role="img" aria-label="強い香水と自然な香りの比較">
+      <div class="fig-row">
+        <div class="fig-col">
+          <span class="fig-label">強い香水</span>
+          <div class="fig-ico fig-ico-bad" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </div>
+          <p class="fig-main fig-main-bad">不快・逆効果</p>
+          <p class="fig-desc">「香水がきつい」と<br>思われてしまう</p>
         </div>
-        <div class="ugc-platform">🎵</div>
-      </div>
-      <div class="ugc-stars">★★★★★</div>
-      <div class="ugc-text"><span class="keyword">強すぎないのがいい。</span>職場でも全然いける。朝つけて夕方もちゃんと香ってた。石鹸みたいな清潔感。</div>
-      <div class="ugc-likes">♡ 842いいね</div>
-    </div>
-
-    <div class="ugc-card">
-      <div class="ugc-card-header">
-        <div class="ugc-avatar" style="background:linear-gradient(135deg,#7bb3e0,#3a6ea8);">S</div>
-        <div class="ugc-user-info">
-          <div class="ugc-username">@sato_skin_care</div>
-          <div class="ugc-date">1週間前</div>
+        <div class="fig-col">
+          <span class="fig-label">自然な香り</span>
+          <div class="fig-ico fig-ico-good" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <p class="fig-main fig-main-good">好印象・清潔感</p>
+          <p class="fig-desc">「なんかいい香りする」<br>と思われる</p>
         </div>
-        <div class="ugc-platform">🎵</div>
       </div>
-      <div class="ugc-stars">★★★★★</div>
-      <div class="ugc-text">電車で隣の人が気になる…という心配が消えた。<span class="keyword">職場でも安心して使える</span>香水をずっと探してました。これです。</div>
-      <div class="ugc-likes">♡ 611いいね</div>
+      <div class="fig-note">
+        ポイントは「遠くまで届かない」強さ
+      </div>
     </div>
 
-    <div class="ugc-card">
-      <div class="ugc-card-header">
-        <div class="ugc-avatar" style="background:linear-gradient(135deg,#7be07b,#2e8b2e);">T</div>
-        <div class="ugc-user-info">
-          <div class="ugc-username">@tanaka_fragrance</div>
-          <div class="ugc-date">2週間前</div>
+  </div>
+</section><!-- /SECTION 3 -->
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 4 — REFRAME (常識のリフレーム)
+     目的: 「近距離フレグランス」の概念を作る
+═══════════════════════════════════════ -->
+<section class="sec sf" aria-label="常識のリフレーム">
+  <div class="w">
+
+    <h2 class="reframe-title">香水の考え方は<br>変わっています</h2>
+
+    <!-- 状況画像：人物・会話シーン -->
+    <img class="sec-img"
+      src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=700&q=78"
+      alt="近距離の会話シーン" loading="lazy" decoding="async"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="sec-img-ph" style="display:none" aria-hidden="true">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+
+    <!-- 比較UI -->
+    <div class="comp" role="table" aria-label="香水の種類比較">
+      <div class="comp-head" role="row">
+        <div class="comp-h comp-h-bad" role="columnheader">従来の香水</div>
+        <div class="comp-h comp-h-good" role="columnheader">近距離フレグランス</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-col" role="cell">
+          <div class="comp-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            広く拡散する
+          </div>
+          <div class="comp-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            個性が強すぎる
+          </div>
+          <div class="comp-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            職場・電車では使いにくい
+          </div>
         </div>
-        <div class="ugc-platform">📸</div>
-      </div>
-      <div class="ugc-stars">★★★★★</div>
-      <div class="ugc-text"><span class="keyword">石鹸みたいな香り。</span>清潔感があって近くにいる人だけにふわっと香る感じが好きです。押しつけがましくない。</div>
-      <div class="ugc-likes">♡ 523いいね</div>
-    </div>
-
-    <div class="ugc-card">
-      <div class="ugc-card-header">
-        <div class="ugc-avatar" style="background:linear-gradient(135deg,#d4a0e0,#9b4db5);">R</div>
-        <div class="ugc-user-info">
-          <div class="ugc-username">@ryo_life_style</div>
-          <div class="ugc-date">先月</div>
+        <div class="comp-col" role="cell">
+          <div class="comp-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            近距離だけに香る
+          </div>
+          <div class="comp-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            清潔感のある自然な香り
+          </div>
+          <div class="comp-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            どこでも使える
+          </div>
         </div>
-        <div class="ugc-platform">🎵</div>
       </div>
-      <div class="ugc-stars">★★★★★</div>
-      <div class="ugc-text">デートで<span class="keyword">「いい匂いするね」</span>って言われた。強くないのに印象に残る香りって、こういうことか、と思った。</div>
-      <div class="ugc-likes">♡ 974いいね</div>
     </div>
+
+    <p class="reframe-copy">
+      香水は遠くまで香らせるものではなく、<br>
+      <strong>近くにいる人に自然に感じさせる香りが理想。</strong><br><br>
+      それが今、清潔感を作る新しい常識です。
+    </p>
+
   </div>
-</section>
+</section><!-- /SECTION 4 -->
 
-<!-- ⑥ USE CASE -->
-<section class="usecase-section">
-  <div class="section-label">いつでも使える</div>
-  <h2 class="section-title">どんなシーンでも<br>清潔感を演出</h2>
-  <div class="usecase-grid">
-    <div class="usecase-card">
-      <div class="usecase-icon">💼</div>
-      <div class="usecase-title">職場・オフィス</div>
-      <div class="usecase-desc">周りを気にせず<br>使えるちょうどよさ</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 5 — SOLUTION CATEGORY
+     目的: 「近距離フレグランス」カテゴリを確立する
+═══════════════════════════════════════ -->
+<section class="sec" aria-label="ソリューションカテゴリ">
+  <div class="w">
+
+    <span class="sol-eyebrow">New Category</span>
+    <h2 class="sol-title">
+      そこで生まれたのが<br>
+      近距離フレグランス
+    </h2>
+
+    <p class="sol-body">
+      近くにいる人だけに<br>
+      自然な清潔感を伝える香り。<br><br>
+      強すぎず、でも確かに届く。<br>
+      それが「感じのいい人」の香りです。
+    </p>
+
+    <!-- 香水イメージ画像（初めて登場） -->
+    <img class="frag-img"
+      src="https://images.unsplash.com/photo-1527149076763-5e8b5b9b7e11?w=700&q=78"
+      alt="清潔感のある香水イメージ" loading="lazy" decoding="async"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="frag-img-ph" style="display:none" aria-hidden="true">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 5H8L9 3z"/><path d="M8 8v12a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8"/><path d="M10 12s.5 1 2 1 2-1 2-1"/></svg>
+      <span>フレグランスイメージ</span>
     </div>
-    <div class="usecase-card">
-      <div class="usecase-icon">🚃</div>
-      <div class="usecase-title">通勤・通学</div>
-      <div class="usecase-desc">電車でも安心<br>近距離設計だから</div>
+
+    <div class="notes-row" role="list" aria-label="香りのノート">
+      <span class="note-pill" role="listitem">TOP · シトラス</span>
+      <span class="note-pill" role="listitem">MIDDLE · ホワイトムスク</span>
+      <span class="note-pill" role="listitem">LAST · ソープ</span>
     </div>
-    <div class="usecase-card">
-      <div class="usecase-icon">💑</div>
-      <div class="usecase-title">デート</div>
-      <div class="usecase-desc">近くにいる人だけに<br>ふわっと香る</div>
-    </div>
-    <div class="usecase-card">
-      <div class="usecase-icon">🌅</div>
-      <div class="usecase-title">日常・毎日</div>
-      <div class="usecase-desc">毎日使いたくなる<br>飽きのこない香り</div>
-    </div>
+    <p style="font-size:13px;color:var(--i35);margin-top:8px">
+      爽やかさ → 清潔感 → 石鹸の余韻
+    </p>
+
   </div>
-</section>
+</section><!-- /SECTION 5 -->
 
-<div class="divider"></div>
 
-<!-- ⑦ PRODUCT FEATURES -->
-<section class="features-section">
-  <div class="section-label">商品の特徴</div>
-  <h2 class="section-title">清潔感を出す<br>3つの理由</h2>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">🎯</div>
+<!-- ═══════════════════════════════════════
+     SECTION 6 — PRODUCT INTRODUCTION
+     目的: カテゴリの文脈で商品を自然に紹介する
+═══════════════════════════════════════ -->
+<section class="sec sf" aria-label="商品紹介">
+  <div class="w">
+
+    <span class="prod-kicker">Product</span>
+    <h2 class="prod-name">Clean Veil</h2>
+    <p class="prod-tagline">清潔感をまとう香水</p>
+
+    <!-- 商品画像 -->
+    <img class="prod-img"
+      src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2824_430x.webp?v=1772884462"
+      alt="Clean Veil — PURELAYER Oud Stallion" loading="lazy" decoding="async"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="prod-img-ph" style="display:none" aria-hidden="true">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 5H8L9 3z"/><path d="M8 8v12a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8"/></svg>
+    </div>
+
+    <div class="feat-list" role="list">
+      <div class="feat" role="listitem">
+        <div class="feat-ico" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div>
+          <p class="feat-t">強すぎない香り</p>
+          <p class="feat-d">近距離設計。電車でも職場でも安心。</p>
+        </div>
+      </div>
+      <div class="feat" role="listitem">
+        <div class="feat-ico" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div>
+          <p class="feat-t">職場でも使える</p>
+          <p class="feat-d">香水NGの職場でも使っている方が多数。</p>
+        </div>
+      </div>
+      <div class="feat" role="listitem">
+        <div class="feat-ico" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <p class="feat-t">初心者でも安心</p>
+          <p class="feat-d">量が分からなくても失敗しにくい設計。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-wrap">
+      <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
+         class="btn btn-dark" aria-label="香りを見る">
+        香りを見る &rarr;
+      </a>
+    </div>
+
+    <div class="prod-trust" role="list">
+      <div class="pt" role="listitem">送料無料</div>
+      <div class="pt" role="listitem">30日返金保証</div>
+      <div class="pt" role="listitem">即日発送</div>
+    </div>
+
+  </div>
+</section><!-- /SECTION 6 -->
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 7 — SOCIAL PROOF (レビュー)
+     目的: 購入前の最終不安を解消する
+═══════════════════════════════════════ -->
+<section class="sec" aria-label="購入者の声">
+  <div class="w">
+
+    <div class="reviews-head">
+      <span class="rev-agg">4.9</span>
       <div>
-        <div class="feature-title">近距離設計</div>
-        <div class="feature-desc">強く広がらず、近くにいる人だけに上品に香る。電車も職場も気にならない。</div>
+        <div class="rev-stars" aria-label="5つ星">
+          <span class="rev-star" aria-hidden="true">&#9733;</span>
+          <span class="rev-star" aria-hidden="true">&#9733;</span>
+          <span class="rev-star" aria-hidden="true">&#9733;</span>
+          <span class="rev-star" aria-hidden="true">&#9733;</span>
+          <span class="rev-star" aria-hidden="true">&#9733;</span>
+        </div>
+        <span class="rev-count">1,240件のレビュー</span>
       </div>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon">🧼</div>
-      <div>
-        <div class="feature-title">清潔感の香り</div>
-        <div class="feature-desc">石鹸のようなクリーンな香り。男女どちらにも好まれる、清潔感に特化した調香。</div>
+
+    <!-- 状況画像：使用シーン -->
+    <img class="sec-img"
+      src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=700&q=78"
+      alt="日常のカフェシーン" loading="lazy" decoding="async"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="sec-img-ph" style="display:none" aria-hidden="true">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/></svg>
+    </div>
+
+    <div class="rev-cards">
+
+      <div class="rcard">
+        <div class="rcard-top">
+          <div class="rcard-av">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80&h=80&fit=crop&q=80"
+              alt="" loading="lazy" decoding="async"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="rcard-av-ph" style="display:none" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+          </div>
+          <div class="rcard-info">
+            <span class="rcard-name">28歳 男性</span>
+            <div class="rcard-stars" aria-label="5つ星">
+              <span class="rcard-star" aria-hidden="true">&#9733;</span>
+              <span class="rcard-star" aria-hidden="true">&#9733;</span>
+              <span class="rcard-star" aria-hidden="true">&#9733;</span>
+              <span class="rcard-star" aria-hidden="true">&#9733;</span>
+              <span class="rcard-star" aria-hidden="true">&#9733;</span>
+            </div>
+            <span class="rcard-verified">&#10003; 購入済み</span>
+          </div>
+        </div>
+        <p class="rcard-q">職場でも安心して使える。強すぎないから上司にも何も言われない。</p>
+        <span class="rcard-meta">職場使い &nbsp;·&nbsp; 毎日使用</span>
       </div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">⚧️</div>
-      <div>
-        <div class="feature-title">ユニセックス</div>
-        <div class="feature-desc">性別を問わず使える設計。カップルでシェアしている方も多い。</div>
+
+      <div class="rcard">
+        <div class="rcard-top">
+          <div class="rcard-av">
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=80&h=80&fit=crop&q=80"
+              alt="" loading="lazy" decoding="async"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="rcard-av-ph" style="display:none" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+          </div>
+          <div class="rcard-info">
+            <span class="rcard-name">31歳 男性</span>
+            <div class="rcard-stars" aria-label="5つ星">
+              <span class="rcard-star" aria-hidden="true">&#9733;</span>
+              <span class="rcard-star" aria-hidden="true">&#9733;</span>
+              <span class="rcard-star" aria-hidden="true">&#9733;</span>
+              <span class="rcard-star" aria-hidden="true">&#9733;</span>
+              <span class="rcard-star" aria-hidden="true">&#9733;</span>
+            </div>
+            <span class="rcard-verified">&#10003; 購入済み</span>
+          </div>
+        </div>
+        <p class="rcard-q">自然な香りで好印象。彼女に「なんか好きな香り」と言われた。</p>
+        <span class="rcard-meta">通勤・デート &nbsp;·&nbsp; 3ヶ月使用</span>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ⑧ RISK REVERSAL -->
-<section class="risk-section">
-  <div class="risk-banner">
-    <div class="risk-banner-title">🎁 今なら100ml購入で</div>
-    <div class="risk-banner-sub">2mlアトマイザーが無料でついてくる</div>
-    <div class="risk-banner-badge">本体を開ける前に肌で試せる</div>
-  </div>
-  <div class="risk-cards">
-    <div class="risk-card">
-      <div class="risk-card-icon">🔄</div>
-      <div class="risk-card-title">30日返金保証</div>
-      <div class="risk-card-sub">気に入らなければ<br>全額返金</div>
-    </div>
-    <div class="risk-card">
-      <div class="risk-card-icon">📦</div>
-      <div class="risk-card-title">即日発送</div>
-      <div class="risk-card-sub">当日注文で<br>当日出荷</div>
-    </div>
-    <div class="risk-card">
-      <div class="risk-card-icon">🚚</div>
-      <div class="risk-card-title">送料無料</div>
-      <div class="risk-card-sub">全国どこでも<br>無料でお届け</div>
-    </div>
-    <div class="risk-card">
-      <div class="risk-card-icon">💬</div>
-      <div class="risk-card-title">サポート充実</div>
-      <div class="risk-card-sub">購入後も<br>安心対応</div>
-    </div>
-  </div>
-</section>
-
-<!-- ⑨ CTA -->
-<section class="cta-section">
-  <div class="cta-social-proof">
-    <div class="cta-social-stars">★★★★★</div>
-    <div class="num">4.9 / 5.0</div>
-    <div class="label">1,200人以上のレビュー平均</div>
-  </div>
-  <a href="#" class="cta-btn large">この香りを試す →</a>
-  <div class="cta-sub-row">
-    <div class="cta-sub-item">送料無料</div>
-    <div class="cta-sub-item">30日返金保証</div>
-    <div class="cta-sub-item">即日発送</div>
-  </div>
-</section>
-
-<!-- ⑩ MORE UGC REVIEWS -->
-<section class="more-ugc-section">
-  <div class="section-label">さらにレビューを見る</div>
-  <h2 class="section-title" style="margin-bottom:16px;">みんなの声</h2>
-
-  <div class="tiktok-comment-card">
-    <div class="tiktok-comment-header">
-      <div class="tiktok-mini-avatar" style="background:linear-gradient(135deg,#e0a07b,#b05020);">A</div>
-      <div>
-        <span class="tiktok-username">@akari_fragrance</span>
-        <span class="tiktok-verified">✦ 認証済み</span>
+      <div class="rcard">
+        <div class="rcard-top">
+          <div class="rcard-av">
+            <img src="https://images.unsplash.com/photo-1514866747592-c2d279258a78?w=80&h=80&fit=crop&q=80"
+              alt="" loading="lazy" decoding="async"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="rcard-av-ph" style="display:none" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+          </div>
+          <div class="rcard-info">
+            <span class="rcard-name">24歳 男性</span>
+            <div class="rcard-stars" aria-label="5つ星">
+              <span class="rcard-star" aria-hidden="true">&#9733;</span>
+              <span class="rcard-star" aria-hidden="true">&#9733;</span>
+              <span class="rcard-star" aria-hidden="true">&#9733;</span>
+              <span class="rcard-star" aria-hidden="true">&#9733;</span>
+              <span class="rcard-star" aria-hidden="true">&#9733;</span>
+            </div>
+            <span class="rcard-verified">&#10003; 購入済み</span>
+          </div>
+        </div>
+        <p class="rcard-q">強すぎないのが最高。香水初心者の自分でも量を気にせず使えた。</p>
+        <span class="rcard-meta">初めての香水 &nbsp;·&nbsp; 日常使い</span>
       </div>
-    </div>
-    <div class="ugc-stars" style="font-size:12px;">★★★★★</div>
-    <div class="tiktok-comment-text">職場の人に「なんかいい匂いがする」って言われた。<span class="em">清潔感があると言われた</span>香水はこれが初めてです。リピ確定。</div>
-    <div class="tiktok-engagement">
-      <div class="tiktok-eng-item">♡ 1.2k</div>
-      <div class="tiktok-eng-item">💬 34</div>
-    </div>
-  </div>
 
-  <div class="tiktok-comment-card">
-    <div class="tiktok-comment-header">
-      <div class="tiktok-mini-avatar" style="background:linear-gradient(135deg,#7bd4e0,#1a8090);">H</div>
-      <div>
-        <span class="tiktok-username">@haru_campus</span>
-        <span class="tiktok-verified">✦ 認証済み</span>
+    </div>
+
+    <div class="btn-wrap">
+      <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
+         class="btn btn-dark" aria-label="Clean Veilを見る">
+        Clean Veilを見る &rarr;
+      </a>
+    </div>
+
+  </div>
+</section><!-- /SECTION 7 -->
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 8 — FAQ
+     CSS-only accordion (JS不要)
+═══════════════════════════════════════ -->
+<section class="sec sf" aria-label="よくある質問">
+  <div class="w">
+
+    <h2 class="faq-title">よくある質問</h2>
+
+    <div class="faq-list">
+
+      <div class="fi">
+        <input type="checkbox" id="f1" class="fcb">
+        <label class="flb" for="f1">
+          <span>香りは強くない？</span>
+          <span class="fic" aria-hidden="true"></span>
+        </label>
+        <div class="fans">近距離専用設計です。1〜2プッシュで6〜8時間持続しますが、遠くには広がりません。電車でも職場でも、隣の人が不快に感じない強さです。</div>
       </div>
-    </div>
-    <div class="ugc-stars" style="font-size:12px;">★★★★★</div>
-    <div class="tiktok-comment-text"><span class="em">学校でも全然使えます。</span>先生にも友達にも嫌な顔されたことない。むしろ「どこの香水？」って聞かれた。</div>
-    <div class="tiktok-engagement">
-      <div class="tiktok-eng-item">♡ 887</div>
-      <div class="tiktok-eng-item">💬 21</div>
-    </div>
-  </div>
 
-  <div class="tiktok-comment-card">
-    <div class="tiktok-comment-header">
-      <div class="tiktok-mini-avatar" style="background:linear-gradient(135deg,#b0e07b,#4a8a20);">Y</div>
-      <div>
-        <span class="tiktok-username">@yuki_skincare_jp</span>
-        <span class="tiktok-verified">✦ 認証済み</span>
+      <div class="fi">
+        <input type="checkbox" id="f2" class="fcb">
+        <label class="flb" for="f2">
+          <span>職場でも使える？</span>
+          <span class="fic" aria-hidden="true"></span>
+        </label>
+        <div class="fans">はい。多くの方が香水NGの職場で毎日使っています。「上司に清潔感があると言われた」という声もいただいています。</div>
       </div>
-    </div>
-    <div class="ugc-stars" style="font-size:12px;">★★★★★</div>
-    <div class="tiktok-comment-text">強い香水が苦手で、ずっと諦めてたけど、これは本当に<span class="em">優しい香り。</span>ふわっとするけど、主張しすぎない。毎日つけてます。</div>
-    <div class="tiktok-engagement">
-      <div class="tiktok-eng-item">♡ 703</div>
-      <div class="tiktok-eng-item">💬 18</div>
-    </div>
-  </div>
-</section>
 
-<!-- ⑪ FINAL CTA -->
-<section class="final-cta">
-  <div class="final-cta-label">あなたへのおすすめ</div>
-  <h2 class="final-cta-headline">
-    強い香水ではなく<br><em>清潔感の香り</em>
-  </h2>
-  <a href="#" class="cta-btn large">この香りを試す →</a>
-  <div class="cta-sub-row" style="margin-top:12px;">
-    <div class="cta-sub-item">送料無料</div>
-    <div class="cta-sub-item">30日返金保証</div>
-    <div class="cta-sub-item">即日発送</div>
-  </div>
-  <div class="final-cta-review-row">
-    <span class="cta-social-stars" style="font-size:13px;">★★★★★</span>
-    <span>4.9・1,200件以上のレビュー</span>
-  </div>
-</section>
+      <div class="fi">
+        <input type="checkbox" id="f3" class="fcb">
+        <label class="flb" for="f3">
+          <span>初心者でも大丈夫？</span>
+          <span class="fic" aria-hidden="true"></span>
+        </label>
+        <div class="fans">はい。量を気にして失敗することが少ない設計です。100ml購入者には2mlアトマイザーを無料でお届けするので、本体を開ける前に試すこともできます。</div>
+      </div>
 
-<!-- FOOTER -->
-<footer class="footer">
+    </div>
+
+  </div>
+</section><!-- /SECTION 8 -->
+
+
+<!-- ═══════════════════════════════════════
+     SECTION 9 — FINAL CTA
+     目的: 最終の購買後押し
+═══════════════════════════════════════ -->
+<section class="final-sec" aria-label="最終CTA">
+  <div class="w">
+
+    <span class="final-kicker">Limited</span>
+    <h2 class="final-h">清潔感のある香りを<br>試してみませんか？</h2>
+    <p class="final-sub">まずは小さいサイズから。<br>30日返金保証付き。</p>
+
+    <div style="width:100%;max-width:400px">
+      <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
+         class="btn btn-light" aria-label="Clean Veilを見る">
+        Clean Veilを見る &rarr;
+      </a>
+      <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
+         class="btn btn-lt-out" style="margin-top:10px" aria-label="商品詳細を確認する">
+        商品詳細を確認する
+      </a>
+    </div>
+
+    <div class="final-trust">
+      <div class="ft"><b>&#10003;</b>&nbsp;送料無料</div>
+      <div class="ft"><b>&#10003;</b>&nbsp;30日返金保証</div>
+      <div class="ft"><b>&#10003;</b>&nbsp;即日発送</div>
+    </div>
+
+  </div>
+</section><!-- /SECTION 9 -->
+
+
+<footer>
   <p>
-    © 2024 PURELAYER Japan<br>
-    <a href="#">プライバシーポリシー</a> ・ <a href="#">特定商取引法に基づく表記</a><br>
-    ※レビューは個人の感想です。効果には個人差があります。
+    &copy; 2025 PURELAYER &nbsp;&middot;&nbsp;
+    <a href="https://nemveil.com">nemveil.com</a><br>
+    <a href="https://nemveil.com/policies/privacy-policy">プライバシーポリシー</a>
+    &ensp;&middot;&ensp;
+    <a href="https://nemveil.com/policies/refund-policy">返金ポリシー</a>
   </p>
 </footer>
-
-<!-- SPACER for floating bar -->
-<div class="float-spacer"></div>
-
-<!-- FLOATING CTA BAR -->
-<div class="floating-cta">
-  <div class="floating-cta-inner">
-    <div class="floating-cta-text">
-      <div class="top">🎁 今なら2mlアトマイザー無料</div>
-      <div class="bottom">PURELAYER Oud Stallion</div>
-    </div>
-    <a href="#" class="floating-cta-btn">試してみる →</a>
-  </div>
-</div>
 
 </body>
 </html>
