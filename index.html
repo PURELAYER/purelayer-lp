@@ -3,342 +3,440 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="香水初心者が知らない清潔感のルール。近距離フレグランスで好印象をつくる方法。">
-<title>その香水、"清潔感ない人"と思われてるかもしれません</title>
+<meta name="description" content="その香水、好印象どころか「キツい人」って思われてるかもしれません。香水初心者が知らない清潔感のルール。">
+<title>その香水、「キツい人」って思われてるかもしれません</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
-
 <style>
 
-/* ══════════════════════════════════════════════
-   Advertorial LP — Story-driven pre-sell page
-   Aesthetic: Editorial monochrome · Article-first
-   Font: Zen Kaku Gothic New (Japanese editorial)
-   Palette: White · Near-black · Cool greys
+/* ══════════════════════════════════════════════════
+   Advertorial LP v2 — "Kitsui Hito" Pre-sell
+   Aesthetic: Editorial Strike — Shippori Mincho × DM Sans
+   Palette: Pure white · Near-black · Warm grey · Gold accent
+   Motion: CSS-only stagger / scroll-driven progress
    JS: ZERO
-══════════════════════════════════════════════ */
+══════════════════════════════════════════════════ */
 
-:root{
-  --bg:    #FAFAFA;
-  --wh:    #FFFFFF;
-  --ink:   #0D0D0D;
-  --g90:   #171717;
-  --g70:   #494949;
-  --g50:   #7A7A7A;
-  --g20:   #D4D4D4;
-  --g08:   #EDEDED;
-  --g04:   #F5F5F5;
-  --acc:   #0D0D0D;
-  --ok:    #1C6B3E;
+:root {
+  --bg:      #FAFAF8;
+  --wh:      #FFFFFF;
+  --ink:     #0C0C0A;
+  --g80:     #2A2A28;
+  --g60:     #5A5A56;
+  --g40:     #8C8C88;
+  --g16:     #D8D8D4;
+  --g08:     #EBEBЕ7;
+  --g04:     #F4F4F1;
+  --gold:    #B8923A;
+  --gold-l:  #D4AB56;
+  --gold-d:  #8A6820;
+  --goldbg:  rgba(184,146,58,.10);
+  --ok:      #1A6B3C;
+  --ng:      #8A2318;
 
-  --ff: "Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP",system-ui,sans-serif;
+  --fm: "Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --fu: "DM Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",system-ui,sans-serif;
 
-  --px: 24px;
-  --mxw: 540px;
-  --sec: 72px;
+  --px:  22px;
+  --mxw: 560px;
+  --sec: 80px;
+  --card-r: 14px;
 }
 
 /* ── RESET ── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:var(--ff);background:var(--bg);color:var(--ink);
-  line-height:1.72;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-img{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-ul,ol{list-style:none}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
+html { font-size:16px; scroll-behavior:smooth; -webkit-text-size-adjust:100% }
+body { font-family:var(--fu); background:var(--bg); color:var(--ink);
+       line-height:1.72; -webkit-font-smoothing:antialiased; overflow-x:hidden }
+img  { display:block; max-width:100% }
+a    { color:inherit; text-decoration:none }
+ul,ol{ list-style:none }
 
 /* ── LAYOUT ── */
-.w{max-width:var(--mxw);margin:0 auto;padding:0 var(--px)}
+.w { max-width:var(--mxw); margin:0 auto; padding:0 var(--px) }
 
-/* reading progress */
-.prog{position:fixed;top:0;left:0;right:0;height:2px;z-index:100;background:var(--g08)}
-.prog-bar{height:100%;width:0;background:var(--ink);
-  animation:pscroll linear;animation-timeline:scroll()}
-@keyframes pscroll{to{width:100%}}
+/* ── READING PROGRESS ── */
+.rprog { position:fixed; top:0; left:0; right:0; height:2px; z-index:100;
+         background:var(--g08) }
+.rprog-bar { height:100%; width:0; background:var(--gold);
+             animation:rp linear; animation-timeline:scroll() }
+@keyframes rp { to { width:100% } }
 
-/* ── NAV / BYLINE ── */
-.byline{position:sticky;top:0;z-index:80;
-  background:rgba(250,250,250,.96);backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--g08);
-  padding:10px var(--px)}
-.byline-in{max-width:var(--mxw);margin:0 auto;
-  display:flex;align-items:center;justify-content:space-between;gap:12px}
-.byline-tag{font-size:10px;font-weight:700;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--g50);
-  border:1px solid var(--g20);padding:3px 10px;border-radius:3px}
-.byline-meta{font-size:11px;color:var(--g50)}
-.byline-dot{display:inline-block;width:3px;height:3px;border-radius:50%;
-  background:var(--g20);vertical-align:middle;margin:0 5px}
+/* ── BYLINE ── */
+.byline { position:sticky; top:0; z-index:80;
+          background:rgba(250,250,248,.96);
+          backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+          border-bottom:1px solid var(--g08);
+          padding:10px var(--px) }
+.byline-in { max-width:var(--mxw); margin:0 auto;
+             display:flex; align-items:center; justify-content:space-between }
+.byline-tag { font-size:9.5px; font-weight:700; letter-spacing:.16em;
+              text-transform:uppercase; color:var(--g40);
+              border:1px solid var(--g16); padding:3px 10px; border-radius:3px }
+.byline-rt  { font-size:11px; color:var(--g40); letter-spacing:.04em }
+.byline-sep { display:inline-block; width:2px; height:2px; border-radius:50%;
+              background:var(--g16); margin:0 6px; vertical-align:middle }
 
-/* ══════════════════════════════════════════════
-   ① FIRST VIEW — Problem hook
-══════════════════════════════════════════════ */
-.fv{min-height:96svh;min-height:96vh;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:56px var(--px) 48px;
-  background:var(--wh);
-  text-align:center;
-  position:relative;overflow:hidden}
-/* subtle texture */
-.fv::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.018'/%3E%3C/svg%3E")}
-.fv-inner{position:relative;z-index:1;
-  max-width:var(--mxw);margin:0 auto;width:100%}
+/* ══════════════════════════════════════════════════
+   ① FIRST VIEW
+══════════════════════════════════════════════════ */
+.fv { min-height:96svh; min-height:96vh;
+      display:flex; flex-direction:column; justify-content:center;
+      background:var(--wh); padding:56px var(--px) 48px;
+      position:relative; overflow:hidden }
+/* subtle halftone bg */
+.fv::before { content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background-image:radial-gradient(circle, rgba(12,12,10,.032) 1px, transparent 1px);
+  background-size:22px 22px }
+.fv-inner { position:relative; z-index:1;
+            max-width:var(--mxw); margin:0 auto; width:100% }
 
-/* article label */
-.art-label{display:inline-flex;align-items:center;gap:7px;
-  font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--g50);margin-bottom:32px}
-.art-label::before,.art-label::after{
-  content:"";width:20px;height:1px;background:var(--g20)}
+/* article mark */
+.art-mark { display:inline-flex; align-items:center; gap:8px;
+            font-size:9.5px; font-weight:700; letter-spacing:.18em;
+            text-transform:uppercase; color:var(--g40); margin-bottom:28px }
+.art-mark::before,.art-mark::after { content:""; flex:1; height:1px;
+                                      background:var(--g16); min-width:24px }
 
-/* the BIG hook */
-.fv-h1{font-size:clamp(28px,8.5vw,38px);font-weight:900;
-  letter-spacing:-.02em;line-height:1.26;
-  color:var(--ink);
-  margin-bottom:28px}
-.fv-h1 em{font-style:normal;
-  border-bottom:3px solid var(--ink);padding-bottom:1px}
+/* BIG hook — Shippori Mincho */
+.fv-h1 { font-family:var(--fm); font-size:clamp(28px,8vw,38px); font-weight:800;
+          letter-spacing:-.01em; line-height:1.42; color:var(--ink);
+          margin-bottom:32px; text-align:center }
+.fv-h1 .strike { display:inline;
+  background:linear-gradient(to bottom,transparent 55%,rgba(12,12,10,.15) 55%);
+  padding-bottom:2px }
+.fv-h1 .danger { color:var(--ink);
+  border-bottom:3px solid var(--ink); padding-bottom:1px }
 
-/* horizontal rule */
-.hr{width:32px;height:2px;background:var(--g20);margin:0 auto 24px}
+/* situation image */
+.fv-img-wrap { border-radius:var(--card-r); overflow:hidden;
+               box-shadow:0 8px 40px rgba(12,12,10,.10);
+               margin-bottom:28px; position:relative }
+.fv-img { width:100%; height:clamp(220px,48vw,320px);
+          object-fit:cover; object-position:center 25%; display:block }
+/* vignette overlay */
+.fv-img-wrap::after { content:""; position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(12,12,10,0) 50%, rgba(12,12,10,.20) 100%);
+  border-radius:var(--card-r) }
+.fv-img-ph { width:100%; height:clamp(220px,48vw,320px);
+             background:linear-gradient(145deg,#DDDBD5,#C8C6BE);
+             display:flex; align-items:center; justify-content:center;
+             flex-direction:column; gap:10px }
+.fv-img-ph svg { opacity:.22 }
+.fv-img-ph span { font-size:11px; color:var(--g60); letter-spacing:.10em; text-transform:uppercase }
 
 /* sub badges */
-.fv-subs{display:flex;flex-direction:column;gap:6px;margin-bottom:36px;
-  align-items:center}
-.sub-badge{font-size:13px;color:var(--g70);
-  display:flex;align-items:center;gap:6px}
-.sub-badge::before{content:"";width:4px;height:4px;border-radius:50%;
-  background:var(--g50);flex-shrink:0}
+.fv-subs { display:flex; flex-direction:column; gap:7px;
+           align-items:center; margin-bottom:32px }
+.fv-sub  { font-size:12px; color:var(--g60); display:flex; align-items:center; gap:6px }
+.fv-sub::before { content:""; width:3px; height:3px; border-radius:50%;
+                  background:var(--gold); flex-shrink:0 }
 
-/* ghost scroll CTA */
-.scroll-cta{display:flex;flex-direction:column;align-items:center;gap:8px;
-  margin-top:8px;cursor:default}
-.sc-line{font-size:12px;font-weight:500;letter-spacing:.10em;
-  text-transform:uppercase;color:var(--g50)}
-.sc-arrow{font-size:18px;color:var(--g20);
-  animation:arr 2s ease infinite}
-@keyframes arr{0%,100%{transform:translateY(0)}60%{transform:translateY(6px)}}
+/* scroll nudge */
+.scroll-nudge { display:flex; flex-direction:column; align-items:center; gap:7px }
+.sn-txt { font-size:11px; font-weight:600; letter-spacing:.12em;
+          text-transform:uppercase; color:var(--g40) }
+.sn-arr { font-size:16px; color:var(--g16); animation:bob 2s ease infinite }
+@keyframes bob { 0%,100%{ transform:translateY(0) } 60%{ transform:translateY(7px) } }
 
-/* ══════════════════════════════════════════════
-   ② EMPATHY — checklist
-══════════════════════════════════════════════ */
-.sec{padding:var(--sec) 0}
-.sec-wh{background:var(--wh)}
-.sec-g{background:var(--g04)}
+/* ══════════════════════════════════════════════════
+   SHARED SECTION ATOMS
+══════════════════════════════════════════════════ */
+.sec { padding:var(--sec) 0 }
+.sec-wh { background:var(--wh) }
+.sec-g  { background:var(--g04) }
 
-.sec-eyebrow{font-size:10px;font-weight:700;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--g50);margin-bottom:16px;display:block}
-.sec-title{font-size:clamp(20px,5.5vw,26px);font-weight:900;
-  letter-spacing:-.02em;line-height:1.22;margin-bottom:28px;color:var(--ink)}
-.sec-title em{font-style:normal;border-bottom:2px solid var(--ink);padding-bottom:1px}
+.ey { display:block; font-size:9.5px; font-weight:700; letter-spacing:.20em;
+      text-transform:uppercase; color:var(--g40); margin-bottom:12px }
+.sec-h { font-family:var(--fm); font-size:clamp(20px,5.5vw,26px); font-weight:800;
+         letter-spacing:-.01em; line-height:1.28; color:var(--ink); margin-bottom:22px }
+.sec-h em { font-style:normal;
+            border-bottom:2.5px solid var(--ink); padding-bottom:1px }
+.hr14 { width:28px; height:2px; background:var(--gold); margin-bottom:24px; opacity:.55 }
 
-/* checklist */
-.chk-list{display:flex;flex-direction:column;gap:0}
-.chk-item{display:flex;align-items:center;gap:14px;
-  padding:15px 0;border-bottom:1px solid var(--g08)}
-.chk-item:last-child{border-bottom:none}
-.chk-mark{width:22px;height:22px;border-radius:50%;
-  border:1.5px solid var(--g20);flex-shrink:0;
-  display:flex;align-items:center;justify-content:center}
-.chk-mark svg{opacity:.55}
-.chk-text{font-size:15px;font-weight:500;color:var(--ink);line-height:1.40}
+/* section images */
+.sec-img { width:100%; height:clamp(180px,40vw,270px);
+           object-fit:cover; border-radius:var(--card-r); margin-bottom:24px;
+           box-shadow:0 4px 24px rgba(12,12,10,.07) }
+.sec-img-ph { width:100%; height:clamp(180px,40vw,270px);
+              background:linear-gradient(145deg,#E4E2DA,#D0CEC6);
+              border-radius:var(--card-r); margin-bottom:24px;
+              display:flex; align-items:center; justify-content:center }
+.sec-img-ph svg { opacity:.20 }
 
-/* ══════════════════════════════════════════════
-   ③ CATEGORY FRAMING
-══════════════════════════════════════════════ */
-.frame-card{background:var(--ink);border-radius:14px;
-  padding:36px 26px;text-align:center;
-  position:relative;overflow:hidden}
-/* subtle grid overlay */
-.frame-card::before{content:"";position:absolute;inset:0;
-  background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
-  background-size:32px 32px}
-.frame-label{font-size:9px;font-weight:700;letter-spacing:.22em;
-  text-transform:uppercase;color:rgba(255,255,255,.30);margin-bottom:18px;display:block}
-.frame-old{font-size:14px;color:rgba(255,255,255,.35);
-  line-height:1.50;margin-bottom:14px;
-  padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.10)}
-.frame-old del{text-decoration-color:rgba(255,255,255,.25)}
-.frame-arr{font-size:13px;color:rgba(255,255,255,.20);margin-bottom:14px}
-.frame-new{font-size:clamp(18px,5vw,22px);font-weight:900;
-  color:#fff;line-height:1.36;letter-spacing:-.015em}
-.frame-new em{font-style:normal;
-  border-bottom:2px solid rgba(255,255,255,.40);padding-bottom:1px}
-
-/* ══════════════════════════════════════════════
-   ④ COMPARISON
-══════════════════════════════════════════════ */
-.comp-wrap{border:1px solid var(--g20);border-radius:14px;overflow:hidden}
-.comp-heads{display:grid;grid-template-columns:1fr 32px 1fr}
-.comp-h{padding:12px 14px;text-align:center;font-size:11px;font-weight:700;
-  letter-spacing:.10em;text-transform:uppercase;background:var(--g08);color:var(--g70)}
-.comp-h-sep{background:var(--wh);border-left:1px solid var(--g20);border-right:1px solid var(--g20)}
-.comp-body{display:grid;grid-template-columns:1fr 32px 1fr;
-  border-top:1px solid var(--g20)}
-.comp-col{padding:18px 14px;display:flex;flex-direction:column;gap:12px}
-.comp-sep-col{border-left:1px solid var(--g20);border-right:1px solid var(--g20);
-  display:flex;align-items:center;justify-content:center}
-.comp-vs{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--g50)}
-.ci{display:flex;align-items:flex-start;gap:8px;font-size:13px;
-  line-height:1.42;color:var(--g70)}
-.ci-ico{flex-shrink:0;margin-top:1px}
-
-/* ══════════════════════════════════════════════
-   ⑤ BENEFITS
-══════════════════════════════════════════════ */
-.ben-list{display:flex;flex-direction:column;gap:0}
-.ben{display:grid;grid-template-columns:26px 1fr;gap:0 14px;
-  align-items:start;padding:16px 0;border-bottom:1px solid var(--g08)}
-.ben:last-child{border-bottom:none}
-.ben-ico{width:26px;height:26px;border-radius:50%;background:var(--g08);
-  display:flex;align-items:center;justify-content:center;margin-top:1px}
-.ben-body{}
-.ben-t{font-size:15px;font-weight:700;color:var(--ink);line-height:1.30;margin-bottom:3px}
-.ben-d{font-size:13px;color:var(--g70);line-height:1.50}
-
-/* ══════════════════════════════════════════════
-   ⑥ REVIEWS — CSS horizontal scroll
-══════════════════════════════════════════════ */
-.rv-label{margin-bottom:16px}
-.rv-track{display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;
-  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
-  scrollbar-width:none;padding:4px var(--px) 12px}
-.rv-track::-webkit-scrollbar{display:none}
-.rv-card{flex:0 0 220px;scroll-snap-align:start;
-  background:var(--wh);border:1px solid var(--g08);border-radius:12px;
-  padding:18px 16px;display:flex;flex-direction:column;gap:10px;
-  box-shadow:0 2px 12px rgba(13,13,13,.05)}
-.rv-card:first-child{margin-left:var(--px)}
-.rv-card:last-child{margin-right:var(--px)}
-.rv-scene{display:inline-block;font-size:9.5px;font-weight:700;
-  letter-spacing:.14em;text-transform:uppercase;
-  background:var(--g04);border:1px solid var(--g08);
-  color:var(--g70);padding:3px 10px;border-radius:4px}
-.rv-stars{color:#D4A017;font-size:11px;letter-spacing:1.5px}
-.rv-q{font-size:15px;font-weight:700;color:var(--ink);line-height:1.38;
-  flex:1}
-.rv-meta{font-size:11px;color:var(--g50)}
-
-/* scroll dots */
-.rv-dots{display:flex;justify-content:center;gap:5px;padding-top:4px}
-.rv-dot{width:5px;height:5px;border-radius:50%;background:var(--g20)}
-.rv-dot:first-child{background:var(--ink);transform:scale(1.3)}
-
-/* ══════════════════════════════════════════════
-   ⑦ SENSORY — fragrance description
-══════════════════════════════════════════════ */
-.scent-timeline{display:flex;flex-direction:column;gap:0}
-.st-step{display:grid;grid-template-columns:44px 1fr;gap:0 16px;
-  padding:18px 0;border-bottom:1px solid var(--g08)}
-.st-step:last-child{border-bottom:none}
-.st-time-wrap{display:flex;flex-direction:column;align-items:center;gap:4px}
-.st-time{font-size:9px;font-weight:700;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--g50)}
-.st-dot{width:10px;height:10px;border-radius:50%;border:2px solid var(--g20)}
-.st-dot-filled{background:var(--ink);border-color:var(--ink)}
-.st-content{}
-.st-label{font-size:10.5px;font-weight:700;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--g50);margin-bottom:4px;display:block}
-.st-main{font-size:16px;font-weight:700;color:var(--ink);
-  line-height:1.30;margin-bottom:3px}
-.st-desc{font-size:13px;color:var(--g70);line-height:1.50}
-
-/* ══════════════════════════════════════════════
-   ⑧ OFFER — product cards
-══════════════════════════════════════════════ */
-.offer-cards{display:flex;flex-direction:column;gap:14px}
-.offer-card{border:1.5px solid var(--g20);border-radius:14px;
-  padding:22px 20px;position:relative;overflow:hidden;
-  background:var(--wh)}
-.offer-card-rec{border-color:var(--ink)}
-.offer-badge{display:inline-block;
-  background:var(--ink);color:#fff;
-  font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  padding:4px 12px;border-radius:3px;margin-bottom:14px}
-.offer-name{font-size:18px;font-weight:900;letter-spacing:-.02em;
-  color:var(--ink);line-height:1;margin-bottom:6px}
-.offer-items{font-size:13px;color:var(--g70);margin-bottom:14px;line-height:1.60}
-.offer-price{font-size:28px;font-weight:900;letter-spacing:-.03em;
-  color:var(--ink);line-height:1;margin-bottom:4px}
-.offer-price span{font-size:13px;font-weight:400;color:var(--g50);margin-left:3px}
-.offer-tag{font-size:12px;color:var(--g70);margin-bottom:16px}
-.offer-tag b{color:var(--ink);font-weight:700}
-
-/* ══════════════════════════════════════════════
-   BUTTONS
-══════════════════════════════════════════════ */
-.btn{display:flex;align-items:center;justify-content:center;
-  width:100%;height:50px;border-radius:8px;border:none;
-  font-family:var(--ff);font-size:15px;font-weight:700;letter-spacing:.03em;
-  cursor:pointer;position:relative;overflow:hidden;
-  -webkit-tap-highlight-color:transparent;text-decoration:none;
-  transition:transform .10s,opacity .12s}
-.btn:active{transform:scale(.975);opacity:.88}
-.btn-ink{background:var(--ink);color:#fff}
-.btn-ink::after{content:"";position:absolute;top:0;left:-90%;width:40%;height:100%;
+/* ── BUTTONS ── */
+.btn { display:flex; align-items:center; justify-content:center;
+       width:100%; height:52px; border-radius:8px; border:none;
+       font-family:var(--fu); font-size:14.5px; font-weight:700;
+       letter-spacing:.03em; cursor:pointer; position:relative; overflow:hidden;
+       -webkit-tap-highlight-color:transparent; text-decoration:none;
+       transition:transform .10s, opacity .12s }
+.btn:active { transform:scale(.976); opacity:.88 }
+.btn-ink { background:var(--ink); color:#fff }
+.btn-ink::after { content:""; position:absolute; top:0; left:-90%; width:40%; height:100%;
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);
-  animation:shim 5s 2s ease infinite}
-@keyframes shim{0%{left:-90%}40%,100%{left:130%}}
-.btn-out{background:transparent;border:1.5px solid var(--g20);color:var(--g70)}
-.btn-wrap{margin-top:20px}
+  animation:shim 5s 2s ease infinite }
+@keyframes shim { 0%{ left:-90% } 40%,100%{ left:130% } }
+.btn-gold { background:linear-gradient(135deg,var(--gold-d),var(--gold) 55%,var(--gold-l));
+            color:#fff;
+            box-shadow:0 4px 22px rgba(184,146,58,.28), inset 0 1px 0 rgba(255,255,255,.14) }
+.btn-out { background:transparent; border:1.5px solid var(--g16); color:var(--g60) }
+.bw { margin-top:22px }
 
-/* ══════════════════════════════════════════════
-   ⑨ RISK REVERSAL
-══════════════════════════════════════════════ */
-.risk-card{background:var(--g04);border:1px solid var(--g08);
-  border-radius:14px;padding:26px 22px}
-.risk-ico{width:44px;height:44px;border-radius:50%;
-  background:var(--wh);border:1px solid var(--g08);
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:14px}
-.risk-title{font-size:17px;font-weight:900;letter-spacing:-.015em;
-  color:var(--ink);margin-bottom:10px}
-.risk-steps{display:flex;flex-direction:column;gap:10px;margin-top:16px}
-.rstep{display:grid;grid-template-columns:28px 1fr;gap:0 12px;align-items:start}
-.rstep-n{width:24px;height:24px;border-radius:50%;
-  background:var(--ink);color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
-.rstep-t{font-size:14px;font-weight:600;color:var(--ink);line-height:1.30;margin-bottom:2px}
-.rstep-d{font-size:12px;color:var(--g70);line-height:1.45}
+/* ══════════════════════════════════════════════════
+   ② EMPATHY — checklist
+══════════════════════════════════════════════════ */
+.chk-list { display:flex; flex-direction:column; gap:0 }
+.chk-item { display:grid; grid-template-columns:30px 1fr;
+            align-items:center; gap:0 10px;
+            padding:15px 0; border-bottom:1px solid var(--g08) }
+.chk-item:last-child { border-bottom:none }
+.chk-ico { width:26px; height:26px; border-radius:50%;
+           background:var(--g04); border:1.5px solid var(--g16);
+           display:flex; align-items:center; justify-content:center; flex-shrink:0 }
+.chk-ico svg { opacity:.45 }
+.chk-t { font-size:15px; font-weight:500; color:var(--ink); line-height:1.38 }
 
-/* ══════════════════════════════════════════════
-   ⑩ FINAL CTA
-══════════════════════════════════════════════ */
-.final{background:var(--ink);padding:var(--sec) 0}
-.final-inner{max-width:var(--mxw);margin:0 auto;padding:0 var(--px);
-  display:flex;flex-direction:column;align-items:center;text-align:center}
-.final-kicker{font-size:10px;font-weight:700;letter-spacing:.20em;
-  text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:16px}
-.final-h{font-size:clamp(24px,7vw,34px);font-weight:900;
-  letter-spacing:-.025em;line-height:1.16;color:#fff;margin-bottom:10px}
-.final-sub{font-size:14px;color:rgba(255,255,255,.40);
-  line-height:1.68;margin-bottom:28px;max-width:300px}
-.final-btns{width:100%;max-width:400px;display:flex;flex-direction:column;gap:10px}
-.btn-wh{background:#fff;color:var(--ink)}
-.btn-ghost{background:transparent;border:1.5px solid rgba(255,255,255,.18);
-  color:rgba(255,255,255,.50)}
-.final-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;
-  margin-top:20px}
-.ft{font-size:11px;color:rgba(255,255,255,.28);
-  display:flex;align-items:center;gap:4px}
-.ft b{color:rgba(255,255,255,.48);font-weight:600}
+/* ══════════════════════════════════════════════════
+   ③ REFRAME — dark card
+══════════════════════════════════════════════════ */
+.rf-card { background:var(--ink); border-radius:16px; padding:36px 24px;
+           text-align:center; position:relative; overflow:hidden }
+/* crosshatch overlay */
+.rf-card::before { content:""; position:absolute; inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:28px 28px }
+.rf-ey2 { font-size:9.5px; font-weight:700; letter-spacing:.22em;
+           text-transform:uppercase; color:rgba(255,255,255,.28); margin-bottom:18px;
+           display:block; position:relative; z-index:1 }
+.rf-old { font-family:var(--fm); font-size:15px; color:rgba(255,255,255,.30);
+          line-height:1.55; margin-bottom:16px;
+          padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,.08);
+          position:relative; z-index:1 }
+.rf-old del { text-decoration-color:rgba(255,255,255,.20) }
+.rf-arr { font-size:20px; color:var(--gold-l); margin-bottom:16px;
+          position:relative; z-index:1 }
+.rf-new { font-family:var(--fm); font-size:clamp(18px,5.5vw,24px); font-weight:800;
+          color:#fff; line-height:1.38; letter-spacing:-.01em;
+          position:relative; z-index:1 }
+.rf-new em { font-style:normal;
+             border-bottom:2px solid var(--gold-l); padding-bottom:2px }
+
+/* ══════════════════════════════════════════════════
+   ④ COMPARISON — mono 2-col
+══════════════════════════════════════════════════ */
+.comp { border:1px solid var(--g16); border-radius:var(--card-r); overflow:hidden }
+.comp-heads { display:grid; grid-template-columns:1fr 1px 1fr }
+.comp-h { padding:11px 14px; text-align:center;
+          font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+          color:var(--g60); background:var(--g04) }
+.comp-h-sep { background:var(--g16) }
+.comp-body { display:grid; grid-template-columns:1fr 1px 1fr;
+             border-top:1px solid var(--g16) }
+.comp-col { padding:18px 14px; display:flex; flex-direction:column; gap:11px }
+.comp-sep { background:var(--g16) }
+.ci { display:flex; align-items:flex-start; gap:8px;
+      font-size:13px; line-height:1.45; color:var(--g60) }
+.ci svg { flex-shrink:0; margin-top:1px }
+
+/* ══════════════════════════════════════════════════
+   ⑤ BENEFITS
+══════════════════════════════════════════════════ */
+.ben-list { display:flex; flex-direction:column; gap:0 }
+.ben { display:grid; grid-template-columns:38px 1fr;
+       align-items:start; padding:16px 0;
+       border-bottom:1px solid var(--g08) }
+.ben:last-child { border-bottom:none }
+.ben-ico { width:34px; height:34px; border-radius:10px;
+           background:var(--g04); border:1px solid var(--g08);
+           display:flex; align-items:center; justify-content:center;
+           flex-shrink:0; margin-top:1px }
+.ben-body {}
+.ben-t { font-size:15px; font-weight:700; color:var(--ink);
+         line-height:1.28; margin-bottom:3px }
+.ben-d { font-size:12.5px; color:var(--g60); line-height:1.50 }
+
+/* ══════════════════════════════════════════════════
+   ⑥ REVIEWS — horizontal scroll
+══════════════════════════════════════════════════ */
+.rv-overflow { overflow-x:auto; overflow-y:hidden;
+               scroll-snap-type:x mandatory;
+               -webkit-overflow-scrolling:touch;
+               scrollbar-width:none }
+.rv-overflow::-webkit-scrollbar { display:none }
+.rv-track { display:flex; gap:12px; padding:4px var(--px) 12px }
+.rvc { flex:0 0 200px; scroll-snap-align:start;
+       background:var(--wh); border:1px solid var(--g08); border-radius:var(--card-r);
+       box-shadow:0 2px 14px rgba(12,12,10,.05);
+       display:flex; flex-direction:column; overflow:hidden }
+.rvc:first-child { margin-left:var(--px) }
+.rvc:last-child  { margin-right:var(--px) }
+/* ugc photo */
+.rvc-img { width:100%; height:130px; object-fit:cover; display:block;
+           background:var(--g04); flex-shrink:0 }
+.rvc-img-ph { width:100%; height:130px; flex-shrink:0;
+              display:flex; align-items:center; justify-content:center }
+.rvc-img-ph svg { opacity:.20 }
+.rvc-ph-1 { background:linear-gradient(145deg,#D8D6CE,#E8E6DF) }
+.rvc-ph-2 { background:linear-gradient(145deg,#C8CCCE,#D8DCE0) }
+.rvc-ph-3 { background:linear-gradient(145deg,#D4CEC4,#E4DED6) }
+.rvc-ph-4 { background:linear-gradient(145deg,#CCCAC0,#DEDAD2) }
+.rvc-ph-5 { background:linear-gradient(145deg,#D0CCC4,#E0DCD4) }
+.rvc-body { padding:14px 13px 16px; flex:1; display:flex; flex-direction:column; gap:7px }
+.rvc-scene { display:inline-block; font-size:9px; font-weight:700;
+             letter-spacing:.16em; text-transform:uppercase;
+             color:var(--g60); background:var(--g04); border:1px solid var(--g08);
+             padding:2px 9px; border-radius:3px }
+.rvc-stars { color:var(--gold); font-size:10px; letter-spacing:1.5px }
+.rvc-q { font-family:var(--fm); font-size:14px; font-weight:700;
+          color:var(--ink); line-height:1.40; flex:1 }
+.rvc-meta { font-size:11px; color:var(--g40) }
+
+.rv-dots { display:flex; justify-content:center; gap:5px; padding-top:6px }
+.rv-dot { width:5px; height:5px; border-radius:50%; background:var(--g16) }
+.rv-dot:first-child { background:var(--gold); transform:scale(1.3) }
+
+/* ══════════════════════════════════════════════════
+   ⑦ SCENT FLOW — vertical steps with images
+══════════════════════════════════════════════════ */
+.flow-steps { display:flex; flex-direction:column; gap:0 }
+.fs { display:grid; grid-template-columns:44px 1fr; gap:0 16px;
+      padding:0 0 32px }
+.fs:last-child { padding-bottom:0 }
+.fs-left { display:flex; flex-direction:column; align-items:center; gap:0 }
+.fs-dot  { width:12px; height:12px; border-radius:50%;
+           background:var(--ink); flex-shrink:0; margin-top:4px }
+.fs-line { width:1px; flex:1; background:var(--g16); margin-top:6px; min-height:20px }
+.fs:last-child .fs-line { display:none }
+.fs-right {}
+.fs-time { font-size:10px; font-weight:700; letter-spacing:.16em;
+           text-transform:uppercase; color:var(--gold); margin-bottom:6px; display:block }
+.fs-main { font-family:var(--fm); font-size:17px; font-weight:700;
+           color:var(--ink); line-height:1.32; margin-bottom:6px }
+.fs-d    { font-size:13px; color:var(--g60); line-height:1.50; margin-bottom:14px }
+.fs-img  { width:100%; height:clamp(140px,34vw,200px);
+           object-fit:cover; border-radius:10px;
+           box-shadow:0 3px 16px rgba(12,12,10,.07) }
+.fs-img-ph { width:100%; height:clamp(140px,34vw,200px);
+             border-radius:10px; display:flex; align-items:center; justify-content:center }
+.fs-ph-1 { background:linear-gradient(145deg,#E2DFDA,#D0CEC8) }
+.fs-ph-2 { background:linear-gradient(145deg,#D6D8DC,#C8CCD2) }
+.fs-ph-3 { background:linear-gradient(145deg,#D8D4CC,#C8C4BC) }
+.fs-img-ph svg { opacity:.22 }
+
+/* ══════════════════════════════════════════════════
+   ⑧ OFFER CARDS
+══════════════════════════════════════════════════ */
+.offer-cards { display:flex; flex-direction:column; gap:16px }
+.oc { border:1.5px solid var(--g16); border-radius:var(--card-r);
+      background:var(--wh); position:relative; overflow:hidden }
+.oc-rec { border-color:var(--gold) }
+/* gold top stripe */
+.oc-rec::before { content:""; position:absolute; top:0; left:0; right:0;
+                  height:3px; background:linear-gradient(90deg,var(--gold-d),var(--gold),var(--gold-l)) }
+.oc-inner { padding:22px 20px }
+/* badge */
+.oc-badge { display:inline-flex; align-items:center; gap:6px;
+            background:linear-gradient(135deg,var(--gold-d),var(--gold) 55%,var(--gold-l));
+            color:#fff; font-size:9.5px; font-weight:700; letter-spacing:.14em;
+            text-transform:uppercase; padding:4px 14px; border-radius:4px;
+            margin-bottom:16px }
+.oc-badge::before { content:"★"; font-size:9px }
+/* product image */
+.oc-img  { width:100%; height:clamp(200px,44vw,280px);
+           object-fit:contain; background:var(--g04); border-radius:10px;
+           margin-bottom:18px; padding:12px }
+.oc-img-ph { width:100%; height:clamp(200px,44vw,280px);
+             background:linear-gradient(160deg,#ECEAE4,#DDDBD4);
+             border-radius:10px; margin-bottom:18px;
+             display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px }
+.oc-img-ph svg { opacity:.20 }
+.oc-name  { font-family:var(--fm); font-size:20px; font-weight:800;
+            letter-spacing:-.01em; color:var(--ink); margin-bottom:6px }
+.oc-items { font-size:13px; color:var(--g60); line-height:1.68; margin-bottom:14px }
+.oc-price { font-size:30px; font-weight:800; letter-spacing:-.03em;
+            color:var(--ink); line-height:1; margin-bottom:4px }
+.oc-price span { font-size:13px; font-weight:400; color:var(--g40); margin-left:4px }
+.oc-tag { font-size:12px; color:var(--g60); margin-bottom:18px }
+.oc-tag b { color:var(--ink); font-weight:700 }
+
+/* ══════════════════════════════════════════════════
+   ⑨ COMPETITOR COMPARISON
+══════════════════════════════════════════════════ */
+.rival-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px }
+.rival-card { border:1.5px solid var(--g16); border-radius:var(--card-r);
+              padding:18px 16px; background:var(--wh) }
+.rival-card-ours { border-color:var(--gold); position:relative }
+.rival-card-ours::before { content:""; position:absolute; top:0; left:0; right:0;
+                           height:3px; background:linear-gradient(90deg,var(--gold-d),var(--gold-l)) }
+.rival-name { font-size:12px; font-weight:700; letter-spacing:.10em;
+              text-transform:uppercase; color:var(--g60); margin-bottom:12px;
+              display:block }
+.rival-name-ours { color:var(--gold) }
+.rival-items { display:flex; flex-direction:column; gap:7px }
+.ri { display:flex; align-items:center; gap:7px;
+      font-size:13px; color:var(--g60); line-height:1.30 }
+.ri svg { flex-shrink:0 }
+.ri-ok { color:var(--ink) }
+
+/* ══════════════════════════════════════════════════
+   ⑩ RISK REVERSAL
+══════════════════════════════════════════════════ */
+.risk-card { background:var(--g04); border:1px solid var(--g08);
+             border-radius:var(--card-r); padding:28px 22px }
+.risk-head { display:flex; align-items:center; gap:12px; margin-bottom:18px }
+.risk-shield { width:42px; height:42px; border-radius:50%;
+               background:var(--wh); border:1px solid var(--g08);
+               display:flex; align-items:center; justify-content:center; flex-shrink:0 }
+.risk-title { font-family:var(--fm); font-size:17px; font-weight:800;
+              color:var(--ink); line-height:1.28 }
+.risk-copy { font-size:13px; color:var(--g60); line-height:1.65; margin-bottom:18px }
+.risk-steps { display:flex; flex-direction:column; gap:0 }
+.rstep { display:grid; grid-template-columns:36px 1fr; gap:0 12px;
+         align-items:start; padding:12px 0; border-bottom:1px solid var(--g08) }
+.rstep:last-child { border-bottom:none }
+.rstep-n { width:28px; height:28px; border-radius:50%;
+           background:var(--ink); color:#fff;
+           display:flex; align-items:center; justify-content:center;
+           font-size:12px; font-weight:700; flex-shrink:0; margin-top:1px }
+.rstep-t { font-size:14px; font-weight:700; color:var(--ink);
+           line-height:1.28; margin-bottom:3px }
+.rstep-d { font-size:12px; color:var(--g60); line-height:1.45 }
+
+/* ══════════════════════════════════════════════════
+   ⑪ FINAL CTA
+══════════════════════════════════════════════════ */
+.final { background:var(--ink); padding:var(--sec) 0 }
+.final-inner { max-width:var(--mxw); margin:0 auto; padding:0 var(--px);
+               display:flex; flex-direction:column; align-items:center; text-align:center }
+.final-kicker { font-size:10px; font-weight:700; letter-spacing:.22em;
+                text-transform:uppercase; color:rgba(255,255,255,.22); margin-bottom:18px }
+.final-h { font-family:var(--fm); font-size:clamp(24px,7vw,36px); font-weight:800;
+           letter-spacing:-.015em; line-height:1.22; color:#fff; margin-bottom:10px }
+.final-sub { font-size:14px; color:rgba(255,255,255,.36);
+             line-height:1.68; margin-bottom:32px; max-width:280px }
+.final-btns { width:100%; max-width:400px; display:flex; flex-direction:column; gap:11px }
+.btn-lt  { background:#fff; color:var(--ink) }
+.btn-ghost { background:transparent; border:1.5px solid rgba(255,255,255,.16);
+             color:rgba(255,255,255,.44) }
+.final-trust { display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px; margin-top:22px }
+.ft { font-size:11px; color:rgba(255,255,255,.26); display:flex; align-items:center; gap:4px }
+.ft b { color:rgba(255,255,255,.44); font-weight:600 }
 
 /* FOOTER */
-footer{padding:22px var(--px) max(22px,env(safe-area-inset-bottom));
-  border-top:1px solid var(--g08);text-align:center}
-footer p{font-size:11px;color:var(--g50);line-height:1.90}
-footer a{color:var(--g50);text-decoration:underline;text-underline-offset:3px}
+footer { padding:22px var(--px) max(24px,env(safe-area-inset-bottom));
+         border-top:1px solid var(--g08); text-align:center }
+footer p { font-size:11px; color:var(--g40); line-height:1.90 }
+footer a { color:var(--g40); text-decoration:underline; text-underline-offset:3px }
 
-@media(min-width:560px){:root{--px:32px}}
-@media(max-width:360px){:root{--px:18px}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* ── RESPONSIVE ── */
+@media(min-width:560px){ :root{ --px:32px } }
+@media(max-width:360px){ :root{ --px:18px; --sec:64px } }
+@media(prefers-reduced-motion:reduce){ *{ animation:none!important; transition:none!important } }
 </style>
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
+      <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
    <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -346,92 +444,115 @@ footer a{color:var(--g50);text-decoration:underline;text-underline-offset:3px}
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "vvn8p99ehp");
 </script>
-
 </head>
 <body>
 
-<div class="prog" aria-hidden="true"><div class="prog-bar"></div></div>
+<!-- reading progress -->
+<div class="rprog" aria-hidden="true"><div class="rprog-bar"></div></div>
 
-<!-- BYLINE / NAV -->
-<div class="byline" aria-label="記事情報">
+<!-- BYLINE -->
+<nav class="byline" aria-label="記事ナビ">
   <div class="byline-in">
-    <span class="byline-tag">体験記事</span>
-    <span class="byline-meta">約30秒<span class="byline-dot"></span>香水初心者向け</span>
+    <span class="byline-tag">香水ガイド</span>
+    <span class="byline-rt">初心者必見<span class="byline-sep"></span>3スクロール</span>
   </div>
-</div>
+</nav>
 
 
-<!-- ═══════════════════════════════════════════
-     ① FIRST VIEW — 問題フック
-     目的: 不安を刺激してスクロールさせる
-═══════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════
+     ① FIRST VIEW
+     目的: 3秒以内に「自分ごと化」させる
+═══════════════════════════════════════════════════ -->
 <section class="fv" aria-label="ファーストビュー">
   <div class="fv-inner">
 
-    <div class="art-label" aria-hidden="true">香水初心者へ</div>
+    <div class="art-mark">香水初心者へ</div>
 
+    <!-- BIG HOOK — Shippori Mincho -->
     <h1 class="fv-h1">
       その香水、<br>
-      <em>「清潔感ない人」</em>って<br>
-      思われてる可能性あります
+      <span class="strike">好印象どころか</span><br><br>
+      「<span class="danger">キツい人</span>」って<br>
+      思われてるかもしれません
     </h1>
 
-    <div class="hr" aria-hidden="true"></div>
-
-    <div class="fv-subs">
-      <span class="sub-badge">香水初心者は必見です</span>
-      <span class="sub-badge">30秒で読めます</span>
+    <!-- 状況画像: 会話の輪から少し距離がある構図 -->
+    <div class="fv-img-wrap">
+      <img class="fv-img"
+        src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&q=78"
+        alt="グループ会話で少し距離がある人物"
+        loading="eager" fetchpriority="high" decoding="async"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="fv-img-ph" style="display:none" aria-hidden="true">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>状況イメージ</span>
+      </div>
     </div>
 
-    <div class="scroll-cta" aria-hidden="true">
-      <span class="sc-line">続きを読む</span>
-      <span class="sc-arrow">↓</span>
+    <!-- 補足 -->
+    <div class="fv-subs">
+      <span class="fv-sub">香水初心者は必見</span>
+      <span class="fv-sub">3スクロールでわかる</span>
+      <span class="fv-sub">失敗しない選び方</span>
+    </div>
+
+    <div class="scroll-nudge" aria-hidden="true">
+      <span class="sn-txt">続きを読む</span>
+      <span class="sn-arr">↓</span>
     </div>
 
   </div>
 </section><!-- /① FIRST VIEW -->
 
 
-<!-- ═══════════════════════════════════════════
-     ② EMPATHY — 共感・問題深掘り
-     目的: 「自分ごと」にさせる
-═══════════════════════════════════════════ -->
-<section class="sec sec-wh" aria-label="共感">
+<!-- ═══════════════════════════════════════════════════
+     ② EMPATHY — 自分ごと化
+═══════════════════════════════════════════════════ -->
+<section class="sec sec-wh" aria-label="共感セクション">
   <div class="w">
 
-    <span class="sec-eyebrow">あなたは大丈夫ですか？</span>
-    <h2 class="sec-title">こんなこと、<em>ありませんか</em></h2>
+    <span class="ey">あなたは大丈夫ですか</span>
+    <h2 class="sec-h">こんなこと、<em>ありませんか</em></h2>
+
+    <!-- 日常シーン画像 -->
+    <img class="sec-img"
+      src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=700&q=78"
+      alt="通勤・日常シーン" loading="lazy" decoding="async"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="sec-img-ph" style="display:none" aria-hidden="true">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/></svg>
+    </div>
 
     <ul class="chk-list" role="list">
       <li class="chk-item" role="listitem">
-        <div class="chk-mark" aria-hidden="true">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div class="chk-ico" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <span class="chk-text">つけすぎていないか不安</span>
+        <span class="chk-t">つけすぎていないか不安</span>
       </li>
       <li class="chk-item" role="listitem">
-        <div class="chk-mark" aria-hidden="true">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div class="chk-ico" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <span class="chk-text">周りにどう思われているか気になる</span>
+        <span class="chk-t">周りにどう思われているか気になる</span>
       </li>
       <li class="chk-item" role="listitem">
-        <div class="chk-mark" aria-hidden="true">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div class="chk-ico" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <span class="chk-text">職場で香水が浮かないか心配</span>
+        <span class="chk-t">職場で浮かないか心配</span>
       </li>
       <li class="chk-item" role="listitem">
-        <div class="chk-mark" aria-hidden="true">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div class="chk-ico" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <span class="chk-text">電車で隣の人に思われていないか不安</span>
+        <span class="chk-t">電車で迷惑になっていないか不安</span>
       </li>
       <li class="chk-item" role="listitem">
-        <div class="chk-mark" aria-hidden="true">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div class="chk-ico" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <span class="chk-text">何本も失敗してきた</span>
+        <span class="chk-t">何本も失敗してきた</span>
       </li>
     </ul>
 
@@ -439,95 +560,79 @@ footer a{color:var(--g50);text-decoration:underline;text-underline-offset:3px}
 </section><!-- /② EMPATHY -->
 
 
-<!-- ═══════════════════════════════════════════
-     ③ CATEGORY FRAMING — 概念の書き換え
-     目的: 「近距離フレグランス」という新概念を植え付ける
-═══════════════════════════════════════════ -->
-<section class="sec sec-g" aria-label="解決策の提示">
+<!-- ═══════════════════════════════════════════════════
+     ③ REFRAME — 常識破壊
+═══════════════════════════════════════════════════ -->
+<section class="sec sec-g" aria-label="常識の破壊">
   <div class="w">
 
-    <span class="sec-eyebrow">考え方を変える</span>
-    <h2 class="sec-title" style="margin-bottom:22px">
-      香水の常識、<em>間違ってます</em>
-    </h2>
-    <p style="font-size:14px;color:var(--g70);line-height:1.68;margin-bottom:26px">
-      強く遠くに香らせることが<br>
-      「良い香水」だと思っていませんか。
-    </p>
+    <span class="ey">考え方を変える</span>
+    <h2 class="sec-h" style="margin-bottom:22px">香水の常識、<em>間違ってます</em></h2>
 
-    <div class="frame-card" aria-label="香水の概念比較">
-      <span class="frame-label">旧：従来の考え方</span>
-      <p class="frame-old">
-        <del>「遠くまで香るほど、良い香水」</del>
-      </p>
-      <p class="frame-arr" aria-hidden="true">↓</p>
-      <p class="frame-new">
-        <em>「近くで自然に感じる香り」</em><br>
-        が好印象を作る
+    <div class="rf-card" aria-label="香水の正しい考え方">
+      <span class="rf-ey2">旧：間違った常識</span>
+      <p class="rf-old"><del>「遠くに香る = 良い香水」</del></p>
+      <p class="rf-arr" aria-hidden="true">↓</p>
+      <p class="rf-new">
+        「近くで<em>好印象</em><br>= 正解の香水」
       </p>
     </div>
 
   </div>
-</section><!-- /③ CATEGORY FRAMING -->
+</section><!-- /③ REFRAME -->
 
 
-<!-- ═══════════════════════════════════════════
-     ④ COMPARISON — 白黒比較
-     目的: 一瞬で違いを理解させる
-═══════════════════════════════════════════ -->
-<section class="sec sec-wh" aria-label="比較">
+<!-- ═══════════════════════════════════════════════════
+     ④ COMPARISON — 白黒2カラム
+═══════════════════════════════════════════════════ -->
+<section class="sec sec-wh" aria-label="比較セクション">
   <div class="w">
 
-    <span class="sec-eyebrow">何が違うのか</span>
-    <h2 class="sec-title" style="margin-bottom:22px">2つの<em>香水の違い</em></h2>
+    <span class="ey">何が違うのか</span>
+    <h2 class="sec-h" style="margin-bottom:22px">2種類の<em>香水の違い</em></h2>
 
-    <div class="comp-wrap" role="table" aria-label="従来の香水と近距離フレグランスの比較">
+    <!-- 比較UI画像 -->
+    <img class="sec-img"
+      src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=700&q=78"
+      alt="近距離の会話シーン" loading="lazy" decoding="async"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="sec-img-ph" style="display:none" aria-hidden="true">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+
+    <div class="comp" role="table" aria-label="従来の香水と近距離フレグランスの比較">
       <div class="comp-heads" role="row">
         <div class="comp-h" role="columnheader">従来の香水</div>
-        <div class="comp-h comp-h-sep" role="presentation">　</div>
+        <div class="comp-h-sep" role="presentation"></div>
         <div class="comp-h" role="columnheader">近距離フレグランス</div>
       </div>
       <div class="comp-body" role="rowgroup">
         <div class="comp-col" role="cell">
           <div class="ci">
-            <span class="ci-ico" aria-hidden="true">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#AAAAAA" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             広く香る
           </div>
           <div class="ci">
-            <span class="ci-ico" aria-hidden="true">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </span>
-            強い印象になる
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#AAAAAA" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            強い印象
           </div>
           <div class="ci">
-            <span class="ci-ico" aria-hidden="true">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#AAAAAA" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             場所を選ぶ
           </div>
         </div>
-        <div class="comp-sep-col" role="presentation">
-          <span class="comp-vs">VS</span>
-        </div>
+        <div class="comp-sep" role="presentation"></div>
         <div class="comp-col" role="cell">
-          <div class="ci">
-            <span class="ci-ico" aria-hidden="true">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ok)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
+          <div class="ci ri-ok">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ok)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             近くで自然に香る
           </div>
-          <div class="ci">
-            <span class="ci-ico" aria-hidden="true">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ok)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            清潔感が伝わる
+          <div class="ci ri-ok">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ok)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            清潔感
           </div>
-          <div class="ci">
-            <span class="ci-ico" aria-hidden="true">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ok)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
+          <div class="ci ri-ok">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ok)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             どこでも使える
           </div>
         </div>
@@ -538,22 +643,28 @@ footer a{color:var(--g50);text-decoration:underline;text-underline-offset:3px}
 </section><!-- /④ COMPARISON -->
 
 
-<!-- ═══════════════════════════════════════════
-     ⑤ BENEFITS — 結果ベネフィット
-     目的: 「欲しい」を作る
-═══════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════
+     ⑤ BENEFITS — 結果のみ
+═══════════════════════════════════════════════════ -->
 <section class="sec sec-g" aria-label="ベネフィット">
   <div class="w">
 
-    <span class="sec-eyebrow">手に入る結果</span>
-    <h2 class="sec-title" style="margin-bottom:22px">
-      こんな<em>毎日になります</em>
-    </h2>
+    <span class="ey">手に入る結果</span>
+    <h2 class="sec-h" style="margin-bottom:22px">こんな<em>毎日になります</em></h2>
+
+    <!-- 日常の好印象シーン -->
+    <img class="sec-img"
+      src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=700&q=78"
+      alt="通勤・日常の好印象シーン" loading="lazy" decoding="async"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="sec-img-ph" style="display:none" aria-hidden="true">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
+    </div>
 
     <div class="ben-list" role="list">
       <div class="ben" role="listitem">
         <div class="ben-ico" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/></svg>
         </div>
         <div class="ben-body">
           <p class="ben-t">電車でも気を使わなくていい</p>
@@ -562,7 +673,7 @@ footer a{color:var(--g50);text-decoration:underline;text-underline-offset:3px}
       </div>
       <div class="ben" role="listitem">
         <div class="ben-ico" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         </div>
         <div class="ben-body">
           <p class="ben-t">職場でも安心して使える</p>
@@ -571,16 +682,16 @@ footer a{color:var(--g50);text-decoration:underline;text-underline-offset:3px}
       </div>
       <div class="ben" role="listitem">
         <div class="ben-ico" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         </div>
         <div class="ben-body">
           <p class="ben-t">自然に「いい匂い」と思われる</p>
-          <p class="ben-d">近くで気づかれる好印象の香り</p>
+          <p class="ben-d">近くにいる人だけが気づく好印象</p>
         </div>
       </div>
       <div class="ben" role="listitem">
         <div class="ben-ico" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <div class="ben-body">
           <p class="ben-t">香水初心者でも失敗しない</p>
@@ -593,168 +704,236 @@ footer a{color:var(--g50);text-decoration:underline;text-underline-offset:3px}
 </section><!-- /⑤ BENEFITS -->
 
 
-<!-- ═══════════════════════════════════════════
-     ⑥ REVIEWS — 横スクロールカルーセル
-     目的: 未来の自分を見せる
-═══════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════
+     ⑥ REVIEWS — 横スクロール UGC付き
+═══════════════════════════════════════════════════ -->
 <section class="sec sec-wh" aria-label="購入者の声">
   <div>
-    <div class="w rv-label">
-      <span class="sec-eyebrow">実際のレビュー</span>
-      <h2 class="sec-title" style="margin-bottom:0">
-        使った人の<em>声</em>
-      </h2>
+    <div class="w" style="margin-bottom:20px">
+      <span class="ey">実際のレビュー</span>
+      <h2 class="sec-h" style="margin-bottom:0">使った人の<em>声</em></h2>
     </div>
 
-    <div class="rv-track" role="list">
+    <div class="rv-overflow">
+      <div class="rv-track" role="list">
 
-      <div class="rv-card" role="listitem">
-        <span class="rv-scene">職場</span>
-        <span class="rv-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <p class="rv-q">上司に何も言われなくなった</p>
-        <span class="rv-meta">28歳 男性</span>
+        <div class="rvc" role="listitem">
+          <img class="rvc-img"
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=72"
+            alt="職場シーン" loading="lazy" decoding="async"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rvc-img-ph rvc-ph-1" style="display:none" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+          </div>
+          <div class="rvc-body">
+            <span class="rvc-scene">職場</span>
+            <span class="rvc-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <p class="rvc-q">「上司に何も言われなくなった」</p>
+            <span class="rvc-meta">28歳 男性</span>
+          </div>
+        </div>
+
+        <div class="rvc" role="listitem">
+          <img class="rvc-img"
+            src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=400&q=72"
+            alt="デートシーン" loading="lazy" decoding="async"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rvc-img-ph rvc-ph-2" style="display:none" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div class="rvc-body">
+            <span class="rvc-scene">デート</span>
+            <span class="rvc-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <p class="rvc-q">「彼女に褒められた」</p>
+            <span class="rvc-meta">24歳 男性</span>
+          </div>
+        </div>
+
+        <div class="rvc" role="listitem">
+          <img class="rvc-img"
+            src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&q=72"
+            alt="通勤シーン" loading="lazy" decoding="async"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rvc-img-ph rvc-ph-3" style="display:none" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="13" rx="2"/></svg>
+          </div>
+          <div class="rvc-body">
+            <span class="rvc-scene">通勤</span>
+            <span class="rvc-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <p class="rvc-q">「電車でも全く気にならない」</p>
+            <span class="rvc-meta">31歳 男性</span>
+          </div>
+        </div>
+
+        <div class="rvc" role="listitem">
+          <img class="rvc-img"
+            src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&q=72"
+            alt="カフェシーン" loading="lazy" decoding="async"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rvc-img-ph rvc-ph-4" style="display:none" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/></svg>
+          </div>
+          <div class="rvc-body">
+            <span class="rvc-scene">日常</span>
+            <span class="rvc-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <p class="rvc-q">「清潔感あるねって言われた」</p>
+            <span class="rvc-meta">26歳 男性</span>
+          </div>
+        </div>
+
+        <div class="rvc" role="listitem">
+          <img class="rvc-img"
+            src="https://images.unsplash.com/photo-1514866747592-c2d279258a78?w=400&q=72"
+            alt="初心者・日常" loading="lazy" decoding="async"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="rvc-img-ph rvc-ph-5" style="display:none" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
+          </div>
+          <div class="rvc-body">
+            <span class="rvc-scene">初心者</span>
+            <span class="rvc-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <p class="rvc-q">「量を気にせず使えるのが最高」</p>
+            <span class="rvc-meta">22歳 男性</span>
+          </div>
+        </div>
+
       </div>
-
-      <div class="rv-card" role="listitem">
-        <span class="rv-scene">デート</span>
-        <span class="rv-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <p class="rv-q">彼女に「いい匂い」と褒められた</p>
-        <span class="rv-meta">24歳 男性</span>
-      </div>
-
-      <div class="rv-card" role="listitem">
-        <span class="rv-scene">通勤</span>
-        <span class="rv-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <p class="rv-q">電車でも全く気にならない</p>
-        <span class="rv-meta">31歳 男性</span>
-      </div>
-
-      <div class="rv-card" role="listitem">
-        <span class="rv-scene">初心者</span>
-        <span class="rv-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <p class="rv-q">量を気にせず使えるのが最高</p>
-        <span class="rv-meta">22歳 男性</span>
-      </div>
-
-      <div class="rv-card" role="listitem">
-        <span class="rv-scene">日常</span>
-        <span class="rv-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <p class="rv-q">清潔感あるねって言われた</p>
-        <span class="rv-meta">26歳 男性</span>
-      </div>
-
     </div>
-
     <div class="rv-dots" aria-hidden="true">
-      <span class="rv-dot"></span>
-      <span class="rv-dot"></span>
-      <span class="rv-dot"></span>
-      <span class="rv-dot"></span>
-      <span class="rv-dot"></span>
+      <span class="rv-dot"></span><span class="rv-dot"></span>
+      <span class="rv-dot"></span><span class="rv-dot"></span><span class="rv-dot"></span>
     </div>
   </div>
 </section><!-- /⑥ REVIEWS -->
 
 
-<!-- ═══════════════════════════════════════════
-     ⑦ SENSORY — 香り体験の想像
-     目的: 香りを「感じさせる」
-═══════════════════════════════════════════ -->
-<section class="sec sec-g" aria-label="香りのイメージ">
+<!-- ═══════════════════════════════════════════════════
+     ⑦ SCENT FLOW — 香りの流れ（画像付き縦ステップ）
+═══════════════════════════════════════════════════ -->
+<section class="sec sec-g" aria-label="香りの流れ">
   <div class="w">
 
-    <span class="sec-eyebrow">香りの変化</span>
-    <h2 class="sec-title" style="margin-bottom:22px">
-      1日の<em>香りの流れ</em>
-    </h2>
+    <span class="ey">1日の香りの変化</span>
+    <h2 class="sec-h" style="margin-bottom:28px">朝から夜まで<em>続く香り</em></h2>
 
-    <div class="scent-timeline" role="list">
-      <div class="st-step" role="listitem">
-        <div class="st-time-wrap">
-          <span class="st-time">朝</span>
-          <div class="st-dot st-dot-filled" aria-hidden="true"></div>
+    <div class="flow-steps" role="list">
+
+      <div class="fs" role="listitem">
+        <div class="fs-left">
+          <div class="fs-dot" aria-hidden="true"></div>
+          <div class="fs-line" aria-hidden="true"></div>
         </div>
-        <div class="st-content">
-          <span class="st-label">つけた直後</span>
-          <p class="st-main">爽やかで清潔感のある立ち上がり</p>
-          <p class="st-desc">シトラス系。第一印象をつくる</p>
-        </div>
-      </div>
-      <div class="st-step" role="listitem">
-        <div class="st-time-wrap">
-          <span class="st-time">昼</span>
-          <div class="st-dot st-dot-filled" aria-hidden="true"></div>
-        </div>
-        <div class="st-content">
-          <span class="st-label">2〜3時間後</span>
-          <p class="st-main">柔らかくなり、近くで気づかれる</p>
-          <p class="st-desc">ホワイトムスク。自然な清潔感</p>
+        <div class="fs-right">
+          <span class="fs-time">朝 — つけた直後</span>
+          <p class="fs-main">爽やかで清潔感のある立ち上がり</p>
+          <p class="fs-d">シトラス系の第一印象をつくる</p>
+          <img class="fs-img"
+            src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=72"
+            alt="朝の準備シーン" loading="lazy" decoding="async"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="fs-img-ph fs-ph-1" style="display:none" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="6" x2="12" y2="12"/><line x1="12" y1="12" x2="16" y2="14"/></svg>
+          </div>
         </div>
       </div>
-      <div class="st-step" role="listitem">
-        <div class="st-time-wrap">
-          <span class="st-time">夜</span>
-          <div class="st-dot" aria-hidden="true"></div>
+
+      <div class="fs" role="listitem">
+        <div class="fs-left">
+          <div class="fs-dot" aria-hidden="true"></div>
+          <div class="fs-line" aria-hidden="true"></div>
         </div>
-        <div class="st-content">
-          <span class="st-label">夕方〜</span>
-          <p class="st-main">石鹸のような余韻が残る</p>
-          <p class="st-desc">ソープ系。一日中使えるやさしさ</p>
+        <div class="fs-right">
+          <span class="fs-time">昼 — 2〜3時間後</span>
+          <p class="fs-main">近くで自然に気づかれる</p>
+          <p class="fs-d">ホワイトムスクの清潔感が広がる</p>
+          <img class="fs-img"
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=72"
+            alt="職場シーン" loading="lazy" decoding="async"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="fs-img-ph fs-ph-2" style="display:none" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
         </div>
       </div>
+
+      <div class="fs" role="listitem">
+        <div class="fs-left">
+          <div class="fs-dot" aria-hidden="true"></div>
+          <div class="fs-line" aria-hidden="true"></div>
+        </div>
+        <div class="fs-right">
+          <span class="fs-time">夜 — 帰宅後も</span>
+          <p class="fs-main">石鹸のような余韻が残る</p>
+          <p class="fs-d">やさしいソープ系で一日を締める</p>
+          <img class="fs-img"
+            src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&q=72"
+            alt="夜のリラックスシーン" loading="lazy" decoding="async"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="fs-img-ph fs-ph-3" style="display:none" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/></svg>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
-</section><!-- /⑦ SENSORY -->
+</section><!-- /⑦ SCENT FLOW -->
 
 
-<!-- ═══════════════════════════════════════════
-     ⑧ OFFER — 商品選択
-     目的: 迷わせず選ばせる
-═══════════════════════════════════════════ -->
-<section class="sec sec-wh" aria-label="商品選択">
+<!-- ═══════════════════════════════════════════════════
+     ⑧ OFFER — 商品カード（ゴールドバッジ付き）
+═══════════════════════════════════════════════════ -->
+<section class="sec sec-wh" aria-label="商品オファー">
   <div class="w">
 
-    <span class="sec-eyebrow">選んでください</span>
-    <h2 class="sec-title" style="margin-bottom:24px">
-      あなたに合った<em>サイズ</em>
-    </h2>
+    <span class="ey">失敗しない選び方</span>
+    <h2 class="sec-h" style="margin-bottom:24px">あなたに合った<em>サイズ</em></h2>
 
     <div class="offer-cards">
 
-      <!-- 初心者おすすめ -->
-      <div class="offer-card">
-        <div class="offer-badge">初心者おすすめ</div>
-        <p class="offer-name">50ml</p>
-        <p class="offer-items">
-          本体 50ml<br>
-          ＋ 10mlアトマイザー付き<br>
-          （開封前に香り確認可能）
-        </p>
-        <p class="offer-price">¥5,980<span>税込・送料無料</span></p>
-        <p class="offer-tag"><b>一番人気</b>&nbsp;·&nbsp;まず試したい方に</p>
-        <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
-           class="btn btn-ink" aria-label="香りを確認する">
-          香りを確認する &rarr;
-        </a>
+      <!-- 50ml -->
+      <div class="oc">
+        <div class="oc-inner">
+          <div class="oc-badge">初心者おすすめ</div>
+          <img class="oc-img"
+            src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2824_430x.webp?v=1772884462"
+            alt="50ml ボトル" loading="lazy" decoding="async"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="oc-img-ph" style="display:none" aria-hidden="true">
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 5H8L9 3z"/><path d="M8 8v12a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8"/></svg>
+          </div>
+          <p class="oc-name">50ml</p>
+          <p class="oc-items">本体 50ml<br>＋10mlアトマイザー<br>（開封前に香り確認可能）</p>
+          <p class="oc-price">¥5,980<span>税込・送料無料</span></p>
+          <p class="oc-tag"><b>一番人気</b> &middot; まず試したい方に</p>
+          <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
+             class="btn btn-gold" aria-label="まず2mlで確認する">
+            まず2mlで確認する &rarr;
+          </a>
+        </div>
       </div>
 
-      <!-- しっかり使う人 -->
-      <div class="offer-card offer-card-rec">
-        <div class="offer-badge">最大お得</div>
-        <p class="offer-name">100ml</p>
-        <p class="offer-items">
-          本体 100ml<br>
-          ＋ 10mlアトマイザー付き<br>
-          ＋ 2mlテストキット付き<br>
-          （開封前に香り確認可能）
-        </p>
-        <p class="offer-price">¥14,800<span>税込・送料無料</span></p>
-        <p class="offer-tag"><b>長く使いたい方</b>&nbsp;·&nbsp;コスパ最大</p>
-        <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
-           class="btn btn-ink" aria-label="詳細を見る">
-          詳細を見る &rarr;
-        </a>
+      <!-- 100ml -->
+      <div class="oc oc-rec">
+        <div class="oc-inner">
+          <div class="oc-badge">最大お得</div>
+          <img class="oc-img"
+            src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2824_430x.webp?v=1772884462"
+            alt="100ml ボトル" loading="lazy" decoding="async"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="oc-img-ph" style="display:none" aria-hidden="true">
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 5H8L9 3z"/><path d="M8 8v12a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8"/></svg>
+          </div>
+          <p class="oc-name">100ml</p>
+          <p class="oc-items">本体 100ml<br>＋ 10mlアトマイザー<br>＋ 2mlテストキット<br>（開封前に香り確認可能）</p>
+          <p class="oc-price">¥14,800<span>税込・送料無料</span></p>
+          <p class="oc-tag"><b>長く使いたい方</b> &middot; コスパ最大</p>
+          <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
+             class="btn btn-gold" aria-label="リスク0で試す">
+            リスク0で試す &rarr;
+          </a>
+        </div>
       </div>
 
     </div>
@@ -763,77 +942,124 @@ footer a{color:var(--g50);text-decoration:underline;text-underline-offset:3px}
 </section><!-- /⑧ OFFER -->
 
 
-<!-- ═══════════════════════════════════════════
-     ⑨ RISK REVERSAL — リスク逆転
-     目的: 「失敗しないから大丈夫」と思わせる
-═══════════════════════════════════════════ -->
-<section class="sec sec-g" aria-label="リスク逆転">
+<!-- ═══════════════════════════════════════════════════
+     ⑨ COMPETITIVE COMPARISON
+     目的: ここで買う理由を作る
+═══════════════════════════════════════════════════ -->
+<section class="sec sec-g" aria-label="他ブランドとの比較">
   <div class="w">
 
-    <span class="sec-eyebrow">安心してください</span>
-    <h2 class="sec-title" style="margin-bottom:22px">
-      失敗しない<em>仕組みがある</em>
-    </h2>
+    <span class="ey">選ぶ理由</span>
+    <h2 class="sec-h" style="margin-bottom:22px">他と<em>何が違うのか</em></h2>
 
-    <div class="risk-card">
-      <div class="risk-ico" aria-hidden="true">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="rival-grid" role="table" aria-label="他ブランドとPURELAYERの比較">
+      <!-- 他ブランド -->
+      <div class="rival-card" role="cell">
+        <span class="rival-name">他ブランド</span>
+        <div class="rival-items">
+          <div class="ri">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#AAAAAA" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            本体のみ
+          </div>
+          <div class="ri">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#AAAAAA" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            事前確認なし
+          </div>
+          <div class="ri">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#AAAAAA" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            返品保証なし
+          </div>
+        </div>
       </div>
-      <p class="risk-title">30日間 返品保証</p>
-      <p style="font-size:13px;color:var(--g70);line-height:1.60;margin-bottom:4px">
-        本体開封後の返品は不可ですが、<br>
-        ミニボトルで事前に確認できます。
-      </p>
-
-      <div class="risk-steps" role="list">
-        <div class="rstep" role="listitem">
-          <div class="rstep-n" aria-hidden="true">1</div>
-          <div>
-            <p class="rstep-t">2mlで香りを確認する</p>
-            <p class="rstep-d">本体を開けずに試せる</p>
+      <!-- PURELAYER -->
+      <div class="rival-card rival-card-ours" role="cell">
+        <span class="rival-name rival-name-ours">PURELAYER</span>
+        <div class="rival-items">
+          <div class="ri ri-ok">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ok)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            本体
           </div>
-        </div>
-        <div class="rstep" role="listitem">
-          <div class="rstep-n" aria-hidden="true">2</div>
-          <div>
-            <p class="rstep-t">気に入ったら本体を開封</p>
-            <p class="rstep-d">確信を持ってから使い始める</p>
+          <div class="ri ri-ok">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ok)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            2mlで事前確認
           </div>
-        </div>
-        <div class="rstep" role="listitem">
-          <div class="rstep-n" aria-hidden="true">3</div>
-          <div>
-            <p class="rstep-t">合わなければ30日以内に返品</p>
-            <p class="rstep-d">理由不要・全額返金</p>
+          <div class="ri ri-ok">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ok)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            30日返品保証
           </div>
         </div>
       </div>
     </div>
 
   </div>
-</section><!-- /⑨ RISK REVERSAL -->
+</section><!-- /⑨ COMPETITOR COMPARISON -->
 
 
-<!-- ═══════════════════════════════════════════
-     ⑩ FINAL CTA
-     目的: 商品ページへ送る
-═══════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════
+     ⑩ RISK REVERSAL — 返品保証
+═══════════════════════════════════════════════════ -->
+<section class="sec sec-wh" aria-label="リスク逆転">
+  <div class="w">
+
+    <span class="ey">安心して試せる</span>
+    <h2 class="sec-h" style="margin-bottom:22px">失敗しない<em>仕組み</em></h2>
+
+    <div class="risk-card">
+      <div class="risk-head">
+        <div class="risk-shield" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <p class="risk-title">30日間 返品保証</p>
+      </div>
+      <p class="risk-copy">
+        本体開封後の返品は不可ですが、<br>
+        ミニボトルで事前に確認できます。
+      </p>
+      <div class="risk-steps" role="list">
+        <div class="rstep" role="listitem">
+          <div class="rstep-n" aria-hidden="true">1</div>
+          <div>
+            <p class="rstep-t">2mlで試す</p>
+            <p class="rstep-d">本体を開けずに香りを確認</p>
+          </div>
+        </div>
+        <div class="rstep" role="listitem">
+          <div class="rstep-n" aria-hidden="true">2</div>
+          <div>
+            <p class="rstep-t">気に入ったら開封</p>
+            <p class="rstep-d">確信を持って使い始める</p>
+          </div>
+        </div>
+        <div class="rstep" role="listitem">
+          <div class="rstep-n" aria-hidden="true">3</div>
+          <div>
+            <p class="rstep-t">合わなければ返品</p>
+            <p class="rstep-d">30日以内・理由不要・全額返金</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section><!-- /⑩ RISK REVERSAL -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     ⑪ FINAL CTA
+═══════════════════════════════════════════════════ -->
 <section class="final" aria-label="最終CTA">
   <div class="final-inner">
 
-    <span class="final-kicker">最後に</span>
-    <h2 class="final-h">
-      清潔感のある香りを<br>
-      試してみませんか
-    </h2>
+    <span class="final-kicker">リスクゼロ</span>
+    <h2 class="final-h">リスク0で試す<br>まずは2ml・10mlで確認</h2>
     <p class="final-sub">
-      まず2mlで確認できます。<br>
-      失敗しない仕組みがあります。
+      失敗しない仕組みがある。<br>
+      まず2mlか10mlで確かめてください。
     </p>
 
     <div class="final-btns">
       <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
-         class="btn btn-wh" aria-label="香りを確認する">
+         class="btn btn-gold" aria-label="香りを確認する">
         香りを確認する &rarr;
       </a>
       <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
@@ -849,7 +1075,7 @@ footer a{color:var(--g50);text-decoration:underline;text-underline-offset:3px}
     </div>
 
   </div>
-</section><!-- /⑩ FINAL CTA -->
+</section><!-- /⑪ FINAL CTA -->
 
 
 <footer>
