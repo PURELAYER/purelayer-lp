@@ -2,852 +2,1131 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="香水10個以上買って、20万円ドブに捨てて分かったこと。PURELAYER Oud Stallion — 失敗しない香水の正解。">
-<title>香水10個以上買って、20万円ドブに捨てて分かったこと。</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="香水で失敗したくない人へ。まず2mlで肌に合うか試してください。合わなければ全額返金。PURELAYER Oud Stallion。">
+<title>香水で失敗したくない人へ。| PURELAYER Oud Stallion</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
-<style>
 
-/* ══════════════════════════════════════════════════════
-   1-Scroll-1-Message LP
-   Benchmark: BAUM × Huxley × Notion
-   Display: Shippori Mincho B1  Body: Noto Sans JP (300/400)
-   Palette: #FFF · #F7F7F7 · #111 · (no borders, only space)
-   Animation: CSS @keyframes fade-in on scroll (no JS)
+<style>
+/* ══════════════════════════════════════════════
+   CVR MAX LP — PURELAYER Oud Stallion
+   Strategy: "失敗しない仕組みを売る"
+   Base: 375px mobile-first
+   Font: Shippori Mincho B1 + Noto Sans JP
+   Palette: White / Near-black / Warm grey
    JS: ZERO
-══════════════════════════════════════════════════════ */
+══════════════════════════════════════════════ */
 
 :root {
   --wh:    #FFFFFF;
-  --sf:    #F7F7F7;
+  --bg:    #FAFAF8;
+  --sf:    #F4F4F2;
   --ink:   #111111;
-  --g60:   #5A5A5A;
-  --g40:   #8C8C8C;
-  --g20:   #C8C8C8;
-  --g10:   #E8E8E8;
-  --ok:    #2A6E4A;
+  --g70:   #424240;
+  --g50:   #737370;
+  --g30:   #AAAAAA;
+  --g14:   #E0E0DC;
+  --g07:   #EEEEEA;
+  --ok:    #1E7A40;
+  --star:  #C09030;
 
   --fm: "Shippori Mincho B1","Hiragino Mincho ProN",Georgia,serif;
   --fu: "Noto Sans JP","Hiragino Kaku Gothic ProN",system-ui,sans-serif;
 
-  --px:  28px;
+  --px: 22px;
   --mxw: 500px;
+  --r: 12px;
 }
 
 /* ── RESET ── */
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
-html { font-size:16px; scroll-behavior:smooth; -webkit-text-size-adjust:100%;
-       scroll-snap-type:y mandatory }
+html { font-size:16px; scroll-behavior:smooth; -webkit-text-size-adjust:100% }
 body {
   font-family:var(--fu);
   font-weight:300;
-  background:var(--wh);
+  background:var(--bg);
   color:var(--ink);
-  line-height:1.90;
+  line-height:1.88;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
 img { display:block; max-width:100% }
 a   { color:inherit; text-decoration:none }
 
+/* ── PAGE WRAPPER ── */
+.page { max-width:var(--mxw); margin:0 auto; background:var(--wh) }
+
 /* ── READING PROGRESS ── */
-.rprog { position:fixed; top:0; left:0; right:0; height:1.5px; z-index:100;
-         background:transparent }
-.rp-bar {
-  height:100%; width:0;
-  background:var(--ink);
+.rprog { height:1.5px; background:var(--g14); position:sticky; top:0; z-index:90 }
+.rp-fill {
+  height:100%; width:0; background:var(--ink);
   animation:rpa linear; animation-timeline:scroll();
 }
 @keyframes rpa { to { width:100% } }
 
-/* ── FADE-IN ANIMATION ── */
-/* CSS-only: elements animate-in via animation on load
-   Each section gets a staggered delay; scroll-snap means
-   the user arrives at each section fresh and sees the fade */
-@keyframes fi {
-  from { opacity:0; transform:translateY(28px) }
-  to   { opacity:1; transform:none }
-}
-@keyframes fi-slow {
-  from { opacity:0; transform:translateY(16px) }
-  to   { opacity:1; transform:none }
-}
-
-/* ── SECTION BASE ── */
-.sec {
-  min-height:100svh;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:80px var(--px);
-  scroll-snap-align:start;
-  position:relative;
-}
-.sec-wh { background:var(--wh) }
+/* ── SECTION UTILITY ── */
+.sec { padding:60px var(--px) }
 .sec-sf  { background:var(--sf) }
-.sec-ink {
-  background:var(--ink);
-  color:var(--wh);
-}
-
-/* ── CONTENT WRAPPER ── */
-.w {
-  max-width:var(--mxw);
-  width:100%;
-  margin:0 auto;
-}
+.sec-ink { background:var(--ink); color:var(--wh) }
+.sec-wh  { background:var(--wh) }
+.w { max-width:var(--mxw); margin:0 auto }
 
 /* ── TYPOGRAPHY ── */
-/* mincho display — emotional "言語化" moments */
-.t-min {
+.t-disp {
   font-family:var(--fm);
-  font-size:clamp(22px,6vw,28px);
+  font-size:clamp(24px,7vw,32px);
+  font-weight:800;
+  line-height:1.44;
+  letter-spacing:-.015em;
+  color:var(--ink);
+}
+.sec-ink .t-disp { color:var(--wh) }
+
+.t-mid {
+  font-family:var(--fm);
+  font-size:clamp(19px,5.5vw,24px);
   font-weight:700;
   line-height:1.52;
   letter-spacing:-.01em;
   color:var(--ink);
 }
-.sec-ink .t-min { color:var(--wh) }
 
-/* large mincho — FV + key phrases */
-.t-min-lg {
-  font-family:var(--fm);
-  font-size:clamp(26px,7.5vw,34px);
-  font-weight:800;
-  line-height:1.44;
-  letter-spacing:-.02em;
-  color:var(--ink);
-}
-
-/* gothic body */
 .t-body {
-  font-family:var(--fu);
-  font-size:15px;
-  font-weight:300;
-  line-height:2.0;
-  color:var(--g60);
-  margin-top:18px;
+  font-size:15px; font-weight:300;
+  line-height:1.96; color:var(--g70);
 }
+.t-body b  { color:var(--ink); font-weight:500 }
+.t-body em { font-style:normal; color:var(--ink);
+             border-bottom:1.5px solid rgba(17,17,17,.20); }
 .sec-ink .t-body { color:rgba(255,255,255,.52) }
-.t-body b { color:var(--ink); font-weight:500 }
 .sec-ink .t-body b { color:var(--wh) }
 
-/* micro label */
-.t-label {
-  font-size:9.5px;
-  font-weight:700;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:var(--g40);
-}
-.sec-ink .t-label { color:rgba(255,255,255,.30) }
+.gap { margin-top:18px }
+.gap-lg { margin-top:28px }
 
-/* section number */
-.sec-num {
-  font-size:9px;
-  font-weight:700;
-  letter-spacing:.26em;
-  text-transform:uppercase;
-  color:var(--g20);
-  margin-bottom:32px;
-  text-align:center;
+/* ── FADE-IN ── */
+@keyframes fi {
+  from { opacity:0; transform:translateY(22px) }
+  to   { opacity:1; transform:none }
 }
-.sec-ink .sec-num { color:rgba(255,255,255,.14) }
+.fi-a { animation:fi 1s .05s cubic-bezier(.16,1,.3,1) both }
+.fi-b { animation:fi 1s .22s cubic-bezier(.16,1,.3,1) both }
+.fi-c { animation:fi 1s .40s cubic-bezier(.16,1,.3,1) both }
+.fi-d { animation:fi 1s .60s cubic-bezier(.16,1,.3,1) both }
+.fi-e { animation:fi 1s .82s cubic-bezier(.16,1,.3,1) both }
+.fi-f { animation:fi 1s 1.05s cubic-bezier(.16,1,.3,1) both }
 
-/* ── ANIMATIONS per section ── */
-/* Section 1 */
-.s1-a { animation:fi 1.0s .10s cubic-bezier(.16,1,.3,1) both }
-.s1-b { animation:fi 1.0s .30s cubic-bezier(.16,1,.3,1) both }
-.s1-c { animation:fi 1.0s .55s cubic-bezier(.16,1,.3,1) both }
-.s1-d { animation:fi 1.0s .80s cubic-bezier(.16,1,.3,1) both }
-.s1-e { animation:fi 1.0s 1.10s cubic-bezier(.16,1,.3,1) both }
-/* Other sections — CSS can't fire on scroll (no JS).
-   We use animation-delay to stagger. Since scroll-snap
-   brings the section into view, short delays still feel responsive. */
-.fx-a { animation:fi 1.0s .05s cubic-bezier(.16,1,.3,1) both }
-.fx-b { animation:fi 1.0s .22s cubic-bezier(.16,1,.3,1) both }
-.fx-c { animation:fi 1.0s .42s cubic-bezier(.16,1,.3,1) both }
-.fx-d { animation:fi-slow 1.2s .65s cubic-bezier(.16,1,.3,1) both }
-.fx-e { animation:fi-slow 1.2s .90s cubic-bezier(.16,1,.3,1) both }
-
-/* ── SECTION IMAGE ── */
-.simg {
-  width:100%;
-  border-radius:12px;
-  overflow:hidden;
-  margin:24px 0;
+/* ── BADGE (小さな信頼バッジ) ── */
+.badge {
+  display:inline-flex; align-items:center; gap:5px;
+  font-size:10.5px; font-weight:500;
+  padding:4px 11px; border-radius:99px;
+  letter-spacing:.03em;
 }
-.simg img {
-  width:100%; height:clamp(220px,44vw,290px);
-  object-fit:cover; display:block;
-}
-.simg-ph {
-  width:100%; height:clamp(220px,44vw,290px);
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center; gap:10px;
-}
-.simg-ph svg { opacity:.18 }
-.simg-ph span {
-  font-size:9.5px; color:var(--g40);
-  letter-spacing:.08em; text-align:center; line-height:1.72;
-}
-.ph-warm { background:linear-gradient(150deg,#EAE6E0,#D8D3CC) }
-.ph-cool { background:linear-gradient(150deg,#E4E8EC,#D2D8DE) }
-.ph-sf   { background:var(--sf) }
-
-/* ── HOOK ROW ── */
-.hook-row {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:10px;
-  margin-top:40px;
-  padding-top:32px;
-  border-top:1px solid var(--g10);
-}
-.sec-ink .hook-row { border-top-color:rgba(255,255,255,.08) }
-.hook-text {
-  font-size:13px;
-  font-weight:500;
-  color:var(--g60);
-  text-align:center;
-  line-height:1.72;
-}
-.sec-ink .hook-text { color:rgba(255,255,255,.42) }
-.hook-arr {
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-  color:var(--g20);
-  animation:arr 2.4s ease infinite;
-}
-.sec-ink .hook-arr { color:rgba(255,255,255,.14) }
-@keyframes arr {
-  0%,100% { opacity:1; transform:translateY(0) }
-  55%     { opacity:.30; transform:translateY(6px) }
-}
-
-/* ── NOTION CALLOUT ── */
-.callout {
-  background:var(--sf);
-  border-radius:8px;
-  padding:20px 18px;
-  margin:22px 0;
-}
-.callout-icon { font-size:18px; margin-bottom:8px; display:block }
-.callout-body {
-  font-family:var(--fu);
-  font-size:14.5px; font-weight:300;
-  line-height:1.90; color:var(--g60);
-}
-.callout-body b { color:var(--ink); font-weight:500 }
-
-/* ── KEY PHRASE ── (wide left border, mincho) */
-.keyphrase {
-  padding-left:18px;
-  border-left:2px solid var(--ink);
-  margin:24px 0;
-}
-.sec-ink .keyphrase { border-left-color:rgba(255,255,255,.25) }
-.kp-main {
-  font-family:var(--fm);
-  font-size:clamp(18px,5vw,22px);
-  font-weight:700;
-  line-height:1.58;
-  color:var(--ink);
-}
-.sec-ink .kp-main { color:var(--wh) }
-.kp-sub {
-  font-size:12.5px; font-weight:300;
-  color:var(--g40); margin-top:6px; line-height:1.72;
-}
-.sec-ink .kp-sub { color:rgba(255,255,255,.30) }
-
-/* ── PRODUCT POINTS ── */
-.pts { margin:20px 0 }
-.pt {
-  display:grid;
-  grid-template-columns:22px 1fr;
-  align-items:start; gap:0 14px;
-  padding:14px 0;
-  border-bottom:1px solid var(--g10);
-  font-family:var(--fu);
-  font-size:14.5px; font-weight:300;
-  line-height:1.85; color:var(--g60);
-}
-.pt:last-child { border-bottom:none }
-.pt b { color:var(--ink); font-weight:500 }
-.pt-n {
-  font-size:10px; font-weight:700;
-  color:var(--g20); text-align:right; padding-top:3px;
-  letter-spacing:.06em;
-}
-
-/* ── RISK STEPS ── */
-.steps { margin:20px 0 }
-.step {
-  display:grid;
-  grid-template-columns:36px 1fr;
-  align-items:start; gap:0 14px;
-  padding:16px 0;
-  border-bottom:1px solid var(--g10);
-}
-.step:last-child { border-bottom:none }
-.step-n {
-  width:28px; height:28px; border-radius:50%;
-  background:var(--ink); color:var(--wh);
-  display:flex; align-items:center; justify-content:center;
-  font-family:var(--fu);
-  font-size:11px; font-weight:700; flex-shrink:0; margin-top:2px;
-}
-.step-t {
-  font-family:var(--fm);
-  font-size:15px; font-weight:700;
-  color:var(--ink); line-height:1.32; margin-bottom:3px;
-}
-.step-d {
-  font-family:var(--fu);
-  font-size:12.5px; font-weight:300;
-  color:var(--g40); line-height:1.55;
-}
-
-/* ── UGC: iPhone Notes style ── */
-.ugc-notes {
-  background:var(--sf);
-  border-radius:14px;
-  overflow:hidden;
-  margin:20px 0;
-}
-.ugc-notes-bar {
-  background:var(--g10);
-  padding:10px 16px;
-  display:flex; align-items:center; gap:8px;
-}
-.ugc-notes-dot {
-  width:9px; height:9px; border-radius:50%;
-}
-.ugc-nd-y { background:#FFD60A }
-.ugc-nd-g { background:#34C759 }
-.ugc-nd-r { background:#FF3B30 }
-.ugc-notes-title {
-  font-family:var(--fu);
-  font-size:11px; font-weight:700;
-  color:var(--g40); margin-left:4px; letter-spacing:.04em;
-}
-.ugc-notes-body {
-  padding:18px 18px 20px;
-}
-.ugc-note {
-  padding:12px 0;
-  border-bottom:1px solid var(--g10);
-}
-.ugc-note:last-child { border-bottom:none }
-.ugc-note-q {
-  font-family:var(--fm);
-  font-size:15px; line-height:1.68; color:var(--g60);
-  margin-bottom:5px;
-}
-.ugc-note-meta {
-  font-family:var(--fu);
-  font-size:10.5px; color:var(--g40); letter-spacing:.04em;
-}
-
-/* ── MID-PAGE CTA ── */
-.mid-cta {
-  background:var(--sf);
-  border-radius:14px;
-  padding:24px 20px;
-  margin:24px 0;
-  text-align:center;
-}
-.mid-cta-copy {
-  font-family:var(--fm);
-  font-size:16px; line-height:1.65; color:var(--g60);
-  margin-bottom:16px;
-}
-.mid-cta-copy b { color:var(--ink) }
+.badge-ok  { background:rgba(30,122,64,.10); color:var(--ok) }
+.badge-ink { background:var(--ink); color:var(--wh) }
+.badge-sf  { background:var(--sf); color:var(--g50) }
 
 /* ── BUTTONS ── */
 .btn {
-  display:flex; align-items:center; justify-content:center;
-  width:100%; border-radius:8px; border:none;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  width:100%; border-radius:var(--r); border:none;
   font-family:var(--fu); font-weight:700; letter-spacing:.03em;
   cursor:pointer; position:relative; overflow:hidden;
-  text-decoration:none;
-  -webkit-tap-highlight-color:transparent;
-  transition:opacity .12s;
+  text-decoration:none; -webkit-tap-highlight-color:transparent;
+  transition:opacity .12s; flex-shrink:0;
 }
-.btn:active { opacity:.84 }
+.btn:active { opacity:.82 }
+/* shimmer */
 .btn::before {
-  content:"";
-  position:absolute; top:0; left:-80%; width:40%; height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);
-  animation:shim 6s 2.5s ease infinite;
+  content:""; position:absolute; top:0; left:-80%;
+  width:40%; height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);
+  animation:shim 6s 2s ease infinite;
 }
 @keyframes shim { 0%{left:-80%} 40%,100%{left:130%} }
 
-.btn-ink {
+.btn-primary {
+  height:56px; font-size:15px;
   background:var(--ink); color:var(--wh);
-  height:54px; font-size:14.5px;
   box-shadow:0 4px 24px rgba(17,17,17,.18);
 }
-.btn-ink-sm {
+.btn-primary-lg {
+  height:60px; font-size:15.5px;
   background:var(--ink); color:var(--wh);
-  height:48px; font-size:13.5px;
-  box-shadow:0 3px 16px rgba(17,17,17,.14);
+  box-shadow:0 6px 32px rgba(17,17,17,.22);
+  animation:pulse 3.5s 3s ease infinite;
 }
-.btn-out {
-  background:transparent; color:var(--g40);
-  border:1px solid var(--g10);
-  height:42px; font-size:13px; margin-top:10px;
+@keyframes pulse {
+  0%,88%,100%{ box-shadow:0 6px 32px rgba(17,17,17,.22) }
+  94%         { box-shadow:0 6px 32px rgba(17,17,17,.22),0 0 0 5px rgba(17,17,17,.08) }
 }
-
-/* trust row */
+.btn-ghost {
+  height:46px; font-size:13.5px;
+  background:transparent; color:var(--g50);
+  border:1px solid var(--g14);
+}
+/* trust row under button */
 .trust {
   display:flex; flex-wrap:wrap;
-  justify-content:center; gap:5px 14px;
-  margin-top:12px;
+  justify-content:center; gap:4px 14px;
+  margin-top:11px;
 }
 .tr {
-  font-size:11px; font-weight:300; color:var(--g40);
+  font-size:11px; font-weight:300; color:var(--g50);
   display:flex; align-items:center; gap:3px;
 }
-.tr::before { content:"✓"; color:var(--ok); font-weight:500; font-size:10px }
+.tr::before { content:"✓"; color:var(--ok); font-weight:500 }
 
-/* ── FINAL CTA SECTION (sec-ink) ── */
-.final-promise {
-  font-family:var(--fm);
-  font-size:16px; line-height:1.70;
-  color:rgba(255,255,255,.55);
-  margin-bottom:28px;
+
+/* ══════════════════════════════════════════════
+   ① FV — 離脱防止（0.5秒で理解）
+══════════════════════════════════════════════ */
+.fv {
+  padding:40px var(--px) 48px;
+  background:var(--wh);
 }
-.final-promise b { color:var(--wh) }
 
-/* ── FOOT ── */
-.foot {
+/* 2ml試せる → 一番最初に視線が行く場所 */
+.fv-2ml-strip {
+  display:flex; align-items:center; gap:8px;
+  margin-bottom:20px;
+}
+.fv-2ml-dot {
+  width:8px; height:8px; border-radius:50%;
+  background:var(--ok);
+  animation:dot-blink 2s ease infinite;
+}
+@keyframes dot-blink {
+  0%,100%{ opacity:1 } 50%{ opacity:.35 }
+}
+.fv-2ml-text {
+  font-size:12px; font-weight:500;
+  color:var(--ok); letter-spacing:.03em;
+}
+
+/* main catch */
+.fv-catch {
+  font-family:var(--fm);
+  font-size:clamp(26px,8vw,34px);
+  font-weight:800;
+  line-height:1.40;
+  letter-spacing:-.02em;
+  color:var(--ink);
+  margin-bottom:10px;
+}
+
+.fv-sub {
+  font-size:14px; font-weight:300;
+  line-height:1.80; color:var(--g70);
+  margin-bottom:24px;
+}
+.fv-sub b { color:var(--ink); font-weight:500 }
+
+/* product image — single bottle, clean */
+.fv-img {
+  width:100%; height:clamp(240px,60vw,340px);
+  border-radius:var(--r); overflow:hidden;
+  margin-bottom:24px;
   background:var(--sf);
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+}
+.fv-img img {
+  height:100%; width:auto; object-fit:contain;
+  padding:20px;
+  display:block;
+}
+.fv-img-ph {
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:10px; width:100%; height:100%; padding:24px;
+}
+.fv-img-ph svg { opacity:.18 }
+.fv-img-ph span {
+  font-size:10px; color:var(--g50);
+  letter-spacing:.08em; text-align:center; line-height:1.70;
+}
+
+/* guarantee badges under image */
+.fv-badges {
+  display:flex; flex-wrap:wrap; gap:7px;
+  margin-bottom:22px;
+}
+
+/* star row */
+.star-row {
+  display:flex; align-items:center; gap:6px;
+  margin-bottom:8px;
+}
+.star-row .stars { color:var(--star); font-size:12px; letter-spacing:1.5px }
+.star-row .count { font-size:12px; color:var(--g50) }
+
+
+/* ══════════════════════════════════════════════
+   ② 共感ストーリー — 自分ごと化
+══════════════════════════════════════════════ */
+.story-card {
+  background:var(--sf);
+  border-radius:var(--r);
+  padding:20px 18px;
+  margin-top:20px;
+}
+.story-icon { font-size:11px; font-weight:700; letter-spacing:.14em;
+              text-transform:uppercase; color:var(--g50); margin-bottom:10px; display:block }
+.story-body {
+  font-family:var(--fm);
+  font-size:16px; line-height:1.72; color:var(--g70);
+}
+.story-body b { color:var(--ink); font-weight:700 }
+
+
+/* ══════════════════════════════════════════════
+   ③ 問題言語化 — 理解→納得
+══════════════════════════════════════════════ */
+.prob-key {
+  padding:16px 18px;
+  background:var(--sf);
+  border-radius:var(--r);
+  margin-top:18px;
+}
+.prob-key-label {
+  font-size:9.5px; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--g50); margin-bottom:8px; display:block;
+}
+.prob-key-text {
+  font-family:var(--fm);
+  font-size:17px; font-weight:700;
+  line-height:1.55; color:var(--ink);
+}
+
+
+/* ══════════════════════════════════════════════
+   ④ 解決策 — 希望
+══════════════════════════════════════════════ */
+.sol-card {
+  background:var(--ink);
+  border-radius:var(--r);
+  padding:24px 20px;
+  margin-top:20px;
+}
+.sol-label {
+  font-size:9.5px; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(255,255,255,.28); margin-bottom:12px; display:block;
+}
+.sol-main {
+  font-family:var(--fm);
+  font-size:clamp(18px,5.5vw,22px); font-weight:800;
+  line-height:1.48; color:var(--wh);
+  margin-bottom:12px;
+}
+.sol-body {
+  font-size:13.5px; font-weight:300;
+  line-height:1.85; color:rgba(255,255,255,.50);
+}
+.sol-body b { color:var(--wh); font-weight:500 }
+
+
+/* ══════════════════════════════════════════════
+   ⑤ 商品提示 — 納得購入の準備
+══════════════════════════════════════════════ */
+/* 接写 product image */
+.prod-img {
+  width:100%; height:clamp(260px,64vw,360px);
+  border-radius:var(--r); overflow:hidden;
+  background:var(--sf);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:22px;
+}
+.prod-img img {
+  width:100%; height:100%;
+  object-fit:contain; padding:28px;
+}
+.prod-img-ph {
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:10px; width:100%; height:100%; padding:24px;
+}
+.prod-img-ph svg { opacity:.18 }
+.prod-img-ph span {
+  font-size:10px; color:var(--g50);
+  letter-spacing:.08em; text-align:center; line-height:1.70;
+}
+
+/* 特徴4つ */
+.feats { margin:18px 0 }
+.feat {
+  display:grid; grid-template-columns:24px 1fr;
+  align-items:start; gap:0 13px;
+  padding:13px 0; border-bottom:1px solid var(--g07);
+  font-size:14.5px; line-height:1.80; color:var(--g70);
+}
+.feat:last-child { border-bottom:none }
+.feat b { color:var(--ink); font-weight:500 }
+.feat-n {
+  font-size:10px; font-weight:700;
+  color:var(--g30); text-align:right; padding-top:3px;
+  letter-spacing:.06em;
+}
+
+
+/* ══════════════════════════════════════════════
+   ⑥ ベネフィット強化 — 欲求増幅
+══════════════════════════════════════════════ */
+.ben-list { display:flex; flex-direction:column; gap:10px; margin-top:20px }
+.ben {
+  display:flex; align-items:flex-start; gap:12px;
+  padding:14px 16px;
+  background:var(--sf); border-radius:var(--r);
+}
+.ben-ico {
+  width:34px; height:34px; border-radius:50%;
+  background:var(--wh); flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 1px 6px rgba(17,17,17,.07);
+}
+.ben-body {}
+.ben-t { font-size:14.5px; font-weight:500; color:var(--ink); line-height:1.28; margin-bottom:3px }
+.ben-d { font-size:12.5px; font-weight:300; color:var(--g50); line-height:1.55 }
+
+
+/* ══════════════════════════════════════════════
+   ⑦ UGC — 不安除去（縦動画風）
+══════════════════════════════════════════════ */
+.ugc-wrap {
+  display:flex; flex-direction:column; gap:14px;
+  margin-top:20px;
+}
+/* スマホ縦型動画UI */
+.ugc-video {
+  position:relative; border-radius:var(--r);
+  overflow:hidden; background:var(--sf);
+  aspect-ratio:9/16;
+  max-height:340px;
+}
+.ugc-video img {
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+.ugc-video-ph {
+  width:100%; height:100%;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:10px;
+  background:linear-gradient(160deg,#DDDAD4,#C8C4BC);
+}
+.ugc-video-ph svg { opacity:.18 }
+.ugc-video-ph span {
+  font-size:10px; color:var(--g50);
+  letter-spacing:.06em; text-align:center;
+}
+/* 再生ボタン */
+.ugc-play {
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:56px; height:56px; border-radius:50%;
+  background:rgba(255,255,255,.92);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 20px rgba(17,17,17,.16);
+}
+.ugc-play svg { margin-left:4px }
+/* TikTok風サイドアクション */
+.ugc-overlay-bar {
+  position:absolute; bottom:0; left:0; right:0;
+  padding:12px 14px;
+  background:linear-gradient(to top,rgba(17,17,17,.70),transparent);
+}
+.ugc-overlay-bar .ugc-review {
+  font-size:13px; color:var(--wh); line-height:1.65;
+  font-weight:300;
+}
+.ugc-overlay-bar .ugc-meta {
+  font-size:10.5px; color:rgba(255,255,255,.55);
+  margin-top:4px; letter-spacing:.03em;
+}
+.ugc-stars { color:#FFD700; font-size:11px; letter-spacing:1.5px; margin-bottom:2px }
+
+/* horizontal UGC text cards (below videos) */
+.ugc-cards { display:flex; flex-direction:column; gap:10px; margin-top:14px }
+.ugc-card {
+  background:var(--sf); border-radius:var(--r);
+  padding:16px 16px; display:flex; flex-direction:column; gap:8px;
+}
+.ugc-card-head { display:flex; align-items:center; gap:9px }
+.ugc-av {
+  width:32px; height:32px; border-radius:50%; overflow:hidden;
+  background:var(--g14); flex-shrink:0;
+}
+.ugc-av img { width:100%; height:100%; object-fit:cover }
+.ugc-av-ph {
+  width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center;
+}
+.ugc-av-ph svg { opacity:.30 }
+.ugc-av-1 { background:linear-gradient(135deg,#D8D4CC,#E8E4DC) }
+.ugc-av-2 { background:linear-gradient(135deg,#D0D4D8,#E0E4EC) }
+.ugc-av-3 { background:linear-gradient(135deg,#D4CCE0,#E4DCF0) }
+.ugc-info { display:flex; flex-direction:column; gap:1px }
+.ugc-name { font-size:12px; font-weight:500; color:var(--ink) }
+.ugc-stars-sm { color:var(--star); font-size:10px; letter-spacing:1px }
+.ugc-q {
+  font-family:var(--fm);
+  font-size:15px; line-height:1.68; color:var(--g70);
+}
+.ugc-tag {
+  display:inline-block; font-size:9.5px; font-weight:700;
+  letter-spacing:.08em; color:var(--g50);
+  background:var(--wh); border:1px solid var(--g14);
+  padding:2px 8px; border-radius:3px;
+}
+
+
+/* ══════════════════════════════════════════════
+   ⑧ リスク排除 — 購入の決定打（最重要）
+══════════════════════════════════════════════ */
+/* 3ステップ */
+.steps { margin:20px 0 }
+.step {
+  display:grid; grid-template-columns:40px 1fr;
+  align-items:start; gap:0 14px;
+  padding:16px 0; border-bottom:1px solid var(--g07);
+}
+.step:last-child { border-bottom:none }
+.step-n {
+  width:32px; height:32px; border-radius:50%;
+  background:var(--ink); color:var(--wh);
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700; flex-shrink:0; margin-top:1px;
+}
+.step-t {
+  font-family:var(--fm);
+  font-size:15.5px; font-weight:700;
+  color:var(--ink); line-height:1.30; margin-bottom:3px;
+}
+.step-d { font-size:12.5px; font-weight:300; color:var(--g50); line-height:1.55 }
+
+/* 保証カード */
+.guarantee-card {
+  background:rgba(30,122,64,.07);
+  border:1px solid rgba(30,122,64,.18);
+  border-radius:var(--r);
+  padding:20px 18px;
+  margin-top:20px;
+  display:flex; align-items:flex-start; gap:12px;
+}
+.gc-icon {
+  width:36px; height:36px; border-radius:50%;
+  background:rgba(30,122,64,.12);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.gc-title { font-size:14.5px; font-weight:700; color:var(--ok); margin-bottom:4px }
+.gc-body  { font-size:12.5px; font-weight:300; color:var(--g70); line-height:1.60 }
+.gc-body b { color:var(--ink); font-weight:500 }
+
+
+/* ══════════════════════════════════════════════
+   ⑨ 最終 CTA — 行動
+══════════════════════════════════════════════ */
+.final-message {
+  text-align:center; margin-bottom:24px;
+}
+.final-msg-main {
+  font-family:var(--fm);
+  font-size:clamp(19px,5.5vw,24px); font-weight:800;
+  line-height:1.46; color:var(--wh); margin-bottom:10px;
+}
+.final-msg-sub {
+  font-size:13px; font-weight:300;
+  color:rgba(255,255,255,.45); line-height:1.78;
+}
+.final-msg-sub b { color:rgba(255,255,255,.75); font-weight:500 }
+
+/* urgency notice */
+.urgency {
+  display:flex; align-items:flex-start; gap:9px;
+  background:rgba(255,200,50,.10); border:1px solid rgba(255,200,50,.25);
+  border-radius:9px; padding:11px 13px;
+  margin-bottom:16px;
+}
+.urgency-dot {
+  width:7px; height:7px; border-radius:50%;
+  background:#F08000; flex-shrink:0; margin-top:5px;
+  animation:ub 1.8s ease infinite;
+}
+@keyframes ub { 0%,100%{opacity:1} 50%{opacity:.25} }
+.urgency-text { font-size:12.5px; color:#8B5000; line-height:1.68; font-weight:300 }
+.urgency-text b { font-weight:500 }
+
+/* FOOTER */
+.foot {
   padding:22px var(--px) max(24px,env(safe-area-inset-bottom));
   text-align:center;
-  font-size:11px; font-weight:300; color:var(--g40); line-height:1.90;
-  scroll-snap-align:start;
+  font-size:11px; font-weight:300; color:var(--g30); line-height:1.90;
+  border-top:1px solid var(--g07); background:var(--bg);
 }
-.foot a { color:var(--g40); text-decoration:underline; text-underline-offset:3px }
+.foot a { color:var(--g30); text-decoration:underline; text-underline-offset:3px }
 
-@media(max-width:360px) { :root{ --px:20px } }
-@media(prefers-reduced-motion:reduce) {
-  *{ animation:none!important; transition:none!important }
-  html{ scroll-snap-type:none }
-}
+@media(min-width:480px){ :root{ --px:28px } }
+@media(max-width:360px){ :root{ --px:18px } }
+@media(prefers-reduced-motion:reduce){ *{ animation:none!important; transition:none!important } }
 </style>
 </head>
 <body>
 
-<div class="rprog" aria-hidden="true"><div class="rp-bar"></div></div>
+<div class="rprog" aria-hidden="true"><div class="rp-fill"></div></div>
 
+<div class="page">
 
-<!-- ══════════════════════════════════════════════════════
-     01 FV — 広告の熱量維持
-     Goal: 1〜3秒で「これ、私のことだ」と思わせる
-══════════════════════════════════════════════════════ -->
-<section class="sec sec-wh" id="s01" aria-label="ファーストビュー">
-  <div class="w">
+<!-- ══════════════════════════════════════════════
+     ① FV — 0.5秒で「試せる」と理解させる
+     役割: 離脱防止 / 2mlテスト + 返金を即視認
+══════════════════════════════════════════════ -->
+<section class="fv" aria-label="ファーストビュー">
 
-    <p class="sec-num s1-a">01 / 08</p>
-
-    <!-- [画像①: 他社ブランドが乱雑に置かれた背景、手前にPURELAYER1本] -->
-    <div class="simg s1-b">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670#"
-        alt="【撮影指示】自然光の部屋のデスクに、他ブランドの香水が3〜5本乱雑に置かれている。その手前にPURELAYER Oud Stallionが1本だけ凛と立つ。スマホで撮ったピンぼけ気味の物撮り。白い机、朝の光。"
-        loading="eager" fetchpriority="high" decoding="async"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="simg-ph ph-warm" style="display:none" aria-hidden="true">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 3h6l1 5H8L9 3z"/><path d="M8 8v12a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8"/>
-        </svg>
-        <span>
-          【撮影指示】<br>
-          他ブランド乱雑×PURELAYER凛と1本<br>
-          デスク・自然光・スマホ撮影
-        </span>
-      </div>
-    </div>
-
-    <h1 class="t-min-lg s1-c">
-      香水10個以上買って、<br>
-      20万円ドブに捨てて<br>
-      分かったこと。
-    </h1>
-
-    <p class="t-body s1-d">
-      ブランド名や評判で選ぶと、<b>9割は失敗します。</b><br>
-      少なくとも私はそうだった。
-    </p>
-
-    <div class="hook-row s1-e" aria-hidden="true">
-      <span class="hook-text">「ぶっちゃけ、デパコスやブランド名で選ぶと9割失敗します。」</span>
-      <span class="hook-arr">↓ &nbsp; NEXT</span>
-    </div>
-
+  <!-- ▶ 最上部: 2ml試せる → 緑ドットで一番最初に目に入る -->
+  <div class="fv-2ml-strip fi-a">
+    <span class="fv-2ml-dot" aria-hidden="true"></span>
+    <span class="fv-2ml-text">まず2mlで試せます ✓ 合わなければ全額返金</span>
   </div>
+
+  <!-- メインコピー -->
+  <h1 class="fv-catch fi-b">
+    香水で失敗したくない人へ。
+  </h1>
+
+  <p class="fv-sub fi-b">
+    <b>まず2mlで自分の肌に合うか確認してください。</b><br>
+    合わなければ、本体未開封で全額返金します。
+  </p>
+
+  <!-- 商品画像 (単体・透明感) -->
+  <div class="fv-img fi-c">
+    <img
+      src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731#"
+      alt="PURELAYER Oud Stallion — 香水ボトル単体"
+      loading="eager" fetchpriority="high" decoding="async"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="fv-img-ph" style="display:none" aria-hidden="true">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 3h6l1 5H8L9 3z"/><path d="M8 8v12a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8"/>
+      </svg>
+      <span>商品ボトル単体<br>透明感・白背景・自然光</span>
+    </div>
+  </div>
+
+  <!-- 評価 + 保証バッジ -->
+  <div class="fi-d">
+    <div class="star-row">
+      <span class="stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="count">4.9 / 1,240件</span>
+    </div>
+    <div class="fv-badges">
+      <span class="badge badge-ok">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        2mlテスト付き
+      </span>
+      <span class="badge badge-ok">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        30日全額返金
+      </span>
+      <span class="badge badge-sf">送料無料</span>
+      <span class="badge badge-sf">即日発送</span>
+    </div>
+  </div>
+
+  <!-- CTA ① -->
+  <div class="fi-e">
+    <a
+      href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
+      class="btn btn-primary"
+      aria-label="2mlで自分の肌に合うか試す">
+      2mlで自分の肌に合うか試す →
+    </a>
+    <div class="trust">
+      <span class="tr">まず2mlで試せる</span>
+      <span class="tr">合わなければ全額返金</span>
+    </div>
+  </div>
+
 </section>
 
 
-<!-- ══════════════════════════════════════════════════════
-     02 失敗の言語化 — 共感ストレス
-══════════════════════════════════════════════════════ -->
-<section class="sec sec-sf" id="s02" aria-label="失敗の言語化">
+<!-- ══════════════════════════════════════════════
+     ② 共感ストーリー — 広告の延長・自分ごと化
+     役割: 「自分のことだ」と感じさせる感情接続
+══════════════════════════════════════════════ -->
+<section class="sec sec-sf" aria-label="共感ストーリー">
   <div class="w">
 
-    <p class="sec-num fx-a">02 / 08</p>
-
-    <h2 class="t-min fx-b">
-      あの日の電車、<br>
-      隣の人が少し<br>
-      避けた気がした。
+    <h2 class="t-mid">
+      「お店では最高だったのに、<br>
+      なんで...？」
     </h2>
 
-    <p class="t-body fx-c">
-      デパートで「これだ」と決めた香水。<br>
-      <b>3万円出した。翌朝、つけて電車に乗った。</b>
-    </p>
-
-    <p class="t-body fx-c">
-      朝は最高だったはずの香りが、<br>
-      湿気と体温で変質して「トゲ」になる。<br>
-      その日ずっと、<b>手首を袖の中に隠してた。</b>
-    </p>
-
-    <div class="keyphrase fx-d">
-      <p class="kp-main">
-        「良い匂い」と「トゲのある匂い」は<br>
-        紙一重だった。
-      </p>
-      <p class="kp-sub">温度と湿気で変わるのが、香水の本質的な難しさ。</p>
-    </div>
-
-    <div class="hook-row fx-e" aria-hidden="true">
-      <span class="hook-text">原因は、香水の「浮き」にありました。</span>
-      <span class="hook-arr">↓ &nbsp; NEXT</span>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════
-     03 解決のロジック — 知識の共有
-══════════════════════════════════════════════════════ -->
-<section class="sec sec-wh" id="s03" aria-label="解決のロジック">
-  <div class="w">
-
-    <p class="sec-num fx-a">03 / 08</p>
-
-    <h2 class="t-min fx-b">
-      必要なのは<br>「いい匂い」じゃなく、<br>
-      「肌馴染み」だった。
-    </h2>
-
-    <div class="callout fx-c" role="note">
-      <span class="callout-icon" aria-hidden="true">💡</span>
-      <p class="callout-body">
-        香りで上書きしようとするから「浮く」。<br><br>
-        体温と混ざって、<b>「自分の匂い」に変化する余白がある香水</b>だけが、至近距離でも不快にならない。<br><br>
-        これに気づいたのに、10本と20万円かかった。
+    <div class="story-card gap">
+      <span class="story-icon">よくある体験</span>
+      <p class="story-body">
+        朝はいい匂いだったはずなのに、<br>
+        <b>電車の中で隣の人が少し離れた気がした。</b><br><br>
+        手首を袖に隠して、その日ずっと縮こまってた。<br>
+        あの感覚、一度でも経験すると<br>
+        <b>「また失敗したら嫌だ」</b>と思って<br>
+        香水を手に取れなくなる。
       </p>
     </div>
 
-    <p class="t-body fx-d">
-      「どの香水が良いか」ではなく、<br>
-      「<b>肌の上で何に変わるか</b>」で選ぶ必要があった。
+    <p class="t-body gap">
+      高い香水を買っても、<em>使えない状況が出てくる</em>のが一番もったいない。
     </p>
 
-    <div class="hook-row fx-e" aria-hidden="true">
-      <span class="hook-text">これを理解してから、初めて「正解」が見つかった。</span>
-      <span class="hook-arr">↓ &nbsp; NEXT</span>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     ③ 問題の言語化 — 理解→納得
+     役割: 「なぜ失敗するのか」を腑に落とす
+══════════════════════════════════════════════ -->
+<section class="sec sec-wh" aria-label="問題の言語化">
+  <div class="w">
+
+    <h2 class="t-mid">
+      問題は香水じゃなく、<br>
+      「浮き」にある。
+    </h2>
+
+    <p class="t-body gap">
+      朝いい匂いでも、体温と湿気で変質する香水がある。<br>
+      それが「浮いた」状態。
+    </p>
+    <p class="t-body gap">
+      <b>肌に馴染まず、空中に漂う香り</b>は、<br>
+      時間が経つほど主張が強くなる。<br>
+      電車でも職場でも、それが「気まずさ」の正体。
+    </p>
+
+    <div class="prob-key">
+      <span class="prob-key-label">原因の本質</span>
+      <p class="prob-key-text">
+        「いい匂いかどうか」ではなく、<br>
+        「肌に馴染むかどうか」が、<br>
+        全ての分かれ目だった。
+      </p>
     </div>
 
   </div>
 </section>
 
 
-<!-- ══════════════════════════════════════════════════════
-     04 PURELAYER紹介 — 救済
-══════════════════════════════════════════════════════ -->
-<section class="sec sec-sf" id="s04" aria-label="Oud Stallion紹介">
+<!-- ══════════════════════════════════════════════
+     ④ 解決策提示 — 希望
+     役割: 「これが解決策だ」と納得させる
+══════════════════════════════════════════════ -->
+<section class="sec sec-sf" aria-label="解決策">
   <div class="w">
 
-    <p class="sec-num fx-a">04 / 08</p>
-
-    <h2 class="t-min fx-b">
-      香水のトゲを全部抜いた、<br>石鹸の香り。<br>
-      <span style="font-weight:400;font-size:.85em">Oud Stallion。</span>
+    <h2 class="t-mid">
+      必要なのは「余白のある香り」だった。
     </h2>
 
-    <!-- [画像②: ボトルの接写、透明感、光の演出] -->
-    <div class="simg fx-c">
+    <p class="t-body gap">
+      体温と混ざって、<b>「自分の匂い」として馴染む香水</b>は、<br>
+      時間が経っても浮かない。強くならない。<br>
+      それが近くにいる人に清潔感として伝わる。
+    </p>
+
+    <div class="sol-card">
+      <span class="sol-label">解決の考え方</span>
+      <p class="sol-main">
+        「香り」で上書きするのではなく、<br>
+        肌の上で「なじむ」香水を選ぶ。
+      </p>
+      <p class="sol-body">
+        主張が強くない香りほど、<br>
+        <b>近距離で「いい匂い」と思われる。</b><br>
+        それがOud Stallionの設計思想。
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     ⑤ 商品提示 — 納得購入の準備
+     役割: 商品と特徴を端的に提示
+══════════════════════════════════════════════ -->
+<section class="sec sec-wh" aria-label="商品紹介">
+  <div class="w">
+
+    <h2 class="t-mid">
+      Oud Stallion — PURELAYER
+    </h2>
+    <p class="t-body gap">
+      浮かない。嫌われない。一日持続する。<br>
+      香水で失敗してきた人のために作られた香水。
+    </p>
+
+    <!-- 商品接写 -->
+    <div class="prod-img">
       <img
         src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2824_430x.webp?v=1772884462"
-        alt="【撮影指示】PURELAYER Oud Stallionのボトルの接写。窓から差し込む自然光がボトルを透過している。ガラスの透明感が伝わるクリーンな物撮り。背景は白か薄いグレー。"
+        alt="PURELAYER Oud Stallion — 接写"
         loading="lazy" decoding="async"
-        style="object-fit:contain; background:#F5F4F2; padding:24px; height:clamp(220px,44vw,290px);"
         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="simg-ph ph-cool" style="display:none" aria-hidden="true">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+      <div class="prod-img-ph" style="display:none" aria-hidden="true">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 3h6l1 5H8L9 3z"/><path d="M8 8v12a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8"/>
         </svg>
-        <span>
-          【撮影指示】ボトル接写<br>
-          自然光透過・透明感・白背景
-        </span>
+        <span>ボトル接写<br>透明感・光の演出</span>
       </div>
     </div>
 
-    <p class="t-body fx-d">
-      「つけてる感」がゼロ。<br>
-      でも、すれ違った時に「<b>あ、いい匂い</b>」と思われる。<br>
-      絶望的なほどの清潔感。
-    </p>
-
-    <div class="hook-row fx-e" aria-hidden="true">
-      <span class="hook-text">なぜそれが可能なのか。</span>
-      <span class="hook-arr">↓ &nbsp; NEXT</span>
+    <div class="feats" role="list">
+      <div class="feat" role="listitem">
+        <span class="feat-n">01</span>
+        <div><b>浮かない。</b>体温で馴染み、「自分の匂い」として定着する。</div>
+      </div>
+      <div class="feat" role="listitem">
+        <span class="feat-n">02</span>
+        <div><b>癖がない。</b>石鹸のような清潔感。誰もが嫌がらないライン。</div>
+      </div>
+      <div class="feat" role="listitem">
+        <span class="feat-n">03</span>
+        <div><b>一日持続。</b>朝1プッシュで夜まで。つけ直し不要。</div>
+      </div>
+      <div class="feat" role="listitem">
+        <span class="feat-n">04</span>
+        <div><b>ユニセックス。</b>男女問わず使える。カップルでシェア可能。</div>
+      </div>
     </div>
 
   </div>
 </section>
 
 
-<!-- ══════════════════════════════════════════════════════
-     05 ベネフィット — 体験の具体化
-══════════════════════════════════════════════════════ -->
-<section class="sec sec-ink" id="s05" aria-label="ベネフィット">
+<!-- ══════════════════════════════════════════════
+     ⑥ ベネフィット強化 — 欲求増幅
+     役割: 「これを使うと自分の生活がどう変わるか」
+══════════════════════════════════════════════ -->
+<section class="sec sec-sf" aria-label="ベネフィット">
   <div class="w">
 
-    <p class="sec-num fx-a">05 / 08</p>
-
-    <h2 class="t-min fx-b">
-      朝8時の1プッシュが、<br>
-      夜19時の飲み会まで<br>清潔なまま続く。
+    <h2 class="t-mid">
+      手に入るのは、<br>「香水の心配」からの解放。
     </h2>
 
-    <div class="pts fx-c" role="list">
-      <div class="pt" role="listitem" style="border-bottom-color:rgba(255,255,255,.08);color:rgba(255,255,255,.45)">
-        <span class="pt-n" style="color:rgba(255,255,255,.18)">01</span>
-        <div><b style="color:#fff">癖がない。</b>好き嫌いが分かれない。職場でも電車でも、誰かを不快にさせない。</div>
+    <div class="ben-list" role="list">
+
+      <div class="ben" role="listitem">
+        <div class="ben-ico" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="13" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/>
+          </svg>
+        </div>
+        <div class="ben-body">
+          <p class="ben-t">電車でも職場でも使える</p>
+          <p class="ben-d">「またやってしまったかも」という不安が消える</p>
+        </div>
       </div>
-      <div class="pt" role="listitem" style="border-bottom-color:rgba(255,255,255,.08);color:rgba(255,255,255,.45)">
-        <span class="pt-n" style="color:rgba(255,255,255,.18)">02</span>
-        <div><b style="color:#fff">肌馴染みがいい。</b>体温と混ざって「自分の匂い」として定着する。浮かない。</div>
+
+      <div class="ben" role="listitem">
+        <div class="ben-ico" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <div class="ben-body">
+          <p class="ben-t">嫌われない清潔感が伝わる</p>
+          <p class="ben-d">「いい匂いですね」ではなく「清潔感がある」と思われる</p>
+        </div>
       </div>
-      <div class="pt" role="listitem" style="border-bottom-color:rgba(255,255,255,.08);color:rgba(255,255,255,.45)">
-        <span class="pt-n" style="color:rgba(255,255,255,.18)">03</span>
-        <div><b style="color:#fff">丸一日持続。</b>夕方に「まだ香ってる」と気づく。つけすぎの必要がない。</div>
+
+      <div class="ben" role="listitem">
+        <div class="ben-ico" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="ben-body">
+          <p class="ben-t">朝1回で一日中持続</p>
+          <p class="ben-d">「夕方になったら薄くなった」「強くなった」がない</p>
+        </div>
       </div>
-      <div class="pt" role="listitem" style="border-bottom:none;color:rgba(255,255,255,.45)">
-        <span class="pt-n" style="color:rgba(255,255,255,.18)">04</span>
-        <div><b style="color:#fff">ユニセックス。</b>男女問わない。パートナーとシェアできる。</div>
+
+      <div class="ben" role="listitem">
+        <div class="ben-ico" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="ben-body">
+          <p class="ben-t">誰にでも受け入れられる</p>
+          <p class="ben-d">パートナーとシェアも。香水が苦手な人の職場でも安心</p>
+        </div>
       </div>
+
     </div>
 
-    <div class="hook-row fx-e" aria-hidden="true">
-      <span class="hook-text" style="color:rgba(255,255,255,.30)">メンタルのリソースが空いた。もう毎朝迷わない。</span>
-      <span class="hook-arr">↓ &nbsp; NEXT</span>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════
-     [MID CTA]
-══════════════════════════════════════════════════════ -->
-<section class="sec sec-sf" id="mid-cta" aria-label="中盤CTA" style="min-height:auto;padding:52px var(--px)">
-  <div class="w">
-    <div class="mid-cta fx-a">
-      <p class="mid-cta-copy">
-        「でも本当に自分の肌に合うかが不安」<br>
-        そのために<b>2mlのテストキット</b>があります。
-      </p>
+    <!-- CTA ② （中盤・ベネフィットの直後） -->
+    <div class="gap-lg">
       <a
         href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
-        class="btn btn-ink-sm"
-        aria-label="2mlで肌に合うか試してみる">
-        2mlで肌に合うか試してみる →
+        class="btn btn-primary"
+        aria-label="2mlで自分の肌に合うか試す">
+        2mlで自分の肌に合うか試す →
       </a>
-      <div class="trust" style="margin-top:10px">
-        <span class="tr">30日返金保証</span>
+      <div class="trust">
+        <span class="tr">まず試せる</span>
+        <span class="tr">合わなければ全額返金</span>
         <span class="tr">送料無料</span>
       </div>
     </div>
+
   </div>
 </section>
 
 
-<!-- ══════════════════════════════════════════════════════
-     06 UGC / 第三者の証拠
-══════════════════════════════════════════════════════ -->
-<section class="sec sec-wh" id="s06" aria-label="UGCレビュー">
+<!-- ══════════════════════════════════════════════
+     ⑦ UGC — 不安除去
+     役割: 「実際に使った人の声」で最後の不安を消す
+     デザイン: スマホ縦型動画UI風
+══════════════════════════════════════════════ -->
+<section class="sec sec-wh" aria-label="ユーザーの声">
   <div class="w">
 
-    <p class="sec-num fx-a">06 / 08</p>
-
-    <h2 class="t-min fx-b">
-      「何の香水？」じゃなくて、<br>
-      「いい匂いするね」と<br>言われるようになった。
+    <h2 class="t-mid">
+      使った人の声
     </h2>
 
-    <!-- iPhone Notes風 -->
-    <div class="ugc-notes fx-c" role="list" aria-label="ユーザーの声">
-      <div class="ugc-notes-bar">
-        <span class="ugc-notes-dot ugc-nd-r" aria-hidden="true"></span>
-        <span class="ugc-notes-dot ugc-nd-y" aria-hidden="true"></span>
-        <span class="ugc-notes-dot ugc-nd-g" aria-hidden="true"></span>
-        <span class="ugc-notes-title">DM・レビューの声</span>
+    <!-- 縦動画風UGC -->
+    <div class="ugc-wrap">
+
+      <!-- 動画カード 1 -->
+      <div class="ugc-video">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670#"
+          alt="ユーザーレビュー動画1 — 通勤シーン" loading="lazy" decoding="async"
+          style="width:100%;height:100%;object-fit:cover;"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+
+        
+          <span>UGC動画1 — 通勤・職場シーン</span>
+        </div>
+        <!-- 再生ボタン -->
+    
+        </div>
+        <!-- テキストオーバーレイ -->
+        <div class="ugc-overlay-bar">
+          <div class="ugc-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="ugc-review">「初めて香水で褒められました。職場でも全く浮かない」</p>
+          <p class="ugc-meta">28歳 男性 / 会社員</p>
+        </div>
       </div>
-      <div class="ugc-notes-body">
 
-        <div class="ugc-note" role="listitem">
-          <p class="ugc-note-q">
-            「初めて香水をつけて<br>職場で褒められました。浮かなかった。」
-          </p>
-          <p class="ugc-note-meta">28歳 男性 / 会社員</p>
+      <!-- 動画カード 2 -->
+      <div class="ugc-video">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670#"
+          alt="ユーザーレビュー動画2 — デートシーン" loading="lazy" decoding="async"
+          style="width:100%;height:100%;object-fit:cover;"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        
+       
+        <div class="ugc-play" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="color:#111">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
         </div>
-
-        <div class="ugc-note" role="listitem">
-          <p class="ugc-note-q">
-            「電車が怖くなくなった。<br>2mlで試せるの、天才の仕組みすぎる。」
-          </p>
-          <p class="ugc-note-meta">24歳 女性 / 初購入</p>
+        <div class="ugc-overlay-bar">
+          <div class="ugc-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="ugc-review">「デートで彼女に"いい匂いする"って言われた初めての香水」</p>
+          <p class="ugc-meta">24歳 男性 / 大学生</p>
         </div>
-
-        <div class="ugc-note" role="listitem">
-          <p class="ugc-note-q">
-            「彼氏に買ったら私も使いたくなって、<br>今はシェアしてます。」
-          </p>
-          <p class="ugc-note-meta">26歳 女性 / カップルで使用</p>
-        </div>
-
-        <div class="ugc-note" role="listitem">
-          <p class="ugc-note-q">
-            「返金保証があったから試せた。<br>今ではリピート3本目。」
-          </p>
-          <p class="ugc-note-meta">31歳 男性 / 日常使い</p>
-        </div>
-
       </div>
+
     </div>
 
-    <div class="hook-row fx-d" aria-hidden="true">
-      <span class="hook-text">失敗したくない人のために、仕組みを用意しました。</span>
-      <span class="hook-arr">↓ &nbsp; NEXT</span>
+    <!-- テキストレビューカード -->
+    <div class="ugc-cards">
+
+      <div class="ugc-card">
+        <div class="ugc-card-head">
+          <div class="ugc-av ugc-av-1">
+            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=64&h=64&fit=crop&q=80"
+              alt="" loading="lazy" decoding="async"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="ugc-av-ph" style="display:none" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+          </div>
+          <div class="ugc-info">
+            <span class="ugc-name">26歳 女性</span>
+            <span class="ugc-stars-sm" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <p class="ugc-q">電車が本当に怖くなくなった。2mlで試せる仕組みが安心で購入できた。今はリピート3本目。</p>
+        <span class="ugc-tag">初回2mlで確認 → 本体購入</span>
+      </div>
+
+      <div class="ugc-card">
+        <div class="ugc-card-head">
+          <div class="ugc-av ugc-av-2">
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=64&h=64&fit=crop&q=80"
+              alt="" loading="lazy" decoding="async"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="ugc-av-ph" style="display:none" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+          </div>
+          <div class="ugc-info">
+            <span class="ugc-name">31歳 男性</span>
+            <span class="ugc-stars-sm" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <p class="ugc-q">香水が苦手な上司の前でも全く問題なかった。強くならないのに一日持続するのが神。</p>
+        <span class="ugc-tag">職場毎日使い</span>
+      </div>
+
+      <div class="ugc-card">
+        <div class="ugc-card-head">
+          <div class="ugc-av ugc-av-3">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=64&h=64&fit=crop&q=80"
+              alt="" loading="lazy" decoding="async"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="ugc-av-ph" style="display:none" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+          </div>
+          <div class="ugc-info">
+            <span class="ugc-name">22歳 女性</span>
+            <span class="ugc-stars-sm" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+        </div>
+        <p class="ugc-q">彼氏にプレゼントしたら気に入って、今は私もシェアしてます。どっちにも合う匂い。</p>
+        <span class="ugc-tag">カップルでシェア</span>
+      </div>
+
     </div>
 
   </div>
 </section>
 
 
-<!-- ══════════════════════════════════════════════════════
-     07 リスク排除 — 心理的安全
-══════════════════════════════════════════════════════ -->
-<section class="sec sec-sf" id="s07" aria-label="リスク排除">
+<!-- ══════════════════════════════════════════════
+     ⑧ リスク排除 — 購入の決定打（最重要）
+     役割: 「試せる・返金できる」で最後の壁を取り除く
+══════════════════════════════════════════════ -->
+<section class="sec sec-sf" aria-label="リスク排除">
   <div class="w">
 
-    <p class="sec-num fx-a">07 / 08</p>
-
-    <h2 class="t-min fx-b">
+    <h2 class="t-mid">
       失敗したくないから、<br>
-      まずは2mlで<br>試してほしい。
+      まず2mlで試せる仕組みを作りました。
     </h2>
 
-    <div class="steps fx-c" role="list">
+    <p class="t-body gap">
+      「合わなかったら嫌だ」という気持ちは、<br>
+      <b>私が一番よくわかる。</b><br>
+      だからリスクを全部こちらで持ちます。
+    </p>
+
+    <div class="steps" role="list">
       <div class="step" role="listitem">
         <div class="step-n" aria-hidden="true">1</div>
         <div>
-          <p class="step-t">2mlアトマイザーで試す</p>
-          <p class="step-d">100ml購入で無料付属。本体は開けなくていい。</p>
+          <p class="step-t">2mlアトマイザーで肌に試す</p>
+          <p class="step-d">100ml購入で無料付属。本体は一切開けなくていい。</p>
         </div>
       </div>
       <div class="step" role="listitem">
         <div class="step-n" aria-hidden="true">2</div>
         <div>
-          <p class="step-t">肌に合うか1日確認する</p>
-          <p class="step-d">朝つけて、夜の自分の肌の上でどう変わったか感じる。</p>
+          <p class="step-t">1日自分の肌で確認する</p>
+          <p class="step-d">朝つけて、夜まで「浮かないか」「好きな匂いか」を確かめる。</p>
         </div>
       </div>
       <div class="step" role="listitem">
         <div class="step-n" aria-hidden="true">3</div>
         <div>
-          <p class="step-t">ダメなら本体未開封で全額返金</p>
-          <p class="step-d">30日以内・理由不要。リスクは全部こっちで持つ。</p>
+          <p class="step-t">合わなければ本体未開封で全額返金</p>
+          <p class="step-d">30日以内・理由不問。申請するだけで返金されます。</p>
         </div>
       </div>
     </div>
 
-    <div class="keyphrase fx-d">
-      <p class="kp-main">
-        リスクは全部こっちで持つから。
-      </p>
-      <p class="kp-sub">失敗したくない気持ちは、私が一番よくわかる。</p>
-    </div>
-
-    <div class="hook-row fx-e" aria-hidden="true">
-      <span class="hook-text">あとは、試してみるだけです。</span>
-      <span class="hook-arr">↓ &nbsp; LAST</span>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════
-     08 FINAL CTA
-══════════════════════════════════════════════════════ -->
-<section class="sec sec-ink" id="s08" aria-label="最終CTA">
-  <div class="w" style="text-align:center">
-
-    <p class="sec-num fx-a">08 / 08</p>
-
-    <h2 class="t-min fx-b" style="color:#fff;text-align:center;margin-bottom:16px">
-      「正解の香水」は、<br>
-      試してみないと<br>わからない。
-    </h2>
-
-    <p class="final-promise fx-c">
-      だからまず<b>2ml</b>から。<br>
-      本体は、確認してから開ければいい。
-    </p>
-
-    <div class="fx-d" style="width:100%">
-      <a
-        href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
-        class="btn btn-ink"
-        style="background:#fff;color:#111;box-shadow:0 4px 24px rgba(0,0,0,.28);"
-        aria-label="公式サイトで2mlから自分の肌に合うか試してみる">
-        【公式】2mlで自分の肌に合うか試してみる
-      </a>
-
-      <div class="trust fx-e" style="margin-top:14px">
-        <span class="tr" style="color:rgba(255,255,255,.35)">
-          <span style="color:rgba(255,255,255,.45);font-weight:500">✓</span>&nbsp;30日間返金保証
-        </span>
-        <span class="tr" style="color:rgba(255,255,255,.35)">
-          <span style="color:rgba(255,255,255,.45);font-weight:500">✓</span>&nbsp;送料無料
-        </span>
-        <span class="tr" style="color:rgba(255,255,255,.35)">
-          <span style="color:rgba(255,255,255,.45);font-weight:500">✓</span>&nbsp;返品理由不問
-        </span>
+    <div class="guarantee-card" role="region" aria-label="30日間返金保証">
+      <div class="gc-icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ok)">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <div>
+        <p class="gc-title">30日間 全額返金保証</p>
+        <p class="gc-body">本体<b>未開封</b>であれば、理由を問わず全額返金します。「2mlで試してダメだった」は立派な返品理由です。</p>
       </div>
     </div>
 
   </div>
 </section>
 
+
+<!-- ══════════════════════════════════════════════
+     ⑨ 最終CTA — 行動
+     役割: 考えずにボタンを押せる状態を作る
+══════════════════════════════════════════════ -->
+<section class="sec sec-ink" aria-label="最終CTA">
+  <div class="w">
+
+    <div class="final-message">
+      <h2 class="final-msg-main">
+        「まず2mlで確かめてから」<br>
+        で、いい。
+      </h2>
+      <p class="final-msg-sub">
+        失敗回避の仕組みがある。<br>
+        <b>リスクはゼロです。</b>
+      </p>
+    </div>
+
+    <div class="urgency" role="alert">
+      <span class="urgency-dot" aria-hidden="true"></span>
+      <span class="urgency-text">
+        <b>在庫注意：</b>TikTokで話題になり2mlキットの在庫が少なくなっています。気になる方はお早めに。
+      </span>
+    </div>
+
+    <a
+      href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
+      class="btn btn-primary-lg"
+      style="background:#fff;color:#111;box-shadow:0 6px 32px rgba(0,0,0,.28);"
+      aria-label="2mlで自分の肌に合うか試す">
+      2mlで自分の肌に合うか試す →
+    </a>
+
+    <div class="trust" style="margin-top:14px">
+      <span class="tr" style="color:rgba(255,255,255,.35)">
+        <span style="color:rgba(255,255,255,.50);font-weight:500">✓</span>&nbsp;30日全額返金
+      </span>
+      <span class="tr" style="color:rgba(255,255,255,.35)">
+        <span style="color:rgba(255,255,255,.50);font-weight:500">✓</span>&nbsp;送料無料
+      </span>
+      <span class="tr" style="color:rgba(255,255,255,.35)">
+        <span style="color:rgba(255,255,255,.50);font-weight:500">✓</span>&nbsp;即日発送
+      </span>
+      <span class="tr" style="color:rgba(255,255,255,.35)">
+        <span style="color:rgba(255,255,255,.50);font-weight:500">✓</span>&nbsp;返品理由不問
+      </span>
+    </div>
+
+  </div>
+</section>
+
+</div><!-- /page -->
 
 <footer class="foot">
   <p>
