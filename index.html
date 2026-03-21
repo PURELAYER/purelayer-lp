@@ -107,26 +107,29 @@ body::after {
 /* ══════════════════════════════════════════════════════════
    IMAGE PLACEHOLDERS
 ══════════════════════════════════════════════════════════ */
-.img-ph {
-  width:100%; display:flex; align-items:center; justify-content:center;
-  position:relative; overflow:hidden;
+/* ── 実画像 共通スタイル ─────────────────
+   class="lp-image-full" を付与することで
+   将来の画像差し替えが1箇所で完結します
+─────────────────────────────────────── */
+.lp-image-full {
+  display:block;
+  width:100%;
+  /* 左右余白なし フルワイド */
+  margin-left:0; margin-right:0;
+  /* 縦高さはセクションごとに個別設定 */
+  object-fit:cover;
+  object-position:center;
+  /* 画像下に隙間が入らないよう vertical-align を消す */
+  vertical-align:bottom;
 }
-.img-ph::before { content:""; position:absolute; inset:0 }
-.img-label {
-  position:relative; z-index:1;
-  font-family:var(--fu); font-size:11px; font-weight:400;
-  letter-spacing:.16em; text-transform:uppercase;
-  color:rgba(51,51,51,.28); text-align:center;
-}
-.img-fv    { height:clamp(300px,85vw,500px); background:#DEDBD2 }
-.img-fv::before { background:linear-gradient(160deg,#E8E4DA,#D0CCBE) }
-.img-ben   { height:clamp(260px,70vw,420px); background:#D8D4CA }
-.img-ben::before { background:linear-gradient(140deg,#DDD9D0,#C8C4BA) }
-.img-gift  { height:clamp(280px,72vw,400px); background:#2C2C2A }
-.img-gift::before { background:linear-gradient(150deg,#2E2C28,#1C1A18) }
-.img-gift .img-label { color:rgba(253,252,245,.20) }
-.img-trust { height:clamp(240px,60vw,360px); background:#E4E0D6 }
-.img-trust::before { background:linear-gradient(145deg,#E8E4DA,#D4D0C6) }
+/* FV — やや縦長でヒーロービジュアル感 */
+.lp-image-fv   { height:clamp(320px,88vw,520px) }
+/* ベネフィット — 横長 */
+.lp-image-ben  { height:clamp(260px,70vw,420px) }
+/* ギフト特典 — 正方形に近い縦長 */
+.lp-image-gift { height:clamp(300px,78vw,480px) }
+/* 保証 — 中程度 */
+.lp-image-trust{ height:clamp(240px,62vw,380px) }
 
 /* ══════════════════════════════════════════════════════════
    SHARED ATOMS
@@ -654,7 +657,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
   .sticky-cta { transition:none }
 }
 </style>
-      <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
+   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
    <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -688,9 +691,13 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
      ※ スティッキーボタンの表示開始地点
 ══════════════════════════════════════════════════════════ -->
 <section class="sec-full" id="fv-section" aria-label="ファーストビュー">
-  <div class="img-ph img-fv" role="img" aria-label="FVビジュアル配置予定エリア">
-    <span class="img-label">FIRST VIEW IMAGE</span>
-  </div>
+  <img
+    class="lp-image-full lp-image-fv"
+    src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/24_1_1.webp?v=1774088369"
+    alt="PURELAYER Oud Stallion — ファーストビュー"
+    loading="eager"
+    fetchpriority="high"
+    decoding="async">
 </section>
 
 
@@ -731,9 +738,12 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
      4. ベネフィット（全幅ダミー画像枠）
 ══════════════════════════════════════════════════════════ -->
 <section class="sec-full" aria-label="ベネフィット">
-  <div class="img-ph img-ben" role="img" aria-label="ベネフィットビジュアル配置予定エリア">
-    <span class="img-label">BENEFIT IMAGE</span>
-  </div>
+  <img
+    class="lp-image-full lp-image-ben"
+    src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/15.webp?v=1774090462"
+    alt="PURELAYER — ベネフィット"
+    loading="lazy"
+    decoding="async">
 </section>
 
 
@@ -810,7 +820,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
     <div class="ugc-card" role="listitem" data-index="0">
       <div class="ugc-img">
         <img
-          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670#"
+          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2602.webp?v=1773367670"
           alt="ユーザーレビュー1 — 職場での使用シーン"
           loading="lazy" decoding="async"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -829,7 +839,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
     <div class="ugc-card" role="listitem" data-index="1">
       <div class="ugc-img">
         <img
-          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2602.webp?v=1773367670#"
+          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670"
           alt="ユーザーレビュー2 — 長時間使用のシーン"
           loading="lazy" decoding="async"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -848,7 +858,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
     <div class="ugc-card" role="listitem" data-index="2">
       <div class="ugc-img">
         <img
-          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670#"
+          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670"
           alt="ユーザーレビュー3 — 個性的な使用シーン"
           loading="lazy" decoding="async"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -882,9 +892,12 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
      6. 100ml特典セクション
 ══════════════════════════════════════════════════════════ -->
 <section class="sec-full" aria-label="100ml特典セット">
-  <div class="img-ph img-gift" role="img" aria-label="100ml特典セットビジュアル配置予定エリア">
-    <span class="img-label">GIFT SET IMAGE</span>
-  </div>
+  <img
+    class="lp-image-full lp-image-gift"
+    src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/AC53458D-F4D2-4503-813D-49AFAF7BA444.webp?v=1774088369"
+    alt="PURELAYER — 100ml特典セット"
+    loading="lazy"
+    decoding="async">
   <div class="gift-text" role="region" aria-label="特典説明">
     <span class="label">公式サイト限定</span>
     <h2 class="h2" style="color:var(--cream)">
