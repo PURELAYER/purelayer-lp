@@ -121,17 +121,10 @@ body::after {
   object-position:center;
   /* 画像下に隙間が入らないよう vertical-align を消す */
   vertical-align:bottom;
-   max-height: 750px;
+   height: auto;
    aspect-ratio: 2 / 3;
 }
-/* FV — やや縦長でヒーロービジュアル感 */
-.lp-image-fv   { height:clamp(320px,88vw,520px) }
-/* ベネフィット — 横長 */
-.lp-image-ben  { height:clamp(260px,70vw,420px) }
-/* ギフト特典 — 正方形に近い縦長 */
-.lp-image-gift { height:clamp(300px,78vw,480px) }
-/* 保証 — 中程度 */
-.lp-image-trust{ height:clamp(240px,62vw,380px) }
+
 
 /* ══════════════════════════════════════════════════════════
    SHARED ATOMS
