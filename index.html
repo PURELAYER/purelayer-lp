@@ -665,8 +665,8 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
 .pl-fv-wrap .lp-image-fv {
   display:block;
   width:100%;
-  height:auto;
-  aspect-ratio: 2 / 3; 
+   height: auto;
+   aspect-ratio: 2 / 3;
   object-fit:cover;
   object-position:center;
   vertical-align:bottom;
@@ -800,7 +800,8 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
 }
 .pl-scent-img {
   width:100%;
-  height:clamp(260px,68vw,400px);
+   height: auto;
+   aspect-ratio: 2 / 3;
   object-fit:cover;
   object-position:center;
   display:block;
@@ -857,7 +858,46 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
   .pl-ans-body { font-size:10.5px }
 }
 
+
+/* ── v5追加: 香りの想起セクション 注釈バッジ ── */
+.pl-scent-notice {
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  padding:12px var(--px);
+  background:var(--linen);
+  border-bottom:1px solid var(--ink12);
+}
+.pl-scent-notice svg {
+  flex-shrink:0;
+  margin-top:2px;
+  color:var(--ok);
+  opacity:.80;
+}
+.pl-scent-notice span {
+  font-family:var(--fu);
+  font-size:12px;
+  font-weight:400;
+  line-height:1.70;
+  color:var(--ink60);
+  letter-spacing:.01em;
+}
+
+/* ── v5追加: 比較表セルの文字を折り返しやすく ── */
+.comp-table td, .comp-table th {
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+
 </style>
+   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
+   <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vvn8p99ehp");
+</script>
 </head>
 <body>
 
@@ -899,88 +939,62 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
     fetchpriority="high"
     decoding="async">
 
-  <!-- FVコピー（画像外・テキストDOM実装） -->
-  <div class="pl-fv-copy">
-    <span class="pl-fv-kicker">香水初心者のための、正解の1本</span>
-    <h1 class="pl-fv-h1">
-      肌に馴染んで、<br>
-      一日中つづく<br>清潔感。
-    </h1>
-    <p class="pl-fv-sub">
-      「強すぎる」も「すぐ消える」も、もう不要。<br>
-      <b>初心者でも失敗しない香水</b>を、ガチ勢が設計しました。
-    </p>
-    <div class="pl-fv-meta">
-      <span class="pl-fv-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <span class="pl-fv-count">4.9 / 1,240件のレビュー</span>
-    </div>
-    <a
-      href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
-      class="pl-fv-cta"
-      aria-label="リスクなく、自分の肌で試してみる">
-      まずは2mlで、肌で試す →
-    </a>
-    <div class="pl-fv-assure">
-      <span class="pl-fv-assure-item">30日全額返金保証</span>
-      <span class="pl-fv-assure-item">2mlテストキット付き</span>
-      <span class="pl-fv-assure-item">送料無料</span>
-    </div>
-  </div>
+
 
 </section>
 
 
 <!-- ══════════════════════════════════════════════════════════
-     2. 【新設】広告の答え合わせセクション
-     TikTok広告のフックに対する解決策を3アイコンで提示
+     2. 広告の答え合わせセクション [v5 言語平易化]
+     見出し・カードコピーを小学生でも即理解できる言葉に
 ══════════════════════════════════════════════════════════ -->
-<section class="pl-ans-sec" aria-label="PURELAYERの3つの正解">
+<section class="pl-ans-sec" aria-label="PURELAYERの3つの仕組み">
 
   <span class="pl-ans-label">広告の答え合わせ</span>
   <h2 class="pl-ans-h">
     だから、1本目に選ばれている。<br>
-    香水ガチ勢が設計した<br>
-    「初心者のための3つの正解」
+    プロが考えた<br>
+    「失敗しない3つの仕組み」
   </h2>
 
   <div class="pl-ans-grid" role="list">
 
-    <!-- 正解01: 擦りNG -->
+    <!-- 仕組み01: 肌に溶ける設計 -->
     <div class="pl-ans-card" role="listitem">
       <div class="pl-ans-ico" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(253,252,245,.80)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 6 6 18"/><path d="M6 6l12 12"/>
-          <circle cx="12" cy="12" r="10" stroke-dasharray="3 2"/>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(253,252,245,.82)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2 C8 6 4 9 4 14a8 8 0 0 0 16 0c0-5-4-8-8-12z"/>
         </svg>
       </div>
-      <span class="pl-ans-tag">正解 01</span>
-      <p class="pl-ans-ttl">擦らなくて<br>いい</p>
-      <p class="pl-ans-body">皮膚への摩擦で香りが崩れる。スプレーしてそのままでOK。</p>
+      <span class="pl-ans-tag">仕組み 01</span>
+      <p class="pl-ans-ttl">肌に<br>「溶ける」設計</p>
+      <p class="pl-ans-body">擦らなくても勝手に馴染むから、香りが壊れず、ずっと「きれいな匂い」。</p>
     </div>
 
-    <!-- 正解02: 付けすぎNG -->
+    <!-- 仕組み02: ふんわり広がる霧 -->
     <div class="pl-ans-card" role="listitem">
       <div class="pl-ans-ico" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(253,252,245,.80)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66 4.24 4.24M2 12h6m8 0h6M4.93 19.07l4.24-4.24m5.66-5.66 4.24-4.24"/>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(253,252,245,.82)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 19a4 4 0 0 1 0-8h.5A5.5 5.5 0 1 1 17 17"/>
+          <path d="M12 22v-3m-4 1v-2m8 2v-2"/>
         </svg>
       </div>
-      <span class="pl-ans-tag">正解 02</span>
-      <p class="pl-ans-ttl">1プッシュで<br>十分</p>
-      <p class="pl-ans-body">肌に馴染む設計だから、少量でも清潔感は1日続く。</p>
+      <span class="pl-ans-tag">仕組み 02</span>
+      <p class="pl-ans-ttl">ふんわり<br>広がる霧</p>
+      <p class="pl-ans-body">1箇所にドバッとつかないから、「香水くさっ！」という失敗がありません。</p>
     </div>
 
-    <!-- 正解03: 持続力 -->
+    <!-- 仕組み03: 消えない石鹸 -->
     <div class="pl-ans-card" role="listitem">
       <div class="pl-ans-ico" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(253,252,245,.80)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(253,252,245,.82)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"/>
           <polyline points="12 6 12 12 16 14"/>
         </svg>
       </div>
-      <span class="pl-ans-tag">正解 03</span>
-      <p class="pl-ans-ttl">8〜10時間<br>持続する</p>
-      <p class="pl-ans-body">朝つけて、夕方の飲み会まで。塗り直し不要。</p>
+      <span class="pl-ans-tag">仕組み 03</span>
+      <p class="pl-ans-ttl">消えない<br>「石鹸」</p>
+      <p class="pl-ans-body">軽い香りなのに「中身」が濃いから、夜までお風呂上がりの匂いが続きます。</p>
     </div>
 
   </div>
@@ -989,51 +1003,51 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
 
 
 <!-- ══════════════════════════════════════════════════════════
-     3. 比較表（繰り上げ）
+     3. 比較表 [v5 見出し・項目平易化]
 ══════════════════════════════════════════════════════════ -->
 <section class="comp-sec sec-cream" aria-label="他社製品との比較">
 
-  <span class="label">なぜPURELAYERなのか</span>
-  <h2 class="h2">他の香水と<br>何が違うのか。</h2>
+  <span class="label">なぜ失敗しないのか</span>
+  <h2 class="h2">なぜ「失敗しない」のか？<br>普通の香水と比べました</h2>
 
-  <table class="comp-table" role="table" aria-label="PURELAYER vs 他社製品比較表">
+  <table class="comp-table" role="table" aria-label="PURELAYER vs 普通の香水 比較表">
     <thead>
       <tr>
-        <th class="th-left" scope="col" aria-label="比較項目">比較項目</th>
-        <th class="th-other" scope="col">一般的な香水</th>
+        <th class="th-left" scope="col" aria-label="比較項目">比べるポイント</th>
+        <th class="th-other" scope="col">普通の香水</th>
         <th class="th-ours" scope="col">PURELAYER</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>肌馴染み</td>
+        <td>匂いのきつさ</td>
+        <td class="c-ng" aria-label="きつくなりがち">きつくなりがち</td>
+        <td class="td-ours c-ok" aria-label="ふんわり持続">ふんわり持続</td>
+      </tr>
+      <tr>
+        <td>電車・職場で使える？</td>
         <td class="c-ng-lg" aria-label="×">✕</td>
         <td class="td-ours c-ok-lg" aria-label="◎">◎</td>
       </tr>
       <tr>
-        <td>電車・職場で使いやすい</td>
-        <td class="c-ng-lg" aria-label="×">✕</td>
-        <td class="td-ours c-ok-lg" aria-label="◎">◎</td>
+        <td>持ちの良さ</td>
+        <td class="c-ng" aria-label="2〜4時間">2〜4時間</td>
+        <td class="td-ours c-ok" aria-label="8〜10時間">8〜10時間</td>
       </tr>
       <tr>
-        <td>一日中持続</td>
-        <td class="c-ng" aria-label="△">△</td>
-        <td class="td-ours c-ok" aria-label="8〜10時間">8〜10h</td>
+        <td>試せるかどうか</td>
+        <td class="c-ng-lg" aria-label="×（開けたら終わり）">✕ 開けたら終わり</td>
+        <td class="td-ours c-ok-lg" aria-label="◎（ミニボトルで先に確認）">◎ 先に確認できる</td>
       </tr>
       <tr>
-        <td>テストキット付き</td>
-        <td class="c-ng-lg" aria-label="×">✕</td>
-        <td class="td-ours c-ok-lg" aria-label="◎">◎</td>
+        <td>合わなかった時</td>
+        <td class="c-ng" aria-label="返金なし">返金なし</td>
+        <td class="td-ours c-ok" aria-label="30日全額返金">30日全額返金</td>
       </tr>
       <tr>
-        <td>返金保証</td>
-        <td class="c-ng-lg" aria-label="×">✕</td>
-        <td class="td-ours c-ok-lg" aria-label="◎">◎</td>
-      </tr>
-      <tr>
-        <td>公式直送</td>
-        <td class="c-ng-lg" aria-label="×">✕</td>
-        <td class="td-ours c-ok-lg" aria-label="◎">◎</td>
+        <td>偽物・劣化品のリスク</td>
+        <td class="c-ng" aria-label="Amazon等はリスクあり">リスクあり</td>
+        <td class="td-ours c-ok" aria-label="公式直送で安心">公式直送で安心</td>
       </tr>
     </tbody>
   </table>
@@ -1042,26 +1056,34 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
 
 
 <!-- ══════════════════════════════════════════════════════════
-     4. 【新設】香りの想起セクション
-     ノート表記なし・初心者が体験を想像できる言葉で
+     4. 香りの想起セクション [v5]
+     注釈バッジ追加・コピー平易化
 ══════════════════════════════════════════════════════════ -->
 <section class="pl-scent-sec" aria-label="香りの体験">
 
-  <!-- 香りのイメージ画像（URL確定後 src に入れてください） -->
-  <!-- <img class="pl-scent-img lp-image-full" src="YOUR_URL" alt="清潔感のある香りのイメージ" loading="lazy" decoding="async"> -->
+  <!-- 注釈バッジ（画像の直上） -->
+  <div class="pl-scent-notice" role="note">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+    </svg>
+    <span>※本体を開ける前に、同梱のミニボトルでこの香りをお試しいただけます</span>
+  </div>
+
+  <!-- 香りのイメージ画像（URL確定後コメントを外してください） -->
+  <img class="pl-scent-img lp-image-full" src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/4fee215e2154c6173040e9a033fe071c.webp?v=1774267521" alt="清潔感のある香りのイメージ" loading="lazy" decoding="async"> 
   <div class="pl-scent-img-ph" role="img" aria-label="香りのイメージ画像配置予定エリア">
     <span>SCENT IMAGE</span>
   </div>
 
   <div class="pl-scent-copy">
-    <span class="pl-scent-label">香りを想像してみてください</span>
+    <span class="pl-scent-label">この香りをイメージしてみてください</span>
     <h2 class="pl-scent-h">
       お風呂上がりの、<br>
-      あの柔らかな石鹸の香り。
+      あの石鹸の香り。
     </h2>
     <p class="pl-scent-body">
-      洗い立てのシャツに袖を通した時のような、<em>圧倒的な清潔感</em>を1日中キープします。<br><br>
-      つけた直後は爽やかでみずみずしく、時間が経つほど肌に溶け込み、<b>「何の香水？」ではなく「なんかいい匂いする」</b>と言われる香りになっていきます。
+      洗いたてのシャツを着た時のような、清潔な匂い。<br><br>
+      時間が経つほど自分の肌の匂いと混ざって、<b>「なんの香水？」ではなく「なんかいい匂いするね」</b>と言われるようになります。
     </p>
   </div>
 
@@ -1101,7 +1123,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
     <div class="ugc-card" role="listitem" data-index="0">
       <div class="ugc-img">
         <img
-          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2602.webp?v=1773367670"
+          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670#"
           alt="ユーザーレビュー1 — 職場での使用シーン"
           loading="lazy" decoding="async"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -1120,7 +1142,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
     <div class="ugc-card" role="listitem" data-index="1">
       <div class="ugc-img">
         <img
-          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670"
+          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670#"
           alt="ユーザーレビュー2 — 長時間使用のシーン"
           loading="lazy" decoding="async"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -1139,7 +1161,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
     <div class="ugc-card" role="listitem" data-index="2">
       <div class="ugc-img">
         <img
-          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670"
+          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2602.webp?v=1773367670#"
           alt="ユーザーレビュー3 — 個性的な使用シーン"
           loading="lazy" decoding="async"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -1175,7 +1197,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
 <section class="sec-full" aria-label="100ml特典セット">
   <img
     class="lp-image-full lp-image-gift"
-    src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/AC53458D-F4D2-4503-813D-49AFAF7BA444.webp?v=1774088369"
+    src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/AC53458D-F4D2-4503-813D-49AFAF7BA444.webp?v=1774088369#"
     alt="PURELAYER — 100ml特典セット"
     loading="lazy"
     decoding="async">
@@ -1202,13 +1224,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
 <section class="sec-full" aria-label="保証と安心材料">
 
   <!-- 保証セクション画像: URLが決まり次第 src に反映してください -->
-  <div
-    class="lp-image-trust"
-    role="img"
-    aria-label="安心・保証ビジュアル配置予定エリア"
-    style="width:100%;background:linear-gradient(145deg,#E8E4DA,#D4D0C6);display:flex;align-items:center;justify-content:center;">
-    <span style="font-family:var(--fu);font-size:11px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:rgba(51,51,51,.22)">TRUST IMAGE</span>
-  </div>
+
 
   <div style="padding:48px var(--px) 56px; background:var(--cream)">
 
