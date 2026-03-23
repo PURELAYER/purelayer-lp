@@ -7,7 +7,7 @@
 <title>PURELAYER | 清潔感をまとう香水</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 
 <style>
 /* ═══════════════════════════════════════════════════════════
@@ -651,15 +651,212 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
   *{ animation:none!important; transition:none!important }
   .sticky-cta { transition:none }
 }
+
+/* ══════════════════════════════════════════════════════════
+   v4 新規追加CSS — 既存クラスと競合しないよう pl- プレフィックス
+══════════════════════════════════════════════════════════ */
+
+/* ── 修正版 FV：画像上にテキストオーバーレイ ── */
+.pl-fv-wrap {
+  position:relative;
+  width:100%;
+  /* FV全体を囲むラッパー */
+}
+.pl-fv-wrap .lp-image-fv {
+  display:block;
+  width:100%;
+  height:clamp(380px,92vw,560px);
+  object-fit:cover;
+  object-position:center;
+  vertical-align:bottom;
+}
+/* テキストは画像の外・下に配置（SEO/運用性保持） */
+.pl-fv-copy {
+  padding:32px var(--px) 36px;
+  background:var(--cream);
+}
+.pl-fv-kicker {
+  display:block;
+  font-family:var(--fu);
+  font-size:9.5px; font-weight:500;
+  letter-spacing:.26em; text-transform:uppercase;
+  color:var(--ink60); margin-bottom:14px;
+}
+.pl-fv-h1 {
+  font-family:var(--fm);
+  font-size:clamp(24px,7vw,30px);
+  font-weight:800; line-height:1.38;
+  letter-spacing:-.02em; color:var(--ink);
+  margin-bottom:12px;
+}
+.pl-fv-sub {
+  font-size:14px; font-weight:300;
+  line-height:1.80; color:var(--ink60);
+  margin-bottom:20px;
+}
+.pl-fv-sub b { color:var(--ink); font-weight:500 }
+/* 評価バッジ行 */
+.pl-fv-meta {
+  display:flex; align-items:center; gap:8px;
+  margin-bottom:20px;
+}
+.pl-fv-stars { color:var(--star); font-size:13px; letter-spacing:1.5px }
+.pl-fv-count { font-size:12px; color:var(--ink60) }
+/* FV内CTA */
+.pl-fv-cta {
+  display:flex; align-items:center; justify-content:center;
+  width:100%; height:54px; padding:0 24px;
+  background:var(--ink); color:var(--cream);
+  border:none; border-radius:12px;
+  font-family:var(--fu); font-size:14.5px; font-weight:700;
+  letter-spacing:.03em; cursor:pointer;
+  text-decoration:none; text-align:center;
+  position:relative; overflow:hidden;
+  box-shadow:0 5px 22px rgba(51,51,51,.18);
+  transition:opacity .12s;
+  -webkit-tap-highlight-color:transparent;
+}
+.pl-fv-cta:active { opacity:.84 }
+.pl-fv-cta::after {
+  content:""; position:absolute; top:0; left:-80%; width:40%; height:100%;
+  background:linear-gradient(90deg,transparent,rgba(253,252,245,.10),transparent);
+  animation:shim 7s 2.5s ease infinite;
+}
+/* FV保証マイクロコピー */
+.pl-fv-assure {
+  display:flex; flex-wrap:wrap; gap:5px 12px;
+  justify-content:center; margin-top:12px;
+}
+.pl-fv-assure-item {
+  font-size:11px; font-weight:300; color:var(--ink60);
+  display:flex; align-items:center; gap:3px;
+}
+.pl-fv-assure-item::before {
+  content:"✓"; color:var(--ok); font-weight:600; font-size:10px;
+}
+
+/* ── 新設①：広告の答え合わせセクション ── */
+.pl-ans-sec {
+  padding:60px var(--px);
+  background:var(--ink);
+}
+.pl-ans-label {
+  display:block;
+  font-family:var(--fu);
+  font-size:9.5px; font-weight:500;
+  letter-spacing:.26em; text-transform:uppercase;
+  color:rgba(253,252,245,.30); margin-bottom:16px;
+}
+.pl-ans-h {
+  font-family:var(--fm);
+  font-size:clamp(18px,5vw,22px);
+  font-weight:700; line-height:1.48;
+  letter-spacing:-.01em; color:var(--cream);
+  margin-bottom:32px;
+}
+/* 3列アイコングリッド */
+.pl-ans-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.pl-ans-card {
+  background:rgba(253,252,245,.06);
+  border:1px solid rgba(253,252,245,.10);
+  border-radius:12px;
+  padding:18px 12px;
+  display:flex; flex-direction:column; align-items:center;
+  gap:10px; text-align:center;
+}
+.pl-ans-ico {
+  width:40px; height:40px; border-radius:50%;
+  background:rgba(253,252,245,.08);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.pl-ans-ico svg { opacity:.80 }
+.pl-ans-tag {
+  font-family:var(--fu);
+  font-size:8.5px; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:rgba(253,252,245,.32);
+  margin-bottom:2px; display:block;
+}
+.pl-ans-ttl {
+  font-family:var(--fm);
+  font-size:14px; font-weight:700;
+  color:var(--cream); line-height:1.36; margin-bottom:4px;
+}
+.pl-ans-body {
+  font-size:11.5px; font-weight:300;
+  color:rgba(253,252,245,.50); line-height:1.65;
+}
+
+/* ── 新設②：香りの想起セクション ── */
+.pl-scent-sec {
+  padding:0;
+  background:var(--ivory);
+}
+.pl-scent-img {
+  width:100%;
+  height:clamp(260px,68vw,400px);
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  vertical-align:bottom;
+}
+/* 画像プレースホルダー（URL未定の場合） */
+.pl-scent-img-ph {
+  width:100%;
+  height:clamp(260px,68vw,400px);
+  background:linear-gradient(145deg,#E8E4DA,#D0CCbE);
+  display:flex; align-items:center; justify-content:center;
+}
+.pl-scent-img-ph span {
+  font-family:var(--fu); font-size:11px; font-weight:400;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:rgba(51,51,51,.22);
+}
+.pl-scent-copy {
+  padding:36px var(--px) 44px;
+}
+.pl-scent-label {
+  display:block;
+  font-family:var(--fu);
+  font-size:9.5px; font-weight:500;
+  letter-spacing:.26em; text-transform:uppercase;
+  color:var(--ink60); margin-bottom:16px;
+}
+.pl-scent-h {
+  font-family:var(--fm);
+  font-size:clamp(19px,5.2vw,23px);
+  font-weight:700; line-height:1.48;
+  letter-spacing:-.01em; color:var(--ink);
+  margin-bottom:16px;
+}
+.pl-scent-body {
+  font-size:15px; font-weight:300;
+  line-height:1.94; color:var(--ink60);
+}
+.pl-scent-body b  { color:var(--ink); font-weight:500 }
+.pl-scent-body em {
+  font-style:normal;
+  font-weight:700;
+  border-bottom:1px solid var(--ink);
+  padding-bottom:1px;
+}
+
+/* ── ベネフィット画像（繰り上げ後、既存img流用） ── */
+/* .lp-image-ben は既存スタイルそのまま使用 */
+
+@media(max-width:380px){
+  .pl-ans-grid { gap:8px }
+  .pl-ans-card { padding:14px 8px }
+  .pl-ans-ttl  { font-size:12.5px }
+  .pl-ans-body { font-size:10.5px }
+}
+
 </style>
-   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
-   <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "vvn8p99ehp");
-</script>
 </head>
 <body>
 
@@ -685,18 +882,113 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
      2. FIRST VIEW
      ※ スティッキーボタンの表示開始地点
 ══════════════════════════════════════════════════════════ -->
-<section class="sec-full" id="fv-section" aria-label="ファーストビュー">
+<!-- ══════════════════════════════════════════════════════════
+     1. 修正版 FV
+     画像フルワイド + テキストは画像の外（下）に配置
+     SEO・運用性保持のためWebフォントで実装
+══════════════════════════════════════════════════════════ -->
+<section class="pl-fv-wrap" id="fv-section" aria-label="ファーストビュー">
+
+  <!-- FV画像（全幅フルワイド） -->
   <img
     class="lp-image-full lp-image-fv"
-    src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/24_1_3.webp?v=1774151073"
-    alt="PURELAYER Oud Stallion — ファーストビュー"
+    src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/image.webp?v=1774237290#"
+    alt="PURELAYER Oud Stallion — 清潔感をまとう香水"
     loading="eager"
     fetchpriority="high"
     decoding="async">
+
+  <!-- FVコピー（画像外・テキストDOM実装） -->
+  <div class="pl-fv-copy">
+    <span class="pl-fv-kicker">香水初心者のための、正解の1本</span>
+    <h1 class="pl-fv-h1">
+      肌に馴染んで、<br>
+      一日中つづく<br>清潔感。
+    </h1>
+    <p class="pl-fv-sub">
+      「強すぎる」も「すぐ消える」も、もう不要。<br>
+      <b>初心者でも失敗しない香水</b>を、ガチ勢が設計しました。
+    </p>
+    <div class="pl-fv-meta">
+      <span class="pl-fv-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="pl-fv-count">4.9 / 1,240件のレビュー</span>
+    </div>
+    <a
+      href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
+      class="pl-fv-cta"
+      aria-label="リスクなく、自分の肌で試してみる">
+      まずは2mlで、肌で試す →
+    </a>
+    <div class="pl-fv-assure">
+      <span class="pl-fv-assure-item">30日全額返金保証</span>
+      <span class="pl-fv-assure-item">2mlテストキット付き</span>
+      <span class="pl-fv-assure-item">送料無料</span>
+    </div>
+  </div>
+
 </section>
 
-   <!-- ══════════════════════════════════════════════════════════
-     [NEW] 比較表 — [修正4] テキストのみ、PURELAYER列強調
+
+<!-- ══════════════════════════════════════════════════════════
+     2. 【新設】広告の答え合わせセクション
+     TikTok広告のフックに対する解決策を3アイコンで提示
+══════════════════════════════════════════════════════════ -->
+<section class="pl-ans-sec" aria-label="PURELAYERの3つの正解">
+
+  <span class="pl-ans-label">広告の答え合わせ</span>
+  <h2 class="pl-ans-h">
+    だから、1本目に選ばれている。<br>
+    香水ガチ勢が設計した<br>
+    「初心者のための3つの正解」
+  </h2>
+
+  <div class="pl-ans-grid" role="list">
+
+    <!-- 正解01: 擦りNG -->
+    <div class="pl-ans-card" role="listitem">
+      <div class="pl-ans-ico" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(253,252,245,.80)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"/><path d="M6 6l12 12"/>
+          <circle cx="12" cy="12" r="10" stroke-dasharray="3 2"/>
+        </svg>
+      </div>
+      <span class="pl-ans-tag">正解 01</span>
+      <p class="pl-ans-ttl">擦らなくて<br>いい</p>
+      <p class="pl-ans-body">皮膚への摩擦で香りが崩れる。スプレーしてそのままでOK。</p>
+    </div>
+
+    <!-- 正解02: 付けすぎNG -->
+    <div class="pl-ans-card" role="listitem">
+      <div class="pl-ans-ico" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(253,252,245,.80)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66 4.24 4.24M2 12h6m8 0h6M4.93 19.07l4.24-4.24m5.66-5.66 4.24-4.24"/>
+        </svg>
+      </div>
+      <span class="pl-ans-tag">正解 02</span>
+      <p class="pl-ans-ttl">1プッシュで<br>十分</p>
+      <p class="pl-ans-body">肌に馴染む設計だから、少量でも清潔感は1日続く。</p>
+    </div>
+
+    <!-- 正解03: 持続力 -->
+    <div class="pl-ans-card" role="listitem">
+      <div class="pl-ans-ico" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(253,252,245,.80)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <span class="pl-ans-tag">正解 03</span>
+      <p class="pl-ans-ttl">8〜10時間<br>持続する</p>
+      <p class="pl-ans-body">朝つけて、夕方の飲み会まで。塗り直し不要。</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     3. 比較表（繰り上げ）
 ══════════════════════════════════════════════════════════ -->
 <section class="comp-sec sec-cream" aria-label="他社製品との比較">
 
@@ -749,32 +1041,26 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
 
 
 <!-- ══════════════════════════════════════════════════════════
-     3. 問題提起 ＋ 解決策
-     [修正1] .hl → 太字+1px下線 (背景塗りなし)
+     4. 【新設】香りの想起セクション
+     ノート表記なし・初心者が体験を想像できる言葉で
 ══════════════════════════════════════════════════════════ -->
-<section class="problem-sec" aria-label="問題提起と解決策">
+<section class="pl-scent-sec" aria-label="香りの体験">
 
-  <span class="label">なぜ、香水は裏切るのか</span>
+  <!-- 香りのイメージ画像（URL確定後 src に入れてください） -->
+  <!-- <img class="pl-scent-img lp-image-full" src="YOUR_URL" alt="清潔感のある香りのイメージ" loading="lazy" decoding="async"> -->
+  <div class="pl-scent-img-ph" role="img" aria-label="香りのイメージ画像配置予定エリア">
+    <span>SCENT IMAGE</span>
+  </div>
 
-  <h2 class="h2">
-    なぜ、最初だけいい匂いで、<br>
-    時間が経つと<br>
-    <span class="hl">「キツい匂い」</span>に変わるのか？
-  </h2>
-
-  <p class="body">
-    「お風呂上がり？」と聞かれるような清潔感を目指したはずが、いつの間にか周囲に気を使わせる<b>トゲトゲした匂い</b>に……。<br><br>
-    その理由は、香水の粒子が肌から<b>「浮いている」</b>から。
-  </p>
-
-  <div class="sol-box" role="region" aria-label="PURELAYERの解決策">
-    <span class="label">PURELAYERの答え</span>
-    <h3 class="h3">
-      香りを「乗せる」のではなく<br>
-      「馴染ませる」新発想。
-    </h3>
-    <p class="body">
-      独自の配合技術で、付けた瞬間から<b>丸一日</b>、あなた自身の肌の匂いとして定着し続けます。
+  <div class="pl-scent-copy">
+    <span class="pl-scent-label">香りを想像してみてください</span>
+    <h2 class="pl-scent-h">
+      お風呂上がりの、<br>
+      あの柔らかな石鹸の香り。
+    </h2>
+    <p class="pl-scent-body">
+      洗い立てのシャツに袖を通した時のような、<em>圧倒的な清潔感</em>を1日中キープします。<br><br>
+      つけた直後は爽やかでみずみずしく、時間が経つほど肌に溶け込み、<b>「何の香水？」ではなく「なんかいい匂いする」</b>と言われる香りになっていきます。
     </p>
   </div>
 
@@ -782,20 +1068,20 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
 
 
 <!-- ══════════════════════════════════════════════════════════
-     4. ベネフィット（全幅ダミー画像枠）
+     5. ベネフィット詳細（既存画像）
 ══════════════════════════════════════════════════════════ -->
 <section class="sec-full" aria-label="ベネフィット">
   <img
     class="lp-image-full lp-image-ben"
     src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/15.webp?v=1774090462"
-    alt="PURELAYER — ベネフィット"
+    alt="PURELAYER — ベネフィット詳細"
     loading="lazy"
     decoding="async">
 </section>
 
 
 <!-- ══════════════════════════════════════════════════════════
-     5. UGC レビュー — [修正3] 横スクロールカルーセル
+     6. UGC レビュー — 横スクロールカルーセル
 ══════════════════════════════════════════════════════════ -->
 <section class="ugc-sec sec-ivory" aria-label="お客様の声">
 
@@ -805,7 +1091,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
   </div>
 
   <h2 class="ugc-headline">
-    いい匂いがするねって<br>言われることが増えた
+    何の香水？じゃなくて、<br>いい匂いするねって言われた
   </h2>
 
   <!-- 横スクロールトラック -->
@@ -826,7 +1112,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
       </div>
       <div class="ugc-body">
         <p class="ugc-q">「職場の人に『爽やかで落ち着くね』って褒められました。キツくないから毎日使えます。」</p>
-        <p class="ugc-meta">20代・男性</p>
+        <p class="ugc-meta">20代・女性</p>
       </div>
     </div>
 
@@ -845,7 +1131,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
       </div>
       <div class="ugc-body">
         <p class="ugc-q">「夕方までしっかり残るのに、最初から最後まで安っぽくない。やっと一軍の香水に出会えた。」</p>
-        <p class="ugc-meta">30代・女性</p>
+        <p class="ugc-meta">30代・男性</p>
       </div>
     </div>
 
@@ -914,7 +1200,14 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
 ══════════════════════════════════════════════════════════ -->
 <section class="sec-full" aria-label="保証と安心材料">
 
-
+  <!-- 保証セクション画像: URLが決まり次第 src に反映してください -->
+  <div
+    class="lp-image-trust"
+    role="img"
+    aria-label="安心・保証ビジュアル配置予定エリア"
+    style="width:100%;background:linear-gradient(145deg,#E8E4DA,#D4D0C6);display:flex;align-items:center;justify-content:center;">
+    <span style="font-family:var(--fu);font-size:11px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:rgba(51,51,51,.22)">TRUST IMAGE</span>
+  </div>
 
   <div style="padding:48px var(--px) 56px; background:var(--cream)">
 
