@@ -192,30 +192,7 @@ body::after {
 }
 .sec-ink .div-line { background:rgba(253,252,245,.24) }
 
-/* ══════════════════════════════════════════════════════════
-   3. 問題提起 + 解決策
-══════════════════════════════════════════════════════════ */
-.problem-sec { padding:64px var(--px) }
 
-.sol-box {
-  background:var(--ink);
-  border-radius:14px;
-  padding:24px 22px;
-  margin-top:28px;
-  position:relative; overflow:hidden;
-}
-.sol-box::before {
-  content:""; position:absolute;
-  top:-30px; right:-20px;
-  width:120px; height:120px;
-  border-radius:50%;
-  background:rgba(253,252,245,.04);
-  pointer-events:none;
-}
-.sol-box .label { color:rgba(253,252,245,.32) }
-.sol-box .h3    { color:var(--cream); margin-bottom:12px }
-.sol-box .body  { color:rgba(253,252,245,.56) }
-.sol-box .body b { color:var(--cream) }
 
 /* ══════════════════════════════════════════════════════════
    5. UGC レビュー — [修正3] 横スクロールカルーセル
@@ -1005,54 +982,53 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
      3. 比較表 [v5 見出し・項目平易化]
 ══════════════════════════════════════════════════════════ -->
 <section class="comp-sec sec-cream" aria-label="他社製品との比較">
-
-  <span class="label">なぜ失敗しないのか</span>
-  <h2 class="h2">なぜ「失敗しない」のか？<br>普通の香水と比べました</h2>
-
-  <table class="comp-table" role="table" aria-label="PURELAYER vs 普通の香水 比較表">
+ 
+  <span class="label">なぜPURELAYERなのか</span>
+  <h2 class="h2">他の香水と<br>何が違うのか。</h2>
+ 
+  <table class="comp-table" role="table" aria-label="PURELAYER vs 他社製品比較表">
     <thead>
       <tr>
-        <th class="th-left" scope="col" aria-label="比較項目">比べるポイント</th>
-        <th class="th-other" scope="col">普通の香水</th>
+        <th class="th-left" scope="col" aria-label="比較項目">比較項目</th>
+        <th class="th-other" scope="col">一般的な香水</th>
         <th class="th-ours" scope="col">PURELAYER</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>匂いのきつさ</td>
-        <td class="c-ng" aria-label="きつくなりがち">きつくなりがち</td>
-        <td class="td-ours c-ok" aria-label="ふんわり持続">ふんわり持続</td>
-      </tr>
-      <tr>
-        <td>電車・職場で使える？</td>
+        <td>肌馴染み</td>
         <td class="c-ng-lg" aria-label="×">✕</td>
         <td class="td-ours c-ok-lg" aria-label="◎">◎</td>
       </tr>
       <tr>
-        <td>持ちの良さ</td>
-        <td class="c-ng" aria-label="2〜4時間">2〜4時間</td>
-        <td class="td-ours c-ok" aria-label="8〜10時間">8〜10時間</td>
+        <td>電車・職場で使いやすい</td>
+        <td class="c-ng-lg" aria-label="×">✕</td>
+        <td class="td-ours c-ok-lg" aria-label="◎">◎</td>
       </tr>
       <tr>
-        <td>試せるかどうか</td>
-        <td class="c-ng-lg" aria-label="×（開けたら終わり）">✕ 開けたら終わり</td>
-        <td class="td-ours c-ok-lg" aria-label="◎（ミニボトルで先に確認）">◎ 先に確認できる</td>
+        <td>一日中持続</td>
+        <td class="c-ng" aria-label="△">△</td>
+        <td class="td-ours c-ok" aria-label="8〜10時間">8〜10h</td>
       </tr>
       <tr>
-        <td>合わなかった時</td>
-        <td class="c-ng" aria-label="返金なし">返金なし</td>
-        <td class="td-ours c-ok" aria-label="30日全額返金">30日全額返金</td>
+        <td>テストキット付き</td>
+        <td class="c-ng-lg" aria-label="×">✕</td>
+        <td class="td-ours c-ok-lg" aria-label="◎">◎</td>
       </tr>
       <tr>
-        <td>偽物・劣化品のリスク</td>
-        <td class="c-ng" aria-label="Amazon等はリスクあり">リスクあり</td>
-        <td class="td-ours c-ok" aria-label="公式直送で安心">公式直送で安心</td>
+        <td>返金保証</td>
+        <td class="c-ng-lg" aria-label="×">✕</td>
+        <td class="td-ours c-ok-lg" aria-label="◎">◎</td>
+      </tr>
+      <tr>
+        <td>公式直送</td>
+        <td class="c-ng-lg" aria-label="×">✕</td>
+        <td class="td-ours c-ok-lg" aria-label="◎">◎</td>
       </tr>
     </tbody>
   </table>
-
+ 
 </section>
-
 
 <!-- ══════════════════════════════════════════════════════════
      4. 香りの想起セクション [v5]
