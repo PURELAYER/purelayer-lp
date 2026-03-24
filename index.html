@@ -899,74 +899,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
   font-weight:500;                /* やや太い */
 }
 
-   /* ── v7 FV コピー上部ピンポイント修正 ──────────────────
-   kicker / h1 / sub / meta のみ更新。他は一切変更しない。
-─────────────────────────────────────────────────── */
- 
-/* キャッチ（最上部小文字） */
-.pl-fv-kicker {
-  font-family:var(--fm);          /* 明朝体 */
-  font-size:13px;
-  font-weight:400;
-  letter-spacing:.04em;
-  color:var(--ink60);
-  margin-bottom:16px;
-}
- 
-/* メインタイトル */
-.pl-fv-h1 {
-  font-family:var(--fm);
-  font-size:clamp(26px,7.5vw,32px);
-  font-weight:700;
-  line-height:1.46;
-  letter-spacing:-.02em;
-  color:var(--ink);
-  margin-bottom:14px;
-}
-/* 「もっと早く出会いたかった」 強調行 */
-.pl-fv-h1-hook {
-  display:block;
-  font-size:clamp(28px,8.2vw,35px); /* 他より一回り大きく */
-  font-weight:800;
-  line-height:1.20;
-  letter-spacing:-.025em;
-  color:var(--ink);
-}
-/* 「本気で推す」インライン強調 */
-.pl-fv-h1-accent {
-  font-weight:800;
-  font-size:1.06em; /* 行内でわずかに大きい */
-  border-bottom:1.5px solid var(--ink);
-  padding-bottom:1px;
-}
- 
-/* リード文 */
-.pl-fv-sub {
-  font-family:var(--fm);
-  font-size:14px;
-  font-weight:400;
-  line-height:1.90;
-  color:var(--ink60);
-  margin-bottom:20px;
-  letter-spacing:.01em;
-}
-.pl-fv-sub b { color:var(--ink); font-weight:700 }
- 
-/* 評価行 */
-.pl-fv-meta {
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-bottom:20px;
-}
-.pl-fv-stars { color:var(--star); font-size:13px; letter-spacing:1.5px }
-.pl-fv-count {
-  font-family:var(--fm);
-  font-size:12px;
-  font-weight:400;
-  color:var(--ink60);
-  letter-spacing:.02em;
-}
+   
 /* 満足度 % 部分の強調 */
 .pl-fv-count-em {
   font-weight:700;
@@ -1023,28 +956,19 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
     fetchpriority="high"
     decoding="async">
    
-  <!-- FVコピー（画像外・テキストDOM実装） -->
-  <div class="pl-fv-copy">
- 
-    <!-- 最上部キャッチ（小文字） -->
+   <div class="pl-fv-copy">
     <span class="pl-fv-kicker">香水選びで、もう迷いたくないあなたへ</span>
- 
-    <!-- メインタイトル -->
     <h1 class="pl-fv-h1">
-      <span class="pl-fv-h1-hook">「もっと早く出会いたかった」</span>
-      香水ガチ勢が、<span class="pl-fv-h1-accent">本気で推す</span>清潔感。
+      「もっと早く出会いたかった」<br>
+     香水ガチ勢が、本気で推す<br>清潔感。
     </h1>
- 
-    <!-- リード文 -->
     <p class="pl-fv-sub">
-      「強すぎる」「すぐ消える」は、もう不要。<br>
-      初心者が<b>"絶対失敗しない"設計</b>を、プロが形にしました。
+      「強すぎる」も「すぐ消える」も、もう不要。<br>
+      <b>初心者でも失敗しない香水</b>を、プロが設計しました。
     </p>
- 
-    <!-- 星評価（初心者満足度強調） -->
     <div class="pl-fv-meta">
       <span class="pl-fv-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <span class="pl-fv-count">4.9 / 香水初心者の満足度 <span class="pl-fv-count-em">98.7%</span></span>
+      <span class="pl-fv-count">4.9 /香水初心者の満足度  <span class="pl-fv-count-em">98.7%</span></span>
     </div>
     <!-- ボタン直上の説明文（ユーザーが押す直前に必ず読む位置） -->
     <p class="pl-fv-pre-cta">
@@ -1066,6 +990,8 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
       <span class="pl-fv-assure-item">送料無料</span>
     </div>
   </div>
+ 
+</section>
 
 
 </section>
