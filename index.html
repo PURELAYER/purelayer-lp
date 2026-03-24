@@ -1061,6 +1061,161 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
  
 /* ボタン直上説明文は廃止（3点バッジに統合）→ display:none */
 .pl-fv-pre-cta { display:none }
+
+   /* ── v9 FV コピーブロック 全面刷新 ─────────────────────
+   変更範囲: .pl-fv-copy 内のみ
+   絵文字ゼロ / SVGアウトラインアイコン / kicker削除
+   既存の他スタイル（pl-ans, ugc, FAQ等）は一切変更しない
+────────────────────────────────────────────────────── */
+ 
+/* padding内は十分な余白で "詰まり感" を完全解消 */
+.pl-fv-copy {
+  padding:40px var(--px) 44px;
+  background:var(--cream);
+}
+ 
+/* kicker は今回削除（display:none で既存クラスを無効化） */
+.pl-fv-kicker { display:none }
+ 
+/* メインコピー — 一回りスリムに調整 */
+.pl-fv-h1 {
+  font-family:var(--fm);
+  font-size:clamp(22px,6.2vw,27px);   /* v7/v8より一段小さく */
+  font-weight:700;
+  line-height:1.52;
+  letter-spacing:-.015em;
+  color:var(--ink);
+  margin-bottom:18px;
+}
+/* フック行（hook/accent）は今回使わない → 表示維持しつつ継承 */
+.pl-fv-h1-hook   { font-size:inherit; font-weight:700 }
+.pl-fv-h1-accent { font-weight:700; border-bottom:none }
+ 
+/* サブコピー — 行間広めで読みやすく */
+.pl-fv-sub {
+  font-family:var(--fm);
+  font-size:14px;
+  font-weight:400;
+  line-height:2.0;
+  color:var(--ink60);
+  margin-bottom:28px;
+  letter-spacing:.01em;
+}
+.pl-fv-sub b { color:var(--ink); font-weight:700 }
+ 
+/* 星評価行 — 1行にまとめてコンパクトに */
+.pl-fv-meta {
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:6px 10px;
+  margin-bottom:28px;
+}
+.pl-fv-meta-stars-row {
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.pl-fv-stars     { color:var(--star); font-size:13px; letter-spacing:1.5px }
+.pl-fv-rating-num {
+  font-family:var(--fm);
+  font-size:13px; font-weight:400; color:var(--ink60);
+}
+/* 満足度テキスト & パーセント */
+.pl-fv-satisfy {
+  font-family:var(--fm);
+  font-size:13px; font-weight:400; color:var(--ink60);
+  display:flex; align-items:baseline; gap:5px;
+}
+.pl-fv-satisfy-pct {
+  font-family:var(--fm);
+  font-size:17px;          /* 控えめに強調 */
+  font-weight:800;
+  color:var(--ink);
+  letter-spacing:-.01em;
+  line-height:1;
+}
+ 
+/* ── SVGアウトラインアイコンバッジ ── */
+.pl-fv-badges {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom:28px;
+}
+.pl-fv-badge {
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  padding:16px 18px;
+  background:var(--ivory);
+  border-radius:10px;
+  border:1px solid var(--ink12);
+}
+/* SVGアイコンコンテナ */
+.pl-fv-badge-ico {
+  width:32px; height:32px;
+  border-radius:50%;
+  background:var(--cream);
+  border:1px solid var(--ink12);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+  margin-top:1px;
+}
+.pl-fv-badge-ico svg {
+  display:block;
+  color:var(--ink);
+  opacity:.70;
+}
+.pl-fv-badge-body { flex:1 }
+.pl-fv-badge-ttl {
+  font-family:var(--fm);
+  font-size:14px;
+  font-weight:700;
+  color:var(--ink);
+  line-height:1.36;
+  margin-bottom:4px;
+}
+.pl-fv-badge-desc {
+  font-family:var(--fm);
+  font-size:12.5px;
+  font-weight:400;
+  color:var(--ink60);
+  line-height:1.65;
+}
+ 
+/* pre-cta 非表示（バッジに統合済み） */
+.pl-fv-pre-cta { display:none }
+ 
+/* ボタン余白調整 */
+.pl-fv-cta { margin-bottom:0 }
+ 
+/* 注釈行 — 3項目を縦積みにしてシンプルに */
+.pl-fv-assure {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:5px;
+  margin-top:14px;
+}
+.pl-fv-assure-item {
+  font-family:var(--fm);
+  font-size:11.5px;
+  font-weight:300;
+  color:var(--ink60);
+  display:flex; align-items:center; gap:4px;
+}
+.pl-fv-assure-item::before {
+  content:"✓";
+  color:var(--ok);
+  font-weight:600;
+  font-size:10px;
+}
+.pl-fv-assure-item--primary {
+  color:var(--ink);
+  font-weight:500;
+}
   
 
 </style>
@@ -1113,67 +1268,91 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
     fetchpriority="high"
     decoding="async">
    
-    <!-- FVコピー（画像外・テキストDOM実装） -->
-  <div class="pl-fv-copy">
+     <div class="pl-fv-copy">
  
-    <!-- 最上部キャッチ（小文字） -->
-    <span class="pl-fv-kicker">香水選びで、もう迷いたくないあなたへ</span>
+    <!-- kicker: CSS側でdisplay:none（仕様通り削除） -->
+    <span class="pl-fv-kicker" aria-hidden="true"></span>
  
-    <!-- メインタイトル -->
+    <!-- メインコピー（一回りスリムに） -->
     <h1 class="pl-fv-h1">
-      <span class="pl-fv-h1-hook">「もっと早く出会いたかった」</span>
-      香水ガチ勢が、<span class="pl-fv-h1-accent">本気で推す</span>清潔感。
+      香水選びの&ldquo;失敗&rdquo;を、<br>
+      物理的にゼロにする仕組み。
     </h1>
  
-    <!-- リード文 -->
+    <!-- サブコピー -->
     <p class="pl-fv-sub">
-      「強すぎる」「すぐ消える」は、もう不要。<br>
-      初心者が<b>"絶対失敗しない"設計</b>を、プロが形にしました。
+      「自分に合うか分からない」という不安は当然です。<br>
+      だからこそ、本品を開ける前に<b>自宅でゆっくり試せる設計</b>にしました。
     </p>
  
-    <!-- 星評価（満足度を2行に分けて大きく） -->
+    <!-- 星評価 — 1行コンパクト -->
     <div class="pl-fv-meta">
       <div class="pl-fv-meta-stars-row">
         <span class="pl-fv-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
         <span class="pl-fv-rating-num">4.9</span>
       </div>
       <p class="pl-fv-satisfy">
-        香水初心者の満足度
-        <span class="pl-fv-satisfy-pct">98.7%</span>
+        香水初心者の満足度&ensp;<span class="pl-fv-satisfy-pct">98.7%</span>
       </p>
     </div>
  
-    <!-- アイコン3点バッジ（横長カード形式） -->
-    <div class="pl-fv-badges" role="list" aria-label="3つの特典・保証">
+    <!-- SVGアウトラインアイコン 3点バッジ（絵文字なし） -->
+    <div class="pl-fv-badges" role="list" aria-label="3つの安心設計">
  
+      <!-- バッジ1: 2mlアトマイザー付 -->
       <div class="pl-fv-badge" role="listitem">
-        <span class="pl-fv-badge-ico" aria-hidden="true">🎁</span>
+        <div class="pl-fv-badge-ico" aria-hidden="true">
+          <!-- プレゼントボックス / ギフト -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.6"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 12v10H4V12"/>
+            <path d="M22 7H2v5h20V7z"/>
+            <line x1="12" y1="22" x2="12" y2="7"/>
+            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+          </svg>
+        </div>
         <div class="pl-fv-badge-body">
-          <p class="pl-fv-badge-ttl">限定特典：2mlアトマイザー付</p>
-          <p class="pl-fv-badge-desc">公式ストア限定。100ml購入で無料プレゼント。</p>
+          <p class="pl-fv-badge-ttl">100ml購入で2mlアトマイザー付</p>
+          <p class="pl-fv-badge-desc">公式ストア限定。本体とは別に、試用サイズが同梱されます。</p>
         </div>
       </div>
  
+      <!-- バッジ2: 本体を開ける前に試せる -->
       <div class="pl-fv-badge" role="listitem">
-        <span class="pl-fv-badge-ico" aria-hidden="true">✨</span>
+        <div class="pl-fv-badge-ico" aria-hidden="true">
+          <!-- チェックサークル / 確認 -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.6"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
         <div class="pl-fv-badge-body">
-          <p class="pl-fv-badge-ttl">安心体験：まずはミニサイズで試用</p>
-          <p class="pl-fv-badge-desc">本体を開ける前に、自分の肌で香りを確認できます。</p>
+          <p class="pl-fv-badge-ttl">本体を開ける前に、自宅で試せる</p>
+          <p class="pl-fv-badge-desc">ミニサイズを先に試し、納得してから本体を開封できます。</p>
         </div>
       </div>
  
+      <!-- バッジ3: 合わなければ全額返金 -->
       <div class="pl-fv-badge" role="listitem">
-        <span class="pl-fv-badge-ico" aria-hidden="true">🛡️</span>
+        <div class="pl-fv-badge-ico" aria-hidden="true">
+          <!-- シールド / 保護 -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.6"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
         <div class="pl-fv-badge-body">
-          <p class="pl-fv-badge-ttl">全額返金：合わなければ返品OK</p>
-          <p class="pl-fv-badge-desc">30日以内・理由不要。リスクはゼロです。</p>
+          <p class="pl-fv-badge-ttl">合わなければ開封前なら返金OK</p>
+          <p class="pl-fv-badge-desc">30日以内・理由不要。リスクは私たちが負います。</p>
         </div>
       </div>
  
     </div>
- 
-    <!-- pre-ctaは3点バッジに統合 → CSS側でdisplay:none -->
-    <p class="pl-fv-pre-cta" aria-hidden="true"></p>
  
     <!-- CTAボタン -->
     <a
@@ -1183,12 +1362,13 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
       香りサンプル付きで試してみる →
     </a>
  
-    <!-- ボタン下注釈: 30日保証のみ強調 -->
+    <!-- ボタン下注釈（仕様通り3項目） -->
     <div class="pl-fv-assure">
-      <span class="pl-fv-assure-item pl-fv-assure-item--primary">30日間全額返金保証</span>
-      <span class="pl-fv-assure-item">2mlテストキット付き</span>
+      <span class="pl-fv-assure-item pl-fv-assure-item--primary">100ml購入で2mlアトマイザー付</span>
+      <span class="pl-fv-assure-item">合わなければ開封前なら返金OK</span>
       <span class="pl-fv-assure-item">送料無料</span>
     </div>
+ 
   </div>
  
 </section>
