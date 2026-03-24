@@ -865,46 +865,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
   overflow-wrap:break-word;
 }
 
-   /* ── v6 FV CTA ピンポイント修正 ──────────────────────
-   該当箇所: .pl-fv-copy 内のボタン前説明文・ボタン・注釈のみ
-   既存の他スタイルは一切変更しない
-─────────────────────────────────────────────────── */
- 
-/* ボタン直上の説明文 */
-.pl-fv-pre-cta {
-  font-family:var(--fm);          /* 明朝体: Quiet Luxury維持 */
-  font-size:13px;
-  font-weight:500;                /* Medium — 可読性を高める */
-  line-height:1.78;
-  color:var(--ink60);
-  margin-bottom:12px;
-  letter-spacing:.01em;
-}
- 
-/* 注釈行: 縦積み → 横並び維持、30日保証のみ強調 */
-.pl-fv-assure {
-  display:flex; flex-wrap:wrap; gap:5px 14px;
-  justify-content:center; margin-top:14px;
-}
-.pl-fv-assure-item {
-  font-size:11px; font-weight:300; color:var(--ink60);
-  display:flex; align-items:center; gap:3px;
-}
-.pl-fv-assure-item::before {
-  content:"✓"; color:var(--ok); font-weight:600; font-size:10px;
-}
-/* 30日保証のみ強調（他より濃くやや太く） */
-.pl-fv-assure-item--primary {
-  color:var(--ink);               /* 濃い墨色 */
-  font-weight:500;                /* やや太い */
-}
-
-   
-/* 満足度 % 部分の強調 */
-.pl-fv-count-em {
-  font-weight:700;
-  color:var(--ink);
-}
+  
 
 </style>
    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
@@ -956,42 +917,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
     fetchpriority="high"
     decoding="async">
    
-   <div class="pl-fv-copy">
-    <span class="pl-fv-kicker">香水選びで、もう迷いたくないあなたへ</span>
-    <h1 class="pl-fv-h1">
-      「もっと早く出会いたかった」<br>
-     香水ガチ勢が、本気で推す<br>清潔感。
-    </h1>
-    <p class="pl-fv-sub">
-      「強すぎる」も「すぐ消える」も、もう不要。<br>
-      <b>初心者でも失敗しない香水</b>を、プロが設計しました。
-    </p>
-    <div class="pl-fv-meta">
-      <span class="pl-fv-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <span class="pl-fv-count">4.9 /香水初心者の満足度  <span class="pl-fv-count-em">98.7%</span></span>
-    </div>
-    <!-- ボタン直上の説明文（ユーザーが押す直前に必ず読む位置） -->
-    <p class="pl-fv-pre-cta">
-      公式ストア限定：100ml購入で2mlアトマイザーを無料プレゼント。<br>まずは同梱のミニサイズで試し、合わなければ返金対応いたします。
-    </p>
- 
-    <!-- CTAボタン -->
-    <a
-      href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
-      class="pl-fv-cta"
-      aria-label="香りサンプル付きで試してみる">
-      香りサンプル付きで試してみる →
-    </a>
- 
-    <!-- ボタン下注釈: 30日保証のみ強調 -->
-    <div class="pl-fv-assure">
-      <span class="pl-fv-assure-item pl-fv-assure-item--primary">30日間全額返金保証</span>
-      <span class="pl-fv-assure-item">2mlテストキット付き</span>
-      <span class="pl-fv-assure-item">送料無料</span>
-    </div>
-  </div>
- 
-</section>
+   
 
 
 </section>
