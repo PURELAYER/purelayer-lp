@@ -1345,7 +1345,94 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
 .pl-fv-assure-item--primary {
   color:var(--ink); font-weight:500;
 }
-  
+
+   /* ── v11 ピンポイント修正 ────────────────────────────────
+   [A] ヘッダー promo-banner: 緊急性テキスト対応
+   [B] FV直下コピー: 本文廃止 → 見出し+アイコンリストのみ
+   他スタイルは一切変更しない
+──────────────────────────────────────────────────── */
+ 
+/* [A] プロモバナー — 緊急性テキスト対応スタイル調整 */
+.promo-banner {
+  border:1px solid var(--ink30);
+  border-radius:4px;
+  padding:5px 10px;
+  font-family:var(--fm);            /* 明朝体で品格維持 */
+  font-size:9px;                    /* 長文対応でやや小さく */
+  font-weight:400;
+  color:var(--g75, #3E3D42);        /* 少し濃いグレー */
+  letter-spacing:.01em;
+  line-height:1.60;
+  text-align:center;
+  max-width:180px;
+}
+.promo-banner b {
+  font-weight:700;
+  color:var(--ink);
+}
+ 
+/* [B] FVコピー直下のコンテンツをコンパクト化 */
+ 
+/* 本文ブロック非表示（アイコンリストに置き換え） */
+.pl-fv-v10-body { display:none }
+ 
+/* 見出し: 「失敗させない、3つの約束。」 */
+.pl-fv-v11-h {
+  font-family:var(--fm);
+  font-size:clamp(20px,5.8vw,24px);
+  font-weight:800;
+  line-height:1.44;
+  letter-spacing:-.01em;
+  color:var(--ink);
+  margin-bottom:20px;
+}
+ 
+/* アイコン + 単語リスト — カードなし・縦並び */
+.pl-fv-v11-list {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom:24px;
+}
+.pl-fv-v11-item {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.pl-fv-v11-ico {
+  width:28px; height:28px;
+  flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--ink);
+  opacity:.65;
+}
+.pl-fv-v11-ico svg { display:block }
+.pl-fv-v11-word {
+  font-family:var(--fm);
+  font-size:14.5px;
+  font-weight:700;
+  color:var(--ink);
+  letter-spacing:.01em;
+  line-height:1.30;
+}
+ 
+/* 星評価の上余白を詰める */
+.pl-fv-meta { margin-bottom:24px }
+ 
+/* v11ではリードはそのまま表示させる */
+.pl-fv-v10-lead {
+  font-family:var(--fu);
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--ink60);
+  margin-bottom:14px;
+  display:block;
+}
+ 
+/* 旧h1は非表示（v11見出しに置き換え） */
+.pl-fv-h1 { display:none }
 
 </style>
    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
@@ -1369,9 +1456,10 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
 <header class="header" role="banner">
   <div class="header-in">
     <div class="logo" aria-label="PURELAYER">PURELAYER</div>
-    <div class="promo-banner" role="note" aria-label="数量限定特典">
-      <b>【数量限定】</b>100ml購入で<br>
-      10ml &amp; テストキットをプレゼント。
+    <div class="promo-banner" role="note" aria-label="在庫状況のご案内">
+      現在、SNS反響により需要が急増しており、<br>
+      <b>在庫が不安定</b>となっております。<br>
+      ご注文はお早めにお願いいたします。
     </div>
   </div>
 </header>
@@ -1397,38 +1485,70 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
     fetchpriority="high"
     decoding="async">
    
-     <div class="pl-fv-copy">
+ <div class="pl-fv-copy">
  
-    <!-- kicker: CSS側でdisplay:none（仕様通り削除） -->
+    <!-- kicker非表示継続 -->
     <span class="pl-fv-kicker" aria-hidden="true"></span>
  
-    <!-- メインコピー（一回りスリムに） -->
-    <div class="pl-fv-copy">
- 
-    <!-- kicker非表示（CSS継続） -->
-    <span class="pl-fv-kicker" aria-hidden="true"></span>
- 
-    <!-- ① 最上部リード（小さく控えめ） -->
+    <!-- リード（display:noneのh1の代わり） -->
     <span class="pl-fv-v10-lead">公式ストア限定</span>
  
-    <!-- ② メイン見出し（大きく太字・明朝体） -->
-    <h1 class="pl-fv-h1">
-      まずは&ldquo;香りだけ&rdquo;試せる仕組み。
-    </h1>
+    <!-- 旧h1（CSS display:noneで非表示） -->
+    <h1 class="pl-fv-h1" aria-hidden="true">まずは"香りだけ"試せる仕組み。</h1>
  
-    <!-- ③ 説明本文（1テキストブロックに集約） -->
-    <div class="pl-fv-v10-body">
-      <p>
-        「香水選びで失敗してほしくない」という想いから、<br>
-        100ml購入で、<b>2mlアトマイザーを無料でお届け</b>します。
-      </p>
-      <p>
-        まずは同梱のミニサイズをお試しください。<br>
-        香りが合わなければ、<b>本体は開封前なら全額返金</b>いたします。
-      </p>
-    </div>
+    <!-- v11見出し: 失敗させない、3つの約束。 -->
+    <h2 class="pl-fv-v11-h">失敗させない、3つの約束。</h2>
  
-    <!-- ④ 星評価（控えめ・1行） -->
+    <!-- 旧本文（CSS display:noneで非表示） -->
+    <div class="pl-fv-v10-body" aria-hidden="true"></div>
+ 
+    <!-- アイコン+単語リスト（カードなし・縦並び・コンパクト） -->
+    <ul class="pl-fv-v11-list" role="list">
+ 
+      <li class="pl-fv-v11-item" role="listitem">
+        <span class="pl-fv-v11-ico" aria-hidden="true">
+          <!-- シールド: 返金保証 -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.7"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </span>
+        <span class="pl-fv-v11-word">30日間 全額返金保証</span>
+      </li>
+ 
+      <li class="pl-fv-v11-item" role="listitem">
+        <span class="pl-fv-v11-ico" aria-hidden="true">
+          <!-- 小瓶/スプレー: テストキット -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.7"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 3h6l1 5H8L9 3z"/>
+            <path d="M8 8v12a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8"/>
+            <line x1="10" y1="13" x2="14" y2="13"/>
+          </svg>
+        </span>
+        <span class="pl-fv-v11-word">2mlお試しキット同梱</span>
+      </li>
+ 
+      <li class="pl-fv-v11-item" role="listitem">
+        <span class="pl-fv-v11-ico" aria-hidden="true">
+          <!-- トラック: 送料無料 -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.7"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13" rx="1"/>
+            <path d="M16 8h4l3 5v3h-7V8z"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/>
+            <circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        </span>
+        <span class="pl-fv-v11-word">全国どこでも送料無料</span>
+      </li>
+ 
+    </ul>
+ 
+    <!-- 星評価（控えめ・1行） -->
     <div class="pl-fv-meta">
       <div class="pl-fv-meta-stars-row">
         <span class="pl-fv-stars" aria-label="5つ星">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
@@ -1439,10 +1559,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
       </p>
     </div>
  
-    <!-- バッジ: CSS側でdisplay:none（v10では不使用） -->
-    <div class="pl-fv-badges" aria-hidden="true"></div>
- 
-    <!-- ⑤ CTAボタン（目立たせる） -->
+    <!-- CTAボタン -->
     <a
       href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women"
       class="pl-fv-cta"
@@ -1450,7 +1567,7 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
       香りサンプル付きで試してみる →
     </a>
  
-    <!-- ⑥ ボタン下の注釈（横並び3項目・最後のリスク破壊） -->
+    <!-- ボタン下注釈 -->
     <div class="pl-fv-assure">
       <span class="pl-fv-assure-item pl-fv-assure-item--primary">30日間全額返金保証</span>
       <span class="pl-fv-assure-item">2mlテストキット付き</span>
