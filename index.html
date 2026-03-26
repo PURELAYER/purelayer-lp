@@ -1434,6 +1434,58 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
 /* 旧h1は非表示（v11見出しに置き換え） */
 .pl-fv-h1 { display:none }
 
+   /* ── v12 ヘッダー緊急バッジ ─────────────────────────────
+   クラス: .header-urgency-badge（完全独立）
+   他のスタイルには一切干渉しない
+──────────────────────────────────────────────────── */
+ 
+/* バッジ全体 */
+.header-urgency-badge {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  /* 薄い赤背景 + 細いボーダー */
+  background:rgba(179,0,0,.05);
+  border:1px solid rgba(179,0,0,.28);
+  border-radius:6px;
+  padding:6px 11px;
+  flex-shrink:1;
+  min-width:0;
+}
+ 
+/* 赤い点滅ドット */
+.hub-dot {
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#b30000;
+  flex-shrink:0;
+  animation:hub-blink 1.6s ease-in-out infinite;
+}
+@keyframes hub-blink {
+  0%,100% { opacity:1;  transform:scale(1) }
+  50%      { opacity:.22; transform:scale(.75) }
+}
+ 
+/* テキスト部 */
+.hub-text {
+  font-family:var(--fu);          /* ゴシック体: 視認性優先 */
+  font-size:9.5px;
+  font-weight:700;
+  color:#8B0000;                  /* 深い赤 */
+  letter-spacing:.01em;
+  line-height:1.50;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+ 
+/* スマホで折り返しが必要な場合 */
+@media(max-width:360px){
+  .hub-text { font-size:8.5px }
+  .header-urgency-badge { padding:5px 8px; gap:5px }
+}
+
 </style>
    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
    <script type="text/javascript">
@@ -1456,10 +1508,9 @@ footer a { color:var(--ink30); text-decoration:underline; text-underline-offset:
 <header class="header" role="banner">
   <div class="header-in">
     <div class="logo" aria-label="PURELAYER">PURELAYER</div>
-    <div class="promo-banner" role="note" aria-label="在庫状況のご案内">
-      現在、需要が急増しており、<br>
-      <b>在庫が不安定</b>となっております。<br>
-      ご注文はお早めにお願いいたします。
+    <div class="header-urgency-badge" role="alert" aria-label="在庫警告">
+      <span class="hub-dot" aria-hidden="true"></span>
+      <span class="hub-text">【警告】在庫残りわずか：本日分が完売する可能性があります</span>
     </div>
   </div>
 </header>
