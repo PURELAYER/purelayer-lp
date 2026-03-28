@@ -170,13 +170,15 @@ body {
   object-position: center top;
   display: block;
 }
-   .fv-overlay {
+   /* 黒オーバーレイ — 視認性確保 */
+.fv-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.42);
   pointer-events: none;
   z-index: 1;
 }
+
    .fv-catch {
   position: relative;
   z-index: 2;
@@ -190,6 +192,7 @@ body {
   margin-bottom: 28px;
   padding: 0 28px;
 }
+   
 /* Suppress image-baked text — gradient mask over upper area */
 .fv-mask {
   position: absolute;
@@ -214,7 +217,7 @@ body {
   align-items: center;
   gap: 12px;
 }
-/* CTA buttons — flat, no shadow */
+/* メインボタン */
 .pl-btn-main {
   display: block;
   width: 100%;
@@ -233,19 +236,6 @@ body {
   transition: opacity 0.18s, transform 0.12s;
 }
 .pl-btn-main:active { opacity: 0.80; transform: scale(0.97); }
-
-   .fv-scroll-hint {
-  margin-top: 4px;
-  animation: fv-bounce 1.8s ease-in-out infinite;
-}
-   .fv-micro {
-  font-size: 10.5px;
-  color: rgba(255, 255, 255, 0.52);
-  letter-spacing: 0.1em;
-  text-align: center;
-  font-weight: var(--fw-l);
-  margin: 0;
-}
 .pl-btn-outline {
   display: block;
   width: 100%;
@@ -261,7 +251,22 @@ body {
   border: 1px solid rgba(255,255,255,0.36);
   cursor: pointer;
   text-decoration: none;
-   
+}
+/* 小テキスト */
+.fv-micro {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.52);
+  letter-spacing: 0.1em;
+  text-align: center;
+  font-weight: var(--fw-l);
+  margin: 0;
+}
+
+   /* スクロール誘導アイコン */
+.fv-scroll-hint {
+  margin-top: 4px;
+  animation: fv-bounce 1.8s ease-in-out infinite;
+}
 .fv-scroll-hint svg {
   width: 22px;
   height: 22px;
@@ -277,6 +282,7 @@ body {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(5px); }
 }
+ 
 /* =============================================
    2. PROBLEM
    ============================================= */
