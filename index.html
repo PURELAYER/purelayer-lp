@@ -114,10 +114,40 @@ body {
 }
 .pl-header.scrolled .pl-logo { color: var(--ink); }
 
-//* =============================================
-   FV — 背景画像変更・オーバーレイ・キャッチコピー
+/* =============================================
+   HEADER
    ============================================= */
-
+.pl-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 24px;
+  transition: background 0.4s var(--ease), padding 0.35s var(--ease);
+}
+.pl-header.scrolled {
+  background: rgba(245,245,240,0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+}
+.pl-logo {
+  font-family: var(--f-serif);
+  font-weight: var(--fw-l);
+  font-size: 14px;
+  letter-spacing: 0.44em;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.pl-header.scrolled .pl-logo { color: var(--ink); }
+ 
+/* =============================================
+   1. FV
+   ============================================= */
 .fv-section {
   position: relative;
   width: 100%;
@@ -131,8 +161,6 @@ body {
   justify-content: flex-end;
   padding-bottom: 10%;
 }
-
-/* 背景画像 */
 .fv-bg {
   position: absolute;
   inset: 0;
@@ -142,18 +170,14 @@ body {
   object-position: center top;
   display: block;
 }
-
-/* 黒オーバーレイ — 視認性確保 */
-.fv-overlay {
+   .fv-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.42);
   pointer-events: none;
   z-index: 1;
 }
-
-/* キャッチコピー */
-.fv-catch {
+   .fv-catch {
   position: relative;
   z-index: 2;
   font-family: var(--f-serif);
@@ -166,8 +190,20 @@ body {
   margin-bottom: 28px;
   padding: 0 28px;
 }
-
-/* CTA まとめ */
+/* Suppress image-baked text — gradient mask over upper area */
+.fv-mask {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 58%;
+  background: linear-gradient(
+    to bottom,
+    rgba(30,28,23,0.68) 0%,
+    rgba(30,28,23,0.20) 68%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
 .fv-cta-wrap {
   position: relative;
   z-index: 2;
@@ -178,8 +214,7 @@ body {
   align-items: center;
   gap: 12px;
 }
-
-/* メインボタン */
+/* CTA buttons — flat, no shadow */
 .pl-btn-main {
   display: block;
   width: 100%;
@@ -199,8 +234,11 @@ body {
 }
 .pl-btn-main:active { opacity: 0.80; transform: scale(0.97); }
 
-/* 小テキスト */
-.fv-micro {
+   .fv-scroll-hint {
+  margin-top: 4px;
+  animation: fv-bounce 1.8s ease-in-out infinite;
+}
+   .fv-micro {
   font-size: 10.5px;
   color: rgba(255, 255, 255, 0.52);
   letter-spacing: 0.1em;
@@ -208,12 +246,22 @@ body {
   font-weight: var(--fw-l);
   margin: 0;
 }
-
-/* スクロール誘導アイコン */
-.fv-scroll-hint {
-  margin-top: 4px;
-  animation: fv-bounce 1.8s ease-in-out infinite;
-}
+.pl-btn-outline {
+  display: block;
+  width: 100%;
+  background: transparent;
+  color: var(--white);
+  font-family: var(--f-sans);
+  font-weight: var(--fw-l);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-align: center;
+  padding: 14px 28px;
+  border-radius: var(--r-pill);
+  border: 1px solid rgba(255,255,255,0.36);
+  cursor: pointer;
+  text-decoration: none;
+   
 .fv-scroll-hint svg {
   width: 22px;
   height: 22px;
