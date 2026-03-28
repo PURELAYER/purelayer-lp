@@ -9,42 +9,50 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet">
 <style>
 /* =============================================
-   PURELAYER LP v2 — Phrase-Led Minimal Design
-   Shopify Custom HTML 対応・完全スマホ最適化
+   PURELAYER LP v3
+   — Ivory / Greige palette, flat, phrase-led
+   — Shopify Custom HTML ready
    ============================================= */
 
 /* ----- RESET ----- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
-/* ----- VARIABLES ----- */
+/* ----- DESIGN TOKENS ----- */
 :root {
-  --c-black:  #0e0e0e;
-  --c-white:  #f8f6f3;
-  --c-cream:  #ede9e3;
-  --c-stone:  #b5aea5;
-  --c-gold:   #9e8b72;
-  --c-text:   #2c2c2c;
-  --c-muted:  #8a8480;
-  --c-border: #e2ddd8;
-  --f-serif:  'Noto Serif JP', 'Hiragino Mincho ProN', serif;
-  --f-sans:   'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
-  --fw-light: 300;
-  --fw-reg:   400;
-  --fw-bold:  700;
-  --r-pill:   100px;
-  --r-card:   14px;
-  --ease:     cubic-bezier(0.4, 0, 0.2, 1);
+  /* Palette */
+  --ivory:      #F5F5F0;
+  --greige:     #E2DFD2;
+  --greige-mid: #D4D0C2;
+  --greige-dk:  #B8B4A4;
+  --charcoal:   #333333;
+  --muted:      #7A7870;
+  --border:     #D8D5C8;
+  --ink:        #1E1C17;
+  --gold:       #9E8B72;
+  --white:      #FFFFFF;
+
+  /* Typography */
+  --f-serif: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  --f-sans:  'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+  --fw-l: 300;
+  --fw-r: 400;
+  --fw-b: 700;
+
+  /* Shape */
+  --r-pill: 100px;
+  --r-card: 14px;
+  --ease:   cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ----- BASE ----- */
 body {
   font-family: var(--f-sans);
-  font-weight: var(--fw-light);
-  background: var(--c-white);
-  color: var(--c-text);
+  font-weight: var(--fw-l);
+  background: var(--ivory);
+  color: var(--charcoal);
   font-size: 15px;
-  line-height: 1.75;
+  line-height: 1.78;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -52,29 +60,28 @@ body {
 /* ----- LABEL ----- */
 .pl-label {
   font-family: var(--f-sans);
-  font-weight: var(--fw-light);
-  font-size: 10px;
-  letter-spacing: 0.45em;
-  color: var(--c-stone);
+  font-weight: var(--fw-l);
+  font-size: 9.5px;
+  letter-spacing: 0.46em;
+  color: var(--greige-dk);
   text-transform: uppercase;
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
-.pl-label--dark { color: #3a3a3a; }
 
 /* ----- SCROLL REVEAL ----- */
 .pl-reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+  transform: translateY(18px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
 }
 .pl-reveal.is-visible { opacity: 1; transform: translateY(0); }
-.pl-d1 { transition-delay: 0.10s; }
-.pl-d2 { transition-delay: 0.20s; }
-.pl-d3 { transition-delay: 0.30s; }
+.pl-d1 { transition-delay: 0.08s; }
+.pl-d2 { transition-delay: 0.16s; }
+.pl-d3 { transition-delay: 0.24s; }
 
 /* ----- RULE ----- */
-.pl-rule { width: 36px; height: 1px; background: var(--c-stone); margin: 0 auto; }
+.pl-rule { width: 32px; height: 1px; background: var(--greige-dk); margin: 0 auto; }
 
 /* =============================================
    HEADER
@@ -87,22 +94,25 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px 24px;
-  transition: background 0.4s var(--ease), padding 0.4s var(--ease);
+  transition: background 0.4s var(--ease), padding 0.35s var(--ease);
 }
 .pl-header.scrolled {
-  background: rgba(14,14,14,0.94);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(245,245,240,0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
   padding: 14px 24px;
 }
 .pl-logo {
   font-family: var(--f-serif);
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-l);
   font-size: 14px;
   letter-spacing: 0.44em;
-  color: #fff;
+  color: var(--white);
   text-decoration: none;
+  transition: color 0.3s;
 }
+.pl-header.scrolled .pl-logo { color: var(--ink); }
 
 /* =============================================
    1. FV
@@ -112,7 +122,7 @@ body {
   width: 100%;
   height: 100svh;
   min-height: 620px;
-  background: var(--c-black);
+  background: var(--ink);
   overflow: hidden;
 }
 .fv-bg {
@@ -124,174 +134,179 @@ body {
   object-position: center top;
   display: block;
 }
-.fv-text-mask {
+/* Suppress image-baked text — gradient mask over upper area */
+.fv-mask {
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 60%;
-  background: linear-gradient(to bottom, rgba(14,14,14,0.65) 0%, rgba(14,14,14,0.22) 65%, transparent 100%);
+  height: 58%;
+  background: linear-gradient(
+    to bottom,
+    rgba(30,28,23,0.68) 0%,
+    rgba(30,28,23,0.20) 68%,
+    transparent 100%
+  );
   pointer-events: none;
   z-index: 2;
 }
-.fv-cta-area {
+.fv-cta-wrap {
   position: absolute;
   bottom: 10%;
   left: 50%;
   transform: translateX(-50%);
   width: 88%;
-  max-width: 360px;
+  max-width: 356px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 11px;
+  gap: 10px;
   z-index: 10;
 }
-.pl-btn-primary {
+/* CTA buttons — flat, no shadow */
+.pl-btn-main {
   display: block;
   width: 100%;
-  background: var(--c-black);
-  color: #fff;
+  background: var(--ink);
+  color: var(--white);
   font-family: var(--f-sans);
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-l);
   font-size: 13px;
   letter-spacing: 0.16em;
   text-align: center;
-  padding: 17px 32px;
+  padding: 17px 28px;
   border-radius: var(--r-pill);
   border: none;
   cursor: pointer;
   text-decoration: none;
-  box-shadow: 0 6px 28px rgba(0,0,0,0.42);
-  transition: opacity 0.2s, transform 0.15s;
+  transition: opacity 0.18s, transform 0.12s;
 }
-.pl-btn-primary:active { opacity: 0.82; transform: scale(0.97); }
-.pl-btn-ghost {
+.pl-btn-main:active { opacity: 0.80; transform: scale(0.97); }
+.pl-btn-outline {
   display: block;
   width: 100%;
   background: transparent;
-  color: #fff;
+  color: var(--white);
   font-family: var(--f-sans);
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-l);
   font-size: 13px;
   letter-spacing: 0.16em;
   text-align: center;
-  padding: 15px 32px;
+  padding: 14px 28px;
   border-radius: var(--r-pill);
-  border: 1px solid rgba(255,255,255,0.38);
+  border: 1px solid rgba(255,255,255,0.36);
   cursor: pointer;
   text-decoration: none;
 }
-.fv-sub-note {
+.fv-micro {
   font-size: 10.5px;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.52);
   letter-spacing: 0.1em;
   text-align: center;
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-l);
 }
 
 /* =============================================
    2. PROBLEM
    ============================================= */
 .problem-section {
-  background: var(--c-black);
+  background: var(--greige);
   padding: 80px 28px 72px;
-  color: var(--c-white);
 }
 .problem-heading {
   font-family: var(--f-serif);
-  font-weight: var(--fw-light);
-  font-size: 25px;
-  line-height: 1.65;
+  font-weight: var(--fw-l);
+  font-size: 24px;
+  line-height: 1.7;
   letter-spacing: 0.04em;
-  color: #fff;
-  margin-bottom: 48px;
+  color: var(--ink);
+  margin-bottom: 44px;
 }
-.problem-list { list-style: none; display: flex; flex-direction: column; }
+.problem-list { list-style: none; }
 .problem-item {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 22px 0;
-  border-bottom: 1px solid #1e1e1e;
+  gap: 18px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
 }
-.problem-item:first-child { border-top: 1px solid #1e1e1e; }
+.problem-item:first-child { border-top: 1px solid var(--border); }
 .problem-icon {
-  width: 42px; height: 42px;
+  width: 40px; height: 40px;
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #282828;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border);
   border-radius: 50%;
+  background: var(--ivory);
 }
 .problem-icon svg {
-  width: 18px; height: 18px;
-  stroke: var(--c-stone);
+  width: 17px; height: 17px;
+  stroke: var(--muted);
   fill: none;
-  stroke-width: 1.3;
+  stroke-width: 1.35;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 .problem-word {
   font-family: var(--f-serif);
-  font-weight: var(--fw-light);
-  font-size: 22px;
-  letter-spacing: 0.06em;
-  color: #fff;
+  font-weight: var(--fw-l);
+  font-size: 21px;
+  letter-spacing: 0.05em;
+  color: var(--ink);
 }
 .problem-word small {
   display: block;
   font-family: var(--f-sans);
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-l);
   font-size: 11px;
-  color: #444;
-  letter-spacing: 0.06em;
+  color: var(--muted);
+  letter-spacing: 0.05em;
   margin-top: 3px;
 }
 
 /* =============================================
    3. REASONS
    ============================================= */
-.reasons-section { background: var(--c-white); padding: 80px 28px 72px; }
+.reasons-section { background: var(--ivory); padding: 80px 28px 72px; }
 .reasons-heading {
   font-family: var(--f-serif);
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-l);
   font-size: 24px;
   line-height: 1.65;
   letter-spacing: 0.04em;
-  color: var(--c-black);
-  margin-bottom: 48px;
+  color: var(--ink);
+  margin-bottom: 44px;
 }
-.reason-list { list-style: none; display: flex; flex-direction: column; }
+.reason-list { list-style: none; }
 .reason-item {
   display: grid;
   grid-template-columns: 58px 1fr;
-  gap: 0 18px;
-  padding: 28px 0;
-  border-bottom: 1px solid var(--c-border);
+  gap: 0 16px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--border);
   align-items: start;
 }
-.reason-item:first-child { border-top: 1px solid var(--c-border); }
-.reason-num-wrap {
+.reason-item:first-child { border-top: 1px solid var(--border); }
+.reason-num-col {
   display: flex; flex-direction: column;
-  align-items: center; gap: 10px;
+  align-items: center; gap: 8px;
   padding-top: 2px;
 }
 .reason-num {
   font-family: var(--f-sans);
-  font-weight: var(--fw-light);
-  font-size: 10px;
-  letter-spacing: 0.25em;
-  color: var(--c-stone);
+  font-weight: var(--fw-l);
+  font-size: 9.5px;
+  letter-spacing: 0.28em;
+  color: var(--greige-dk);
 }
 .reason-icon-ring {
-  width: 46px; height: 46px;
-  border: 1px solid var(--c-border);
+  width: 44px; height: 44px;
+  border: 1px solid var(--border);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
+  background: var(--greige);
 }
 .reason-icon-ring svg {
-  width: 20px; height: 20px;
-  stroke: var(--c-gold);
+  width: 19px; height: 19px;
+  stroke: var(--gold);
   fill: none;
   stroke-width: 1.2;
   stroke-linecap: round;
@@ -299,101 +314,69 @@ body {
 }
 .reason-tag {
   font-family: var(--f-sans);
-  font-weight: var(--fw-light);
-  font-size: 10px;
+  font-weight: var(--fw-l);
+  font-size: 9.5px;
   letter-spacing: 0.32em;
-  color: var(--c-stone);
-  margin-bottom: 8px;
+  color: var(--greige-dk);
+  margin-bottom: 7px;
 }
 .reason-phrase {
   font-family: var(--f-serif);
-  font-weight: var(--fw-light);
-  font-size: 20px;
+  font-weight: var(--fw-l);
+  font-size: 19px;
   line-height: 1.6;
   letter-spacing: 0.04em;
-  color: var(--c-black);
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.reason-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+  font-weight: var(--fw-l);
+  letter-spacing: 0.03em;
 }
 
 /* =============================================
-   4. QUIET LUXURY
+   4. ZERO RISK — 3-column cards
    ============================================= */
-.ql-section { background: var(--c-cream); overflow: hidden; }
-.ql-image-wrap {
-  width: 100%;
-  height: 70vw;
-  max-height: 400px;
-  overflow: hidden;
-}
-.ql-image-wrap img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center 25%;
-  filter: saturate(0.88) brightness(1.03);
-  display: block;
-}
-.ql-body { padding: 52px 28px 60px; text-align: center; }
-.ql-rule-top { margin-bottom: 32px; }
-.ql-phrase {
-  font-family: var(--f-serif);
-  font-weight: var(--fw-light);
-  font-size: 20px;
-  line-height: 2.1;
-  letter-spacing: 0.06em;
-  color: var(--c-black);
-}
-.ql-phrase em {
-  font-style: normal;
-  color: var(--c-gold);
-  border-bottom: 1px solid var(--c-gold);
-  padding-bottom: 1px;
-}
-
-/* =============================================
-   5. ZERO RISK
-   ============================================= */
-.zero-risk-section { background: var(--c-black); padding: 80px 28px 72px; }
+.zero-risk-section { background: var(--greige); padding: 80px 28px 72px; }
 .zero-risk-heading {
   font-family: var(--f-serif);
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-l);
   font-size: 24px;
   line-height: 1.65;
   letter-spacing: 0.04em;
-  color: #fff;
+  color: var(--ink);
   margin-bottom: 40px;
 }
-.zero-risk-cards {
-  display: flex; flex-direction: column;
-  gap: 14px; margin-bottom: 36px;
+.zero-risk-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 28px;
 }
 .zero-risk-card {
-  background: #141414;
-  border: 1px solid #242424;
+  background: var(--ivory);
+  border: 1px solid var(--border);
   border-radius: var(--r-card);
-  padding: 26px 22px;
-  display: grid;
-  grid-template-columns: 54px 1fr;
-  gap: 0 18px;
+  padding: 22px 14px 20px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-.zero-risk-card::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, var(--c-gold) 0%, transparent 55%);
+  text-align: center;
+  gap: 10px;
 }
 .zero-risk-icon {
-  width: 54px; height: 54px;
-  border: 1px solid #2a2a2a;
+  width: 44px; height: 44px;
+  border: 1px solid var(--border);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
 .zero-risk-icon svg {
-  width: 22px; height: 22px;
-  stroke: var(--c-gold);
+  width: 20px; height: 20px;
+  stroke: var(--gold);
   fill: none;
   stroke-width: 1.2;
   stroke-linecap: round;
@@ -401,237 +384,300 @@ body {
 }
 .zero-risk-title {
   font-family: var(--f-serif);
-  font-weight: var(--fw-light);
-  font-size: 18px;
+  font-weight: var(--fw-l);
+  font-size: 13px;
   letter-spacing: 0.04em;
-  color: #fff;
-  margin-bottom: 4px;
+  color: var(--ink);
+  line-height: 1.5;
 }
 .zero-risk-desc {
-  font-size: 11.5px;
-  color: #555;
-  font-weight: var(--fw-light);
-  letter-spacing: 0.04em;
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: var(--fw-l);
+  letter-spacing: 0.03em;
   line-height: 1.7;
 }
 .zero-risk-note {
   font-size: 11px;
-  color: #333;
+  color: var(--muted);
   text-align: center;
-  line-height: 2.2;
-  font-weight: var(--fw-light);
-  letter-spacing: 0.08em;
+  line-height: 2.1;
+  font-weight: var(--fw-l);
+  letter-spacing: 0.07em;
 }
 
 /* =============================================
-   6. VOICES
+   5. VOICES
    ============================================= */
-.voices-section { background: var(--c-cream); padding: 80px 28px 72px; }
+.voices-section { background: var(--ivory); padding: 80px 28px 72px; }
 .voices-heading {
   font-family: var(--f-serif);
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-l);
   font-size: 24px;
   letter-spacing: 0.04em;
-  color: var(--c-black);
-  margin-bottom: 40px;
+  color: var(--ink);
+  margin-bottom: 36px;
 }
-.voices-feed { display: flex; flex-direction: column; gap: 16px; }
+.voices-feed { display: flex; flex-direction: column; gap: 14px; }
 .voice-card {
-  background: #fff;
-  border-radius: 18px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 2px 14px rgba(0,0,0,0.05);
 }
-.voice-inner {
-  display: grid;
-  grid-template-columns: 1fr 88px;
-}
+.voice-inner { display: grid; grid-template-columns: 1fr 82px; }
 .voice-content {
-  padding: 20px 16px 20px 20px;
-  display: flex;
-  flex-direction: column;
+  padding: 18px 14px 18px 18px;
+  display: flex; flex-direction: column;
   justify-content: space-between;
-  min-height: 130px;
+  min-height: 120px;
 }
 .voice-header {
   display: flex; align-items: center;
-  gap: 9px; margin-bottom: 10px;
+  gap: 9px; margin-bottom: 9px;
 }
 .voice-avatar {
-  width: 30px; height: 30px;
+  width: 28px; height: 28px;
   border-radius: 50%;
-  background: var(--c-cream);
-  border: 1px solid var(--c-border);
+  background: var(--greige);
+  border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
 .voice-avatar svg {
-  width: 13px; height: 13px;
-  stroke: var(--c-stone);
+  width: 12px; height: 12px;
+  stroke: var(--greige-dk);
   fill: none;
-  stroke-width: 1.4;
+  stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 .voice-name {
-  font-size: 12px;
-  font-weight: var(--fw-reg);
-  color: var(--c-black);
+  font-size: 11.5px;
+  font-weight: var(--fw-r);
+  color: var(--ink);
   letter-spacing: 0.04em;
   line-height: 1.2;
 }
-.voice-handle { font-size: 9.5px; color: var(--c-stone); font-weight: var(--fw-light); }
+.voice-handle { font-size: 9.5px; color: var(--greige-dk); font-weight: var(--fw-l); }
 .voice-body {
-  font-size: 13px;
-  line-height: 1.8;
-  color: var(--c-text);
-  font-weight: var(--fw-light);
+  font-size: 12.5px;
+  line-height: 1.82;
+  color: var(--charcoal);
+  font-weight: var(--fw-l);
   letter-spacing: 0.02em;
 }
-.voice-body strong { font-weight: var(--fw-reg); color: var(--c-black); }
+.voice-body strong { font-weight: var(--fw-r); color: var(--ink); }
 .voice-footer {
   display: flex; align-items: center;
-  gap: 12px; margin-top: 12px;
+  gap: 10px; margin-top: 10px;
 }
 .voice-stat {
   display: flex; align-items: center;
   gap: 4px;
-  font-size: 10.5px;
-  color: var(--c-stone);
-  font-weight: var(--fw-light);
+  font-size: 10px;
+  color: var(--greige-dk);
+  font-weight: var(--fw-l);
 }
 .voice-stat svg {
-  width: 12px; height: 12px;
-  stroke: var(--c-stone);
+  width: 11px; height: 11px;
+  stroke: var(--greige-dk);
   fill: none;
   stroke-width: 1.5;
   stroke-linecap: round;
 }
-.voice-stat.is-liked svg { stroke: #c06060; }
-.voice-date { font-size: 9.5px; color: #ccc; margin-left: auto; font-weight: var(--fw-light); }
+.voice-stat.is-liked svg { stroke: #C06060; }
+.voice-date { font-size: 9.5px; color: #C8C4B8; margin-left: auto; }
 .voice-photo {
-  border-left: 1px solid var(--c-border);
+  border-left: 1px solid var(--border);
   display: flex; align-items: stretch; overflow: hidden;
 }
-.voice-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .voice-photo-ph {
   width: 100%;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  gap: 6px;
-  background: #f0ece7;
+  gap: 5px;
+  background: var(--greige);
   padding: 8px 6px;
 }
 .voice-photo-ph svg {
-  width: 20px; height: 20px;
-  stroke: var(--c-stone);
+  width: 18px; height: 18px;
+  stroke: var(--greige-dk);
   fill: none;
   stroke-width: 1.2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: 0.45;
+  opacity: 0.5;
 }
 .voice-photo-ph span {
-  font-size: 8.5px;
-  color: var(--c-stone);
+  font-size: 8px;
+  color: var(--greige-dk);
   text-align: center;
   letter-spacing: 0.04em;
   line-height: 1.4;
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-l);
 }
 
 /* =============================================
-   7. DIFFERENCE
+   6. COMPARISON (POSITIONING)
    ============================================= */
-.difference-section { background: var(--c-white); padding: 80px 28px 72px; }
-.difference-heading {
+.compare-section { background: var(--greige); padding: 80px 28px 72px; }
+.compare-heading {
   font-family: var(--f-serif);
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-l);
   font-size: 24px;
   letter-spacing: 0.04em;
-  color: var(--c-black);
-  margin-bottom: 40px;
+  color: var(--ink);
+  margin-bottom: 36px;
 }
-.diff-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.diff-table thead tr { border-bottom: 2px solid var(--c-black); }
-.diff-table th {
+.cmp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.cmp-table thead tr { border-bottom: 2px solid var(--ink); }
+.cmp-table th {
   padding: 10px 8px 14px;
-  font-weight: var(--fw-light);
-  font-size: 11px;
+  font-weight: var(--fw-l);
+  font-size: 10.5px;
   letter-spacing: 0.12em;
-  color: var(--c-muted);
+  color: var(--muted);
   text-align: center;
 }
-.diff-table th.th-pl {
+.cmp-table th:first-child { text-align: left; color: var(--muted); }
+.cmp-table th.th-pl {
   font-family: var(--f-serif);
   font-size: 13px;
-  color: var(--c-black);
-  font-weight: var(--fw-reg);
+  color: var(--ink);
+  font-weight: var(--fw-r);
   letter-spacing: 0.06em;
 }
-.diff-table th:first-child { text-align: left; }
-.diff-table td {
-  padding: 18px 8px;
+.cmp-table td {
+  padding: 16px 8px;
   text-align: center;
-  border-bottom: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--border);
   vertical-align: middle;
-  line-height: 1.4;
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-l);
+  line-height: 1.45;
 }
-.diff-table tr:last-child td { border-bottom: none; }
-.diff-table td:first-child {
+.cmp-table tr:last-child td { border-bottom: none; }
+.cmp-table td:first-child {
   text-align: left;
   font-size: 12px;
-  color: var(--c-muted);
+  color: var(--muted);
   padding-left: 0;
 }
-.td-good { color: var(--c-black); font-weight: var(--fw-reg) !important; }
-.td-bad  { color: #ccc; }
-.diff-badge {
+.td-good { color: var(--ink); font-weight: var(--fw-r) !important; }
+.td-bad  { color: #C8C4B4; }
+.cmp-badge {
   display: inline-block;
-  background: var(--c-black);
-  color: #fff;
+  background: var(--ink);
+  color: var(--white);
   font-size: 10.5px;
-  padding: 5px 13px;
+  padding: 5px 12px;
   border-radius: var(--r-pill);
-  letter-spacing: 0.08em;
-  font-weight: var(--fw-light);
+  letter-spacing: 0.07em;
+  font-weight: var(--fw-l);
 }
+
+/* =============================================
+   7. FAQ
+   ============================================= */
+.faq-section { background: var(--ivory); padding: 80px 28px 72px; }
+.faq-heading {
+  font-family: var(--f-serif);
+  font-weight: var(--fw-l);
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  margin-bottom: 36px;
+}
+.faq-list { display: flex; flex-direction: column; gap: 0; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+  overflow: hidden;
+}
+.faq-item:first-child { border-top: 1px solid var(--border); }
+.faq-q {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px 0;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q-mark {
+  font-family: var(--f-serif);
+  font-size: 15px;
+  color: var(--gold);
+  font-weight: var(--fw-r);
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+.faq-q-text {
+  font-family: var(--f-serif);
+  font-weight: var(--fw-l);
+  font-size: 15px;
+  line-height: 1.65;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  flex: 1;
+}
+.faq-chevron {
+  width: 16px; height: 16px;
+  flex-shrink: 0;
+  stroke: var(--greige-dk);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.28s var(--ease);
+  margin-top: 3px;
+}
+details[open] .faq-chevron { transform: rotate(180deg); }
+.faq-a {
+  padding: 0 0 20px 30px;
+  font-size: 13px;
+  line-height: 1.88;
+  color: var(--muted);
+  font-weight: var(--fw-l);
+  letter-spacing: 0.03em;
+}
+.faq-a strong { color: var(--charcoal); font-weight: var(--fw-r); }
 
 /* =============================================
    8. LAST CALL
    ============================================= */
 .lastcall-section {
-  background: var(--c-black);
-  padding: 90px 28px 110px;
+  background: var(--ink);
+  padding: 88px 28px 108px;
   text-align: center;
 }
-.lastcall-rule { width: 1px; height: 52px; background: #252525; margin: 0 auto 44px; }
+.lastcall-rule { width: 1px; height: 48px; background: #2E2C26; margin: 0 auto 40px; }
 .lastcall-phrase {
   font-family: var(--f-serif);
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-l);
   font-size: 20px;
   line-height: 2.05;
   letter-spacing: 0.06em;
-  color: #b8b0a6;
-  margin-bottom: 18px;
+  color: #B0A898;
+  margin-bottom: 16px;
 }
-.lastcall-phrase strong { font-weight: var(--fw-light); color: #fff; }
+.lastcall-phrase strong { font-weight: var(--fw-l); color: var(--white); }
 .lastcall-sub {
   font-size: 11px;
-  color: #3a3a3a;
+  color: #3E3C36;
   letter-spacing: 0.1em;
   line-height: 2.3;
-  margin-bottom: 52px;
-  font-weight: var(--fw-light);
+  margin-bottom: 48px;
+  font-weight: var(--fw-l);
 }
 .lastcall-btn {
   display: block;
   width: 100%;
-  background: #fff;
-  color: var(--c-black);
+  background: var(--ivory);
+  color: var(--ink);
   font-family: var(--f-serif);
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-l);
   font-size: 16px;
   letter-spacing: 0.14em;
   text-align: center;
@@ -640,19 +686,18 @@ body {
   border: none;
   cursor: pointer;
   text-decoration: none;
-  margin-bottom: 20px;
-  box-shadow: 0 8px 36px rgba(255,255,255,0.07);
-  transition: opacity 0.2s, transform 0.15s;
+  margin-bottom: 18px;
+  transition: opacity 0.18s, transform 0.12s;
 }
 .lastcall-btn:active { opacity: 0.88; transform: scale(0.97); }
 .lastcall-guarantee {
   font-size: 11px;
-  color: #333;
+  color: #3A3830;
   letter-spacing: 0.1em;
   line-height: 2.5;
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-l);
 }
-.lastcall-guarantee span { color: #555; border-bottom: 1px solid #2a2a2a; padding-bottom: 1px; }
+.lastcall-guarantee span { color: #545048; border-bottom: 1px solid #2E2C26; padding-bottom: 1px; }
 
 /* =============================================
    STICKY BAR
@@ -660,31 +705,33 @@ body {
 .pl-sticky {
   position: fixed;
   bottom: 0; left: 0; right: 0;
-  background: rgba(10,10,10,0.96);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-top: 1px solid #1e1e1e;
-  padding: 14px 20px 22px;
+  background: rgba(245,245,240,0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  padding: 13px 20px 20px;
   z-index: 300;
   transform: translateY(100%);
-  transition: transform 0.4s var(--ease);
+  transition: transform 0.38s var(--ease);
 }
 .pl-sticky.is-visible { transform: translateY(0); }
 .pl-sticky-inner { display: flex; align-items: center; gap: 14px; }
 .pl-sticky-text { flex: 1; line-height: 1.5; }
 .pl-sticky-text strong {
-  font-size: 12px; font-weight: var(--fw-reg);
-  color: #fff; display: block; letter-spacing: 0.06em;
+  font-size: 12px; font-weight: var(--fw-r);
+  color: var(--ink); display: block; letter-spacing: 0.05em;
 }
-.pl-sticky-text span { font-size: 10.5px; color: #555; font-weight: var(--fw-light); }
+.pl-sticky-text span {
+  font-size: 10px; color: var(--muted); font-weight: var(--fw-l);
+}
 .pl-sticky-btn {
   flex-shrink: 0;
-  background: #fff;
-  color: var(--c-black);
+  background: var(--ink);
+  color: var(--white);
   font-size: 11.5px;
-  font-weight: var(--fw-reg);
+  font-weight: var(--fw-r);
   letter-spacing: 0.1em;
-  padding: 12px 22px;
+  padding: 12px 20px;
   border-radius: var(--r-pill);
   border: none;
   cursor: pointer;
@@ -696,29 +743,41 @@ body {
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
 <header class="pl-header" id="pl-header">
   <a href="#" class="pl-logo">PURELAYER</a>
 </header>
 
-<!-- 1. FV -->
+
+<!-- ============================================================
+     1. FV
+     ============================================================ -->
 <section class="fv-section">
   <img class="fv-bg"
     src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/3_26542135-3c35-4cd4-9472-38bed8d62cef.webp?v=1774581239"
-    alt="PURELAYER" loading="eager" fetchpriority="high">
-  <div class="fv-text-mask"></div>
-  <div class="fv-cta-area">
-    <a href="#zero-risk" class="pl-btn-primary">サンプル付きで試す &thinsp;→</a>
-    <a href="#reasons" class="pl-btn-ghost">なぜ選ばれるのか</a>
-    <p class="fv-sub-note">全額返金保証 ｜ 全国送料無料</p>
+    alt="PURELAYER"
+    loading="eager"
+    fetchpriority="high">
+  <!-- Gradient masks image-baked text in upper portion -->
+  <div class="fv-mask"></div>
+  <div class="fv-cta-wrap">
+    <a href="#zero-risk" class="pl-btn-main">サンプル付きで試す &thinsp;→</a>
+    <a href="#reasons" class="pl-btn-outline">なぜ選ばれるのか</a>
+    <p class="fv-micro">全額返金保証 ｜ 全国送料無料</p>
   </div>
 </section>
 
-<!-- 2. PROBLEM -->
+
+<!-- ============================================================
+     2. PROBLEM
+     ============================================================ -->
 <section class="problem-section">
-  <span class="pl-label pl-label--dark">THE PROBLEM</span>
+  <span class="pl-label">THE PROBLEM</span>
   <h2 class="problem-heading pl-reveal">今の香水、<br>正直どうですか。</h2>
   <ul class="problem-list">
+
     <li class="problem-item pl-reveal pl-d1">
       <div class="problem-icon">
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -729,6 +788,7 @@ body {
       </div>
       <div class="problem-word">キツすぎる<small>電車で少し、気になる。</small></div>
     </li>
+
     <li class="problem-item pl-reveal pl-d2">
       <div class="problem-icon">
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -739,6 +799,7 @@ body {
       </div>
       <div class="problem-word">すぐ消える<small>昼には、自分でも気づかない。</small></div>
     </li>
+
     <li class="problem-item pl-reveal pl-d3">
       <div class="problem-icon">
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -750,74 +811,83 @@ body {
       </div>
       <div class="problem-word">人と被る<small>「私も使ってる」が、一番つらい。</small></div>
     </li>
+
   </ul>
 </section>
 
-<!-- 3. REASONS -->
+
+<!-- ============================================================
+     3. REASONS
+     ============================================================ -->
 <section class="reasons-section" id="reasons">
   <span class="pl-label">THE REASONS</span>
   <h2 class="reasons-heading pl-reveal">私がこれを選んだ、<br>3つの理由。</h2>
   <ul class="reason-list">
+
     <li class="reason-item pl-reveal pl-d1">
-      <div class="reason-num-wrap">
+      <div class="reason-num-col">
         <span class="reason-num">01</span>
         <div class="reason-icon-ring">
+          <!-- Droplet icon -->
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
         </div>
       </div>
       <div>
         <div class="reason-tag">SCENT</div>
-        <p class="reason-phrase">石鹸の清潔感だけ、<br>残る。</p>
+        <p class="reason-phrase">石鹸の清潔感だけ、残る。</p>
+        <p class="reason-desc">主張しすぎない白い香り。でも、確かにそこにある。</p>
       </div>
     </li>
+
     <li class="reason-item pl-reveal pl-d2">
-      <div class="reason-num-wrap">
+      <div class="reason-num-col">
         <span class="reason-num">02</span>
         <div class="reason-icon-ring">
+          <!-- Clock icon -->
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
       </div>
       <div>
         <div class="reason-tag">LONGEVITY</div>
-        <p class="reason-phrase">朝から夜まで、<br>続く。</p>
+        <p class="reason-phrase">朝から夜まで、続く。</p>
+        <p class="reason-desc">塗り直しなし。夕方でも「いい香り」と言われる。</p>
       </div>
     </li>
+
     <li class="reason-item pl-reveal pl-d3">
-      <div class="reason-num-wrap">
+      <div class="reason-num-col">
         <span class="reason-num">03</span>
         <div class="reason-icon-ring">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <!-- Volume / wave icon -->
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          </svg>
         </div>
       </div>
       <div>
-        <div class="reason-tag">GENDER FREE</div>
-        <p class="reason-phrase">男女、どっちにも<br>褒められる。</p>
+        <div class="reason-tag">RIGHT VOLUME</div>
+        <p class="reason-phrase">ちょうどよい香りの強さ。</p>
+        <p class="reason-desc">強すぎないから、スメハラにならない。自分も周りも心地よいボリューム感。</p>
       </div>
     </li>
+
   </ul>
 </section>
 
-<!-- 4. QUIET LUXURY -->
-<section class="ql-section">
-  <div class="ql-image-wrap">
-    <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670"
-         alt="PURELAYER Quiet Luxury" loading="lazy">
-  </div>
-  <div class="ql-body">
-    <div class="pl-rule ql-rule-top"></div>
-    <p class="ql-phrase pl-reveal">
-      名前はまだ知られていないけれど、<br><em>"静かに贅沢"</em>な一本。
-    </p>
-  </div>
-</section>
 
-<!-- 5. ZERO RISK -->
+<!-- ============================================================
+     4. ZERO RISK — 3 cards side by side
+     ============================================================ -->
 <section class="zero-risk-section" id="zero-risk">
-  <span class="pl-label pl-label--dark">ZERO RISK</span>
-  <h2 class="zero-risk-heading pl-reveal">失敗ゼロの<br>3つの仕組み。</h2>
-  <div class="zero-risk-cards">
+  <span class="pl-label">ZERO RISK</span>
+  <h2 class="zero-risk-heading pl-reveal">失敗ゼロの、3本柱。</h2>
+  <div class="zero-risk-grid">
+
     <div class="zero-risk-card pl-reveal pl-d1">
       <div class="zero-risk-icon">
+        <!-- Gift icon -->
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <polyline points="20 12 20 22 4 22 4 12"/>
           <rect x="2" y="7" width="20" height="5"/>
@@ -826,24 +896,24 @@ body {
           <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
         </svg>
       </div>
-      <div>
-        <div class="zero-risk-title">2ml サンプル付</div>
-        <div class="zero-risk-desc">本体を開ける前に、香りを確かめられる。</div>
-      </div>
+      <div class="zero-risk-title">2ml サンプル同梱</div>
+      <div class="zero-risk-desc">本体を開ける前に香りを確認。</div>
     </div>
+
     <div class="zero-risk-card pl-reveal pl-d2">
       <div class="zero-risk-icon">
+        <!-- Shield icon -->
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
         </svg>
       </div>
-      <div>
-        <div class="zero-risk-title">全額返金保証</div>
-        <div class="zero-risk-desc">未開封・理由不問・いつでも返金。</div>
-      </div>
+      <div class="zero-risk-title">本体未開封なら全額返金</div>
+      <div class="zero-risk-desc">理由不問。いつでも対応。</div>
     </div>
+
     <div class="zero-risk-card pl-reveal pl-d3">
       <div class="zero-risk-icon">
+        <!-- Truck icon -->
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <rect x="1" y="3" width="15" height="13"/>
           <path d="M16 8h4l3 3v5h-7V8z"/>
@@ -851,35 +921,38 @@ body {
           <circle cx="18.5" cy="18.5" r="2.5"/>
         </svg>
       </div>
-      <div>
-        <div class="zero-risk-title">全国送料無料</div>
-        <div class="zero-risk-desc">北海道・沖縄も含め、追加費用ゼロ。</div>
-      </div>
+      <div class="zero-risk-title">全国どこでも送料無料</div>
+      <div class="zero-risk-desc">北海道・沖縄も無料。</div>
     </div>
+
   </div>
-  <p class="zero-risk-note">決済後 2〜5営業日でお届け ｜ 追跡番号あり</p>
+  <p class="zero-risk-note">決済後 2〜5営業日お届け ｜ 追跡番号あり</p>
 </section>
 
-<!-- 6. VOICES -->
+
+<!-- ============================================================
+     5. VOICES
+     ============================================================ -->
 <section class="voices-section">
   <span class="pl-label">VOICES</span>
   <h2 class="voices-heading pl-reveal">届いた声、そのまま。</h2>
   <div class="voices-feed">
 
+    <!-- Voice 1 -->
     <div class="voice-card pl-reveal pl-d1">
       <div class="voice-inner">
         <div class="voice-content">
           <div>
             <div class="voice-header">
               <div class="voice-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-              <div><div class="voice-name">m i h o</div><div class="voice-handle">@miho___life</div></div>
+              <div><div class="voice-name">たけし / 31</div><div class="voice-handle">@takeshi_daily</div></div>
             </div>
-            <p class="voice-body">初デートで「なんかいい香り」って言われた。<strong>一軍確定。</strong></p>
+            <p class="voice-body">職場で初めて香水を褒められた。<strong>もうこれ以外使えない。</strong></p>
           </div>
           <div class="voice-footer">
-            <span class="voice-stat is-liked"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>284</span>
-            <span class="voice-stat"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>31</span>
-            <span class="voice-date">2024/03</span>
+            <span class="voice-stat is-liked"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>512</span>
+            <span class="voice-stat"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>47</span>
+            <span class="voice-date">2024/04</span>
           </div>
         </div>
         <div class="voice-photo">
@@ -891,20 +964,21 @@ body {
       </div>
     </div>
 
+    <!-- Voice 2 -->
     <div class="voice-card pl-reveal pl-d2">
       <div class="voice-inner">
         <div class="voice-content">
           <div>
             <div class="voice-header">
               <div class="voice-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-              <div><div class="voice-name">たけし / 31</div><div class="voice-handle">@takeshi_daily</div></div>
+              <div><div class="voice-name">あやか</div><div class="voice-handle">@ayaka_mode</div></div>
             </div>
-            <p class="voice-body">職場で初めて香水を褒められた。<strong>石鹸系の清潔感</strong>が正解だった。</p>
+            <p class="voice-body">サンプルで試してから買える安心感。<strong>ほんとに匂い被らない！</strong></p>
           </div>
           <div class="voice-footer">
-            <span class="voice-stat is-liked"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>512</span>
-            <span class="voice-stat"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>47</span>
-            <span class="voice-date">2024/04</span>
+            <span class="voice-stat is-liked"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>391</span>
+            <span class="voice-stat"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>58</span>
+            <span class="voice-date">2024/05</span>
           </div>
         </div>
         <div class="voice-photo">
@@ -916,20 +990,21 @@ body {
       </div>
     </div>
 
+    <!-- Voice 3 -->
     <div class="voice-card pl-reveal pl-d3">
       <div class="voice-inner">
         <div class="voice-content">
           <div>
             <div class="voice-header">
               <div class="voice-avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-              <div><div class="voice-name">あやか</div><div class="voice-handle">@ayaka_mode</div></div>
+              <div><div class="voice-name">m i h o</div><div class="voice-handle">@miho___life</div></div>
             </div>
-            <p class="voice-body">サンプルで試してから買える安心感。<strong>被らない</strong>のが一番よかった。</p>
+            <p class="voice-body">デートで初めて「いい匂い」って言われた！<strong>程よい強さで1日中キープできてます！</strong></p>
           </div>
           <div class="voice-footer">
-            <span class="voice-stat is-liked"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>391</span>
-            <span class="voice-stat"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>58</span>
-            <span class="voice-date">2024/05</span>
+            <span class="voice-stat is-liked"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>284</span>
+            <span class="voice-stat"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>31</span>
+            <span class="voice-date">2024/03</span>
           </div>
         </div>
         <div class="voice-photo">
@@ -944,39 +1019,93 @@ body {
   </div>
 </section>
 
-<!-- 7. DIFFERENCE -->
-<section class="difference-section">
-  <span class="pl-label">DIFFERENCE</span>
-  <h2 class="difference-heading pl-reveal">何が、<br>違うのか。</h2>
-  <table class="diff-table">
+
+<!-- ============================================================
+     6. COMPARISON
+     ============================================================ -->
+<section class="compare-section">
+  <span class="pl-label">POSITIONING</span>
+  <h2 class="compare-heading pl-reveal">何が、違うのか。</h2>
+  <table class="cmp-table">
     <thead>
       <tr>
         <th>項目</th>
-        <th>有名ブランド</th>
+        <th>一般的な香水</th>
         <th class="th-pl">PURELAYER</th>
       </tr>
     </thead>
     <tbody>
       <tr class="pl-reveal pl-d1">
-        <td>被りにくさ</td>
-        <td class="td-bad">誰でも知ってる</td>
-        <td class="td-good"><span class="diff-badge">希少</span></td>
+        <td>香り（石鹸系）</td>
+        <td class="td-bad">少ない</td>
+        <td class="td-good"><span class="cmp-badge">石鹸系特化</span></td>
       </tr>
       <tr class="pl-reveal pl-d2">
-        <td>失敗リスク</td>
-        <td class="td-bad">返金なし</td>
-        <td class="td-good"><span class="diff-badge">全額返金</span></td>
+        <td>持続（朝〜夜）</td>
+        <td class="td-bad">ピンキリ</td>
+        <td class="td-good"><span class="cmp-badge">朝〜夜 持続</span></td>
       </tr>
       <tr class="pl-reveal pl-d3">
-        <td>送料</td>
-        <td class="td-bad">有料の場合あり</td>
-        <td class="td-good"><span class="diff-badge">全国無料</span></td>
+        <td>強さ（優しく漂う）</td>
+        <td class="td-bad">調整しにくい</td>
+        <td class="td-good"><span class="cmp-badge">ちょうどよい</span></td>
       </tr>
     </tbody>
   </table>
 </section>
 
-<!-- 8. LAST CALL -->
+
+<!-- ============================================================
+     7. FAQ
+     ============================================================ -->
+<section class="faq-section">
+  <span class="pl-label">FAQ</span>
+  <h2 class="faq-heading pl-reveal">よくある質問。</h2>
+  <div class="faq-list">
+
+    <details class="faq-item pl-reveal pl-d1">
+      <summary class="faq-q">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">職場でも大丈夫ですか？</span>
+        <svg class="faq-chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <p class="faq-a">はい。石鹸系の<strong>柔らかい香り</strong>で、強すぎず周りに不快感を与えません。オフィスや接客業でも使いやすいと好評です。</p>
+    </details>
+
+    <details class="faq-item pl-reveal pl-d2">
+      <summary class="faq-q">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">本当に返金してもらえますか？</span>
+        <svg class="faq-chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <p class="faq-a"><strong>本体未開封</strong>であれば理由を問わず全額返金いたします。まずサンプルで試して、納得してから本体を開封してください。</p>
+    </details>
+
+    <details class="faq-item pl-reveal pl-d3">
+      <summary class="faq-q">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">男性でも使えますか？</span>
+        <svg class="faq-chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <p class="faq-a">はい。ジェンダーフリーな石鹸系で、<strong>男女どちらにも</strong>似合います。職場・デートどちらでも褒められています。</p>
+    </details>
+
+    <details class="faq-item pl-reveal">
+      <summary class="faq-q">
+        <span class="faq-q-mark">Q</span>
+        <span class="faq-q-text">2mlサンプルはどうやって使いますか？</span>
+        <svg class="faq-chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <p class="faq-a">アトマイザー（スプレー式）でお届けします。手首や首元に1〜2プッシュで<strong>まず1日試し</strong>、気に入ったら本体を開けてください。</p>
+    </details>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     8. LAST CALL
+     ============================================================ -->
 <section class="lastcall-section" id="lastcall">
   <div class="lastcall-rule"></div>
   <p class="lastcall-phrase pl-reveal">
@@ -984,8 +1113,8 @@ body {
     だから、<strong>ほぼノーリスクに<br>しました。</strong>
   </p>
   <p class="lastcall-sub pl-reveal pl-d1">
-    2ml サンプル付 ｜ 全額返金保証 ｜ 全国送料無料<br>
-    未開封・理由不問でいつでも返金
+    2ml サンプル同梱 ｜ 全額返金保証 ｜ 全国送料無料<br>
+    本体未開封・理由不問でいつでも返金
   </p>
   <a href="#" class="lastcall-btn pl-reveal pl-d2">サンプル付きで香りを試す &thinsp;→</a>
   <p class="lastcall-guarantee pl-reveal pl-d3">
@@ -994,7 +1123,10 @@ body {
   </p>
 </section>
 
-<!-- STICKY BAR -->
+
+<!-- ============================================================
+     STICKY BAR
+     ============================================================ -->
 <div class="pl-sticky" id="pl-sticky">
   <div class="pl-sticky-inner">
     <div class="pl-sticky-text">
@@ -1005,15 +1137,16 @@ body {
   </div>
 </div>
 
+
 <script>
 (function () {
   var header = document.getElementById('pl-header');
   var sticky = document.getElementById('pl-sticky');
-  var fvH   = document.querySelector('.fv-section').offsetHeight;
+  var fvH = document.querySelector('.fv-section').offsetHeight;
 
   window.addEventListener('scroll', function () {
     var y = window.scrollY;
-    header.classList.toggle('scrolled', y > 36);
+    header.classList.toggle('scrolled', y > 30);
     sticky.classList.toggle('is-visible', y > fvH * 0.55);
   }, { passive: true });
 
@@ -1021,7 +1154,7 @@ body {
     entries.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
     });
-  }, { threshold: 0.14 });
+  }, { threshold: 0.13 });
   document.querySelectorAll('.pl-reveal').forEach(function (el) { io.observe(el); });
 }());
 </script>
