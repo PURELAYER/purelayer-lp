@@ -263,78 +263,135 @@ body {
 }
 
 /* =============================================
-   3. REASONS
+   REASONS — 縦型・画像主導レイアウト
    ============================================= */
-.reasons-section { background: var(--ivory); padding: 80px 28px 72px; }
+
+.reasons-section {
+  background: var(--ivory);
+  padding: 80px 0 88px;
+}
+
+.reasons-inner {
+  width: 100%;
+}
+
+/* セクション見出し */
+.reasons-header {
+  padding: 0 28px;
+  margin-bottom: 56px;
+}
+
 .reasons-heading {
   font-family: var(--f-serif);
   font-weight: var(--fw-l);
   font-size: 24px;
-  line-height: 1.65;
+  line-height: 1.7;
   letter-spacing: 0.04em;
   color: var(--ink);
-  margin-bottom: 44px;
+  margin-top: 0;
 }
-.reason-list { list-style: none; }
-.reason-item {
-  display: grid;
-  grid-template-columns: 58px 1fr;
-  gap: 0 16px;
-  padding: 26px 0;
-  border-bottom: 1px solid var(--border);
-  align-items: start;
+
+/* 各理由ブロック */
+.reason-block {
+  margin-bottom: 72px;
 }
-.reason-item:first-child { border-top: 1px solid var(--border); }
-.reason-num-col {
-  display: flex; flex-direction: column;
-  align-items: center; gap: 8px;
-  padding-top: 2px;
+.reason-block:last-child {
+  margin-bottom: 0;
 }
-.reason-num {
-  font-family: var(--f-sans);
-  font-weight: var(--fw-l);
-  font-size: 9.5px;
-  letter-spacing: 0.28em;
-  color: var(--greige-dk);
+
+/* 画像エリア */
+.reason-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;   /* スマホ画面の約3分の2を占める縦長比率 */
+  background: var(--greige);
+  overflow: hidden;
 }
-.reason-icon-ring {
-  width: 44px; height: 44px;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
+
+.reason-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* src空のときに画像要素自体を非表示にしてプレースホルダーを見せる */
+.reason-img[src=""] {
+  display: none;
+}
+
+/* プレースホルダー */
+.reason-img-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--greige);
 }
-.reason-icon-ring svg {
-  width: 19px; height: 19px;
-  stroke: var(--gold);
+/* srcが入ったらプレースホルダーを隠す */
+.reason-img:not([src=""]) + .reason-img-placeholder {
+  display: none;
+}
+
+.reason-img-placeholder svg {
+  width: 36px;
+  height: 36px;
+  stroke: var(--greige-dk);
   fill: none;
-  stroke-width: 1.2;
+  stroke-width: 1.1;
   stroke-linecap: round;
   stroke-linejoin: round;
+  opacity: 0.5;
 }
+
+/* 番号バッジ（画像左下） */
+.reason-block-num {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  font-family: var(--f-sans);
+  font-weight: var(--fw-l);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1;
+}
+
+/* テキストエリア */
+.reason-text {
+  padding: 24px 28px 0;
+}
+
 .reason-tag {
   font-family: var(--f-sans);
   font-weight: var(--fw-l);
   font-size: 9.5px;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.38em;
   color: var(--greige-dk);
-  margin-bottom: 7px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
+
 .reason-phrase {
   font-family: var(--f-serif);
   font-weight: var(--fw-l);
-  font-size: 19px;
-  line-height: 1.6;
+  font-size: 22px;
+  line-height: 1.55;
   letter-spacing: 0.04em;
   color: var(--ink);
-  margin-bottom: 6px;
+  margin: 0 0 10px;
 }
+
 .reason-desc {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.8;
+  font-family: var(--f-sans);
   font-weight: var(--fw-l);
+  font-size: 13px;
+  line-height: 1.88;
+  color: var(--muted);
   letter-spacing: 0.03em;
+  margin: 0;
 }
 
 /* =============================================
@@ -817,65 +874,66 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 
 
 <!-- ============================================================
-     3. REASONS
+     3. REASONS — 縦型・画像主導レイアウト
      ============================================================ -->
 <section class="reasons-section" id="reasons">
-  <span class="pl-label">THE REASONS</span>
-  <h2 class="reasons-heading pl-reveal">私がこれを選んだ、<br>3つの理由。</h2>
-  <ul class="reason-list">
+  <div class="reasons-inner">
 
-    <li class="reason-item pl-reveal pl-d1">
-      <div class="reason-num-col">
-        <span class="reason-num">01</span>
-        <div class="reason-icon-ring">
-          <!-- Droplet icon -->
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+    <div class="reasons-header pl-reveal">
+      <span class="pl-label">THE REASONS</span>
+      <h2 class="reasons-heading">私がこれを選んだ、<br>3つの理由。</h2>
+    </div>
+
+    <!-- 理由 01 -->
+    <article class="reason-block pl-reveal">
+      <div class="reason-img-wrap">
+        <img src="" alt="石鹸の清潔感だけ、残る。" class="reason-img">
+        <div class="reason-img-placeholder" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
         </div>
+        <span class="reason-block-num">01</span>
       </div>
-      <div>
+      <div class="reason-text">
         <div class="reason-tag">SCENT</div>
-        <p class="reason-phrase">石鹸の清潔感だけ、残る。</p>
+        <h3 class="reason-phrase">石鹸の清潔感だけ、残る。</h3>
         <p class="reason-desc">主張しすぎない白い香り。でも、確かにそこにある。</p>
       </div>
-    </li>
+    </article>
 
-    <li class="reason-item pl-reveal pl-d2">
-      <div class="reason-num-col">
-        <span class="reason-num">02</span>
-        <div class="reason-icon-ring">
-          <!-- Clock icon -->
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    <!-- 理由 02 -->
+    <article class="reason-block pl-reveal">
+      <div class="reason-img-wrap">
+        <img src="" alt="朝から夜まで、続く。" class="reason-img">
+        <div class="reason-img-placeholder" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
         </div>
+        <span class="reason-block-num">02</span>
       </div>
-      <div>
+      <div class="reason-text">
         <div class="reason-tag">LONGEVITY</div>
-        <p class="reason-phrase">朝から夜まで、続く。</p>
+        <h3 class="reason-phrase">朝から夜まで、続く。</h3>
         <p class="reason-desc">塗り直しなし。夕方でも「いい香り」と言われる。</p>
       </div>
-    </li>
+    </article>
 
-    <li class="reason-item pl-reveal pl-d3">
-      <div class="reason-num-col">
-        <span class="reason-num">03</span>
-        <div class="reason-icon-ring">
-          <!-- Volume / wave icon -->
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-          </svg>
+    <!-- 理由 03 -->
+    <article class="reason-block pl-reveal">
+      <div class="reason-img-wrap">
+        <img src="" alt="ちょうどよい香りの強さ。" class="reason-img">
+        <div class="reason-img-placeholder" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
         </div>
+        <span class="reason-block-num">03</span>
       </div>
-      <div>
+      <div class="reason-text">
         <div class="reason-tag">RIGHT VOLUME</div>
-        <p class="reason-phrase">ちょうどよい香りの強さ。</p>
+        <h3 class="reason-phrase">ちょうどよい香りの強さ。</h3>
         <p class="reason-desc">強すぎないから、スメハラにならない。自分も周りも心地よいボリューム感。</p>
       </div>
-    </li>
+    </article>
 
-  </ul>
+  </div>
 </section>
-
 
 <!-- ============================================================
      4. ZERO RISK — 3 cards side by side
