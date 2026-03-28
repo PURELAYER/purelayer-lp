@@ -158,9 +158,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;   /* ← flex-end → center に変更 */
-  padding-bottom: 0;         /* ← 10% → 0 に変更 */
-  gap: 0;
+  justify-content: center;
+  padding-bottom: 0;
 }
 .fv-bg {
   position: absolute;
@@ -180,18 +179,20 @@ body {
   z-index: 1;
 }
 
+
+/* キャッチコピー */
 .fv-catch {
   position: relative;
   z-index: 2;
   font-family: var(--f-serif);
-  font-weight: 400;           /* ← var(--fw-l)=300 → 400 に微上げ */
-  font-size: 20px;            /* ← 15px → 20px（約1.33倍） */
+  font-weight: 400;
+  font-size:20px;
   line-height: 1.9;
   letter-spacing: 0.08em;
   color: #F5F5F0;
   text-align: center;
-  margin-bottom: 36px;        /* ← 28px → 36px でボタンとの間隔確保 */
-  padding: 0 32px;
+  margin-bottom: 36px;
+  padding: 0 28px;
 }
    
 /* Suppress image-baked text — gradient mask over upper area */
