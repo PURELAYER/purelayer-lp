@@ -549,13 +549,26 @@ body {
   border-left: 1px solid var(--border);
   display: flex; align-items: stretch; overflow: hidden;
 }
-.voice-photo-ph {
+   
+   .voice-photo {
+  border-left: 1px solid var(--border);
+  width: 82px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: var(--greige);  /* src空のときのフォールバック背景 */
+}
+
+.voice-image {
+  display: block;
   width: 100%;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 5px;
-  background: var(--greige);
-  padding: 8px 6px;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* src空のときは非表示にしてグレージュ背景だけ残す */
+.voice-image[src=""] {
+  display: none;
 }
 .voice-photo-ph svg {
   width: 18px; height: 18px;
@@ -1014,10 +1027,7 @@ details[open] .faq-chevron { transform: rotate(180deg); }
           </div>
         </div>
         <div class="voice-photo">
-          <div class="voice-photo-ph">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <span>パッケージ写真</span>
-          </div>
+          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670#" alt="パッケージ写真" class="voice-image">
         </div>
       </div>
     </div>
@@ -1040,10 +1050,7 @@ details[open] .faq-chevron { transform: rotate(180deg); }
           </div>
         </div>
         <div class="voice-photo">
-          <div class="voice-photo-ph">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <span>ポーチの中身写真</span>
-          </div>
+          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2492.webp?v=1773467332#" alt="ポーチの中身" class="voice-image">
         </div>
       </div>
     </div>
@@ -1066,10 +1073,7 @@ details[open] .faq-chevron { transform: rotate(180deg); }
           </div>
         </div>
         <div class="voice-photo">
-          <div class="voice-photo-ph">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <span>洗面台写真</span>
-          </div>
+          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670#" alt="洗面台写真" class="voice-image">
         </div>
       </div>
     </div>
