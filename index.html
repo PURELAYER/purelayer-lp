@@ -1092,6 +1092,256 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(5px); }
 }
+   /* =============================================
+   FV v5 — アイボリー背景・レビューカード無限スクロール
+   ============================================= */
+
+.fv-section {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  background: #F5F5F0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 100px 0 72px;
+}
+
+/* ① メインコピー */
+.fv-copy-wrap {
+  text-align: center;
+  padding: 0 28px;
+}
+
+.fv-main-copy {
+  font-family: var(--f-serif);
+  font-weight: var(--fw-b);
+  font-size: 28px;
+  line-height: 1.55;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+
+.fv-main-copy em {
+  font-style: normal;
+  position: relative;
+  display: inline-block;
+}
+.fv-main-copy em::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  width: 100%;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 1px;
+}
+
+.fv-sub-copy {
+  font-family: var(--f-sans);
+  font-weight: var(--fw-l);
+  font-size: 13px;
+  line-height: 1.8;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ③ マーキー外枠 */
+.fv-marquee-outer {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+}
+
+.fv-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: fv-marquee-roll 36s linear infinite;
+}
+
+.fv-marquee-set {
+  display: flex;
+  gap: 12px;
+  padding-right: 12px;
+  flex-shrink: 0;
+}
+
+@keyframes fv-marquee-roll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* レビューカード */
+.rv-card {
+  width: 168px;
+  flex-shrink: 0;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* 浮いている感のシャドウ */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* アイコン＋名前 */
+.rv-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rv-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--greige);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--f-sans);
+  font-weight: var(--fw-r);
+  font-size: 11px;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.rv-name {
+  font-family: var(--f-sans);
+  font-weight: var(--fw-r);
+  font-size: 11px;
+  color: var(--ink);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 星 */
+.rv-stars {
+  display: flex;
+  gap: 2px;
+}
+.rv-stars svg {
+  width: 12px;
+  height: 12px;
+  fill: #D4A827;
+  stroke: none;
+}
+
+/* 本文 */
+.rv-body {
+  font-family: var(--f-sans);
+  font-weight: var(--fw-l);
+  font-size: 12px;
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+  color: var(--charcoal);
+  margin: 0;
+}
+
+/* ④ CTAボタン */
+.fv-cta-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 88%;
+  max-width: 356px;
+}
+
+.pl-btn-main {
+  display: block;
+  width: 100%;
+  background: var(--ink);
+  color: #FFFFFF;
+  font-family: var(--f-sans);
+  font-weight: var(--fw-l);
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-align: center;
+  padding: 18px 28px;
+  border-radius: var(--r-pill);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.18s, transform 0.12s;
+}
+.pl-btn-main:active { opacity: 0.78; transform: scale(0.97); }
+
+/* ⑤ リスクヘッジ */
+.fv-risk-hedge {
+  font-family: var(--f-sans);
+  font-weight: var(--fw-l);
+  font-size: 11px;
+  line-height: 1.85;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-align: center;
+  margin: 0;
+}
+
+/* ⑥ スクロール誘導 */
+.fv-scroll-hint-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.fv-scroll-text {
+  font-family: var(--f-sans);
+  font-weight: var(--fw-l);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.fv-scroll-arrow {
+  animation: fv-bounce 1.8s ease-in-out infinite;
+}
+.fv-scroll-arrow svg {
+  width: 20px;
+  height: 20px;
+  stroke: #AAAAAA;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  display: block;
+}
+
+@keyframes fv-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(5px); }
+}
    
 </style>
    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
@@ -1106,7 +1356,7 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 <body>
 
 <!-- ============================================================
-     1. FV — 白背景・キャッチ・無限横スクロールレビュー
+     1. FV — アイボリー背景・レビューカード無限スクロール
      ============================================================ -->
 <section class="fv-section">
 
@@ -1118,43 +1368,173 @@ details[open] .faq-chevron { transform: rotate(180deg); }
     <p class="fv-sub-copy">香水初心者でも失敗しない、清潔感の塊フレグランス</p>
   </div>
 
-  <!-- ③ 無限横スクロール・レビュー -->
+  <!-- ③ 無限横スクロール・レビューカード -->
   <div class="fv-marquee-outer" aria-hidden="true">
     <div class="fv-marquee-track">
-      <!-- 9枚 × 2セット（シームレスループ用） -->
-      <div class="fv-marquee-set">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3146.webp?v=1774754613" alt="" class="fv-review-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670#" alt="" class="fv-review-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2492.webp?v=1773467332#" alt="" class="fv-review-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670#" alt="" class="fv-review-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2602.webp?v=1773367670#" alt="" class="fv-review-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2872.webp?v=1773467332#" alt="" class="fv-review-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/F87E4C51-B238-4587-9A2A-46D778DD3A96.webp?v=1773467332#" alt="" class="fv-review-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3149.webp?v=1774754613" alt="" class="fv-review-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3151.webp?v=1774754613" alt="" class="fv-review-img">
-      </div>
-      <!-- ループ用の複製セット（JSなしでシームレスに） -->
-      <div class="fv-marquee-set" aria-hidden="true">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3146.webp?v=1774754613" alt="" class="fv-review-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670#" alt="" class="fv-review-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2492.webp?v=1773467332#" alt="" class="fv-review-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670#" alt="" class="fv-review-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2602.webp?v=1773367670#" alt="" class="fv-review-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2872.webp?v=1773467332#" alt="" class="fv-review-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/F87E4C51-B238-4587-9A2A-46D778DD3A96.webp?v=1773467332#" alt="" class="fv-review-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3149.webp?v=1774754613" alt="" class="fv-review-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3151.webp?v=1774754613" alt="" class="fv-review-img">
-      </div>
-    </div>
-  </div>
 
-  <!-- ④⑤ CTAとリスクヘッジ -->
+      <!-- セット1 -->
+      <div class="fv-marquee-set">
+
+        <div class="rv-card">
+          <div class="rv-header">
+            <div class="rv-avatar">M</div>
+            <span class="rv-name">Miho S.</span>
+          </div>
+          <div class="rv-stars">
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+          </div>
+          <p class="rv-body">デートで「いい匂い」って<br>言われた！もう手放せない。</p>
+        </div>
+
+        <div class="rv-card">
+          <div class="rv-header">
+            <div class="rv-avatar">T</div>
+            <span class="rv-name">Takeshi R.</span>
+          </div>
+          <div class="rv-stars">
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+          </div>
+          <p class="rv-body">職場で初めて香水を<br>褒められた。これ以外使えない。</p>
+        </div>
+
+        <div class="rv-card">
+          <div class="rv-header">
+            <div class="rv-avatar">A</div>
+            <span class="rv-name">Ayaka K.</span>
+          </div>
+          <div class="rv-stars">
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+          </div>
+          <p class="rv-body">サンプルで試せて安心。<br>ほんとに匂い被らない！</p>
+        </div>
+
+        <div class="rv-card">
+          <div class="rv-header">
+            <div class="rv-avatar">Y</div>
+            <span class="rv-name">Yuki N.</span>
+          </div>
+          <div class="rv-stars">
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+          </div>
+          <p class="rv-body">石鹸みたいな清潔感が<br>ずっと続く。朝も夜も◎</p>
+        </div>
+
+        <div class="rv-card">
+          <div class="rv-header">
+            <div class="rv-avatar">H</div>
+            <span class="rv-name">Hana O.</span>
+          </div>
+          <div class="rv-stars">
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+          </div>
+          <p class="rv-body">男女関係なく褒められる。<br>会社でも使える強さ。</p>
+        </div>
+
+        <div class="rv-card">
+          <div class="rv-header">
+            <div class="rv-avatar">K</div>
+            <span class="rv-name">Kenji M.</span>
+          </div>
+          <div class="rv-stars">
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+          </div>
+          <p class="rv-body">返金保証があるから<br>試しやすい。買って正解。</p>
+        </div>
+
+        <div class="rv-card">
+          <div class="rv-header">
+            <div class="rv-avatar">R</div>
+            <span class="rv-name">Rina T.</span>
+          </div>
+          <div class="rv-stars">
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+          </div>
+          <p class="rv-body">人と被ったことがない。<br>「どこの香水？」とよく聞かれる。</p>
+        </div>
+
+        <div class="rv-card">
+          <div class="rv-header">
+            <div class="rv-avatar">S</div>
+            <span class="rv-name">Sho I.</span>
+          </div>
+          <div class="rv-stars">
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+          </div>
+          <p class="rv-body">夜まで香りが続くのに<br>強すぎない絶妙なバランス。</p>
+        </div>
+
+        <div class="rv-card">
+          <div class="rv-header">
+            <div class="rv-avatar">N</div>
+            <span class="rv-name">Nana F.</span>
+          </div>
+          <div class="rv-stars">
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+            <svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg>
+          </div>
+          <p class="rv-body">初心者でも使いやすい。<br>これが一軍香水の正解形。</p>
+        </div>
+
+      </div><!-- /.fv-marquee-set (セット1) -->
+
+      <!-- セット2：シームレスループ用の複製 -->
+      <div class="fv-marquee-set" aria-hidden="true">
+        <div class="rv-card"><div class="rv-header"><div class="rv-avatar">M</div><span class="rv-name">Miho S.</span></div><div class="rv-stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg></div><p class="rv-body">デートで「いい匂い」って<br>言われた！もう手放せない。</p></div>
+        <div class="rv-card"><div class="rv-header"><div class="rv-avatar">T</div><span class="rv-name">Takeshi R.</span></div><div class="rv-stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg></div><p class="rv-body">職場で初めて香水を<br>褒められた。これ以外使えない。</p></div>
+        <div class="rv-card"><div class="rv-header"><div class="rv-avatar">A</div><span class="rv-name">Ayaka K.</span></div><div class="rv-stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg></div><p class="rv-body">サンプルで試せて安心。<br>ほんとに匂い被らない！</p></div>
+        <div class="rv-card"><div class="rv-header"><div class="rv-avatar">Y</div><span class="rv-name">Yuki N.</span></div><div class="rv-stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg></div><p class="rv-body">石鹸みたいな清潔感が<br>ずっと続く。朝も夜も◎</p></div>
+        <div class="rv-card"><div class="rv-header"><div class="rv-avatar">H</div><span class="rv-name">Hana O.</span></div><div class="rv-stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg></div><p class="rv-body">男女関係なく褒められる。<br>会社でも使える強さ。</p></div>
+        <div class="rv-card"><div class="rv-header"><div class="rv-avatar">K</div><span class="rv-name">Kenji M.</span></div><div class="rv-stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg></div><p class="rv-body">返金保証があるから<br>試しやすい。買って正解。</p></div>
+        <div class="rv-card"><div class="rv-header"><div class="rv-avatar">R</div><span class="rv-name">Rina T.</span></div><div class="rv-stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg></div><p class="rv-body">人と被ったことがない。<br>「どこの香水？」とよく聞かれる。</p></div>
+        <div class="rv-card"><div class="rv-header"><div class="rv-avatar">S</div><span class="rv-name">Sho I.</span></div><div class="rv-stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg></div><p class="rv-body">夜まで香りが続くのに<br>強すぎない絶妙なバランス。</p></div>
+        <div class="rv-card"><div class="rv-header"><div class="rv-avatar">N</div><span class="rv-name">Nana F.</span></div><div class="rv-stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.44.91-5.32L2.27 6.62l5.34-.78z"/></svg></div><p class="rv-body">初心者でも使いやすい。<br>これが一軍香水の正解形。</p></div>
+      </div><!-- /.fv-marquee-set (セット2) -->
+
+    </div><!-- /.fv-marquee-track -->
+  </div><!-- /.fv-marquee-outer -->
+
+  <!-- ④⑤ CTA + リスクヘッジ -->
   <div class="fv-cta-wrap">
     <a href="#zero-risk" class="pl-btn-main">サンプル付きセットを試す &thinsp;→</a>
-    <p class="fv-risk-hedge">・2ml 無料サンプル付き &nbsp;・合わなければ全額返金 OK</p>
+    <p class="fv-risk-hedge">・2ml 無料サンプル付き &nbsp;&nbsp;・合わなければ全額返金 OK</p>
   </div>
 
-  <!-- スクロール誘導 -->
+  <!-- ⑥ スクロール誘導 -->
   <div class="fv-scroll-hint-bottom">
     <span class="fv-scroll-text">なぜこれほど選ばれているのか</span>
     <div class="fv-scroll-arrow" aria-hidden="true">
