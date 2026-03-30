@@ -1204,447 +1204,52 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   50%       { transform: translateY(5px); }
 }
 
-   /* =============================================
-   FV v6 — 大型レビューカード・参考画像レイアウト
-   ============================================= */
-
-.fv-section {
-  position: relative;
-  width: 100%;
-  min-height: 100svh;
-  background: #F5F5F0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-  padding: 100px 0 72px;
-}
-
-/* ① メインコピー */
-.fv-copy-wrap {
-  text-align: center;
-  padding: 0 28px;
-}
-.fv-main-copy {
-  font-family: var(--f-serif);
-  font-weight: var(--fw-b);
-  font-size: 28px;
-  line-height: 1.55;
-  letter-spacing: 0.03em;
-  color: var(--ink);
-  margin: 0 0 12px;
-}
-.fv-main-copy em {
-  font-style: normal;
-  position: relative;
-  display: inline-block;
-}
-.fv-main-copy em::after {
-  content: '';
-  position: absolute;
-  left: 0; bottom: 1px;
-  width: 100%; height: 2px;
-  background: var(--ink);
-  border-radius: 1px;
-}
-.fv-sub-copy {
-  font-family: var(--f-sans);
-  font-weight: var(--fw-l);
-  font-size: 13px;
-  line-height: 1.8;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-  margin: 0;
-}
-
-/* ③ マーキー外枠 */
-.fv-marquee-outer {
-  width: 100%;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
-  mask-image:         linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
-}
-.fv-marquee-track {
-  display: flex;
-  width: max-content;
-  animation: fv-marquee-roll 48s linear infinite;
-}
-.fv-marquee-set {
-  display: flex;
-  gap: 16px;
-  padding-right: 16px;
-  flex-shrink: 0;
-}
-@keyframes fv-marquee-roll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* ---- レビューカード本体 ---- */
-.rv-card {
-  width: 260px;           /* 168px → 260px（約1.55倍） */
-  flex-shrink: 0;
-  background: #FFFFFF;
-  border-radius: 16px;
-  padding: 18px 18px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-}
-
-/* 上段：星 ＋ サムネ */
-.rv-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 8px;
-}
-.rv-stars {
-  display: flex;
-  gap: 3px;
-  padding-top: 2px;
-}
-.rv-stars svg {
-  width: 15px;
-  height: 15px;
-  fill: #D4A827;
-  stroke: none;
-}
-
-/* 右上サムネイル */
-.rv-thumb {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 8px;
-  flex-shrink: 0;
-  background: var(--greige); /* src空のフォールバック */
-  display: block;
-}
-.rv-thumb[src=""] {
-  /* 空のときもサイズを保持して背景色を見せる */
-  min-width: 60px;
-}
-
-/* 中段：タイトル */
-.rv-title {
-  font-family: var(--f-sans);
-  font-weight: var(--fw-b);
-  font-size: 14px;
-  line-height: 1.5;
-  letter-spacing: 0.02em;
-  color: var(--ink);
-  margin: 0;
-}
-
-/* 中段：本文 */
-.rv-body {
-  font-family: var(--f-sans);
-  font-weight: var(--fw-l);
-  font-size: 12px;
-  line-height: 1.78;
-  letter-spacing: 0.02em;
-  color: var(--charcoal);
-  margin: 0;
-}
-
-/* 下段：名前 ＋ Verified */
-.rv-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-top: 2px;
-  padding-top: 10px;
-  border-top: 1px solid var(--border);
-}
-.rv-name {
-  font-family: var(--f-sans);
-  font-weight: var(--fw-b);
-  font-size: 12px;
-  color: var(--ink);
-  letter-spacing: 0.03em;
-}
-.rv-verified {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-family: var(--f-sans);
-  font-weight: var(--fw-l);
-  font-size: 10.5px;
-  color: #22A06B;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-}
-.rv-verified svg {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-}
-
-/* ④ CTAボタン */
-.fv-cta-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  width: 88%;
-  max-width: 356px;
-}
-.pl-btn-main {
-  display: block;
-  width: 100%;
-  background: var(--ink);
-  color: #FFFFFF;
-  font-family: var(--f-sans);
-  font-weight: var(--fw-l);
-  font-size: 14px;
-  letter-spacing: 0.14em;
-  text-align: center;
-  padding: 18px 28px;
-  border-radius: var(--r-pill);
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  transition: opacity 0.18s, transform 0.12s;
-}
-.pl-btn-main:active { opacity: 0.78; transform: scale(0.97); }
-
-/* ⑤ リスクヘッジ */
-.fv-risk-hedge {
-  font-family: var(--f-sans);
-  font-weight: var(--fw-l);
-  font-size: 11px;
-  line-height: 1.85;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-  text-align: center;
-  margin: 0;
-}
-
-/* ⑥ スクロール誘導 */
-.fv-scroll-hint-bottom {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  position: absolute;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.fv-scroll-text {
-  font-family: var(--f-sans);
-  font-weight: var(--fw-l);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  color: var(--muted);
-  white-space: nowrap;
-}
-.fv-scroll-arrow { animation: fv-bounce 1.8s ease-in-out infinite; }
-.fv-scroll-arrow svg {
-  width: 20px; height: 20px;
-  stroke: #AAAAAA;
-  fill: none;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  display: block;
-}
-@keyframes fv-bounce {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(5px); }
-}
-   /* =============================================
-   FV カルーセル — 手動スワイプ・スナップ
-   ============================================= */
-
-/* 外枠：チラ見せのため padding で左右に覗かせる */
-.fv-carousel {
-  width: 100%;
-  display: flex;
-  gap: 14px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scroll-padding-left: 20px;      /* スナップ基準を左端から20pxに */
-  padding: 8px 20px 12px;         /* 左右20px → 次カードが14px覗く */
-  /* スクロールバー非表示 */
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.fv-carousel::-webkit-scrollbar { display: none; }
-
-/* カード本体 */
-.rv-card {
-  width: calc(100vw - 60px);      /* 画面幅 − 左右padding − チラ見せ分 */
-  max-width: 320px;
-  flex-shrink: 0;
-  scroll-snap-align: start;
-  background: #FFFFFF;
-  border-radius: 16px;
-  padding: 16px 16px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 0;                          /* gap は各要素のmarginで個別管理 */
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-}
-
-/* 上段：星 ＋ サムネ */
-.rv-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 6px;             /* 星とタイトルの間を最小化 */
-}
-.rv-stars {
-  display: flex;
-  gap: 3px;
-  padding-top: 2px;
-}
-.rv-stars svg {
-  width: 15px;
-  height: 15px;
-  fill: #D4A827;
-  stroke: none;
-}
-
-/* 右上サムネ */
-.rv-thumb {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 8px;
-  flex-shrink: 0;
-  background: var(--greige);
-  display: block;
-}
-
-/* タイトル：星のすぐ下に密着 */
-.rv-title {
-  font-family: var(--f-sans);
-  font-weight: var(--fw-b);
-  font-size: 14px;
-  line-height: 1.45;
-  letter-spacing: 0.02em;
-  color: var(--ink);
-  margin: 0 0 8px;                /* タイトル↔本文の間だけ空ける */
-}
-
-/* 本文 */
-.rv-body {
-  font-family: var(--f-sans);
-  font-weight: var(--fw-l);
-  font-size: 12.5px;
-  line-height: 1.75;
-  letter-spacing: 0.02em;
-  color: var(--charcoal);
-  margin: 0 0 12px;
-  flex: 1;                        /* 本文の高さでカードを揃える */
-}
-
-/* フッター */
-.rv-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding-top: 10px;
-  border-top: 1px solid var(--border);
-  margin-top: auto;
-}
-.rv-name {
-  font-family: var(--f-sans);
-  font-weight: var(--fw-b);
-  font-size: 12px;
-  color: var(--ink);
-  letter-spacing: 0.03em;
-}
-.rv-verified {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-family: var(--f-sans);
-  font-weight: var(--fw-l);
-  font-size: 10.5px;
-  color: #22A06B;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-}
-.rv-verified svg {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-}
-
- 
 /* =============================================
-   FV — ボトル主役・1画面完結・CVR最大化設計
-   .fv- プレフィックス統一 / グローバル非汚染
+   FV — UGC中央・外周レビュー・1画面CTA完結
+   .fv- プレフィックス統一 / 他セクション非汚染
    ============================================= */
 
 .fv-section {
-  /* 厳密に1画面に収める */
-  height: 100svh;
-  max-height: 100svh;
+  min-height: 100svh;
   width: 100%;
   background: #F5F5F0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* 上から詰めて下にチラ見え余白を生む */
   justify-content: flex-start;
-  padding: 52px 18px 0;
+  /* padding-topを40pxに圧縮 */
+  padding: 40px 16px 0;
   box-sizing: border-box;
-  /* 画面内に収める。下セクションが1px見えるように */
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 }
 
-/* ① 実績バッジ */
-.fv-badge {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 300;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: #9E8B72;
-  text-align: center;
-  margin: 0 0 8px;
-  border: 1px solid #D8D5C8;
-  border-radius: 999px;
-  padding: 3px 14px;
-  flex-shrink: 0;
-}
-
-/* ② メインコピー */
-.fv-copy-wrap {
+/* ① ファクト型コピー */
+.fv-fact {
   width: 100%;
   text-align: center;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   flex-shrink: 0;
 }
 
-.fv-main-copy {
+.fv-fact__txt {
   font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
   font-weight: 700;
-  font-size: 28px;
-  line-height: 1.36;
-  letter-spacing: 0.01em;
+  font-size: 22px;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
   color: #1E1C17;
-  margin: 0 0 7px;
+  margin: 0;
 }
 
-.fv-main-copy em {
+.fv-fact__txt em {
   font-style: normal;
-  font-weight: 900;
+  font-weight: 700;
+  color: #1E1C17;
   position: relative;
   display: inline-block;
 }
-.fv-main-copy em::after {
+.fv-fact__txt em::after {
   content: '';
   position: absolute;
   left: 0;
@@ -1655,55 +1260,60 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   border-radius: 1px;
 }
 
-/* ③ サブコピー */
-.fv-sub-copy {
-  font-family: 'Noto Sans JP', sans-serif;
+/* ② サブコピー */
+.fv-sub {
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
   font-weight: 300;
   font-size: 12.5px;
-  line-height: 1.82;
+  line-height: 1.8;
   letter-spacing: 0.04em;
-  color: #777770;
-  margin: 0;
+  color: #666660;
+  text-align: center;
+  margin: 0 0 8px;
+  flex-shrink: 0;
 }
 
-/* ④ ステージ：ボトル＋5レビュー */
+/* ③ ステージ：UGC画像 + 外周レビュー */
 .fv-stage {
   position: relative;
   width: 100%;
-  /* 高さをコンテンツに合わせてやや控えめ：CTAを画面内に収める */
-  height: 290px;
+  height: 280px;
   flex-shrink: 0;
   margin-bottom: 8px;
 }
 
-/* ボトル：中央・最前面・拡大 */
-.fv-bottle {
+/* 中央UGC画像 */
+.fv-ugc-main {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%) scale(1.15);
-  width: 46%;
-  max-width: 168px;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 14px 28px rgba(0,0,0,0.18))
-          drop-shadow(0 3px 6px rgba(0,0,0,0.09));
+  transform: translateX(-50%);
+  /* 縦長：画面幅の52% */
+  width: 52%;
+  max-width: 195px;
+  height: 280px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 12px;
   display: block;
+  /* 最前面ではなくレビューより背面 */
+  z-index: 1;
 }
 
 /* レビューカード共通 */
 .fv-rc {
   position: absolute;
-  width: 110px;
+  width: 112px;
   background: #FFFFFF;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 8px 10px 9px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.09);
   display: flex;
   flex-direction: column;
   gap: 3px;
   box-sizing: border-box;
-  opacity: 0.97;
+  /* opacity: 1 — 薄くしない */
+  opacity: 1;
   z-index: 10;
 }
 
@@ -1714,45 +1324,45 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   line-height: 1;
 }
 
-.fv-rc__text {
+.fv-rc__txt {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 700;
-  font-size: 11.5px;
+  font-size: 12px;
   line-height: 1.5;
   color: #1E1C17;
   margin: 0;
+  letter-spacing: 0.01em;
 }
 
 .fv-rc__name {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 300;
-  font-size: 9px;
+  font-size: 9.5px;
   color: #BBBBBB;
   letter-spacing: 0.04em;
 }
 
-/* UGC付きカードヘッダー */
+/* 写真付きカードのヘッダー */
 .fv-rc__head {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 4px;
 }
-
-.fv-rc__ugc {
-  width: 40px;
-  height: 40px;
+.fv-rc__thumb {
+  width: 38px;
+  height: 38px;
   object-fit: cover;
   border-radius: 6px;
   flex-shrink: 0;
   background: #E2DFD2;
   display: block;
 }
-.fv-rc__ugc[src=""] { min-width: 40px; }
+.fv-rc__thumb[src=""] { min-width: 38px; }
 
-/* 外周5点配置：中央ゾーンに絶対侵入しない */
+/* 外周5点配置：UGC中央に被せない */
 
-/* 左上 — rotate(-3deg) */
+/* 左上 */
 .fv-rc--tl {
   top: 6px;
   left: 0;
@@ -1760,49 +1370,37 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   z-index: 11;
 }
 
-/* 右上（UGC付き・幅少し広め） — rotate(2.5deg) */
+/* 右上（写真付き・少し幅広） */
 .fv-rc--tr {
-  width: 118px;
+  width: 120px;
   top: 2px;
   right: 0;
   transform: rotate(2.5deg);
   z-index: 10;
 }
 
-/* 左下 — rotate(2deg) */
+/* 左下 */
 .fv-rc--bl {
-  bottom: 10px;
+  bottom: 8px;
   left: 0;
   transform: rotate(2deg);
   z-index: 11;
 }
 
-/* 右下 — rotate(-3deg) */
+/* 右下 */
 .fv-rc--br {
-  bottom: 6px;
+  bottom: 4px;
   right: 0;
   transform: rotate(-3deg);
   z-index: 10;
 }
 
-/* 下中央 — rotate(-1deg)・他より少し前 */
+/* 下中央（少し浮かせる） */
 .fv-rc--bc {
-  bottom: 0;
+  bottom: 2px;
   left: 50%;
-  transform: translateX(-50%) rotate(-1deg);
+  transform: translateX(-50%) rotate(-1.5deg) translateY(-4px);
   z-index: 12;
-}
-
-/* ⑤ CTA直前テキスト */
-.fv-pre-cta {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 400;
-  font-size: 11.5px;
-  color: #555550;
-  text-align: center;
-  letter-spacing: 0.1em;
-  margin: 0 0 5px;
-  flex-shrink: 0;
 }
 
 /* ⑥ 安心要素 */
@@ -1811,57 +1409,57 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   flex-direction: column;
   align-items: center;
   gap: 1px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   flex-shrink: 0;
 }
 .fv-trust span {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 300;
   font-size: 11px;
-  color: #999990;
+  color: #888880;
   letter-spacing: 0.06em;
-  line-height: 1.65;
+  line-height: 1.7;
 }
 
-/* ⑦ CTAボタン */
+/* ⑤ CTAボタン */
 .fv-cta {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 92%;
+  width: 90%;
   max-width: 400px;
-  min-height: 50px;
+  min-height: 52px;
   background: #1E1C17;
   color: #FFFFFF;
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 700;
-  font-size: 14.5px;
-  letter-spacing: 0.12em;
+  font-size: 15px;
+  letter-spacing: 0.1em;
   border-radius: 999px;
   border: none;
   cursor: pointer;
   text-decoration: none;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   flex-shrink: 0;
   transition: opacity 0.18s, transform 0.12s;
 }
 .fv-cta:active { opacity: 0.80; transform: scale(0.97); }
 
-/* ⑧ スクロール誘導 */
+/* ⑦ スクロール誘導 */
 .fv-nudge {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
   flex-shrink: 0;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
 }
 .fv-nudge__txt {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 300;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  color: #BBBBBB;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #AAAAAA;
   white-space: nowrap;
 }
 .fv-nudge__arr {
@@ -1873,9 +1471,9 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   stroke-linecap: round;
   stroke-linejoin: round;
   display: block;
-  animation: fv-nudge-bounce 1.8s ease-in-out infinite;
+  animation: fv-nudge-b 1.8s ease-in-out infinite;
 }
-@keyframes fv-nudge-bounce {
+@keyframes fv-nudge-b {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(4px); }
 }
@@ -1895,69 +1493,62 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 
 <section class="fv-section">
 
-  <!-- ① 実績バッジ -->
-  <p class="fv-badge">累計 1,247人が体験</p>
-
-  <!-- ② メインコピー -->
-  <div class="fv-copy-wrap">
-    <h1 class="fv-main-copy">
-      これ付けてから、<br><em>褒められすぎてる。</em>
-    </h1>
-    <!-- ③ サブコピー -->
-    <p class="fv-sub-copy">石鹸系の清潔感が、朝から夜まで続く。<br>つけるだけで「いい匂い」と言われる1本。</p>
+  <!-- ① ファクト型コピー -->
+  <div class="fv-fact">
+    <p class="fv-fact__txt">使用者の87%が<br>実際に<em>"褒められた"</em>経験があります</p>
   </div>
 
-  <!-- ④ ビジュアル構造（ボトル主役 + 外周5レビュー） -->
+  <!-- ② サブコピー -->
+  <p class="fv-sub">石鹸系の清潔感が、朝から夜まで続く。<br>つけるだけで"いい匂い"と言われる1本。</p>
+
+  <!-- ③ メインビジュアル：UGC中央 + 外周5レビュー -->
   <div class="fv-stage">
 
-    <!-- ボトル：最前面・中央 -->
+    <!-- 中央UGC画像 -->
     <img
       src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/98.webp?v=1774837041"
       alt="PURELAYER Oud Stallion"
-      class="fv-bottle">
+      class="fv-ugc-main">
 
     <!-- 左上 -->
     <div class="fv-rc fv-rc--tl">
       <div class="fv-rc__stars">★★★★★</div>
-      <p class="fv-rc__text">「めっちゃ<br>褒められる」</p>
+      <p class="fv-rc__txt">「めっちゃ<br>褒められる」</p>
       <span class="fv-rc__name">Miho S.</span>
     </div>
 
-    <!-- 右上（UGC画像付き） -->
+    <!-- 右上（写真付き） -->
     <div class="fv-rc fv-rc--tr">
       <div class="fv-rc__head">
         <div class="fv-rc__stars">★★★★★</div>
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3146.webp?v=1774754613#" alt="" class="fv-rc__ugc">
+        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3146.webp?v=1774754613#" alt="" class="fv-rc__thumb">
       </div>
-      <p class="fv-rc__text">「清潔感えぐいって<br>言われた」</p>
+      <p class="fv-rc__txt">「清潔感えぐいって<br>言われた」</p>
       <span class="fv-rc__name">Takeshi R.</span>
     </div>
 
     <!-- 左下 -->
     <div class="fv-rc fv-rc--bl">
       <div class="fv-rc__stars">★★★★★</div>
-      <p class="fv-rc__text">「学校で<br>褒められた」</p>
+      <p class="fv-rc__txt">「学校で<br>褒められた」</p>
       <span class="fv-rc__name">Yuki N.</span>
     </div>
 
     <!-- 右下 -->
     <div class="fv-rc fv-rc--br">
       <div class="fv-rc__stars">★★★★★</div>
-      <p class="fv-rc__text">「職場でも<br>好評だった」</p>
+      <p class="fv-rc__txt">「職場でも<br>好評だった」</p>
       <span class="fv-rc__name">Kenji M.</span>
     </div>
 
     <!-- 下中央 -->
     <div class="fv-rc fv-rc--bc">
       <div class="fv-rc__stars">★★★★★</div>
-      <p class="fv-rc__text">「これもう一軍確定」</p>
+      <p class="fv-rc__txt">「これもう一軍確定」</p>
       <span class="fv-rc__name">Ayaka K.</span>
     </div>
 
   </div><!-- /.fv-stage -->
-
-  <!-- ⑤ CTA直前テキスト -->
-  <p class="fv-pre-cta">今だけ、無料で試せる</p>
 
   <!-- ⑥ 安心要素 -->
   <div class="fv-trust">
@@ -1965,12 +1556,12 @@ details[open] .faq-chevron { transform: rotate(180deg); }
     <span>✔ 合わなければ全額返金OK</span>
   </div>
 
-  <!-- ⑦ CTA -->
-  <a href="#zero-risk" alt="" class="fv-cta">サンプル付きで試す →</a>
+  <!-- ⑤ CTAボタン -->
+  <a href="#zero-risk" class="fv-cta">無料サンプルで試す →</a>
 
-  <!-- ⑧ スクロール誘導 -->
+  <!-- ⑦ スクロール誘導 -->
   <div class="fv-nudge">
-    <span class="fv-nudge__txt">でも、なぜここまで褒められるのか。</span>
+    <span class="fv-nudge__txt">なぜここまで褒められる？</span>
     <svg class="fv-nudge__arr" viewBox="0 0 24 24">
       <polyline points="6 9 12 15 18 9"/>
     </svg>
