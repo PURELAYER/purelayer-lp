@@ -1581,196 +1581,283 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   flex-shrink: 0;
 }
 
+ 
+
    /* =============================================
-   FV v7 — TikTok広告連動・高密度・直感型
-   既存の .fv-section 系CSSを丸ごと置き換え
+   FV v7 改善版
+   ・.fv- プレフィックスを維持
+   ・グローバル要素への指定なし
+   ・他セクションへの影響ゼロ
    ============================================= */
 
+/* セクション本体 */
 .fv-section {
   position: relative;
   width: 100%;
   min-height: 100svh;
   background: #F5F5F0;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;  /* 上から詰めて配置 */
-  padding: 80px 20px 72px;
-  gap: 0;
+  justify-content: flex-start;
+  padding: 72px 18px 76px;
+  box-sizing: border-box;
+  overflow: visible; /* 下セクションを隠さない */
 }
 
-/* ① ファーストコピー */
-.fv-hero-copy {
-  text-align: center;
+/* ① コピー */
+.fv-copy-wrap {
   width: 100%;
-  margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
 }
 
-.fv-hero-h1 {
-  font-family: var(--f-serif);
-  font-weight: var(--fw-b);
+.fv-main-copy {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  font-weight: 700;
   font-size: 30px;
-  line-height: 1.42;
+  line-height: 1.38;
   letter-spacing: 0.01em;
-  color: var(--ink);
+  color: #1E1C17;
   margin: 0 0 10px;
 }
 
-/* ② サブコピー */
-.fv-hero-sub {
-  font-family: var(--f-sans);
-  font-weight: var(--fw-l);
-  font-size: 14px;
+/* 「褒められすぎてる。」だけ強調 */
+.fv-main-copy em {
+  font-style: normal;
+  font-weight: 900;
+  position: relative;
+  display: inline-block;
+}
+.fv-main-copy em::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 100%;
+  height: 3px;
+  background: #1E1C17;
+  border-radius: 2px;
+}
+
+.fv-sub-copy {
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+  font-weight: 300;
+  font-size: 13.5px;
   line-height: 1.85;
   letter-spacing: 0.05em;
-  color: #888880;
+  color: #777770;
   margin: 0;
 }
 
-/* ③ レビューステージ（カード群 + ボトル画像を包む） */
+/* =============================================
+   ③④ ステージ：ボトル主役・外周レビュー
+   ============================================= */
 .fv-reviews-stage {
   position: relative;
   width: 100%;
-  height: 260px;            /* カードとボトルを重ねる高さ */
-  margin-bottom: 22px;
+  /* 高さ拡張：カードがボトルに被らない余裕 */
+  height: 350px;
   flex-shrink: 0;
+  margin-bottom: 16px;
 }
 
-/* ---- レビューカード共通 ---- */
-.fv-rv {
+/* ③ ボトル：中央・最前面・拡大 */
+.fv-bottle-hero {
   position: absolute;
-  width: 148px;
+  top: 50%;
+  left: 50%;
+  /* scale(1.15) で主役感を出す */
+  transform: translate(-50%, -50%) scale(1.15);
+  width: 48%;
+  max-width: 178px;
+  height: auto;
+  object-fit: contain;
+  /* レビューカードより必ず前面 */
+  z-index: 20;
+  /* 浮遊感のある drop-shadow */
+  filter: drop-shadow(0 16px 32px rgba(0,0,0,0.20))
+          drop-shadow(0 4px 8px rgba(0,0,0,0.10));
+  display: block;
+}
+
+/* =============================================
+   ④ レビューカード共通
+   ・サイズ縮小（~115px）
+   ・opacity 0.93 で主張を抑制
+   ・shadow を弱める
+   ・中央エリア（ボトル）には被せない
+   ============================================= */
+.fv-rc {
+  position: absolute;
+  /* ステージ内のabsoluteなので外部影響なし */
+  width: 115px;
   background: #FFFFFF;
   border-radius: 12px;
-  padding: 10px 12px 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.11);
+  padding: 8px 10px 9px;
+  /* shadow を弱めてノイズ削減 */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
+  box-sizing: border-box;
+  /* 主張を抑える opacity */
+  opacity: 0.93;
+  /* カードはボトルより背面 */
   z-index: 10;
 }
 
-.fv-rv-stars {
-  font-size: 12px;
+.fv-rc-stars {
+  font-size: 10px;
   color: #D4A827;
   letter-spacing: 1px;
   line-height: 1;
 }
 
-.fv-rv-text {
-  font-family: var(--f-sans);
-  font-weight: var(--fw-b);
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--ink);
+.fv-rc-text {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #1E1C17;
   margin: 0;
   letter-spacing: 0.01em;
 }
 
-.fv-rv-name {
-  font-family: var(--f-sans);
-  font-weight: var(--fw-l);
-  font-size: 10px;
-  color: #AAAAAA;
-  letter-spacing: 0.05em;
+.fv-rc-name {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  font-size: 9.5px;
+  color: #BBBBBB;
+  letter-spacing: 0.04em;
 }
 
-/* 左カード — 左上・反時計回りに傾ける */
-.fv-rv--left {
-  top: 12px;
-  left: 0px;
-  transform: rotate(-4deg) translateY(0px);
-  z-index: 12;
+/* UGC付きカードのヘッダー行 */
+.fv-rc-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 4px;
 }
-
-/* 中央カード — 中央下・わずかに時計回り */
-.fv-rv--center {
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%) rotate(2deg);
-  z-index: 14;
-}
-
-/* 右カード — 右上・時計回り */
-.fv-rv--right {
-  top: 6px;
-  right: 0px;
-  transform: rotate(5deg) translateY(10px);
-  z-index: 12;
-}
-
-/* ④ 商品ボトル（カードの背後・中央） */
-.fv-bottle-wrap {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 8;              /* カードより後ろ */
-  width: 46%;
-  max-width: 180px;
-}
-
-.fv-bottle-img {
-  width: 100%;
-  height: auto;
+.fv-rc-ugc {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  background: #E2DFD2;
   display: block;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.14));
+}
+.fv-rc-ugc[src=""] {
+  min-width: 44px; /* src空でもサイズ確保 */
 }
 
-/* ⑥ 安心要素（CTA直上） */
-.fv-trust {
+/* =============================================
+   外周5点配置
+   ・左上・右上・左下・右下・下中央
+   ・中央ゾーン（ボトル幅の約50%）には絶対に被せない
+   ・rotate ±2〜4deg でランダム感
+   ============================================= */
+
+/* ① 左上 */
+.fv-rc--tl {
+  top: 8px;
+  left: 2px;
+  transform: rotate(-3deg);
+  z-index: 11;
+}
+
+/* ② 右上（UGC付き・幅を少し広く） */
+.fv-rc--tr {
+  width: 124px;
+  top: 4px;
+  right: 0;
+  transform: rotate(2.5deg);
+  z-index: 10;
+}
+
+/* ③ 左下 */
+.fv-rc--bl {
+  bottom: 12px;
+  left: 0;
+  transform: rotate(2deg);
+  z-index: 11;
+}
+
+/* ④ 右下 */
+.fv-rc--br {
+  bottom: 16px;
+  right: 2px;
+  transform: rotate(-2.5deg);
+  z-index: 10;
+}
+
+/* ⑤ 下中央（ボトルの真下・左右中央） */
+.fv-rc--bc {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1.5deg);
+  /* 他より少し前面にして存在感 */
+  z-index: 12;
+}
+
+/* =============================================
+   CTA前テキスト・安心要素・CTA
+   ============================================= */
+.fv-pre-cta-txt {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #555550;
+  text-align: center;
+  letter-spacing: 0.08em;
+  margin: 0 0 6px;
+}
+
+.fv-trust-row {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
-  margin-bottom: 10px;
-  width: 100%;
+  gap: 2px;
+  margin-bottom: 12px;
 }
-
-.fv-trust span {
-  font-family: var(--f-sans);
-  font-weight: var(--fw-l);
+.fv-trust-row span {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
   font-size: 12px;
   color: #999990;
   letter-spacing: 0.06em;
   line-height: 1.7;
 }
 
-/* ⑤ CTAボタン */
-.fv-cta-wrap {
-  width: 100%;
-  max-width: 420px;
-  padding: 0;
-  margin-bottom: 20px;
-}
-
-.fv-cta-btn {
-  display: block;
+.fv-cta-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 92%;
-  margin: 0 auto;
-  background: var(--ink);
+  max-width: 420px;
+  min-height: 52px;
+  background: #1E1C17;
   color: #FFFFFF;
-  font-family: var(--f-sans);
-  font-weight: var(--fw-b);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
   font-size: 15px;
   letter-spacing: 0.12em;
   text-align: center;
-  padding: 16px 20px;
-  min-height: 52px;
   border-radius: 999px;
   border: none;
   cursor: pointer;
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-bottom: 20px;
   transition: opacity 0.18s, transform 0.12s;
+  flex-shrink: 0;
 }
-.fv-cta-btn:active { opacity: 0.80; transform: scale(0.97); }
+.fv-cta-main:active { opacity: 0.80; transform: scale(0.97); }
 
-/* ⑦ スクロール誘導 */
+/* スクロール誘導 */
 .fv-scroll-hint-bottom {
   display: flex;
   flex-direction: column;
@@ -1781,20 +1868,15 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   left: 50%;
   transform: translateX(-50%);
 }
-
 .fv-scroll-text {
-  font-family: var(--f-sans);
-  font-weight: var(--fw-l);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
   font-size: 10px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.13em;
   color: #BBBBBB;
   white-space: nowrap;
 }
-
 .fv-scroll-arrow {
-  animation: fv-bounce 1.8s ease-in-out infinite;
-}
-.fv-scroll-arrow svg {
   width: 18px;
   height: 18px;
   stroke: #CCCCCC;
@@ -1803,9 +1885,9 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   stroke-linecap: round;
   stroke-linejoin: round;
   display: block;
+  animation: fv-bounce-main 1.8s ease-in-out infinite;
 }
-
-@keyframes fv-bounce {
+@keyframes fv-bounce-main {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(5px); }
 }
@@ -1824,64 +1906,87 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 
 
 <!-- ============================================================
-     1. FV — TikTok広告連動・高密度・直感型
+     FV v7 改善版 — ボトル主役・外周レビュー設計
+     クラスは既存 .fv- プレフィックスを維持
      ============================================================ -->
 <section class="fv-section">
 
-  <!-- ① ファーストコピー -->
-  <div class="fv-hero-copy">
-    <h1 class="fv-hero-h1">これ付けてから、<br>褒められすぎてる。</h1>
-    <p class="fv-hero-sub">清潔感の塊。香水初心者でも失敗しない1本。</p>
+  <!-- ① キャッチコピー -->
+  <div class="fv-copy-wrap">
+    <h1 class="fv-main-copy">
+      これ付けてから、<br><em>褒められすぎてる。</em>
+    </h1>
+    <!-- サブコピー B：ベネフィット強調型 -->
+    <p class="fv-sub-copy">石鹸系の清潔感が、朝から夜まで続く。<br>つけるだけで「いい匂い」と言われる1本。</p>
   </div>
 
-  <!-- ③ レビューカード群（崩し配置） -->
+  <!-- ③〜④ ステージ：ボトル最前面・レビュー外周配置 -->
   <div class="fv-reviews-stage">
 
-    <div class="fv-rv fv-rv--left">
-      <div class="fv-rv-stars">★★★★★</div>
-      <p class="fv-rv-text">「これ付けてから<br>めっちゃ褒められる」</p>
-      <span class="fv-rv-name">Miho S.</span>
+    <!-- ③ ボトル（最前面・中央・主役） -->
+    <img
+      src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/98.webp?v=1774837041"
+      alt="PURELAYER Oud Stallion"
+      class="fv-bottle-hero">
+
+    <!-- レビュー① 左上 -->
+    <div class="fv-rc fv-rc--tl">
+      <div class="fv-rc-stars">★★★★★</div>
+      <p class="fv-rc-text">「めっちゃ<br>褒められる」</p>
+      <span class="fv-rc-name">Miho S.</span>
     </div>
 
-    <div class="fv-rv fv-rv--center">
-      <div class="fv-rv-stars">★★★★★</div>
-      <p class="fv-rv-text">「清潔感えぐいって<br>言われた」</p>
-      <span class="fv-rv-name">Takeshi R.</span>
+    <!-- レビュー② 右上（UGC画像付き） -->
+    <div class="fv-rc fv-rc--tr">
+      <div class="fv-rc-row">
+        <div class="fv-rc-stars">★★★★★</div>
+        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3146.webp?v=1774754613#" alt="UGC" class="fv-rc-ugc">
+      </div>
+      <p class="fv-rc-text">「清潔感えぐい<br>って言われた」</p>
+      <span class="fv-rc-name">Takeshi R.</span>
     </div>
 
-    <div class="fv-rv fv-rv--right">
-      <div class="fv-rv-stars">★★★★★</div>
-      <p class="fv-rv-text">「これもう<br>一軍確定」</p>
-      <span class="fv-rv-name">Ayaka K.</span>
+    <!-- レビュー③ 左下 -->
+    <div class="fv-rc fv-rc--bl">
+      <div class="fv-rc-stars">★★★★★</div>
+      <p class="fv-rc-text">「学校で<br>褒められた」</p>
+      <span class="fv-rc-name">Yuki N.</span>
     </div>
 
-    <!-- ④ 商品ボトル画像（レビューの後ろ） -->
-    <div class="fv-bottle-wrap">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/3_26542135-3c35-4cd4-9472-38bed8d62cef.webp?v=1774581239"
-        alt="PURELAYER Oud Stallion ボトル"
-        class="fv-bottle-img">
+    <!-- レビュー④ 右下 -->
+    <div class="fv-rc fv-rc--br">
+      <div class="fv-rc-stars">★★★★★</div>
+      <p class="fv-rc-text">「職場でも<br>好評」</p>
+      <span class="fv-rc-name">Kenji M.</span>
+    </div>
+
+    <!-- レビュー⑤ 下中央 -->
+    <div class="fv-rc fv-rc--bc">
+      <div class="fv-rc-stars">★★★★★</div>
+      <p class="fv-rc-text">「これもう一軍」</p>
+      <span class="fv-rc-name">Ayaka K.</span>
     </div>
 
   </div><!-- /.fv-reviews-stage -->
 
-  <!-- ⑥ 安心要素 -->
-  <div class="fv-trust">
+  <!-- CTA直前テキスト -->
+  <p class="fv-pre-cta-txt">今だけサンプル付きで試せる</p>
+
+  <!-- ⑤ 安心要素 -->
+  <div class="fv-trust-row">
     <span>✔ 2ml無料サンプル付き</span>
     <span>✔ 合わなければ全額返金OK</span>
   </div>
 
-  <!-- ⑤ CTAボタン -->
-  <div class="fv-cta-wrap">
-    <a href="#zero-risk" class="fv-cta-btn">サンプル付きで試す →</a>
-  </div>
+  <!-- ⑥ CTAボタン -->
+  <a href="#zero-risk" class="fv-cta-main">サンプル付きで試す →</a>
 
-  <!-- ⑦ スクロール誘導 -->
+  <!-- スクロール誘導 -->
   <div class="fv-scroll-hint-bottom">
     <span class="fv-scroll-text">なぜこれほど選ばれているのか</span>
-    <div class="fv-scroll-arrow">
-      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-    </div>
+    <svg class="fv-scroll-arrow" viewBox="0 0 24 24">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
   </div>
 
 </section>
