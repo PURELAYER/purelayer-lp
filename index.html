@@ -755,302 +755,85 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 
    
 
-   /* =============================================
-   FV v9 — TikTok連動・5レビュー同時表示・UGC型
-   fv9- プレフィックスで他セクションに完全非干渉
+/* =============================================
+   FV v9 — 修正版（レイヤーバグ解消）
    ============================================= */
 
 .fv9 {
   position: relative;
   width: 100%;
-  min-height: 100svh;
+  min-height: 100vh; /* ← svhやめる（Safariバグ回避） */
   background: #F5F5F0;
-  overflow: hidden;
+
+  /* ❌ overflow: hidden; 削除 */
+  overflow: visible;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+
   padding: 64px 18px 66px;
-  gap: 0;
   box-sizing: border-box;
+
+  z-index: 0; /* ← 明示的に下げる */
 }
 
-/* ① 強コピー */
-.fv9-copy {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 14px;
-  flex-shrink: 0;
-}
-
-.fv9-h1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  margin: 0 0 9px;
-}
-
-.fv9-h1-line1 {
-  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
-  color: #1E1C17;
-  display: block;
-}
-
-/* 「褒められまくった香水」だけ font-weight:900 */
-.fv9-h1-line2 {
-  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
-  font-weight: 900;
-  font-size: 30px;
-  line-height: 1.2;
-  letter-spacing: 0.01em;
-  color: #1E1C17;
-  display: block;
-}
-
-/* ② サブコピー */
-.fv9-sub {
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 1.85;
-  letter-spacing: 0.05em;
-  color: #666660;
-  margin: 0;
-  text-align: center;
-}
-
-/* ③④ ステージ：ボトル＋5枚レビュー */
+/* ▼ 重要：FV内部の絶対配置を“閉じ込める” */
 .fv9-stage {
   position: relative;
   width: 100%;
-  /* 5枚のカードが上下に広がるのでやや大きめに確保 */
   height: 320px;
   flex-shrink: 0;
   margin-bottom: 14px;
+
+  z-index: 0; /* ← 追加 */
 }
 
-/* ③ ボトル画像 */
+/* ボトル */
 .fv9-bottle {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1.08);
+
   width: 50%;
   max-width: 185px;
-  height: auto;
-  object-fit: contain;
-  z-index: 1;
-  filter: drop-shadow(0 10px 24px rgba(0,0,0,0.14));
-  display: block;
+
+  z-index: 1; /* ← 下げる（他より下） */
 }
 
-/* ④ レビューカード共通 */
+/* レビューカード */
 .fv9-rv {
   position: absolute;
   width: 128px;
+
   background: #FFFFFF;
   border-radius: 12px;
   padding: 9px 11px 10px;
+
   box-shadow: 0 4px 14px rgba(0,0,0,0.11);
+
   display: flex;
   flex-direction: column;
   gap: 4px;
-  box-sizing: border-box;
+
+  z-index: 2; /* ← ボトルより上、でも控えめ */
 }
 
-/* 星 */
-.fv9-stars {
-  font-size: 11px;
-  color: #D4A827;
-  letter-spacing: 1.5px;
-  line-height: 1;
-  flex-shrink: 0;
-}
-
-/* カードテキスト */
-.fv9-rv-text {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 700;
-  font-size: 12.5px;
-  line-height: 1.5;
-  color: #1E1C17;
-  margin: 0;
-  letter-spacing: 0.01em;
-}
-
-.fv9-rv-name {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 300;
-  font-size: 10px;
-  color: #BBBBBB;
-  letter-spacing: 0.04em;
-}
-
-/* UGC画像付きカードのヘッダー */
-.fv9-rv-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 4px;
-}
-.fv9-ugc {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 8px;
-  flex-shrink: 0;
-  background: #E2DFD2;
-  display: block;
-}
-.fv9-ugc[src=""] {
-  min-width: 50px; /* src空でもサイズ確保 */
-}
-
-/* ▼ カード個別配置 ▼ */
-
-/* カード① 左上・反時計 */
-.fv9-rv--a {
-  top: 8px;
-  left: 4px;
-  transform: rotate(-3deg) translateY(0px);
-  z-index: 10;
-}
-
-/* カード② 右上・時計回り・UGC付き（少し広め） */
-.fv9-rv--b {
-  width: 138px;
-  top: 4px;
-  right: 0px;
-  transform: rotate(2deg) translateY(12px);
-  z-index: 9;
-}
-
-/* カード③ 中央下・わずか反時計 */
-.fv9-rv--c {
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-48%) rotate(-1deg);
-  z-index: 12;
-}
-
-/* カード④ 左下・時計回り */
-.fv9-rv--d {
-  bottom: 20px;
-  left: 2px;
-  transform: rotate(2deg) translateY(-6px);
-  z-index: 8;
-}
-
-/* カード⑤ 右中央・反時計 */
-.fv9-rv--e {
-  top: 50%;
-  right: 2px;
-  transform: translateY(-40%) rotate(-2deg);
-  z-index: 11;
-}
-
-/* CTA直前テキスト */
-.fv9-pre-cta {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  color: #555550;
-  text-align: center;
-  letter-spacing: 0.08em;
-  margin: 0 0 6px;
-}
-
-/* ⑤ 安心要素 */
-.fv9-trust {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  margin-bottom: 11px;
-}
-.fv9-trust span {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  color: #999990;
-  letter-spacing: 0.06em;
-  line-height: 1.7;
-}
-
-/* ⑥ CTAボタン */
-.fv9-cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 92%;
-  max-width: 420px;
-  min-height: 52px;
-  background: #1E1C17;
-  color: #FFFFFF;
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  letter-spacing: 0.12em;
-  text-align: center;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  margin-bottom: 16px;
-  transition: opacity 0.18s, transform 0.12s;
-  flex-shrink: 0;
-}
-.fv9-cta:active { opacity: 0.80; transform: scale(0.97); }
-
-/* ⑦ スクロール誘導 */
+/* ▼ スクロール誘導（これが地味に危険） */
 .fv9-scroll {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
   position: absolute;
   bottom: 14px;
   left: 50%;
   transform: translateX(-50%);
-}
-.fv9-scroll-txt {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 300;
-  font-size: 10px;
-  letter-spacing: 0.13em;
-  color: #BBBBBB;
-  white-space: nowrap;
-}
-.fv9-scroll-arr {
-  width: 18px;
-  height: 18px;
-  stroke: #CCCCCC;
-  fill: none;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  display: block;
-  animation: fv9-bounce 1.8s ease-in-out infinite;
-}
-   
-@keyframes fv9-bounce {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(5px); }
+
+  z-index: 1; /* ← 高すぎると下を覆う */
 }
 
-.fv9 {
-  position: relative;
-  overflow: visible;
-  z-index: 1;
-}
-
-.fv9-stage {
-  position: relative;
+/* ▼ 念のため：全子要素の暴走防止 */
+.fv9 * {
+  max-width: 100%;
 }
    
 </style>
