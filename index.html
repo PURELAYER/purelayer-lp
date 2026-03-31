@@ -763,8 +763,14 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 72px 0 0;
-  box-sizing: border-box;
+  /* === 【修正箇所】 ===
+     Shopifyのセクションとして、上だけでなく下にもpaddingを追加します。
+     FV全体を適切にセクション内に収め、潜り込みを防ぎます。
+     また、box-sizingをpadding-boxではなくcontent-boxにすることで、
+     よりShopifyの標準的なセクションの挙動に近づけます。
+     ================== */
+  padding: 72px 0 32px; /* 下に32pxの余白を追加 */
+  box-sizing: content-box; /* padding-boxから変更 */
 }
 
 /* ---- コピーブロック ---- */
