@@ -752,53 +752,85 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   font-family: var(--f-sans);
 }
 
-/* =============================================
-   FVR — Quiet Luxury × 口コミ主役型
-   .fvr__ 完全スコープ / 他セクション非干渉
+
+
+   /* =============================================
+   FVR — Flow Layout版・後続セクション押し下げ保証
+   box-sizing: border-box 全適用
+   .fvr 配下に完全スコープ
    ============================================= */
 
-.fvr {
-  width: 100%;
-  background: #F5F5F0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* === 【修正箇所】 ===
-     Shopifyのセクションとして、上だけでなく下にもpaddingを追加します。
-     FV全体を適切にセクション内に収め、潜り込みを防ぎます。
-     また、box-sizingをpadding-boxではなくcontent-boxにすることで、
-     よりShopifyの標準的なセクションの挙動に近づけます。
-     ================== */
-  padding: 72px 0 32px; /* 下に32pxの余白を追加 */
-  box-sizing: content-box; /* padding-boxから変更 */
+.fvr *,
+.fvr *::before,
+.fvr *::after {
+  box-sizing: border-box;
 }
 
-/* ---- コピーブロック ---- */
-.fvr__copy {
+/* ---- 最外周：display:block + min-height で物理的スペース確保 ---- */
+.fvr {
+  display: block;              /* flexを使わず通常フロー */
+  position: relative;
   width: 100%;
-  padding: 0 28px;
-  box-sizing: border-box;
-  margin-bottom: 40px;
+  min-height: 100vh;           /* 画面1枚分を物理的に占有 */
+  background: #F5F5F0;
+  padding-top: 52px;
+  padding-bottom: 48px;
+  /* overflow は visible のまま — 後続セクションを隠さない */
+}
+
+/* ---- 広告フック ---- */
+.fvr__hook {
+  text-align: center;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.fvr__hook-top {
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: #888880;
+  margin: 0 0 6px;
+}
+
+.fvr__hook-main {
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #1E1C17;
+  margin: 0;
+}
+
+.fvr__hook-bang {
+  color: #E03030;
+}
+
+/* ---- メインコピー ---- */
+.fvr__copy {
+  text-align: center;
+  padding: 0 24px;
+  margin-bottom: 28px;
 }
 
 .fvr__h1 {
   font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
   font-weight: 700;
-  font-size: 32px;
-  line-height: 1.38;
+  font-size: 30px;
+  line-height: 1.42;
   letter-spacing: 0.02em;
   color: #1E1C17;
-  margin: 0 0 18px;
-  text-align: center;
+  margin: 0 0 14px;
 }
 
-/* 「褒められすぎた」だけ下線強調 */
-.fvr__h1 em {
+.fvr__h1-em {
   font-style: normal;
   position: relative;
   display: inline-block;
 }
-.fvr__h1 em::after {
+.fvr__h1-em::after {
   content: '';
   position: absolute;
   left: 0;
@@ -812,46 +844,43 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 .fvr__sub {
   font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
   font-weight: 300;
-  font-size: 14px;
-  line-height: 1.9;
+  font-size: 13.5px;
+  line-height: 1.85;
   letter-spacing: 0.04em;
   color: #666660;
   margin: 0;
-  text-align: center;
 }
 
-/* サブコピー内の強調テキスト */
 .fvr__sub strong {
   font-weight: 700;
   color: #1E1C17;
 }
 
 /* ---- カルーセル ---- */
-.fvr__reel-wrap {
+/* display:block の子として自然に積み上がる */
+.fvr__reel-outer {
+  display: block;
   width: 100%;
-  overflow: hidden;
-  padding-left: 24px;
-  box-sizing: border-box;
-  margin-bottom: 28px;
+  overflow: hidden;            /* 横方向だけはみ出しをカット */
+  padding-left: 20px;
+  margin-bottom: 24px;
 }
 
 .fvr__reel {
-  display: flex;
+  display: flex;               /* カードの横並びのみにflexを使用 */
   gap: 14px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  /* 右端チラ見せ：次カードを約20%覗かせる */
-  padding-right: 22%;
-  box-sizing: border-box;
+  padding-right: 22%;          /* 右端チラ見せ */
 }
 .fvr__reel::-webkit-scrollbar { display: none; }
 
-/* カード：現行比80%サイズ感 */
+/* カード */
 .fvr__card {
-  min-width: calc(100vw - 80px);
+  min-width: calc(100vw - 72px);
   max-width: 300px;
   flex-shrink: 0;
   scroll-snap-align: start;
@@ -861,12 +890,9 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   padding: 16px 15px 14px;
   display: flex;
   flex-direction: column;
-  gap: 0;
-  box-sizing: border-box;
   box-shadow: 0 2px 10px rgba(0,0,0,0.055);
 }
 
-/* 上段：星＋サムネ */
 .fvr__card-top {
   display: flex;
   align-items: flex-start;
@@ -894,7 +920,6 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 }
 .fvr__thumb[src=""] { min-width: 68px; }
 
-/* タイトル */
 .fvr__card-ttl {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 700;
@@ -905,7 +930,6 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   letter-spacing: 0.01em;
 }
 
-/* 本文 */
 .fvr__card-body {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 300;
@@ -917,7 +941,6 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   letter-spacing: 0.02em;
 }
 
-/* フッター */
 .fvr__card-foot {
   display: flex;
   align-items: center;
@@ -926,7 +949,7 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   border-top: 1px solid #EEEAE4;
 }
 
-.fvr__name {
+.fvr__cname {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 700;
   font-size: 11.5px;
@@ -951,11 +974,16 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   flex-shrink: 0;
 }
 
-/* ---- CTA ---- */
+/* ---- CTA ブロック：display:block で自然に積む ---- */
+.fvr__cta-block {
+  display: block;
+  text-align: center;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
 .fvr__cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;              /* block で自然な幅確保 */
   width: 90%;
   max-width: 400px;
   min-height: 54px;
@@ -965,46 +993,46 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   font-weight: 700;
   font-size: 15px;
   letter-spacing: 0.1em;
+  line-height: 54px;           /* 縦中央揃えをline-heightで実現 */
+  text-align: center;
   border-radius: 999px;
   border: none;
   cursor: pointer;
   text-decoration: none;
-  margin-bottom: 14px;
+  margin: 0 auto 14px;         /* 左右autoで中央寄せ */
   transition: opacity 0.18s, transform 0.12s;
-  box-sizing: border-box;
 }
 .fvr__cta:active { opacity: 0.80; transform: scale(0.97); }
 
-/* 安心要素 */
 .fvr__risk {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 300;
   font-size: 11.5px;
   color: #888880;
-  text-align: center;
   letter-spacing: 0.06em;
   line-height: 1.8;
-  margin: 0 0 28px;
-  padding: 0 20px;
+  margin: 0;
 }
 
-/* スクロール誘導 */
+/* ---- スクロール誘導 ---- */
 .fvr__nudge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  padding-bottom: 32px;
+  display: block;
+  text-align: center;
+  padding-bottom: 8px;
 }
+
 .fvr__nudge-txt {
+  display: block;
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 300;
   font-size: 11px;
   letter-spacing: 0.12em;
   color: #AAAAAA;
-  white-space: nowrap;
+  margin-bottom: 4px;
 }
+
 .fvr__nudge-arr {
+  display: block;
   width: 18px;
   height: 18px;
   stroke: #CCCCCC;
@@ -1012,38 +1040,13 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
-  display: block;
-  animation: fvr-bounce 1.8s ease-in-out infinite;
+  margin: 0 auto;
+  animation: fvr-b 1.8s ease-in-out infinite;
 }
-@keyframes fvr-bounce {
+
+@keyframes fvr-b {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(5px); }
-}
-
-.fvr {
-  width: 100%;
-  background: #F5F5F0;
-  display: block; /* flexからblockに変更して、縦方向のサイズ計算を安定させる */
-  padding: 72px 0 40px; /* 上下の余白を確保 */
-  box-sizing: border-box;
-  overflow: hidden; /* 子要素のはみ出しによる崩れを防止 */
-  min-height: 100vh; /* FVとして最低でも画面1枚分の高さを確保することを明示 */
-}
-
-/* 子要素が中央に寄るように調整 */
-.fvr__copy,
-.fvr__cta,
-.fvr__risk,
-.fvr__nudge {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 500px; /* コンテンツが広がりすぎないよう制限 */
-}
-
-/* カルーセルだけは画面端まで使うため別指定 */
-.fvr__reel-wrap {
-  width: 100%;
-  margin-bottom: 28px;
 }
    
 </style>
@@ -1059,16 +1062,22 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 <body>
 
 
-<section class="fvr">
+<div class="fvr">
 
-  <!-- メイン＋サブコピー -->
-  <div class="fvr__copy">
-    <h1 class="fvr__h1">周りから<em>褒められすぎた</em>香水</h1>
-    <p class="fvr__sub">「これをつけてから、学校や職場で<br><strong>え、めっちゃいい匂いする</strong>って言われすぎた」</p>
+  <!-- 広告フック -->
+  <div class="fvr__hook">
+    <p class="fvr__hook-top">\ 香水初心者は絶対見て！ /</p>
+    <p class="fvr__hook-main">学校・職場で褒められまくった<br>香水紹介<span class="fvr__hook-bang">‼️</span></p>
   </div>
 
-  <!-- 横スクロール・レビューカード -->
-  <div class="fvr__reel-wrap">
+  <!-- メインコピー -->
+  <div class="fvr__copy">
+    <h1 class="fvr__h1">周りから<em class="fvr__h1-em">褒められすぎた</em>香水</h1>
+    <p class="fvr__sub">これをつけてから、学校や職場で<br>「<strong>え、めっちゃいい匂いする</strong>」って言われすぎた</p>
+  </div>
+
+  <!-- 横スクロール・レビューカルーセル -->
+  <div class="fvr__reel-outer">
     <div class="fvr__reel">
 
       <div class="fvr__card">
@@ -1079,11 +1088,8 @@ details[open] .faq-chevron { transform: rotate(180deg); }
         <p class="fvr__card-ttl">周囲から「清潔感あるな」って褒められました</p>
         <p class="fvr__card-body">主張しすぎない香りだねと言われ、何度か褒められました。</p>
         <div class="fvr__card-foot">
-          <span class="fvr__name">E子の家族</span>
-          <span class="fvr__badge">
-            <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.5" fill="#22A06B"/><polyline points="3.5 7.5 6 10 10.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Verified Purchase
-          </span>
+          <span class="fvr__cname">E子の家族</span>
+          <span class="fvr__badge"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.5" fill="#22A06B"/><polyline points="3.5 7.5 6 10 10.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified Purchase</span>
         </div>
       </div>
 
@@ -1095,11 +1101,8 @@ details[open] .faq-chevron { transform: rotate(180deg); }
         <p class="fvr__card-ttl">香水初心者さんにもマジでおすすめ</p>
         <p class="fvr__card-body">香りがキツくなくて使いやすい。ネットで買う不安が正解に変わりました。</p>
         <div class="fvr__card-foot">
-          <span class="fvr__name">健太郎</span>
-          <span class="fvr__badge">
-            <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.5" fill="#22A06B"/><polyline points="3.5 7.5 6 10 10.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Verified Purchase
-          </span>
+          <span class="fvr__cname">健太郎</span>
+          <span class="fvr__badge"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.5" fill="#22A06B"/><polyline points="3.5 7.5 6 10 10.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified Purchase</span>
         </div>
       </div>
 
@@ -1111,11 +1114,8 @@ details[open] .faq-chevron { transform: rotate(180deg); }
         <p class="fvr__card-ttl">ほのかに香って頭が痛くならない</p>
         <p class="fvr__card-body">強くてキツイ香りは苦手ですが、これは優しくて控えめ。周りの反応もすごくいい。</p>
         <div class="fvr__card-foot">
-          <span class="fvr__name">美容と健康第一</span>
-          <span class="fvr__badge">
-            <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.5" fill="#22A06B"/><polyline points="3.5 7.5 6 10 10.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Verified Purchase
-          </span>
+          <span class="fvr__cname">美容と健康第一</span>
+          <span class="fvr__badge"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.5" fill="#22A06B"/><polyline points="3.5 7.5 6 10 10.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified Purchase</span>
         </div>
       </div>
 
@@ -1127,11 +1127,8 @@ details[open] .faq-chevron { transform: rotate(180deg); }
         <p class="fvr__card-ttl">意外と香りが長持ちして驚いた</p>
         <p class="fvr__card-body">半日以上しっかり残っていました。長時間香るのは本当にありがたい。</p>
         <div class="fvr__card-foot">
-          <span class="fvr__name">セカンド</span>
-          <span class="fvr__badge">
-            <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.5" fill="#22A06B"/><polyline points="3.5 7.5 6 10 10.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Verified Purchase
-          </span>
+          <span class="fvr__cname">セカンド</span>
+          <span class="fvr__badge"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.5" fill="#22A06B"/><polyline points="3.5 7.5 6 10 10.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified Purchase</span>
         </div>
       </div>
 
@@ -1143,22 +1140,19 @@ details[open] .faq-chevron { transform: rotate(180deg); }
         <p class="fvr__card-ttl">オフィスで毎日癒されてます</p>
         <p class="fvr__card-body">香りはまさに石鹸。周りに迷惑をかけない絶妙なラインで癒されます。</p>
         <div class="fvr__card-foot">
-          <span class="fvr__name">オバンヌ</span>
-          <span class="fvr__badge">
-            <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.5" fill="#22A06B"/><polyline points="3.5 7.5 6 10 10.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Verified Purchase
-          </span>
+          <span class="fvr__cname">オバンヌ</span>
+          <span class="fvr__badge"><svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.5" fill="#22A06B"/><polyline points="3.5 7.5 6 10 10.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified Purchase</span>
         </div>
       </div>
 
     </div><!-- /.fvr__reel -->
-  </div><!-- /.fvr__reel-wrap -->
+  </div><!-- /.fvr__reel-outer -->
 
-  <!-- CTA -->
-  <a href="#zero-risk" class="fvr__cta">サンプル付きセットを試す →</a>
-
-  <!-- 安心要素 -->
-  <p class="fvr__risk">・2ml無料サンプル付き　・合わなければ全額返金OK</p>
+  <!-- CTA + リスクヘッジ -->
+  <section class="fvr__cta-block">
+    <a href="#zero-risk" class="fvr__cta">サンプル付きセットを試す →</a>
+    <p class="fvr__risk">・2ml無料サンプル付き　・合わなければ全額返金OK</p>
+  </div>
 
   <!-- スクロール誘導 -->
   <div class="fvr__nudge">
@@ -1168,7 +1162,7 @@ details[open] .faq-chevron { transform: rotate(180deg); }
     </svg>
   </div>
 
-</section>
+</section <!-- /.fvr -->
 
 <!-- ============================================================
      2. PROBLEM
