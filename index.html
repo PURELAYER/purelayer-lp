@@ -1020,7 +1020,32 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   50%       { transform: translateY(5px); }
 }
 
+.fvr {
+  width: 100%;
+  background: #F5F5F0;
+  display: block; /* flexからblockに変更して、縦方向のサイズ計算を安定させる */
+  padding: 72px 0 40px; /* 上下の余白を確保 */
+  box-sizing: border-box;
+  overflow: hidden; /* 子要素のはみ出しによる崩れを防止 */
+  min-height: 100vh; /* FVとして最低でも画面1枚分の高さを確保することを明示 */
+}
 
+/* 子要素が中央に寄るように調整 */
+.fvr__copy,
+.fvr__cta,
+.fvr__risk,
+.fvr__nudge {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px; /* コンテンツが広がりすぎないよう制限 */
+}
+
+/* カルーセルだけは画面端まで使うため別指定 */
+.fvr__reel-wrap {
+  width: 100%;
+  margin-bottom: 28px;
+}
+   
 </style>
    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
    <script type="text/javascript">
