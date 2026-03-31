@@ -8,781 +8,954 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-  /* =============================================
-     RESET & BASE
-  ============================================= */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ================================================
+   RESET & BASE
+================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --bg:       #F9F9F7;
-    --bg2:      #F2F1EE;
-    --ink:      #1A1A1A;
-    --ink2:     #4A4A44;
-    --ink3:     #8A8880;
-    --gold:     #B8975A;
-    --gold-lt:  #D4B87A;
-    --gold-dk:  #8A6E3A;
-    --white:    #FFFFFF;
-    --border:   rgba(184,151,90,0.25);
-    --shadow:   rgba(26,26,26,0.08);
+:root {
+  --bg:       #F9F9F7;
+  --bg2:      #F2F1EE;
+  --ink:      #1A1A1A;
+  --ink2:     #4A4A44;
+  --ink3:     #8A8880;
+  --gold:     #B8975A;
+  --gold-lt:  #D4B87A;
+  --gold-dk:  #8A6E3A;
+  --white:    #FFFFFF;
+  --border:   rgba(184,151,90,0.22);
+  --shadow:   rgba(26,26,26,0.07);
 
-    --ff-serif: 'Cormorant Garamond', Georgia, serif;
-    --ff-sans:  'Noto Sans JP', 'Yu Gothic', 'Hiragino Kaku Gothic ProN', sans-serif;
+  --ff-serif: 'Cormorant Garamond', Georgia, serif;
+  --ff-sans:  'Noto Sans JP', 'Yu Gothic', 'Hiragino Kaku Gothic ProN', sans-serif;
 
-    --max: 480px;
-    --pad: 24px;
-    --pad-lg: 40px;
-  }
+  --max: 480px;
+  --pad: 28px;
+}
 
-  html { font-size: 16px; scroll-behavior: smooth; }
+html { font-size: 16px; scroll-behavior: smooth; }
 
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--ff-sans);
-    font-weight: 300;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--ff-sans);
+  font-weight: 300;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
 
-  /* =============================================
-     ANIMATIONS
-  ============================================= */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-  @keyframes scaleIn {
-    from { opacity: 0; transform: scale(0.92); }
-    to   { opacity: 1; transform: scale(1); }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50%       { transform: translateY(-6px); }
-  }
-  @keyframes shimmer {
-    0%   { background-position: -200% center; }
-    100% { background-position: 200% center; }
-  }
-  @keyframes pulseGold {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(184,151,90,0.35); }
-    50%       { box-shadow: 0 0 0 10px rgba(184,151,90,0); }
-  }
+/* ================================================
+   SVG ICON SYSTEM (inline, no emoji)
+   Usage: <span class="icon icon--gift"></span>
+================================================ */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.icon svg {
+  width: 100%;
+  height: 100%;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
 
-  .anim-1 { animation: fadeUp 0.9s cubic-bezier(.22,.68,0,1.2) 0.1s both; }
-  .anim-2 { animation: fadeUp 0.9s cubic-bezier(.22,.68,0,1.2) 0.3s both; }
-  .anim-3 { animation: fadeUp 0.9s cubic-bezier(.22,.68,0,1.2) 0.5s both; }
-  .anim-4 { animation: fadeUp 0.9s cubic-bezier(.22,.68,0,1.2) 0.7s both; }
-  .anim-5 { animation: fadeUp 0.9s cubic-bezier(.22,.68,0,1.2) 0.9s both; }
-  .anim-scale { animation: scaleIn 1s cubic-bezier(.22,.68,0,1.2) 0.2s both; }
+/* ================================================
+   ANIMATIONS
+================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-5px); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes pulseGold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(184,151,90,0.30); }
+  50%       { box-shadow: 0 0 0 9px rgba(184,151,90,0); }
+}
 
-  /* =============================================
-     LAYOUT UTILS
-  ============================================= */
-  .container {
-    max-width: var(--max);
-    margin: 0 auto;
-    padding: 0 var(--pad);
-  }
+.anim-1 { animation: fadeUp 1s cubic-bezier(.22,.68,0,1.2) 0.1s both; }
+.anim-2 { animation: fadeUp 1s cubic-bezier(.22,.68,0,1.2) 0.28s both; }
+.anim-3 { animation: fadeUp 1s cubic-bezier(.22,.68,0,1.2) 0.46s both; }
+.anim-4 { animation: fadeUp 1s cubic-bezier(.22,.68,0,1.2) 0.62s both; }
+.anim-5 { animation: fadeUp 1s cubic-bezier(.22,.68,0,1.2) 0.78s both; }
+.anim-scale { animation: scaleIn 1s cubic-bezier(.22,.68,0,1.2) 0.22s both; }
 
-  section { padding: 60px 0; }
+/* ================================================
+   LAYOUT UTILS
+================================================ */
+.container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
 
-  /* =============================================
-     TOP BAR
-  ============================================= */
-  .topbar {
-    background: var(--ink);
-    color: var(--gold-lt);
-    text-align: center;
-    padding: 10px var(--pad);
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    font-weight: 400;
-    animation: fadeIn 0.6s ease both;
-  }
-  .topbar span { color: var(--white); }
+section { padding: 72px 0; }
 
-  /* =============================================
-     HEADER / NAV
-  ============================================= */
-  .site-header {
-    padding: 20px var(--pad);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--border);
-    animation: fadeIn 0.6s ease 0.1s both;
-  }
-  .logo {
-    font-family: var(--ff-serif);
-    font-size: 20px;
-    font-weight: 400;
-    letter-spacing: 0.22em;
-    color: var(--ink);
-    text-transform: uppercase;
-  }
-  .logo-sub {
-    font-size: 9px;
-    letter-spacing: 0.3em;
-    color: var(--ink3);
-    display: block;
-    margin-top: -2px;
-    font-family: var(--ff-sans);
-    font-weight: 300;
-  }
-  .header-badge {
-    background: #FFF5E6;
-    border: 1px solid var(--gold);
-    border-radius: 20px;
-    padding: 5px 12px;
-    font-size: 11px;
-    color: var(--gold-dk);
-    font-weight: 500;
-    letter-spacing: 0.04em;
-  }
+/* ================================================
+   TOP BAR
+================================================ */
+.topbar {
+  background: var(--ink);
+  color: var(--gold-lt);
+  text-align: center;
+  padding: 9px var(--pad);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  font-weight: 400;
+  animation: fadeIn 0.5s ease both;
+}
+.topbar strong { color: var(--white); font-weight: 500; }
 
-  /* =============================================
-     HERO / FV
-  ============================================= */
-  .hero {
-    padding: 48px var(--pad) 56px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
+/* ================================================
+   HEADER
+================================================ */
+.site-header {
+  padding: 16px var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  animation: fadeIn 0.5s ease 0.1s both;
+}
+.logo {
+  font-family: var(--ff-serif);
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: 0.26em;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+.logo-sub {
+  font-size: 8.5px;
+  letter-spacing: 0.32em;
+  color: var(--ink3);
+  display: block;
+  margin-top: -1px;
+  font-family: var(--ff-sans);
+  font-weight: 300;
+}
+.header-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: 1px solid var(--gold);
+  border-radius: 20px;
+  padding: 5px 13px;
+  font-size: 10.5px;
+  color: var(--gold-dk);
+  font-weight: 500;
+  letter-spacing: 0.07em;
+}
 
-  /* 背景の細かいテクスチャライン */
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 39px,
-      rgba(184,151,90,0.05) 39px,
-      rgba(184,151,90,0.05) 40px
-    );
-    pointer-events: none;
-  }
+/* ================================================
+   HERO — 100vh FV
+================================================ */
+.hero {
+  /* full viewport minus topbar(~37px) + header(~57px) = ~94px */
+  min-height: calc(100vh - 94px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px var(--pad) 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
 
-  .hero-eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.28em;
-    color: var(--gold);
-    font-weight: 400;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
+/* 背景テクスチャ */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 39px,
+    rgba(184,151,90,0.045) 39px,
+    rgba(184,151,90,0.045) 40px
+  );
+  pointer-events: none;
+}
 
-  .hero-headline {
-    font-family: var(--ff-serif);
-    font-size: clamp(24px, 6.5vw, 32px);
-    font-weight: 400;
-    line-height: 1.45;
-    color: var(--ink);
-    margin-bottom: 20px;
-    letter-spacing: 0.02em;
-  }
-  .hero-headline em {
-    font-style: italic;
-    color: var(--gold-dk);
-  }
+.hero-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  color: var(--gold);
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
 
-  .hero-sub {
-    font-size: 14px;
-    color: var(--ink2);
-    line-height: 1.85;
-    margin-bottom: 36px;
-    font-weight: 300;
-  }
+.hero-headline {
+  font-family: var(--ff-serif);
+  /* 100vhに収まるよう動的に調整 */
+  font-size: clamp(21px, 5.8vw, 29px);
+  font-weight: 400;
+  line-height: 1.42;
+  color: var(--ink);
+  margin-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+.hero-headline em {
+  font-style: italic;
+  color: var(--gold-dk);
+}
 
-  /* 商品ビジュアル */
-  .product-visual {
-    position: relative;
-    margin: 0 auto 36px;
-    width: 220px;
-    height: 280px;
-  }
+.hero-sub {
+  font-size: 12.5px;
+  color: var(--ink2);
+  line-height: 1.9;
+  margin-bottom: 18px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
 
-  .product-bottle {
-    width: 220px;
-    height: 280px;
-    animation: float 4s ease-in-out infinite;
-  }
+/* 商品ビジュアル — FV内でレスポンシブに縮小 */
+.product-visual {
+  position: relative;
+  margin: 0 auto 18px;
+  /* 画面高さに応じて動的にサイズ調整 */
+  width: min(180px, 38vw);
+  height: min(228px, 48vw);
+}
 
-  /* SVGボトルイラスト */
-  .bottle-svg {
-    width: 100%;
-    height: 100%;
-    filter: drop-shadow(0 20px 40px rgba(184,151,90,0.18)) drop-shadow(0 4px 12px rgba(26,26,26,0.12));
-  }
+.product-bottle {
+  width: 100%;
+  height: 100%;
+  animation: float 4.2s ease-in-out infinite;
+}
 
-  /* レビューバッジ */
-  .review-badges {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-  .rbadge {
-    position: absolute;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 8px 12px;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--ink);
-    white-space: nowrap;
-    box-shadow: 0 4px 16px var(--shadow);
-    pointer-events: none;
-  }
-  .rbadge::before {
-    content: '⭐';
-    margin-right: 4px;
-    font-size: 10px;
-  }
-  .rbadge-1 { top: 10%; left: -30px; animation: fadeUp 0.8s 1.1s both, float 5s 1.1s ease-in-out infinite; }
-  .rbadge-2 { top: 30%; right: -24px; animation: fadeUp 0.8s 1.3s both, float 4.5s 1.3s ease-in-out infinite; }
-  .rbadge-3 { bottom: 20%; left: -18px; animation: fadeUp 0.8s 1.5s both, float 5.5s 1.5s ease-in-out infinite; }
-  .rbadge-4 { bottom: 5%; right: -20px; animation: fadeUp 0.8s 1.7s both, float 4.8s 1.7s ease-in-out infinite; }
+.bottle-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 18px 36px rgba(184,151,90,0.16)) drop-shadow(0 3px 10px rgba(26,26,26,0.10));
+}
 
-  /* オファーバー */
-  .offer-bar {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 32px;
-  }
-  .offer-chip {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--white);
-    border: 1.5px solid var(--gold);
-    border-radius: 24px;
-    padding: 8px 16px;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--gold-dk);
-  }
-  .offer-chip .icon { font-size: 14px; }
+/* レビューバッジ — ⭐絵文字を廃止してSVGスターへ */
+.review-badges {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.rbadge {
+  position: absolute;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 6px 11px;
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+  box-shadow: 0 3px 14px var(--shadow);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+/* ミニSVGスター */
+.rbadge::before {
+  content: '';
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  background: var(--gold);
+  clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  flex-shrink: 0;
+}
+.rbadge-1 { top: 8%;  left: -28px;  animation: fadeUp 0.8s 1.1s both, float 5.0s 1.1s ease-in-out infinite; }
+.rbadge-2 { top: 30%; right: -22px; animation: fadeUp 0.8s 1.3s both, float 4.4s 1.3s ease-in-out infinite; }
+.rbadge-3 { bottom: 22%; left: -16px; animation: fadeUp 0.8s 1.5s both, float 5.4s 1.5s ease-in-out infinite; }
+.rbadge-4 { bottom: 4%;  right: -18px; animation: fadeUp 0.8s 1.7s both, float 4.7s 1.7s ease-in-out infinite; }
 
-  /* CTAボタン */
-  .btn-primary {
-    display: block;
-    width: 100%;
-    max-width: 340px;
-    margin: 0 auto;
-    background: var(--ink);
-    color: var(--white);
-    border: none;
-    border-radius: 4px;
-    padding: 18px 28px;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-    animation: pulseGold 3s 2s infinite;
-  }
-  .btn-primary::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
-    background-size: 200% 100%;
-    animation: shimmer 2.5s infinite;
-  }
-  .btn-primary:active { transform: scale(0.98); }
-  .btn-arrow { margin-left: 6px; }
+/* オファーチップ — 絵文字なしSVGアイコン版 */
+.offer-bar {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.offer-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--white);
+  border: 1.5px solid var(--gold);
+  border-radius: 24px;
+  padding: 7px 15px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--gold-dk);
+  letter-spacing: 0.04em;
+}
+.offer-chip .icon { color: var(--gold); }
 
-  .btn-note {
-    text-align: center;
-    font-size: 11px;
-    color: var(--ink3);
-    margin-top: 10px;
-    letter-spacing: 0.04em;
-  }
+/* CTAボタン */
+.btn-primary {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  border-radius: 3px;
+  padding: 17px 28px;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s, box-shadow 0.18s;
+  animation: pulseGold 3s 2s infinite;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2.8s infinite;
+}
+.btn-primary:active { transform: scale(0.985); }
 
-  /* =============================================
-     DIVIDER
-  ============================================= */
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border), transparent);
-    margin: 0 var(--pad);
-  }
-  .ornament {
-    text-align: center;
-    color: var(--gold);
-    font-size: 18px;
-    letter-spacing: 0.3em;
-    padding: 12px 0;
-  }
+.btn-note {
+  text-align: center;
+  font-size: 10.5px;
+  color: var(--ink3);
+  margin-top: 9px;
+  letter-spacing: 0.07em;
+}
 
-  /* =============================================
-     SECTION HEADERS
-  ============================================= */
-  .section-label {
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    color: var(--gold);
-    font-weight: 400;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .section-title {
-    font-family: var(--ff-serif);
-    font-size: clamp(22px, 5.5vw, 28px);
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--ink);
-    margin-bottom: 20px;
-    letter-spacing: 0.02em;
-  }
-  .section-body {
-    font-size: 14px;
-    color: var(--ink2);
-    line-height: 1.9;
-    font-weight: 300;
-  }
+/* ================================================
+   DIVIDER / ORNAMENT
+================================================ */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 0 var(--pad);
+}
+.ornament {
+  text-align: center;
+  color: var(--gold);
+  font-size: 16px;
+  letter-spacing: 0.32em;
+  padding: 14px 0;
+}
 
-  /* =============================================
-     EMPATHY SECTION
-  ============================================= */
-  .empathy { background: var(--bg2); }
+/* ================================================
+   SECTION HEADERS
+================================================ */
+.section-label {
+  font-size: 9.5px;
+  letter-spacing: 0.36em;
+  color: var(--gold);
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.section-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(22px, 5.5vw, 28px);
+  font-weight: 400;
+  line-height: 1.52;
+  color: var(--ink);
+  margin-bottom: 22px;
+  letter-spacing: 0.04em;
+}
+.section-body {
+  font-size: 13.5px;
+  color: var(--ink2);
+  line-height: 1.95;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
 
-  .pain-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 28px;
-  }
-  .pain-card {
-    background: var(--white);
-    border-left: 3px solid var(--gold);
-    border-radius: 0 8px 8px 0;
-    padding: 16px 18px;
-    font-size: 14px;
-    color: var(--ink2);
-    line-height: 1.75;
-    position: relative;
-  }
-  .pain-card strong {
-    display: block;
-    color: var(--ink);
-    font-weight: 500;
-    margin-bottom: 4px;
-    font-size: 13px;
-  }
+/* ================================================
+   EMPATHY SECTION
+================================================ */
+.empathy { background: var(--bg2); }
 
-  .empathy-turn {
-    margin-top: 32px;
-    text-align: center;
-    padding: 24px;
-    background: var(--ink);
-    border-radius: 12px;
-    color: var(--white);
-  }
-  .empathy-turn p {
-    font-size: 14px;
-    line-height: 1.9;
-    font-weight: 300;
-  }
-  .empathy-turn .highlight {
-    font-family: var(--ff-serif);
-    font-size: 18px;
-    font-style: italic;
-    color: var(--gold-lt);
-    display: block;
-    margin-top: 10px;
-  }
+.pain-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 32px;
+}
+.pain-card {
+  background: var(--white);
+  border-left: 2px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 20px 22px;
+  font-size: 13.5px;
+  color: var(--ink2);
+  line-height: 1.82;
+  letter-spacing: 0.03em;
+}
+.pain-card strong {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: 6px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
 
-  /* =============================================
-     BENEFIT SECTION
-  ============================================= */
-  .benefit-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-top: 28px;
-  }
-  .benefit-card {
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px 20px;
-    background: var(--white);
-    position: relative;
-    overflow: hidden;
-  }
-  .benefit-card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--gold), var(--gold-lt), var(--gold));
-  }
-  .benefit-num {
-    font-family: var(--ff-serif);
-    font-size: 40px;
-    font-weight: 300;
-    color: var(--border);
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-  .benefit-ttl {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--ink);
-    margin-bottom: 8px;
-    letter-spacing: 0.03em;
-  }
-  .benefit-txt {
-    font-size: 13px;
-    color: var(--ink2);
-    line-height: 1.85;
-    font-weight: 300;
-  }
+.empathy-turn {
+  margin-top: 36px;
+  text-align: center;
+  padding: 28px 24px;
+  background: var(--ink);
+  border-radius: 10px;
+  color: var(--white);
+}
+.empathy-turn p {
+  font-size: 13.5px;
+  line-height: 1.95;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+.empathy-turn .highlight {
+  font-family: var(--ff-serif);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--gold-lt);
+  display: block;
+  margin-top: 12px;
+  letter-spacing: 0.04em;
+}
 
-  /* 香料スペクトル */
-  .scent-spectrum {
-    margin-top: 32px;
-    padding: 24px 20px;
-    background: var(--ink);
-    border-radius: 12px;
-    color: var(--white);
-  }
-  .spectrum-label {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    color: var(--gold-lt);
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .spectrum-bar {
-    display: flex;
-    height: 6px;
-    border-radius: 3px;
-    overflow: hidden;
-    margin-bottom: 10px;
-  }
-  .bar-fresh  { background: #A8D8EA; flex: 0.35; }
-  .bar-clean  { background: #D4C5B0; flex: 0.40; }
-  .bar-warm   { background: #B8975A; flex: 0.25; }
-  .spectrum-tags {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 14px;
-  }
-  .stag {
-    font-size: 11px;
-    color: var(--bg2);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 20px;
-    padding: 4px 12px;
-    letter-spacing: 0.06em;
-  }
+/* ================================================
+   BENEFIT SECTION
+================================================ */
+.benefit-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 32px;
+}
+.benefit-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px 24px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.benefit-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-lt), var(--gold));
+}
+.benefit-num {
+  font-family: var(--ff-serif);
+  font-size: 38px;
+  font-weight: 300;
+  color: rgba(184,151,90,0.18);
+  line-height: 1;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+.benefit-ttl {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 10px;
+  letter-spacing: 0.06em;
+  line-height: 1.55;
+}
+.benefit-txt {
+  font-size: 13px;
+  color: var(--ink2);
+  line-height: 1.9;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
 
-  /* =============================================
-     RISK REVERSAL SECTION
-  ============================================= */
-  .risk { background: var(--bg2); }
+.scent-spectrum {
+  margin-top: 36px;
+  padding: 28px 24px;
+  background: var(--ink);
+  border-radius: 10px;
+  color: var(--white);
+}
+.spectrum-label {
+  font-size: 9.5px;
+  letter-spacing: 0.26em;
+  color: var(--gold-lt);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.spectrum-bar {
+  display: flex;
+  height: 5px;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.bar-fresh  { background: #A8D8EA; flex: 0.35; }
+.bar-clean  { background: #D4C5B0; flex: 0.40; }
+.bar-warm   { background: #B8975A; flex: 0.25; }
+.spectrum-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.stag {
+  font-size: 10.5px;
+  color: rgba(249,249,247,0.7);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 4px 13px;
+  letter-spacing: 0.09em;
+}
 
-  .flow-steps {
-    margin-top: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .flow-step {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    padding: 20px 0;
-    position: relative;
-  }
-  .flow-step:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    left: 19px;
-    top: 52px;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--gold), var(--border));
-  }
-  .flow-num {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    border-radius: 50%;
-    background: var(--ink);
-    color: var(--gold-lt);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--ff-serif);
-    font-size: 16px;
-    font-weight: 400;
-    position: relative;
-    z-index: 1;
-  }
-  .flow-content {}
-  .flow-ttl {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--ink);
-    margin-bottom: 4px;
-  }
-  .flow-txt {
-    font-size: 13px;
-    color: var(--ink2);
-    line-height: 1.8;
-    font-weight: 300;
-  }
+/* ================================================
+   RISK REVERSAL SECTION
+================================================ */
+.risk { background: var(--bg2); }
 
-  .guarantee-box {
-    margin-top: 32px;
-    border: 1.5px solid var(--gold);
-    border-radius: 12px;
-    padding: 24px 20px;
-    background: var(--white);
-    text-align: center;
-  }
-  .guarantee-icon { font-size: 32px; margin-bottom: 10px; }
-  .guarantee-ttl {
-    font-family: var(--ff-serif);
-    font-size: 20px;
-    color: var(--ink);
-    margin-bottom: 8px;
-  }
-  .guarantee-txt {
-    font-size: 13px;
-    color: var(--ink2);
-    line-height: 1.85;
-    font-weight: 300;
-  }
+.flow-steps {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.flow-step {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 22px 0;
+  position: relative;
+}
+.flow-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 54px;
+  bottom: 0;
+  width: 1.5px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+.flow-num {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--gold-lt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-serif);
+  font-size: 16px;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+}
+.flow-ttl {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 5px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+.flow-txt {
+  font-size: 12.5px;
+  color: var(--ink2);
+  line-height: 1.85;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
 
-  /* =============================================
-     REVIEWS SECTION
-  ============================================= */
-  .reviews-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 28px;
-  }
-  .review-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px 18px;
-  }
-  .review-stars { color: var(--gold); font-size: 12px; margin-bottom: 8px; letter-spacing: 2px; }
-  .review-text {
-    font-size: 13px;
-    color: var(--ink2);
-    line-height: 1.85;
-    margin-bottom: 10px;
-    font-weight: 300;
-  }
-  .review-author {
-    font-size: 11px;
-    color: var(--ink3);
-    letter-spacing: 0.06em;
-  }
+.guarantee-box {
+  margin-top: 36px;
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  padding: 30px 24px;
+  background: var(--white);
+  text-align: center;
+}
+.guarantee-icon-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.guarantee-icon-wrap svg {
+  stroke: var(--gold);
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.guarantee-ttl {
+  font-family: var(--ff-serif);
+  font-size: 20px;
+  color: var(--ink);
+  margin-bottom: 10px;
+  letter-spacing: 0.06em;
+}
+.guarantee-txt {
+  font-size: 12.5px;
+  color: var(--ink2);
+  line-height: 1.9;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
 
-  /* =============================================
-     CLOSING CTA
-  ============================================= */
-  .closing-cta {
-    background: var(--ink);
-    color: var(--white);
-    text-align: center;
-    padding: 60px var(--pad) 72px;
-  }
-  .closing-cta .section-label { color: var(--gold-lt); }
-  .closing-cta .section-title {
-    color: var(--white);
-    margin-bottom: 16px;
-  }
-  .closing-cta .section-body {
-    color: rgba(255,255,255,0.65);
-    margin-bottom: 32px;
-    font-size: 13px;
-  }
+/* ================================================
+   REVIEWS SECTION — UGC image placeholders
+================================================ */
+.reviews-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 32px;
+}
 
-  .offer-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin: 0 auto 32px;
-    max-width: 280px;
-    text-align: left;
-  }
-  .offer-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 13px;
-    color: rgba(255,255,255,0.85);
-  }
-  .offer-item .check {
-    width: 20px;
-    height: 20px;
-    min-width: 20px;
-    border-radius: 50%;
-    background: var(--gold);
-    color: var(--ink);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: 700;
-  }
+.review-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 20px;
+  overflow: hidden;
+}
 
-  .btn-primary-inv {
-    display: block;
-    width: 100%;
-    max-width: 340px;
-    margin: 0 auto;
-    background: var(--gold);
-    color: var(--ink);
-    border: none;
-    border-radius: 4px;
-    padding: 18px 28px;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-    transition: background 0.2s, transform 0.2s;
-    animation: pulseGold 2.5s 0.5s infinite;
-  }
-  .btn-primary-inv:active { transform: scale(0.98); }
+/* UGC画像プレースホルダー */
+.review-ugc {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  background: var(--bg2);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.review-ugc-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+/* プレースホルダーの疑似グラデーション背景（実画像と差し替え用） */
+.review-ugc-inner svg {
+  opacity: 0.28;
+  stroke: var(--ink3);
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.review-ugc-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--ink3);
+  text-transform: uppercase;
+}
+/* UGC画像のカラー別バリエーション背景 */
+.ugc-tone-1 { background: linear-gradient(135deg, #EDE8E0 0%, #F5F2EC 100%); }
+.ugc-tone-2 { background: linear-gradient(135deg, #E8EDE8 0%, #F2F5F2 100%); }
+.ugc-tone-3 { background: linear-gradient(135deg, #E0E8ED 0%, #ECF2F5 100%); }
+.ugc-tone-4 { background: linear-gradient(135deg, #EDE0E8 0%, #F5ECF2 100%); }
 
-  .closing-note {
-    margin-top: 14px;
-    font-size: 11px;
-    color: rgba(255,255,255,0.4);
-    letter-spacing: 0.04em;
-  }
+/* 実際の画像を差し込む場合: .review-ugc img { width:100%; height:100%; object-fit:cover; } */
 
-  /* =============================================
-     FOOTER
-  ============================================= */
-  .site-footer {
-    padding: 32px var(--pad);
-    text-align: center;
-    border-top: 1px solid var(--border);
-    background: var(--bg);
-  }
-  .footer-logo {
-    font-family: var(--ff-serif);
-    font-size: 18px;
-    letter-spacing: 0.25em;
-    color: var(--ink);
-    margin-bottom: 10px;
-  }
-  .footer-links {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
-  }
-  .footer-links a {
-    font-size: 11px;
-    color: var(--ink3);
-    text-decoration: none;
-    letter-spacing: 0.06em;
-  }
-  .footer-copy {
-    font-size: 10px;
-    color: var(--ink3);
-    letter-spacing: 0.08em;
-  }
+.review-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.review-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.review-avatar svg {
+  stroke: var(--ink3);
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.review-name-wrap {}
+.review-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+}
+.review-stars {
+  display: flex;
+  gap: 2px;
+  margin-top: 2px;
+}
+.review-stars span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+}
+.review-stars span.half {
+  background: linear-gradient(90deg, var(--gold) 50%, var(--bg2) 50%);
+}
+.review-text {
+  font-size: 13px;
+  color: var(--ink2);
+  line-height: 1.9;
+  margin-bottom: 12px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
+.review-author {
+  font-size: 10.5px;
+  color: var(--ink3);
+  letter-spacing: 0.09em;
+}
+/* SNS風ソース表示 */
+.review-source {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--bg2);
+  font-size: 10px;
+  color: var(--ink3);
+  letter-spacing: 0.07em;
+}
+.review-source svg {
+  stroke: var(--ink3);
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
-  /* =============================================
-     SCROLL ANIMATIONS (IntersectionObserver)
-  ============================================= */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s cubic-bezier(.22,.68,0,1.2), transform 0.7s cubic-bezier(.22,.68,0,1.2);
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-  .reveal-delay-4 { transition-delay: 0.4s; }
-  .reveal-delay-5 { transition-delay: 0.5s; }
+/* ================================================
+   CLOSING CTA
+================================================ */
+.closing-cta {
+  background: var(--ink);
+  color: var(--white);
+  text-align: center;
+  padding: 72px var(--pad) 80px;
+}
+.closing-cta .section-label { color: var(--gold-lt); }
+.closing-cta .section-title { color: var(--white); margin-bottom: 18px; }
+.closing-cta .section-body {
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 36px;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+}
 
-  /* sticky bottom CTA */
-  .sticky-cta {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: var(--white);
-    padding: 12px 20px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    z-index: 100;
-    transform: translateY(100%);
-    transition: transform 0.4s cubic-bezier(.22,.68,0,1.2);
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
-  }
-  .sticky-cta.visible { transform: translateY(0); }
-  .sticky-left { flex: 1; }
-  .sticky-ttl {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--ink);
-    letter-spacing: 0.03em;
-  }
-  .sticky-sub {
-    font-size: 10px;
-    color: var(--ink3);
-    margin-top: 2px;
-  }
-  .sticky-btn {
-    background: var(--ink);
-    color: var(--white);
-    border: none;
-    border-radius: 4px;
-    padding: 12px 18px;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    cursor: pointer;
-    white-space: nowrap;
-    text-decoration: none;
-    display: block;
-  }
+.offer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin: 0 auto 36px;
+  max-width: 290px;
+  text-align: left;
+}
+.offer-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.82);
+  letter-spacing: 0.04em;
+}
+.offer-item .check-icon {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.offer-item .check-icon svg {
+  stroke: var(--ink);
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
+.btn-primary-inv {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  border-radius: 3px;
+  padding: 18px 28px;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.2s, transform 0.18s;
+  animation: pulseGold 2.5s 0.5s infinite;
+}
+.btn-primary-inv:active { transform: scale(0.985); }
+
+.closing-note {
+  margin-top: 14px;
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.08em;
+}
+
+/* ================================================
+   FOOTER
+================================================ */
+.site-footer {
+  padding: 40px var(--pad);
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+.footer-logo {
+  font-family: var(--ff-serif);
+  font-size: 18px;
+  letter-spacing: 0.28em;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.footer-links {
+  display: flex;
+  gap: 22px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.footer-links a {
+  font-size: 10.5px;
+  color: var(--ink3);
+  text-decoration: none;
+  letter-spacing: 0.09em;
+}
+.footer-copy {
+  font-size: 10px;
+  color: var(--ink3);
+  letter-spacing: 0.09em;
+}
+
+/* ================================================
+   SCROLL REVEAL
+================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.75s cubic-bezier(.22,.68,0,1.2), transform 0.75s cubic-bezier(.22,.68,0,1.2);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.10s; }
+.reveal-delay-2 { transition-delay: 0.20s; }
+.reveal-delay-3 { transition-delay: 0.30s; }
+.reveal-delay-4 { transition-delay: 0.40s; }
+.reveal-delay-5 { transition-delay: 0.50s; }
+
+/* ================================================
+   STICKY BOTTOM CTA
+================================================ */
+.sticky-cta {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--white);
+  padding: 11px 22px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 100;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(.22,.68,0,1.2);
+  box-shadow: 0 -3px 18px rgba(0,0,0,0.07);
+}
+.sticky-cta.visible { transform: translateY(0); }
+.sticky-left { flex: 1; }
+.sticky-ttl {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+}
+.sticky-sub {
+  font-size: 10px;
+  color: var(--ink3);
+  margin-top: 2px;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.sticky-btn {
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  border-radius: 3px;
+  padding: 12px 18px;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  display: block;
+}
 </style>
 </head>
 <body>
 
 <!-- ==================== TOP BAR ==================== -->
 <div class="topbar">
-  <span>🎁 初回限定</span>｜無料サンプル2ml同梱中 &nbsp;·&nbsp; 送料無料
+  <strong>初回限定</strong>｜無料サンプル 2ml 同梱中 &nbsp;·&nbsp; 送料無料
 </div>
 
 <!-- ==================== HEADER ==================== -->
@@ -791,12 +964,19 @@
     <div class="logo">PURELAYER</div>
     <span class="logo-sub">Quiet Luxury Fragrance</span>
   </div>
-  <div class="header-badge">全額返金保証</div>
+  <div class="header-badge">
+    <!-- シールドアイコン -->
+    <svg width="12" height="13" viewBox="0 0 12 13" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 1L1.5 3v4c0 2.4 2 4.2 4.5 5 2.5-.8 4.5-2.6 4.5-5V3L6 1z"/>
+    </svg>
+    全額返金保証
+  </div>
 </header>
 
-<!-- ==================== HERO ==================== -->
+<!-- ==================== HERO (100vh FV) ==================== -->
 <section class="hero" id="hero">
-  <div class="container">
+  <div class="container" style="display:flex;flex-direction:column;align-items:center;">
+
     <div class="hero-eyebrow anim-1">OUD STALLION by PURELAYER</div>
 
     <h1 class="hero-headline anim-2">
@@ -815,70 +995,50 @@
     <div class="product-visual anim-scale">
       <div class="product-bottle">
         <svg class="bottle-svg" viewBox="0 0 220 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- 光の背景グロー -->
-          <ellipse cx="110" cy="200" rx="70" ry="30" fill="url(#glow)" opacity="0.6"/>
-          <!-- ボトル本体 -->
-          <rect x="55" y="90" width="110" height="160" rx="14" fill="url(#bottle_grad)"/>
-          <!-- ガラスの光沢 -->
-          <rect x="65" y="98" width="20" height="140" rx="4" fill="url(#sheen)" opacity="0.35"/>
-          <!-- ボトル上部のネック -->
-          <rect x="88" y="58" width="44" height="38" rx="8" fill="url(#neck_grad)"/>
-          <!-- キャップ -->
-          <rect x="82" y="30" width="56" height="32" rx="6" fill="url(#cap_grad)"/>
-          <!-- キャップのライン -->
-          <rect x="82" y="52" width="56" height="3" rx="1" fill="url(#cap_line)"/>
-          <!-- ロゴエリア（白ラベル） -->
-          <rect x="68" y="118" width="84" height="80" rx="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-          <!-- ブランド名テキスト -->
-          <text x="110" y="148" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="'Cormorant Garamond', Georgia, serif" font-size="8" letter-spacing="4">PURELAYER</text>
-          <!-- 製品名 -->
-          <text x="110" y="168" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="'Cormorant Garamond', Georgia, serif" font-size="11" letter-spacing="2" font-style="italic">Oud Stallion</text>
-          <!-- 容量表示 -->
-          <text x="110" y="186" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-family="sans-serif" font-size="7" letter-spacing="2">50ml · EDP</text>
-          <!-- ボトム装飾 -->
-          <rect x="68" y="218" width="84" height="1" fill="rgba(255,255,255,0.15)"/>
-          <!-- キャップのゴールドリング -->
-          <rect x="82" y="55" width="56" height="5" rx="2" fill="url(#gold_ring)" opacity="0.8"/>
-          <!-- キャップのハイライト -->
-          <rect x="86" y="33" width="14" height="22" rx="3" fill="rgba(255,255,255,0.12)"/>
-
+          <ellipse cx="110" cy="204" rx="68" ry="28" fill="url(#glow2)" opacity="0.55"/>
+          <rect x="55" y="90" width="110" height="160" rx="14" fill="url(#bottle_grad2)"/>
+          <rect x="65" y="98" width="18" height="140" rx="4" fill="url(#sheen2)" opacity="0.32"/>
+          <rect x="88" y="58" width="44" height="38" rx="8" fill="url(#neck_grad2)"/>
+          <rect x="82" y="30" width="56" height="32" rx="6" fill="url(#cap_grad2)"/>
+          <rect x="82" y="55" width="56" height="4" rx="1.5" fill="url(#gold_ring2)"/>
+          <rect x="86" y="32" width="13" height="22" rx="3" fill="rgba(255,255,255,0.10)"/>
+          <rect x="68" y="118" width="84" height="80" rx="4" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.16)" stroke-width="0.8"/>
+          <text x="110" y="148" text-anchor="middle" fill="rgba(255,255,255,0.88)" font-family="'Cormorant Garamond',Georgia,serif" font-size="7.5" letter-spacing="4">PURELAYER</text>
+          <text x="110" y="169" text-anchor="middle" fill="rgba(255,255,255,0.68)" font-family="'Cormorant Garamond',Georgia,serif" font-size="10.5" letter-spacing="2" font-style="italic">Oud Stallion</text>
+          <text x="110" y="186" text-anchor="middle" fill="rgba(255,255,255,0.38)" font-family="sans-serif" font-size="6.5" letter-spacing="2">50ml · EDP</text>
+          <rect x="68" y="218" width="84" height="0.8" fill="rgba(255,255,255,0.12)"/>
           <defs>
-            <linearGradient id="bottle_grad" x1="55" y1="90" x2="165" y2="250" gradientUnits="userSpaceOnUse">
+            <linearGradient id="bottle_grad2" x1="55" y1="90" x2="165" y2="250" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stop-color="#2D2A24"/>
               <stop offset="50%" stop-color="#1A1714"/>
               <stop offset="100%" stop-color="#0F0D0A"/>
             </linearGradient>
-            <linearGradient id="neck_grad" x1="88" y1="58" x2="132" y2="96" gradientUnits="userSpaceOnUse">
+            <linearGradient id="neck_grad2" x1="88" y1="58" x2="132" y2="96" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stop-color="#3A3428"/>
               <stop offset="100%" stop-color="#1A1714"/>
             </linearGradient>
-            <linearGradient id="cap_grad" x1="82" y1="30" x2="138" y2="62" gradientUnits="userSpaceOnUse">
+            <linearGradient id="cap_grad2" x1="82" y1="30" x2="138" y2="62" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stop-color="#C8A96A"/>
               <stop offset="40%" stop-color="#B8975A"/>
               <stop offset="100%" stop-color="#8A6E3A"/>
             </linearGradient>
-            <linearGradient id="cap_line" x1="82" y1="52" x2="138" y2="55" gradientUnits="userSpaceOnUse">
+            <linearGradient id="gold_ring2" x1="82" y1="55" x2="138" y2="59" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stop-color="#D4B87A"/>
               <stop offset="50%" stop-color="#F0D89A"/>
               <stop offset="100%" stop-color="#B8975A"/>
             </linearGradient>
-            <linearGradient id="gold_ring" x1="82" y1="55" x2="138" y2="60" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#D4B87A"/>
-              <stop offset="50%" stop-color="#F0D89A"/>
-              <stop offset="100%" stop-color="#B8975A"/>
-            </linearGradient>
-            <linearGradient id="sheen" x1="65" y1="98" x2="85" y2="240" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="white" stop-opacity="0.5"/>
+            <linearGradient id="sheen2" x1="65" y1="98" x2="83" y2="238" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="white" stop-opacity="0.45"/>
               <stop offset="100%" stop-color="white" stop-opacity="0"/>
             </linearGradient>
-            <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#B8975A" stop-opacity="0.3"/>
+            <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#B8975A" stop-opacity="0.28"/>
               <stop offset="100%" stop-color="#B8975A" stop-opacity="0"/>
             </radialGradient>
           </defs>
         </svg>
       </div>
-      <!-- レビューバッジ -->
+      <!-- レビューバッジ（絵文字なし・CSS clip-pathスター） -->
       <div class="review-badges">
         <div class="rbadge rbadge-1">清潔感えぐい</div>
         <div class="rbadge rbadge-2">めっちゃ褒められる</div>
@@ -887,23 +1047,41 @@
       </div>
     </div>
 
-    <!-- オファーチップ -->
+    <!-- オファーチップ（SVGアイコン） -->
     <div class="offer-bar anim-4">
       <div class="offer-chip">
-        <span class="icon">🎁</span> 2ml無料サンプル付き
+        <!-- ギフトボックス SVG -->
+        <span class="icon">
+          <svg viewBox="0 0 18 18" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="7" width="14" height="9" rx="1.5"/>
+            <rect x="1" y="4.5" width="16" height="3" rx="1"/>
+            <path d="M9 4.5V16"/>
+            <path d="M9 4.5C9 4.5 7 2 5.5 3S6 5.5 9 4.5z"/>
+            <path d="M9 4.5C9 4.5 11 2 12.5 3S12 5.5 9 4.5z"/>
+          </svg>
+        </span>
+        2ml 無料サンプル付き
       </div>
       <div class="offer-chip">
-        <span class="icon">🛡️</span> 全額返金保証
+        <!-- シールド SVG -->
+        <span class="icon">
+          <svg viewBox="0 0 18 18" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 1.5L2.5 4.5v5c0 3.5 3 6 6.5 7 3.5-1 6.5-3.5 6.5-7v-5L9 1.5z"/>
+            <polyline points="6,9 8,11.5 12,7"/>
+          </svg>
+        </span>
+        全額返金保証
       </div>
     </div>
 
     <!-- CTA -->
-    <div class="anim-5">
+    <div class="anim-5" style="width:100%;max-width:360px;">
       <a href="#order" class="btn-primary">
-        無料サンプルで試す <span class="btn-arrow">→</span>
+        無料サンプルで試す &nbsp;→
       </a>
-      <p class="btn-note">クレジット・コンビニ払い対応 ｜ 即日発送</p>
+      <p class="btn-note">クレジット・コンビニ払い対応　｜　即日発送</p>
     </div>
+
   </div>
 </section>
 
@@ -921,15 +1099,33 @@
 
     <div class="pain-cards">
       <div class="pain-card reveal reveal-delay-1">
-        <strong>😰 「香りが強すぎて周りに迷惑では…」</strong>
+        <strong>
+          <!-- 警告アイコン -->
+          <svg width="15" height="15" viewBox="0 0 15 15" stroke="var(--gold)" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+            <path d="M7.5 1L14 13H1L7.5 1z"/><line x1="7.5" y1="6" x2="7.5" y2="9"/><circle cx="7.5" cy="11" r="0.5" fill="var(--gold)"/>
+          </svg>
+          「香りが強すぎて周りに迷惑では…」
+        </strong>
         つけすぎて電車や職場で浮いてしまった経験。あの気まずさはトラウマになりますよね。
       </div>
       <div class="pain-card reveal reveal-delay-2">
-        <strong>😕 「ネットで買っても実際の香りがわからない」</strong>
+        <strong>
+          <!-- 疑問アイコン -->
+          <svg width="15" height="15" viewBox="0 0 15 15" stroke="var(--gold)" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+            <circle cx="7.5" cy="7.5" r="6"/><path d="M5.5 5.5c0-1.1.9-2 2-2s2 .9 2 2c0 1-.8 1.6-2 2v1"/><circle cx="7.5" cy="11" r="0.5" fill="var(--gold)"/>
+          </svg>
+          「ネットで買っても実際の香りがわからない」
+        </strong>
         写真と説明だけで判断して、届いたら思ってたのと全然違った…という失敗、一度はあるはず。
       </div>
       <div class="pain-card reveal reveal-delay-3">
-        <strong>🤔 「結局どれがいいか、いつまでも決まらない」</strong>
+        <strong>
+          <!-- 思案アイコン -->
+          <svg width="15" height="15" viewBox="0 0 15 15" stroke="var(--gold)" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+            <circle cx="7.5" cy="7.5" r="6"/><path d="M5 7.5h2l1.5-3 1 4.5 1-2H11"/>
+          </svg>
+          「結局どれがいいか、いつまでも決まらない」
+        </strong>
         選択肢が多すぎて、高いお金を払って後悔するのが怖くて、ずっと先延ばしにしてきた。
       </div>
     </div>
@@ -950,40 +1146,33 @@
   <div class="container">
     <div class="reveal">
       <div class="section-label">SOLUTION</div>
-      <h2 class="section-title">なぜOud Stallion<br>1本でいいのか。</h2>
+      <h2 class="section-title">なぜ Oud Stallion<br>1本でいいのか。</h2>
     </div>
 
     <div class="benefit-cards">
       <div class="benefit-card reveal reveal-delay-1">
         <div class="benefit-num">01</div>
         <div class="benefit-ttl">シャンプーしたての清潔感、そのまま瓶に詰めた</div>
-        <div class="benefit-txt">
-          石鹸・ムスク・ホワイトシダーを軸に設計された「ニュートラル清潔香」。性別・年齢・職種を問わず、万人から好まれると実証された香りのプロファイルです。「きつい」と感じる人がほぼゼロ。
-        </div>
+        <div class="benefit-txt">石鹸・ムスク・ホワイトシダーを軸に設計された「ニュートラル清潔香」。性別・年齢・職種を問わず、万人から好まれると実証された香りのプロファイルです。「きつい」と感じる人がほぼゼロ。</div>
       </div>
       <div class="benefit-card reveal reveal-delay-2">
         <div class="benefit-num">02</div>
         <div class="benefit-ttl">朝つけたら、夜まで消えない持続力</div>
-        <div class="benefit-txt">
-          EDPフォーミュラ（香水濃度）採用で、肌への定着力が高い。2〜3プッシュで、12時間以上の持続をテスト済み。追いつけ不要で、コスパも◎。
-        </div>
+        <div class="benefit-txt">EDPフォーミュラ（香水濃度）採用で、肌への定着力が高い。2〜3プッシュで、12時間以上の持続をテスト済み。追いつけ不要で、コスパも申し分なし。</div>
       </div>
       <div class="benefit-card reveal reveal-delay-3">
         <div class="benefit-num">03</div>
         <div class="benefit-ttl">ウードの品格が、清潔感の中に奥行きをつくる</div>
-        <div class="benefit-txt">
-          中東由来のウード（沈香）を微量ブレンド。単なる石鹸香に終わらない、エレガントなベースノートが「ただ良い匂い」を「特別な清潔感」に昇華します。
-        </div>
+        <div class="benefit-txt">中東由来のウード（沈香）を微量ブレンド。単なる石鹸香に終わらない、エレガントなベースノートが「ただ良い匂い」を「特別な清潔感」に昇華します。</div>
       </div>
     </div>
 
-    <!-- 香りスペクトラム -->
     <div class="scent-spectrum reveal">
       <div class="spectrum-label">SCENT PROFILE</div>
-      <div style="display:flex; gap:8px; font-size:10px; color:rgba(255,255,255,0.5); margin-bottom:8px;">
-        <span style="flex:0.35; text-align:center;">フレッシュ系 35%</span>
-        <span style="flex:0.40; text-align:center;">クリーン系 40%</span>
-        <span style="flex:0.25; text-align:center;">ウード 25%</span>
+      <div style="display:flex;gap:8px;font-size:10px;color:rgba(255,255,255,0.45);margin-bottom:9px;letter-spacing:0.06em;">
+        <span style="flex:0.35;text-align:center;">フレッシュ 35%</span>
+        <span style="flex:0.40;text-align:center;">クリーン 40%</span>
+        <span style="flex:0.25;text-align:center;">ウード 25%</span>
       </div>
       <div class="spectrum-bar">
         <div class="bar-fresh"></div>
@@ -999,7 +1188,6 @@
         <span class="stag">サンダルウッド</span>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -1020,7 +1208,7 @@
       <div class="flow-step reveal reveal-delay-1">
         <div class="flow-num">1</div>
         <div class="flow-content">
-          <div class="flow-ttl">ご注文 → 本体＋2mlサンプル同梱で発送</div>
+          <div class="flow-ttl">ご注文 → 本体＋2ml サンプル同梱で発送</div>
           <div class="flow-txt">同じロットのサンプルを同封。まず香りを確認するためのサンプルです。</div>
         </div>
       </div>
@@ -1048,7 +1236,13 @@
     </div>
 
     <div class="guarantee-box reveal">
-      <div class="guarantee-icon">🛡️</div>
+      <div class="guarantee-icon-wrap">
+        <!-- シールド + チェック SVG -->
+        <svg width="44" height="48" viewBox="0 0 44 48">
+          <path d="M22 2L4 10v16c0 10 8 18 18 20 10-2 18-10 18-20V10L22 2z" stroke="var(--gold)" stroke-width="1.8" fill="rgba(184,151,90,0.06)" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="14,24 19.5,30 30,18" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
       <div class="guarantee-ttl">30日間 全額返金保証</div>
       <div class="guarantee-txt">
         本体未開封であれば、購入から30日以内なら理由を問わず全額返金いたします。<br>
@@ -1062,7 +1256,7 @@
 <div class="ornament">— ✦ —</div>
 <div class="divider"></div>
 
-<!-- ==================== REVIEWS ==================== -->
+<!-- ==================== REVIEWS (UGC画像プレースホルダー付き) ==================== -->
 <section class="reviews">
   <div class="container">
     <div class="reveal">
@@ -1071,26 +1265,162 @@
     </div>
 
     <div class="reviews-grid">
+
+      <!-- Review 1 -->
       <div class="review-card reveal reveal-delay-1">
-        <div class="review-stars">★★★★★</div>
+        <!-- UGC画像プレースホルダー (実画像差し替え時: <img src="ugc1.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">) -->
+        <div class="review-ugc ugc-tone-1">
+          <div class="review-ugc-inner">
+            <svg width="36" height="36" viewBox="0 0 36 36" stroke-width="1.2">
+              <!-- カメラアイコン -->
+              <rect x="3" y="9" width="30" height="22" rx="3"/>
+              <circle cx="18" cy="20" r="7"/>
+              <circle cx="18" cy="20" r="4.5"/>
+              <rect x="12" y="6" width="8" height="4" rx="1.5"/>
+              <circle cx="29" cy="14" r="1.2" fill="currentColor" stroke="none"/>
+            </svg>
+            <span class="review-ugc-label">UGC Photo</span>
+          </div>
+        </div>
+        <div class="review-meta">
+          <div class="review-avatar">
+            <svg width="18" height="18" viewBox="0 0 18 18" stroke-width="1.3">
+              <circle cx="9" cy="6.5" r="3.5"/>
+              <path d="M2 16c0-3.9 3.1-7 7-7s7 3.1 7 7"/>
+            </svg>
+          </div>
+          <div class="review-name-wrap">
+            <div class="review-name">T.K. さん</div>
+            <div class="review-stars">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
         <div class="review-text">会社の同僚に「なんかいい匂いしますね」と3人から言われた。こんな経験初めてで嬉しかった。清潔感系の香りってこういうことか、と初めて理解した気がします。</div>
         <div class="review-author">28歳・男性・会社員</div>
+        <div class="review-source">
+          <svg width="12" height="12" viewBox="0 0 12 12" stroke-width="1.3">
+            <rect x="1" y="1" width="10" height="10" rx="2.5"/>
+            <circle cx="6" cy="6" r="2.5"/>
+            <circle cx="9" cy="3" r="0.6" fill="currentColor" stroke="none"/>
+          </svg>
+          Instagram より
+        </div>
       </div>
+
+      <!-- Review 2 -->
       <div class="review-card reveal reveal-delay-2">
+        <div class="review-ugc ugc-tone-2">
+          <div class="review-ugc-inner">
+            <svg width="36" height="36" viewBox="0 0 36 36" stroke-width="1.2">
+              <rect x="3" y="9" width="30" height="22" rx="3"/>
+              <circle cx="18" cy="20" r="7"/><circle cx="18" cy="20" r="4.5"/>
+              <rect x="12" y="6" width="8" height="4" rx="1.5"/>
+              <circle cx="29" cy="14" r="1.2" fill="currentColor" stroke="none"/>
+            </svg>
+            <span class="review-ugc-label">UGC Photo</span>
+          </div>
+        </div>
+        <div class="review-meta">
+          <div class="review-avatar">
+            <svg width="18" height="18" viewBox="0 0 18 18" stroke-width="1.3">
+              <circle cx="9" cy="6.5" r="3.5"/>
+              <path d="M2 16c0-3.9 3.1-7 7-7s7 3.1 7 7"/>
+            </svg>
+          </div>
+          <div class="review-name-wrap">
+            <div class="review-name">M.S. さん</div>
+            <div class="review-stars">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
         <div class="review-text">香水は強い匂いが苦手で今まで避けていましたが、これは本当に石鹸の香りそのままで、自分でも嫌にならない。サンプルで確認できたのが決め手でした。</div>
-        <div class="review-stars">★★★★★</div>
         <div class="review-author">35歳・女性・教員</div>
+        <div class="review-source">
+          <svg width="12" height="12" viewBox="0 0 12 12" stroke-width="1.3">
+            <rect x="1" y="1" width="10" height="10" rx="2.5"/>
+            <circle cx="6" cy="6" r="2.5"/>
+            <circle cx="9" cy="3" r="0.6" fill="currentColor" stroke="none"/>
+          </svg>
+          Instagram より
+        </div>
       </div>
+
+      <!-- Review 3 -->
       <div class="review-card reveal reveal-delay-3">
-        <div class="review-stars">★★★★★</div>
+        <div class="review-ugc ugc-tone-3">
+          <div class="review-ugc-inner">
+            <svg width="36" height="36" viewBox="0 0 36 36" stroke-width="1.2">
+              <rect x="3" y="9" width="30" height="22" rx="3"/>
+              <circle cx="18" cy="20" r="7"/><circle cx="18" cy="20" r="4.5"/>
+              <rect x="12" y="6" width="8" height="4" rx="1.5"/>
+              <circle cx="29" cy="14" r="1.2" fill="currentColor" stroke="none"/>
+            </svg>
+            <span class="review-ugc-label">UGC Photo</span>
+          </div>
+        </div>
+        <div class="review-meta">
+          <div class="review-avatar">
+            <svg width="18" height="18" viewBox="0 0 18 18" stroke-width="1.3">
+              <circle cx="9" cy="6.5" r="3.5"/>
+              <path d="M2 16c0-3.9 3.1-7 7-7s7 3.1 7 7"/>
+            </svg>
+          </div>
+          <div class="review-name-wrap">
+            <div class="review-name">R.A. さん</div>
+            <div class="review-stars">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
         <div class="review-text">彼女から「シャンプーしたてみたいな匂いがする」って言われて、それ以来毎日つけてます。学校でも先生に「いい匂いだね」って言われた笑</div>
         <div class="review-author">19歳・男性・大学生</div>
+        <div class="review-source">
+          <svg width="12" height="12" viewBox="0 0 12 12" stroke-width="1.3">
+            <path d="M2 10L4.5 7.5C3.5 6.2 3 4.8 3 3.5A4 4 0 0 1 11 3.5c0 2.2-1.8 4-4 4a4.4 4.4 0 0 1-1.5-.3L2 10z"/>
+          </svg>
+          X (Twitter) より
+        </div>
       </div>
+
+      <!-- Review 4 -->
       <div class="review-card reveal reveal-delay-4">
+        <div class="review-ugc ugc-tone-4">
+          <div class="review-ugc-inner">
+            <svg width="36" height="36" viewBox="0 0 36 36" stroke-width="1.2">
+              <rect x="3" y="9" width="30" height="22" rx="3"/>
+              <circle cx="18" cy="20" r="7"/><circle cx="18" cy="20" r="4.5"/>
+              <rect x="12" y="6" width="8" height="4" rx="1.5"/>
+              <circle cx="29" cy="14" r="1.2" fill="currentColor" stroke="none"/>
+            </svg>
+            <span class="review-ugc-label">UGC Photo</span>
+          </div>
+        </div>
+        <div class="review-meta">
+          <div class="review-avatar">
+            <svg width="18" height="18" viewBox="0 0 18 18" stroke-width="1.3">
+              <circle cx="9" cy="6.5" r="3.5"/>
+              <path d="M2 16c0-3.9 3.1-7 7-7s7 3.1 7 7"/>
+            </svg>
+          </div>
+          <div class="review-name-wrap">
+            <div class="review-name">H.N. さん</div>
+            <div class="review-stars">
+              <span></span><span></span><span></span><span></span><span class="half"></span>
+            </div>
+          </div>
+        </div>
         <div class="review-text">40代でも問題なく使えます。むしろこの落ち着いた清潔感は年齢不問。職場でつけすぎて浮くのが怖かったけど、これは絶対に浮かない。安心感がある。</div>
-        <div class="review-stars">★★★★☆</div>
         <div class="review-author">44歳・男性・管理職</div>
+        <div class="review-source">
+          <svg width="12" height="12" viewBox="0 0 12 12" stroke-width="1.3">
+            <path d="M2 10L4.5 7.5C3.5 6.2 3 4.8 3 3.5A4 4 0 0 1 11 3.5c0 2.2-1.8 4-4 4a4.4 4.4 0 0 1-1.5-.3L2 10z"/>
+          </svg>
+          X (Twitter) より
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -1101,31 +1431,47 @@
     <div class="reveal">
       <div class="section-label">START TODAY</div>
       <h2 class="section-title">「それどこの香り？」<br>と聞かれる毎日を、<br>今日から。</h2>
-      <p class="section-body">2mlのサンプルで試してから、判断してください。<br>まず試すことに、リスクはありません。</p>
+      <p class="section-body">2ml のサンプルで試してから、判断してください。<br>まず試すことに、リスクはありません。</p>
     </div>
 
     <ul class="offer-list reveal">
       <li class="offer-item">
-        <span class="check">✓</span>
-        2ml無料サンプル同梱（本体と同ロット）
+        <span class="check-icon">
+          <svg width="11" height="11" viewBox="0 0 11 11" stroke-width="2">
+            <polyline points="2,5.5 4.5,8.5 9,3"/>
+          </svg>
+        </span>
+        2ml 無料サンプル同梱（本体と同ロット）
       </li>
       <li class="offer-item">
-        <span class="check">✓</span>
+        <span class="check-icon">
+          <svg width="11" height="11" viewBox="0 0 11 11" stroke-width="2">
+            <polyline points="2,5.5 4.5,8.5 9,3"/>
+          </svg>
+        </span>
         30日間・全額返金保証（未開封）
       </li>
       <li class="offer-item">
-        <span class="check">✓</span>
+        <span class="check-icon">
+          <svg width="11" height="11" viewBox="0 0 11 11" stroke-width="2">
+            <polyline points="2,5.5 4.5,8.5 9,3"/>
+          </svg>
+        </span>
         送料無料（全国一律）
       </li>
       <li class="offer-item">
-        <span class="check">✓</span>
+        <span class="check-icon">
+          <svg width="11" height="11" viewBox="0 0 11 11" stroke-width="2">
+            <polyline points="2,5.5 4.5,8.5 9,3"/>
+          </svg>
+        </span>
         注文翌営業日に即日発送
       </li>
     </ul>
 
     <div class="reveal">
       <a href="#" class="btn-primary-inv">
-        無料サンプル付きで試す →
+        無料サンプル付きで試す &nbsp;→
       </a>
       <p class="closing-note">クレジットカード・コンビニ払い・Amazon Pay 対応</p>
     </div>
@@ -1148,35 +1494,47 @@
 <div class="sticky-cta" id="stickyCta">
   <div class="sticky-left">
     <div class="sticky-ttl">Oud Stallion by PURELAYER</div>
-    <div class="sticky-sub">🎁 無料サンプル付き ｜ 🛡️ 全額返金保証</div>
+    <div class="sticky-sub">
+      <!-- ギフトアイコン mini -->
+      <svg width="11" height="11" viewBox="0 0 11 11" stroke="var(--ink3)" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="1.5" y="4.5" width="8" height="5.5" rx="0.8"/>
+        <rect x="1" y="3" width="9" height="2" rx="0.6"/>
+        <path d="M5.5 3v7"/>
+        <path d="M5.5 3C5.5 3 4.2 1.5 3.3 2.2S3.8 3.8 5.5 3z"/>
+        <path d="M5.5 3C5.5 3 6.8 1.5 7.7 2.2S7.2 3.8 5.5 3z"/>
+      </svg>
+      無料サンプル付き
+      &nbsp;·&nbsp;
+      <!-- シールドアイコン mini -->
+      <svg width="11" height="11" viewBox="0 0 11 11" stroke="var(--ink3)" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5.5 0.8L1 2.8v3c0 2.3 2 4 4.5 4.4 2.5-.4 4.5-2.1 4.5-4.4v-3L5.5.8z"/>
+        <polyline points="3.2,5.5 4.8,7 7.8,3.8"/>
+      </svg>
+      全額返金保証
+    </div>
   </div>
   <a href="#order" class="sticky-btn">試してみる →</a>
 </div>
 
 <script>
-  // Intersection Observer for scroll reveals
+  // Intersection Observer — scroll reveal
   const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
+  const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
     });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
+  }, { threshold: 0.10 });
+  reveals.forEach(el => io.observe(el));
 
-  // Sticky CTA: show after scrolling past hero
-  const hero = document.getElementById('hero');
+  // Sticky CTA — appears when FV scrolls out
+  const heroEl = document.getElementById('hero');
   const stickyCta = document.getElementById('stickyCta');
-  const stickyObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      stickyCta.classList.toggle('visible', !e.isIntersecting);
-    });
+  const stickyIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => stickyCta.classList.toggle('visible', !e.isIntersecting));
   }, { threshold: 0 });
-  stickyObserver.observe(hero);
+  stickyIO.observe(heroEl);
 
-  // Smooth scroll for anchor links
+  // Smooth scroll
   document.querySelectorAll('a[href="#order"]').forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
