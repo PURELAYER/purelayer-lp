@@ -753,63 +753,46 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 }
 
 /* =============================================
-   FVX — 口コミ主役型・手動スクロールカルーセル
-   .fvx__ プレフィックス：他セクション完全非干渉
+   FVR — Quiet Luxury × 口コミ主役型
+   .fvr__ 完全スコープ / 他セクション非干渉
    ============================================= */
 
-/* セクション */
-.fvx {
+.fvr {
   width: 100%;
   background: #F5F5F0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 56px 0 0;
+  padding: 72px 0 0;
   box-sizing: border-box;
-  position: relative;
 }
 
-/* ① メインコピー */
-.fvx__copy {
+/* ---- コピーブロック ---- */
+.fvr__copy {
   width: 100%;
-  padding: 0 20px;
-  text-align: center;
-  margin-bottom: 20px;
+  padding: 0 28px;
   box-sizing: border-box;
+  margin-bottom: 40px;
 }
 
-.fvx__h1 {
-  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', Georgia, serif;
+.fvr__h1 {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
   font-weight: 700;
-  font-size: 22px;
-  line-height: 1.65;
+  font-size: 32px;
+  line-height: 1.38;
   letter-spacing: 0.02em;
   color: #1E1C17;
-  margin: 0 0 10px;
-  text-align: left;
+  margin: 0 0 18px;
+  text-align: center;
 }
 
-/* カギカッコ部分：やや小さめ・読めるサイズ */
-.fvx__quote {
-  font-size: 17px;
-  font-weight: 400;
-  color: #555550;
-  display: block;
-  line-height: 1.6;
-}
-
-/* 「え、めっちゃいい匂いする」強調 */
-.fvx__em {
+/* 「褒められすぎた」だけ下線強調 */
+.fvr__h1 em {
   font-style: normal;
-  font-weight: 900;
-  font-size: 28px;
-  color: #1E1C17;
-  display: block;
-  line-height: 1.32;
   position: relative;
-  letter-spacing: 0.01em;
+  display: inline-block;
 }
-.fvx__em::after {
+.fvr__h1 em::after {
   content: '';
   position: absolute;
   left: 0;
@@ -817,154 +800,153 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   width: 100%;
   height: 3px;
   background: #1E1C17;
-  border-radius: 1px;
+  border-radius: 2px;
 }
 
-/* ② サブコピー */
-.fvx__sub {
+.fvr__sub {
   font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
   font-weight: 300;
-  font-size: 12.5px;
-  line-height: 1.85;
+  font-size: 14px;
+  line-height: 1.9;
   letter-spacing: 0.04em;
-  color: #777770;
+  color: #666660;
   margin: 0;
-  text-align: left;
+  text-align: center;
 }
 
-/* ③ カルーセル外枠 */
-.fvx__carousel-wrap {
+/* サブコピー内の強調テキスト */
+.fvr__sub strong {
+  font-weight: 700;
+  color: #1E1C17;
+}
+
+/* ---- カルーセル ---- */
+.fvr__reel-wrap {
   width: 100%;
   overflow: hidden;
-  margin-bottom: 18px;
-  /* 左端のカードが少し見える */
-  padding-left: 20px;
+  padding-left: 24px;
   box-sizing: border-box;
+  margin-bottom: 28px;
 }
 
-/* スクロールレール */
-.fvx__carousel {
+.fvr__reel {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  /* スクロールバー非表示 */
   -ms-overflow-style: none;
   scrollbar-width: none;
-  /* 右端チラ見せ：padding-rightで次カードを20%見せる */
-  padding-right: 20%;
+  /* 右端チラ見せ：次カードを約20%覗かせる */
+  padding-right: 22%;
   box-sizing: border-box;
 }
-.fvx__carousel::-webkit-scrollbar { display: none; }
+.fvr__reel::-webkit-scrollbar { display: none; }
 
-/* カード本体 */
-.fvx__card {
-  /* 画面幅 − 左padding − チラ見せ分 */
-  min-width: calc(100vw - 60px);
-  max-width: 320px;
+/* カード：現行比80%サイズ感 */
+.fvr__card {
+  min-width: calc(100vw - 80px);
+  max-width: 300px;
   flex-shrink: 0;
   scroll-snap-align: start;
   background: #FFFFFF;
   border: 1px solid #E8E4DE;
   border-radius: 16px;
-  padding: 18px 16px 16px;
+  padding: 16px 15px 14px;
   display: flex;
   flex-direction: column;
   gap: 0;
   box-sizing: border-box;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.055);
 }
 
-/* カード上段：星＋タイトル＋サムネ */
-.fvx__card-top {
+/* 上段：星＋サムネ */
+.fvr__card-top {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
-/* 星 */
-.fvx__stars {
+.fvr__stars {
   font-size: 14px;
   color: #D4A827;
   letter-spacing: 2px;
   line-height: 1;
-  margin-bottom: 6px;
+  padding-top: 2px;
 }
 
-/* カードタイトル */
-.fvx__card-title {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #1E1C17;
-  margin: 0;
-  letter-spacing: 0.01em;
-}
-
-/* UGCサムネ */
-.fvx__thumb {
-  width: 72px;
-  height: 72px;
+.fvr__thumb {
+  width: 68px;
+  height: 68px;
   object-fit: cover;
   border-radius: 10px;
   flex-shrink: 0;
   background: #E2DFD2;
   display: block;
 }
-.fvx__thumb[src=""] { min-width: 72px; }
+.fvr__thumb[src=""] { min-width: 68px; }
+
+/* タイトル */
+.fvr__card-ttl {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #1E1C17;
+  margin: 0 0 8px;
+  letter-spacing: 0.01em;
+}
 
 /* 本文 */
-.fvx__card-body {
+.fvr__card-body {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 300;
-  font-size: 13px;
-  line-height: 1.8;
-  color: #444440;
-  margin: 0 0 14px;
+  font-size: 12.5px;
+  line-height: 1.78;
+  color: #555550;
+  margin: 0 0 12px;
   flex: 1;
   letter-spacing: 0.02em;
 }
 
-/* フッター：名前＋Verified */
-.fvx__card-foot {
+/* フッター */
+.fvr__card-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 12px;
+  padding-top: 10px;
   border-top: 1px solid #EEEAE4;
 }
 
-.fvx__card-name {
+.fvr__name {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 11.5px;
   color: #1E1C17;
   letter-spacing: 0.03em;
 }
 
-.fvx__verified {
+.fvr__badge {
   display: flex;
   align-items: center;
   gap: 4px;
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 300;
-  font-size: 10.5px;
+  font-size: 10px;
   color: #22A06B;
   letter-spacing: 0.02em;
   white-space: nowrap;
 }
-.fvx__verified svg {
-  width: 14px;
-  height: 14px;
+.fvr__badge svg {
+  width: 13px;
+  height: 13px;
   flex-shrink: 0;
 }
 
-/* ④ CTAボタン */
-.fvx__cta {
+/* ---- CTA ---- */
+.fvr__cta {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -981,14 +963,14 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   border: none;
   cursor: pointer;
   text-decoration: none;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   transition: opacity 0.18s, transform 0.12s;
   box-sizing: border-box;
 }
-.fvx__cta:active { opacity: 0.80; transform: scale(0.97); }
+.fvr__cta:active { opacity: 0.80; transform: scale(0.97); }
 
-/* リスクヘッジ */
-.fvx__risk {
+/* 安心要素 */
+.fvr__risk {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 300;
   font-size: 11.5px;
@@ -996,27 +978,27 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   text-align: center;
   letter-spacing: 0.06em;
   line-height: 1.8;
-  margin: 0 0 18px;
+  margin: 0 0 28px;
   padding: 0 20px;
 }
 
-/* ⑤ スクロール誘導 */
-.fvx__nudge {
+/* スクロール誘導 */
+.fvr__nudge {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  padding-bottom: 24px;
+  padding-bottom: 32px;
 }
-.fvx__nudge-txt {
+.fvr__nudge-txt {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 300;
   font-size: 11px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: #AAAAAA;
   white-space: nowrap;
 }
-.fvx__nudge-arr {
+.fvr__nudge-arr {
   width: 18px;
   height: 18px;
   stroke: #CCCCCC;
@@ -1025,9 +1007,9 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   stroke-linecap: round;
   stroke-linejoin: round;
   display: block;
-  animation: fvx-bounce 1.8s ease-in-out infinite;
+  animation: fvr-bounce 1.8s ease-in-out infinite;
 }
-@keyframes fvx-bounce {
+@keyframes fvr-bounce {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(5px); }
 }
@@ -1046,135 +1028,116 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 <body>
 
 
-<section class="fvx">
+<section class="fvr">
 
-  <!-- ① メインキャッチコピー -->
-  <div class="fvx__copy">
-    <h1 class="fvx__h1">
-      <span class="fvx__quote">「これつけてから、学校や職場で</span>
-      <em class="fvx__em">え、めっちゃいい匂いする</em>
-      <span class="fvx__quote">って言われすぎた」</span>
-    </h1>
-    <!-- ② サブコピー -->
-    <p class="fvx__sub">93%が褒められた経験あり。香水初心者が選ぶ<br>「清潔感の塊」フレグランス。</p>
+  <!-- メイン＋サブコピー -->
+  <div class="fvr__copy">
+    <h1 class="fvr__h1">周りから<em>褒められすぎた</em>香水</h1>
+    <p class="fvr__sub">「これをつけてから、学校や職場で<br><strong>え、めっちゃいい匂いする</strong>って言われすぎた」</p>
   </div>
 
-  <!-- ③ 手動スクロール・レビューカード -->
-  <div class="fvx__carousel-wrap">
-    <div class="fvx__carousel">
+  <!-- 横スクロール・レビューカード -->
+  <div class="fvr__reel-wrap">
+    <div class="fvr__reel">
 
-      <!-- Card 1 -->
-      <div class="fvx__card">
-        <div class="fvx__card-top">
-          <div>
-            <div class="fvx__stars">★★★★★</div>
-            <p class="fvx__card-title">周囲から「清潔感あるな」って<br>褒められました</p>
-          </div>
-          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670" alt="UGC" class="fvx__thumb">
+      <div class="fvr__card">
+        <div class="fvr__card-top">
+          <div class="fvr__stars">★★★★★</div>
+          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670" alt="" class="fvr__thumb">
         </div>
-        <p class="fvx__card-body">周囲から「清潔感あるな」程度の主張しすぎない香りだねと言われ、何度か褒められました。</p>
-        <div class="fvx__card-foot">
-          <span class="fvx__card-name">E子の家族</span>
-          <span class="fvx__verified">
-            <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#22A06B"/><polyline points="4.5 8.5 7 11 11.5 5.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="fvr__card-ttl">周囲から「清潔感あるな」って褒められました</p>
+        <p class="fvr__card-body">主張しすぎない香りだねと言われ、何度か褒められました。</p>
+        <div class="fvr__card-foot">
+          <span class="fvr__name">E子の家族</span>
+          <span class="fvr__badge">
+            <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.5" fill="#22A06B"/><polyline points="3.5 7.5 6 10 10.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Verified Purchase
           </span>
         </div>
       </div>
 
-      <!-- Card 2 -->
-      <div class="fvx__card">
-        <div class="fvx__card-top">
-          <div>
-            <div class="fvx__stars">★★★★★</div>
-            <p class="fvx__card-title">香水初心者さんにも<br>マジでおすすめ</p>
-          </div>
-          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670" alt="UGC" class="fvx__thumb">
+      <div class="fvr__card">
+        <div class="fvr__card-top">
+          <div class="fvr__stars">★★★★★</div>
+          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670" alt="" class="fvr__thumb">
         </div>
-        <p class="fvx__card-body">他に香水は使ったことがない初心者ですが、香りがキツくなくて使いやすい。ネットで買う不安が正解に変わりました。</p>
-        <div class="fvx__card-foot">
-          <span class="fvx__card-name">健太郎</span>
-          <span class="fvx__verified">
-            <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#22A06B"/><polyline points="4.5 8.5 7 11 11.5 5.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="fvr__card-ttl">香水初心者さんにもマジでおすすめ</p>
+        <p class="fvr__card-body">香りがキツくなくて使いやすい。ネットで買う不安が正解に変わりました。</p>
+        <div class="fvr__card-foot">
+          <span class="fvr__name">健太郎</span>
+          <span class="fvr__badge">
+            <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.5" fill="#22A06B"/><polyline points="3.5 7.5 6 10 10.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Verified Purchase
           </span>
         </div>
       </div>
 
-      <!-- Card 3 -->
-      <div class="fvx__card">
-        <div class="fvx__card-top">
-          <div>
-            <div class="fvx__stars">★★★★★</div>
-            <p class="fvx__card-title">ほのかに香って<br>頭が痛くならない</p>
-          </div>
-          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2602.webp?v=1773367670" alt="UGC" class="fvx__thumb">
+      <div class="fvr__card">
+        <div class="fvr__card-top">
+          <div class="fvr__stars">★★★★★</div>
+          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2602.webp?v=1773367670" alt="" class="fvr__thumb">
         </div>
-        <p class="fvx__card-body">強くてキツイ香りは苦手ですが、これは優しくて控えめ。男女どちらにも受けそうな香りで、周りの反応もすごくいい。</p>
-        <div class="fvx__card-foot">
-          <span class="fvx__card-name">美容と健康第一</span>
-          <span class="fvx__verified">
-            <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#22A06B"/><polyline points="4.5 8.5 7 11 11.5 5.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="fvr__card-ttl">ほのかに香って頭が痛くならない</p>
+        <p class="fvr__card-body">強くてキツイ香りは苦手ですが、これは優しくて控えめ。周りの反応もすごくいい。</p>
+        <div class="fvr__card-foot">
+          <span class="fvr__name">美容と健康第一</span>
+          <span class="fvr__badge">
+            <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.5" fill="#22A06B"/><polyline points="3.5 7.5 6 10 10.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Verified Purchase
           </span>
         </div>
       </div>
 
-      <!-- Card 4 -->
-      <div class="fvx__card">
-        <div class="fvx__card-top">
-          <div>
-            <div class="fvx__stars">★★★★★</div>
-            <p class="fvx__card-title">意外と香りが<br>長持ちして驚いた</p>
-          </div>
-          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670" alt="UGC" class="fvx__thumb">
+      <div class="fvr__card">
+        <div class="fvr__card-top">
+          <div class="fvr__stars">★★★★★</div>
+          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670" alt="" class="fvr__thumb">
         </div>
-        <p class="fvx__card-body">2時間で消えるかと思ったら、半日以上しっかり残っていました。長時間香るのは本当にありがたい。</p>
-        <div class="fvx__card-foot">
-          <span class="fvx__card-name">セカンド</span>
-          <span class="fvx__verified">
-            <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#22A06B"/><polyline points="4.5 8.5 7 11 11.5 5.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="fvr__card-ttl">意外と香りが長持ちして驚いた</p>
+        <p class="fvr__card-body">半日以上しっかり残っていました。長時間香るのは本当にありがたい。</p>
+        <div class="fvr__card-foot">
+          <span class="fvr__name">セカンド</span>
+          <span class="fvr__badge">
+            <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.5" fill="#22A06B"/><polyline points="3.5 7.5 6 10 10.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Verified Purchase
           </span>
         </div>
       </div>
 
-      <!-- Card 5 -->
-      <div class="fvx__card">
-        <div class="fvx__card-top">
-          <div>
-            <div class="fvx__stars">★★★★★</div>
-            <p class="fvx__card-title">オフィスで毎日<br>癒されてます</p>
-          </div>
-          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670" alt="UGC" class="fvx__thumb">
+      <div class="fvr__card">
+        <div class="fvr__card-top">
+          <div class="fvr__stars">★★★★★</div>
+          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670" alt="" class="fvr__thumb">
         </div>
-        <p class="fvx__card-body">香りはまさに石鹸。オフィスには軽めでちょうど良く、周りに迷惑をかけない絶妙なラインで癒されます。</p>
-        <div class="fvx__card-foot">
-          <span class="fvx__card-name">オバンヌ</span>
-          <span class="fvx__verified">
-            <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#22A06B"/><polyline points="4.5 8.5 7 11 11.5 5.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="fvr__card-ttl">オフィスで毎日癒されてます</p>
+        <p class="fvr__card-body">香りはまさに石鹸。周りに迷惑をかけない絶妙なラインで癒されます。</p>
+        <div class="fvr__card-foot">
+          <span class="fvr__name">オバンヌ</span>
+          <span class="fvr__badge">
+            <svg viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.5" fill="#22A06B"/><polyline points="3.5 7.5 6 10 10.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Verified Purchase
           </span>
         </div>
       </div>
 
-    </div><!-- /.fvx__carousel -->
-  </div><!-- /.fvx__carousel-wrap -->
+    </div><!-- /.fvr__reel -->
+  </div><!-- /.fvr__reel-wrap -->
 
-  <!-- ④ CTA + リスクヘッジ -->
-  <a href="#zero-risk" class="fvx__cta">サンプル付きセットを試す →</a>
-  <p class="fvx__risk">・2ml無料サンプル付き　・合わなければ全額返金OK</p>
+  <!-- CTA -->
+  <a href="#zero-risk" class="fvr__cta">サンプル付きセットを試す →</a>
 
-  <!-- ⑤ スクロール誘導 -->
-  <div class="fvx__nudge">
-    <span class="fvx__nudge-txt">なぜこれほど選ばれているのか？その理由</span>
-    <svg class="fvx__nudge-arr" viewBox="0 0 24 24">
+  <!-- 安心要素 -->
+  <p class="fvr__risk">・2ml無料サンプル付き　・合わなければ全額返金OK</p>
+
+  <!-- スクロール誘導 -->
+  <div class="fvr__nudge">
+    <span class="fvr__nudge-txt">なぜこれほど選ばれているのか</span>
+    <svg class="fvr__nudge-arr" viewBox="0 0 24 24">
       <polyline points="6 9 12 15 18 9"/>
     </svg>
   </div>
 
 </section>
-
 
 <!-- ============================================================
      2. PROBLEM
