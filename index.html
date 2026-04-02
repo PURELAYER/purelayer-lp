@@ -153,6 +153,102 @@ body {
 }
 .s3 .ss { background:linear-gradient(to bottom,rgba(234,240,244,.48) 0%,rgba(220,232,238,.22) 42%,rgba(234,240,244,.60) 100%); }
 
+/* ═══════════════════════════════════════════
+   スライドコピー共通
+═══════════════════════════════════════════ */
+
+/* コピーブロック共通 */
+.sc-copy {
+  position: absolute;
+  left: var(--pad);
+  right: 60px; /* TikTok UIと重ならない余白 */
+  z-index: 5;
+  /* 文字可読性：極薄ブラー背景 */
+}
+
+/* メインコピー */
+.sc-main {
+  font-family: var(--ff-j);
+  font-size: clamp(20px, 5.2vw, 26px);
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.4;
+  letter-spacing: .03em;
+  text-shadow: 0 2px 12px rgba(0,0,0,.55), 0 1px 3px rgba(0,0,0,.4);
+  margin-bottom: 10px;
+}
+
+/* ゴールド強調 */
+.sc-main .em {
+  color: #D4AF37;
+  text-shadow: 0 2px 12px rgba(0,0,0,.55), 0 0 16px rgba(212,175,55,.25);
+}
+
+/* サブコピー */
+.sc-sub {
+  font-family: var(--ff-j);
+  font-size: clamp(11px, 2.8vw, 13px);
+  font-weight: 300;
+  color: rgba(255,255,255,.82);
+  letter-spacing: .08em;
+  line-height: 1.65;
+  text-shadow: 0 1px 6px rgba(0,0,0,.5);
+  /* ごく薄い背景ブラー */
+  background: rgba(0,0,0,.10);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  display: inline-block;
+  padding: 4px 8px 4px 0;
+  border-radius: 2px;
+}
+
+/* ─── スライド1: 上部配置（感情刺し） ─── */
+.sc-copy-s1 {
+  top: 22%;
+}
+
+/* ─── スライド2: 下部配置（ベネフィット） ─── */
+.sc-copy-s2 {
+  bottom: 18%;
+}
+/* スライド2は背景が明るい可能性あり → 文字は白+影で対応 */
+
+/* ─── スライド3: 中央配置（クロージング） ─── */
+.sc-copy-s3 {
+  top: 50%;
+  transform: translateY(-50%);
+}
+/* スライド3 強調ライン */
+.sc-copy-s3 .sc-main {
+  font-size: clamp(21px, 5.4vw, 27px);
+}
+/* スライド3 保証バッジ行 */
+.sc-guarantee {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  background: rgba(0,0,0,.28);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(212,175,55,.35);
+  border-radius: 3px;
+  padding: 6px 12px;
+}
+.sc-guarantee-item {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: #D4AF37;
+  letter-spacing: .1em;
+  white-space: nowrap;
+}
+.sc-guarantee-sep {
+  width: 1px;
+  height: 10px;
+  background: rgba(212,175,55,.4);
+  flex-shrink: 0;
+}
+
 /* TikTok UI オーバーレイ */
 .tt-ov { position:absolute;right:12px;bottom:52px;display:flex;flex-direction:column;align-items:center;gap:18px;z-index:10;opacity:.46; }
 .tt-a  { display:flex;flex-direction:column;align-items:center;gap:4px; }
@@ -400,7 +496,7 @@ body {
 .reveal.on { opacity:1;transform:translateY(0); }
 .rd1{transition-delay:.06s}.rd2{transition-delay:.13s}.rd3{transition-delay:.20s}.rd4{transition-delay:.27s}
 </style>
-   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
    <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -461,7 +557,14 @@ body {
         </div>
         <div class="ss"></div>
         <div class="sc">
-          <!-- テキスト・ボトルグラフィックを削除。TikTok UIのみ残す -->
+          <!-- ── スライド1コピー：感情刺し・自分ごと化 ── -->
+          <div class="sc-copy sc-copy-s1">
+            <p class="sc-main">
+              職場で「それどこの香り？」と<br>
+              聞かれすぎた<span class="em">清潔感</span>。
+            </p>
+            <span class="sc-sub">学校・職場で褒められまくる、失敗しない1本。</span>
+          </div>
           <div class="tt-ov">
             <div class="tt-a"><svg class="hf" viewBox="0 0 26 26"><path d="M13 22S3 16 3 9a5 5 0 0 1 10 0 5 5 0 0 1 10 0c0 7-10 13-10 13z"/></svg><span class="tt-l">24.8k</span></div>
             <div class="tt-a"><svg viewBox="0 0 26 26"><path d="M13 3C7.5 3 3 7 3 12c0 2 .7 3.9 1.9 5.4L4 22l4.8-1.3C10.1 21.5 11.5 22 13 22c5.5 0 10-4 10-9s-4.5-10-10-10z"/></svg><span class="tt-l">1,203</span></div>
@@ -477,7 +580,14 @@ body {
         </div>
         <div class="ss"></div>
         <div class="sc">
-          <!-- テキスト・スペック削除。TikTok UIのみ残す -->
+          <!-- ── スライド2コピー：ベネフィット・機能訴求 ── -->
+          <div class="sc-copy sc-copy-s2">
+            <p class="sc-main">
+              シャンプーしたての清潔感が<br>
+              <span class="em">12時間</span>、ずっと続く。
+            </p>
+            <span class="sc-sub">石鹸系なのに重くならない、究極のクリーンノート。</span>
+          </div>
           <div class="tt-ov">
             <div class="tt-a"><svg class="hf" viewBox="0 0 26 26"><path d="M13 22S3 16 3 9a5 5 0 0 1 10 0 5 5 0 0 1 10 0c0 7-10 13-10 13z"/></svg><span class="tt-l">31.2k</span></div>
             <div class="tt-a"><svg viewBox="0 0 26 26"><path d="M13 3C7.5 3 3 7 3 12c0 2 .7 3.9 1.9 5.4L4 22l4.8-1.3C10.1 21.5 11.5 22 13 22c5.5 0 10-4 10-9s-4.5-10-10-10z"/></svg><span class="tt-l">2,870</span></div>
@@ -489,11 +599,23 @@ body {
       <!-- [IMG-SLIDE-3] スライド3 背景 -->
       <div class="slide s3">
         <div class="si">
-         <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3151.webp?v=1774754613#" alt="PURELAYER広告3"> 
+          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3151.webp?v=1774754613#" alt="PURELAYER広告3"> 
         </div>
         <div class="ss"></div>
         <div class="sc">
-          <!-- テキスト・バブル装飾削除。TikTok UIのみ残す -->
+          <!-- ── スライド3コピー：安心・クロージング ── -->
+          <div class="sc-copy sc-copy-s3">
+            <p class="sc-main">
+              まずは<span class="em">2ml</span>サンプルで試す。<br>
+              気に入ったら、買えばいい。
+            </p>
+            <span class="sc-sub">リスクゼロではじめる、清潔感の第一歩。</span>
+            <div class="sc-guarantee">
+              <span class="sc-guarantee-item">30日間 全額返金保証</span>
+              <span class="sc-guarantee-sep"></span>
+              <span class="sc-guarantee-item">送料無料</span>
+            </div>
+          </div>
           <div class="tt-ov">
             <div class="tt-a"><svg class="hf" viewBox="0 0 26 26"><path d="M13 22S3 16 3 9a5 5 0 0 1 10 0 5 5 0 0 1 10 0c0 7-10 13-10 13z"/></svg><span class="tt-l">18.7k</span></div>
             <div class="tt-a"><svg viewBox="0 0 26 26"><path d="M13 3C7.5 3 3 7 3 12c0 2 .7 3.9 1.9 5.4L4 22l4.8-1.3C10.1 21.5 11.5 22 13 22c5.5 0 10-4 10-9s-4.5-10-10-10z"/></svg><span class="tt-l">987</span></div>
@@ -537,7 +659,7 @@ body {
          ════════════════════════════════════════════════ -->
     <div class="up up1">
       <div class="up-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3146.webp?v=1774754613#" alt="UGC写真1">
+        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2492.webp?v=1773467332#" alt="UGC写真1">
       </div>
       <div class="ug-lk"><div class="hrt"></div>8.2k</div>
       <div class="ug-hsh"><span class="ht ht-g">#清潔感の塊</span></div>
@@ -549,7 +671,7 @@ body {
          ════════════════════════════════════════════════ -->
     <div class="up up2">
       <div class="up-img">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2492.webp?v=1773467332#" alt="UGC写真2">
+        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3146.webp?v=1774754613#" alt="UGC写真2">
       </div>
       <div class="ug-lk"><div class="hrt"></div>12.5k</div>
       <div class="ug-hsh"><span class="ht">#石鹸の香り</span></div>
@@ -634,7 +756,7 @@ body {
     ════════════════════════════════════════════
   -->
   <div class="prod-img reveal" style="margin-top:24px;">
- [IMG-PRODUCT] <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/0BB23EC6-3DA1-4593-A30D-27962AA1BAC1.webp?v=1773741757#" alt="Oud Stallion — PURELAYER"> 
+   <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/0BB23EC6-3DA1-4593-A30D-27962AA1BAC1.webp?v=1773741757#" alt="Oud Stallion — PURELAYER"> 
     <div class="prod-ph">
       <svg width="36" height="36" viewBox="0 0 36 36" stroke-width="1.2"><rect x="3" y="8" width="30" height="22" rx="3"/><circle cx="18" cy="19" r="7"/><circle cx="18" cy="19" r="4.5"/><rect x="12" y="5" width="8" height="4" rx="1.5"/><circle cx="29" cy="13" r="1.2" fill="currentColor" stroke="none"/></svg>
       <span>[IMG-PRODUCT] Bottle / Product Image</span>
@@ -788,7 +910,7 @@ body {
       <li class="cli"><span class="clch"><svg width="9" height="9" viewBox="0 0 9 9"><polyline points="1.2,4.5 3.5,7.2 7.8,2.2"/></svg></span>翌営業日 即日発送</li>
     </ul>
     <div class="reveal rd2">
-      <a href="  <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women" class="st-b">試してみる →</a>" class="btn btn-gold-lg">無料サンプル付きで試す &nbsp;→</a>
+      <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women" class="btn btn-gold-lg">無料サンプル付きで試す &nbsp;→</a>
       <p class="btn-note-lt">※ 全額返金保証付き &nbsp;·&nbsp; 未開封返送で全額返金 &nbsp;·&nbsp; 理由不問</p>
     </div>
   </div>
