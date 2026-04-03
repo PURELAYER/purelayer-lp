@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PURELAYER — Oud Stallion</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 /* ─────────────────────────────────────────
    TOKENS
@@ -102,28 +101,28 @@ a { text-decoration: none; color: inherit; }
   border-bottom: 1px solid var(--border);
   position: sticky; top: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 20px;
-  height: 56px;
+  padding: 0 18px;
+  height: 48px;
 }
 .logo {
   font-family: var(--font-d);
-  font-size: 1.3rem;
+  font-size: 1.05rem;
   font-weight: 400;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--ink);
 }
 .logo-dot { color: var(--gold); }
-.header-actions { display: flex; align-items: center; gap: 16px; }
+.header-actions { display: flex; align-items: center; gap: 12px; }
 .icon-btn {
   display: flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px;
+  width: 32px; height: 32px;
   border-radius: 50%;
   transition: background .15s;
   position: relative;
 }
 .icon-btn:hover { background: var(--bg); }
-.icon-btn svg { width: 20px; height: 20px; stroke: var(--ink); fill: none; stroke-width: 1.5; }
+.icon-btn svg { width: 18px; height: 18px; stroke: var(--ink); fill: none; stroke-width: 1.5; }
 .cart-count {
   position: absolute; top: 2px; right: 2px;
   background: var(--green);
@@ -333,7 +332,9 @@ a { text-decoration: none; color: inherit; }
 .v-card-free b { color: var(--green); font-weight: 500; }
 .v-price { text-align: right; flex-shrink: 0; }
 .v-price-main { font-family: var(--font-d); font-size: 1.25rem; font-weight: 400; }
-.v-price-per { font-size: .65rem; color: var(--ink-3); }
+/* Variant orig price */
+.v-price-orig { font-size: .65rem; color: var(--ink-3); text-decoration: line-through; margin-top: 1px; }
+.v-price-off  { font-size: .58rem; font-weight: 500; color: #B87A10; letter-spacing: .04em; }
 
 /* ─────────────────────────────────────────
    CTA BUTTONS
@@ -665,7 +666,7 @@ a { text-decoration: none; color: inherit; }
 .guarantee-sec p b { color: white; font-weight: 400; }
 
 /* ─────────────────────────────────────────
-   COMPARE TABLE
+   COMPARE TABLE — feature version
 ───────────────────────────────────────── */
 .compare-sec { background: var(--surface); }
 .compare-table {
@@ -678,25 +679,91 @@ a { text-decoration: none; color: inherit; }
   background: var(--surface);
 }
 .compare-table thead th {
-  padding: 13px 14px;
-  font-size: .66rem;
-  letter-spacing: .12em;
+  padding: 13px 10px;
+  font-size: .64rem;
+  letter-spacing: .1em;
   text-transform: uppercase;
   font-weight: 500;
   color: var(--ink-3);
   background: var(--bg);
   text-align: center;
 }
-.compare-table thead th:first-child { text-align: left; }
+.compare-table thead th:first-child { text-align: left; padding-left: 16px; }
 .compare-table thead th.hl { background: var(--ink); color: rgba(255,255,255,.8); }
 .compare-table tbody td {
-  padding: 12px 14px;
+  padding: 13px 10px;
   border-top: 1px solid var(--border);
   text-align: center;
   color: var(--ink-2);
+  font-size: .8rem;
+  vertical-align: middle;
 }
-.compare-table tbody td:first-child { text-align: left; color: var(--ink); }
+.compare-table tbody td:first-child { text-align: left; padding-left: 16px; color: var(--ink); font-weight: 400; }
 .compare-table tbody td.hl { background: rgba(45,74,42,.04); font-weight: 500; color: var(--green); }
+.compare-table tbody td.hl svg { stroke: var(--green); }
+.compare-table tbody td.neg { color: var(--ink-3); }
+.compare-table tbody td.neg svg { stroke: var(--border); }
+.ct-check { display: inline-flex; align-items: center; justify-content: center; }
+.ct-check svg { width: 16px; height: 16px; fill: none; stroke-width: 2; }
+.ct-badge-em {
+  display: inline-block;
+  background: var(--green);
+  color: white;
+  font-size: .62rem;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 3px;
+  letter-spacing: .05em;
+}
+/* ─────────────────────────────────────────
+   FAQ SECTION
+───────────────────────────────────────── */
+.faq-sec { background: var(--bg); }
+.faq-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: var(--r); overflow: hidden; }
+.faq-item { background: var(--surface); }
+.faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+  text-align: left;
+  cursor: pointer;
+  transition: background .15s;
+}
+.faq-q:hover { background: var(--bg); }
+.faq-q-text {
+  font-size: .88rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.faq-icon {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, border-color .2s;
+}
+.faq-icon svg { width: 12px; height: 12px; stroke: var(--ink-3); fill: none; stroke-width: 2; transition: transform .3s; }
+.faq-item.open .faq-icon { background: var(--green); border-color: var(--green); }
+.faq-item.open .faq-icon svg { stroke: white; transform: rotate(45deg); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s ease, padding .35s ease;
+}
+.faq-item.open .faq-a { max-height: 200px; }
+.faq-a-inner {
+  padding: 0 20px 18px;
+  font-size: .82rem;
+  color: var(--ink-3);
+  line-height: 1.7;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
 
 /* ─────────────────────────────────────────
    EMAIL
@@ -931,7 +998,7 @@ a { text-decoration: none; color: inherit; }
 
     <div class="pi-price" id="pi-price">
       <span class="pi-price-main">¥5,980</span>
-      <span class="pi-price-orig">¥8,500</span>
+      <span class="pi-price-orig">¥7,774</span>
       <span class="pi-price-save">30% OFF</span>
     </div>
     <div class="pi-installment">ペイディで分割払い可 ¥1,993/月（3回）</div>
@@ -940,22 +1007,23 @@ a { text-decoration: none; color: inherit; }
     <div class="u-label variant-label">サイズを選ぶ</div>
     <div class="variant-cards">
 
-      <div class="v-card" onclick="selectVariant(this,'¥1,750','¥1,750',false)">
+      <div class="v-card" onclick="selectVariant(this,'¥1,750','¥1,750')">
         <div class="v-card-radio"></div>
         <div class="v-card-body">
           <div class="v-card-top">
             <span class="v-card-size">10ml</span>
             <span class="v-badge" style="background:var(--bg);color:var(--ink-3);border:1px solid var(--border)">まずはお試し</span>
           </div>
-          <div class="v-card-free">同梱なし</div>
+          <div class="v-card-free">サンプル同梱なし</div>
         </div>
         <div class="v-price">
           <div class="v-price-main">¥1,750</div>
-          <div class="v-price-per">¥175/ml</div>
+          <div class="v-price-orig">¥2,275</div>
+          <div class="v-price-off">30% OFF</div>
         </div>
       </div>
 
-      <div class="v-card selected" onclick="selectVariant(this,'¥5,980','¥5,980',true)">
+      <div class="v-card selected" onclick="selectVariant(this,'¥5,980','¥5,980')">
         <div class="v-card-radio"></div>
         <div class="v-card-body">
           <div class="v-card-top">
@@ -966,11 +1034,12 @@ a { text-decoration: none; color: inherit; }
         </div>
         <div class="v-price">
           <div class="v-price-main">¥5,980</div>
-          <div class="v-price-per">¥120/ml</div>
+          <div class="v-price-orig">¥7,774</div>
+          <div class="v-price-off">30% OFF</div>
         </div>
       </div>
 
-      <div class="v-card" onclick="selectVariant(this,'¥14,800','¥14,800',true)">
+      <div class="v-card" onclick="selectVariant(this,'¥14,800','¥14,800')">
         <div class="v-card-radio"></div>
         <div class="v-card-body">
           <div class="v-card-top">
@@ -981,7 +1050,8 @@ a { text-decoration: none; color: inherit; }
         </div>
         <div class="v-price">
           <div class="v-price-main">¥14,800</div>
-          <div class="v-price-per">¥148/ml</div>
+          <div class="v-price-orig">¥19,240</div>
+          <div class="v-price-off">30% OFF</div>
         </div>
       </div>
 
@@ -1357,33 +1427,169 @@ a { text-decoration: none; color: inherit; }
 </section>
 
 <!-- ════════════════════════════════════════
-     COMPARE TABLE
+     COMPARE TABLE — multi-dimensional
 ════════════════════════════════════════ -->
 <section class="sec compare-sec">
   <div class="sec-head reveal">
-    <span class="u-label">価格比較</span>
-    <h2>同等の香り、圧倒的な差</h2>
+    <span class="u-label">比較</span>
+    <h2>何が違うのか</h2>
+    <p>価格だけではない、5つの視点で見る違い。</p>
   </div>
+  <div style="overflow-x:auto;">
   <table class="compare-table reveal">
     <thead>
       <tr>
-        <th style="text-align:left">インスパイア元</th>
+        <th style="text-align:left;padding-left:16px">比較項目</th>
         <th class="hl">PURELAYER</th>
-        <th>ブランド品</th>
+        <th>一般的な<br>高級香水</th>
+        <th>市販の<br>低価格香水</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td>Creed Aventus</td><td class="hl">¥5,980〜</td><td>¥44,000</td></tr>
-      <tr><td>Baccarat Rouge 540</td><td class="hl">¥5,980〜</td><td>¥36,000</td></tr>
-      <tr><td>Tom Ford Oud Wood</td><td class="hl">¥5,980〜</td><td>¥48,000</td></tr>
-      <tr><td>Maison Margiela Replica</td><td class="hl">¥5,980〜</td><td>¥22,000</td></tr>
-      <tr style="background:rgba(45,74,42,.04)">
-        <td><strong>100ml 購入時</strong></td>
-        <td class="hl" style="color:var(--green)"><strong>¥14,800</strong></td>
-        <td style="color:var(--ink-3);text-decoration:line-through">¥48,000〜</td>
+      <tr>
+        <td>価格（50ml）</td>
+        <td class="hl"><span class="ct-badge-em">¥5,980</span></td>
+        <td class="neg">¥20,000〜</td>
+        <td class="neg">¥2,000〜<br><small style="font-size:.65rem;color:var(--ink-3)">品質に難あり</small></td>
+      </tr>
+      <tr>
+        <td>清潔感のある香り</td>
+        <td class="hl">
+          <div class="ct-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div style="font-size:.68rem;margin-top:2px">石鹸・ムスクベース</div>
+        </td>
+        <td>
+          <div class="ct-check" style="color:var(--ink-3)"><svg viewBox="0 0 24 24" style="stroke:var(--ink-3)"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div style="font-size:.68rem;color:var(--ink-3);margin-top:2px">種類による</div>
+        </td>
+        <td class="neg">
+          <div class="ct-check"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+        </td>
+      </tr>
+      <tr>
+        <td>持続時間</td>
+        <td class="hl">
+          <span class="ct-badge-em">12時間</span>
+          <div style="font-size:.68rem;margin-top:3px">高濃度 EDP</div>
+        </td>
+        <td style="color:var(--ink-2)">6〜8時間<br><small style="font-size:.65rem;color:var(--ink-3)">EDT が多い</small></td>
+        <td class="neg">2〜4時間</td>
+      </tr>
+      <tr>
+        <td>初心者への使いやすさ</td>
+        <td class="hl">
+          <div class="ct-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div style="font-size:.68rem;margin-top:2px">サンプル付・失敗なし</div>
+        </td>
+        <td class="neg">
+          <div class="ct-check"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          <div style="font-size:.68rem;margin-top:2px;color:var(--ink-3)">試香が難しい</div>
+        </td>
+        <td style="color:var(--ink-2)">
+          <div class="ct-check" style="color:var(--ink-3)"><svg viewBox="0 0 24 24" style="stroke:var(--ink-3)"><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+          <div style="font-size:.68rem;color:var(--ink-3);margin-top:2px">品質が不安定</div>
+        </td>
+      </tr>
+      <tr>
+        <td>全額返金保証</td>
+        <td class="hl">
+          <div class="ct-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div style="font-size:.68rem;margin-top:2px">30日間・送料当社負担</div>
+        </td>
+        <td class="neg">
+          <div class="ct-check"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+        </td>
+        <td class="neg">
+          <div class="ct-check"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+        </td>
       </tr>
     </tbody>
   </table>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     FAQ
+════════════════════════════════════════ -->
+<section class="sec faq-sec">
+  <div class="sec-head reveal">
+    <span class="u-label">よくある質問</span>
+    <h2>初心者の不安を解消</h2>
+    <p>香水デビューで迷っている方へ、正直にお答えします。</p>
+  </div>
+  <div class="faq-list reveal">
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">本当に香水初心者でも大丈夫ですか？</span>
+        <span class="faq-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </span>
+      </button>
+      <div class="faq-a">
+        <div class="faq-a-inner">
+          はい、まったく問題ありません。Oud Stallion は癖のない石鹸・ムスクをベースに設計されているため、「つけ過ぎて失敗した」が起こりにくい処方です。また、50ml・100mlにはサンプルアトマイザーが同梱されるので、本体を開封する前に香りを確かめられます。
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">12時間も香りが持つのはなぜですか？</span>
+        <span class="faq-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </span>
+      </button>
+      <div class="faq-a">
+        <div class="faq-a-inner">
+          賦香率（香料の濃度）を極限まで高めたオード・パルファム（EDP）処方を採用しているためです。一般的な EDP より高い濃度で調合することで、朝の一吹きで夜まで品格のある香りが持続します。ベースのウードとアンバーは肌に溶け込むほど長持ちする性質を持ちます。
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">返金の方法を教えてください。</span>
+        <span class="faq-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </span>
+      </button>
+      <div class="faq-a">
+        <div class="faq-a-inner">
+          商品到着から30日以内であれば、本体未開封の状態で全額返金いたします。まずは同封のサンプルアトマイザーで香りをお試しください。返金をご希望の場合は、メールにてご連絡いただくだけで手続きを開始します。返送送料も当社が負担いたします。
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">どこで製造されていますか？</span>
+        <span class="faq-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </span>
+      </button>
+      <div class="faq-a">
+        <div class="faq-a-inner">
+          国内の専門調香師が監修し、国内工場で製造しています。天然ウードオイルをはじめとする素材は産地を厳選し、アルコールフリーの処方で敏感肌の方にも配慮しています。全ロットで品質検査を実施しています。
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">どのサイズを選べばいいですか？</span>
+        <span class="faq-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </span>
+      </button>
+      <div class="faq-a">
+        <div class="faq-a-inner">
+          初めての方は <strong>10ml（¥1,750）</strong>でお試しください。「これだ」と思ったら、無料アトマイザーが付く <strong>50ml（¥5,980）</strong>がコスパ最高です。毎日使う方や複数持ちをお考えの方は <strong>100ml（¥14,800）</strong>が最もお得です。
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <!-- ════════════════════════════════════════
@@ -1467,7 +1673,7 @@ track.parentElement.addEventListener('mouseenter', () => clearInterval(autoSlide
 // ── VARIANT SELECTION ───────────────────
 let currentPrice = '¥5,980';
 
-function selectVariant(el, displayPrice, rawPrice, hasSample) {
+function selectVariant(el, displayPrice, rawPrice) {
   document.querySelectorAll('.v-card').forEach(c => c.classList.remove('selected'));
   el.classList.add('selected');
   currentPrice = displayPrice;
@@ -1475,6 +1681,15 @@ function selectVariant(el, displayPrice, rawPrice, hasSample) {
     `無料サンプル付きで今すぐ試す — ${displayPrice}`;
   document.getElementById('sticky-price').textContent = rawPrice;
   document.getElementById('pi-price').querySelector('.pi-price-main').textContent = displayPrice;
+}
+
+// ── FAQ ACCORDION ────────────────────────
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  // close all
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
 }
 
 // ── ADD TO CART ──────────────────────────
