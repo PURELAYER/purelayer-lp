@@ -574,23 +574,7 @@ a.btn-cta       { text-decoration: none; }
   .stats-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
-   /* ── ANNOUNCEMENT BAR ── */
-  .announcement {
-    background: var(--ink);
-    color: var(--gold-light);
-    text-align: center;
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    padding: 9px 16px;
-    text-transform: uppercase;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .announcement span { display: inline-block; animation: ticker 22s linear infinite; }
-  @keyframes ticker {
-    0% { transform: translateX(100vw); }
-    100% { transform: translateX(-100%); }
-  }
+
  
 </style>
 </head>
@@ -599,8 +583,13 @@ a.btn-cta       { text-decoration: none; }
 <!-- ══════════════════════════════════════
      ANNOUNCEMENT
 ══════════════════════════════════════ -->
-<div class="announcement">
-  <span>✦ 無料サンプル付き　✦ 30日間全額返金保証　✦ 送料無料（¥5,000以上）　✦ 今すぐ注文で翌日発送　✦ 無料サンプル付き　✦ 30日間全額返金保証　✦</span>
+<div class="announce">
+  <span class="announce-inner">
+    &nbsp;&nbsp;&nbsp;
+    <b>無料サンプル同梱</b> &nbsp;·&nbsp; 30日間全額返金保証 &nbsp;·&nbsp; 送料無料（¥5,000以上）&nbsp;·&nbsp; 翌日発送対応 &nbsp;·&nbsp;
+    <b>無料サンプル同梱</b> &nbsp;·&nbsp; 30日間全額返金保証 &nbsp;·&nbsp; 送料無料（¥5,000以上）&nbsp;·&nbsp; 翌日発送対応
+    &nbsp;&nbsp;&nbsp;
+  </span>
 </div>
 
 <!-- ══════════════════════════════════════
