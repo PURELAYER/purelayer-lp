@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* ─────────────────────────────────────────
-   TOKENS
-───────────────────────────────────────── */
+/* ═══════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════ */
 :root {
   --bg:       #F9F9F7;
   --surface:  #FFFFFF;
@@ -22,21 +22,21 @@
   --gold-bg:  #F7F2EA;
   --green:    #2D4A2A;
   --green-lt: #3A5F36;
-  --shadow-s: 0 1px 4px rgba(20,20,18,.06);
-  --shadow-m: 0 4px 24px rgba(20,20,18,.08);
-  --shadow-l: 0 12px 48px rgba(20,20,18,.10);
+  --sh-s:     0 1px 4px rgba(20,20,18,.06);
+  --sh-m:     0 4px 24px rgba(20,20,18,.08);
+  --sh-l:     0 12px 48px rgba(20,20,18,.10);
   --r:        10px;
-  --font-d:   'Cormorant Garamond', Georgia, serif;
-  --font-b:   'DM Sans', sans-serif;
+  --fd:       'Cormorant Garamond', Georgia, serif;
+  --fb:       'DM Sans', sans-serif;
 }
 
-/* ─────────────────────────────────────────
-   RESET + BASE
-───────────────────────────────────────── */
+/* ═══════════════════════════════════════
+   RESET
+═══════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: var(--font-b);
+  font-family: var(--fb);
   background: var(--bg);
   color: var(--ink);
   font-size: 15px;
@@ -44,376 +44,259 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
-img { display: block; max-width: 100%; }
-button { cursor: pointer; font-family: var(--font-b); border: none; background: none; }
-a { text-decoration: none; color: inherit; }
+img   { display: block; max-width: 100%; }
+a     { text-decoration: none; color: inherit; }
+button{ cursor: pointer; font-family: var(--fb); border: none; background: none; }
 
-/* ─────────────────────────────────────────
+/* ═══════════════════════════════════════
    UTILITY
-───────────────────────────────────────── */
+═══════════════════════════════════════ */
 .u-label {
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
+  font-size: .68rem;
+  letter-spacing: .18em;
   text-transform: uppercase;
   font-weight: 500;
   color: var(--ink-3);
 }
-.u-display {
-  font-family: var(--font-d);
-  font-weight: 400;
-  line-height: 1.15;
-}
-.u-divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 0;
-}
 
-/* ─────────────────────────────────────────
-   ANNOUNCEMENT
-───────────────────────────────────────── */
-.announce {
-  background: var(--ink);
-  color: rgba(255,255,255,.7);
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-align: center;
-  padding: 9px 16px;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.announce-inner {
-  display: inline-block;
-  animation: marquee 24s linear infinite;
-}
+/* ═══════════════════════════════════════
+   KEYFRAMES
+═══════════════════════════════════════ */
 @keyframes marquee {
   from { transform: translateX(100vw); }
   to   { transform: translateX(-100%); }
 }
-.announce b { color: var(--gold-lt); font-weight: 500; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
 
-/* ─────────────────────────────────────────
-   HEADER
-───────────────────────────────────────── */
-.header {
+/* ═══════════════════════════════════════
+   ANNOUNCEMENT BAR
+═══════════════════════════════════════ */
+.announce {
+  background: var(--ink);
+  color: rgba(255,255,255,.65);
+  font-size: .7rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 9px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.announce-inner { display: inline-block; animation: marquee 26s linear infinite; }
+.announce b     { color: var(--gold-lt); font-weight: 500; }
+
+/* ═══════════════════════════════════════
+   HEADER  — v1 minimal style
+═══════════════════════════════════════ */
+.hdr {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   position: sticky; top: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 18px;
-  height: 48px;
+  padding: 0 20px;
+  height: 56px;
 }
 .logo {
-  font-family: var(--font-d);
-  font-size: 1.05rem;
+  font-family: var(--fd);
+  font-size: 1.3rem;
   font-weight: 400;
-  letter-spacing: 0.32em;
+  letter-spacing: .28em;
   text-transform: uppercase;
   color: var(--ink);
 }
 .logo-dot { color: var(--gold); }
-.header-actions { display: flex; align-items: center; gap: 12px; }
-.icon-btn {
-  display: flex; align-items: center; justify-content: center;
-  width: 32px; height: 32px;
+.hdr-actions { display: flex; align-items: center; gap: 16px; }
+.ico-btn {
+  width: 36px; height: 36px;
   border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
   transition: background .15s;
   position: relative;
 }
-.icon-btn:hover { background: var(--bg); }
-.icon-btn svg { width: 18px; height: 18px; stroke: var(--ink); fill: none; stroke-width: 1.5; }
-.cart-count {
+.ico-btn:hover { background: var(--bg); }
+.ico-btn svg   { width: 20px; height: 20px; stroke: var(--ink); fill: none; stroke-width: 1.5; }
+.cart-dot {
   position: absolute; top: 2px; right: 2px;
-  background: var(--green);
-  color: white;
-  font-size: 0.55rem;
-  font-weight: 500;
+  background: var(--green); color: white;
+  font-size: .55rem; font-weight: 500;
   width: 14px; height: 14px;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
 }
 
-/* ─────────────────────────────────────────
-   PRODUCT TOP — SLIDER
-───────────────────────────────────────── */
-.slider-wrap {
-  position: relative;
-  background: #EFECE6;
-  overflow: hidden;
-  aspect-ratio: 1 / 1.05;
-}
-.slides-track {
-  display: flex;
-  height: 100%;
-  transition: transform .5s cubic-bezier(.4,0,.2,1);
-}
-.slide {
-  min-width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-}
-.slide img { width: 100%; height: 100%; object-fit: cover; }
+/* ═══════════════════════════════════════
+   SLIDER
+═══════════════════════════════════════ */
+.slider-wrap   { position: relative; background: #EFECE6; overflow: hidden; aspect-ratio: 1/1.05; }
+.slides-track  { display: flex; height: 100%; transition: transform .5s cubic-bezier(.4,0,.2,1); }
+.slide         { min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative; }
+.slide img     { width: 100%; height: 100%; object-fit: cover; }
 .slide-tag {
   position: absolute; top: 16px; left: 16px;
-  background: var(--gold);
-  color: white;
-  font-size: 0.6rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-weight: 500;
-  padding: 4px 10px;
-  border-radius: 3px;
+  background: var(--gold); color: white;
+  font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 500;
+  padding: 4px 10px; border-radius: 3px;
 }
-.slide-arrow {
+.s-arrow {
   position: absolute; top: 50%; transform: translateY(-50%);
   width: 34px; height: 34px;
   background: rgba(255,255,255,.88);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: var(--shadow-m);
-  backdrop-filter: blur(4px);
-  z-index: 2;
+  box-shadow: var(--sh-m); z-index: 2;
   transition: transform .15s, box-shadow .15s;
 }
-.slide-arrow:hover { transform: translateY(-50%) scale(1.06); box-shadow: var(--shadow-l); }
-.slide-arrow.prev { left: 10px; }
-.slide-arrow.next { right: 10px; }
-.slide-arrow svg { width: 14px; height: 14px; stroke: var(--ink); fill: none; stroke-width: 2; }
-.slide-dots {
-  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 6px;
-}
-.dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.45);
-  transition: background .2s, transform .2s;
-}
-.dot.on { background: white; transform: scale(1.4); }
-.thumbs {
-  display: flex; gap: 8px;
-  padding: 10px 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  background: var(--surface);
-}
+.s-arrow:hover { transform: translateY(-50%) scale(1.06); box-shadow: var(--sh-l); }
+.s-arrow.prev  { left: 10px; }
+.s-arrow.next  { right: 10px; }
+.s-arrow svg   { width: 14px; height: 14px; stroke: var(--ink); fill: none; stroke-width: 2; }
+.s-dots        { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; }
+.s-dot         { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.45); transition: background .2s, transform .2s; cursor: pointer; }
+.s-dot.on      { background: white; transform: scale(1.4); }
+.thumbs        { display: flex; gap: 8px; padding: 10px 16px; overflow-x: auto; scrollbar-width: none; background: var(--surface); }
 .thumbs::-webkit-scrollbar { display: none; }
-.thumb {
-  flex-shrink: 0;
-  width: 54px; height: 54px;
-  border-radius: 7px;
-  overflow: hidden;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: border-color .2s;
-}
-.thumb.on { border-color: var(--gold); }
-.thumb img { width: 100%; height: 100%; object-fit: cover; }
+.thumb         { flex-shrink: 0; width: 54px; height: 54px; border-radius: 7px; overflow: hidden; border: 2px solid transparent; cursor: pointer; transition: border-color .2s; }
+.thumb.on      { border-color: var(--gold); }
+.thumb img     { width: 100%; height: 100%; object-fit: cover; }
 
-/* ─────────────────────────────────────────
+/* ═══════════════════════════════════════
    PRODUCT INFO
-───────────────────────────────────────── */
-.product-info {
+═══════════════════════════════════════ */
+.pi {
   background: var(--surface);
   padding: 24px 20px 28px;
 }
-.pi-badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
-.pi-badge {
-  font-size: 0.63rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 500;
-  padding: 3px 10px;
-  border-radius: 3px;
-}
-.pi-badge-outline { border: 1px solid var(--border); color: var(--ink-3); }
-.pi-badge-green { background: var(--green); color: white; }
-.pi-badge-gold { border: 1px solid var(--gold); color: var(--gold); }
-.pi-name {
-  font-family: var(--font-d);
-  font-size: 2rem;
-  font-weight: 400;
-  letter-spacing: .03em;
-  line-height: 1.15;
-  margin-bottom: 3px;
-}
-.pi-sub { font-size: .78rem; color: var(--ink-3); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 14px; }
-.pi-stars { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; }
-.stars svg { width: 13px; height: 13px; fill: var(--gold); stroke: none; }
-.stars-group { display: flex; gap: 2px; }
-.pi-review-count { font-size: .76rem; color: var(--ink-3); border-bottom: 1px solid var(--border); padding-bottom: 1px; cursor: pointer; }
+.pi-badges     { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+.badge         { font-size: .63rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; padding: 3px 10px; border-radius: 3px; }
+.b-out         { border: 1px solid var(--border); color: var(--ink-3); }
+.b-grn         { background: var(--green); color: white; }
+.b-gld         { border: 1px solid var(--gold); color: var(--gold); }
+.pi-name       { font-family: var(--fd); font-size: 2rem; font-weight: 400; letter-spacing: .03em; line-height: 1.15; margin-bottom: 3px; }
+.pi-sub        { font-size: .78rem; color: var(--ink-3); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 14px; }
+.pi-stars      { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; }
+.stars         { display: flex; gap: 2px; }
+.stars svg     { width: 13px; height: 13px; fill: var(--gold); stroke: none; }
+.pi-rcount     { font-size: .76rem; color: var(--ink-3); border-bottom: 1px solid var(--border); padding-bottom: 1px; cursor: pointer; }
 
 /* Offer pill */
 .offer-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--gold-bg);
-  border: 1px solid var(--gold);
-  border-radius: 40px;
-  padding: 8px 16px;
-  margin-bottom: 20px;
-  font-size: .8rem;
-  color: var(--ink);
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold-bg); border: 1px solid var(--gold);
+  border-radius: 40px; padding: 8px 16px; margin-bottom: 20px;
+  font-size: .8rem; color: var(--ink);
 }
-.offer-pill svg { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 1.8; flex-shrink: 0; }
+.offer-pill svg    { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 1.8; flex-shrink: 0; }
 .offer-pill strong { font-weight: 500; color: var(--green); }
 
-/* Price */
-.pi-price { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
-.pi-price-main {
-  font-family: var(--font-d);
-  font-size: 2.1rem; font-weight: 400;
-}
+/* Price row */
+.pi-price      { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+.pi-price-main { font-family: var(--fd); font-size: 2.1rem; font-weight: 400; }
 .pi-price-orig { font-size: .95rem; color: var(--ink-3); text-decoration: line-through; }
-.pi-price-save {
-  font-size: .68rem; font-weight: 500;
-  background: #FEF3E2; color: #B87A10;
-  padding: 2px 8px; border-radius: 3px;
-  letter-spacing: .06em;
-}
-.pi-installment { font-size: .73rem; color: var(--ink-3); margin-bottom: 22px; }
+.pi-price-save { font-size: .68rem; font-weight: 500; background: #FEF3E2; color: #B87A10; padding: 2px 8px; border-radius: 3px; letter-spacing: .06em; }
+.pi-install    { font-size: .73rem; color: var(--ink-3); margin-bottom: 22px; }
 
-/* ─────────────────────────────────────────
+/* ═══════════════════════════════════════
    VARIANT CARDS
-───────────────────────────────────────── */
-.variant-label { margin-bottom: 12px; }
-.variant-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+═══════════════════════════════════════ */
+.v-label       { margin-bottom: 12px; }
+.v-cards       { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
 .v-card {
   border: 1.5px solid var(--border);
   border-radius: var(--r);
   padding: 14px 16px;
   cursor: pointer;
-  transition: border-color .2s, box-shadow .2s, background .2s;
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 14px;
+  display: flex; align-items: center; gap: 14px;
   background: var(--surface);
+  transition: border-color .2s, box-shadow .2s, background .2s;
+  text-decoration: none;
+  color: inherit;
 }
-.v-card.selected {
-  border-color: var(--green);
-  background: rgba(45,74,42,.03);
-  box-shadow: 0 0 0 1px var(--green);
-}
-.v-card-radio {
-  width: 18px; height: 18px;
-  border-radius: 50%;
+.v-card:hover  { border-color: var(--ink-3); }
+.v-card.sel    { border-color: var(--green); background: rgba(45,74,42,.03); box-shadow: 0 0 0 1px var(--green); }
+.v-radio {
+  width: 18px; height: 18px; border-radius: 50%;
   border: 1.5px solid var(--border);
-  flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
   transition: border-color .2s;
 }
-.v-card.selected .v-card-radio {
-  border-color: var(--green);
-  background: var(--green);
+.v-card.sel .v-radio { border-color: var(--green); background: var(--green); }
+.v-card.sel .v-radio::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: white; }
+.v-body        { flex: 1; }
+.v-top         { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+.v-sz          { font-weight: 500; font-size: .9rem; }
+.v-bge {
+  font-size: .58rem; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; padding: 2px 8px; border-radius: 20px;
 }
-.v-card.selected .v-card-radio::after {
-  content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: white;
-}
-.v-card-body { flex: 1; }
-.v-card-top { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
-.v-card-size { font-weight: 500; font-size: .9rem; }
-.v-badge {
-  font-size: .58rem;
-  font-weight: 500;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  padding: 2px 8px;
-  border-radius: 20px;
-}
-.v-badge-popular { background: var(--green); color: white; }
-.v-badge-value   { background: var(--gold-bg); color: var(--gold); border: 1px solid var(--gold); }
-.v-card-free { font-size: .72rem; color: var(--ink-3); }
-.v-card-free b { color: var(--green); font-weight: 500; }
-.v-price { text-align: right; flex-shrink: 0; }
-.v-price-main { font-family: var(--font-d); font-size: 1.25rem; font-weight: 400; }
-/* Variant orig price */
-.v-price-orig { font-size: .65rem; color: var(--ink-3); text-decoration: line-through; margin-top: 1px; }
-.v-price-off  { font-size: .58rem; font-weight: 500; color: #B87A10; letter-spacing: .04em; }
+.v-bge-pop     { background: var(--green); color: white; }
+.v-bge-val     { background: var(--gold-bg); color: var(--gold); border: 1px solid var(--gold); }
+.v-bge-neu     { background: var(--bg); color: var(--ink-3); border: 1px solid var(--border); }
+.v-free        { font-size: .72rem; color: var(--ink-3); }
+.v-free b      { color: var(--green); font-weight: 500; }
+.v-price       { text-align: right; flex-shrink: 0; }
+.v-pmain       { font-family: var(--fd); font-size: 1.25rem; font-weight: 400; }
+.v-porig       { font-size: .65rem; color: var(--ink-3); text-decoration: line-through; }
+.v-poff        { font-size: .58rem; font-weight: 500; color: #B87A10; letter-spacing: .04em; }
 
-/* ─────────────────────────────────────────
+/* ═══════════════════════════════════════
    CTA BUTTONS
-───────────────────────────────────────── */
-.btn-primary {
+═══════════════════════════════════════ */
+.btn-cta {
   width: 100%;
-  background: var(--green);
-  color: white;
-  border-radius: 8px;
-  padding: 17px 20px;
-  font-size: .84rem;
-  font-weight: 500;
-  letter-spacing: .14em;
-  text-transform: uppercase;
+  background: var(--green); color: white;
+  border-radius: 8px; padding: 17px 20px;
+  font-size: .84rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
   display: flex; align-items: center; justify-content: center; gap: 10px;
   transition: background .2s, transform .1s;
   margin-bottom: 10px;
+  cursor: pointer;
 }
-.btn-primary:hover { background: var(--green-lt); }
-.btn-primary:active { transform: scale(.98); }
-.btn-primary svg { width: 17px; height: 17px; stroke: white; fill: none; stroke-width: 1.8; }
+.btn-cta:hover  { background: var(--green-lt); }
+.btn-cta:active { transform: scale(.98); }
+.btn-cta svg    { width: 17px; height: 17px; stroke: white; fill: none; stroke-width: 1.8; flex-shrink: 0; }
+/* When used as <a> tag */
+a.btn-cta       { text-decoration: none; }
+
 .btn-ghost {
-  width: 100%;
-  border: 1px solid var(--border);
-  color: var(--ink);
-  border-radius: 8px;
-  padding: 14px 20px;
-  font-size: .8rem;
-  letter-spacing: .08em;
+  width: 100%; border: 1px solid var(--border); color: var(--ink);
+  border-radius: 8px; padding: 14px 20px;
+  font-size: .8rem; letter-spacing: .08em;
   display: flex; align-items: center; justify-content: center; gap: 8px;
-  transition: border-color .2s;
-  margin-bottom: 18px;
+  transition: border-color .2s; margin-bottom: 18px;
 }
 .btn-ghost:hover { border-color: var(--ink-3); }
-.btn-ghost svg { width: 15px; height: 15px; stroke: var(--ink-2); fill: none; stroke-width: 1.5; }
+.btn-ghost svg   { width: 15px; height: 15px; stroke: var(--ink-2); fill: none; stroke-width: 1.5; }
 
 /* Trust strip */
-.trust-strip {
-  display: grid; grid-template-columns: repeat(4,1fr);
-  gap: 4px;
-  padding-top: 18px;
-  border-top: 1px solid var(--border);
-}
-.trust-item { text-align: center; }
-.trust-item svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; margin: 0 auto 5px; display: block; }
+.trust-strip { display: grid; grid-template-columns: repeat(4,1fr); gap: 4px; padding-top: 18px; border-top: 1px solid var(--border); }
+.trust-item  { text-align: center; }
+.trust-item svg  { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; margin: 0 auto 5px; display: block; }
 .trust-item span { font-size: .63rem; color: var(--ink-3); line-height: 1.3; display: block; }
 
-/* ─────────────────────────────────────────
-   SECTIONS
-───────────────────────────────────────── */
-.sec { padding: 52px 20px; }
-.sec-head { margin-bottom: 36px; }
+/* ═══════════════════════════════════════
+   SECTIONS (generic)
+═══════════════════════════════════════ */
+.sec       { padding: 52px 20px; }
+.sec-head  { margin-bottom: 36px; }
 .sec-head .u-label { margin-bottom: 8px; display: block; }
-.sec-head h2 { font-family: var(--font-d); font-size: 1.9rem; font-weight: 400; }
-.sec-head p { color: var(--ink-3); font-size: .83rem; margin-top: 6px; max-width: 360px; }
+.sec-head h2 { font-family: var(--fd); font-size: 1.9rem; font-weight: 400; }
+.sec-head p  { color: var(--ink-3); font-size: .83rem; margin-top: 6px; max-width: 360px; }
 
-/* ─────────────────────────────────────────
-   QUICK CHECK
-───────────────────────────────────────── */
-.qc-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow-s); }
-.qc-row {
-  background: var(--surface);
-  display: flex; align-items: center; gap: 16px;
-  padding: 16px 18px;
-}
-.qc-icon {
-  width: 38px; height: 38px;
-  background: var(--bg);
-  border-radius: 9px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.qc-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.6; }
-.qc-title { font-size: .87rem; font-weight: 500; }
-.qc-sub { font-size: .73rem; color: var(--ink-3); }
+/* ═══════════════════════════════════════
+   QUICK CHECKS
+═══════════════════════════════════════ */
+.qc-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: var(--r); overflow: hidden; box-shadow: var(--sh-s); }
+.qc-row  { background: var(--surface); display: flex; align-items: center; gap: 16px; padding: 16px 18px; }
+.qc-ico  { width: 38px; height: 38px; background: var(--bg); border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.qc-ico svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.6; }
+.qc-t   { font-size: .87rem; font-weight: 500; }
+.qc-s   { font-size: .73rem; color: var(--ink-3); }
 
-/* ─────────────────────────────────────────
-   SCENT TIMELINE
-───────────────────────────────────────── */
+/* ═══════════════════════════════════════
+   SCENT SECTION  — visual cards
+═══════════════════════════════════════ */
 .scent-sec {
   background: var(--ink);
   padding: 56px 20px;
@@ -422,502 +305,316 @@ a { text-decoration: none; color: inherit; }
 }
 .scent-sec::before {
   content: '';
-  position: absolute;
-  width: 320px; height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(176,141,87,.12) 0%, transparent 70%);
-  top: -80px; right: -80px;
-  pointer-events: none;
+  position: absolute; width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(176,141,87,.1) 0%, transparent 65%);
+  top: -100px; right: -100px; pointer-events: none;
 }
 .scent-sec .sec-head .u-label { color: var(--gold-lt); }
-.scent-sec .sec-head h2 { color: white; }
-.scent-sec .sec-head p { color: rgba(255,255,255,.45); }
+.scent-sec .sec-head h2       { color: white; }
+.scent-sec .sec-head p        { color: rgba(255,255,255,.4); max-width: 300px; }
 
-/* Timeline track */
-.tl-track {
-  position: relative;
-  padding-left: 36px;
-}
-.tl-line {
+/* Vertical flow */
+.scent-flow { position: relative; padding-left: 0; }
+.scent-flow::before {
+  content: '';
   position: absolute;
-  left: 14px; top: 24px; bottom: 24px;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--gold), rgba(176,141,87,.1));
+  left: 27px; top: 28px; bottom: 28px; width: 1px;
+  background: linear-gradient(to bottom, rgba(176,141,87,.6), rgba(176,141,87,.05));
 }
-.tl-item {
-  position: relative;
-  padding: 0 0 40px 20px;
+
+.sc-card {
+  display: flex; align-items: flex-start; gap: 18px;
+  padding: 20px 0;
+  position: relative; z-index: 1;
 }
-.tl-item:last-child { padding-bottom: 0; }
-.tl-node {
-  position: absolute;
-  left: -22px; top: 2px;
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  background: rgba(176,141,87,.15);
-  border: 1px solid rgba(176,141,87,.4);
+.sc-card + .sc-card { border-top: 1px solid rgba(255,255,255,.06); }
+
+/* Icon node */
+.sc-node {
+  flex-shrink: 0;
+  width: 56px; height: 56px;
+  border-radius: 14px;
   display: flex; align-items: center; justify-content: center;
 }
-.tl-node svg { width: 14px; height: 14px; stroke: var(--gold-lt); fill: none; stroke-width: 1.8; }
-.tl-time {
-  font-size: .62rem;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--gold-lt);
-  font-weight: 500;
-  margin-bottom: 4px;
-}
-.tl-name {
-  font-family: var(--font-d);
-  font-size: 1.35rem;
-  font-weight: 400;
-  color: white;
-  margin-bottom: 4px;
-  font-style: italic;
-}
-.tl-desc { font-size: .77rem; color: rgba(255,255,255,.5); line-height: 1.55; }
+.sc-node svg { width: 22px; height: 22px; fill: none; stroke-width: 1.6; }
 
-/* Scent gradient bar */
-.scent-bar {
-  margin-top: 36px;
-  height: 6px;
-  border-radius: 3px;
-  background: linear-gradient(to right, #A8D0C8 0%, #D4C5A9 50%, #7B5E3A 100%);
-  position: relative;
-}
-.scent-bar-labels {
-  display: flex; justify-content: space-between;
-  margin-top: 8px;
-}
-.scent-bar-labels span {
-  font-size: .62rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.3);
-}
+.sc-am  { background: rgba(255,212,122,.12); border: 1px solid rgba(255,212,122,.25); }
+.sc-am svg { stroke: #FFD47A; }
+.sc-md  { background: rgba(157,207,196,.12); border: 1px solid rgba(157,207,196,.25); }
+.sc-md svg { stroke: #9DCFC4; }
+.sc-pm  { background: rgba(176,141,87,.18); border: 1px solid rgba(176,141,87,.3); }
+.sc-pm svg { stroke: var(--gold-lt); }
 
-/* ─────────────────────────────────────────
+/* Text */
+.sc-body   { flex: 1; padding-top: 6px; }
+.sc-period {
+  font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; margin-bottom: 4px;
+}
+.sc-period-am { color: #FFD47A; }
+.sc-period-md { color: #9DCFC4; }
+.sc-period-pm { color: var(--gold-lt); }
+.sc-note-name {
+  font-family: var(--fd);
+  font-size: 1.55rem; font-weight: 400; font-style: italic;
+  color: white; line-height: 1.1; margin-bottom: 8px;
+}
+.sc-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 5px; }
+.sc-chip  {
+  font-size: .62rem; letter-spacing: .07em;
+  padding: 2px 9px; border-radius: 20px;
+  background: rgba(255,255,255,.07);
+  color: rgba(255,255,255,.5);
+  border: 1px solid rgba(255,255,255,.1);
+}
+.sc-caption { font-size: .72rem; color: rgba(255,255,255,.35); line-height: 1.5; }
+
+/* Progress bar */
+.scent-prog { margin-top: 38px; }
+.prog-track {
+  height: 3px; border-radius: 3px;
+  background: linear-gradient(to right, #FFD47A 0%, #9DCFC4 48%, #B08D57 100%);
+  position: relative; margin-bottom: 10px;
+}
+.prog-dots {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 100%; display: flex; justify-content: space-between;
+}
+.prog-dot { width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--ink); }
+.pd-am { background: #FFD47A; }
+.pd-md { background: #9DCFC4; }
+.pd-pm { background: #B08D57; }
+.prog-labels { display: flex; justify-content: space-between; }
+.prog-labels span { font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.3); }
+.prog-time { display: flex; justify-content: space-between; margin-top: 5px; }
+.prog-time span { font-size: .56rem; color: rgba(255,255,255,.18); letter-spacing: .05em; }
+
+/* ═══════════════════════════════════════
    RISK-FREE FLOW
-───────────────────────────────────────── */
-.flow-sec { background: var(--bg); }
-.flow-steps { display: flex; flex-direction: column; gap: 0; }
+═══════════════════════════════════════ */
+.flow-sec  { background: var(--bg); }
+.flow-list { display: flex; flex-direction: column; }
 .flow-step {
-  display: flex;
-  gap: 18px;
-  align-items: flex-start;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--border);
+  display: flex; gap: 18px; align-items: flex-start;
+  padding: 22px 0; border-bottom: 1px solid var(--border);
   position: relative;
 }
 .flow-step:last-child { border-bottom: none; }
 .flow-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
-.flow-num {
-  width: 40px; height: 40px;
-  border-radius: 50%;
+.flow-num  {
+  width: 40px; height: 40px; border-radius: 50%;
   border: 1.5px solid var(--border);
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-d);
-  font-size: 1.1rem;
-  font-weight: 400;
-  color: var(--gold);
-  flex-shrink: 0;
+  font-family: var(--fd); font-size: 1.1rem; font-weight: 400; color: var(--gold);
 }
-.flow-connector {
-  width: 1px;
-  background: linear-gradient(to bottom, var(--border), transparent);
-  flex: 1;
-  min-height: 24px;
-  margin-top: 6px;
-}
-.flow-icon-wrap {
-  width: 44px; height: 44px;
-  background: var(--surface);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: var(--shadow-s);
-  flex-shrink: 0;
-}
-.flow-icon-wrap svg { width: 20px; height: 20px; stroke: var(--ink-2); fill: none; stroke-width: 1.5; }
+.flow-conn { width: 1px; background: linear-gradient(to bottom, var(--border), transparent); flex: 1; min-height: 24px; margin-top: 6px; }
+.flow-ico  { width: 44px; height: 44px; background: var(--surface); border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: var(--sh-s); flex-shrink: 0; }
+.flow-ico svg { width: 20px; height: 20px; stroke: var(--ink-2); fill: none; stroke-width: 1.5; }
 .flow-body { flex: 1; padding-top: 10px; }
-.flow-label { font-size: .64rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px; font-weight: 500; }
-.flow-title { font-size: .94rem; font-weight: 500; margin-bottom: 4px; }
-.flow-desc { font-size: .77rem; color: var(--ink-3); line-height: 1.55; }
-.flow-step.highlight .flow-num { background: var(--green); color: white; border-color: var(--green); }
-.flow-step.highlight .flow-icon-wrap svg { stroke: var(--green); }
-.flow-step.highlight .flow-title { color: var(--green); }
+.flow-lbl  { font-size: .64rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px; font-weight: 500; }
+.flow-ttl  { font-size: .94rem; font-weight: 500; margin-bottom: 4px; }
+.flow-dsc  { font-size: .77rem; color: var(--ink-3); line-height: 1.55; }
+.flow-step.hl .flow-num { background: var(--green); color: white; border-color: var(--green); }
+.flow-step.hl .flow-ico svg { stroke: var(--green); }
+.flow-step.hl .flow-ttl { color: var(--green); }
 
-/* ─────────────────────────────────────────
+/* ═══════════════════════════════════════
    STATS
-───────────────────────────────────────── */
-.stats-sec { background: var(--surface); }
+═══════════════════════════════════════ */
+.stats-sec  { background: var(--surface); }
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.stat-card {
-  background: var(--bg);
-  border-radius: var(--r);
-  padding: 22px 16px;
-  text-align: center;
-}
-.stat-num {
-  font-family: var(--font-d);
-  font-size: 2.6rem;
-  font-weight: 300;
-  color: var(--green);
-  line-height: 1;
-  margin-bottom: 6px;
-}
-.stat-label { font-size: .7rem; color: var(--ink-3); line-height: 1.4; }
+.stat-card  { background: var(--bg); border-radius: var(--r); padding: 22px 16px; text-align: center; }
+.stat-num   { font-family: var(--fd); font-size: 2.6rem; font-weight: 300; color: var(--green); line-height: 1; margin-bottom: 6px; }
+.stat-lbl   { font-size: .7rem; color: var(--ink-3); line-height: 1.4; }
 
-/* ─────────────────────────────────────────
+/* ═══════════════════════════════════════
    REVIEWS
-───────────────────────────────────────── */
-.reviews-sec { background: var(--bg); }
-.reviews-overall {
-  display: flex; align-items: center; gap: 18px;
-  padding: 20px;
-  background: var(--surface);
-  border-radius: var(--r);
-  box-shadow: var(--shadow-s);
-  margin-bottom: 20px;
-}
-.reviews-score {
-  font-family: var(--font-d);
-  font-size: 3.2rem;
-  font-weight: 300;
-  line-height: 1;
-}
-.reviews-meta { flex: 1; }
-.reviews-meta .stars-group { margin-bottom: 4px; }
-.reviews-meta .stars-group svg { width: 14px; height: 14px; fill: var(--gold); stroke: none; }
-.reviews-total { font-size: .73rem; color: var(--ink-3); }
-
-.review-cards { display: flex; flex-direction: column; gap: 14px; }
-.rc {
-  background: var(--surface);
-  border-radius: var(--r);
-  padding: 20px;
-  box-shadow: var(--shadow-s);
-}
-.rc-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
-.rc-user strong { font-size: .88rem; font-weight: 500; display: block; margin-bottom: 1px; }
-.rc-user span { font-size: .7rem; color: var(--ink-3); }
-.rc-date { font-size: .68rem; color: var(--ink-3); }
-.rc-stars { display: flex; gap: 2px; margin-bottom: 8px; }
+═══════════════════════════════════════ */
+.rev-sec   { background: var(--bg); }
+.rev-total { display: flex; align-items: center; gap: 18px; padding: 20px; background: var(--surface); border-radius: var(--r); box-shadow: var(--sh-s); margin-bottom: 20px; }
+.rev-score { font-family: var(--fd); font-size: 3.2rem; font-weight: 300; line-height: 1; }
+.rev-meta  { flex: 1; }
+.rev-stars { display: flex; gap: 2px; margin-bottom: 4px; }
+.rev-stars svg { width: 14px; height: 14px; fill: var(--gold); stroke: none; }
+.rev-tot   { font-size: .73rem; color: var(--ink-3); }
+.rev-cards { display: flex; flex-direction: column; gap: 14px; }
+.rc        { background: var(--surface); border-radius: var(--r); padding: 20px; box-shadow: var(--sh-s); }
+.rc-hdr    { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.rc-name   { font-size: .88rem; font-weight: 500; display: block; margin-bottom: 1px; }
+.rc-who    { font-size: .7rem; color: var(--ink-3); }
+.rc-date   { font-size: .68rem; color: var(--ink-3); }
+.rc-stars  { display: flex; gap: 2px; margin-bottom: 8px; }
 .rc-stars svg { width: 11px; height: 11px; fill: var(--gold); stroke: none; }
-.rc-verified {
-  font-size: .65rem; color: var(--green);
-  display: flex; align-items: center; gap: 4px;
-  margin-bottom: 10px;
-}
-.rc-verified svg { width: 12px; height: 12px; stroke: var(--green); fill: none; stroke-width: 2; }
-.rc-body { display: flex; gap: 12px; }
-/* 投稿者写真枠 */
-.rc-photo {
-  width: 60px; height: 60px;
-  border-radius: 8px;
-  overflow: hidden;
-  flex-shrink: 0;
-  border: 1px solid var(--border);
-  background: var(--bg);
-  display: flex; align-items: center; justify-content: center;
-}
-.rc-photo img { width: 100%; height: 100%; object-fit: cover; }
+.rc-ver    { font-size: .65rem; color: var(--green); display: flex; align-items: center; gap: 4px; margin-bottom: 10px; }
+.rc-ver svg{ width: 12px; height: 12px; stroke: var(--green); fill: none; stroke-width: 2; }
+.rc-body   { display: flex; gap: 12px; }
+.rc-photo  { width: 60px; height: 60px; border-radius: 8px; overflow: hidden; flex-shrink: 0; border: 1px solid var(--border); background: var(--bg); display: flex; align-items: center; justify-content: center; }
 .rc-photo svg { width: 22px; height: 22px; stroke: var(--border); fill: none; stroke-width: 1.2; }
-.rc-text { font-size: .81rem; color: var(--ink); line-height: 1.65; flex: 1; }
-.rc-headline { font-size: .9rem; font-weight: 500; margin-bottom: 5px; }
+.rc-photo img { width: 100%; height: 100%; object-fit: cover; }
+.rc-headline  { font-size: .9rem; font-weight: 500; margin-bottom: 5px; }
+.rc-txt    { font-size: .81rem; color: var(--ink); line-height: 1.65; }
 
-/* ─────────────────────────────────────────
+/* ═══════════════════════════════════════
+   COMPARE TABLE
+═══════════════════════════════════════ */
+.cmp-sec   { background: var(--surface); }
+.cmp-wrap  { overflow-x: auto; }
+.cmp-tbl {
+  width: 100%; border-collapse: collapse;
+  border-radius: var(--r); overflow: hidden;
+  box-shadow: var(--sh-m); font-size: .8rem; background: var(--surface);
+}
+.cmp-tbl thead th {
+  padding: 12px 10px; font-size: .63rem; letter-spacing: .1em; text-transform: uppercase;
+  font-weight: 500; color: var(--ink-3); background: var(--bg); text-align: center;
+}
+.cmp-tbl thead th:first-child { text-align: left; padding-left: 16px; }
+.cmp-tbl thead th.hl { background: var(--ink); color: rgba(255,255,255,.8); }
+.cmp-tbl tbody td { padding: 12px 10px; border-top: 1px solid var(--border); text-align: center; color: var(--ink-2); vertical-align: middle; }
+.cmp-tbl tbody td:first-child { text-align: left; padding-left: 16px; color: var(--ink); }
+.cmp-tbl tbody td.hl { background: rgba(45,74,42,.04); font-weight: 500; color: var(--green); }
+.cmp-tbl tbody td.hl svg { stroke: var(--green); }
+.cmp-tbl tbody td.neg svg { stroke: #D0CCC7; }
+.ct-chk { display: inline-flex; align-items: center; justify-content: center; }
+.ct-chk svg { width: 16px; height: 16px; fill: none; stroke-width: 2; }
+.ct-em  { display: inline-block; background: var(--green); color: white; font-size: .6rem; font-weight: 500; padding: 2px 8px; border-radius: 3px; letter-spacing: .05em; }
+
+/* ═══════════════════════════════════════
    GUARANTEE
-───────────────────────────────────────── */
-.guarantee-sec {
-  background: var(--ink);
-  padding: 60px 20px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.guarantee-sec::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(176,141,87,.1) 0%, transparent 60%);
-  pointer-events: none;
-}
-.guarantee-badge {
-  width: 68px; height: 68px;
-  border-radius: 50%;
-  border: 1px solid rgba(176,141,87,.4);
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 20px;
-  background: rgba(176,141,87,.08);
-}
-.guarantee-badge svg { width: 28px; height: 28px; stroke: var(--gold-lt); fill: none; stroke-width: 1.4; }
-.guarantee-sec h2 {
-  font-family: var(--font-d);
-  font-size: 1.9rem; font-weight: 400;
-  color: white;
-  margin-bottom: 14px;
-}
-.guarantee-sec p {
-  font-size: .83rem;
-  color: rgba(255,255,255,.55);
-  line-height: 1.75;
-  max-width: 340px;
-  margin: 0 auto 6px;
-}
-.guarantee-sec p b { color: white; font-weight: 400; }
+═══════════════════════════════════════ */
+.gu-sec  { background: var(--ink); padding: 60px 20px; text-align: center; position: relative; overflow: hidden; }
+.gu-sec::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(176,141,87,.1) 0%, transparent 60%); pointer-events: none; }
+.gu-badge { width: 68px; height: 68px; border-radius: 50%; border: 1px solid rgba(176,141,87,.4); background: rgba(176,141,87,.08); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+.gu-badge svg { width: 28px; height: 28px; stroke: var(--gold-lt); fill: none; stroke-width: 1.4; }
+.gu-sec h2 { font-family: var(--fd); font-size: 1.9rem; font-weight: 400; color: white; margin-bottom: 14px; }
+.gu-sec p  { font-size: .83rem; color: rgba(255,255,255,.55); line-height: 1.75; max-width: 340px; margin: 0 auto 6px; }
+.gu-sec p b{ color: white; font-weight: 400; }
 
-/* ─────────────────────────────────────────
-   COMPARE TABLE — feature version
-───────────────────────────────────────── */
-.compare-sec { background: var(--surface); }
-.compare-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: var(--r);
-  overflow: hidden;
-  box-shadow: var(--shadow-m);
-  font-size: .81rem;
-  background: var(--surface);
-}
-.compare-table thead th {
-  padding: 13px 10px;
-  font-size: .64rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--ink-3);
-  background: var(--bg);
-  text-align: center;
-}
-.compare-table thead th:first-child { text-align: left; padding-left: 16px; }
-.compare-table thead th.hl { background: var(--ink); color: rgba(255,255,255,.8); }
-.compare-table tbody td {
-  padding: 13px 10px;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  color: var(--ink-2);
-  font-size: .8rem;
-  vertical-align: middle;
-}
-.compare-table tbody td:first-child { text-align: left; padding-left: 16px; color: var(--ink); font-weight: 400; }
-.compare-table tbody td.hl { background: rgba(45,74,42,.04); font-weight: 500; color: var(--green); }
-.compare-table tbody td.hl svg { stroke: var(--green); }
-.compare-table tbody td.neg { color: var(--ink-3); }
-.compare-table tbody td.neg svg { stroke: var(--border); }
-.ct-check { display: inline-flex; align-items: center; justify-content: center; }
-.ct-check svg { width: 16px; height: 16px; fill: none; stroke-width: 2; }
-.ct-badge-em {
-  display: inline-block;
-  background: var(--green);
-  color: white;
-  font-size: .62rem;
-  font-weight: 500;
-  padding: 2px 8px;
-  border-radius: 3px;
-  letter-spacing: .05em;
-}
-/* ─────────────────────────────────────────
-   FAQ SECTION
-───────────────────────────────────────── */
+/* ═══════════════════════════════════════
+   FAQ
+═══════════════════════════════════════ */
 .faq-sec { background: var(--bg); }
 .faq-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: var(--r); overflow: hidden; }
 .faq-item { background: var(--surface); }
 .faq-q {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 18px 20px;
-  text-align: left;
-  cursor: pointer;
-  transition: background .15s;
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 18px 20px; text-align: left; cursor: pointer; transition: background .15s;
 }
 .faq-q:hover { background: var(--bg); }
-.faq-q-text {
-  font-size: .88rem;
-  font-weight: 500;
-  color: var(--ink);
-  line-height: 1.4;
-}
-.faq-icon {
-  flex-shrink: 0;
-  width: 24px; height: 24px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
+.faq-qt { font-size: .88rem; font-weight: 500; color: var(--ink); line-height: 1.4; }
+.faq-ico {
+  flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
   transition: background .2s, border-color .2s;
 }
-.faq-icon svg { width: 12px; height: 12px; stroke: var(--ink-3); fill: none; stroke-width: 2; transition: transform .3s; }
-.faq-item.open .faq-icon { background: var(--green); border-color: var(--green); }
-.faq-item.open .faq-icon svg { stroke: white; transform: rotate(45deg); }
-.faq-a {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .35s ease, padding .35s ease;
-}
-.faq-item.open .faq-a { max-height: 200px; }
-.faq-a-inner {
-  padding: 0 20px 18px;
-  font-size: .82rem;
-  color: var(--ink-3);
-  line-height: 1.7;
-  border-top: 1px solid var(--border);
-  padding-top: 14px;
-}
+.faq-ico svg { width: 12px; height: 12px; stroke: var(--ink-3); fill: none; stroke-width: 2; transition: transform .3s; }
+.faq-item.open .faq-ico { background: var(--green); border-color: var(--green); }
+.faq-item.open .faq-ico svg { stroke: white; transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+.faq-item.open .faq-a { max-height: 240px; }
+.faq-ai { padding: 14px 20px 18px; font-size: .82rem; color: var(--ink-3); line-height: 1.7; border-top: 1px solid var(--border); }
+.faq-ai b { color: var(--ink); font-weight: 500; }
 
-/* ─────────────────────────────────────────
-   EMAIL
-───────────────────────────────────────── */
-.email-sec {
-  background: #1C1C1A;
-  padding: 48px 20px;
-  text-align: center;
-}
-.email-sec h3 {
-  font-family: var(--font-d);
-  color: white;
-  font-size: 1.5rem;
-  font-weight: 300;
-  margin-bottom: 6px;
-}
-.email-sec p { font-size: .77rem; color: rgba(255,255,255,.4); margin-bottom: 20px; }
+/* ═══════════════════════════════════════
+   EMAIL SIGNUP
+═══════════════════════════════════════ */
+.email-sec { background: #1C1C1A; padding: 48px 20px; text-align: center; }
+.email-sec h3 { font-family: var(--fd); color: white; font-size: 1.5rem; font-weight: 300; margin-bottom: 6px; }
+.email-sec p  { font-size: .77rem; color: rgba(255,255,255,.4); margin-bottom: 20px; }
 .email-form {
-  display: flex;
-  background: rgba(255,255,255,.08);
-  border-radius: 7px;
-  overflow: hidden;
-  max-width: 380px; margin: 0 auto 12px;
+  display: flex; background: rgba(255,255,255,.08);
+  border-radius: 7px; overflow: hidden; max-width: 380px; margin: 0 auto 12px;
   border: 1px solid rgba(255,255,255,.1);
 }
-.email-form input {
-  flex: 1;
-  background: transparent;
-  border: none; outline: none;
-  color: white;
-  padding: 13px 16px;
-  font-family: var(--font-b);
-  font-size: .83rem;
-  font-weight: 300;
-}
+.email-form input { flex: 1; background: transparent; border: none; outline: none; color: white; padding: 13px 16px; font-family: var(--fb); font-size: .83rem; font-weight: 300; }
 .email-form input::placeholder { color: rgba(255,255,255,.25); }
-.email-form button {
-  background: var(--green);
-  color: white;
-  padding: 13px 18px;
-  font-size: .77rem;
-  letter-spacing: .1em;
-  font-family: var(--font-b);
-  white-space: nowrap;
-  transition: background .2s;
-}
+.email-form button { background: var(--green); color: white; padding: 13px 20px; font-family: var(--fb); font-size: .77rem; letter-spacing: .1em; transition: background .2s; white-space: nowrap; }
 .email-form button:hover { background: var(--green-lt); }
 .email-note { font-size: .65rem; color: rgba(255,255,255,.25); }
 
-/* ─────────────────────────────────────────
+/* ═══════════════════════════════════════
    FOOTER
-───────────────────────────────────────── */
-.footer {
-  background: var(--surface);
-  padding: 28px 20px 100px; /* bottom space for sticky CTA */
-  border-top: 1px solid var(--border);
-  text-align: center;
-}
-.footer-logo {
-  font-family: var(--font-d);
-  letter-spacing: .25em;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  color: var(--ink);
-  margin-bottom: 14px;
-}
-.footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-bottom: 16px; }
-.footer-links a { font-size: .7rem; color: var(--ink-3); letter-spacing: .06em; }
-.footer-copy { font-size: .65rem; color: var(--ink-3); }
+═══════════════════════════════════════ */
+.footer  { background: var(--surface); padding: 28px 20px 110px; border-top: 1px solid var(--border); text-align: center; }
+.f-logo  { font-family: var(--fd); letter-spacing: .25em; font-size: 1.1rem; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; }
+.f-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-bottom: 16px; }
+.f-links a { font-size: .7rem; color: var(--ink-3); letter-spacing: .06em; }
+.f-copy  { font-size: .65rem; color: var(--ink-3); }
 
-/* ─────────────────────────────────────────
+/* ═══════════════════════════════════════
    STICKY CTA
-───────────────────────────────────────── */
+═══════════════════════════════════════ */
 .sticky-cta {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
+  position: fixed; bottom: 0; left: 0; right: 0;
   padding: 12px 16px 28px;
-  background: var(--surface);
-  border-top: 1px solid var(--border);
+  background: var(--surface); border-top: 1px solid var(--border);
   box-shadow: 0 -8px 32px rgba(20,20,18,.1);
   z-index: 300;
   transform: translateY(100%);
   transition: transform .3s cubic-bezier(.4,0,.2,1);
 }
-.sticky-cta.show { transform: translateY(0); }
-.sticky-cta-inner { display: flex; gap: 10px; align-items: center; max-width: 480px; margin: 0 auto; }
-.sticky-cta .btn-primary { flex: 1; margin-bottom: 0; font-size: .78rem; padding: 15px 14px; }
-.sticky-price {
-  font-family: var(--font-d);
-  font-size: 1.3rem;
-  font-weight: 400;
-  white-space: nowrap;
-}
+.sticky-cta.show    { transform: translateY(0); }
+.sticky-inner       { display: flex; gap: 10px; align-items: center; max-width: 480px; margin: 0 auto; }
+.sticky-price       { font-family: var(--fd); font-size: 1.3rem; font-weight: 400; white-space: nowrap; }
+.sticky-inner .btn-cta { flex: 1; margin-bottom: 0; font-size: .78rem; padding: 15px 14px; }
 
-/* ─────────────────────────────────────────
+/* ═══════════════════════════════════════
    SCROLL REVEAL
-───────────────────────────────────────── */
-.reveal {
+═══════════════════════════════════════ */
+.rv {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity .65s ease, transform .65s ease;
+  transform: translateY(18px);
+  transition: opacity .6s ease, transform .6s ease;
 }
-.reveal.in { opacity: 1; transform: none; }
+.rv.in { opacity: 1; transform: none; }
 
-/* ─────────────────────────────────────────
+/* ═══════════════════════════════════════
    RESPONSIVE
-───────────────────────────────────────── */
+═══════════════════════════════════════ */
 @media (min-width: 600px) {
-  .stats-grid { grid-template-columns: repeat(4,1fr); }
-  .variant-cards { display: grid; grid-template-columns: repeat(3,1fr); }
-  .v-price { text-align: right; }
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
 }
 </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════════════
+<!-- ══════════════════════════════════════
      ANNOUNCEMENT
-════════════════════════════════════════ -->
+══════════════════════════════════════ -->
 <div class="announce">
   <span class="announce-inner">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;
     <b>無料サンプル同梱</b> &nbsp;·&nbsp; 30日間全額返金保証 &nbsp;·&nbsp; 送料無料（¥5,000以上）&nbsp;·&nbsp; 翌日発送対応 &nbsp;·&nbsp;
     <b>無料サンプル同梱</b> &nbsp;·&nbsp; 30日間全額返金保証 &nbsp;·&nbsp; 送料無料（¥5,000以上）&nbsp;·&nbsp; 翌日発送対応
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;
   </span>
 </div>
 
-<!-- ════════════════════════════════════════
+<!-- ══════════════════════════════════════
      HEADER
-════════════════════════════════════════ -->
-<header class="header">
-  <a href="#" class="logo">Pure<span class="logo-dot">·</span>layer</a>
-  <div class="header-actions">
-    <button class="icon-btn" aria-label="検索">
+══════════════════════════════════════ -->
+<header class="hdr">
+  <a href="https://nemveil.com" class="logo">Pure<span class="logo-dot">·</span>layer</a>
+  <div class="hdr-actions">
+    <button class="ico-btn" aria-label="検索">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7.5"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
     </button>
-    <button class="icon-btn" aria-label="カート">
+    <button class="ico-btn" aria-label="カート">
       <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-      <span class="cart-count">2</span>
+      <span class="cart-dot">2</span>
     </button>
   </div>
 </header>
 
-<!-- ════════════════════════════════════════
+<!-- ══════════════════════════════════════
      PRODUCT TOP
-════════════════════════════════════════ -->
+══════════════════════════════════════ -->
 <div id="pdp-top">
 
   <!-- Slider -->
   <div class="slider-wrap">
     <div class="slides-track" id="track">
       <div class="slide">
-        <!-- メイン商品画像：正面ボトル、白〜ベージュ背景 -->
+        <!-- メイン商品画像：正面ボトル、ベージュ背景 -->
         <img src="https://placehold.co/500x525/EFECE6/B08D57?text=Oud+Stallion" alt="Oud Stallion メイン">
         <div class="slide-tag">No.01</div>
       </div>
@@ -938,62 +635,60 @@ a { text-decoration: none; color: inherit; }
         <img src="https://placehold.co/500x525/F7F4EF/B08D57?text=Sample+Set" alt="サンプルセット">
       </div>
     </div>
-    <button class="slide-arrow prev" onclick="slide(-1)" aria-label="前の画像">
+    <button class="s-arrow prev" onclick="slideGo(-1)" aria-label="前">
       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
-    <button class="slide-arrow next" onclick="slide(1)" aria-label="次の画像">
+    <button class="s-arrow next" onclick="slideGo(1)" aria-label="次">
       <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
     </button>
-    <div class="slide-dots" id="dots">
-      <div class="dot on" onclick="goTo(0)"></div>
-      <div class="dot" onclick="goTo(1)"></div>
-      <div class="dot" onclick="goTo(2)"></div>
-      <div class="dot" onclick="goTo(3)"></div>
-      <div class="dot" onclick="goTo(4)"></div>
+    <div class="s-dots" id="sdots">
+      <div class="s-dot on"  onclick="slideTo(0)"></div>
+      <div class="s-dot"     onclick="slideTo(1)"></div>
+      <div class="s-dot"     onclick="slideTo(2)"></div>
+      <div class="s-dot"     onclick="slideTo(3)"></div>
+      <div class="s-dot"     onclick="slideTo(4)"></div>
     </div>
   </div>
 
   <!-- Thumbnails -->
   <div class="thumbs" id="thumbs">
     <!-- サムネイル1：正面ボトル -->
-    <div class="thumb on" onclick="goTo(0)"><img src="https://placehold.co/54x54/EFECE6/B08D57?text=1" alt=""></div>
+    <div class="thumb on" onclick="slideTo(0)"><img src="https://placehold.co/54x54/EFECE6/B08D57?text=1" alt=""></div>
     <!-- サムネイル2：ライフスタイル -->
-    <div class="thumb" onclick="goTo(1)"><img src="https://placehold.co/54x54/E8E4DC/7A7268?text=2" alt=""></div>
+    <div class="thumb" onclick="slideTo(1)"><img src="https://placehold.co/54x54/E8E4DC/7A7268?text=2" alt=""></div>
     <!-- サムネイル3：素材 -->
-    <div class="thumb" onclick="goTo(2)"><img src="https://placehold.co/54x54/DDD8D0/1A1714?text=3" alt=""></div>
+    <div class="thumb" onclick="slideTo(2)"><img src="https://placehold.co/54x54/DDD8D0/1A1714?text=3" alt=""></div>
     <!-- サムネイル4：使用シーン -->
-    <div class="thumb" onclick="goTo(3)"><img src="https://placehold.co/54x54/C8C2B8/3D5C3A?text=4" alt=""></div>
+    <div class="thumb" onclick="slideTo(3)"><img src="https://placehold.co/54x54/C8C2B8/3D5C3A?text=4" alt=""></div>
     <!-- サムネイル5：サンプルセット -->
-    <div class="thumb" onclick="goTo(4)"><img src="https://placehold.co/54x54/F7F4EF/B08D57?text=5" alt=""></div>
+    <div class="thumb" onclick="slideTo(4)"><img src="https://placehold.co/54x54/F7F4EF/B08D57?text=5" alt=""></div>
   </div>
 
   <!-- Product Info -->
-  <div class="product-info">
-
+  <div class="pi">
     <div class="pi-badges">
-      <span class="pi-badge pi-badge-outline">Unisex</span>
-      <span class="pi-badge pi-badge-green">Best Seller</span>
-      <span class="pi-badge pi-badge-gold">送料無料</span>
+      <span class="badge b-out">Unisex</span>
+      <span class="badge b-grn">Best Seller</span>
+      <span class="badge b-gld">送料無料</span>
     </div>
 
     <h1 class="pi-name">Oud Stallion</h1>
     <div class="pi-sub">Eau de Parfum — PURELAYER No.01</div>
 
     <div class="pi-stars">
-      <div class="stars-group">
+      <div class="stars">
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
       </div>
-      <span class="pi-review-count">1,284件のレビュー</span>
+      <span class="pi-rcount">1,284件のレビュー</span>
     </div>
 
-    <!-- Offer pill -->
     <div class="offer-pill">
       <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-      <span>100ml購入で <strong>無料サンプル同梱</strong>。未開封なら30日以内に全額返金</span>
+      <span>50ml・100ml購入で <strong>無料サンプル同梱</strong>。未開封なら30日以内に全額返金</span>
     </div>
 
     <div class="pi-price" id="pi-price">
@@ -1001,67 +696,81 @@ a { text-decoration: none; color: inherit; }
       <span class="pi-price-orig">¥7,774</span>
       <span class="pi-price-save">30% OFF</span>
     </div>
-    <div class="pi-installment">ペイディで分割払い可 ¥1,993/月（3回）</div>
+    <div class="pi-install">ペイディで分割払い可 ¥1,993/月（3回）</div>
 
-    <!-- ── VARIANT CARDS ── -->
-    <div class="u-label variant-label">サイズを選ぶ</div>
-    <div class="variant-cards">
+    <!-- ── VARIANT CARDS  (aタグで直接リンク) ── -->
+    <div class="u-label v-label">サイズを選ぶ</div>
+    <div class="v-cards" id="vcards">
 
-      <div class="v-card" onclick="selectVariant(this,'¥1,750','¥1,750')">
-        <div class="v-card-radio"></div>
-        <div class="v-card-body">
-          <div class="v-card-top">
-            <span class="v-card-size">10ml</span>
-            <span class="v-badge" style="background:var(--bg);color:var(--ink-3);border:1px solid var(--border)">まずはお試し</span>
+      <!-- 10ml -->
+      <a class="v-card"
+         id="vc-10"
+         href="https://nemveil.com/cart/add?id=53230989574512&quantity=1"
+         onclick="pickVariant('10ml','¥1,750','¥1,750',event)">
+        <div class="v-radio"></div>
+        <div class="v-body">
+          <div class="v-top">
+            <span class="v-sz">10ml</span>
+            <span class="v-bge v-bge-neu">まずはお試し</span>
           </div>
-          <div class="v-card-free">サンプル同梱なし</div>
+          <div class="v-free">サンプル同梱なし</div>
         </div>
         <div class="v-price">
-          <div class="v-price-main">¥1,750</div>
-          <div class="v-price-orig">¥2,275</div>
-          <div class="v-price-off">30% OFF</div>
+          <div class="v-pmain">¥1,750</div>
+          <div class="v-porig">¥2,275</div>
+          <div class="v-poff">30% OFF</div>
         </div>
-      </div>
+      </a>
 
-      <div class="v-card selected" onclick="selectVariant(this,'¥5,980','¥5,980')">
-        <div class="v-card-radio"></div>
-        <div class="v-card-body">
-          <div class="v-card-top">
-            <span class="v-card-size">50ml</span>
-            <span class="v-badge v-badge-popular">人気 No.1</span>
+      <!-- 50ml — default selected -->
+      <a class="v-card sel"
+         id="vc-50"
+         href="https://nemveil.com/cart/add?id=53230985937264&quantity=1&id=53231016182128&quantity=1"
+         onclick="pickVariant('50ml','¥5,980','¥5,980',event)">
+        <div class="v-radio"></div>
+        <div class="v-body">
+          <div class="v-top">
+            <span class="v-sz">50ml</span>
+            <span class="v-bge v-bge-pop">人気 No.1</span>
           </div>
-          <div class="v-card-free"><b>10ml アトマイザー無料</b>同梱</div>
+          <div class="v-free"><b>10ml アトマイザー無料</b>同梱</div>
         </div>
         <div class="v-price">
-          <div class="v-price-main">¥5,980</div>
-          <div class="v-price-orig">¥7,774</div>
-          <div class="v-price-off">30% OFF</div>
+          <div class="v-pmain">¥5,980</div>
+          <div class="v-porig">¥7,774</div>
+          <div class="v-poff">30% OFF</div>
         </div>
-      </div>
+      </a>
 
-      <div class="v-card" onclick="selectVariant(this,'¥14,800','¥14,800')">
-        <div class="v-card-radio"></div>
-        <div class="v-card-body">
-          <div class="v-card-top">
-            <span class="v-card-size">100ml</span>
-            <span class="v-badge v-badge-value">最もお得</span>
+      <!-- 100ml -->
+      <a class="v-card"
+         id="vc-100"
+         href="https://nemveil.com/cart/add?id=53230989214064&quantity=1&id=53230989541744&quantity=1&id=53231016182128&quantity=1"
+         onclick="pickVariant('100ml','¥14,800','¥14,800',event)">
+        <div class="v-radio"></div>
+        <div class="v-body">
+          <div class="v-top">
+            <span class="v-sz">100ml</span>
+            <span class="v-bge v-bge-val">最もお得</span>
           </div>
-          <div class="v-card-free"><b>10ml ＋ 2ml テストキット</b>無料同梱</div>
+          <div class="v-free"><b>10ml ＋ 2ml テストキット</b>無料同梱</div>
         </div>
         <div class="v-price">
-          <div class="v-price-main">¥14,800</div>
-          <div class="v-price-orig">¥19,240</div>
-          <div class="v-price-off">30% OFF</div>
+          <div class="v-pmain">¥14,800</div>
+          <div class="v-porig">¥19,240</div>
+          <div class="v-poff">30% OFF</div>
         </div>
-      </div>
+      </a>
 
-    </div><!-- /variant-cards -->
+    </div><!-- /v-cards -->
 
-    <!-- CTA -->
-    <button class="btn-primary" id="main-cta" onclick="addToCart(this)">
+    <!-- Main CTA — href updated by JS on variant selection -->
+    <a class="btn-cta"
+       id="main-cta"
+       href="https://nemveil.com/cart/add?id=53230985937264&quantity=1&id=53231016182128&quantity=1">
       <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-      <span id="cta-text">無料サンプル付きで今すぐ試す — ¥5,980</span>
-    </button>
+      <span id="cta-txt">無料サンプル付きで今すぐ試す — ¥5,980</span>
+    </a>
 
     <button class="btn-ghost">
       <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
@@ -1083,257 +792,255 @@ a { text-decoration: none; color: inherit; }
         <span>安全な決済</span>
       </div>
       <div class="trust-item">
-        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M12 8v4l3 3"/></svg>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
         <span>12時間持続</span>
       </div>
     </div>
-
-  </div><!-- /product-info -->
+  </div><!-- /pi -->
 </div><!-- /pdp-top -->
 
-<!-- ════════════════════════════════════════
-     QUICK CHECK
-════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════
+     QUICK CHECKS
+══════════════════════════════════════ -->
 <section class="sec" style="background:var(--surface);">
-  <div class="sec-head reveal">
+  <div class="sec-head rv">
     <span class="u-label">なぜ選ばれるのか</span>
     <h2>PURELAYER の 4 つの約束</h2>
     <p>デザイナー香水の 1/10 以下の価格で、妥協のない香りを。</p>
   </div>
-  <div class="qc-grid reveal">
+  <div class="qc-grid rv">
     <div class="qc-row">
-      <div class="qc-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg>
-      </div>
+      <div class="qc-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
       <div>
-        <div class="qc-title">12時間持続する清潔感</div>
-        <div class="qc-sub">朝1プッシュで夜まで。高濃度EDP処方</div>
+        <div class="qc-t">12時間持続する清潔感</div>
+        <div class="qc-s">朝1プッシュで夜まで。高濃度EDP処方</div>
       </div>
     </div>
     <div class="qc-row">
-      <div class="qc-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10"/><polyline points="12 6 12 12 16 14"/><path d="M22 22l-3-3m0 0a5 5 0 10-7.07-7.07A5 5 0 0019 19z"/></svg>
-      </div>
+      <div class="qc-ico"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
       <div>
-        <div class="qc-title">購入前にサンプルで確認</div>
-        <div class="qc-sub">香りが確認できるまで本体を開封不要</div>
+        <div class="qc-t">購入前にサンプルで確認</div>
+        <div class="qc-s">香りが確認できるまで本体を開封不要</div>
       </div>
     </div>
     <div class="qc-row">
-      <div class="qc-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      </div>
+      <div class="qc-ico"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
       <div>
-        <div class="qc-title">デザイナー品質・ブランド料なし</div>
-        <div class="qc-sub">素材だけに投資。広告費・ブランド税ゼロ</div>
+        <div class="qc-t">デザイナー品質・ブランド料なし</div>
+        <div class="qc-s">素材だけに投資。広告費・ブランド税ゼロ</div>
       </div>
     </div>
     <div class="qc-row">
-      <div class="qc-icon">
-        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-      </div>
+      <div class="qc-ico"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
       <div>
-        <div class="qc-title">国内検査済み・敏感肌対応</div>
-        <div class="qc-sub">天然ウードオイル使用。アルコールフリー</div>
+        <div class="qc-t">国内検査済み・敏感肌対応</div>
+        <div class="qc-s">天然ウードオイル使用。アルコールフリー</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     SCENT TIMELINE
-════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════
+     SCENT LAYER — visual
+══════════════════════════════════════ -->
 <section class="scent-sec">
-  <div class="sec-head reveal">
+  <div class="sec-head rv">
     <span class="u-label">Scent Profile</span>
     <h2>香りのレイヤー</h2>
-    <p>朝から夜へ。時間とともに表情を変える3層の香り。</p>
+    <p>時間とともに、3つの表情へ。</p>
   </div>
 
-  <div class="tl-track reveal">
-    <div class="tl-line"></div>
+  <div class="scent-flow rv">
 
-    <div class="tl-item">
-      <div class="tl-node">
-        <!-- 太陽アイコン（朝・トップノート） -->
+    <!-- Morning -->
+    <div class="sc-card">
+      <div class="sc-node sc-am">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
       </div>
-      <div class="tl-time">朝 — Top Note  ·  0〜30分</div>
-      <div class="tl-name">アクア・リーフ</div>
-      <div class="tl-desc">水の上に浮かぶ緑葉のような爽快さ。一瞬で空間を満たし、清涼感と活力を与える第一印象。</div>
+      <div class="sc-body">
+        <div class="sc-period sc-period-am">朝 — Top Note · 0〜30min</div>
+        <div class="sc-note-name">アクア・リーフ</div>
+        <div class="sc-chips">
+          <span class="sc-chip">爽やか</span>
+          <span class="sc-chip">清涼感</span>
+          <span class="sc-chip">一瞬で広がる</span>
+        </div>
+        <div class="sc-caption">みずみずしい第一印象。目覚めとともに空間を満たす。</div>
+      </div>
     </div>
 
-    <div class="tl-item">
-      <div class="tl-node">
-        <!-- 時計アイコン（日中・ハートノート） -->
+    <!-- Midday -->
+    <div class="sc-card">
+      <div class="sc-node sc-md">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
       </div>
-      <div class="tl-time">日中 — Heart Note  ·  1〜4時間</div>
-      <div class="tl-name">石鹸・ムスク</div>
-      <div class="tl-desc">清潔感の核心。洗いたての白いシャツのような安心感が持続する。会話の距離に纏わりつく、品のある中心香。</div>
+      <div class="sc-body">
+        <div class="sc-period sc-period-md">日中 — Heart Note · 1〜4h</div>
+        <div class="sc-note-name">石鹸・ムスク</div>
+        <div class="sc-chips">
+          <span class="sc-chip">清潔感</span>
+          <span class="sc-chip">ずっと続く</span>
+          <span class="sc-chip">初心者向け</span>
+        </div>
+        <div class="sc-caption">白シャツのような清潔感が長時間持続する安心感。</div>
+      </div>
     </div>
 
-    <div class="tl-item">
-      <div class="tl-node">
-        <!-- 月アイコン（夜・ベースノート） -->
+    <!-- Evening -->
+    <div class="sc-card">
+      <div class="sc-node sc-pm">
         <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
       </div>
-      <div class="tl-time">夜 — Base Note  ·  4〜12時間</div>
-      <div class="tl-name">ウード・シダー</div>
-      <div class="tl-desc">品格ある深い余白。古木と大地が溶け合い、肌の温もりと共に記憶に刻まれる残香。夜が深まるほど艶を増す。</div>
+      <div class="sc-body">
+        <div class="sc-period sc-period-pm">夜 — Base Note · 4〜12h</div>
+        <div class="sc-note-name">ウード・シダー</div>
+        <div class="sc-chips">
+          <span class="sc-chip">深み・余白</span>
+          <span class="sc-chip">品格</span>
+          <span class="sc-chip">残香</span>
+        </div>
+        <div class="sc-caption">古木と大地が肌に溶け込み、夜が深まるほど艶を増す。</div>
+      </div>
     </div>
+
   </div>
 
-  <!-- Gradient bar -->
-  <div class="reveal" style="margin-top:40px;">
-    <div class="scent-bar"></div>
-    <div class="scent-bar-labels">
-      <span>朝</span>
-      <span>日中</span>
-      <span>夜</span>
+  <!-- Progress bar -->
+  <div class="scent-prog rv">
+    <div class="prog-track">
+      <div class="prog-dots">
+        <div class="prog-dot pd-am"></div>
+        <div class="prog-dot pd-md"></div>
+        <div class="prog-dot pd-pm"></div>
+      </div>
+    </div>
+    <div class="prog-labels">
+      <span>朝</span><span>日中</span><span>夜</span>
+    </div>
+    <div class="prog-time">
+      <span>0h</span><span>4h</span><span>12h</span>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
+<!-- ══════════════════════════════════════
      RISK-FREE FLOW
-════════════════════════════════════════ -->
+══════════════════════════════════════ -->
 <section class="sec flow-sec">
-  <div class="sec-head reveal">
+  <div class="sec-head rv">
     <span class="u-label">Risk-Free</span>
     <h2>なぜ失敗しないのか</h2>
     <p>香水初心者でも迷わない、4ステップの安心設計。</p>
   </div>
-
-  <div class="flow-steps reveal">
+  <div class="flow-list rv">
 
     <div class="flow-step">
       <div class="flow-left">
         <div class="flow-num">01</div>
-        <div class="flow-connector"></div>
+        <div class="flow-conn"></div>
       </div>
-      <div class="flow-icon-wrap">
-        <!-- 配送ボックスアイコン -->
+      <div class="flow-ico">
         <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
       </div>
       <div class="flow-body">
-        <div class="flow-label">注文</div>
-        <div class="flow-title">商品本体＋サンプルが届く</div>
-        <div class="flow-desc">50ml・100mlには無料のアトマイザーが同梱。開封しなくても香りを確認できます。</div>
+        <div class="flow-lbl">注文</div>
+        <div class="flow-ttl">商品本体＋サンプルが届く</div>
+        <div class="flow-dsc">50ml・100mlには無料のアトマイザーが同梱。開封前に香りを確認できます。</div>
       </div>
     </div>
 
     <div class="flow-step">
       <div class="flow-left">
         <div class="flow-num">02</div>
-        <div class="flow-connector"></div>
+        <div class="flow-conn"></div>
       </div>
-      <div class="flow-icon-wrap">
-        <!-- 時計アイコン -->
+      <div class="flow-ico">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
       </div>
       <div class="flow-body">
-        <div class="flow-label">試す</div>
-        <div class="flow-title">まずサンプルを3日間使ってみる</div>
-        <div class="flow-desc">本体は封を切らずに。出勤・デート・休日と3日間、シーンを変えて試してください。</div>
+        <div class="flow-lbl">試す</div>
+        <div class="flow-ttl">まずサンプルを3日間使ってみる</div>
+        <div class="flow-dsc">本体は封を切らずに。出勤・デート・休日と3日間、シーンを変えて試してください。</div>
       </div>
     </div>
 
     <div class="flow-step">
       <div class="flow-left">
         <div class="flow-num">03</div>
-        <div class="flow-connector"></div>
+        <div class="flow-conn"></div>
       </div>
-      <div class="flow-icon-wrap">
-        <!-- ハートチェックアイコン -->
+      <div class="flow-ico">
         <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
       </div>
       <div class="flow-body">
-        <div class="flow-label">決める</div>
-        <div class="flow-title">気に入ったら本体を開封！</div>
-        <div class="flow-desc">「これだ」と感じたら本体の封を切るだけ。毎朝の香りが人生の一部になります。</div>
+        <div class="flow-lbl">決める</div>
+        <div class="flow-ttl">気に入ったら本体を開封！</div>
+        <div class="flow-dsc">「これだ」と感じたら本体の封を切るだけ。毎朝の香りが人生の一部になります。</div>
       </div>
     </div>
 
-    <div class="flow-step highlight">
+    <div class="flow-step hl">
       <div class="flow-left">
         <div class="flow-num">04</div>
       </div>
-      <div class="flow-icon-wrap">
-        <!-- 返金・リターンアイコン -->
+      <div class="flow-ico">
         <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
       </div>
       <div class="flow-body">
-        <div class="flow-label">万が一</div>
-        <div class="flow-title">未開封なら全額返金</div>
-        <div class="flow-desc">もし合わなければ本体未開封のまま返送するだけ。送料も当社負担。完全にリスクゼロです。</div>
+        <div class="flow-lbl">万が一</div>
+        <div class="flow-ttl">未開封なら全額返金</div>
+        <div class="flow-dsc">もし合わなければ本体未開封のまま返送するだけ。送料も当社負担。完全にリスクゼロです。</div>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
+<!-- ══════════════════════════════════════
      STATS
-════════════════════════════════════════ -->
+══════════════════════════════════════ -->
 <section class="sec stats-sec">
-  <div class="sec-head reveal">
+  <div class="sec-head rv">
     <span class="u-label">数字で見る信頼</span>
     <h2>10,000人以上の評価</h2>
   </div>
-  <div class="stats-grid reveal">
-    <div class="stat-card">
-      <div class="stat-num">97%</div>
-      <div class="stat-label">「ブランド品と<br>ほぼ同じ」と回答</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">93%</div>
-      <div class="stat-label">使用後に<br>褒められた</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">90%</div>
-      <div class="stat-label">友人に<br>勧めたい</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">4.9</div>
-      <div class="stat-label">Trustpilot<br>平均評価</div>
-    </div>
+  <div class="stats-grid rv">
+    <div class="stat-card"><div class="stat-num">97%</div><div class="stat-lbl">「ブランド品と<br>ほぼ同じ」と回答</div></div>
+    <div class="stat-card"><div class="stat-num">93%</div><div class="stat-lbl">使用後に<br>褒められた</div></div>
+    <div class="stat-card"><div class="stat-num">90%</div><div class="stat-lbl">友人に<br>勧めたい</div></div>
+    <div class="stat-card"><div class="stat-num">4.9</div><div class="stat-lbl">Trustpilot<br>平均評価</div></div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
+<!-- ══════════════════════════════════════
      REVIEWS
-════════════════════════════════════════ -->
-<section class="sec reviews-sec">
-  <div class="sec-head reveal">
+══════════════════════════════════════ -->
+<section class="sec rev-sec">
+  <div class="sec-head rv">
     <span class="u-label">Customer Voice</span>
     <h2>理想の自分に近づいた声</h2>
-    <p>18〜34歳の男女3,000,000人以上が体験済み</p>
+    <p>18〜34歳の男女 3,000,000人以上が体験済み</p>
   </div>
 
-  <div class="reviews-overall reveal">
-    <div class="reviews-score">4.9</div>
-    <div class="reviews-meta">
-      <div class="stars-group">
+  <div class="rev-total rv">
+    <div class="rev-score">4.9</div>
+    <div class="rev-meta">
+      <div class="rev-stars">
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
       </div>
-      <div class="reviews-total">1,284件 · Trustpilot 認定</div>
+      <div class="rev-tot">1,284件 · Trustpilot 認定</div>
     </div>
   </div>
 
-  <div class="review-cards">
+  <div class="rev-cards">
 
-    <!-- Review 1 -->
-    <div class="rc reveal">
-      <div class="rc-header">
-        <div class="rc-user">
-          <strong>田中 陽斗</strong>
-          <span>24歳・男性 · エンジニア</span>
-        </div>
+    <div class="rc rv">
+      <div class="rc-hdr">
+        <div><span class="rc-name">田中 陽斗</span><span class="rc-who">24歳・男性 · エンジニア</span></div>
         <span class="rc-date">2026/01/18</span>
       </div>
       <div class="rc-stars">
@@ -1343,29 +1050,22 @@ a { text-decoration: none; color: inherit; }
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
       </div>
-      <div class="rc-verified">
-        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        購入確認済み
-      </div>
+      <div class="rc-ver"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
       <div class="rc-body">
         <div class="rc-photo">
-          <!-- レビュー投稿者の自撮り写真または商品写真（男性・若め）-->
+          <!-- レビュー投稿者の写真（男性・若め）-->
           <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
         <div>
           <div class="rc-headline">「職場で初めて『いい匂いですね』と言われた日」</div>
-          <div class="rc-text">香水を使ったことがなかったのですが、サンプルで試せる安心感から購入を決めました。使い始めて2日目、打ち合わせ中に先輩から「なんか今日いい匂いがするけど何使ってるの？」と。その瞬間、自分に自信が持てた気がしました。</div>
+          <div class="rc-txt">サンプルで試せる安心感から購入を決めました。使い始めて2日目、打ち合わせ中に先輩から「なんかいい匂いがするけど何使ってるの？」と。その瞬間、自分に自信が持てました。</div>
         </div>
       </div>
     </div>
 
-    <!-- Review 2 -->
-    <div class="rc reveal">
-      <div class="rc-header">
-        <div class="rc-user">
-          <strong>伊藤 さくら</strong>
-          <span>28歳・女性 · デザイナー</span>
-        </div>
+    <div class="rc rv">
+      <div class="rc-hdr">
+        <div><span class="rc-name">伊藤 さくら</span><span class="rc-who">28歳・女性 · デザイナー</span></div>
         <span class="rc-date">2026/02/03</span>
       </div>
       <div class="rc-stars">
@@ -1375,10 +1075,7 @@ a { text-decoration: none; color: inherit; }
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
       </div>
-      <div class="rc-verified">
-        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        購入確認済み
-      </div>
+      <div class="rc-ver"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
       <div class="rc-body">
         <div class="rc-photo">
           <!-- レビュー投稿者の写真（女性・商品を持っている）-->
@@ -1386,18 +1083,14 @@ a { text-decoration: none; color: inherit; }
         </div>
         <div>
           <div class="rc-headline">「香水迷子から卒業。これが私の香り。」</div>
-          <div class="rc-text">ここ5年で10本以上買い替えては「なんか違う」を繰り返してました。PURELAYER はサンプルで3日試せるからリスクなく試せて、気づいたらこれ以外使えなくなっていた。まさに自分のアイコンになる香りに出会えた感じです。</div>
+          <div class="rc-txt">5年で10本以上買い替えては「なんか違う」を繰り返してました。PURELAYER はサンプルで3日試せるからリスクなく試せて、気づいたらこれ以外使えなくなっていた。</div>
         </div>
       </div>
     </div>
 
-    <!-- Review 3 -->
-    <div class="rc reveal">
-      <div class="rc-header">
-        <div class="rc-user">
-          <strong>渡辺 健太</strong>
-          <span>31歳・男性 · 営業職</span>
-        </div>
+    <div class="rc rv">
+      <div class="rc-hdr">
+        <div><span class="rc-name">渡辺 健太</span><span class="rc-who">31歳・男性 · 営業職</span></div>
         <span class="rc-date">2025/12/21</span>
       </div>
       <div class="rc-stars">
@@ -1407,10 +1100,7 @@ a { text-decoration: none; color: inherit; }
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
       </div>
-      <div class="rc-verified">
-        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        購入確認済み
-      </div>
+      <div class="rc-ver"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
       <div class="rc-body">
         <div class="rc-photo">
           <!-- レビュー投稿者の写真（男性・スーツ姿）-->
@@ -1418,7 +1108,7 @@ a { text-decoration: none; color: inherit; }
         </div>
         <div>
           <div class="rc-headline">「初めての商談前夜、これをつけると決めた。」</div>
-          <div class="rc-text">大手クライアントとの初商談の前夜に届いて、緊張する気持ちを抑えながらサンプルを試しました。翌朝、スーツに軽く1プッシュ。商談中に相手から「素敵な香りですね」と言われたときの自信は今でも忘れられません。結果も受注できました（笑）。</div>
+          <div class="rc-txt">翌朝スーツに軽く1プッシュ。商談中に相手から「素敵な香りですね」と言われたときの自信は今でも忘れられません。結果も受注できました（笑）。</div>
         </div>
       </div>
     </div>
@@ -1426,302 +1116,293 @@ a { text-decoration: none; color: inherit; }
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     COMPARE TABLE — multi-dimensional
-════════════════════════════════════════ -->
-<section class="sec compare-sec">
-  <div class="sec-head reveal">
+<!-- ══════════════════════════════════════
+     COMPARE TABLE
+══════════════════════════════════════ -->
+<section class="sec cmp-sec">
+  <div class="sec-head rv">
     <span class="u-label">比較</span>
     <h2>何が違うのか</h2>
     <p>価格だけではない、5つの視点で見る違い。</p>
   </div>
-  <div style="overflow-x:auto;">
-  <table class="compare-table reveal">
-    <thead>
-      <tr>
-        <th style="text-align:left;padding-left:16px">比較項目</th>
-        <th class="hl">PURELAYER</th>
-        <th>一般的な<br>高級香水</th>
-        <th>市販の<br>低価格香水</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>価格（50ml）</td>
-        <td class="hl"><span class="ct-badge-em">¥5,980</span></td>
-        <td class="neg">¥20,000〜</td>
-        <td class="neg">¥2,000〜<br><small style="font-size:.65rem;color:var(--ink-3)">品質に難あり</small></td>
-      </tr>
-      <tr>
-        <td>清潔感のある香り</td>
-        <td class="hl">
-          <div class="ct-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <div style="font-size:.68rem;margin-top:2px">石鹸・ムスクベース</div>
-        </td>
-        <td>
-          <div class="ct-check" style="color:var(--ink-3)"><svg viewBox="0 0 24 24" style="stroke:var(--ink-3)"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <div style="font-size:.68rem;color:var(--ink-3);margin-top:2px">種類による</div>
-        </td>
-        <td class="neg">
-          <div class="ct-check"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
-        </td>
-      </tr>
-      <tr>
-        <td>持続時間</td>
-        <td class="hl">
-          <span class="ct-badge-em">12時間</span>
-          <div style="font-size:.68rem;margin-top:3px">高濃度 EDP</div>
-        </td>
-        <td style="color:var(--ink-2)">6〜8時間<br><small style="font-size:.65rem;color:var(--ink-3)">EDT が多い</small></td>
-        <td class="neg">2〜4時間</td>
-      </tr>
-      <tr>
-        <td>初心者への使いやすさ</td>
-        <td class="hl">
-          <div class="ct-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <div style="font-size:.68rem;margin-top:2px">サンプル付・失敗なし</div>
-        </td>
-        <td class="neg">
-          <div class="ct-check"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
-          <div style="font-size:.68rem;margin-top:2px;color:var(--ink-3)">試香が難しい</div>
-        </td>
-        <td style="color:var(--ink-2)">
-          <div class="ct-check" style="color:var(--ink-3)"><svg viewBox="0 0 24 24" style="stroke:var(--ink-3)"><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-          <div style="font-size:.68rem;color:var(--ink-3);margin-top:2px">品質が不安定</div>
-        </td>
-      </tr>
-      <tr>
-        <td>全額返金保証</td>
-        <td class="hl">
-          <div class="ct-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <div style="font-size:.68rem;margin-top:2px">30日間・送料当社負担</div>
-        </td>
-        <td class="neg">
-          <div class="ct-check"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
-        </td>
-        <td class="neg">
-          <div class="ct-check"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="cmp-wrap rv">
+    <table class="cmp-tbl">
+      <thead>
+        <tr>
+          <th style="text-align:left;padding-left:16px">比較項目</th>
+          <th class="hl">PURELAYER</th>
+          <th>高級香水</th>
+          <th>市販品</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>価格（50ml）</td>
+          <td class="hl"><span class="ct-em">¥5,980</span></td>
+          <td style="color:var(--ink-3)">¥20,000〜</td>
+          <td style="color:var(--ink-3)">¥2,000〜</td>
+        </tr>
+        <tr>
+          <td>清潔感のある香り</td>
+          <td class="hl"><div class="ct-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></td>
+          <td style="color:var(--ink-3);font-size:.75rem">種類による</td>
+          <td class="neg"><div class="ct-chk"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></td>
+        </tr>
+        <tr>
+          <td>持続時間</td>
+          <td class="hl"><span class="ct-em">12時間</span></td>
+          <td style="color:var(--ink-3)">6〜8時間</td>
+          <td style="color:var(--ink-3)">2〜4時間</td>
+        </tr>
+        <tr>
+          <td>初心者への使いやすさ</td>
+          <td class="hl"><div class="ct-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div style="font-size:.68rem;margin-top:2px">サンプル付</div></td>
+          <td class="neg"><div class="ct-chk"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></td>
+          <td style="color:var(--ink-3);font-size:.75rem">品質不安定</td>
+        </tr>
+        <tr>
+          <td>全額返金保証</td>
+          <td class="hl"><div class="ct-chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div style="font-size:.68rem;margin-top:2px">30日間</div></td>
+          <td class="neg"><div class="ct-chk"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></td>
+          <td class="neg"><div class="ct-chk"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
+<!-- ══════════════════════════════════════
+     GUARANTEE
+══════════════════════════════════════ -->
+<section class="gu-sec">
+  <div class="gu-badge">
+    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+  </div>
+  <h2>PURELAYER 保証</h2>
+  <p>私たちは<b>「香りで後悔してほしくない」</b>と本気で思っています。</p>
+  <p style="margin-top:14px">
+    50ml・100mlには<b>無料サンプルを同梱</b>。本体を開封する前に3日間試せます。
+    万が一ご満足いただけなければ、<b>30日以内に未開封でご返送いただければ全額返金</b>。送料も当社負担。
+  </p>
+</section>
+
+<!-- ══════════════════════════════════════
      FAQ
-════════════════════════════════════════ -->
+══════════════════════════════════════ -->
 <section class="sec faq-sec">
-  <div class="sec-head reveal">
+  <div class="sec-head rv">
     <span class="u-label">よくある質問</span>
     <h2>初心者の不安を解消</h2>
     <p>香水デビューで迷っている方へ、正直にお答えします。</p>
   </div>
-  <div class="faq-list reveal">
+  <div class="faq-list rv">
 
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">本当に香水初心者でも大丈夫ですか？</span>
-        <span class="faq-icon">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </span>
+      <button class="faq-q" onclick="faqToggle(this)">
+        <span class="faq-qt">本当に香水初心者でも大丈夫ですか？</span>
+        <span class="faq-ico"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a">
-        <div class="faq-a-inner">
-          はい、まったく問題ありません。Oud Stallion は癖のない石鹸・ムスクをベースに設計されているため、「つけ過ぎて失敗した」が起こりにくい処方です。また、50ml・100mlにはサンプルアトマイザーが同梱されるので、本体を開封する前に香りを確かめられます。
-        </div>
-      </div>
+      <div class="faq-a"><div class="faq-ai">はい、まったく問題ありません。Oud Stallion は<b>癖のない石鹸・ムスクベース</b>で設計されているため、「つけ過ぎて失敗した」が起こりにくい処方です。また、50ml・100mlにはサンプルアトマイザーが同梱されるので、本体を開封する前に香りを確かめられます。</div></div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">12時間も香りが持つのはなぜですか？</span>
-        <span class="faq-icon">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </span>
+      <button class="faq-q" onclick="faqToggle(this)">
+        <span class="faq-qt">12時間も香りが持つのはなぜですか？</span>
+        <span class="faq-ico"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a">
-        <div class="faq-a-inner">
-          賦香率（香料の濃度）を極限まで高めたオード・パルファム（EDP）処方を採用しているためです。一般的な EDP より高い濃度で調合することで、朝の一吹きで夜まで品格のある香りが持続します。ベースのウードとアンバーは肌に溶け込むほど長持ちする性質を持ちます。
-        </div>
-      </div>
+      <div class="faq-a"><div class="faq-ai"><b>賦香率（香料の濃度）を極限まで高めた EDP 処方</b>を採用しているためです。朝の一吹きで夜まで品格のある香りが持続します。ベースのウードとアンバーは肌に溶け込むほど長持ちする性質を持ちます。</div></div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">返金の方法を教えてください。</span>
-        <span class="faq-icon">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </span>
+      <button class="faq-q" onclick="faqToggle(this)">
+        <span class="faq-qt">返金の方法を教えてください。</span>
+        <span class="faq-ico"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a">
-        <div class="faq-a-inner">
-          商品到着から30日以内であれば、本体未開封の状態で全額返金いたします。まずは同封のサンプルアトマイザーで香りをお試しください。返金をご希望の場合は、メールにてご連絡いただくだけで手続きを開始します。返送送料も当社が負担いたします。
-        </div>
-      </div>
+      <div class="faq-a"><div class="faq-ai">商品到着から<b>30日以内</b>であれば、本体未開封の状態で全額返金いたします。まずは同封のサンプルアトマイザーでお試しください。返金をご希望の場合は、メールにてご連絡いただくだけで手続きを開始します。<b>返送送料も当社が負担</b>いたします。</div></div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">どこで製造されていますか？</span>
-        <span class="faq-icon">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </span>
+      <button class="faq-q" onclick="faqToggle(this)">
+        <span class="faq-qt">どこで製造されていますか？</span>
+        <span class="faq-ico"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a">
-        <div class="faq-a-inner">
-          国内の専門調香師が監修し、国内工場で製造しています。天然ウードオイルをはじめとする素材は産地を厳選し、アルコールフリーの処方で敏感肌の方にも配慮しています。全ロットで品質検査を実施しています。
-        </div>
-      </div>
+      <div class="faq-a"><div class="faq-ai">国内の専門調香師が監修し、<b>国内工場で製造</b>しています。天然ウードオイルをはじめとする素材は産地を厳選し、アルコールフリーの処方で敏感肌の方にも配慮しています。</div></div>
     </div>
 
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">どのサイズを選べばいいですか？</span>
-        <span class="faq-icon">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </span>
+      <button class="faq-q" onclick="faqToggle(this)">
+        <span class="faq-qt">どのサイズを選べばいいですか？</span>
+        <span class="faq-ico"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a">
-        <div class="faq-a-inner">
-          初めての方は <strong>10ml（¥1,750）</strong>でお試しください。「これだ」と思ったら、無料アトマイザーが付く <strong>50ml（¥5,980）</strong>がコスパ最高です。毎日使う方や複数持ちをお考えの方は <strong>100ml（¥14,800）</strong>が最もお得です。
-        </div>
-      </div>
+      <div class="faq-a"><div class="faq-ai">初めての方は <b>10ml（¥1,750）</b>でお試しください。「これだ」と思ったら、無料アトマイザーが付く <b>50ml（¥5,980）</b>がコスパ最高です。毎日使う方は <b>100ml（¥14,800）</b>が最もお得です。</div></div>
     </div>
 
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     GUARANTEE
-════════════════════════════════════════ -->
-<section class="guarantee-sec">
-  <div class="guarantee-badge">
-    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-  </div>
-  <h2>PURELAYER 保証</h2>
-  <p>
-    私たちは<b>「香りで後悔してほしくない」</b>と本気で思っています。
-  </p>
-  <p style="margin-top:14px">
-    50ml・100mlには<b>無料サンプルを同梱</b>。本体を開封する前に3日間試せます。
-    それでも万が一ご満足いただけなければ、<b>30日以内に未開封でご返送いただければ全額返金</b>。送料も当社負担。
-  </p>
-</section>
-
-<!-- ════════════════════════════════════════
+<!-- ══════════════════════════════════════
      EMAIL SIGNUP
-════════════════════════════════════════ -->
+══════════════════════════════════════ -->
 <section class="email-sec">
   <h3>初回 10% OFF をゲット</h3>
   <p>メール登録で限定クーポン。スパムは一切なし。</p>
   <div class="email-form">
     <input type="email" placeholder="メールアドレスを入力">
-    <button>登録する</button>
+    <button type="button">登録する</button>
   </div>
   <div class="email-note">登録でマーケティング配信に同意。いつでも配信停止可能。</div>
 </section>
 
-<!-- ════════════════════════════════════════
+<!-- ══════════════════════════════════════
      FOOTER
-════════════════════════════════════════ -->
+══════════════════════════════════════ -->
 <footer class="footer">
-  <div class="footer-logo">Pure·layer</div>
-  <div class="footer-links">
+  <div class="f-logo">Pure·layer</div>
+  <div class="f-links">
     <a href="#">プライバシーポリシー</a>
     <a href="#">特定商取引法</a>
     <a href="#">返品・返金</a>
     <a href="#">お問い合わせ</a>
   </div>
-  <div class="footer-copy">© 2026 PURELAYER. All rights reserved.</div>
+  <div class="f-copy">© 2026 PURELAYER / nemveil.com. All rights reserved.</div>
 </footer>
 
-<!-- ════════════════════════════════════════
+<!-- ══════════════════════════════════════
      STICKY CTA
-════════════════════════════════════════ -->
+══════════════════════════════════════ -->
 <div class="sticky-cta" id="sticky">
-  <div class="sticky-cta-inner">
+  <div class="sticky-inner">
     <div class="sticky-price" id="sticky-price">¥5,980</div>
-    <button class="btn-primary" onclick="addToCart(this)">
+    <a class="btn-cta"
+       id="sticky-cta-link"
+       href="https://nemveil.com/cart/add?id=53230985937264&quantity=1&id=53231016182128&quantity=1">
       <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       <span>無料サンプル付きで今すぐ試す</span>
-    </button>
+    </a>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     JAVASCRIPT
-════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════
+     JAVASCRIPT — error-free, minimal
+══════════════════════════════════════ -->
 <script>
-// ── SLIDER ──────────────────────────────
-let cur = 0;
-const TOTAL = 5;
-const track = document.getElementById('track');
-const allDots = document.querySelectorAll('.dot');
-const allThumbs = document.querySelectorAll('.thumb');
+/* ─── SHOPIFY CART URLS ─────────────────
+   Direct-link method: no fetch, no async.
+   Clicking a v-card updates the main CTA
+   href + sticky CTA href, then navigates. */
+var CART_URLS = {
+  '10ml':  'https://nemveil.com/cart/add?id=53230989574512&quantity=1',
+  '50ml':  'https://nemveil.com/cart/add?id=53230985937264&quantity=1&id=53231016182128&quantity=1',
+  '100ml': 'https://nemveil.com/cart/add?id=53230989214064&quantity=1&id=53230989541744&quantity=1&id=53231016182128&quantity=1'
+};
 
-function goTo(n) {
-  cur = (n + TOTAL) % TOTAL;
-  track.style.transform = `translateX(-${cur * 100}%)`;
-  allDots.forEach((d,i) => d.classList.toggle('on', i === cur));
-  allThumbs.forEach((t,i) => t.classList.toggle('on', i === cur));
+var DISPLAY_PRICES = {
+  '10ml':  '¥1,750',
+  '50ml':  '¥5,980',
+  '100ml': '¥14,800'
+};
+
+/* Called by variant card onclick — updates UI then lets href navigate */
+function pickVariant(size, displayPrice, rawPrice, e) {
+  /* 1. Highlight selected card */
+  var cards = document.querySelectorAll('.v-card');
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].classList.remove('sel');
+  }
+  var clicked = e ? e.currentTarget : document.getElementById('vc-' + size.replace('ml', ''));
+  if (clicked) { clicked.classList.add('sel'); }
+
+  /* 2. Update main CTA href + label */
+  var mainCta = document.getElementById('main-cta');
+  if (mainCta) {
+    mainCta.href = CART_URLS[size];
+    var txt = document.getElementById('cta-txt');
+    if (txt) { txt.textContent = '無料サンプル付きで今すぐ試す — ' + displayPrice; }
+  }
+
+  /* 3. Update sticky CTA */
+  var stickyLink = document.getElementById('sticky-cta-link');
+  if (stickyLink) { stickyLink.href = CART_URLS[size]; }
+
+  var stickyPrice = document.getElementById('sticky-price');
+  if (stickyPrice) { stickyPrice.textContent = rawPrice; }
+
+  /* 4. Update price display */
+  var priceEl = document.getElementById('pi-price');
+  if (priceEl) {
+    var mainEl = priceEl.querySelector('.pi-price-main');
+    if (mainEl) { mainEl.textContent = displayPrice; }
+  }
+
+  /* Note: we do NOT call e.preventDefault() — the <a> href navigates to Shopify */
 }
-function slide(dir) { goTo(cur + dir); }
-const autoSlide = setInterval(() => slide(1), 4500);
-track.parentElement.addEventListener('mouseenter', () => clearInterval(autoSlide));
 
-// ── VARIANT SELECTION ───────────────────
-let currentPrice = '¥5,980';
+/* ─── SLIDER ─────────────────────────── */
+var sliderCur = 0;
+var SLIDE_TOTAL = 5;
+var sliderTrack = document.getElementById('track');
+var sliderDots  = document.querySelectorAll('.s-dot');
+var sliderThumbs = document.querySelectorAll('.thumb');
 
-function selectVariant(el, displayPrice, rawPrice) {
-  document.querySelectorAll('.v-card').forEach(c => c.classList.remove('selected'));
-  el.classList.add('selected');
-  currentPrice = displayPrice;
-  document.getElementById('cta-text').textContent =
-    `無料サンプル付きで今すぐ試す — ${displayPrice}`;
-  document.getElementById('sticky-price').textContent = rawPrice;
-  document.getElementById('pi-price').querySelector('.pi-price-main').textContent = displayPrice;
+function slideTo(n) {
+  sliderCur = (n + SLIDE_TOTAL) % SLIDE_TOTAL;
+  sliderTrack.style.transform = 'translateX(-' + (sliderCur * 100) + '%)';
+  for (var i = 0; i < sliderDots.length; i++) {
+    sliderDots[i].classList.toggle('on', i === sliderCur);
+  }
+  for (var j = 0; j < sliderThumbs.length; j++) {
+    sliderThumbs[j].classList.toggle('on', j === sliderCur);
+  }
 }
 
-// ── FAQ ACCORDION ────────────────────────
-function toggleFaq(btn) {
-  const item = btn.closest('.faq-item');
-  const isOpen = item.classList.contains('open');
-  // close all
-  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-  if (!isOpen) item.classList.add('open');
+function slideGo(dir) { slideTo(sliderCur + dir); }
+
+var autoSlideTimer = setInterval(function() { slideGo(1); }, 4500);
+sliderTrack.parentElement.addEventListener('mouseenter', function() {
+  clearInterval(autoSlideTimer);
+});
+
+/* ─── FAQ ACCORDION ─────────────────── */
+function faqToggle(btn) {
+  var item   = btn.parentElement;
+  var isOpen = item.classList.contains('open');
+  var allItems = document.querySelectorAll('.faq-item');
+  for (var i = 0; i < allItems.length; i++) {
+    allItems[i].classList.remove('open');
+  }
+  if (!isOpen) { item.classList.add('open'); }
 }
 
-// ── ADD TO CART ──────────────────────────
-function addToCart(btn) {
-  const orig = btn.innerHTML;
-  btn.style.background = '#1a3a18';
-  btn.innerHTML = `<svg viewBox="0 0 24 24" style="width:17px;height:17px;stroke:white;fill:none;stroke-width:2"><polyline points="20 6 9 17 4 12"/></svg><span>カートに追加しました！</span>`;
-  setTimeout(() => {
-    btn.style.background = '';
-    btn.innerHTML = orig;
-  }, 2200);
+/* ─── STICKY CTA VISIBILITY ─────────── */
+var pdpTop = document.getElementById('pdp-top');
+var stickyEl = document.getElementById('sticky');
+
+if (window.IntersectionObserver) {
+  new IntersectionObserver(function(entries) {
+    stickyEl.classList.toggle('show', !entries[0].isIntersecting);
+  }, { threshold: 0.05 }).observe(pdpTop);
 }
 
-// ── STICKY CTA ───────────────────────────
-const pdpTop = document.getElementById('pdp-top');
-const sticky = document.getElementById('sticky');
-const io = new IntersectionObserver(([e]) => {
-  sticky.classList.toggle('show', !e.isIntersecting);
-}, { threshold: 0.05 });
-io.observe(pdpTop);
-
-// ── SCROLL REVEAL ────────────────────────
-const revealEls = document.querySelectorAll('.reveal');
-const ro = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in');
-      ro.unobserve(e.target);
+/* ─── SCROLL REVEAL ─────────────────── */
+var revEls = document.querySelectorAll('.rv');
+if (window.IntersectionObserver) {
+  var revObs = new IntersectionObserver(function(entries) {
+    for (var i = 0; i < entries.length; i++) {
+      if (entries[i].isIntersecting) {
+        entries[i].target.classList.add('in');
+        revObs.unobserve(entries[i].target);
+      }
     }
-  });
-}, { threshold: 0.12 });
-revealEls.forEach(el => ro.observe(el));
+  }, { threshold: 0.08 });
+  for (var k = 0; k < revEls.length; k++) {
+    revObs.observe(revEls[k]);
+  }
+} else {
+  /* Fallback for old browsers: show everything */
+  for (var m = 0; m < revEls.length; m++) {
+    revEls[m].classList.add('in');
+  }
+}
 </script>
 </body>
 </html>
