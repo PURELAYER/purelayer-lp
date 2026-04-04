@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PURELAYER — Oud Stallion | Eau de Parfum</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ── TOKENS ── */
 :root {
@@ -37,27 +38,53 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
 
 /* ── KEYFRAMES ── */
 @keyframes marquee{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-/* ── ANNOUNCE ── */
-.ann{background:var(--ink);color:rgba(255,255,255,.6);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:9px 16px;overflow:hidden;white-space:nowrap}
-.ann-inner{display:inline-block;animation:marquee 28s linear infinite}
+/* ══════════════════════════════════════
+   ANNOUNCEMENT BAR
+   — 洗練された極小サイズ（11px相当）
+══════════════════════════════════════ */
+.ann {
+  background: var(--ink);
+  color: rgba(255,255,255,.55);
+  /* 洗練された極小サイズ */
+  font-size: 0.69rem;       /* ≈ 10.4px */
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 8px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 1;
+}
+.ann-inner{display:inline-block;animation:marquee 30s linear infinite}
 .ann b{color:var(--gold-lt);font-weight:500}
 
-/* ── HEADER ── */
-.hdr{
-  background:var(--surf);border-bottom:1px solid var(--bdr);
-  position:sticky;top:0;z-index:200;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 20px;height:56px;
+/* ══════════════════════════════════════
+   HEADER — v1 ミニマル完全再現
+══════════════════════════════════════ */
+.hdr {
+  background: var(--surf);
+  border-bottom: 1px solid var(--bdr);
+  position: sticky; top: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 20px;
+  height: 52px;   /* 締まったミニマルな高さ */
 }
-.logo{font-family:var(--fd);font-size:1.3rem;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--ink)}
+.logo {
+  font-family: var(--fd);
+  font-size: 1.15rem;  /* v1 の洗練サイズ */
+  font-weight: 400;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1;
+}
 .logo-dot{color:var(--gold)}
-.hdr-actions{display:flex;align-items:center;gap:16px}
-.icon-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;transition:background .15s;position:relative}
+.hdr-act{display:flex;align-items:center;gap:14px}
+.icon-btn{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;transition:background .15s;position:relative}
 .icon-btn:hover{background:var(--bg)}
-.icon-btn svg{width:20px;height:20px;stroke:var(--ink);fill:none;stroke-width:1.5}
-.cart-n{position:absolute;top:2px;right:2px;background:var(--grn);color:#fff;font-size:.55rem;font-weight:500;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.icon-btn svg{width:19px;height:19px;stroke:var(--ink);fill:none;stroke-width:1.5}
+.cart-n{position:absolute;top:1px;right:1px;background:var(--grn);color:#fff;font-size:.52rem;font-weight:500;width:13px;height:13px;border-radius:50%;display:flex;align-items:center;justify-content:center}
 
 /* ── SLIDER ── */
 .slider-wrap{position:relative;background:#EFECE6;overflow:hidden;aspect-ratio:1/1.05}
@@ -122,18 +149,21 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
 .v-pr-orig{font-size:.65rem;color:var(--ink3);text-decoration:line-through;margin-top:1px}
 .v-pr-off{font-size:.58rem;font-weight:500;color:#B87A10}
 
-/* ── BUTTONS ── */
-.btn-p{
-  width:100%;background:var(--grn);color:#fff;
-  border-radius:8px;padding:17px 20px;
-  font-size:.84rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  transition:background .2s,transform .1s;margin-bottom:10px;
-  text-decoration:none;
+/* ── CTA BUTTONS ── */
+.btn-p {
+  width:100%; background:var(--grn); color:#fff;
+  border-radius:8px; padding:17px 20px;
+  font-size:.84rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  transition:background .2s, transform .1s, opacity .2s;
+  margin-bottom:10px; cursor:pointer;
+  border: none;
 }
-.btn-p:hover{background:var(--grn-lt);color:#fff}
+.btn-p:hover{background:var(--grn-lt)}
 .btn-p:active{transform:scale(.98)}
-.btn-p svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:1.8}
+.btn-p.loading{opacity:.75;pointer-events:none}
+.btn-p svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:1.8;flex-shrink:0}
+.btn-p .spin-icon{animation:spin .7s linear infinite}
 .btn-g{width:100%;border:1px solid var(--bdr);color:var(--ink);border-radius:8px;padding:14px 20px;font-size:.8rem;letter-spacing:.08em;display:flex;align-items:center;justify-content:center;gap:8px;transition:border-color .2s;margin-bottom:18px}
 .btn-g:hover{border-color:var(--ink3)}
 .btn-g svg{width:15px;height:15px;stroke:var(--ink2);fill:none;stroke-width:1.5}
@@ -153,20 +183,18 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
 
 /* ── QUICK CHECK ── */
 .qc-grid{display:flex;flex-direction:column;gap:1px;background:var(--bdr);border-radius:var(--r);overflow:hidden;box-shadow:var(--ss)}
-.qc-row{background:var(--surf);display:flex;align-items:center;gap:14px;padding:16px 18px}
+.qc-row{background:var(--surf);display:flex;align-items:center;gap:14px;padding:17px 18px}
 .qc-icon{width:36px;height:36px;background:var(--bg);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .qc-icon svg{width:17px;height:17px;stroke:var(--gold);fill:none;stroke-width:1.6}
-.qc-ttl{font-size:.86rem;font-weight:500}
-.qc-sub{font-size:.72rem;color:var(--ink3)}
+.qc-ttl{font-size:.87rem;font-weight:500;line-height:1.3}
+.qc-sub{font-size:.73rem;color:var(--ink3);margin-top:2px}
 
-/* ── SCENT SECTION ── */
+/* ── SCENT ── */
 .scent-sec{background:var(--ink);padding:52px 20px;position:relative;overflow:hidden}
 .scent-sec::before{content:'';position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(176,141,87,.1) 0%,transparent 65%);top:-80px;right:-80px;pointer-events:none}
 .scent-sec .lbl{color:var(--gold-lt)}
 .scent-sec h2{color:#fff}
 .scent-sec .sec-hd p{color:rgba(255,255,255,.4)}
-
-/* 3-card horizontal on mobile */
 .scent-cards{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.07);border-radius:var(--r);overflow:hidden}
 .sc-card{background:rgba(255,255,255,.03);padding:20px 18px;display:flex;align-items:center;gap:16px}
 .sc-node{flex-shrink:0;width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center}
@@ -181,9 +209,7 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
 .sc-time{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;margin-bottom:3px}
 .sc-time.am{color:#FFD47A}.sc-time.md{color:#9DCFC4}.sc-time.ev{color:var(--gold-lt)}
 .sc-name{font-family:var(--fd);font-size:1.35rem;font-weight:400;font-style:italic;color:#fff;line-height:1.1;margin-bottom:4px}
-.sc-copy{font-size:.75rem;color:rgba(255,255,255,.45);line-height:1.4}
-
-/* progress bar */
+.sc-copy{font-size:.75rem;color:rgba(255,255,255,.45)}
 .s-bar{margin-top:28px}
 .s-bar-track{height:2px;border-radius:2px;background:linear-gradient(to right,#FFD47A 0%,#9DCFC4 48%,#B08D57 100%);position:relative;margin-bottom:8px}
 .s-bar-dots{position:absolute;top:50%;transform:translateY(-50%);width:100%;display:flex;justify-content:space-between}
@@ -205,8 +231,8 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
 .f-icon svg{width:18px;height:18px;stroke:var(--ink2);fill:none;stroke-width:1.5}
 .f-body{flex:1;padding-top:8px}
 .f-lbl{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px;font-weight:500}
-.f-ttl{font-size:.92rem;font-weight:500;margin-bottom:3px}
-.f-dsc{font-size:.75rem;color:var(--ink3);line-height:1.5}
+.f-ttl{font-size:.93rem;font-weight:500;margin-bottom:3px;line-height:1.3}
+.f-dsc{font-size:.76rem;color:var(--ink3);line-height:1.5}
 .flow-step.hl .f-num{background:var(--grn);color:#fff;border-color:var(--grn)}
 .flow-step.hl .f-icon svg{stroke:var(--grn)}
 .flow-step.hl .f-ttl{color:var(--grn)}
@@ -250,7 +276,6 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
 .cmp-tbl tbody td{padding:12px 8px;border-top:1px solid var(--bdr);text-align:center;color:var(--ink2);vertical-align:middle}
 .cmp-tbl tbody td:first-child{text-align:left;padding-left:14px;color:var(--ink);font-size:.78rem}
 .cmp-tbl tbody td.hl{background:rgba(45,74,42,.04);font-weight:500;color:var(--grn)}
-.ct-ok{display:inline-flex;align-items:center;justify-content:center}
 .ct-ok svg{width:15px;height:15px;stroke:var(--grn);fill:none;stroke-width:2.2}
 .ct-ng svg{width:15px;height:15px;stroke:#D0CFC8;fill:none;stroke-width:2}
 .ct-badge{display:inline-block;background:var(--grn);color:#fff;font-size:.62rem;font-weight:500;padding:2px 8px;border-radius:3px}
@@ -315,20 +340,29 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
   .v-cards{display:grid;grid-template-columns:repeat(3,1fr)}
 }
 </style>
+      <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
+   <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vvn8p99ehp");
+</script>
+</head>
 </head>
 <body>
 
-<!-- ANNOUNCE -->
+<!-- ════ ANNOUNCE — 洗練された極小サイズ ════ -->
 <div class="ann">
   <span class="ann-inner">
-    &nbsp;&nbsp;&nbsp;&nbsp;<b>無料サンプル同梱</b> &nbsp;·&nbsp; 30日間全額返金保証 &nbsp;·&nbsp; 送料無料（¥5,000以上）&nbsp;·&nbsp; 翌日発送対応 &nbsp;·&nbsp;<b>無料サンプル同梱</b> &nbsp;·&nbsp; 30日間全額返金保証 &nbsp;·&nbsp; 送料無料（¥5,000以上）&nbsp;·&nbsp; 翌日発送対応&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;<b>無料サンプル同梱</b>&nbsp;·&nbsp;30日間全額返金保証&nbsp;·&nbsp;送料無料（¥5,000以上）&nbsp;·&nbsp;翌日発送対応&nbsp;·&nbsp;<b>無料サンプル同梱</b>&nbsp;·&nbsp;30日間全額返金保証&nbsp;·&nbsp;送料無料（¥5,000以上）&nbsp;·&nbsp;翌日発送対応&nbsp;&nbsp;&nbsp;&nbsp;
   </span>
 </div>
 
-<!-- HEADER -->
+<!-- ════ HEADER — v1 ミニマル完全再現 ════ -->
 <header class="hdr">
   <a href="https://nemveil.com" class="logo">P U R E <span class="logo-dot">·</span> L A Y E R</a>
-  <div class="hdr-actions">
+  <div class="hdr-act">
     <button class="icon-btn" aria-label="検索">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7.5"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
     </button>
@@ -339,7 +373,7 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
   </div>
 </header>
 
-<!-- PDP TOP -->
+<!-- ════ PDP TOP ════ -->
 <div id="pdp-top">
 
   <!-- Slider -->
@@ -355,7 +389,7 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
         <img src="https://placehold.co/500x525/E8E4DC/7A7268?text=Lifestyle" alt="">
       </div>
       <div class="slide">
-        <!-- 素材クローズアップ：ウードオイル -->
+        <!-- 素材：ウードオイルのクローズアップ -->
         <img src="https://placehold.co/500x525/DDD8D0/1A1714?text=Ingredients" alt="">
       </div>
       <div class="slide">
@@ -394,10 +428,8 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
       <span class="badge b-grn">Best Seller</span>
       <span class="badge b-gold">送料無料</span>
     </div>
-
     <h1 class="pi-name">Oud Stallion</h1>
     <div class="pi-sub">Eau de Parfum — PURELAYER No.01</div>
-
     <div class="stars-row">
       <div class="stars">
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
@@ -408,12 +440,10 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
       </div>
       <span class="rev-count">1,284件のレビュー</span>
     </div>
-
     <div class="offer-pill">
       <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
       <span>100ml購入で <strong>無料サンプル同梱</strong>。未開封なら30日以内に全額返金</span>
     </div>
-
     <div class="price-row" id="pi-price">
       <span class="price-main">¥5,980</span>
       <span class="price-orig">¥7,774</span>
@@ -425,7 +455,7 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
     <div class="v-lbl">サイズを選ぶ</div>
     <div class="v-cards">
 
-      <div class="v-card" id="v-10ml" onclick="selectV('10ml','¥1,750','¥1,750','¥2,275')">
+      <div class="v-card" id="v-10ml" onclick="selectV('10ml')">
         <div class="v-radio"></div>
         <div class="v-body">
           <div class="v-top"><span class="v-size">10ml</span><span class="vb vb-try">お試し</span></div>
@@ -438,7 +468,7 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
         </div>
       </div>
 
-      <div class="v-card sel" id="v-50ml" onclick="selectV('50ml','¥5,980','¥5,980','¥7,774')">
+      <div class="v-card sel" id="v-50ml" onclick="selectV('50ml')">
         <div class="v-radio"></div>
         <div class="v-body">
           <div class="v-top"><span class="v-size">50ml</span><span class="vb vb-pop">人気 No.1</span></div>
@@ -451,7 +481,7 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
         </div>
       </div>
 
-      <div class="v-card" id="v-100ml" onclick="selectV('100ml','¥14,800','¥14,800','¥19,240')">
+      <div class="v-card" id="v-100ml" onclick="selectV('100ml')">
         <div class="v-radio"></div>
         <div class="v-body">
           <div class="v-top"><span class="v-size">100ml</span><span class="vb vb-val">最もお得</span></div>
@@ -466,13 +496,11 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
 
     </div>
 
-    <!-- CTA — href updated by JS on variant change -->
-    <a id="main-cta"
-       href="https://nemveil.com/cart/add?id=53230985937264&quantity=1&id=53231016182128&quantity=1"
-       class="btn-p">
+    <!-- CTA — Ajax → /checkout -->
+    <button class="btn-p" id="main-cta" onclick="handleCtaClick(this)">
       <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       <span id="cta-text">無料サンプル付きで今すぐ試す — ¥5,980</span>
-    </a>
+    </button>
 
     <button class="btn-g">
       <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
@@ -497,50 +525,62 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
         <span>12時間持続</span>
       </div>
     </div>
-
-  </div><!-- /pi -->
+  </div>
 </div><!-- /pdp-top -->
 
-<!-- ═══ QUICK CHECK ═══ -->
+<!-- ════ 4つの約束 — 感情訴求リライト ════ -->
 <section class="sec" style="background:var(--surf)">
   <div class="sec-hd rv">
     <span class="lbl">なぜ選ばれるのか</span>
-    <h2>PURELAYER の 4 つの約束</h2>
-    <p>デザイナー香水の 1/10 以下の価格で、妥協のない香りを。</p>
+    <h2>PURELAYERがあなたに<br>約束すること</h2>
   </div>
   <div class="qc-grid rv">
+
     <div class="qc-row">
       <div class="qc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
-      <div><div class="qc-ttl">12時間持続する清潔感</div><div class="qc-sub">朝1プッシュで夜まで。高濃度EDP処方</div></div>
+      <div>
+        <div class="qc-ttl">12時間、シャンプーしたての清潔感が続く</div>
+        <div class="qc-sub">朝1プッシュで夜まで。高濃度EDP処方</div>
+      </div>
     </div>
+
     <div class="qc-row">
       <div class="qc-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></div>
-      <div><div class="qc-ttl">購入前にサンプルで確認</div><div class="qc-sub">香りが確認できるまで本体を開封不要</div></div>
+      <div>
+        <div class="qc-ttl">購入前にサンプルでしっかり確認できる</div>
+        <div class="qc-sub">開封前に香りを試せるから、失敗ゼロ</div>
+      </div>
     </div>
+
     <div class="qc-row">
       <div class="qc-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
-      <div><div class="qc-ttl">デザイナー品質・ブランド料なし</div><div class="qc-sub">素材だけに投資。広告費・ブランド税ゼロ</div></div>
+      <div>
+        <div class="qc-ttl">高級香水と同じ品質を、1/10以下の価格で</div>
+        <div class="qc-sub">ブランド料なし。素材だけに投資</div>
+      </div>
     </div>
+
     <div class="qc-row">
       <div class="qc-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M12 8v4l3 3"/></svg></div>
-      <div><div class="qc-ttl">国内検査済み・敏感肌対応</div><div class="qc-sub">天然ウードオイル使用。アルコールフリー</div></div>
+      <div>
+        <div class="qc-ttl">敏感肌でも安心して使える自然な香り</div>
+        <div class="qc-sub">天然ウードオイル使用。アルコールフリー</div>
+      </div>
     </div>
+
   </div>
 </section>
 
-<!-- ═══ SCENT — 1日で変わる、3つの表情 ═══ -->
+<!-- ════ SCENT ════ -->
 <section class="scent-sec">
   <div class="sec-hd rv">
     <span class="lbl">Scent Profile</span>
-    <h2 style="color:#fff">香りのレイヤー</h2>
+    <h2>香りのレイヤー</h2>
     <p>朝から夜へ。時間とともに表情を変える3層の香り。</p>
   </div>
-
   <div class="scent-cards rv">
-
     <div class="sc-card">
       <div class="sc-node sn-am">
-        <!-- 太陽アイコン -->
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
       </div>
       <div class="sc-body">
@@ -549,10 +589,8 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
         <div class="sc-copy">爽やかな第一印象</div>
       </div>
     </div>
-
     <div class="sc-card">
       <div class="sc-node sn-md">
-        <!-- 時計アイコン -->
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
       </div>
       <div class="sc-body">
@@ -561,10 +599,8 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
         <div class="sc-copy">清潔感がずっと続く</div>
       </div>
     </div>
-
     <div class="sc-card">
       <div class="sc-node sn-ev">
-        <!-- 月アイコン -->
         <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
       </div>
       <div class="sc-body">
@@ -573,9 +609,7 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
         <div class="sc-copy">上品な余韻</div>
       </div>
     </div>
-
   </div>
-
   <div class="s-bar rv">
     <div class="s-bar-track">
       <div class="s-bar-dots">
@@ -589,11 +623,11 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
   </div>
 </section>
 
-<!-- ═══ RISK-FREE — 香水初心者でも迷わない ═══ -->
+<!-- ════ RISK-FREE — 感情訴求リライト ════ -->
 <section class="sec flow-sec">
   <div class="sec-hd rv">
     <span class="lbl">Risk-Free</span>
-    <h2>香水初心者でも迷わない、<br>4つの安心ステップ</h2>
+    <h2>香水初心者でも安心して<br>始められる、4つのステップ</h2>
   </div>
   <div class="flow-steps rv">
 
@@ -601,9 +635,9 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
       <div class="f-left"><div class="f-num">01</div><div class="f-conn"></div></div>
       <div class="f-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
       <div class="f-body">
-        <div class="f-lbl">注文</div>
-        <div class="f-ttl">商品＋サンプルが届く</div>
-        <div class="f-dsc">50ml・100mlには無料アトマイザーが同梱。</div>
+        <div class="f-lbl">届く</div>
+        <div class="f-ttl">本体とサンプルが一緒に到着</div>
+        <div class="f-dsc">開封前に香りを確認できます。</div>
       </div>
     </div>
 
@@ -612,8 +646,8 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
       <div class="f-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg></div>
       <div class="f-body">
         <div class="f-lbl">試す</div>
-        <div class="f-ttl">サンプルを3日間試す</div>
-        <div class="f-dsc">本体は開封せず。出勤・デート・休日で試す。</div>
+        <div class="f-ttl">3日間、日常の中で実際に使ってみる</div>
+        <div class="f-dsc">出勤・デート・休日。シーンを変えて。</div>
       </div>
     </div>
 
@@ -622,8 +656,8 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
       <div class="f-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
       <div class="f-body">
         <div class="f-lbl">決める</div>
-        <div class="f-ttl">気に入ったら本体を開封！</div>
-        <div class="f-dsc">「これだ」と感じたら封を切るだけ。</div>
+        <div class="f-ttl">「これだ！」と思ったら本体を開封</div>
+        <div class="f-dsc">理想の自分へ、その1プッシュから。</div>
       </div>
     </div>
 
@@ -631,49 +665,36 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
       <div class="f-left"><div class="f-num">04</div></div>
       <div class="f-icon"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></div>
       <div class="f-body">
-        <div class="f-lbl">万が一</div>
-        <div class="f-ttl">合わなければ全額返金</div>
-        <div class="f-dsc">本体未開封で返送するだけ。送料当社負担。</div>
+        <div class="f-lbl">安心</div>
+        <div class="f-ttl">合わなければ未開封で全額返金</div>
+        <div class="f-dsc">送料も当社負担。リスクはゼロです。</div>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- ═══ STATS — 10,000人以上が選んだ、リアルな声 ═══ -->
+<!-- ════ STATS ════ -->
 <section class="sec stats-sec">
   <div class="sec-hd rv">
     <span class="lbl">数字で見る信頼</span>
     <h2>10,000人以上が選んだ、<br>リアルな声</h2>
   </div>
   <div class="stats-grid rv">
-    <div class="stat-c">
-      <div class="stat-n">97%</div>
-      <div class="stat-l">「ブランド品と<br>ほぼ同じ香り」</div>
-    </div>
-    <div class="stat-c">
-      <div class="stat-n">93%</div>
-      <div class="stat-l">「いい匂いと<br>褒められた」</div>
-    </div>
-    <div class="stat-c">
-      <div class="stat-n">90%</div>
-      <div class="stat-l">友人に<br>勧めたい</div>
-    </div>
-    <div class="stat-c">
-      <div class="stat-n">4.9</div>
-      <div class="stat-l">Trustpilot<br>平均評価</div>
-    </div>
+    <div class="stat-c"><div class="stat-n">97%</div><div class="stat-l">「ブランド品と<br>ほぼ同じ香り」</div></div>
+    <div class="stat-c"><div class="stat-n">93%</div><div class="stat-l">「いい匂いと<br>褒められた」</div></div>
+    <div class="stat-c"><div class="stat-n">90%</div><div class="stat-l">友人に<br>勧めたい</div></div>
+    <div class="stat-c"><div class="stat-n">4.9</div><div class="stat-l">Trustpilot<br>平均評価</div></div>
   </div>
 </section>
 
-<!-- ═══ REVIEWS — 感情エピソード ═══ -->
+<!-- ════ REVIEWS ════ -->
 <section class="sec reviews-sec">
   <div class="sec-hd rv">
     <span class="lbl">Customer Voice</span>
     <h2>理想の自分に近づいた声</h2>
     <p>18〜34歳の男女 3,000,000人以上が体験済み</p>
   </div>
-
   <div class="rev-overall rv">
     <div class="rev-score">4.9</div>
     <div class="rev-meta">
@@ -687,7 +708,6 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
       <div class="rev-total">1,284件 · Trustpilot 認定</div>
     </div>
   </div>
-
   <div class="rev-cards">
 
     <div class="rc rv">
@@ -704,8 +724,7 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
       </div>
       <div class="rc-ver"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
       <div class="rc-body">
-        <div class="rc-photo">
-          <!-- レビュー写真：男性（差し替え可）-->
+        <div class="rc-photo"><!-- 投稿者写真（差し替え可）-->
           <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
         <div>
@@ -730,12 +749,11 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
       <div class="rc-ver"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
       <div class="rc-body">
         <div class="rc-photo">
-          <!-- レビュー写真：女性（差し替え可）-->
           <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
         <div>
           <div class="rc-hl">「香水迷子から卒業。これが私の香り。」</div>
-          <div class="rc-txt">5年で10本以上買い替えたのに。PURELAYERはサンプルで試せるから失敗ゼロ。ようやく自分の香りに出会えました。</div>
+          <div class="rc-txt">5年で10本以上買い替えた私が、ようやく自分のアイコンになる香りに出会えました。</div>
         </div>
       </div>
     </div>
@@ -755,12 +773,11 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
       <div class="rc-ver"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
       <div class="rc-body">
         <div class="rc-photo">
-          <!-- レビュー写真：男性スーツ（差し替え可）-->
           <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
         <div>
           <div class="rc-hl">「初商談の朝、スーツに1プッシュ。受注できました。」</div>
-          <div class="rc-txt">商談中に相手から「素敵な香りですね」と言われたときの自信は今でも忘れられません。</div>
+          <div class="rc-txt">商談中に「素敵な香りですね」と言われたときの自信は今でも忘れられません。</div>
         </div>
       </div>
     </div>
@@ -768,12 +785,12 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
   </div>
 </section>
 
-<!-- ═══ COMPARE — 他の香水と何が違うのか ═══ -->
+<!-- ════ COMPARE — ユーザーの不安を解消する項目 ════ -->
 <section class="sec cmp-sec">
   <div class="sec-hd rv">
     <span class="lbl">比較</span>
     <h2>他の香水と何が違うのか</h2>
-    <p>価格だけではない、5つの視点で見る違い。</p>
+    <p>あなたが不安に思うポイント、全部解決します。</p>
   </div>
   <div style="overflow-x:auto">
   <table class="cmp-tbl rv">
@@ -787,41 +804,41 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
     </thead>
     <tbody>
       <tr>
-        <td>価格（50ml）</td>
-        <td class="hl"><span class="ct-badge">¥5,980</span></td>
-        <td style="color:var(--ink3)">¥20,000〜</td>
-        <td style="color:var(--ink3)">¥2,000〜</td>
-      </tr>
-      <tr>
-        <td>清潔感のある香り</td>
-        <td class="hl"><div class="ct-ok"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></td>
-        <td style="font-size:.72rem;color:var(--ink3)">種類による</td>
-        <td><div class="ct-ng"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></td>
-      </tr>
-      <tr>
-        <td>持続時間</td>
+        <td>清潔感の持続</td>
         <td class="hl"><span class="ct-badge">12時間</span></td>
         <td style="color:var(--ink2)">6〜8時間</td>
         <td style="color:var(--ink3)">2〜4時間</td>
       </tr>
       <tr>
-        <td>初心者への使いやすさ</td>
+        <td>初心者の使いやすさ</td>
         <td class="hl"><div class="ct-ok"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div style="font-size:.67rem;margin-top:2px">サンプル付</div></td>
         <td><div class="ct-ng"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></td>
         <td style="font-size:.72rem;color:var(--ink3)">品質不安定</td>
       </tr>
       <tr>
-        <td>全額返金保証</td>
+        <td>返金保証</td>
         <td class="hl"><div class="ct-ok"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div style="font-size:.67rem;margin-top:2px">30日間</div></td>
         <td><div class="ct-ng"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></td>
         <td><div class="ct-ng"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></td>
+      </tr>
+      <tr>
+        <td>敏感肌への配慮</td>
+        <td class="hl"><div class="ct-ok"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div style="font-size:.67rem;margin-top:2px">天然成分</div></td>
+        <td style="font-size:.72rem;color:var(--ink3)">種類による</td>
+        <td><div class="ct-ng"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></td>
+      </tr>
+      <tr>
+        <td>価格（50ml）</td>
+        <td class="hl"><span class="ct-badge">¥5,980</span></td>
+        <td style="color:var(--ink3)">¥20,000〜</td>
+        <td style="color:var(--ink3)">¥2,000〜</td>
       </tr>
     </tbody>
   </table>
   </div>
 </section>
 
-<!-- ═══ FAQ ═══ -->
+<!-- ════ FAQ ════ -->
 <section class="sec faq-sec">
   <div class="sec-hd rv">
     <span class="lbl">よくある質問</span>
@@ -864,7 +881,7 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
   </div>
 </section>
 
-<!-- ═══ GUARANTEE ═══ -->
+<!-- ════ GUARANTEE ════ -->
 <section class="guar-sec">
   <div class="guar-badge">
     <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -874,7 +891,7 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
   <p style="margin-top:12px">50ml・100mlには<b>無料サンプルを同梱</b>。本体開封前に3日間試せます。万が一ご満足いただけなければ、<b>30日以内に未開封でご返送で全額返金</b>。送料も当社負担。</p>
 </section>
 
-<!-- ═══ EMAIL ═══ -->
+<!-- ════ EMAIL ════ -->
 <section class="email-sec">
   <h3>初回 10% OFF をゲット</h3>
   <p>メール登録で限定クーポン。スパムなし。</p>
@@ -885,7 +902,7 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
   <div class="email-note">登録でマーケティング配信に同意。いつでも配信停止可能。</div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
+<!-- ════ FOOTER ════ -->
 <footer class="footer">
   <div class="footer-logo">P U R E · L A Y E R</div>
   <div class="footer-links">
@@ -897,81 +914,160 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
   <div class="footer-copy">© 2026 PURELAYER / nemveil.com. All rights reserved.</div>
 </footer>
 
-<!-- ═══ STICKY CTA ═══ -->
+<!-- ════ STICKY CTA ════ -->
 <div class="sticky-cta" id="sticky">
   <div class="sticky-inner">
     <div class="sticky-price" id="sticky-price">¥5,980</div>
-    <a id="sticky-btn"
-       href="https://nemveil.com/cart/add?id=53230985937264&quantity=1&id=53231016182128&quantity=1"
-       class="btn-p">
+    <button class="btn-p" id="sticky-btn" onclick="handleCtaClick(this)">
       <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       <span>無料サンプル付きで今すぐ試す</span>
-    </a>
+    </button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════
-     JAVASCRIPT — エラーゼロ保証
-════════════════════════════════════ -->
+<!-- ══════════════════════════════════════
+     JAVASCRIPT — Ajax Cart + /checkout
+══════════════════════════════════════ -->
 <script>
-(function(){
+(function () {
   'use strict';
 
-  /* ── Shopify direct-link map ── */
-  var URLS = {
-    '10ml':  'https://nemveil.com/cart/add?id=53230989574512&quantity=1',
-    '50ml':  'https://nemveil.com/cart/add?id=53230985937264&quantity=1&id=53231016182128&quantity=1',
-    '100ml': 'https://nemveil.com/cart/add?id=53230989214064&quantity=1&id=53230989541744&quantity=1&id=53231016182128&quantity=1'
+  /* ────────────────────────────────────
+     Shopify variant items per size
+  ──────────────────────────────────── */
+  var ITEMS = {
+    '10ml':  [
+      { id: 53230989574512, quantity: 1 }
+    ],
+    '50ml':  [
+      { id: 53230985937264, quantity: 1 },
+      { id: 53231016182128, quantity: 1 }   /* 10ml アトマイザー */
+    ],
+    '100ml': [
+      { id: 53230989214064, quantity: 1 },
+      { id: 53230989541744, quantity: 1 },  /* 2ml テストキット */
+      { id: 53231016182128, quantity: 1 }   /* 10ml アトマイザー */
+    ]
   };
 
-  /* ── Variant selection ── */
-  window.selectV = function(size, disp, raw, orig) {
+  var PRICES = {
+    '10ml':  { disp: '¥1,750',  orig: '¥2,275'  },
+    '50ml':  { disp: '¥5,980',  orig: '¥7,774'  },
+    '100ml': { disp: '¥14,800', orig: '¥19,240' }
+  };
+
+  var currentSize = '50ml';
+
+  /* ────────────────────────────────────
+     Ajax cart → /checkout
+     (提供コードをそのまま実装)
+  ──────────────────────────────────── */
+  async function handleAddToCart(items) {
+    try {
+      var response = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: items })
+      });
+      if (response.ok) {
+        window.location.href = '/checkout';
+      } else {
+        /* non-2xx: fallback to direct URL */
+        fallbackCart(currentSize);
+      }
+    } catch (error) {
+      console.error('Cart Error:', error);
+      /* network error fallback */
+      fallbackCart(currentSize);
+    }
+  }
+
+  /* フォールバック: 直接URLリダイレクト */
+  function fallbackCart(size) {
+    var FALLBACK = {
+      '10ml':  'https://nemveil.com/cart/add?id=53230989574512&quantity=1',
+      '50ml':  'https://nemveil.com/cart/add?id=53230985937264&quantity=1&id=53231016182128&quantity=1',
+      '100ml': 'https://nemveil.com/cart/add?id=53230989214064&quantity=1&id=53230989541744&quantity=1&id=53231016182128&quantity=1'
+    };
+    window.location.href = FALLBACK[size] || FALLBACK['50ml'];
+  }
+
+  /* ────────────────────────────────────
+     CTA click handler (loading state)
+  ──────────────────────────────────── */
+  window.handleCtaClick = function (btn) {
+    var items = ITEMS[currentSize];
+    if (!items) return;
+
+    /* loading state */
+    var orig = btn.innerHTML;
+    btn.classList.add('loading');
+    btn.innerHTML =
+      '<svg viewBox="0 0 24 24" class="spin-icon" style="width:17px;height:17px;stroke:#fff;fill:none;stroke-width:2"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg>' +
+      '<span>追加中…</span>';
+
+    handleAddToCart(items).finally(function () {
+      /* restore if page didn't redirect */
+      setTimeout(function () {
+        btn.classList.remove('loading');
+        btn.innerHTML = orig;
+      }, 3000);
+    });
+  };
+
+  /* ────────────────────────────────────
+     Variant selection
+  ──────────────────────────────────── */
+  window.selectV = function (size) {
+    currentSize = size;
+
     /* card highlight */
     var cards = document.querySelectorAll('.v-card');
     for (var i = 0; i < cards.length; i++) cards[i].classList.remove('sel');
     var active = document.getElementById('v-' + size);
     if (active) active.classList.add('sel');
 
-    /* price display */
+    /* price update */
+    var p = PRICES[size];
     var pm = document.querySelector('#pi-price .price-main');
     var po = document.querySelector('#pi-price .price-orig');
-    if (pm) pm.textContent = disp;
-    if (po) po.textContent = orig;
+    if (pm) pm.textContent = p.disp;
+    if (po) po.textContent = p.orig;
 
-    /* CTA text + href */
+    /* CTA text */
     var t = document.getElementById('cta-text');
-    if (t) t.textContent = '無料サンプル付きで今すぐ試す — ' + disp;
-    var mc = document.getElementById('main-cta');
-    if (mc) mc.href = URLS[size];
+    if (t) t.textContent = '無料サンプル付きで今すぐ試す — ' + p.disp;
 
-    /* sticky */
+    /* sticky price */
     var sp = document.getElementById('sticky-price');
-    if (sp) sp.textContent = raw;
-    var sb = document.getElementById('sticky-btn');
-    if (sb) sb.href = URLS[size];
+    if (sp) sp.textContent = p.disp;
   };
 
-  /* ── Slider ── */
+  /* ────────────────────────────────────
+     Slider
+  ──────────────────────────────────── */
   var cur = 0, TOTAL = 5;
   var track  = document.getElementById('track');
   var dots   = document.querySelectorAll('.dot');
   var thumbs = document.querySelectorAll('.thumb');
 
-  window.goTo = function(n) {
+  window.goTo = function (n) {
     cur = ((n % TOTAL) + TOTAL) % TOTAL;
     if (track) track.style.transform = 'translateX(-' + (cur * 100) + '%)';
     for (var i = 0; i < dots.length;   i++) dots[i].classList.toggle('on',   i === cur);
     for (var j = 0; j < thumbs.length; j++) thumbs[j].classList.toggle('on', j === cur);
   };
-  window.slide = function(dir) { window.goTo(cur + dir); };
+  window.slide = function (dir) { window.goTo(cur + dir); };
 
-  var timer = setInterval(function(){ window.slide(1); }, 4500);
+  var timer = setInterval(function () { window.slide(1); }, 4500);
   if (track && track.parentElement) {
-    track.parentElement.addEventListener('mouseenter', function(){ clearInterval(timer); });
+    track.parentElement.addEventListener('mouseenter', function () { clearInterval(timer); });
   }
 
-  /* ── FAQ accordion ── */
-  window.toggleFaq = function(btn) {
+  /* ────────────────────────────────────
+     FAQ accordion
+  ──────────────────────────────────── */
+  window.toggleFaq = function (btn) {
     var item   = btn.parentElement;
     var isOpen = item.classList.contains('open');
     var all    = document.querySelectorAll('.faq-item.open');
@@ -979,19 +1075,23 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
     if (!isOpen) item.classList.add('open');
   };
 
-  /* ── Sticky CTA ── */
+  /* ────────────────────────────────────
+     Sticky CTA
+  ──────────────────────────────────── */
   var pdp    = document.getElementById('pdp-top');
   var sticky = document.getElementById('sticky');
   if (pdp && sticky && window.IntersectionObserver) {
-    new IntersectionObserver(function(entries){
+    new IntersectionObserver(function (entries) {
       sticky.classList.toggle('show', !entries[0].isIntersecting);
     }, { threshold: 0.05 }).observe(pdp);
   }
 
-  /* ── Scroll reveal ── */
+  /* ────────────────────────────────────
+     Scroll reveal
+  ──────────────────────────────────── */
   var rvEls = document.querySelectorAll('.rv');
   if (window.IntersectionObserver) {
-    var obs = new IntersectionObserver(function(entries){
+    var obs = new IntersectionObserver(function (entries) {
       for (var i = 0; i < entries.length; i++) {
         if (entries[i].isIntersecting) {
           entries[i].target.classList.add('in');
