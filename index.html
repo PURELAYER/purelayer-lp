@@ -7,780 +7,406 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════
-   DESIGN TOKENS
-═══════════════════════════════════════ */
+/* ── TOKENS ── */
 :root {
-  --bg:       #F9F9F7;
-  --surface:  #FFFFFF;
-  --ink:      #141412;
-  --ink-2:    #4A4A46;
-  --ink-3:    #8A8A84;
-  --border:   #E4E4DF;
-  --gold:     #B08D57;
-  --gold-lt:  #D4B07A;
-  --gold-bg:  #F7F2EA;
-  --green:    #2D4A2A;
-  --green-lt: #3A5F36;
-  --sh-s: 0 1px 4px rgba(20,20,18,.06);
-  --sh-m: 0 4px 24px rgba(20,20,18,.08);
-  --sh-l: 0 12px 48px rgba(20,20,18,.10);
+  --bg:      #F9F9F7;
+  --surf:    #FFFFFF;
+  --ink:     #141412;
+  --ink2:    #4A4A46;
+  --ink3:    #8A8A84;
+  --bdr:     #E4E4DF;
+  --gold:    #B08D57;
+  --gold-lt: #D4B07A;
+  --gold-bg: #F7F2EA;
+  --grn:     #2D4A2A;
+  --grn-lt:  #3A5F36;
+  --ss: 0 1px 4px rgba(20,20,18,.06);
+  --sm: 0 4px 20px rgba(20,20,18,.08);
   --r: 10px;
   --fd: 'Cormorant Garamond', Georgia, serif;
   --fb: 'DM Sans', sans-serif;
 }
 
-/* ═══════════════════════════════════════
-   RESET
-═══════════════════════════════════════ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--fb);
-  background: var(--bg);
-  color: var(--ink);
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-}
-img   { display: block; max-width: 100%; }
-a     { text-decoration: none; color: inherit; }
-button { cursor: pointer; font-family: var(--fb); border: none; background: none; }
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--ink);font-size:15px;font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:var(--fb);border:none;background:none}
 
-/* ═══════════════════════════════════════
-   UTILITY
-═══════════════════════════════════════ */
-.u-label {
-  font-size: .68rem;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--ink-3);
-}
+/* ── KEYFRAMES ── */
+@keyframes marquee{from{transform:translateX(100vw)}to{transform:translateX(-100%)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-/* ═══════════════════════════════════════
-   KEYFRAMES
-═══════════════════════════════════════ */
-@keyframes marquee {
-  from { transform: translateX(100vw); }
-  to   { transform: translateX(-100%); }
-}
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+/* ── ANNOUNCE ── */
+.ann{background:var(--ink);color:rgba(255,255,255,.6);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:9px 16px;overflow:hidden;white-space:nowrap}
+.ann-inner{display:inline-block;animation:marquee 28s linear infinite}
+.ann b{color:var(--gold-lt);font-weight:500}
 
-/* ═══════════════════════════════════════
-   ANNOUNCEMENT BAR
-═══════════════════════════════════════ */
-.announce {
-  background: var(--ink);
-  color: rgba(255,255,255,.65);
-  font-size: .7rem;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  text-align: center;
-  padding: 9px 16px;
-  overflow: hidden;
-  white-space: nowrap;
+/* ── HEADER ── */
+.hdr{
+  background:var(--surf);border-bottom:1px solid var(--bdr);
+  position:sticky;top:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;height:56px;
 }
-.announce-inner { display: inline-block; animation: marquee 26s linear infinite; }
-.announce b { color: var(--gold-lt); font-weight: 500; }
+.logo{font-family:var(--fd);font-size:1.3rem;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--ink)}
+.logo-dot{color:var(--gold)}
+.hdr-actions{display:flex;align-items:center;gap:16px}
+.icon-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;transition:background .15s;position:relative}
+.icon-btn:hover{background:var(--bg)}
+.icon-btn svg{width:20px;height:20px;stroke:var(--ink);fill:none;stroke-width:1.5}
+.cart-n{position:absolute;top:2px;right:2px;background:var(--grn);color:#fff;font-size:.55rem;font-weight:500;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center}
 
-/* ═══════════════════════════════════════
-   HEADER  ← v1 ミニマルスタイル
-═══════════════════════════════════════ */
-.header {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; z-index: 200;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 20px;
-  height: 56px;
-}
-.logo {
-  font-family: var(--fd);
-  font-size: 1.3rem;
-  font-weight: 400;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-.logo-dot { color: var(--gold); }
-.header-actions { display: flex; align-items: center; gap: 16px; }
-.icon-btn {
-  display: flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  transition: background .15s;
-  position: relative;
-}
-.icon-btn:hover { background: var(--bg); }
-.icon-btn svg { width: 20px; height: 20px; stroke: var(--ink); fill: none; stroke-width: 1.5; }
-.cart-count {
-  position: absolute; top: 2px; right: 2px;
-  background: var(--green); color: white;
-  font-size: .55rem; font-weight: 500;
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-}
+/* ── SLIDER ── */
+.slider-wrap{position:relative;background:#EFECE6;overflow:hidden;aspect-ratio:1/1.05}
+.slides-track{display:flex;height:100%;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide-tag{position:absolute;top:16px;left:16px;background:var(--gold);color:#fff;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;padding:4px 10px;border-radius:3px}
+.s-arr{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;background:rgba(255,255,255,.88);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:var(--sm);backdrop-filter:blur(4px);z-index:2;transition:transform .15s}
+.s-arr:hover{transform:translateY(-50%) scale(1.06)}
+.s-arr.prev{left:10px}.s-arr.next{right:10px}
+.s-arr svg{width:14px;height:14px;stroke:var(--ink);fill:none;stroke-width:2}
+.s-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px}
+.dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.4);transition:background .2s,transform .2s;cursor:pointer}
+.dot.on{background:#fff;transform:scale(1.4)}
+.thumbs{display:flex;gap:8px;padding:10px 16px;overflow-x:auto;scrollbar-width:none;background:var(--surf)}
+.thumbs::-webkit-scrollbar{display:none}
+.thumb{flex-shrink:0;width:54px;height:54px;border-radius:7px;overflow:hidden;border:2px solid transparent;cursor:pointer;transition:border-color .2s}
+.thumb.on{border-color:var(--gold)}
+.thumb img{width:100%;height:100%;object-fit:cover}
 
-/* ═══════════════════════════════════════
-   SLIDER
-═══════════════════════════════════════ */
-.slider-wrap {
-  position: relative;
-  background: #EFECE6;
-  overflow: hidden;
-  aspect-ratio: 1 / 1.05;
-}
-.slides-track {
-  display: flex; height: 100%;
-  transition: transform .5s cubic-bezier(.4,0,.2,1);
-}
-.slide {
-  min-width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-}
-.slide img { width: 100%; height: 100%; object-fit: cover; }
-.slide-tag {
-  position: absolute; top: 16px; left: 16px;
-  background: var(--gold); color: white;
-  font-size: .6rem; letter-spacing: .14em;
-  text-transform: uppercase; font-weight: 500;
-  padding: 4px 10px; border-radius: 3px;
-}
-.slide-arrow {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  width: 34px; height: 34px;
-  background: rgba(255,255,255,.88);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: var(--sh-m);
-  backdrop-filter: blur(4px);
-  z-index: 2;
-  transition: transform .15s, box-shadow .15s;
-}
-.slide-arrow:hover { transform: translateY(-50%) scale(1.06); box-shadow: var(--sh-l); }
-.slide-arrow.prev { left: 10px; }
-.slide-arrow.next { right: 10px; }
-.slide-arrow svg { width: 14px; height: 14px; stroke: var(--ink); fill: none; stroke-width: 2; }
-.slide-dots {
-  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 6px;
-}
-.dot {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: rgba(255,255,255,.4);
-  transition: background .2s, transform .2s;
-  cursor: pointer;
-}
-.dot.on { background: white; transform: scale(1.4); }
-.thumbs {
-  display: flex; gap: 8px;
-  padding: 10px 16px; overflow-x: auto; scrollbar-width: none;
-  background: var(--surface);
-}
-.thumbs::-webkit-scrollbar { display: none; }
-.thumb {
-  flex-shrink: 0; width: 54px; height: 54px;
-  border-radius: 7px; overflow: hidden;
-  border: 2px solid transparent; cursor: pointer;
-  transition: border-color .2s;
-}
-.thumb.on { border-color: var(--gold); }
-.thumb img { width: 100%; height: 100%; object-fit: cover; }
+/* ── PRODUCT INFO ── */
+.pi{background:var(--surf);padding:24px 20px 28px}
+.pi-badges{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.badge{font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:3px 10px;border-radius:3px}
+.b-out{border:1px solid var(--bdr);color:var(--ink3)}
+.b-grn{background:var(--grn);color:#fff}
+.b-gold{border:1px solid var(--gold);color:var(--gold)}
+.pi-name{font-family:var(--fd);font-size:2rem;font-weight:400;letter-spacing:.03em;line-height:1.15;margin-bottom:3px}
+.pi-sub{font-size:.76rem;color:var(--ink3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+.stars-row{display:flex;align-items:center;gap:8px;margin-bottom:18px}
+.stars{display:flex;gap:2px}
+.stars svg{width:13px;height:13px;fill:var(--gold);stroke:none}
+.rev-count{font-size:.76rem;color:var(--ink3);border-bottom:1px solid var(--bdr);cursor:pointer}
+.offer-pill{display:inline-flex;align-items:center;gap:8px;background:var(--gold-bg);border:1px solid var(--gold);border-radius:40px;padding:8px 16px;margin-bottom:20px;font-size:.8rem;color:var(--ink)}
+.offer-pill svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:1.8;flex-shrink:0}
+.offer-pill strong{font-weight:500;color:var(--grn)}
+.price-row{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.price-main{font-family:var(--fd);font-size:2.1rem;font-weight:400}
+.price-orig{font-size:.95rem;color:var(--ink3);text-decoration:line-through}
+.price-save{font-size:.68rem;font-weight:500;background:#FEF3E2;color:#B87A10;padding:2px 8px;border-radius:3px;letter-spacing:.06em}
+.pi-install{font-size:.73rem;color:var(--ink3);margin-bottom:22px}
 
-/* ═══════════════════════════════════════
-   PRODUCT INFO
-═══════════════════════════════════════ */
-.product-info { background: var(--surface); padding: 24px 20px 28px; }
-.pi-badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
-.pi-badge {
-  font-size: .63rem; letter-spacing: .12em;
-  text-transform: uppercase; font-weight: 500;
-  padding: 3px 10px; border-radius: 3px;
-}
-.pi-badge-outline { border: 1px solid var(--border); color: var(--ink-3); }
-.pi-badge-green   { background: var(--green); color: white; }
-.pi-badge-gold    { border: 1px solid var(--gold); color: var(--gold); }
+/* ── VARIANT CARDS ── */
+.v-lbl{margin-bottom:12px;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--ink3)}
+.v-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.v-card{border:1.5px solid var(--bdr);border-radius:var(--r);padding:14px 16px;cursor:pointer;transition:border-color .2s,box-shadow .2s,background .2s;display:flex;align-items:center;gap:14px;background:var(--surf)}
+.v-card.sel{border-color:var(--grn);background:rgba(45,74,42,.03);box-shadow:0 0 0 1px var(--grn)}
+.v-radio{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--bdr);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.v-card.sel .v-radio{border-color:var(--grn);background:var(--grn)}
+.v-card.sel .v-radio::after{content:'';width:6px;height:6px;border-radius:50%;background:#fff}
+.v-body{flex:1}
+.v-top{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+.v-size{font-weight:500;font-size:.9rem}
+.vb{font-size:.58rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:20px}
+.vb-pop{background:var(--grn);color:#fff}
+.vb-val{background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold)}
+.vb-try{background:var(--bg);color:var(--ink3);border:1px solid var(--bdr)}
+.v-free{font-size:.72rem;color:var(--ink3)}
+.v-free b{color:var(--grn);font-weight:500}
+.v-pr{text-align:right;flex-shrink:0}
+.v-pr-main{font-family:var(--fd);font-size:1.25rem;font-weight:400}
+.v-pr-orig{font-size:.65rem;color:var(--ink3);text-decoration:line-through;margin-top:1px}
+.v-pr-off{font-size:.58rem;font-weight:500;color:#B87A10}
 
-.pi-name {
-  font-family: var(--fd);
-  font-size: 2rem; font-weight: 400;
-  letter-spacing: .03em; line-height: 1.15;
-  margin-bottom: 3px;
+/* ── BUTTONS ── */
+.btn-p{
+  width:100%;background:var(--grn);color:#fff;
+  border-radius:8px;padding:17px 20px;
+  font-size:.84rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:background .2s,transform .1s;margin-bottom:10px;
+  text-decoration:none;
 }
-.pi-sub { font-size: .78rem; color: var(--ink-3); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 14px; }
-
-.pi-stars { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; }
-.stars-group { display: flex; gap: 2px; }
-.stars-group svg { width: 13px; height: 13px; fill: var(--gold); stroke: none; }
-.pi-review-count { font-size: .76rem; color: var(--ink-3); border-bottom: 1px solid var(--border); cursor: pointer; }
-
-.offer-pill {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--gold-bg); border: 1px solid var(--gold);
-  border-radius: 40px; padding: 8px 16px; margin-bottom: 20px;
-  font-size: .8rem; color: var(--ink);
-}
-.offer-pill svg { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 1.8; flex-shrink: 0; }
-.offer-pill strong { font-weight: 500; color: var(--green); }
-
-.pi-price { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
-.pi-price-main { font-family: var(--fd); font-size: 2.1rem; font-weight: 400; }
-.pi-price-orig { font-size: .95rem; color: var(--ink-3); text-decoration: line-through; }
-.pi-price-save {
-  font-size: .68rem; font-weight: 500;
-  background: #FEF3E2; color: #B87A10;
-  padding: 2px 8px; border-radius: 3px; letter-spacing: .06em;
-}
-.pi-installment { font-size: .73rem; color: var(--ink-3); margin-bottom: 22px; }
-
-/* ═══════════════════════════════════════
-   VARIANT CARDS
-═══════════════════════════════════════ */
-.variant-label { margin-bottom: 12px; }
-.variant-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
-.v-card {
-  border: 1.5px solid var(--border); border-radius: var(--r);
-  padding: 14px 16px; cursor: pointer;
-  transition: border-color .2s, box-shadow .2s, background .2s;
-  display: flex; align-items: center; gap: 14px;
-  background: var(--surface);
-}
-.v-card.selected {
-  border-color: var(--green);
-  background: rgba(45,74,42,.03);
-  box-shadow: 0 0 0 1px var(--green);
-}
-.v-radio {
-  width: 18px; height: 18px; border-radius: 50%;
-  border: 1.5px solid var(--border); flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: border-color .2s;
-}
-.v-card.selected .v-radio { border-color: var(--green); background: var(--green); }
-.v-card.selected .v-radio::after {
-  content: ''; width: 6px; height: 6px;
-  border-radius: 50%; background: white;
-}
-.v-body { flex: 1; }
-.v-top { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
-.v-size { font-weight: 500; font-size: .9rem; }
-.v-badge {
-  font-size: .58rem; font-weight: 500;
-  letter-spacing: .1em; text-transform: uppercase;
-  padding: 2px 8px; border-radius: 20px;
-}
-.v-badge-pop  { background: var(--green); color: white; }
-.v-badge-val  { background: var(--gold-bg); color: var(--gold); border: 1px solid var(--gold); }
-.v-badge-try  { background: var(--bg); color: var(--ink-3); border: 1px solid var(--border); }
-.v-free { font-size: .72rem; color: var(--ink-3); }
-.v-free b { color: var(--green); font-weight: 500; }
-.v-price { text-align: right; flex-shrink: 0; }
-.v-price-main { font-family: var(--fd); font-size: 1.25rem; font-weight: 400; }
-.v-price-orig { font-size: .65rem; color: var(--ink-3); text-decoration: line-through; margin-top: 1px; }
-.v-price-off  { font-size: .58rem; font-weight: 500; color: #B87A10; letter-spacing: .04em; }
-
-/* ═══════════════════════════════════════
-   CTA BUTTONS
-═══════════════════════════════════════ */
-.btn-primary {
-  width: 100%; background: var(--green); color: white;
-  border-radius: 8px; padding: 17px 20px;
-  font-size: .84rem; font-weight: 500; letter-spacing: .14em;
-  text-transform: uppercase;
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  transition: background .2s, transform .1s;
-  margin-bottom: 10px;
-  text-decoration: none;
-}
-.btn-primary:hover { background: var(--green-lt); color: white; }
-.btn-primary:active { transform: scale(.98); }
-.btn-primary svg { width: 17px; height: 17px; stroke: white; fill: none; stroke-width: 1.8; }
-.btn-ghost {
-  width: 100%; border: 1px solid var(--border); color: var(--ink);
-  border-radius: 8px; padding: 14px 20px;
-  font-size: .8rem; letter-spacing: .08em;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  transition: border-color .2s; margin-bottom: 18px;
-}
-.btn-ghost:hover { border-color: var(--ink-3); }
-.btn-ghost svg { width: 15px; height: 15px; stroke: var(--ink-2); fill: none; stroke-width: 1.5; }
+.btn-p:hover{background:var(--grn-lt);color:#fff}
+.btn-p:active{transform:scale(.98)}
+.btn-p svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:1.8}
+.btn-g{width:100%;border:1px solid var(--bdr);color:var(--ink);border-radius:8px;padding:14px 20px;font-size:.8rem;letter-spacing:.08em;display:flex;align-items:center;justify-content:center;gap:8px;transition:border-color .2s;margin-bottom:18px}
+.btn-g:hover{border-color:var(--ink3)}
+.btn-g svg{width:15px;height:15px;stroke:var(--ink2);fill:none;stroke-width:1.5}
 
 /* Trust strip */
-.trust-strip {
-  display: grid; grid-template-columns: repeat(4,1fr);
-  gap: 4px; padding-top: 18px; border-top: 1px solid var(--border);
-}
-.trust-item { text-align: center; }
-.trust-item svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; margin: 0 auto 5px; display: block; }
-.trust-item span { font-size: .63rem; color: var(--ink-3); line-height: 1.3; display: block; }
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding-top:18px;border-top:1px solid var(--bdr)}
+.trust-i{text-align:center}
+.trust-i svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.5;margin:0 auto 5px;display:block}
+.trust-i span{font-size:.62rem;color:var(--ink3);line-height:1.3;display:block}
 
-/* ═══════════════════════════════════════
-   SECTIONS
-═══════════════════════════════════════ */
-.sec { padding: 52px 20px; }
-.sec-head { margin-bottom: 36px; }
-.sec-head .u-label { margin-bottom: 8px; display: block; }
-.sec-head h2 { font-family: var(--fd); font-size: 1.9rem; font-weight: 400; }
-.sec-head p { color: var(--ink-3); font-size: .83rem; margin-top: 6px; max-width: 360px; }
+/* ── SECTIONS ── */
+.sec{padding:48px 20px}
+.sec-hd{margin-bottom:28px}
+.sec-hd .lbl{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--ink3);margin-bottom:8px;display:block}
+.sec-hd h2{font-family:var(--fd);font-size:1.9rem;font-weight:400;line-height:1.2}
+.sec-hd p{color:var(--ink3);font-size:.82rem;margin-top:6px}
 
-/* ═══════════════════════════════════════
-   QUICK CHECK
-═══════════════════════════════════════ */
-.qc-grid {
-  display: flex; flex-direction: column; gap: 1px;
-  background: var(--border); border-radius: var(--r);
-  overflow: hidden; box-shadow: var(--sh-s);
-}
-.qc-row {
-  background: var(--surface);
-  display: flex; align-items: center; gap: 16px; padding: 16px 18px;
-}
-.qc-icon {
-  width: 38px; height: 38px; background: var(--bg);
-  border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-.qc-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.6; }
-.qc-title { font-size: .87rem; font-weight: 500; }
-.qc-sub { font-size: .73rem; color: var(--ink-3); }
+/* ── QUICK CHECK ── */
+.qc-grid{display:flex;flex-direction:column;gap:1px;background:var(--bdr);border-radius:var(--r);overflow:hidden;box-shadow:var(--ss)}
+.qc-row{background:var(--surf);display:flex;align-items:center;gap:14px;padding:16px 18px}
+.qc-icon{width:36px;height:36px;background:var(--bg);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qc-icon svg{width:17px;height:17px;stroke:var(--gold);fill:none;stroke-width:1.6}
+.qc-ttl{font-size:.86rem;font-weight:500}
+.qc-sub{font-size:.72rem;color:var(--ink3)}
 
-/* ═══════════════════════════════════════
-   SCENT SECTION  ← ビジュアル特化
-═══════════════════════════════════════ */
-.scent-sec {
-  background: var(--ink);
-  padding: 56px 20px;
-  position: relative; overflow: hidden;
-}
-.scent-sec::before {
-  content: '';
-  position: absolute; width: 400px; height: 400px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(176,141,87,.1) 0%, transparent 65%);
-  top: -100px; right: -100px; pointer-events: none;
-}
-.scent-sec .sec-head .u-label { color: var(--gold-lt); }
-.scent-sec .sec-head h2 { color: white; }
-.scent-sec .sec-head p { color: rgba(255,255,255,.4); }
+/* ── SCENT SECTION ── */
+.scent-sec{background:var(--ink);padding:52px 20px;position:relative;overflow:hidden}
+.scent-sec::before{content:'';position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(176,141,87,.1) 0%,transparent 65%);top:-80px;right:-80px;pointer-events:none}
+.scent-sec .lbl{color:var(--gold-lt)}
+.scent-sec h2{color:#fff}
+.scent-sec .sec-hd p{color:rgba(255,255,255,.4)}
 
-/* Vertical flow */
-.scent-flow {
-  position: relative;
-  display: flex; flex-direction: column;
-}
-.scent-flow::before {
-  content: '';
-  position: absolute; left: 27px; top: 28px; bottom: 28px; width: 1px;
-  background: linear-gradient(to bottom, rgba(176,141,87,.6) 0%, rgba(176,141,87,.08) 100%);
-}
-.sc-card {
-  display: flex; align-items: flex-start; gap: 18px;
-  padding: 20px 0; position: relative; z-index: 1;
-}
-.sc-card + .sc-card { border-top: 1px solid rgba(255,255,255,.05); }
+/* 3-card horizontal on mobile */
+.scent-cards{display:flex;flex-direction:column;gap:1px;background:rgba(255,255,255,.07);border-radius:var(--r);overflow:hidden}
+.sc-card{background:rgba(255,255,255,.03);padding:20px 18px;display:flex;align-items:center;gap:16px}
+.sc-node{flex-shrink:0;width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center}
+.sc-node svg{width:20px;height:20px;fill:none;stroke-width:1.7}
+.sn-am{background:rgba(255,212,122,.1);border:1px solid rgba(255,212,122,.25)}
+.sn-am svg{stroke:#FFD47A}
+.sn-md{background:rgba(157,207,196,.1);border:1px solid rgba(157,207,196,.25)}
+.sn-md svg{stroke:#9DCFC4}
+.sn-ev{background:rgba(176,141,87,.15);border:1px solid rgba(176,141,87,.3)}
+.sn-ev svg{stroke:var(--gold-lt)}
+.sc-body{flex:1}
+.sc-time{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;margin-bottom:3px}
+.sc-time.am{color:#FFD47A}.sc-time.md{color:#9DCFC4}.sc-time.ev{color:var(--gold-lt)}
+.sc-name{font-family:var(--fd);font-size:1.35rem;font-weight:400;font-style:italic;color:#fff;line-height:1.1;margin-bottom:4px}
+.sc-copy{font-size:.75rem;color:rgba(255,255,255,.45);line-height:1.4}
 
-/* Glowing node */
-.sc-node {
-  flex-shrink: 0; width: 54px; height: 54px; border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-}
-.sc-node svg { width: 22px; height: 22px; fill: none; stroke-width: 1.6; }
-.sc-node-am { background: rgba(255,212,122,.1);  border: 1px solid rgba(255,212,122,.25); }
-.sc-node-am svg { stroke: #FFD47A; }
-.sc-node-md { background: rgba(157,207,196,.1);  border: 1px solid rgba(157,207,196,.25); }
-.sc-node-md svg { stroke: #9DCFC4; }
-.sc-node-ev { background: rgba(176,141,87,.14);  border: 1px solid rgba(176,141,87,.3); }
-.sc-node-ev svg { stroke: var(--gold-lt); }
+/* progress bar */
+.s-bar{margin-top:28px}
+.s-bar-track{height:2px;border-radius:2px;background:linear-gradient(to right,#FFD47A 0%,#9DCFC4 48%,#B08D57 100%);position:relative;margin-bottom:8px}
+.s-bar-dots{position:absolute;top:50%;transform:translateY(-50%);width:100%;display:flex;justify-content:space-between}
+.sbd{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--ink)}
+.sbd-am{background:#FFD47A}.sbd-md{background:#9DCFC4}.sbd-ev{background:#B08D57}
+.s-bar-lbls,.s-bar-times{display:flex;justify-content:space-between;font-size:.6rem}
+.s-bar-lbls{color:rgba(255,255,255,.3);letter-spacing:.12em;text-transform:uppercase}
+.s-bar-times{color:rgba(255,255,255,.18);margin-top:3px}
 
-.sc-body { flex: 1; padding-top: 2px; }
-.sc-time {
-  font-size: .6rem; letter-spacing: .2em;
-  text-transform: uppercase; font-weight: 500; margin-bottom: 4px;
-}
-.sc-time-am { color: #FFD47A; }
-.sc-time-md { color: #9DCFC4; }
-.sc-time-ev { color: var(--gold-lt); }
-.sc-name {
-  font-family: var(--fd); font-size: 1.5rem; font-weight: 400;
-  font-style: italic; color: white; line-height: 1.1; margin-bottom: 6px;
-}
-.sc-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-.sc-tag {
-  font-size: .62rem; letter-spacing: .06em;
-  padding: 2px 9px; border-radius: 20px;
-  background: rgba(255,255,255,.06);
-  color: rgba(255,255,255,.5);
-  border: 1px solid rgba(255,255,255,.1);
-}
+/* ── RISK-FREE FLOW ── */
+.flow-sec{background:var(--bg)}
+.flow-steps{display:flex;flex-direction:column}
+.flow-step{display:flex;gap:16px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--bdr)}
+.flow-step:last-child{border-bottom:none}
+.f-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.f-num{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1rem;font-weight:400;color:var(--gold)}
+.f-conn{width:1px;background:linear-gradient(to bottom,var(--bdr),transparent);flex:1;min-height:20px;margin-top:5px}
+.f-icon{width:42px;height:42px;background:var(--surf);border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:var(--ss);flex-shrink:0}
+.f-icon svg{width:18px;height:18px;stroke:var(--ink2);fill:none;stroke-width:1.5}
+.f-body{flex:1;padding-top:8px}
+.f-lbl{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px;font-weight:500}
+.f-ttl{font-size:.92rem;font-weight:500;margin-bottom:3px}
+.f-dsc{font-size:.75rem;color:var(--ink3);line-height:1.5}
+.flow-step.hl .f-num{background:var(--grn);color:#fff;border-color:var(--grn)}
+.flow-step.hl .f-icon svg{stroke:var(--grn)}
+.flow-step.hl .f-ttl{color:var(--grn)}
 
-/* Progress bar */
-.scent-bar-wrap { margin-top: 36px; }
-.scent-bar-track {
-  height: 3px; border-radius: 3px;
-  background: linear-gradient(to right, #FFD47A 0%, #9DCFC4 48%, #B08D57 100%);
-  position: relative; margin-bottom: 10px;
-}
-.scent-bar-nodes {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  width: 100%; display: flex; justify-content: space-between;
-}
-.scent-bar-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  border: 1.5px solid var(--ink);
-}
-.sbd-am { background: #FFD47A; }
-.sbd-md { background: #9DCFC4; }
-.sbd-ev { background: #B08D57; }
-.scent-bar-labels {
-  display: flex; justify-content: space-between;
-  font-size: .6rem; letter-spacing: .12em; text-transform: uppercase;
-  color: rgba(255,255,255,.3);
-}
-.scent-bar-times {
-  display: flex; justify-content: space-between;
-  font-size: .58rem; color: rgba(255,255,255,.18); margin-top: 4px;
-}
+/* ── STATS ── */
+.stats-sec{background:var(--surf)}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-c{background:var(--bg);border-radius:var(--r);padding:22px 14px;text-align:center}
+.stat-n{font-family:var(--fd);font-size:2.5rem;font-weight:300;color:var(--grn);line-height:1;margin-bottom:5px}
+.stat-l{font-size:.68rem;color:var(--ink3);line-height:1.35}
 
-/* ═══════════════════════════════════════
-   RISK-FREE FLOW
-═══════════════════════════════════════ */
-.flow-sec { background: var(--bg); }
-.flow-steps { display: flex; flex-direction: column; }
-.flow-step {
-  display: flex; gap: 18px; align-items: flex-start;
-  padding: 22px 0; border-bottom: 1px solid var(--border);
-}
-.flow-step:last-child { border-bottom: none; }
-.flow-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
-.flow-num {
-  width: 40px; height: 40px; border-radius: 50%;
-  border: 1.5px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--fd); font-size: 1.1rem; font-weight: 400; color: var(--gold);
-}
-.flow-connector {
-  width: 1px; background: linear-gradient(to bottom, var(--border), transparent);
-  flex: 1; min-height: 24px; margin-top: 6px;
-}
-.flow-icon {
-  width: 44px; height: 44px; background: var(--surface); border-radius: 10px;
-  display: flex; align-items: center; justify-content: center; box-shadow: var(--sh-s); flex-shrink: 0;
-}
-.flow-icon svg { width: 20px; height: 20px; stroke: var(--ink-2); fill: none; stroke-width: 1.5; }
-.flow-body { flex: 1; padding-top: 10px; }
-.flow-lbl  { font-size: .64rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px; font-weight: 500; }
-.flow-ttl  { font-size: .94rem; font-weight: 500; margin-bottom: 4px; }
-.flow-dsc  { font-size: .77rem; color: var(--ink-3); line-height: 1.55; }
-.flow-step.hl .flow-num  { background: var(--green); color: white; border-color: var(--green); }
-.flow-step.hl .flow-icon svg { stroke: var(--green); }
-.flow-step.hl .flow-ttl  { color: var(--green); }
+/* ── REVIEWS ── */
+.reviews-sec{background:var(--bg)}
+.rev-overall{display:flex;align-items:center;gap:16px;padding:18px;background:var(--surf);border-radius:var(--r);box-shadow:var(--ss);margin-bottom:16px}
+.rev-score{font-family:var(--fd);font-size:3rem;font-weight:300;line-height:1}
+.rev-meta .stars{margin-bottom:3px}
+.rev-meta .stars svg{width:13px;height:13px;fill:var(--gold);stroke:none}
+.rev-total{font-size:.72rem;color:var(--ink3)}
+.rev-cards{display:flex;flex-direction:column;gap:12px}
+.rc{background:var(--surf);border-radius:var(--r);padding:18px;box-shadow:var(--ss)}
+.rc-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.rc-user strong{font-size:.87rem;font-weight:500;display:block;margin-bottom:1px}
+.rc-user span{font-size:.68rem;color:var(--ink3)}
+.rc-date{font-size:.67rem;color:var(--ink3)}
+.rc-stars{display:flex;gap:2px;margin-bottom:6px}
+.rc-stars svg{width:11px;height:11px;fill:var(--gold);stroke:none}
+.rc-ver{font-size:.64rem;color:var(--grn);display:flex;align-items:center;gap:4px;margin-bottom:8px}
+.rc-ver svg{width:11px;height:11px;stroke:var(--grn);fill:none;stroke-width:2.2}
+.rc-body{display:flex;gap:10px}
+.rc-photo{width:56px;height:56px;border-radius:8px;overflow:hidden;flex-shrink:0;border:1px solid var(--bdr);background:var(--bg);display:flex;align-items:center;justify-content:center}
+.rc-photo svg{width:20px;height:20px;stroke:var(--bdr);fill:none;stroke-width:1.2}
+.rc-hl{font-size:.87rem;font-weight:500;margin-bottom:4px;line-height:1.3}
+.rc-txt{font-size:.79rem;color:var(--ink);line-height:1.6;flex:1}
 
-/* ═══════════════════════════════════════
-   STATS
-═══════════════════════════════════════ */
-.stats-sec { background: var(--surface); }
-.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.stat-card { background: var(--bg); border-radius: var(--r); padding: 22px 16px; text-align: center; }
-.stat-num {
-  font-family: var(--fd); font-size: 2.6rem; font-weight: 300;
-  color: var(--green); line-height: 1; margin-bottom: 6px;
-}
-.stat-lbl { font-size: .7rem; color: var(--ink-3); line-height: 1.4; }
+/* ── COMPARE ── */
+.cmp-sec{background:var(--surf)}
+.cmp-tbl{width:100%;border-collapse:collapse;border-radius:var(--r);overflow:hidden;box-shadow:var(--sm);font-size:.79rem;background:var(--surf)}
+.cmp-tbl thead th{padding:11px 8px;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--ink3);background:var(--bg);text-align:center}
+.cmp-tbl thead th:first-child{text-align:left;padding-left:14px}
+.cmp-tbl thead th.hl{background:var(--ink);color:rgba(255,255,255,.85)}
+.cmp-tbl tbody td{padding:12px 8px;border-top:1px solid var(--bdr);text-align:center;color:var(--ink2);vertical-align:middle}
+.cmp-tbl tbody td:first-child{text-align:left;padding-left:14px;color:var(--ink);font-size:.78rem}
+.cmp-tbl tbody td.hl{background:rgba(45,74,42,.04);font-weight:500;color:var(--grn)}
+.ct-ok{display:inline-flex;align-items:center;justify-content:center}
+.ct-ok svg{width:15px;height:15px;stroke:var(--grn);fill:none;stroke-width:2.2}
+.ct-ng svg{width:15px;height:15px;stroke:#D0CFC8;fill:none;stroke-width:2}
+.ct-badge{display:inline-block;background:var(--grn);color:#fff;font-size:.62rem;font-weight:500;padding:2px 8px;border-radius:3px}
 
-/* ═══════════════════════════════════════
-   REVIEWS
-═══════════════════════════════════════ */
-.reviews-sec { background: var(--bg); }
-.reviews-overall {
-  display: flex; align-items: center; gap: 18px;
-  padding: 20px; background: var(--surface);
-  border-radius: var(--r); box-shadow: var(--sh-s); margin-bottom: 20px;
-}
-.reviews-score { font-family: var(--fd); font-size: 3.2rem; font-weight: 300; line-height: 1; }
-.reviews-meta .stars-group { margin-bottom: 4px; }
-.reviews-meta .stars-group svg { width: 14px; height: 14px; fill: var(--gold); stroke: none; }
-.reviews-total { font-size: .73rem; color: var(--ink-3); }
-.review-cards { display: flex; flex-direction: column; gap: 14px; }
-.rc { background: var(--surface); border-radius: var(--r); padding: 20px; box-shadow: var(--sh-s); }
-.rc-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
-.rc-user strong { font-size: .88rem; font-weight: 500; display: block; margin-bottom: 1px; }
-.rc-user span   { font-size: .7rem; color: var(--ink-3); }
-.rc-date { font-size: .68rem; color: var(--ink-3); }
-.rc-stars { display: flex; gap: 2px; margin-bottom: 8px; }
-.rc-stars svg { width: 11px; height: 11px; fill: var(--gold); stroke: none; }
-.rc-verified {
-  font-size: .65rem; color: var(--green);
-  display: flex; align-items: center; gap: 4px; margin-bottom: 10px;
-}
-.rc-verified svg { width: 12px; height: 12px; stroke: var(--green); fill: none; stroke-width: 2; }
-.rc-body { display: flex; gap: 12px; }
-.rc-photo {
-  width: 60px; height: 60px; border-radius: 8px; overflow: hidden;
-  flex-shrink: 0; border: 1px solid var(--border); background: var(--bg);
-  display: flex; align-items: center; justify-content: center;
-}
-.rc-photo img { width: 100%; height: 100%; object-fit: cover; }
-.rc-photo svg { width: 22px; height: 22px; stroke: var(--border); fill: none; stroke-width: 1.2; }
-.rc-headline { font-size: .9rem; font-weight: 500; margin-bottom: 5px; }
-.rc-text { font-size: .81rem; color: var(--ink); line-height: 1.65; flex: 1; }
+/* ── FAQ ── */
+.faq-sec{background:var(--bg)}
+.faq-list{display:flex;flex-direction:column;gap:1px;background:var(--bdr);border-radius:var(--r);overflow:hidden}
+.faq-item{background:var(--surf)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 18px;text-align:left;cursor:pointer;transition:background .15s}
+.faq-q:hover{background:var(--bg)}
+.faq-qt{font-size:.87rem;font-weight:500;color:var(--ink);line-height:1.4}
+.faq-ic{flex-shrink:0;width:22px;height:22px;border-radius:50%;border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;transition:all .2s}
+.faq-ic svg{width:11px;height:11px;stroke:var(--ink3);fill:none;stroke-width:2;transition:transform .3s}
+.faq-item.open .faq-ic{background:var(--grn);border-color:var(--grn)}
+.faq-item.open .faq-ic svg{stroke:#fff;transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-item.open .faq-a{max-height:220px}
+.faq-ai{padding:13px 18px 17px;font-size:.8rem;color:var(--ink3);line-height:1.7;border-top:1px solid var(--bdr)}
+.faq-ai strong{color:var(--grn);font-weight:500}
 
-/* ═══════════════════════════════════════
-   COMPARE TABLE  (multi-dimensional)
-═══════════════════════════════════════ */
-.compare-sec { background: var(--surface); }
-.compare-table {
-  width: 100%; border-collapse: collapse;
-  border-radius: var(--r); overflow: hidden;
-  box-shadow: var(--sh-m); font-size: .8rem; background: var(--surface);
-}
-.compare-table thead th {
-  padding: 12px 10px; font-size: .64rem;
-  letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
-  color: var(--ink-3); background: var(--bg); text-align: center;
-}
-.compare-table thead th:first-child { text-align: left; padding-left: 16px; }
-.compare-table thead th.hl { background: var(--ink); color: rgba(255,255,255,.8); }
-.compare-table tbody td {
-  padding: 13px 10px; border-top: 1px solid var(--border);
-  text-align: center; color: var(--ink-2); vertical-align: middle;
-}
-.compare-table tbody td:first-child { text-align: left; padding-left: 16px; color: var(--ink); }
-.compare-table tbody td.hl { background: rgba(45,74,42,.04); font-weight: 500; color: var(--green); }
-.ct-check svg { width: 16px; height: 16px; stroke: var(--green); fill: none; stroke-width: 2.2; }
-.ct-cross svg { width: 16px; height: 16px; stroke: #D0CFC8; fill: none; stroke-width: 2; }
-.ct-badge { display: inline-block; background: var(--green); color: white; font-size: .62rem; font-weight: 500; padding: 2px 8px; border-radius: 3px; }
+/* ── GUARANTEE ── */
+.guar-sec{background:var(--ink);padding:56px 20px;text-align:center;position:relative;overflow:hidden}
+.guar-sec::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(176,141,87,.1) 0%,transparent 60%);pointer-events:none}
+.guar-badge{width:64px;height:64px;border-radius:50%;border:1px solid rgba(176,141,87,.4);background:rgba(176,141,87,.08);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.guar-badge svg{width:26px;height:26px;stroke:var(--gold-lt);fill:none;stroke-width:1.4}
+.guar-sec h2{font-family:var(--fd);font-size:1.85rem;font-weight:400;color:#fff;margin-bottom:14px}
+.guar-sec p{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.75;max-width:320px;margin:0 auto 6px}
+.guar-sec p b{color:#fff;font-weight:400}
 
-/* ═══════════════════════════════════════
-   FAQ
-═══════════════════════════════════════ */
-.faq-sec { background: var(--bg); }
-.faq-list {
-  display: flex; flex-direction: column; gap: 1px;
-  background: var(--border); border-radius: var(--r); overflow: hidden;
-}
-.faq-item { background: var(--surface); }
-.faq-q {
-  width: 100%; display: flex; align-items: center;
-  justify-content: space-between; gap: 12px;
-  padding: 18px 20px; text-align: left; cursor: pointer;
-  transition: background .15s;
-}
-.faq-q:hover { background: var(--bg); }
-.faq-q-text { font-size: .88rem; font-weight: 500; color: var(--ink); line-height: 1.4; }
-.faq-icon {
-  flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%;
-  border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  transition: background .2s, border-color .2s;
-}
-.faq-icon svg { width: 12px; height: 12px; stroke: var(--ink-3); fill: none; stroke-width: 2; transition: transform .3s; }
-.faq-item.open .faq-icon { background: var(--green); border-color: var(--green); }
-.faq-item.open .faq-icon svg { stroke: white; transform: rotate(45deg); }
-.faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
-.faq-item.open .faq-a { max-height: 240px; }
-.faq-a-inner {
-  padding: 14px 20px 18px; font-size: .82rem;
-  color: var(--ink-3); line-height: 1.7;
-  border-top: 1px solid var(--border);
-}
-.faq-a-inner strong { color: var(--green); font-weight: 500; }
+/* ── EMAIL ── */
+.email-sec{background:#1C1C1A;padding:44px 20px;text-align:center}
+.email-sec h3{font-family:var(--fd);color:#fff;font-size:1.4rem;font-weight:300;margin-bottom:5px}
+.email-sec p{font-size:.75rem;color:rgba(255,255,255,.38);margin-bottom:18px}
+.email-form{display:flex;background:rgba(255,255,255,.08);border-radius:7px;overflow:hidden;max-width:360px;margin:0 auto 10px;border:1px solid rgba(255,255,255,.1)}
+.email-form input{flex:1;background:transparent;border:none;outline:none;color:#fff;padding:13px 14px;font-family:var(--fb);font-size:.82rem;font-weight:300}
+.email-form input::placeholder{color:rgba(255,255,255,.24)}
+.email-form button{background:var(--grn);color:#fff;padding:13px 16px;font-size:.75rem;font-family:var(--fb);letter-spacing:.1em;white-space:nowrap;transition:background .2s}
+.email-form button:hover{background:var(--grn-lt)}
+.email-note{font-size:.62rem;color:rgba(255,255,255,.22)}
 
-/* ═══════════════════════════════════════
-   GUARANTEE
-═══════════════════════════════════════ */
-.guarantee-sec {
-  background: var(--ink); padding: 60px 20px;
-  text-align: center; position: relative; overflow: hidden;
-}
-.guarantee-sec::after {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(176,141,87,.1) 0%, transparent 60%);
-  pointer-events: none;
-}
-.guarantee-badge {
-  width: 68px; height: 68px; border-radius: 50%;
-  border: 1px solid rgba(176,141,87,.4); background: rgba(176,141,87,.08);
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 20px;
-}
-.guarantee-badge svg { width: 28px; height: 28px; stroke: var(--gold-lt); fill: none; stroke-width: 1.4; }
-.guarantee-sec h2 { font-family: var(--fd); font-size: 1.9rem; font-weight: 400; color: white; margin-bottom: 14px; }
-.guarantee-sec p { font-size: .83rem; color: rgba(255,255,255,.55); line-height: 1.75; max-width: 340px; margin: 0 auto 6px; }
-.guarantee-sec p b { color: white; font-weight: 400; }
+/* ── FOOTER ── */
+.footer{background:var(--surf);padding:24px 20px 110px;border-top:1px solid var(--bdr);text-align:center}
+.footer-logo{font-family:var(--fd);letter-spacing:.25em;font-size:1.1rem;text-transform:uppercase;margin-bottom:12px}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-bottom:14px}
+.footer-links a{font-size:.68rem;color:var(--ink3);letter-spacing:.06em}
+.footer-copy{font-size:.63rem;color:var(--ink3)}
 
-/* ═══════════════════════════════════════
-   EMAIL SIGNUP
-═══════════════════════════════════════ */
-.email-sec { background: #1C1C1A; padding: 48px 20px; text-align: center; }
-.email-sec h3 { font-family: var(--fd); color: white; font-size: 1.5rem; font-weight: 300; margin-bottom: 6px; }
-.email-sec p { font-size: .77rem; color: rgba(255,255,255,.4); margin-bottom: 20px; }
-.email-form {
-  display: flex; background: rgba(255,255,255,.08); border-radius: 7px;
-  overflow: hidden; max-width: 380px; margin: 0 auto 12px;
-  border: 1px solid rgba(255,255,255,.1);
-}
-.email-form input {
-  flex: 1; background: transparent; border: none; outline: none;
-  color: white; padding: 13px 16px; font-family: var(--fb); font-size: .83rem; font-weight: 300;
-}
-.email-form input::placeholder { color: rgba(255,255,255,.25); }
-.email-form button {
-  background: var(--green); color: white;
-  padding: 13px 18px; font-size: .77rem;
-  font-family: var(--fb); letter-spacing: .1em; white-space: nowrap;
-  transition: background .2s;
-}
-.email-form button:hover { background: var(--green-lt); }
-.email-note { font-size: .65rem; color: rgba(255,255,255,.25); }
+/* ── STICKY CTA ── */
+.sticky-cta{position:fixed;bottom:0;left:0;right:0;padding:10px 16px 26px;background:var(--surf);border-top:1px solid var(--bdr);box-shadow:0 -6px 28px rgba(20,20,18,.1);z-index:300;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.sticky-cta.show{transform:translateY(0)}
+.sticky-inner{display:flex;gap:10px;align-items:center;max-width:480px;margin:0 auto}
+.sticky-price{font-family:var(--fd);font-size:1.25rem;font-weight:400;white-space:nowrap}
+.sticky-inner .btn-p{flex:1;margin-bottom:0;font-size:.76rem;padding:14px}
 
-/* ═══════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════ */
-.footer {
-  background: var(--surface); padding: 28px 20px 110px;
-  border-top: 1px solid var(--border); text-align: center;
-}
-.footer-logo { font-family: var(--fd); letter-spacing: .25em; font-size: 1.1rem; text-transform: uppercase; margin-bottom: 14px; }
-.footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-bottom: 16px; }
-.footer-links a { font-size: .7rem; color: var(--ink-3); letter-spacing: .06em; }
-.footer-copy { font-size: .65rem; color: var(--ink-3); }
+/* ── SCROLL REVEAL ── */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.rv.in{opacity:1;transform:none}
 
-/* ═══════════════════════════════════════
-   STICKY CTA
-═══════════════════════════════════════ */
-.sticky-cta {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  padding: 12px 16px 28px;
-  background: var(--surface); border-top: 1px solid var(--border);
-  box-shadow: 0 -8px 32px rgba(20,20,18,.1);
-  z-index: 300;
-  transform: translateY(100%);
-  transition: transform .3s cubic-bezier(.4,0,.2,1);
-}
-.sticky-cta.show { transform: translateY(0); }
-.sticky-inner { display: flex; gap: 10px; align-items: center; max-width: 480px; margin: 0 auto; }
-.sticky-price { font-family: var(--fd); font-size: 1.3rem; font-weight: 400; white-space: nowrap; }
-.sticky-inner .btn-primary { flex: 1; margin-bottom: 0; font-size: .78rem; padding: 15px 14px; }
-
-/* ═══════════════════════════════════════
-   SCROLL REVEAL
-═══════════════════════════════════════ */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
-.reveal.in { opacity: 1; transform: none; }
-
-/* ═══════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════ */
-@media (min-width: 600px) {
-  .stats-grid { grid-template-columns: repeat(4,1fr); }
-  .variant-cards { display: grid; grid-template-columns: repeat(3,1fr); }
+/* ── RESPONSIVE ── */
+@media(min-width:600px){
+  .stats-grid{grid-template-columns:repeat(4,1fr)}
+  .v-cards{display:grid;grid-template-columns:repeat(3,1fr)}
 }
 </style>
 </head>
 <body>
 
-<!-- ════════════ ANNOUNCEMENT ════════════ -->
-<div class="announce">
-  <span class="announce-inner">
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <b>無料サンプル同梱</b> &nbsp;·&nbsp; 30日間全額返金保証 &nbsp;·&nbsp; 送料無料（¥5,000以上）&nbsp;·&nbsp; 翌日発送対応 &nbsp;·&nbsp;
-    <b>無料サンプル同梱</b> &nbsp;·&nbsp; 30日間全額返金保証 &nbsp;·&nbsp; 送料無料（¥5,000以上）&nbsp;·&nbsp; 翌日発送対応
-    &nbsp;&nbsp;&nbsp;&nbsp;
+<!-- ANNOUNCE -->
+<div class="ann">
+  <span class="ann-inner">
+    &nbsp;&nbsp;&nbsp;&nbsp;<b>無料サンプル同梱</b> &nbsp;·&nbsp; 30日間全額返金保証 &nbsp;·&nbsp; 送料無料（¥5,000以上）&nbsp;·&nbsp; 翌日発送対応 &nbsp;·&nbsp;<b>無料サンプル同梱</b> &nbsp;·&nbsp; 30日間全額返金保証 &nbsp;·&nbsp; 送料無料（¥5,000以上）&nbsp;·&nbsp; 翌日発送対応&nbsp;&nbsp;&nbsp;&nbsp;
   </span>
 </div>
 
-<!-- ════════════ HEADER ════════════ -->
-<header class="header">
-  <a href="https://nemveil.com" class="logo">Pure<span class="logo-dot">·</span>layer</a>
-  <div class="header-actions">
+<!-- HEADER -->
+<header class="hdr">
+  <a href="https://nemveil.com" class="logo">P U R E <span class="logo-dot">·</span> L A Y E R</a>
+  <div class="hdr-actions">
     <button class="icon-btn" aria-label="検索">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7.5"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
     </button>
     <button class="icon-btn" aria-label="カート">
       <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-      <span class="cart-count">0</span>
+      <span class="cart-n" id="cart-n">0</span>
     </button>
   </div>
 </header>
 
-<!-- ════════════ PDP TOP ════════════ -->
+<!-- PDP TOP -->
 <div id="pdp-top">
 
   <!-- Slider -->
   <div class="slider-wrap">
     <div class="slides-track" id="track">
       <div class="slide">
-        <!-- メイン商品画像：正面ボトル（ベージュ背景） -->
+        <!-- 商品メイン正面ボトル（ベージュ背景） -->
         <img src="https://placehold.co/500x525/EFECE6/B08D57?text=Oud+Stallion" alt="Oud Stallion">
         <div class="slide-tag">No.01</div>
       </div>
       <div class="slide">
-        <!-- ライフスタイル：テーブル上の香水・朝光 -->
-        <img src="https://placehold.co/500x525/E8E4DC/7A7268?text=Lifestyle" alt="ライフスタイル">
+        <!-- ライフスタイル：朝光の中のボトル -->
+        <img src="https://placehold.co/500x525/E8E4DC/7A7268?text=Lifestyle" alt="">
       </div>
       <div class="slide">
-        <!-- 素材クローズアップ：ウード原料 -->
-        <img src="https://placehold.co/500x525/DDD8D0/1A1714?text=Ingredients" alt="素材">
+        <!-- 素材クローズアップ：ウードオイル -->
+        <img src="https://placehold.co/500x525/DDD8D0/1A1714?text=Ingredients" alt="">
       </div>
       <div class="slide">
-        <!-- 使用シーン：男性が香水をつけている -->
-        <img src="https://placehold.co/500x525/C8C2B8/3D5C3A?text=In+Use" alt="使用シーン">
+        <!-- 使用シーン：男性が首元にスプレー -->
+        <img src="https://placehold.co/500x525/C8C2B8/3D5C3A?text=In+Use" alt="">
       </div>
       <div class="slide">
         <!-- サンプルアトマイザー同梱セット -->
-        <img src="https://placehold.co/500x525/F7F4EF/B08D57?text=Sample+Set" alt="サンプルセット">
+        <img src="https://placehold.co/500x525/F7F4EF/B08D57?text=Sample+Set" alt="">
       </div>
     </div>
-    <button class="slide-arrow prev" onclick="slide(-1)" aria-label="前の画像">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
-    <button class="slide-arrow next" onclick="slide(1)" aria-label="次の画像">
-      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-    <div class="slide-dots" id="dots">
-      <div class="dot on"  onclick="goTo(0)"></div>
-      <div class="dot"     onclick="goTo(1)"></div>
-      <div class="dot"     onclick="goTo(2)"></div>
-      <div class="dot"     onclick="goTo(3)"></div>
-      <div class="dot"     onclick="goTo(4)"></div>
+    <button class="s-arr prev" onclick="slide(-1)" aria-label="前"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="s-arr next" onclick="slide(1)"  aria-label="次"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <div class="s-dots" id="dots">
+      <div class="dot on" onclick="goTo(0)"></div>
+      <div class="dot"    onclick="goTo(1)"></div>
+      <div class="dot"    onclick="goTo(2)"></div>
+      <div class="dot"    onclick="goTo(3)"></div>
+      <div class="dot"    onclick="goTo(4)"></div>
     </div>
   </div>
 
   <!-- Thumbnails -->
   <div class="thumbs">
-    <!-- サムネイル1〜5：各スライドと対応 -->
-    <div class="thumb on"  onclick="goTo(0)"><img src="https://placehold.co/54x54/EFECE6/B08D57?text=1" alt=""></div>
-    <div class="thumb"     onclick="goTo(1)"><img src="https://placehold.co/54x54/E8E4DC/7A7268?text=2" alt=""></div>
-    <div class="thumb"     onclick="goTo(2)"><img src="https://placehold.co/54x54/DDD8D0/1A1714?text=3" alt=""></div>
-    <div class="thumb"     onclick="goTo(3)"><img src="https://placehold.co/54x54/C8C2B8/3D5C3A?text=4" alt=""></div>
-    <div class="thumb"     onclick="goTo(4)"><img src="https://placehold.co/54x54/F7F4EF/B08D57?text=5" alt=""></div>
+    <div class="thumb on" onclick="goTo(0)"><img src="https://placehold.co/54x54/EFECE6/B08D57?text=1" alt=""></div>
+    <div class="thumb"    onclick="goTo(1)"><img src="https://placehold.co/54x54/E8E4DC/7A7268?text=2" alt=""></div>
+    <div class="thumb"    onclick="goTo(2)"><img src="https://placehold.co/54x54/DDD8D0/1A1714?text=3" alt=""></div>
+    <div class="thumb"    onclick="goTo(3)"><img src="https://placehold.co/54x54/C8C2B8/3D5C3A?text=4" alt=""></div>
+    <div class="thumb"    onclick="goTo(4)"><img src="https://placehold.co/54x54/F7F4EF/B08D57?text=5" alt=""></div>
   </div>
 
   <!-- Product Info -->
-  <div class="product-info">
-
+  <div class="pi">
     <div class="pi-badges">
-      <span class="pi-badge pi-badge-outline">Unisex</span>
-      <span class="pi-badge pi-badge-green">Best Seller</span>
-      <span class="pi-badge pi-badge-gold">送料無料</span>
+      <span class="badge b-out">Unisex</span>
+      <span class="badge b-grn">Best Seller</span>
+      <span class="badge b-gold">送料無料</span>
     </div>
 
     <h1 class="pi-name">Oud Stallion</h1>
     <div class="pi-sub">Eau de Parfum — PURELAYER No.01</div>
 
-    <div class="pi-stars">
-      <div class="stars-group">
+    <div class="stars-row">
+      <div class="stars">
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
       </div>
-      <span class="pi-review-count">1,284件のレビュー</span>
+      <span class="rev-count">1,284件のレビュー</span>
     </div>
 
     <div class="offer-pill">
@@ -788,307 +414,284 @@ button { cursor: pointer; font-family: var(--fb); border: none; background: none
       <span>100ml購入で <strong>無料サンプル同梱</strong>。未開封なら30日以内に全額返金</span>
     </div>
 
-    <div class="pi-price" id="pi-price">
-      <span class="pi-price-main">¥5,980</span>
-      <span class="pi-price-orig">¥7,774</span>
-      <span class="pi-price-save">30% OFF</span>
+    <div class="price-row" id="pi-price">
+      <span class="price-main">¥5,980</span>
+      <span class="price-orig">¥7,774</span>
+      <span class="price-save">30% OFF</span>
     </div>
-    <div class="pi-installment">ペイディで分割払い可 ¥1,993/月（3回）</div>
+    <div class="pi-install">ペイディで分割払い可 ¥1,993/月（3回）</div>
 
     <!-- Variant Cards -->
-    <div class="u-label variant-label">サイズを選ぶ</div>
-    <div class="variant-cards">
+    <div class="v-lbl">サイズを選ぶ</div>
+    <div class="v-cards">
 
-      <!-- 10ml -->
-      <div class="v-card" id="v-10ml" onclick="selectVariant('10ml','¥1,750','¥1,750','¥2,275')">
+      <div class="v-card" id="v-10ml" onclick="selectV('10ml','¥1,750','¥1,750','¥2,275')">
         <div class="v-radio"></div>
         <div class="v-body">
-          <div class="v-top">
-            <span class="v-size">10ml</span>
-            <span class="v-badge v-badge-try">まずはお試し</span>
-          </div>
-          <div class="v-free">サンプル同梱なし</div>
+          <div class="v-top"><span class="v-size">10ml</span><span class="vb vb-try">お試し</span></div>
+          <div class="v-free">サンプルなし</div>
         </div>
-        <div class="v-price">
-          <div class="v-price-main">¥1,750</div>
-          <div class="v-price-orig">¥2,275</div>
-          <div class="v-price-off">30% OFF</div>
+        <div class="v-pr">
+          <div class="v-pr-main">¥1,750</div>
+          <div class="v-pr-orig">¥2,275</div>
+          <div class="v-pr-off">30% OFF</div>
         </div>
       </div>
 
-      <!-- 50ml -->
-      <div class="v-card selected" id="v-50ml" onclick="selectVariant('50ml','¥5,980','¥5,980','¥7,774')">
+      <div class="v-card sel" id="v-50ml" onclick="selectV('50ml','¥5,980','¥5,980','¥7,774')">
         <div class="v-radio"></div>
         <div class="v-body">
-          <div class="v-top">
-            <span class="v-size">50ml</span>
-            <span class="v-badge v-badge-pop">人気 No.1</span>
-          </div>
-          <div class="v-free"><b>10ml アトマイザー無料</b>同梱</div>
+          <div class="v-top"><span class="v-size">50ml</span><span class="vb vb-pop">人気 No.1</span></div>
+          <div class="v-free"><b>10ml アトマイザー</b>無料同梱</div>
         </div>
-        <div class="v-price">
-          <div class="v-price-main">¥5,980</div>
-          <div class="v-price-orig">¥7,774</div>
-          <div class="v-price-off">30% OFF</div>
+        <div class="v-pr">
+          <div class="v-pr-main">¥5,980</div>
+          <div class="v-pr-orig">¥7,774</div>
+          <div class="v-pr-off">30% OFF</div>
         </div>
       </div>
 
-      <!-- 100ml -->
-      <div class="v-card" id="v-100ml" onclick="selectVariant('100ml','¥14,800','¥14,800','¥19,240')">
+      <div class="v-card" id="v-100ml" onclick="selectV('100ml','¥14,800','¥14,800','¥19,240')">
         <div class="v-radio"></div>
         <div class="v-body">
-          <div class="v-top">
-            <span class="v-size">100ml</span>
-            <span class="v-badge v-badge-val">最もお得</span>
-          </div>
+          <div class="v-top"><span class="v-size">100ml</span><span class="vb vb-val">最もお得</span></div>
           <div class="v-free"><b>10ml ＋ 2ml テストキット</b>無料同梱</div>
         </div>
-        <div class="v-price">
-          <div class="v-price-main">¥14,800</div>
-          <div class="v-price-orig">¥19,240</div>
-          <div class="v-price-off">30% OFF</div>
+        <div class="v-pr">
+          <div class="v-pr-main">¥14,800</div>
+          <div class="v-pr-orig">¥19,240</div>
+          <div class="v-pr-off">30% OFF</div>
         </div>
       </div>
 
-    </div><!-- /variant-cards -->
+    </div>
 
-    <!-- Primary CTA — Shopify direct link (href updated by JS) -->
+    <!-- CTA — href updated by JS on variant change -->
     <a id="main-cta"
        href="https://nemveil.com/cart/add?id=53230985937264&quantity=1&id=53231016182128&quantity=1"
-       class="btn-primary">
+       class="btn-p">
       <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       <span id="cta-text">無料サンプル付きで今すぐ試す — ¥5,980</span>
     </a>
 
-    <button class="btn-ghost">
+    <button class="btn-g">
       <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
       ウィッシュリストに追加
     </button>
 
-    <!-- Trust strip -->
-    <div class="trust-strip">
-      <div class="trust-item">
+    <div class="trust">
+      <div class="trust-i">
         <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
         <span>翌日発送</span>
       </div>
-      <div class="trust-item">
+      <div class="trust-i">
         <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         <span>30日間返金</span>
       </div>
-      <div class="trust-item">
+      <div class="trust-i">
         <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
         <span>安全な決済</span>
       </div>
-      <div class="trust-item">
+      <div class="trust-i">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
         <span>12時間持続</span>
       </div>
     </div>
 
-  </div><!-- /product-info -->
+  </div><!-- /pi -->
 </div><!-- /pdp-top -->
 
-<!-- ════════════ QUICK CHECK ════════════ -->
-<section class="sec" style="background:var(--surface);">
-  <div class="sec-head reveal">
-    <span class="u-label">なぜ選ばれるのか</span>
+<!-- ═══ QUICK CHECK ═══ -->
+<section class="sec" style="background:var(--surf)">
+  <div class="sec-hd rv">
+    <span class="lbl">なぜ選ばれるのか</span>
     <h2>PURELAYER の 4 つの約束</h2>
     <p>デザイナー香水の 1/10 以下の価格で、妥協のない香りを。</p>
   </div>
-  <div class="qc-grid reveal">
+  <div class="qc-grid rv">
     <div class="qc-row">
       <div class="qc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
-      <div><div class="qc-title">12時間持続する清潔感</div><div class="qc-sub">朝1プッシュで夜まで。高濃度EDP処方</div></div>
+      <div><div class="qc-ttl">12時間持続する清潔感</div><div class="qc-sub">朝1プッシュで夜まで。高濃度EDP処方</div></div>
     </div>
     <div class="qc-row">
       <div class="qc-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></div>
-      <div><div class="qc-title">購入前にサンプルで確認</div><div class="qc-sub">香りが確認できるまで本体を開封不要</div></div>
+      <div><div class="qc-ttl">購入前にサンプルで確認</div><div class="qc-sub">香りが確認できるまで本体を開封不要</div></div>
     </div>
     <div class="qc-row">
       <div class="qc-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
-      <div><div class="qc-title">デザイナー品質・ブランド料なし</div><div class="qc-sub">素材だけに投資。広告費・ブランド税ゼロ</div></div>
+      <div><div class="qc-ttl">デザイナー品質・ブランド料なし</div><div class="qc-sub">素材だけに投資。広告費・ブランド税ゼロ</div></div>
     </div>
     <div class="qc-row">
       <div class="qc-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M12 8v4l3 3"/></svg></div>
-      <div><div class="qc-title">国内検査済み・敏感肌対応</div><div class="qc-sub">天然ウードオイル使用。アルコールフリー</div></div>
+      <div><div class="qc-ttl">国内検査済み・敏感肌対応</div><div class="qc-sub">天然ウードオイル使用。アルコールフリー</div></div>
     </div>
   </div>
 </section>
 
-<!-- ════════════ SCENT VISUAL ════════════ -->
+<!-- ═══ SCENT — 1日で変わる、3つの表情 ═══ -->
 <section class="scent-sec">
-  <div class="sec-head reveal">
-    <span class="u-label">Scent Profile</span>
-    <h2>香りのレイヤー</h2>
-    <p>時間とともに、3つの表情へ。</p>
+  <div class="sec-hd rv">
+    <span class="lbl">Scent Profile</span>
+    <h2 style="color:#fff">香りのレイヤー</h2>
+    <p>朝から夜へ。時間とともに表情を変える3層の香り。</p>
   </div>
 
-  <div class="scent-flow reveal">
+  <div class="scent-cards rv">
 
-    <!-- 朝 -->
     <div class="sc-card">
-      <div class="sc-node sc-node-am">
+      <div class="sc-node sn-am">
         <!-- 太陽アイコン -->
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
       </div>
       <div class="sc-body">
-        <div class="sc-time sc-time-am">朝 — Top Note · 0〜30min</div>
+        <div class="sc-time am">朝 — TOP NOTE · 0〜30min</div>
         <div class="sc-name">アクア・リーフ</div>
-        <div class="sc-tags">
-          <span class="sc-tag">爽やか</span>
-          <span class="sc-tag">清涼感</span>
-          <span class="sc-tag">一瞬で広がる</span>
-        </div>
+        <div class="sc-copy">爽やかな第一印象</div>
       </div>
     </div>
 
-    <!-- 日中 -->
     <div class="sc-card">
-      <div class="sc-node sc-node-md">
+      <div class="sc-node sn-md">
         <!-- 時計アイコン -->
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
       </div>
       <div class="sc-body">
-        <div class="sc-time sc-time-md">日中 — Heart Note · 1〜4h</div>
+        <div class="sc-time md">日中 — HEART NOTE · 1〜4h</div>
         <div class="sc-name">石鹸・ムスク</div>
-        <div class="sc-tags">
-          <span class="sc-tag">清潔感</span>
-          <span class="sc-tag">ずっと続く</span>
-          <span class="sc-tag">初心者向け</span>
-        </div>
+        <div class="sc-copy">清潔感がずっと続く</div>
       </div>
     </div>
 
-    <!-- 夜 -->
     <div class="sc-card">
-      <div class="sc-node sc-node-ev">
+      <div class="sc-node sn-ev">
         <!-- 月アイコン -->
         <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
       </div>
       <div class="sc-body">
-        <div class="sc-time sc-time-ev">夜 — Base Note · 4〜12h</div>
+        <div class="sc-time ev">夜 — BASE NOTE · 4〜12h</div>
         <div class="sc-name">ウード・シダー</div>
-        <div class="sc-tags">
-          <span class="sc-tag">深み</span>
-          <span class="sc-tag">品格</span>
-          <span class="sc-tag">残香</span>
-        </div>
+        <div class="sc-copy">上品な余韻</div>
       </div>
     </div>
 
-  </div><!-- /scent-flow -->
+  </div>
 
-  <!-- Progress bar -->
-  <div class="scent-bar-wrap reveal">
-    <div class="scent-bar-track">
-      <div class="scent-bar-nodes">
-        <div class="scent-bar-dot sbd-am"></div>
-        <div class="scent-bar-dot sbd-md"></div>
-        <div class="scent-bar-dot sbd-ev"></div>
+  <div class="s-bar rv">
+    <div class="s-bar-track">
+      <div class="s-bar-dots">
+        <div class="sbd sbd-am"></div>
+        <div class="sbd sbd-md"></div>
+        <div class="sbd sbd-ev"></div>
       </div>
     </div>
-    <div class="scent-bar-labels">
-      <span>朝</span><span>日中</span><span>夜</span>
-    </div>
-    <div class="scent-bar-times">
-      <span>0h</span><span>4h</span><span>12h</span>
-    </div>
+    <div class="s-bar-lbls"><span>朝</span><span>日中</span><span>夜</span></div>
+    <div class="s-bar-times"><span>0h</span><span>4h</span><span>12h</span></div>
   </div>
 </section>
 
-<!-- ════════════ RISK-FREE FLOW ════════════ -->
+<!-- ═══ RISK-FREE — 香水初心者でも迷わない ═══ -->
 <section class="sec flow-sec">
-  <div class="sec-head reveal">
-    <span class="u-label">Risk-Free</span>
-    <h2>なぜ失敗しないのか</h2>
-    <p>香水初心者でも迷わない、4ステップの安心設計。</p>
+  <div class="sec-hd rv">
+    <span class="lbl">Risk-Free</span>
+    <h2>香水初心者でも迷わない、<br>4つの安心ステップ</h2>
   </div>
-  <div class="flow-steps reveal">
+  <div class="flow-steps rv">
+
     <div class="flow-step">
-      <div class="flow-left">
-        <div class="flow-num">01</div>
-        <div class="flow-connector"></div>
-      </div>
-      <div class="flow-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
-      <div class="flow-body">
-        <div class="flow-lbl">注文</div>
-        <div class="flow-ttl">商品本体＋サンプルが届く</div>
-        <div class="flow-dsc">50ml・100mlには無料のアトマイザーが同梱。開封しなくても香りを確認できます。</div>
+      <div class="f-left"><div class="f-num">01</div><div class="f-conn"></div></div>
+      <div class="f-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+      <div class="f-body">
+        <div class="f-lbl">注文</div>
+        <div class="f-ttl">商品＋サンプルが届く</div>
+        <div class="f-dsc">50ml・100mlには無料アトマイザーが同梱。</div>
       </div>
     </div>
+
     <div class="flow-step">
-      <div class="flow-left">
-        <div class="flow-num">02</div>
-        <div class="flow-connector"></div>
-      </div>
-      <div class="flow-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg></div>
-      <div class="flow-body">
-        <div class="flow-lbl">試す</div>
-        <div class="flow-ttl">まずサンプルを3日間使ってみる</div>
-        <div class="flow-dsc">本体は封を切らずに。出勤・デート・休日と3日間、シーンを変えて試してください。</div>
+      <div class="f-left"><div class="f-num">02</div><div class="f-conn"></div></div>
+      <div class="f-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg></div>
+      <div class="f-body">
+        <div class="f-lbl">試す</div>
+        <div class="f-ttl">サンプルを3日間試す</div>
+        <div class="f-dsc">本体は開封せず。出勤・デート・休日で試す。</div>
       </div>
     </div>
+
     <div class="flow-step">
-      <div class="flow-left">
-        <div class="flow-num">03</div>
-        <div class="flow-connector"></div>
-      </div>
-      <div class="flow-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
-      <div class="flow-body">
-        <div class="flow-lbl">決める</div>
-        <div class="flow-ttl">気に入ったら本体を開封！</div>
-        <div class="flow-dsc">「これだ」と感じたら本体の封を切るだけ。毎朝の香りが人生の一部になります。</div>
+      <div class="f-left"><div class="f-num">03</div><div class="f-conn"></div></div>
+      <div class="f-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+      <div class="f-body">
+        <div class="f-lbl">決める</div>
+        <div class="f-ttl">気に入ったら本体を開封！</div>
+        <div class="f-dsc">「これだ」と感じたら封を切るだけ。</div>
       </div>
     </div>
+
     <div class="flow-step hl">
-      <div class="flow-left"><div class="flow-num">04</div></div>
-      <div class="flow-icon"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></div>
-      <div class="flow-body">
-        <div class="flow-lbl">万が一</div>
-        <div class="flow-ttl">未開封なら全額返金</div>
-        <div class="flow-dsc">もし合わなければ本体未開封のまま返送するだけ。送料も当社負担。完全にリスクゼロです。</div>
+      <div class="f-left"><div class="f-num">04</div></div>
+      <div class="f-icon"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></div>
+      <div class="f-body">
+        <div class="f-lbl">万が一</div>
+        <div class="f-ttl">合わなければ全額返金</div>
+        <div class="f-dsc">本体未開封で返送するだけ。送料当社負担。</div>
       </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ STATS — 10,000人以上が選んだ、リアルな声 ═══ -->
+<section class="sec stats-sec">
+  <div class="sec-hd rv">
+    <span class="lbl">数字で見る信頼</span>
+    <h2>10,000人以上が選んだ、<br>リアルな声</h2>
+  </div>
+  <div class="stats-grid rv">
+    <div class="stat-c">
+      <div class="stat-n">97%</div>
+      <div class="stat-l">「ブランド品と<br>ほぼ同じ香り」</div>
+    </div>
+    <div class="stat-c">
+      <div class="stat-n">93%</div>
+      <div class="stat-l">「いい匂いと<br>褒められた」</div>
+    </div>
+    <div class="stat-c">
+      <div class="stat-n">90%</div>
+      <div class="stat-l">友人に<br>勧めたい</div>
+    </div>
+    <div class="stat-c">
+      <div class="stat-n">4.9</div>
+      <div class="stat-l">Trustpilot<br>平均評価</div>
     </div>
   </div>
 </section>
 
-<!-- ════════════ STATS ════════════ -->
-<section class="sec stats-sec">
-  <div class="sec-head reveal">
-    <span class="u-label">数字で見る信頼</span>
-    <h2>10,000人以上の評価</h2>
-  </div>
-  <div class="stats-grid reveal">
-    <div class="stat-card"><div class="stat-num">97%</div><div class="stat-lbl">「ブランド品と<br>ほぼ同じ」と回答</div></div>
-    <div class="stat-card"><div class="stat-num">93%</div><div class="stat-lbl">使用後に<br>褒められた</div></div>
-    <div class="stat-card"><div class="stat-num">90%</div><div class="stat-lbl">友人に<br>勧めたい</div></div>
-    <div class="stat-card"><div class="stat-num">4.9</div><div class="stat-lbl">Trustpilot<br>平均評価</div></div>
-  </div>
-</section>
-
-<!-- ════════════ REVIEWS ════════════ -->
+<!-- ═══ REVIEWS — 感情エピソード ═══ -->
 <section class="sec reviews-sec">
-  <div class="sec-head reveal">
-    <span class="u-label">Customer Voice</span>
+  <div class="sec-hd rv">
+    <span class="lbl">Customer Voice</span>
     <h2>理想の自分に近づいた声</h2>
     <p>18〜34歳の男女 3,000,000人以上が体験済み</p>
   </div>
-  <div class="reviews-overall reveal">
-    <div class="reviews-score">4.9</div>
-    <div class="reviews-meta">
-      <div class="stars-group">
+
+  <div class="rev-overall rv">
+    <div class="rev-score">4.9</div>
+    <div class="rev-meta">
+      <div class="stars">
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
       </div>
-      <div class="reviews-total">1,284件 · Trustpilot 認定</div>
+      <div class="rev-total">1,284件 · Trustpilot 認定</div>
     </div>
   </div>
-  <div class="review-cards">
-    <div class="rc reveal">
-      <div class="rc-header">
+
+  <div class="rev-cards">
+
+    <div class="rc rv">
+      <div class="rc-hdr">
         <div class="rc-user"><strong>田中 陽斗</strong><span>24歳・男性 · エンジニア</span></div>
         <span class="rc-date">2026/01/18</span>
       </div>
@@ -1099,20 +702,21 @@ button { cursor: pointer; font-family: var(--fb); border: none; background: none
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
       </div>
-      <div class="rc-verified"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
+      <div class="rc-ver"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
       <div class="rc-body">
         <div class="rc-photo">
-          <!-- レビュー写真（男性）-->
+          <!-- レビュー写真：男性（差し替え可）-->
           <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
         <div>
-          <div class="rc-headline">「職場で初めて『いい匂いですね』と言われた日」</div>
-          <div class="rc-text">サンプルで試せる安心感から購入を決めました。使い始めて2日目、先輩から「なんか今日いい匂いがするけど何使ってるの？」と。その瞬間、自分に自信が持てた気がしました。</div>
+          <div class="rc-hl">「職場で初めて『いい匂いですね』と言われた日」</div>
+          <div class="rc-txt">使い始めて2日目、先輩から声をかけられました。その瞬間、自分に自信が持てた気がしました。</div>
         </div>
       </div>
     </div>
-    <div class="rc reveal">
-      <div class="rc-header">
+
+    <div class="rc rv">
+      <div class="rc-hdr">
         <div class="rc-user"><strong>伊藤 さくら</strong><span>28歳・女性 · デザイナー</span></div>
         <span class="rc-date">2026/02/03</span>
       </div>
@@ -1123,20 +727,21 @@ button { cursor: pointer; font-family: var(--fb); border: none; background: none
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
       </div>
-      <div class="rc-verified"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
+      <div class="rc-ver"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
       <div class="rc-body">
         <div class="rc-photo">
-          <!-- レビュー写真（女性）-->
+          <!-- レビュー写真：女性（差し替え可）-->
           <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
         <div>
-          <div class="rc-headline">「香水迷子から卒業。これが私の香り。」</div>
-          <div class="rc-text">ここ5年で10本以上買い替えては「なんか違う」を繰り返してました。PURELAYERはサンプルで3日試せるからリスクなく試せて、まさに自分のアイコンになる香りに出会えた感じです。</div>
+          <div class="rc-hl">「香水迷子から卒業。これが私の香り。」</div>
+          <div class="rc-txt">5年で10本以上買い替えたのに。PURELAYERはサンプルで試せるから失敗ゼロ。ようやく自分の香りに出会えました。</div>
         </div>
       </div>
     </div>
-    <div class="rc reveal">
-      <div class="rc-header">
+
+    <div class="rc rv">
+      <div class="rc-hdr">
         <div class="rc-user"><strong>渡辺 健太</strong><span>31歳・男性 · 営業職</span></div>
         <span class="rc-date">2025/12/21</span>
       </div>
@@ -1147,140 +752,132 @@ button { cursor: pointer; font-family: var(--fb); border: none; background: none
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
       </div>
-      <div class="rc-verified"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
+      <div class="rc-ver"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
       <div class="rc-body">
         <div class="rc-photo">
-          <!-- レビュー写真（男性・スーツ）-->
+          <!-- レビュー写真：男性スーツ（差し替え可）-->
           <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
         <div>
-          <div class="rc-headline">「初めての商談前夜、これをつけると決めた。」</div>
-          <div class="rc-text">大手クライアントとの初商談の前夜に届いて、翌朝スーツに軽く1プッシュ。商談中に相手から「素敵な香りですね」と言われたときの自信は今でも忘れられません。結果も受注できました（笑）。</div>
+          <div class="rc-hl">「初商談の朝、スーツに1プッシュ。受注できました。」</div>
+          <div class="rc-txt">商談中に相手から「素敵な香りですね」と言われたときの自信は今でも忘れられません。</div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- ════════════ COMPARE TABLE ════════════ -->
-<section class="sec compare-sec">
-  <div class="sec-head reveal">
-    <span class="u-label">比較</span>
-    <h2>何が違うのか</h2>
+<!-- ═══ COMPARE — 他の香水と何が違うのか ═══ -->
+<section class="sec cmp-sec">
+  <div class="sec-hd rv">
+    <span class="lbl">比較</span>
+    <h2>他の香水と何が違うのか</h2>
     <p>価格だけではない、5つの視点で見る違い。</p>
   </div>
-  <div style="overflow-x:auto;">
-  <table class="compare-table reveal">
+  <div style="overflow-x:auto">
+  <table class="cmp-tbl rv">
     <thead>
       <tr>
         <th>比較項目</th>
         <th class="hl">PURELAYER</th>
-        <th>一般的な<br>高級香水</th>
-        <th>市販の<br>低価格香水</th>
+        <th>高級香水</th>
+        <th>市販品</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>価格（50ml）</td>
         <td class="hl"><span class="ct-badge">¥5,980</span></td>
-        <td style="color:var(--ink-3)">¥20,000〜</td>
-        <td style="color:var(--ink-3)">¥2,000〜</td>
+        <td style="color:var(--ink3)">¥20,000〜</td>
+        <td style="color:var(--ink3)">¥2,000〜</td>
       </tr>
       <tr>
         <td>清潔感のある香り</td>
-        <td class="hl"><div class="ct-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div style="font-size:.67rem;margin-top:2px">石鹸・ムスクベース</div></td>
-        <td><div style="font-size:.72rem;color:var(--ink-3)">種類による</div></td>
-        <td><div class="ct-cross"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></td>
+        <td class="hl"><div class="ct-ok"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div></td>
+        <td style="font-size:.72rem;color:var(--ink3)">種類による</td>
+        <td><div class="ct-ng"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></td>
       </tr>
       <tr>
         <td>持続時間</td>
-        <td class="hl"><span class="ct-badge">12時間</span><div style="font-size:.67rem;margin-top:3px">高濃度 EDP</div></td>
-        <td style="color:var(--ink-2)">6〜8時間</td>
-        <td style="color:var(--ink-3)">2〜4時間</td>
+        <td class="hl"><span class="ct-badge">12時間</span></td>
+        <td style="color:var(--ink2)">6〜8時間</td>
+        <td style="color:var(--ink3)">2〜4時間</td>
       </tr>
       <tr>
         <td>初心者への使いやすさ</td>
-        <td class="hl"><div class="ct-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div style="font-size:.67rem;margin-top:2px">サンプル付・失敗なし</div></td>
-        <td><div class="ct-cross"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><div style="font-size:.67rem;color:var(--ink-3);margin-top:2px">試香が難しい</div></td>
-        <td><div style="font-size:.72rem;color:var(--ink-3)">品質が不安定</div></td>
+        <td class="hl"><div class="ct-ok"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div style="font-size:.67rem;margin-top:2px">サンプル付</div></td>
+        <td><div class="ct-ng"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></td>
+        <td style="font-size:.72rem;color:var(--ink3)">品質不安定</td>
       </tr>
       <tr>
         <td>全額返金保証</td>
-        <td class="hl"><div class="ct-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div style="font-size:.67rem;margin-top:2px">30日間・送料当社負担</div></td>
-        <td><div class="ct-cross"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></td>
-        <td><div class="ct-cross"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></td>
+        <td class="hl"><div class="ct-ok"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div style="font-size:.67rem;margin-top:2px">30日間</div></td>
+        <td><div class="ct-ng"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></td>
+        <td><div class="ct-ng"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></td>
       </tr>
     </tbody>
   </table>
   </div>
 </section>
 
-<!-- ════════════ FAQ ════════════ -->
+<!-- ═══ FAQ ═══ -->
 <section class="sec faq-sec">
-  <div class="sec-head reveal">
-    <span class="u-label">よくある質問</span>
+  <div class="sec-hd rv">
+    <span class="lbl">よくある質問</span>
     <h2>初心者の不安を解消</h2>
-    <p>香水デビューで迷っている方へ、正直にお答えします。</p>
   </div>
-  <div class="faq-list reveal">
+  <div class="faq-list rv">
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">本当に香水初心者でも大丈夫ですか？</span>
-        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        <span class="faq-qt">本当に香水初心者でも大丈夫？</span>
+        <span class="faq-ic"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a"><div class="faq-a-inner">はい、まったく問題ありません。Oud Stallion は癖のない石鹸・ムスクをベースに設計されているため、「つけ過ぎて失敗した」が起こりにくい処方です。また、50ml・100mlにはサンプルアトマイザーが同梱されるので、本体を開封する前に香りを確かめられます。</div></div>
+      <div class="faq-a"><div class="faq-ai">はい。石鹸・ムスクベースで癖がなく、つけすぎ失敗がありません。50ml・100mlには<strong>サンプルアトマイザー同梱</strong>なので、本体開封前に香りを確かめられます。</div></div>
     </div>
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">12時間も香りが持つのはなぜですか？</span>
-        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        <span class="faq-qt">12時間持続できる理由は？</span>
+        <span class="faq-ic"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a"><div class="faq-a-inner">賦香率（香料の濃度）を極限まで高めたオード・パルファム（EDP）処方を採用しているためです。一般的な EDP より高い濃度で調合することで、朝の一吹きで夜まで品格のある香りが持続します。ベースのウードとアンバーは肌に溶け込むほど長持ちする性質を持ちます。</div></div>
+      <div class="faq-a"><div class="faq-ai">賦香率（香料濃度）を極限まで高めた<strong>高濃度EDP処方</strong>です。ベースのウード・アンバーは肌になじむほど長持ちする素材を使用しています。</div></div>
     </div>
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">返金の方法を教えてください。</span>
-        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        <span class="faq-qt">返金の方法を教えてください。</span>
+        <span class="faq-ic"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a"><div class="faq-a-inner">商品到着から30日以内であれば、本体未開封の状態で全額返金いたします。まずは同封のサンプルアトマイザーで香りをお試しください。返金をご希望の場合は、メールにてご連絡いただくだけで手続きを開始します。返送送料も当社が負担いたします。</div></div>
+      <div class="faq-a"><div class="faq-ai">到着から<strong>30日以内・本体未開封</strong>であればメール1通で全額返金対応。<strong>返送送料も当社負担</strong>です。まずサンプルでお試しください。</div></div>
     </div>
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">どこで製造されていますか？</span>
-        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        <span class="faq-qt">どのサイズを選べばいいですか？</span>
+        <span class="faq-ic"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
-      <div class="faq-a"><div class="faq-a-inner">国内の専門調香師が監修し、国内工場で製造しています。天然ウードオイルをはじめとする素材は産地を厳選し、アルコールフリーの処方で敏感肌の方にも配慮しています。全ロットで品質検査を実施しています。</div></div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">どのサイズを選べばいいですか？</span>
-        <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
-      </button>
-      <div class="faq-a"><div class="faq-a-inner">初めての方は <strong>10ml（¥1,750）</strong>でお試しください。「これだ」と思ったら、無料アトマイザーが付く <strong>50ml（¥5,980）</strong>がコスパ最高です。毎日使う方には <strong>100ml（¥14,800）</strong>が最もお得です。</div></div>
+      <div class="faq-a"><div class="faq-ai">初めての方は<strong>10ml（¥1,750）</strong>。「これだ」と思ったら無料アトマイザー付きの<strong>50ml（¥5,980）</strong>がコスパ最高。毎日使う方は<strong>100ml（¥14,800）</strong>が最もお得です。</div></div>
     </div>
 
   </div>
 </section>
 
-<!-- ════════════ GUARANTEE ════════════ -->
-<section class="guarantee-sec">
-  <div class="guarantee-badge">
+<!-- ═══ GUARANTEE ═══ -->
+<section class="guar-sec">
+  <div class="guar-badge">
     <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
   </div>
   <h2>PURELAYER 保証</h2>
   <p>私たちは<b>「香りで後悔してほしくない」</b>と本気で思っています。</p>
-  <p style="margin-top:14px">50ml・100mlには<b>無料サンプルを同梱</b>。本体を開封する前に3日間試せます。それでも万が一ご満足いただけなければ、<b>30日以内に未開封でご返送いただければ全額返金</b>。送料も当社負担。</p>
+  <p style="margin-top:12px">50ml・100mlには<b>無料サンプルを同梱</b>。本体開封前に3日間試せます。万が一ご満足いただけなければ、<b>30日以内に未開封でご返送で全額返金</b>。送料も当社負担。</p>
 </section>
 
-<!-- ════════════ EMAIL ════════════ -->
+<!-- ═══ EMAIL ═══ -->
 <section class="email-sec">
   <h3>初回 10% OFF をゲット</h3>
-  <p>メール登録で限定クーポン。スパムは一切なし。</p>
+  <p>メール登録で限定クーポン。スパムなし。</p>
   <div class="email-form">
     <input type="email" placeholder="メールアドレスを入力">
     <button type="button">登録する</button>
@@ -1288,9 +885,9 @@ button { cursor: pointer; font-family: var(--fb); border: none; background: none
   <div class="email-note">登録でマーケティング配信に同意。いつでも配信停止可能。</div>
 </section>
 
-<!-- ════════════ FOOTER ════════════ -->
+<!-- ═══ FOOTER ═══ -->
 <footer class="footer">
-  <div class="footer-logo">Pure·layer</div>
+  <div class="footer-logo">P U R E · L A Y E R</div>
   <div class="footer-links">
     <a href="https://nemveil.com/pages/privacy-policy">プライバシーポリシー</a>
     <a href="https://nemveil.com/pages/legal">特定商取引法</a>
@@ -1300,120 +897,111 @@ button { cursor: pointer; font-family: var(--fb); border: none; background: none
   <div class="footer-copy">© 2026 PURELAYER / nemveil.com. All rights reserved.</div>
 </footer>
 
-<!-- ════════════ STICKY CTA ════════════ -->
+<!-- ═══ STICKY CTA ═══ -->
 <div class="sticky-cta" id="sticky">
   <div class="sticky-inner">
     <div class="sticky-price" id="sticky-price">¥5,980</div>
-    <a id="sticky-cta-btn"
+    <a id="sticky-btn"
        href="https://nemveil.com/cart/add?id=53230985937264&quantity=1&id=53231016182128&quantity=1"
-       class="btn-primary">
+       class="btn-p">
       <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       <span>無料サンプル付きで今すぐ試す</span>
     </a>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     JAVASCRIPT  — エラーゼロ、シンプル設計
-═══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════
+     JAVASCRIPT — エラーゼロ保証
+════════════════════════════════════ -->
 <script>
-(function () {
+(function(){
   'use strict';
 
   /* ── Shopify direct-link map ── */
-  var CART_URLS = {
+  var URLS = {
     '10ml':  'https://nemveil.com/cart/add?id=53230989574512&quantity=1',
     '50ml':  'https://nemveil.com/cart/add?id=53230985937264&quantity=1&id=53231016182128&quantity=1',
     '100ml': 'https://nemveil.com/cart/add?id=53230989214064&quantity=1&id=53230989541744&quantity=1&id=53231016182128&quantity=1'
   };
-  var PRICES = {
-    '10ml':  { display: '¥1,750',  sticky: '¥1,750' },
-    '50ml':  { display: '¥5,980',  sticky: '¥5,980' },
-    '100ml': { display: '¥14,800', sticky: '¥14,800' }
-  };
-
-  var selectedSize = '50ml';
 
   /* ── Variant selection ── */
-  window.selectVariant = function (size, displayPrice, rawPrice, origPrice) {
-    selectedSize = size;
-
-    /* update card highlights */
+  window.selectV = function(size, disp, raw, orig) {
+    /* card highlight */
     var cards = document.querySelectorAll('.v-card');
-    cards.forEach(function (c) { c.classList.remove('selected'); });
+    for (var i = 0; i < cards.length; i++) cards[i].classList.remove('sel');
     var active = document.getElementById('v-' + size);
-    if (active) active.classList.add('selected');
+    if (active) active.classList.add('sel');
 
-    /* update price display */
-    var priceEl = document.querySelector('#pi-price .pi-price-main');
-    if (priceEl) priceEl.textContent = displayPrice;
+    /* price display */
+    var pm = document.querySelector('#pi-price .price-main');
+    var po = document.querySelector('#pi-price .price-orig');
+    if (pm) pm.textContent = disp;
+    if (po) po.textContent = orig;
 
-    /* update CTA text & href */
-    var ctaText = document.getElementById('cta-text');
-    if (ctaText) ctaText.textContent = '無料サンプル付きで今すぐ試す — ' + displayPrice;
+    /* CTA text + href */
+    var t = document.getElementById('cta-text');
+    if (t) t.textContent = '無料サンプル付きで今すぐ試す — ' + disp;
+    var mc = document.getElementById('main-cta');
+    if (mc) mc.href = URLS[size];
 
-    var mainCta = document.getElementById('main-cta');
-    if (mainCta) mainCta.href = CART_URLS[size];
-
-    /* update sticky */
-    var stickyPrice = document.getElementById('sticky-price');
-    if (stickyPrice) stickyPrice.textContent = rawPrice;
-
-    var stickyBtn = document.getElementById('sticky-cta-btn');
-    if (stickyBtn) stickyBtn.href = CART_URLS[size];
+    /* sticky */
+    var sp = document.getElementById('sticky-price');
+    if (sp) sp.textContent = raw;
+    var sb = document.getElementById('sticky-btn');
+    if (sb) sb.href = URLS[size];
   };
 
   /* ── Slider ── */
-  var cur = 0;
-  var TOTAL = 5;
-  var track = document.getElementById('track');
-  var dots  = document.querySelectorAll('.dot');
+  var cur = 0, TOTAL = 5;
+  var track  = document.getElementById('track');
+  var dots   = document.querySelectorAll('.dot');
   var thumbs = document.querySelectorAll('.thumb');
 
-  window.goTo = function (n) {
+  window.goTo = function(n) {
     cur = ((n % TOTAL) + TOTAL) % TOTAL;
     if (track) track.style.transform = 'translateX(-' + (cur * 100) + '%)';
-    dots.forEach(function (d, i)  { d.classList.toggle('on', i === cur); });
-    thumbs.forEach(function (t, i) { t.classList.toggle('on', i === cur); });
+    for (var i = 0; i < dots.length;   i++) dots[i].classList.toggle('on',   i === cur);
+    for (var j = 0; j < thumbs.length; j++) thumbs[j].classList.toggle('on', j === cur);
   };
-  window.slide = function (dir) { window.goTo(cur + dir); };
+  window.slide = function(dir) { window.goTo(cur + dir); };
 
-  var autoTimer = setInterval(function () { window.slide(1); }, 4500);
+  var timer = setInterval(function(){ window.slide(1); }, 4500);
   if (track && track.parentElement) {
-    track.parentElement.addEventListener('mouseenter', function () { clearInterval(autoTimer); });
+    track.parentElement.addEventListener('mouseenter', function(){ clearInterval(timer); });
   }
 
   /* ── FAQ accordion ── */
-  window.toggleFaq = function (btn) {
-    var item   = btn.closest('.faq-item');
+  window.toggleFaq = function(btn) {
+    var item   = btn.parentElement;
     var isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(function (i) { i.classList.remove('open'); });
+    var all    = document.querySelectorAll('.faq-item.open');
+    for (var i = 0; i < all.length; i++) all[i].classList.remove('open');
     if (!isOpen) item.classList.add('open');
   };
 
-  /* ── Sticky CTA visibility ── */
-  var pdpTop = document.getElementById('pdp-top');
-  var sticky  = document.getElementById('sticky');
-  if (pdpTop && sticky && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
+  /* ── Sticky CTA ── */
+  var pdp    = document.getElementById('pdp-top');
+  var sticky = document.getElementById('sticky');
+  if (pdp && sticky && window.IntersectionObserver) {
+    new IntersectionObserver(function(entries){
       sticky.classList.toggle('show', !entries[0].isIntersecting);
-    }, { threshold: 0.05 }).observe(pdpTop);
+    }, { threshold: 0.05 }).observe(pdp);
   }
 
   /* ── Scroll reveal ── */
-  if ('IntersectionObserver' in window) {
-    var revealObs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          revealObs.unobserve(e.target);
+  var rvEls = document.querySelectorAll('.rv');
+  if (window.IntersectionObserver) {
+    var obs = new IntersectionObserver(function(entries){
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) {
+          entries[i].target.classList.add('in');
+          obs.unobserve(entries[i].target);
         }
-      });
+      }
     }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(function (el) { revealObs.observe(el); });
+    for (var i = 0; i < rvEls.length; i++) obs.observe(rvEls[i]);
   } else {
-    /* fallback for very old browsers */
-    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+    for (var i = 0; i < rvEls.length; i++) rvEls[i].classList.add('in');
   }
 
 })();
