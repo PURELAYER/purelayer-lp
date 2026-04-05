@@ -3,982 +3,1028 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PURELAYER Oud Stallion — 清潔感が、12時間続く。</title>
+<title>PURELAYER | まるでお風呂上がりの清潔感。石鹸フレグランス Oud Stallion</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ══════════════════════════════════════
-   DESIGN TOKENS
-══════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════ */
 :root {
   --cream:    #F8F6F1;
-  --sand:     #EDE8DF;
+  --sand:     #EDEAD F;
+  --sand:     #EDEAE3;
   --white:    #FFFFFF;
-  --charcoal: #1A1916;
-  --ink:      #2C2B28;
-  --ink2:     #5A5850;
-  --ink3:     #9A9890;
-  --border:   #E0DDD5;
+  --coal:     #19180F;
+  --ink:      #2A2925;
+  --ink2:     #56534A;
+  --ink3:     #96938B;
+  --border:   #DDD9D0;
   --gold:     #B08D57;
   --gold-lt:  #D4B07A;
-  --gold-bg:  #F5F0E8;
+  --gold-bg:  #F5F0E5;
   --grn:      #2B4728;
-  --grn-lt:   #3A5F35;
+  --grn-lt:   #3A5C34;
+  --grn-bg:   #EBF0EA;
   --fd: 'Cormorant Garamond', Georgia, serif;
   --fb: 'DM Sans', sans-serif;
-  --sh: 0 2px 20px rgba(26,25,22,.07);
-  --sh-l: 0 8px 48px rgba(26,25,22,.12);
+  --sh:   0 2px 16px rgba(25,24,15,.07);
+  --sh-m: 0 6px 32px rgba(25,24,15,.10);
+  --sh-l: 0 12px 56px rgba(25,24,15,.14);
+  --r: 12px;
 }
 
-/* ══════════════════════════════════════
-   RESET
-══════════════════════════════════════ */
-*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+/* ═══════════════════════════════════════════
+   RESET + BASE
+═══════════════════════════════════════════ */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
 body {
-  font-family: var(--fb);
-  background: var(--cream);
-  color: var(--ink);
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  font-family:var(--fb);
+  background:var(--cream);
+  color:var(--ink);
+  font-size:15px;
+  font-weight:300;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
-img { display: block; max-width: 100%; }
-a   { text-decoration: none; color: inherit; }
-button { cursor: pointer; border: none; background: none; font-family: var(--fb); }
+img   { display:block; max-width:100%; }
+a     { text-decoration:none; color:inherit; }
+button { cursor:pointer; border:none; background:none; font-family:var(--fb); }
+strong { font-weight:600; }
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════════════
    KEYFRAMES
-══════════════════════════════════════ */
-@keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
-@keyframes fadeUp  { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: none } }
-@keyframes pulse   { 0%,100% { box-shadow: 0 0 0 0 rgba(43,71,40,.25) } 60% { box-shadow: 0 0 0 10px rgba(43,71,40,0) } }
-@keyframes spin    { to { transform: rotate(360deg) } }
+═══════════════════════════════════════════ */
+@keyframes ticker  { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@keyframes fadeUp  { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+@keyframes pulse   { 0%,100%{box-shadow:0 0 0 0 rgba(43,71,40,.3)} 55%{box-shadow:0 0 0 12px rgba(43,71,40,0)} }
+@keyframes spin    { to{transform:rotate(360deg)} }
+@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
 
-/* ══════════════════════════════════════
-   1. ANNOUNCEMENT BAR
-══════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   ANNOUNCE BAR
+═══════════════════════════════════════════ */
 .ann {
-  background: var(--charcoal);
-  padding: 7px 0;
-  overflow: hidden;
-  white-space: nowrap;
+  background:var(--coal);
+  padding:8px 0;
+  overflow:hidden;
+  white-space:nowrap;
 }
 .ann-track {
-  display: inline-flex;
-  gap: 0;
-  animation: marquee 22s linear infinite;
+  display:inline-flex;
+  animation:ticker 24s linear infinite;
 }
-.ann-item {
-  font-size: .65rem;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.5);
-  padding: 0 28px;
+.ann-seg {
+  font-size:.64rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.45);
+  padding:0 32px;
+  flex-shrink:0;
 }
-.ann-item b { color: var(--gold-lt); font-weight: 500; }
-.ann-item::after {
-  content: '·';
-  margin-left: 28px;
-  color: rgba(255,255,255,.2);
+.ann-seg b { color:var(--gold-lt); font-weight:500; }
+.ann-seg::after {
+  content:'·';
+  margin-left:32px;
+  color:rgba(255,255,255,.18);
 }
 
-/* ══════════════════════════════════════
-   HEADER (minimal)
-══════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════ */
 .hdr {
-  background: var(--white);
-  border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; z-index: 200;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 20px; height: 52px;
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  position:sticky; top:0; z-index:300;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 20px; height:52px;
 }
 .logo {
-  font-family: var(--fd);
-  font-size: 1.1rem; font-weight: 400;
-  letter-spacing: .3em; text-transform: uppercase;
-  color: var(--ink); line-height: 1;
+  font-family:var(--fd);
+  font-size:1.1rem; font-weight:400;
+  letter-spacing:.30em; text-transform:uppercase;
+  line-height:1; color:var(--ink);
 }
-.logo span { color: var(--gold); }
-.hdr-right { display: flex; align-items: center; gap: 12px; }
-.hdr-btn {
-  background: var(--grn); color: #fff;
-  font-size: .7rem; font-weight: 500;
-  letter-spacing: .12em; text-transform: uppercase;
-  padding: 8px 16px; border-radius: 4px;
-  transition: background .2s;
-  cursor: pointer;
+.logo-dot { color:var(--gold); }
+.hdr-cta {
+  background:var(--grn); color:#fff;
+  font-size:.68rem; font-weight:500;
+  letter-spacing:.12em; text-transform:uppercase;
+  padding:8px 16px; border-radius:5px;
+  transition:background .2s;
+  cursor:pointer;
 }
-.hdr-btn:hover { background: var(--grn-lt); }
+.hdr-cta:hover { background:var(--grn-lt); }
 
-/* ══════════════════════════════════════
-   2. HERO
-══════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
 .hero {
-  background: var(--charcoal);
-  position: relative;
-  overflow: hidden;
-  min-height: 92vh;
-  display: flex; flex-direction: column;
+  background:var(--coal);
+  position:relative;
+  overflow:hidden;
 }
-
-/* Subtle grain overlay */
+/* atmospheric radial */
 .hero::before {
-  content: '';
-  position: absolute; inset: 0; z-index: 1;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  opacity: .35;
-  pointer-events: none;
+  content:'';
+  position:absolute; border-radius:50%;
+  width:560px; height:560px;
+  background:radial-gradient(circle, rgba(176,141,87,.16) 0%, transparent 65%);
+  top:-120px; right:-120px;
+  pointer-events:none; z-index:1;
 }
-
-/* Gold radial glow */
 .hero::after {
-  content: '';
-  position: absolute;
-  width: 500px; height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(176,141,87,.18) 0%, transparent 65%);
-  top: -100px; right: -80px;
-  pointer-events: none; z-index: 1;
+  content:'';
+  position:absolute; border-radius:50%;
+  width:360px; height:360px;
+  background:radial-gradient(circle, rgba(43,71,40,.2) 0%, transparent 65%);
+  bottom:-80px; left:-80px;
+  pointer-events:none; z-index:1;
 }
-
 .hero-inner {
-  position: relative; z-index: 2;
-  padding: 48px 22px 0;
-  flex: 1; display: flex; flex-direction: column;
+  position:relative; z-index:2;
+  padding:44px 22px 0;
 }
 
-/* Trust badges row */
-.hero-trust {
-  display: flex; align-items: center; gap: 12px;
-  margin-bottom: 28px; flex-wrap: wrap;
+/* Eyebrow */
+.hero-eye {
+  display:inline-flex; align-items:center; gap:7px;
+  background:rgba(176,141,87,.15);
+  border:1px solid rgba(176,141,87,.3);
+  border-radius:30px;
+  padding:5px 14px;
+  font-size:.62rem; letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--gold-lt);
+  font-weight:500;
+  margin-bottom:22px;
 }
-.h-badge {
-  display: flex; align-items: center; gap: 6px;
-  font-size: .65rem; letter-spacing: .1em;
-  text-transform: uppercase; color: rgba(255,255,255,.45);
-}
-.h-badge svg { width: 12px; height: 12px; stroke: var(--gold-lt); fill: none; stroke-width: 2; }
-.h-badge-sep { width: 1px; height: 12px; background: rgba(255,255,255,.15); }
+.hero-eye svg { width:11px; height:11px; fill:var(--gold-lt); stroke:none; }
 
-/* Headline */
-.hero-headline {
-  font-family: var(--fd);
-  font-size: clamp(2.4rem, 9vw, 3.6rem);
-  font-weight: 400;
-  color: #fff;
-  line-height: 1.1;
-  letter-spacing: -.01em;
-  margin-bottom: 10px;
+/* HEADLINE */
+.hero-h1 {
+  font-family:var(--fd);
+  font-size:clamp(2rem,8.5vw,3.2rem);
+  font-weight:400;
+  color:#fff;
+  line-height:1.12;
+  letter-spacing:-.01em;
+  margin-bottom:14px;
 }
-.hero-headline em {
-  font-style: italic;
-  color: var(--gold-lt);
-}
+.hero-h1 em  { font-style:italic; color:var(--gold-lt); }
+.hero-h1 u   { text-decoration:none; border-bottom:2px solid var(--gold); }
+
+/* Sub copy */
 .hero-sub {
-  font-size: .9rem;
-  color: rgba(255,255,255,.55);
-  line-height: 1.6;
-  max-width: 320px;
-  margin-bottom: 28px;
+  font-size:.9rem;
+  color:rgba(255,255,255,.5);
+  line-height:1.65;
+  max-width:340px;
+  margin-bottom:26px;
 }
-.hero-sub b { color: rgba(255,255,255,.85); font-weight: 400; }
+.hero-sub strong { color:rgba(255,255,255,.85); font-weight:400; }
 
-/* Social proof mini */
-.hero-proof {
-  display: flex; align-items: center; gap: 10px;
-  margin-bottom: 28px;
+/* Stars + review count */
+.hero-social {
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:26px;
 }
-.hp-stars { display: flex; gap: 2px; }
-.hp-stars svg { width: 12px; height: 12px; fill: var(--gold-lt); stroke: none; }
-.hp-text { font-size: .75rem; color: rgba(255,255,255,.5); }
-.hp-text b { color: rgba(255,255,255,.85); font-weight: 500; }
+.hs-stars { display:flex; gap:2px; }
+.hs-stars svg { width:13px; height:13px; fill:var(--gold-lt); stroke:none; }
+.hs-text { font-size:.76rem; color:rgba(255,255,255,.45); }
+.hs-text b { color:rgba(255,255,255,.8); font-weight:500; }
 
-/* Hero CTA */
-.hero-cta-wrap { margin-bottom: 36px; }
-.btn-hero {
-  width: 100%;
-  background: var(--grn); color: #fff;
-  border-radius: 8px; padding: 18px 20px;
-  font-size: .85rem; font-weight: 500;
-  letter-spacing: .14em; text-transform: uppercase;
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  transition: background .2s, transform .1s;
-  animation: pulse 2.4s 1.5s ease-in-out 4;
-  cursor: pointer;
-}
-.btn-hero:hover { background: var(--grn-lt); }
-.btn-hero:active { transform: scale(.98); }
-.btn-hero svg { width: 17px; height: 17px; stroke: #fff; fill: none; stroke-width: 1.8; }
-.btn-hero.loading { opacity: .75; pointer-events: none; }
-.btn-hero .spin-icon { animation: spin .7s linear infinite; }
-.hero-guarantee {
-  text-align: center;
-  font-size: .7rem; color: rgba(255,255,255,.35);
-  letter-spacing: .08em; margin-top: 10px;
-}
+/* hero CTA (1 of 3) */
+.cta-wrap-hero { margin-bottom:20px; }
 
-/* Hero image area */
-.hero-img-wrap {
-  margin: 0 -22px;
-  position: relative;
-  background: linear-gradient(to bottom, transparent 0%, rgba(26,25,22,.6) 100%);
+/* micro copy */
+.cta-micro {
+  display:flex; align-items:center; justify-content:center; gap:14px;
+  flex-wrap:wrap;
+  margin-top:10px;
 }
-.hero-img-wrap img {
-  width: 100%; height: 260px;
-  object-fit: cover;
-  display: block;
+.cta-micro span {
+  display:flex; align-items:center; gap:5px;
+  font-size:.67rem;
+  color:rgba(255,255,255,.35);
+  letter-spacing:.06em;
+}
+.cta-micro svg { width:12px; height:12px; stroke:var(--gold-lt); fill:none; stroke-width:2; }
+
+/* product image strip */
+.hero-img {
+  margin:24px -22px 0;
+  position:relative;
+}
+.hero-img img {
+  width:100%; height:280px;
+  object-fit:cover; display:block;
 }
 .hero-img-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(26,25,22,.3) 0%, rgba(26,25,22,.0) 50%, rgba(26,25,22,.5) 100%);
+  position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(25,24,15,.15) 0%, rgba(25,24,15,.0) 40%, rgba(25,24,15,.6) 100%);
 }
 
-/* Floating stats card */
-.hero-stat-bar {
-  background: rgba(255,255,255,.06);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 12px;
-  margin: -28px 0 0;
-  position: relative; z-index: 3;
-  display: grid; grid-template-columns: repeat(3,1fr);
-  padding: 16px 12px;
-  gap: 8px;
+/* floating badge bar */
+.badge-bar {
+  background:rgba(255,255,255,.07);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  margin:-30px 8px 0;
+  position:relative; z-index:3;
+  display:grid; grid-template-columns:repeat(3,1fr);
+  padding:16px 10px;
+  gap:6px;
 }
-.hs-item { text-align: center; }
-.hs-num {
-  font-family: var(--fd);
-  font-size: 1.5rem; font-weight: 300;
-  color: #fff; line-height: 1;
-  margin-bottom: 3px;
+.bb-item { text-align:center; }
+.bb-num {
+  font-family:var(--fd);
+  font-size:1.55rem; font-weight:300;
+  color:#fff; line-height:1;
+  margin-bottom:3px;
 }
-.hs-num span { font-size: .9rem; }
-.hs-lbl { font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); }
+.bb-num sub { font-size:.75rem; vertical-align:baseline; }
+.bb-lbl {
+  font-size:.56rem; letter-spacing:.1em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.38);
+  line-height:1.35;
+}
+.bb-divider { width:1px; background:rgba(255,255,255,.1); margin:4px 0; }
 
-/* ══════════════════════════════════════
-   3. MEDIA / TRUST BAR
-══════════════════════════════════════ */
-.media-sec {
-  background: var(--white);
-  padding: 36px 20px;
-  border-bottom: 1px solid var(--border);
-}
-.media-lbl {
-  text-align: center;
-  font-size: .62rem; letter-spacing: .2em;
-  text-transform: uppercase; color: var(--ink3);
-  margin-bottom: 24px;
-}
-.media-cards { display: flex; flex-direction: column; gap: 14px; }
-.media-card {
-  background: var(--cream);
-  border-radius: 10px;
-  padding: 16px 18px;
-  display: flex; align-items: flex-start; gap: 14px;
-}
-.media-logo {
-  font-family: var(--fd);
-  font-size: 1.1rem; font-weight: 600;
-  letter-spacing: .08em; text-transform: uppercase;
-  color: var(--ink2); flex-shrink: 0; min-width: 56px;
-  padding-top: 2px;
-}
-.media-quote {
-  font-size: .8rem; color: var(--ink2);
-  line-height: 1.55; font-style: italic;
-}
-.media-quote b { font-style: normal; font-weight: 500; color: var(--ink); }
+/* hero bottom padding */
+.hero-bottom { height:36px; }
 
-/* ══════════════════════════════════════
-   SECTIONS COMMON
-══════════════════════════════════════ */
-.sec { padding: 52px 20px; }
-.sec-lbl {
-  font-size: .65rem; letter-spacing: .2em;
-  text-transform: uppercase; color: var(--ink3);
-  margin-bottom: 10px; display: block;
+/* ═══════════════════════════════════════════
+   CTA BUTTON (shared)
+═══════════════════════════════════════════ */
+.btn-cta {
+  width:100%;
+  background:var(--grn); color:#fff;
+  border-radius:9px; padding:18px 20px;
+  font-size:.85rem; font-weight:600;
+  letter-spacing:.12em; text-transform:uppercase;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  transition:background .2s, transform .1s, opacity .15s;
+  cursor:pointer;
+  position:relative; overflow:hidden;
 }
+.btn-cta::after {
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(90deg, transparent 0%, rgba(255,255,255,.06) 50%, transparent 100%);
+  background-size:200% 100%;
+  animation:shimmer 2.5s infinite;
+}
+.btn-cta:hover  { background:var(--grn-lt); }
+.btn-cta:active { transform:scale(.98); }
+.btn-cta.pulse  { animation:pulse 2.2s ease-in-out infinite; }
+.btn-cta.loading { opacity:.72; pointer-events:none; }
+.btn-cta svg { width:17px; height:17px; stroke:#fff; fill:none; stroke-width:1.9; flex-shrink:0; }
+.btn-cta .spin { animation:spin .7s linear infinite; }
+
+/* ═══════════════════════════════════════════
+   SECTION COMMON
+═══════════════════════════════════════════ */
+.sec { padding:56px 20px; }
+.sec-kicker {
+  font-size:.64rem; letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--ink3);
+  margin-bottom:10px; display:block;
+}
+/* LARGE headline — 1.5× the previous size */
 .sec-h2 {
-  font-family: var(--fd);
-  font-size: clamp(1.75rem, 6vw, 2.2rem);
-  font-weight: 400; line-height: 1.15;
-  margin-bottom: 8px;
+  font-family:var(--fd);
+  font-size:clamp(2.1rem, 7vw, 2.8rem);
+  font-weight:400; line-height:1.12;
+  margin-bottom:10px;
 }
-.sec-lead { font-size: .84rem; color: var(--ink2); line-height: 1.65; }
+.sec-lead { font-size:.86rem; color:var(--ink2); line-height:1.65; }
 
-/* ══════════════════════════════════════
-   4. PROBLEM & AGITATION
-══════════════════════════════════════ */
-.prob-sec { background: var(--sand); }
-.prob-list { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
-.prob-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  background: var(--white);
-  border-radius: 10px; padding: 16px 16px;
-  box-shadow: var(--sh);
+/* ═══════════════════════════════════════════
+   MEDIA / TRUST BAR
+═══════════════════════════════════════════ */
+.media-sec {
+  background:var(--white);
+  padding:36px 20px;
+  border-bottom:1px solid var(--border);
 }
-.prob-icon {
-  width: 34px; height: 34px;
-  background: #FEF0E6; border-radius: 8px;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+.media-kicker {
+  text-align:center;
+  font-size:.6rem; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--ink3);
+  margin-bottom:22px;
 }
-.prob-icon svg { width: 16px; height: 16px; stroke: #C47A2A; fill: none; stroke-width: 1.8; }
-.prob-text strong { font-size: .87rem; font-weight: 500; display: block; margin-bottom: 3px; }
-.prob-text span { font-size: .76rem; color: var(--ink2); line-height: 1.5; }
+.media-cards { display:flex; flex-direction:column; gap:12px; }
+.m-card {
+  display:flex; align-items:flex-start; gap:14px;
+  background:var(--cream);
+  border-radius:var(--r); padding:16px;
+  border-left:3px solid var(--gold);
+}
+.m-logo {
+  font-family:var(--fd);
+  font-size:1rem; font-weight:600;
+  letter-spacing:.06em; text-transform:uppercase;
+  color:var(--ink2); flex-shrink:0; min-width:52px;
+  line-height:1.3;
+}
+.m-quote {
+  font-size:.79rem; color:var(--ink2);
+  line-height:1.55; font-style:italic;
+}
+.m-quote b { font-style:normal; color:var(--ink); font-weight:500; }
 
-/* Bridge text */
-.bridge {
-  margin-top: 28px;
-  padding: 20px 18px;
-  background: var(--charcoal);
-  border-radius: 10px;
-  text-align: center;
+/* ═══════════════════════════════════════════
+   PAIN SECTION
+═══════════════════════════════════════════ */
+.pain-sec { background:var(--sand); }
+.pain-bullets {
+  margin-top:28px;
+  display:flex; flex-direction:column; gap:12px;
 }
-.bridge p { font-size: .88rem; color: rgba(255,255,255,.65); line-height: 1.65; }
-.bridge p b { color: var(--gold-lt); font-weight: 400; }
+.pain-item {
+  display:flex; align-items:flex-start; gap:13px;
+  background:var(--white);
+  border-radius:var(--r); padding:16px;
+  box-shadow:var(--sh);
+}
+.pain-dot {
+  width:8px; height:8px; border-radius:50%;
+  background:var(--gold); flex-shrink:0; margin-top:6px;
+}
+.pain-text { font-size:.86rem; color:var(--ink); line-height:1.55; }
+.pain-text strong { font-weight:500; }
 
-/* ══════════════════════════════════════
-   5. SOLUTION / VSL AREA
-══════════════════════════════════════ */
-.sol-sec { background: var(--white); }
-.vsl-block {
-  position: relative;
-  border-radius: 14px; overflow: hidden;
-  margin-bottom: 28px;
-  background: var(--charcoal);
-  aspect-ratio: 16/9;
+.pain-bridge {
+  margin-top:24px;
+  background:var(--coal);
+  border-radius:var(--r); padding:22px 20px;
+  text-align:center;
 }
-.vsl-block img {
-  width: 100%; height: 100%;
-  object-fit: cover; opacity: .65;
+.pain-bridge p {
+  font-size:.9rem;
+  color:rgba(255,255,255,.65);
+  line-height:1.7;
 }
-.vsl-overlay {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 10px;
+.pain-bridge p b { color:var(--gold-lt); font-weight:400; }
+
+/* CTA mid (2 of 3) */
+.cta-mid {
+  background:var(--white);
+  padding:40px 20px;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
 }
-.vsl-play {
-  width: 56px; height: 56px;
-  background: rgba(255,255,255,.15);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,.3);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  transition: background .2s, transform .15s;
-  cursor: pointer;
-}
-.vsl-play:hover { background: rgba(255,255,255,.25); transform: scale(1.06); }
-.vsl-play svg { width: 20px; height: 20px; fill: #fff; stroke: none; margin-left: 3px; }
-.vsl-caption {
-  font-size: .72rem; color: rgba(255,255,255,.5);
-  letter-spacing: .08em; text-transform: uppercase;
+.cta-mid-label {
+  text-align:center;
+  font-size:.68rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink3);
+  margin-bottom:14px;
 }
 
-/* Solution points */
-.sol-points { display: flex; flex-direction: column; gap: 14px; }
-.sol-pt {
-  display: flex; align-items: flex-start; gap: 14px;
-  padding: 16px;
-  background: var(--cream);
-  border-radius: 10px;
-  border-left: 3px solid var(--gold);
+/* ═══════════════════════════════════════════
+   3-COLUMN ICON FEATURE GRID
+═══════════════════════════════════════════ */
+.feat-sec { background:var(--white); }
+.feat-intro { margin-bottom:36px; }
+.feat-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
 }
-.sol-pt-icon {
-  width: 36px; height: 36px;
-  background: var(--gold-bg); border-radius: 8px;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+.feat-item { text-align:center; }
+.feat-icon-wrap {
+  width:56px; height:56px;
+  background:var(--gold-bg);
+  border-radius:16px;
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 12px;
 }
-.sol-pt-icon svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
-.sol-pt-text strong { font-size: .87rem; font-weight: 500; display: block; margin-bottom: 2px; }
-.sol-pt-text span { font-size: .76rem; color: var(--ink2); line-height: 1.5; }
+.feat-icon-wrap svg { width:24px; height:24px; stroke:var(--gold); fill:none; stroke-width:1.5; }
+.feat-title {
+  font-size:.82rem; font-weight:600;
+  margin-bottom:4px; line-height:1.3;
+}
+.feat-desc { font-size:.71rem; color:var(--ink3); line-height:1.45; }
 
-/* ══════════════════════════════════════
-   6. THE 4 PROMISES
-══════════════════════════════════════ */
-.prom-sec { background: var(--charcoal); padding: 52px 20px; position: relative; overflow: hidden; }
+/* ═══════════════════════════════════════════
+   PROMISE SECTION
+═══════════════════════════════════════════ */
+.prom-sec {
+  background:var(--coal);
+  padding:56px 20px;
+  position:relative; overflow:hidden;
+}
 .prom-sec::before {
-  content: '';
-  position: absolute; width: 400px; height: 400px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(176,141,87,.12) 0%, transparent 60%);
-  bottom: -100px; left: -100px; pointer-events: none;
+  content:'';
+  position:absolute;
+  width:480px; height:480px; border-radius:50%;
+  background:radial-gradient(circle, rgba(176,141,87,.12) 0%, transparent 60%);
+  bottom:-140px; right:-100px; pointer-events:none;
 }
-.prom-sec .sec-lbl { color: var(--gold-lt); }
-.prom-sec .sec-h2 { color: #fff; }
-.prom-grid { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,.08); border-radius: 12px; overflow: hidden; margin-top: 28px; }
+.prom-sec .sec-kicker { color:var(--gold-lt); }
+.prom-sec .sec-h2 { color:#fff; }
+.prom-list {
+  display:flex; flex-direction:column; gap:1px;
+  background:rgba(255,255,255,.08);
+  border-radius:var(--r); overflow:hidden;
+  margin-top:32px; position:relative; z-index:1;
+}
 .prom-item {
-  background: rgba(255,255,255,.04);
-  padding: 20px 18px;
-  display: flex; align-items: center; gap: 16px;
-  position: relative;
+  background:rgba(255,255,255,.04);
+  padding:22px 18px;
+  display:flex; align-items:flex-start; gap:16px;
 }
-.prom-num {
-  font-family: var(--fd);
-  font-size: 2rem; font-weight: 300;
-  color: rgba(176,141,87,.4);
-  flex-shrink: 0; width: 32px; text-align: center;
-  line-height: 1;
+.prom-n {
+  font-family:var(--fd);
+  font-size:1.9rem; font-weight:300;
+  color:rgba(176,141,87,.35);
+  flex-shrink:0; line-height:1;
+  width:28px; text-align:center;
 }
-.prom-content { flex: 1; }
+.prom-body { flex:1; }
 .prom-title {
-  font-size: .9rem; font-weight: 500; color: #fff;
-  margin-bottom: 4px; line-height: 1.3;
+  font-size:.94rem; font-weight:600;
+  color:#fff; margin-bottom:5px; line-height:1.3;
 }
-.prom-desc { font-size: .75rem; color: rgba(255,255,255,.45); line-height: 1.5; }
-.prom-badge {
-  font-size: .58rem; font-weight: 500;
-  letter-spacing: .1em; text-transform: uppercase;
-  background: var(--gold); color: #fff;
-  padding: 3px 9px; border-radius: 20px;
-  white-space: nowrap; flex-shrink: 0;
+.prom-desc { font-size:.77rem; color:rgba(255,255,255,.44); line-height:1.55; }
+.prom-pill {
+  font-size:.57rem; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase;
+  background:var(--gold); color:#fff;
+  padding:3px 10px; border-radius:20px;
+  flex-shrink:0; align-self:flex-start; margin-top:2px;
+  white-space:nowrap;
 }
 
-/* ══════════════════════════════════════
-   7. COMPARISON TABLE
-══════════════════════════════════════ */
-.cmp-sec { background: var(--white); }
-.cmp-wrapper { overflow-x: auto; margin-top: 28px; }
+/* ═══════════════════════════════════════════
+   SCENT TIMELINE
+═══════════════════════════════════════════ */
+.scent-sec { background:var(--cream); }
+.scent-cards {
+  display:flex; flex-direction:column; gap:1px;
+  background:var(--border); border-radius:var(--r);
+  overflow:hidden; margin-top:28px;
+}
+.sc-card {
+  background:var(--white);
+  display:flex; align-items:center; gap:16px;
+  padding:18px 16px;
+}
+.sc-node {
+  flex-shrink:0; width:48px; height:48px;
+  border-radius:13px;
+  display:flex; align-items:center; justify-content:center;
+}
+.sc-node svg { width:21px; height:21px; fill:none; stroke-width:1.7; }
+.sn-am { background:rgba(255,215,80,.1);  border:1px solid rgba(255,215,80,.28); }
+.sn-am svg { stroke:#C49A0B; }
+.sn-md { background:rgba(60,150,140,.08); border:1px solid rgba(60,150,140,.22); }
+.sn-md svg { stroke:#3A8A7E; }
+.sn-ev { background:rgba(176,141,87,.1);  border:1px solid rgba(176,141,87,.28); }
+.sn-ev svg { stroke:var(--gold); }
+.sc-body { flex:1; }
+.sc-time {
+  font-size:.59rem; letter-spacing:.2em;
+  text-transform:uppercase; font-weight:500;
+  color:var(--ink3); margin-bottom:3px;
+}
+.sc-name {
+  font-family:var(--fd);
+  font-size:1.35rem; font-weight:400;
+  font-style:italic; line-height:1.1; margin-bottom:4px;
+}
+.sc-copy { font-size:.75rem; color:var(--ink2); }
+
+/* ═══════════════════════════════════════════
+   COMPARE TABLE
+═══════════════════════════════════════════ */
+.cmp-sec { background:var(--white); }
+.cmp-wrap { overflow-x:auto; margin-top:28px; }
 .cmp-tbl {
-  width: 100%; border-collapse: collapse;
-  background: var(--white);
-  border-radius: 12px; overflow: hidden;
-  box-shadow: var(--sh-l);
-  font-size: .79rem;
+  width:100%; border-collapse:collapse;
+  background:var(--white); font-size:.79rem;
+  border-radius:var(--r); overflow:hidden;
+  box-shadow:var(--sh-l);
 }
 .cmp-tbl thead th {
-  padding: 12px 10px;
-  font-size: .62rem; letter-spacing: .1em;
-  text-transform: uppercase; font-weight: 500;
-  color: var(--ink3); background: var(--cream); text-align: center;
+  padding:11px 9px;
+  font-size:.6rem; letter-spacing:.1em;
+  text-transform:uppercase; font-weight:500;
+  color:var(--ink3); background:var(--cream); text-align:center;
 }
-.cmp-tbl thead th:first-child { text-align: left; padding-left: 16px; }
-.cmp-tbl thead th.hl { background: var(--charcoal); color: rgba(255,255,255,.85); }
+.cmp-tbl thead th:first-child { text-align:left; padding-left:14px; }
+.cmp-tbl thead th.hl { background:var(--coal); color:rgba(255,255,255,.85); }
 .cmp-tbl tbody td {
-  padding: 13px 10px;
-  border-top: 1px solid var(--border);
-  text-align: center; color: var(--ink2); vertical-align: middle;
+  padding:13px 9px; border-top:1px solid var(--border);
+  text-align:center; color:var(--ink2); vertical-align:middle;
 }
-.cmp-tbl tbody td:first-child { text-align: left; padding-left: 16px; color: var(--ink); font-size: .78rem; }
-.cmp-tbl tbody td.hl { background: rgba(43,71,40,.04); font-weight: 500; color: var(--grn); }
-.ct-ok svg { width: 14px; height: 14px; stroke: var(--grn); fill: none; stroke-width: 2.3; }
-.ct-ng svg { width: 14px; height: 14px; stroke: #D8D5CF; fill: none; stroke-width: 2; }
-.ct-badge { display: inline-block; background: var(--grn); color: #fff; font-size: .62rem; font-weight: 500; padding: 2px 8px; border-radius: 3px; }
+.cmp-tbl tbody td:first-child { text-align:left; padding-left:14px; color:var(--ink); font-size:.78rem; }
+.cmp-tbl tbody td.hl { background:rgba(43,71,40,.04); font-weight:500; color:var(--grn); }
+.ct-ok svg { width:14px; height:14px; stroke:var(--grn); fill:none; stroke-width:2.3; }
+.ct-ng svg { width:14px; height:14px; stroke:#C8C5BE; fill:none; stroke-width:2; }
+.ct-badge { display:inline-block; background:var(--grn); color:#fff; font-size:.6rem; font-weight:600; padding:2px 9px; border-radius:3px; }
 
-/* ══════════════════════════════════════
-   8. SOCIAL PROOF / UGC
-══════════════════════════════════════ */
-.ugc-sec { background: var(--sand); }
+/* ═══════════════════════════════════════════
+   SOCIAL PROOF — REVIEWS
+═══════════════════════════════════════════ */
+.rev-sec { background:var(--sand); }
 
-/* Overall rating */
-.ugc-overall {
-  display: flex; align-items: center; gap: 16px;
-  padding: 20px;
-  background: var(--white); border-radius: 12px;
-  box-shadow: var(--sh); margin-bottom: 20px;
+/* Big overall rating */
+.rev-overall {
+  display:flex; align-items:center; gap:18px;
+  background:var(--white); border-radius:var(--r);
+  padding:22px 20px; box-shadow:var(--sh);
+  margin-bottom:22px;
 }
-.ugc-score { font-family: var(--fd); font-size: 3rem; font-weight: 300; line-height: 1; }
-.ugc-meta .stars { display: flex; gap: 2px; margin-bottom: 4px; }
-.ugc-meta .stars svg { width: 14px; height: 14px; fill: var(--gold); stroke: none; }
-.ugc-total { font-size: .72rem; color: var(--ink3); }
+.rev-big {
+  font-family:var(--fd);
+  font-size:4rem; font-weight:300; line-height:1;
+  color:var(--ink);
+}
+.rev-detail .stars-row { display:flex; gap:3px; margin-bottom:5px; }
+.rev-detail .stars-row svg { width:15px; height:15px; fill:var(--gold); stroke:none; }
+.rev-detail .rev-count { font-size:.78rem; color:var(--ink3); margin-bottom:3px; }
+.rev-detail .rev-sub { font-size:.68rem; color:var(--ink3); }
 
-.ugc-cards { display: flex; flex-direction: column; gap: 14px; }
+.rev-cards { display:flex; flex-direction:column; gap:14px; }
+.rc {
+  background:var(--white);
+  border-radius:var(--r); padding:20px;
+  box-shadow:var(--sh);
+}
+.rc-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
+.rc-user strong { font-size:.88rem; font-weight:600; display:block; margin-bottom:1px; }
+.rc-user span   { font-size:.68rem; color:var(--ink3); }
+.rc-date { font-size:.66rem; color:var(--ink3); }
+.rc-stars { display:flex; gap:2px; margin-bottom:7px; }
+.rc-stars svg { width:11px; height:11px; fill:var(--gold); stroke:none; }
+.rc-ver {
+  font-size:.63rem; color:var(--grn);
+  display:flex; align-items:center; gap:4px;
+  margin-bottom:10px;
+}
+.rc-ver svg { width:11px; height:11px; stroke:var(--grn); fill:none; stroke-width:2.2; }
+.rc-body { display:flex; gap:12px; }
+.rc-photo {
+  width:58px; height:58px; border-radius:9px; overflow:hidden;
+  flex-shrink:0; border:1px solid var(--border); background:var(--cream);
+  display:flex; align-items:center; justify-content:center;
+}
+.rc-photo svg { width:22px; height:22px; stroke:var(--border); fill:none; }
+.rc-content { flex:1; }
+.rc-hl {
+  font-size:.9rem; font-weight:600;
+  line-height:1.3; margin-bottom:5px; color:var(--ink);
+}
+.rc-txt { font-size:.8rem; color:var(--ink2); line-height:1.65; }
+.rc-txt strong { color:var(--ink); font-weight:500; }
 
-.ugc-card {
-  background: var(--white);
-  border-radius: 12px; padding: 20px;
-  box-shadow: var(--sh);
+/* Pull quote */
+.rev-pull {
+  margin-top:20px;
+  background:var(--coal);
+  border-radius:var(--r); padding:24px 20px; text-align:center;
 }
-.ugc-card-hdr {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  margin-bottom: 10px;
+.rev-pull-q {
+  font-family:var(--fd);
+  font-size:1.35rem; font-weight:300; font-style:italic;
+  color:rgba(255,255,255,.82); line-height:1.5;
+  margin-bottom:10px;
 }
-.ugc-user strong { font-size: .87rem; font-weight: 500; display: block; }
-.ugc-user span { font-size: .68rem; color: var(--ink3); }
-.ugc-date { font-size: .67rem; color: var(--ink3); }
-.ugc-stars { display: flex; gap: 2px; margin-bottom: 6px; }
-.ugc-stars svg { width: 11px; height: 11px; fill: var(--gold); stroke: none; }
-.ugc-ver {
-  font-size: .63rem; color: var(--grn);
-  display: flex; align-items: center; gap: 4px; margin-bottom: 10px;
-}
-.ugc-ver svg { width: 11px; height: 11px; stroke: var(--grn); fill: none; stroke-width: 2.2; }
-.ugc-body { display: flex; gap: 12px; }
-.ugc-photo {
-  width: 60px; height: 60px; border-radius: 8px; overflow: hidden;
-  flex-shrink: 0; border: 1px solid var(--border); background: var(--cream);
-  display: flex; align-items: center; justify-content: center;
-}
-.ugc-photo img { width: 100%; height: 100%; object-fit: cover; }
-.ugc-photo svg { width: 22px; height: 22px; stroke: var(--border); fill: none; }
-.ugc-text-wrap { flex: 1; }
-.ugc-headline { font-size: .9rem; font-weight: 500; margin-bottom: 5px; line-height: 1.3; }
-.ugc-text { font-size: .8rem; color: var(--ink); line-height: 1.65; }
+.rev-pull-attr { font-size:.66rem; color:rgba(255,255,255,.3); letter-spacing:.08em; text-transform:uppercase; }
 
-/* Highlight pull quote */
-.ugc-pullquote {
-  margin-top: 20px;
-  background: var(--charcoal);
-  border-radius: 10px; padding: 20px;
-  text-align: center;
+/* ═══════════════════════════════════════════
+   FINAL CTA SECTION (3 of 3)
+═══════════════════════════════════════════ */
+.final-sec {
+  background:var(--cream);
+  padding:56px 20px;
+  text-align:center;
 }
-.ugc-pq-text {
-  font-family: var(--fd);
-  font-size: 1.3rem; font-weight: 300; font-style: italic;
-  color: rgba(255,255,255,.85); line-height: 1.5;
-  margin-bottom: 8px;
+.final-sec .sec-h2 { font-size:clamp(2rem,6.5vw,2.6rem); }
+.final-sub { font-size:.86rem; color:var(--ink2); margin:10px 0 32px; }
+
+/* Pricing tiles */
+.price-tiles {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:8px; margin-bottom:24px;
 }
-.ugc-pq-attr { font-size: .68rem; color: rgba(255,255,255,.35); letter-spacing: .08em; text-transform: uppercase; }
+.p-tile {
+  background:var(--white); border:1.5px solid var(--border);
+  border-radius:var(--r); padding:14px 10px;
+  text-align:center; cursor:pointer;
+  transition:border-color .2s, box-shadow .2s;
+}
+.p-tile.sel {
+  border-color:var(--grn);
+  box-shadow:0 0 0 1px var(--grn);
+}
+.p-tile-size { font-weight:600; font-size:.88rem; margin-bottom:3px; }
+.p-tile-val  { font-family:var(--fd); font-size:1.25rem; font-weight:400; }
+.p-tile-orig { font-size:.62rem; color:var(--ink3); text-decoration:line-through; margin-top:1px; }
+.p-tile-badge {
+  display:inline-block; margin-top:5px;
+  font-size:.54rem; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase;
+  padding:2px 8px; border-radius:20px;
+}
+.ptb-pop { background:var(--grn); color:#fff; }
+.ptb-val { background:var(--gold-bg); color:var(--gold); border:1px solid var(--gold); }
+.ptb-try { background:var(--cream); color:var(--ink3); border:1px solid var(--border); }
 
-/* ══════════════════════════════════════
-   SCENT TIMELINE
-══════════════════════════════════════ */
-.scent-sec { background: var(--white); }
-.scent-cards { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: 12px; overflow: hidden; margin-top: 28px; }
-.sc-card { background: var(--white); display: flex; align-items: center; gap: 16px; padding: 18px 16px; }
-.sc-node { flex-shrink: 0; width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
-.sc-node svg { width: 20px; height: 20px; fill: none; stroke-width: 1.6; }
-.sn-am { background: rgba(255,215,100,.12); border: 1px solid rgba(255,215,100,.3); }
-.sn-am svg { stroke: #C9960A; }
-.sn-md { background: rgba(80,160,145,.1); border: 1px solid rgba(80,160,145,.25); }
-.sn-md svg { stroke: #3A8A7E; }
-.sn-ev { background: rgba(176,141,87,.12); border: 1px solid rgba(176,141,87,.3); }
-.sn-ev svg { stroke: var(--gold); }
-.sc-body { flex: 1; }
-.sc-time { font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 500; color: var(--ink3); margin-bottom: 3px; }
-.sc-name { font-family: var(--fd); font-size: 1.3rem; font-weight: 400; font-style: italic; line-height: 1.1; margin-bottom: 3px; }
-.sc-copy { font-size: .74rem; color: var(--ink2); }
+.final-meta {
+  margin-top:14px;
+  display:flex; justify-content:center;
+  align-items:center; gap:14px;
+  flex-wrap:wrap;
+}
+.final-meta span {
+  display:flex; align-items:center; gap:5px;
+  font-size:.69rem; color:var(--ink3);
+}
+.final-meta svg { width:12px; height:12px; stroke:var(--grn); fill:none; stroke-width:2; }
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════════════
    GUARANTEE
-══════════════════════════════════════ */
+═══════════════════════════════════════════ */
 .guar-sec {
-  background: var(--charcoal);
-  padding: 52px 20px; text-align: center;
-  position: relative; overflow: hidden;
+  background:var(--coal);
+  padding:56px 20px; text-align:center;
+  position:relative; overflow:hidden;
 }
 .guar-sec::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(176,141,87,.1) 0%, transparent 55%);
-  pointer-events: none;
+  content:'';
+  position:absolute; inset:0;
+  background:radial-gradient(ellipse at 50% 0%, rgba(176,141,87,.1) 0%, transparent 55%);
+  pointer-events:none;
 }
-.guar-badge {
-  width: 64px; height: 64px; border-radius: 50%;
-  border: 1px solid rgba(176,141,87,.4);
-  background: rgba(176,141,87,.08);
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 20px; position: relative; z-index: 1;
+.guar-icon {
+  width:66px; height:66px; border-radius:50%;
+  border:1px solid rgba(176,141,87,.38);
+  background:rgba(176,141,87,.08);
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 20px; position:relative; z-index:1;
 }
-.guar-badge svg { width: 26px; height: 26px; stroke: var(--gold-lt); fill: none; stroke-width: 1.4; }
-.guar-sec h2 { font-family: var(--fd); font-size: 1.9rem; font-weight: 400; color: #fff; margin-bottom: 14px; position: relative; z-index: 1; }
-.guar-sec p { font-size: .83rem; color: rgba(255,255,255,.5); line-height: 1.8; max-width: 320px; margin: 0 auto 6px; position: relative; z-index: 1; }
-.guar-sec p b { color: rgba(255,255,255,.9); font-weight: 400; }
+.guar-icon svg { width:28px; height:28px; stroke:var(--gold-lt); fill:none; stroke-width:1.4; }
+.guar-h2 {
+  font-family:var(--fd);
+  font-size:clamp(1.9rem,6vw,2.4rem); font-weight:400;
+  color:#fff; margin-bottom:14px;
+  position:relative; z-index:1;
+}
+.guar-body {
+  font-size:.84rem;
+  color:rgba(255,255,255,.5);
+  line-height:1.8; max-width:320px; margin:0 auto;
+  position:relative; z-index:1;
+}
+.guar-body b { color:rgba(255,255,255,.88); font-weight:400; }
 
-/* ══════════════════════════════════════
-   FINAL CTA SECTION
-══════════════════════════════════════ */
-.final-sec {
-  background: var(--cream);
-  padding: 52px 20px;
-  text-align: center;
-}
-.final-sec h2 {
-  font-family: var(--fd);
-  font-size: clamp(1.8rem, 6vw, 2.4rem);
-  font-weight: 400; line-height: 1.15; margin-bottom: 10px;
-}
-.final-sec p { font-size: .83rem; color: var(--ink2); margin-bottom: 28px; }
-.btn-final {
-  width: 100%;
-  background: var(--grn); color: #fff;
-  border-radius: 8px; padding: 18px 20px;
-  font-size: .85rem; font-weight: 500;
-  letter-spacing: .14em; text-transform: uppercase;
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  transition: background .2s, transform .1s;
-  margin-bottom: 12px; cursor: pointer;
-  animation: pulse 2.4s 0.5s ease-in-out infinite;
-}
-.btn-final:hover { background: var(--grn-lt); }
-.btn-final:active { transform: scale(.98); }
-.btn-final svg { width: 17px; height: 17px; stroke: #fff; fill: none; stroke-width: 1.8; }
-.btn-final.loading { opacity: .75; pointer-events: none; animation: none; }
-.btn-final .spin-icon { animation: spin .7s linear infinite; }
-.final-meta {
-  font-size: .7rem; color: var(--ink3);
-  display: flex; justify-content: center; align-items: center; gap: 12px;
-  flex-wrap: wrap;
-}
-.final-meta span { display: flex; align-items: center; gap: 4px; }
-.final-meta svg { width: 12px; height: 12px; stroke: var(--grn); fill: none; stroke-width: 2; }
-
-/* Pricing row */
-.pricing-strip {
-  display: grid; grid-template-columns: repeat(3,1fr);
-  gap: 8px; margin-bottom: 20px;
-}
-.price-opt {
-  background: var(--white);
-  border: 1.5px solid var(--border);
-  border-radius: 10px; padding: 14px 10px;
-  text-align: center; cursor: pointer;
-  transition: border-color .2s, box-shadow .2s;
-}
-.price-opt.sel {
-  border-color: var(--grn);
-  box-shadow: 0 0 0 1px var(--grn);
-}
-.price-opt-size { font-weight: 500; font-size: .88rem; margin-bottom: 3px; }
-.price-opt-val { font-family: var(--fd); font-size: 1.2rem; font-weight: 400; }
-.price-opt-orig { font-size: .62rem; color: var(--ink3); text-decoration: line-through; }
-.price-opt-badge {
-  display: inline-block; margin-top: 4px;
-  font-size: .55rem; font-weight: 500;
-  letter-spacing: .1em; text-transform: uppercase;
-  padding: 1px 7px; border-radius: 20px;
-}
-.pob-pop { background: var(--grn); color: #fff; }
-.pob-val { background: var(--gold-bg); color: var(--gold); border: 1px solid var(--gold); }
-.pob-try { background: var(--cream); color: var(--ink3); border: 1px solid var(--border); }
-
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════════════
    FOOTER
-══════════════════════════════════════ */
+═══════════════════════════════════════════ */
 .footer {
-  background: var(--charcoal);
-  padding: 28px 20px 100px;
-  text-align: center;
+  background:var(--coal);
+  padding:24px 20px 110px;
+  border-top:1px solid rgba(255,255,255,.07);
+  text-align:center;
 }
-.footer-logo { font-family: var(--fd); font-size: 1.1rem; letter-spacing: .28em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 14px; }
-.footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-bottom: 14px; }
-.footer-links a { font-size: .68rem; color: rgba(255,255,255,.3); letter-spacing: .06em; }
-.footer-copy { font-size: .62rem; color: rgba(255,255,255,.2); }
+.footer-logo {
+  font-family:var(--fd);
+  font-size:1.05rem; letter-spacing:.28em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.35); margin-bottom:14px;
+}
+.footer-links { display:flex; justify-content:center; flex-wrap:wrap; gap:14px; margin-bottom:14px; }
+.footer-links a { font-size:.67rem; color:rgba(255,255,255,.25); letter-spacing:.06em; }
+.footer-copy { font-size:.62rem; color:rgba(255,255,255,.18); }
 
-/* ══════════════════════════════════════
-   STICKY CTA BAR
-══════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   STICKY BAR
+═══════════════════════════════════════════ */
 .sticky-bar {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  background: var(--white);
-  border-top: 1px solid var(--border);
-  box-shadow: 0 -6px 28px rgba(26,25,22,.1);
-  padding: 10px 16px 26px;
-  z-index: 300;
-  transform: translateY(100%);
-  transition: transform .3s cubic-bezier(.4,0,.2,1);
+  position:fixed; bottom:0; left:0; right:0;
+  background:var(--white); border-top:1px solid var(--border);
+  box-shadow:0 -6px 28px rgba(25,24,15,.1);
+  padding:10px 16px 26px; z-index:400;
+  transform:translateY(100%);
+  transition:transform .3s cubic-bezier(.4,0,.2,1);
 }
-.sticky-bar.show { transform: translateY(0); }
-.sticky-inner { display: flex; gap: 10px; align-items: center; max-width: 480px; margin: 0 auto; }
-.sticky-price { font-family: var(--fd); font-size: 1.3rem; font-weight: 400; white-space: nowrap; }
-.sticky-inner .btn-sticky {
-  flex: 1; background: var(--grn); color: #fff;
-  border-radius: 8px; padding: 14px 10px;
-  font-size: .76rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  transition: background .2s; cursor: pointer;
+.sticky-bar.show { transform:translateY(0); }
+.sticky-inner { display:flex; gap:10px; align-items:center; max-width:480px; margin:0 auto; }
+.sticky-price {
+  font-family:var(--fd);
+  font-size:1.25rem; font-weight:400; white-space:nowrap;
 }
-.sticky-inner .btn-sticky:hover { background: var(--grn-lt); }
-.sticky-inner .btn-sticky.loading { opacity: .75; pointer-events: none; }
-.sticky-inner .btn-sticky svg { width: 15px; height: 15px; stroke: #fff; fill: none; stroke-width: 1.8; }
+.sticky-btn {
+  flex:1; background:var(--grn); color:#fff;
+  border-radius:8px; padding:14px 10px;
+  font-size:.75rem; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  transition:background .2s; cursor:pointer;
+}
+.sticky-btn:hover  { background:var(--grn-lt); }
+.sticky-btn.loading { opacity:.72; pointer-events:none; }
+.sticky-btn svg { width:15px; height:15px; stroke:#fff; fill:none; stroke-width:1.9; flex-shrink:0; }
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════════════
    SCROLL REVEAL
-══════════════════════════════════════ */
-.rv { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
-.rv.in { opacity: 1; transform: none; }
-.rv-d1 { transition-delay: .1s; }
-.rv-d2 { transition-delay: .2s; }
-.rv-d3 { transition-delay: .3s; }
+═══════════════════════════════════════════ */
+.rv  { opacity:0; transform:translateY(18px); transition:opacity .58s ease, transform .58s ease; }
+.rv.in { opacity:1; transform:none; }
+.d1 { transition-delay:.08s; }
+.d2 { transition-delay:.16s; }
+.d3 { transition-delay:.24s; }
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════════════
    RESPONSIVE
-══════════════════════════════════════ */
-@media (min-width: 600px) {
-  .hero-stat-bar { grid-template-columns: repeat(3,1fr); }
-  .pricing-strip { grid-template-columns: repeat(3,1fr); }
+═══════════════════════════════════════════ */
+@media(min-width:580px) {
+  .badge-bar { grid-template-columns:repeat(3,1fr); }
+  .price-tiles { grid-template-columns:repeat(3,1fr); }
 }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
-     1. ANNOUNCEMENT BAR
-══════════════════════════════════════ -->
+<!-- ══ ANNOUNCE BAR ══ -->
 <div class="ann" aria-hidden="true">
   <div class="ann-track">
-    <span class="ann-item"><b>無料サンプル同梱</b></span>
-    <span class="ann-item">30日間全額返金保証</span>
-    <span class="ann-item">送料無料（¥5,000以上）</span>
-    <span class="ann-item">翌日発送</span>
-    <span class="ann-item"><b>12時間持続</b></span>
-    <span class="ann-item">敏感肌対応</span>
+    <span class="ann-seg"><b>無料サンプル同梱</b></span>
+    <span class="ann-seg">30日間全額返金</span>
+    <span class="ann-seg">送料無料（¥5,000以上）</span>
+    <span class="ann-seg"><b>12時間持続</b></span>
+    <span class="ann-seg">最短翌日発送</span>
+    <span class="ann-seg">ギフトラッピング対応</span>
     <!-- duplicate for seamless loop -->
-    <span class="ann-item"><b>無料サンプル同梱</b></span>
-    <span class="ann-item">30日間全額返金保証</span>
-    <span class="ann-item">送料無料（¥5,000以上）</span>
-    <span class="ann-item">翌日発送</span>
-    <span class="ann-item"><b>12時間持続</b></span>
-    <span class="ann-item">敏感肌対応</span>
+    <span class="ann-seg"><b>無料サンプル同梱</b></span>
+    <span class="ann-seg">30日間全額返金</span>
+    <span class="ann-seg">送料無料（¥5,000以上）</span>
+    <span class="ann-seg"><b>12時間持続</b></span>
+    <span class="ann-seg">最短翌日発送</span>
+    <span class="ann-seg">ギフトラッピング対応</span>
   </div>
 </div>
 
-<!-- HEADER -->
+<!-- ══ HEADER ══ -->
 <header class="hdr">
-  <a href="https://nemveil.com" class="logo">P U R E <span>·</span> L A Y E R</a>
-  <div class="hdr-right">
-    <button class="hdr-btn" onclick="ctaClick(this)">今すぐ試す</button>
-  </div>
+  <a href="https://nemveil.com" class="logo">P U R E <span class="logo-dot">·</span> L A Y E R</a>
+  <button class="hdr-cta" onclick="ctaClick(this)">今すぐ試す</button>
 </header>
 
-<!-- ══════════════════════════════════════
-     2. HERO — Above the Fold
-══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════
+     ① HERO — Above the Fold
+══════════════════════════════════════════ -->
 <section class="hero">
   <div class="hero-inner">
 
-    <!-- Trust badges -->
-    <div class="hero-trust">
-      <div class="h-badge">
-        <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-        <span>1万人以上の評価</span>
-      </div>
-      <div class="h-badge-sep"></div>
-      <div class="h-badge">
-        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <span>30日間返金保証</span>
-      </div>
-      <div class="h-badge-sep"></div>
-      <div class="h-badge">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
-        <span>12時間持続</span>
-      </div>
+    <!-- eyebrow -->
+    <div class="hero-eye">
+      <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
+      石鹸フレグランス · No.01 Oud Stallion
     </div>
 
-    <!-- Headline -->
-    <h1 class="hero-headline">
-      清潔感が、<br>
-      <em>12時間</em><br>
-      続く香りを。
+    <!-- HEADLINE -->
+    <h1 class="hero-h1">
+      まるで<em>お風呂上がり</em>の、<br>
+      清潔感。<br>
+      <u>第一印象</u>を爽やかに変える、<br>究極の石鹸フレグランス。
     </h1>
 
     <p class="hero-sub">
-      <b>「いい匂い」と言われる人</b>には、理由がある。<br>
-      朝1プッシュで、夜まで。香水初心者でも失敗しない、プロ処方のウードムスク。
+      <strong>「今日、いい匂いするね」</strong>——<br>
+      そう言われる人になれる、<br>
+      12時間持続・香水初心者でも失敗しない処方。
     </p>
 
-    <!-- Social proof mini -->
-    <div class="hero-proof">
-      <div class="hp-stars">
+    <!-- Stars -->
+    <div class="hero-social">
+      <div class="hs-stars">
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
       </div>
-      <span class="hp-text"><b>4.9</b> · 1,284件のレビュー · Trustpilot 認定</span>
+      <span class="hs-text"><b>4.9 / 5.0</b> · 1,284件のレビュー · Trustpilot 認定</span>
     </div>
 
-    <!-- CTA -->
-    <div class="hero-cta-wrap">
-      <button class="btn-hero" onclick="ctaClick(this)">
+    <!-- ★ CTA 1/3 ★ -->
+    <div class="cta-wrap-hero">
+      <button class="btn-cta pulse" onclick="ctaClick(this)">
         <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-        <span class="cta-label">無料サンプル付きで今すぐ試す</span>
+        <span class="cta-lbl">無料サンプル付きで今すぐ試す</span>
       </button>
-      <div class="hero-guarantee">30日間・全額返金保証 · 未開封返品OK · 送料当社負担</div>
+      <div class="cta-micro">
+        <span>
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          送料無料
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          最短当日発送
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          ギフトラッピング対応
+        </span>
+      </div>
     </div>
 
-    <!-- Hero image -->
-    <div class="hero-img-wrap">
-      <!-- 商品ライフスタイル画像：ダーク背景に白いボトルが浮かぶ、高級感のある構図 -->
-      <img src="" alt="PURELAYER Oud Stallion - 高級感のある商品ライフスタイル画像（ダーク背景）">
+    <!-- product image -->
+    <div class="hero-img">
+      <!-- 商品ライフスタイル画像：ダーク背景に白い香水ボトル、朝の光が差し込む高級感ある構図 -->
+      <img src="" alt="PURELAYER Oud Stallion 商品ライフスタイル画像 — ダーク背景・高級感・朝光">
       <div class="hero-img-overlay"></div>
     </div>
 
-    <!-- Stat bar -->
-    <div class="hero-stat-bar">
-      <div class="hs-item">
-        <div class="hs-num">97<span>%</span></div>
-        <div class="hs-lbl">ブランド品と<br>ほぼ同じ</div>
+    <!-- badge bar -->
+    <div class="badge-bar">
+      <div class="bb-item">
+        <div class="bb-num">10,000<sub>本+</sub></div>
+        <div class="bb-lbl">累計販売数<br>突破</div>
       </div>
-      <div class="hs-item">
-        <div class="hs-num">93<span>%</span></div>
-        <div class="hs-lbl">褒められた<br>と回答</div>
+      <div class="bb-item">
+        <div class="bb-num">97.8<sub>%</sub></div>
+        <div class="bb-lbl">顧客満足度</div>
       </div>
-      <div class="hs-item">
-        <div class="hs-num">1<span>万+</span></div>
-        <div class="hs-lbl">満足した<br>顧客数</div>
+      <div class="bb-item">
+        <div class="bb-num">4.9<sub>/5</sub></div>
+        <div class="bb-lbl">Trustpilot<br>平均評価</div>
       </div>
     </div>
 
   </div>
+  <div class="hero-bottom"></div>
 </section>
 
-<!-- ══════════════════════════════════════
-     3. MEDIA / TRUST BAR
-══════════════════════════════════════ -->
+<!-- ══ MEDIA / TRUST BAR ══ -->
 <section class="media-sec">
-  <p class="media-lbl">メディア掲載 · 業界評価</p>
+  <p class="media-kicker">メディア掲載 · 業界評価</p>
   <div class="media-cards">
-    <div class="media-card rv">
-      <div class="media-logo">METRO</div>
-      <div class="media-quote">「<b>これ一本で清潔感は完成する。</b>ブランド香水の代替として、コスパ最高の選択肢だ」</div>
+    <div class="m-card rv">
+      <div class="m-logo">METRO</div>
+      <div class="m-quote">「<b>これ一本で清潔感は完成する。</b>デパート香水の代替として、コスパ最高の選択肢」</div>
     </div>
-    <div class="media-card rv rv-d1">
-      <div class="media-logo">INDIE.</div>
-      <div class="media-quote">「<b>デパートの香水売り場には戻れなくなった</b>——そう語るユーザーが続出している理由とは」</div>
+    <div class="m-card rv d1">
+      <div class="m-logo">INDIE.</div>
+      <div class="m-quote">「<b>デパートの香水売り場には戻れなくなった</b>——そう語るユーザーが続出している理由」</div>
     </div>
-    <div class="media-card rv rv-d2">
-      <div class="media-logo">HYPE</div>
-      <div class="media-quote">「価格、持続力、清潔感。<b>3拍子揃った香水</b>はなかなかない。PURELAYERはその例外だ」</div>
+    <div class="m-card rv d2">
+      <div class="m-logo">HYPE</div>
+      <div class="m-quote">「価格、持続力、清潔感。<b>3拍子揃った香水</b>はなかなかない。PURELAYERはその例外だ」</div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     4. PROBLEM & AGITATION
-══════════════════════════════════════ -->
-<section class="sec prob-sec">
+<!-- ══════════════════════════════════════════
+     「深い悩み」への共感
+══════════════════════════════════════════ -->
+<section class="sec pain-sec">
   <div class="rv">
-    <span class="sec-lbl">あなたの不安、全部わかります</span>
-    <h2 class="sec-h2">「香水って、<br>難しそう」と<br>思っていませんか？</h2>
+    <span class="sec-kicker">あなたの気持ち、全部わかります</span>
+    <h2 class="sec-h2">「香水って、<br>失敗しそう…」<br>そう思っていませんか？</h2>
   </div>
 
-  <div class="prob-list">
-    <div class="prob-item rv">
-      <div class="prob-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-      <div class="prob-text">
-        <strong>「キツすぎて、周りに迷惑をかけたくない」</strong>
-        <span>付けすぎた経験があると、次の一本を選ぶのが怖くなりますよね。</span>
-      </div>
+  <div class="pain-bullets">
+    <div class="pain-item rv">
+      <div class="pain-dot"></div>
+      <div class="pain-text"><strong>「香水特有のキツい匂いが苦手…」</strong><br>周りに迷惑をかけてしまうかもしれない、という不安が付けるのを躊躇わせる。</div>
     </div>
-    <div class="prob-item rv rv-d1">
-      <div class="prob-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-      <div class="prob-text">
-        <strong>「買ったのに、自分に合わなかった……」</strong>
-        <span>テスターで良くても、実際に使い続けると「なんか違う」。5,000円が無駄になった経験、ありませんか。</span>
-      </div>
+    <div class="pain-item rv d1">
+      <div class="pain-dot"></div>
+      <div class="pain-text"><strong>「清潔感を出したいけど、何をつければいいか分からない」</strong><br>香水コーナーに立つと種類が多すぎて、結局何も買えずに帰ってしまう。</div>
     </div>
-    <div class="prob-item rv rv-d2">
-      <div class="prob-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
-      <div class="prob-text">
-        <strong>「高級品はブランド料が高すぎる」</strong>
-        <span>3万円の香水の中身は、原料費にすると実は数百円。それでも「いい香り」に3万円払いますか？</span>
-      </div>
+    <div class="pain-item rv d2">
+      <div class="pain-dot"></div>
+      <div class="pain-text"><strong>「オンオフ問わず使える、自然な香りが欲しい」</strong><br>職場にも、デートにも、休日にも合う一本が見つからない。</div>
+    </div>
+    <div class="pain-item rv d3">
+      <div class="pain-dot"></div>
+      <div class="pain-text"><strong>「買ったのに自分に合わなかった、がもう嫌」</strong><br>3,000円・5,000円を何度も無駄にして、香水選びへの自信を失ってしまった。</div>
     </div>
   </div>
 
-  <div class="bridge rv">
-    <p>その不安は<b>全部、正しい。</b><br>だから私たちは<b>「3日間サンプル先行」</b>という仕組みを作りました。</p>
+  <div class="pain-bridge rv">
+    <p>その不安は<b>全部、正しい感覚です。</b><br>だからPURELAYERは<b>「3日間サンプル先行確認」という仕組み</b>を作りました。</p>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     5. SOLUTION / VSL AREA
-══════════════════════════════════════ -->
-<section class="sec sol-sec">
-  <div class="rv">
-    <span class="sec-lbl">Solution</span>
-    <h2 class="sec-h2">失敗ゼロの<br>新しい香水の<br>買い方</h2>
+<!-- ══ CTA 2/3 — Mid Page ══ -->
+<div class="cta-mid">
+  <p class="cta-mid-label">— リスクゼロで試してみる —</p>
+  <button class="btn-cta" onclick="ctaClick(this)">
+    <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    <span class="cta-lbl">無料サンプル付きで今すぐ試す — ¥5,980〜</span>
+  </button>
+  <div class="cta-micro" style="justify-content:center;margin-top:10px">
+    <span style="color:var(--ink3)">
+      <svg viewBox="0 0 24 24" style="stroke:var(--grn)"><polyline points="20 6 9 17 4 12"/></svg>
+      送料無料
+    </span>
+    <span style="color:var(--ink3)">
+      <svg viewBox="0 0 24 24" style="stroke:var(--grn)"><polyline points="20 6 9 17 4 12"/></svg>
+      最短当日発送
+    </span>
+    <span style="color:var(--ink3)">
+      <svg viewBox="0 0 24 24" style="stroke:var(--grn)"><polyline points="20 6 9 17 4 12"/></svg>
+      ギフトラッピング対応
+    </span>
+  </div>
+</div>
+
+<!-- ══ 3-COLUMN FEATURE GRID ══ -->
+<section class="sec feat-sec">
+  <div class="feat-intro rv">
+    <span class="sec-kicker">成分 · 香り · 持続性</span>
+    <h2 class="sec-h2">PURELAYERの<br>3つの特徴</h2>
+    <p class="sec-lead">眺めるだけで伝わる、3つの理由</p>
   </div>
 
-  <!-- VSL placeholder -->
-  <div class="vsl-block rv">
-    <!-- 動画サムネイル：製品の香りをイメージした映像スチル（ボトルと朝の光） -->
-    <img src="" alt="動画サムネイル：PURELAYER Oud Stallion 製品紹介・使用感イメージ映像">
-    <div class="vsl-overlay">
-      <div class="vsl-play" aria-label="動画を再生">
-        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+  <div class="feat-grid rv">
+    <div class="feat-item">
+      <div class="feat-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M12 8v4l3 3"/></svg>
       </div>
-      <span class="vsl-caption">How it works — 1:42</span>
+      <div class="feat-title">12h<br>持続</div>
+      <div class="feat-desc">朝1プッシュで夜まで</div>
     </div>
-  </div>
-
-  <div class="sol-points rv">
-
-    <div class="sol-pt">
-      <div class="sol-pt-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
-      <div class="sol-pt-text">
-        <strong>本体 + 無料サンプルが届く</strong>
-        <span>50ml・100mlには10mlアトマイザーが無料同梱。本体を開封しなくても、3日間試せます。</span>
+    <div class="feat-item">
+      <div class="feat-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
       </div>
+      <div class="feat-title">石鹸系<br>香り</div>
+      <div class="feat-desc">清潔感ある自然な香り</div>
     </div>
-
-    <div class="sol-pt">
-      <div class="sol-pt-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg></div>
-      <div class="sol-pt-text">
-        <strong>3日間、いつもの生活で試す</strong>
-        <span>出勤・デート・休日。3つのシーンで使ってみて、「これだ」と思ったら本体を開封するだけ。</span>
+    <div class="feat-item">
+      <div class="feat-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
       </div>
+      <div class="feat-title">天然<br>成分</div>
+      <div class="feat-desc">敏感肌対応・国内検査済</div>
     </div>
-
-    <div class="sol-pt">
-      <div class="sol-pt-icon"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></div>
-      <div class="sol-pt-text">
-        <strong>万が一合わなければ、全額返金</strong>
-        <span>本体未開封で30日以内に返送するだけ。送料も当社負担。リスクはゼロです。</span>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     6. THE 4 PROMISES
-══════════════════════════════════════ -->
+<!-- ══ 4 PROMISES ══ -->
 <section class="prom-sec">
   <div class="rv">
-    <span class="sec-lbl" style="color:var(--gold-lt)">The 4 Promises</span>
-    <h2 class="sec-h2" style="color:#fff">PURELAYERが<br>あなたに約束する<br>4つのこと</h2>
+    <span class="sec-kicker" style="color:var(--gold-lt)">The 4 Promises</span>
+    <h2 class="sec-h2" style="color:#fff">PURELAYERの<br>3つの約束</h2>
   </div>
-  <div class="prom-grid rv">
+  <div class="prom-list rv">
 
     <div class="prom-item">
-      <div class="prom-num">1</div>
-      <div class="prom-content">
+      <div class="prom-n">1</div>
+      <div class="prom-body">
         <div class="prom-title">12時間、シャンプーしたての清潔感が続く</div>
-        <div class="prom-desc">高濃度EDP処方。朝1プッシュで夜まで品格のある香りが持続。</div>
+        <div class="prom-desc">高濃度EDP処方。朝1プッシュで夜まで品格のある香りが持続します。</div>
       </div>
-      <span class="prom-badge">12h</span>
+      <span class="prom-pill">12h</span>
     </div>
 
     <div class="prom-item">
-      <div class="prom-num">2</div>
-      <div class="prom-content">
-        <div class="prom-title">3日間のサンプル試行で失敗しない</div>
+      <div class="prom-n">2</div>
+      <div class="prom-body">
+        <div class="prom-title">3日間のサンプル試行で、失敗ゼロに</div>
         <div class="prom-desc">本体開封前に実際の香りを確認。「買って後悔」がゼロになる仕組み。</div>
       </div>
-      <span class="prom-badge">3日間</span>
+      <span class="prom-pill">3日</span>
     </div>
 
     <div class="prom-item">
-      <div class="prom-num">3</div>
-      <div class="prom-content">
-        <div class="prom-title">高級香水と同品質を1/10以下の価格で</div>
-        <div class="prom-desc">ブランド料・広告費ゼロ。素材だけに投資した正直な価格。</div>
+      <div class="prom-n">3</div>
+      <div class="prom-body">
+        <div class="prom-title">高級香水と同じ品質を、1/10以下の価格で</div>
+        <div class="prom-desc">ブランド料・広告費ゼロ。素材と処方だけに投資した正直な価格。</div>
       </div>
-      <span class="prom-badge">¥5,980〜</span>
+      <span class="prom-pill">¥5,980〜</span>
     </div>
 
     <div class="prom-item">
-      <div class="prom-num">4</div>
-      <div class="prom-content">
+      <div class="prom-n">4</div>
+      <div class="prom-body">
         <div class="prom-title">敏感肌でも安心して使える自然な香り</div>
-        <div class="prom-desc">天然ウードオイル使用。アルコールフリー処方。国内検査済み。</div>
+        <div class="prom-desc">天然ウードオイル使用。アルコールフリー処方。国内全ロット検査済み。</div>
       </div>
-      <span class="prom-badge">天然成分</span>
+      <span class="prom-pill">天然</span>
     </div>
 
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     SCENT PROFILE
-══════════════════════════════════════ -->
+<!-- ══ SCENT TIMELINE ══ -->
 <section class="sec scent-sec">
   <div class="rv">
-    <span class="sec-lbl">Scent Profile</span>
+    <span class="sec-kicker">Scent Profile</span>
     <h2 class="sec-h2">1日で変わる、<br>3つの表情</h2>
     <p class="sec-lead">時間とともに進化する香りのレイヤー構造</p>
   </div>
@@ -990,7 +1036,7 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fb)
       <div class="sc-body">
         <div class="sc-time">朝 — Top Note · 0〜30min</div>
         <div class="sc-name">アクア・リーフ</div>
-        <div class="sc-copy">爽やかな第一印象。一瞬で清潔感を纏う</div>
+        <div class="sc-copy">爽やかな第一印象。清涼感と活力を与える</div>
       </div>
     </div>
     <div class="sc-card">
@@ -1000,7 +1046,7 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fb)
       <div class="sc-body">
         <div class="sc-time">日中 — Heart Note · 1〜4h</div>
         <div class="sc-name">石鹸・ムスク</div>
-        <div class="sc-copy">洗いたての清潔感が長時間持続する</div>
+        <div class="sc-copy">清潔感がずっと持続。洗いたての白シャツのような安心感</div>
       </div>
     </div>
     <div class="sc-card">
@@ -1010,22 +1056,20 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fb)
       <div class="sc-body">
         <div class="sc-time">夜 — Base Note · 4〜12h</div>
         <div class="sc-name">ウード・シダー</div>
-        <div class="sc-copy">肌に溶け込む上品な余韻、記憶に残る</div>
+        <div class="sc-copy">肌に溶け込む上品な余韻。夜まで記憶に残る</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     7. COMPARISON TABLE
-══════════════════════════════════════ -->
+<!-- ══ COMPARE TABLE ══ -->
 <section class="sec cmp-sec">
   <div class="rv">
-    <span class="sec-lbl">比較</span>
+    <span class="sec-kicker">比較</span>
     <h2 class="sec-h2">他の香水と<br>何が違うのか</h2>
-    <p class="sec-lead">あなたが不安に思うポイント、全部解決します。</p>
+    <p class="sec-lead">あなたが不安に思う5つのポイント、全部解決します。</p>
   </div>
-  <div class="cmp-wrapper rv">
+  <div class="cmp-wrap rv">
     <table class="cmp-tbl">
       <thead>
         <tr>
@@ -1071,183 +1115,175 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fb)
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     8. SOCIAL PROOF — UGC
-══════════════════════════════════════ -->
-<section class="sec ugc-sec">
+<!-- ══ SOCIAL PROOF ══ -->
+<section class="sec rev-sec">
   <div class="rv">
-    <span class="sec-lbl">Customer Voice</span>
+    <span class="sec-kicker">Customer Voice</span>
     <h2 class="sec-h2">使った人の、<br>リアルな変化</h2>
     <p class="sec-lead">18〜34歳の男女 3,000,000人以上が体験済み</p>
   </div>
 
-  <!-- Overall -->
-  <div class="ugc-overall rv">
-    <div class="ugc-score">4.9</div>
-    <div class="ugc-meta">
-      <div class="stars">
+  <!-- 総合評価 大きく表示 -->
+  <div class="rev-overall rv">
+    <div class="rev-big">4.8</div>
+    <div class="rev-detail">
+      <div class="stars-row">
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
       </div>
-      <div class="ugc-total">1,284件 · Trustpilot 認定</div>
+      <div class="rev-count">総合評価 4.8 / 5.0</div>
+      <div class="rev-sub">1,284件のレビュー · Trustpilot 認定</div>
     </div>
   </div>
 
-  <div class="ugc-cards">
+  <div class="rev-cards">
 
-    <!-- Review 1 -->
-    <div class="ugc-card rv">
-      <div class="ugc-card-hdr">
-        <div class="ugc-user"><strong>田中 陽斗</strong><span>24歳・男性 · エンジニア</span></div>
-        <span class="ugc-date">2026/01/18</span>
+    <div class="rc rv">
+      <div class="rc-top">
+        <div class="rc-user"><strong>田中 陽斗</strong><span>24歳・男性 · エンジニア</span></div>
+        <span class="rc-date">2026/01/18</span>
       </div>
-      <div class="ugc-stars">
+      <div class="rc-stars">
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
       </div>
-      <div class="ugc-ver"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
-      <div class="ugc-body">
-        <div class="ugc-photo">
-          <!-- レビュアー写真：男性（差し替え可）-->
+      <div class="rc-ver"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
+      <div class="rc-body">
+        <div class="rc-photo">
+          <!-- レビュアー写真（男性・差し替え可）-->
           <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
-        <div class="ugc-text-wrap">
-          <div class="ugc-headline">「職場で初めて『いい匂いですね』と言われた日」</div>
-          <div class="ugc-text">使い始めて2日目、先輩から「なんかいい匂いがするけど何使ってるの？」と。その瞬間、自分に自信が持てた気がしました。香水を使ったことがなかったのですが、サンプルで試せる安心感から購入を決めました。</div>
+        <div class="rc-content">
+          <div class="rc-hl">「職場の同僚に<strong>『今日、いい匂いするね』と初めて褒められました。」</strong></div>
+          <div class="rc-txt">香水を使ったことがなかったのですが、サンプルで試せる安心感から購入を決めました。使い始めて2日目、打ち合わせ中に先輩からそう言われた瞬間、<strong>自分に自信が持てた気がしました。</strong></div>
         </div>
       </div>
     </div>
 
-    <!-- Review 2 -->
-    <div class="ugc-card rv">
-      <div class="ugc-card-hdr">
-        <div class="ugc-user"><strong>伊藤 さくら</strong><span>28歳・女性 · デザイナー</span></div>
-        <span class="ugc-date">2026/02/03</span>
+    <div class="rc rv d1">
+      <div class="rc-top">
+        <div class="rc-user"><strong>伊藤 さくら</strong><span>28歳・女性 · デザイナー</span></div>
+        <span class="rc-date">2026/02/03</span>
       </div>
-      <div class="ugc-stars">
+      <div class="rc-stars">
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
       </div>
-      <div class="ugc-ver"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
-      <div class="ugc-body">
-        <div class="ugc-photo">
-          <!-- レビュアー写真：女性（差し替え可）-->
+      <div class="rc-ver"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
+      <div class="rc-body">
+        <div class="rc-photo">
+          <!-- レビュアー写真（女性・差し替え可）-->
           <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
-        <div class="ugc-text-wrap">
-          <div class="ugc-headline">「香水迷子だった私が、ようやく自分のアイコン香水に出会えた」</div>
-          <div class="ugc-text">5年で10本以上試してきたけど、いつも「なんか違う」。PURELAYERのサンプルを試した瞬間、「これだ」と確信しました。清潔感があって、でも記憶に残る。彼氏にも「最近いい匂いするね」と言われて嬉しかった。</div>
+        <div class="rc-content">
+          <div class="rc-hl">「<strong>香水迷子だった私が、ようやく自分のアイコン香水に出会えた。</strong>」</div>
+          <div class="rc-txt">5年で10本以上試してきたのに、いつも「なんか違う」でした。PURELAYERのサンプルを試した瞬間、「これだ」と確信。彼氏にも<strong>「最近いい匂いするね」と言われて、自信に変わりました。</strong></div>
         </div>
       </div>
     </div>
 
-    <!-- Review 3 -->
-    <div class="ugc-card rv">
-      <div class="ugc-card-hdr">
-        <div class="ugc-user"><strong>渡辺 健太</strong><span>31歳・男性 · 営業職</span></div>
-        <span class="ugc-date">2025/12/21</span>
+    <div class="rc rv d2">
+      <div class="rc-top">
+        <div class="rc-user"><strong>渡辺 健太</strong><span>31歳・男性 · 営業職</span></div>
+        <span class="rc-date">2025/12/21</span>
       </div>
-      <div class="ugc-stars">
+      <div class="rc-stars">
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
         <svg viewBox="0 0 12 12"><polygon points="6,1 7.5,4.5 11,4.8 8.5,7 9.3,11 6,9 2.7,11 3.5,7 1,4.8 4.5,4.5"/></svg>
       </div>
-      <div class="ugc-ver"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
-      <div class="ugc-body">
-        <div class="ugc-photo">
-          <!-- レビュアー写真：男性スーツ（差し替え可）-->
+      <div class="rc-ver"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>購入確認済み</div>
+      <div class="rc-body">
+        <div class="rc-photo">
+          <!-- レビュアー写真（男性スーツ・差し替え可）-->
           <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
-        <div class="ugc-text-wrap">
-          <div class="ugc-headline">「初商談の朝につけたら、受注できた。偶然じゃないと思う」</div>
-          <div class="ugc-text">大手との商談前夜に届いて、翌朝スーツに1プッシュ。会議室に入ったとき、相手が「いい香りですね」と言ってくれた。あの自信が結果につながった気がします。今は毎朝の必須アイテムです。</div>
+        <div class="rc-content">
+          <div class="rc-hl">「初商談の朝につけたら、<strong>『素敵な香りですね』と言われ、受注できました。</strong>」</div>
+          <div class="rc-txt">商談中に相手から言われたときの<strong>自信は今でも忘れられません。</strong>偶然じゃないと思う。今は毎朝の必須アイテムです。</div>
         </div>
       </div>
     </div>
 
   </div>
 
-  <!-- Pull quote -->
-  <div class="ugc-pullquote rv">
-    <div class="ugc-pq-text">「いい匂いですね」——その一言が、<br>あなたの印象を変える。</div>
-    <div class="ugc-pq-attr">93% of customers reported receiving compliments</div>
+  <div class="rev-pull rv">
+    <div class="rev-pull-q">「いい匂いですね」——その一言が、<br>あなたの第一印象を変える。</div>
+    <div class="rev-pull-attr">93% of customers reported receiving compliments after using PURELAYER</div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     GUARANTEE
-══════════════════════════════════════ -->
+<!-- ══ GUARANTEE ══ -->
 <section class="guar-sec">
-  <div class="guar-badge">
-    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-  </div>
-  <h2>PURELAYER 保証</h2>
-  <p>私たちは<b>「香りで後悔してほしくない」</b>と本気で思っています。</p>
-  <p style="margin-top:12px">
+  <div class="guar-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+  <h2 class="guar-h2">PURELAYER 保証</h2>
+  <p class="guar-body">
+    私たちは<b>「香りで後悔してほしくない」</b>と本気で思っています。<br><br>
     50ml・100mlには<b>無料サンプルを同梱</b>。本体開封前に3日間試せます。<br>
-    万が一ご満足いただけなければ、<b>30日以内に未開封でご返送で全額返金</b>。<br>
+    万が一ご満足いただけなければ、<b>30日以内に未開封でご返送で全額返金。</b><br>
     送料も当社負担。
   </p>
 </section>
 
-<!-- ══════════════════════════════════════
-     FINAL CTA SECTION
-══════════════════════════════════════ -->
+<!-- ══ FINAL CTA — 3/3 ══ -->
 <section class="final-sec">
-  <span class="sec-lbl" style="display:block;text-align:center;margin-bottom:10px">今すぐ始める</span>
-  <h2>理想の清潔感を、<br>今日から纏う。</h2>
-  <p>30日間返金保証付き。リスクはゼロ。</p>
+  <span class="sec-kicker" style="display:block;text-align:center;margin-bottom:10px">今すぐ始める</span>
+  <h2 class="sec-h2">理想の清潔感を、<br>今日から纏う。</h2>
+  <p class="final-sub">30日間返金保証付き。リスクはゼロ。</p>
 
-  <!-- Pricing options -->
-  <div class="pricing-strip" id="pricing-strip">
-
-    <div class="price-opt" id="po-10ml" onclick="selectPrice('10ml')">
-      <div class="price-opt-size">10ml</div>
-      <div class="price-opt-val">¥1,750</div>
-      <div class="price-opt-orig">¥2,275</div>
-      <div><span class="price-opt-badge pob-try">お試し</span></div>
+  <!-- Pricing tiles -->
+  <div class="price-tiles" id="price-tiles">
+    <div class="p-tile" id="pt-10ml" onclick="selectSize('10ml')">
+      <div class="p-tile-size">10ml</div>
+      <div class="p-tile-val">¥1,750</div>
+      <div class="p-tile-orig">¥2,275</div>
+      <div><span class="p-tile-badge ptb-try">お試し</span></div>
     </div>
-
-    <div class="price-opt sel" id="po-50ml" onclick="selectPrice('50ml')">
-      <div class="price-opt-size">50ml</div>
-      <div class="price-opt-val">¥5,980</div>
-      <div class="price-opt-orig">¥7,774</div>
-      <div><span class="price-opt-badge pob-pop">人気No.1</span></div>
+    <div class="p-tile sel" id="pt-50ml" onclick="selectSize('50ml')">
+      <div class="p-tile-size">50ml</div>
+      <div class="p-tile-val">¥5,980</div>
+      <div class="p-tile-orig">¥7,774</div>
+      <div><span class="p-tile-badge ptb-pop">人気No.1</span></div>
     </div>
-
-    <div class="price-opt" id="po-100ml" onclick="selectPrice('100ml')">
-      <div class="price-opt-size">100ml</div>
-      <div class="price-opt-val">¥14,800</div>
-      <div class="price-opt-orig">¥19,240</div>
-      <div><span class="price-opt-badge pob-val">最もお得</span></div>
+    <div class="p-tile" id="pt-100ml" onclick="selectSize('100ml')">
+      <div class="p-tile-size">100ml</div>
+      <div class="p-tile-val">¥14,800</div>
+      <div class="p-tile-orig">¥19,240</div>
+      <div><span class="p-tile-badge ptb-val">最もお得</span></div>
     </div>
-
   </div>
 
-  <button class="btn-final" id="final-btn" onclick="ctaClick(this)">
+  <!-- ★ CTA 3/3 ★ -->
+  <button class="btn-cta" id="final-cta" onclick="ctaClick(this)">
     <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-    <span class="cta-label">無料サンプル付きで今すぐ試す — ¥5,980</span>
+    <span class="cta-lbl">無料サンプル付きで今すぐ試す — ¥5,980</span>
   </button>
+
+  <div class="cta-micro" style="margin-top:12px">
+    <span style="color:var(--ink3)"><svg viewBox="0 0 24 24" style="stroke:var(--grn)"><polyline points="20 6 9 17 4 12"/></svg>送料無料</span>
+    <span style="color:var(--ink3)"><svg viewBox="0 0 24 24" style="stroke:var(--grn)"><polyline points="20 6 9 17 4 12"/></svg>最短当日発送</span>
+    <span style="color:var(--ink3)"><svg viewBox="0 0 24 24" style="stroke:var(--grn)"><polyline points="20 6 9 17 4 12"/></svg>ギフトラッピング対応</span>
+  </div>
 
   <div class="final-meta">
     <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>30日間返金保証</span>
-    <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>送料当社負担</span>
     <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>未開封返品OK</span>
+    <span><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>送料当社負担</span>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ══ FOOTER ══ -->
 <footer class="footer">
   <div class="footer-logo">P U R E · L A Y E R</div>
   <div class="footer-links">
@@ -1259,72 +1295,103 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fb)
   <div class="footer-copy">© 2026 PURELAYER / nemveil.com. All rights reserved.</div>
 </footer>
 
-<!-- ══════════════════════════════════════
-     9. STICKY CTA BAR
-══════════════════════════════════════ -->
+<!-- ══ STICKY BAR ══ -->
 <div class="sticky-bar" id="sticky">
   <div class="sticky-inner">
     <div class="sticky-price" id="sticky-price">¥5,980</div>
-    <button class="btn-sticky" onclick="ctaClick(this)">
+    <button class="sticky-btn" onclick="ctaClick(this)">
       <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       <span>無料サンプル付きで試す</span>
     </button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      JAVASCRIPT — エラーゼロ保証
-══════════════════════════════════════ -->
+     複数商品同時追加（Ajaxカート）+
+     フォールバック直接URLリダイレクト
+═══════════════════════════════════════════ -->
 <script>
 (function () {
   'use strict';
 
-  /* ── Target URL ── */
+  /* ── Shopify variant items ── */
+  var ITEMS = {
+    '10ml':  [{ id: 53230989574512, quantity: 1 }],
+    '50ml':  [{ id: 53230985937264, quantity: 1 }, { id: 53231016182128, quantity: 1 }],
+    '100ml': [{ id: 53230989214064, quantity: 1 }, { id: 53230989541744, quantity: 1 }, { id: 53231016182128, quantity: 1 }]
+  };
+
+  var PRICES = { '10ml': '¥1,750', '50ml': '¥5,980', '100ml': '¥14,800' };
+
+  /* Fallback product URL */
   var PRODUCT_URL = 'https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women';
 
-  var PRICES = {
-    '10ml':  '¥1,750',
-    '50ml':  '¥5,980',
-    '100ml': '¥14,800'
-  };
-  var currentSize = '50ml';
+  var selectedSize = '50ml';
 
-  /* ── CTA click — redirect to product URL ── */
+  /* ── Ajax cart add → /checkout ── */
+  async function handleAddToCart(items) {
+    try {
+      var res = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: items })
+      });
+      if (res.ok) {
+        window.location.href = '/checkout';
+      } else {
+        window.location.href = PRODUCT_URL;
+      }
+    } catch (err) {
+      console.error('Cart Error:', err);
+      window.location.href = PRODUCT_URL;
+    }
+  }
+
+  /* ── CTA click handler (all buttons) ── */
   window.ctaClick = function (btn) {
-    if (!btn) return;
+    var items = ITEMS[selectedSize];
+    if (!items) { window.location.href = PRODUCT_URL; return; }
+
     var orig = btn.innerHTML;
     btn.classList.add('loading');
     btn.innerHTML =
-      '<svg viewBox="0 0 24 24" class="spin-icon" style="width:17px;height:17px;stroke:#fff;fill:none;stroke-width:2"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg>' +
-      '<span>移動中…</span>';
-    setTimeout(function () {
-      window.location.href = PRODUCT_URL;
-    }, 300);
-    /* restore if navigation fails */
-    setTimeout(function () {
-      btn.classList.remove('loading');
-      btn.innerHTML = orig;
-    }, 3500);
+      '<svg viewBox="0 0 24 24" class="spin" style="width:17px;height:17px;stroke:#fff;fill:none;stroke-width:2"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg>' +
+      '<span>追加中…</span>';
+
+    handleAddToCart(items).finally(function () {
+      setTimeout(function () {
+        btn.classList.remove('loading');
+        btn.innerHTML = orig;
+      }, 3500);
+    });
   };
 
-  /* ── Price selection ── */
-  window.selectPrice = function (size) {
-    currentSize = size;
-    var opts = document.querySelectorAll('.price-opt');
-    for (var i = 0; i < opts.length; i++) opts[i].classList.remove('sel');
-    var el = document.getElementById('po-' + size);
-    if (el) el.classList.add('sel');
+  /* ── Size selector ── */
+  window.selectSize = function (size) {
+    selectedSize = size;
 
-    var lbl = document.querySelector('#final-btn .cta-label');
-    if (lbl) lbl.textContent = '無料サンプル付きで今すぐ試す — ' + PRICES[size];
+    var tiles = document.querySelectorAll('.p-tile');
+    for (var i = 0; i < tiles.length; i++) tiles[i].classList.remove('sel');
+    var t = document.getElementById('pt-' + size);
+    if (t) t.classList.add('sel');
 
+    var p = PRICES[size];
+
+    /* update CTA labels */
+    var lbls = document.querySelectorAll('.cta-lbl');
+    for (var j = 0; j < lbls.length; j++) {
+      lbls[j].textContent = '無料サンプル付きで今すぐ試す — ' + p;
+    }
+
+    /* update sticky price */
     var sp = document.getElementById('sticky-price');
-    if (sp) sp.textContent = PRICES[size];
+    if (sp) sp.textContent = p;
   };
 
   /* ── Sticky bar ── */
-  var hero    = document.querySelector('.hero');
-  var sticky  = document.getElementById('sticky');
+  var hero   = document.querySelector('.hero');
+  var sticky = document.getElementById('sticky');
   if (hero && sticky && window.IntersectionObserver) {
     new IntersectionObserver(function (entries) {
       sticky.classList.toggle('show', !entries[0].isIntersecting);
