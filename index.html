@@ -921,14 +921,6 @@ mark {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
-   <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "vvn8p99ehp");
-</script>
 </head>
 <body>
 
@@ -946,33 +938,33 @@ mark {
     </div>
   </header>
 
-   <!-- ══════════════════════════════════
+  <!-- ══════════════════════════════════
        HERO（v4：診断への期待感を主役に）
   ══════════════════════════════════ -->
   <section class="hero" id="hero">
     <div class="hero-bg"><div class="hero-grain"></div></div>
- 
+
     <!-- デスクトップ：左テキスト / 右ボトル。スマホ：コピー→ボタン→画像の順 -->
     <div class="hero-layout">
- 
+
       <!-- 左カラム：コピー + CTA -->
       <div class="hero-content">
         <p class="hero-eyebrow">
           <span class="eyebrow-dot"></span>
           Purchase Diagnostic
         </p>
- 
+
         <h1 class="hero-headline">
           購入前に、<br />
           30秒で香りの<br class="br-sp-only" />
           <em>相性をセルフチェック。</em>
         </h1>
- 
+
         <p class="hero-sub">
           もう、香水選びで失敗しない。<br />
           PURELAYERがあなたに合うか、<br class="br-sp-only" />5つの質問で判定します。
         </p>
- 
+
         <!-- Primary CTA -->
         <div class="hero-cta-wrap">
           <a href="#quiz" class="hero-cta" id="heroCtaBtn">
@@ -983,25 +975,43 @@ mark {
           </a>
           <p class="hero-cta-meta">※ 所要時間30秒 / 登録不要</p>
         </div>
- 
+
         <!-- 信頼トリガー：小さなソーシャルプルーフ -->
         <div class="hero-trust">
           <span class="trust-stars" aria-label="星5つ">★★★★★</span>
           <span class="trust-copy">累計 <strong>2,400+</strong> 人が診断済み</span>
         </div>
       </div>
- 
+
       <!-- 右カラム：製品ボトル（テキストの補佐役） -->
       <div class="hero-product-col">
-       
-      <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/BA46FCE4-53C4-4E9A-BEF7-0E90519E8543.webp?v=1773317864#"              
-                alt="PURELAYER Blanc Pur 50ml"             
-               class="hero-bottle-img" />   
-    
+        <!--
+          ╔═══════════════════════════════════════════════════╗
+          ║  [最重要・画像差し替えポイント]                       ║
+          ║  広告（TikTok/Instagram）と同一のボトル画像を配置。    ║
+          ║  推奨：背景透過PNG、縦長 600×800px 以上              ║
+          ║  差し替え：このdivを削除し以下のimgに置き換える        ║
+          ║  <img src="./images/hero-bottle.png"              ║
+          ║       alt="PURELAYER Blanc Pur 50ml"             ║
+          ║       class="hero-bottle-img" />                 ║
+          ╚═══════════════════════════════════════════════════╝
+        -->
+        <div class="hero-bottle-placeholder" aria-hidden="true">
+          <svg viewBox="0 0 120 220" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-bottle-svg">
+            <rect x="42" y="10" width="36" height="14" rx="3" fill="none" stroke="#B8A99A" stroke-width="1"/>
+            <rect x="49" y="3" width="22" height="9" rx="2" fill="none" stroke="#B8A99A" stroke-width="1"/>
+            <path d="M28 24 Q26 44 24 66 L24 182 Q24 194 36 196 L84 196 Q96 194 96 182 L96 66 Q94 44 92 24 Z" fill="rgba(232,226,217,0.25)" stroke="#B8A99A" stroke-width="1"/>
+            <path d="M36 58 L84 58" stroke="#D6CFC4" stroke-width="0.5" stroke-dasharray="4 4"/>
+            <text x="60" y="122" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#B8A99A" letter-spacing="3">PURE</text>
+            <text x="60" y="138" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#B8A99A" letter-spacing="3">LAYER</text>
+            <text x="60" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="6.5" fill="#C9A96E" letter-spacing="2">Blanc Pur</text>
+          </svg>
+          <p class="hero-bottle-hint">hero-bottle.png を配置</p>
+        </div>
       </div>
- 
+
     </div><!-- /.hero-layout -->
- 
+
     <a href="#quiz" class="scroll-indicator" aria-label="下へスクロール">
       <span class="scroll-line"></span>
       <span class="scroll-text">Scroll</span>
@@ -1142,11 +1152,19 @@ mark {
     <div class="reviews-grid">
 
       <article class="review-card">
-      
-        
-          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3146.webp?v=1774754613#" alt="" class="review-ugc-img" />
-        
-        
+        <!--
+          [UGC画像差し替えポイント] 正方形 400×400px 推奨
+          <img src="./images/ugc-photo-1.jpg" alt="" class="review-ugc-img" />
+        -->
+        <div class="review-ugc-wrap">
+          <div class="review-ugc-placeholder" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="ugc-camera-icon">
+              <rect x="6" y="12" width="36" height="28" rx="2" stroke="#D6CFC4" stroke-width="1"/>
+              <circle cx="24" cy="26" r="7" stroke="#D6CFC4" stroke-width="1"/>
+              <path d="M17 12L20 8H28L31 12" stroke="#D6CFC4" stroke-width="1" stroke-linecap="round"/>
+            </svg>
+            <span>ugc-photo-1.jpg</span>
+          </div>
         </div>
         <div class="review-content">
           <h3 class="review-headline">「まるで石鹸そのもの」</h3>
@@ -1159,10 +1177,19 @@ mark {
       </article>
 
       <article class="review-card">
-       
-          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_klpqqrklpqqrklpq.webp?v=1775121203#" alt="" class="review-ugc-img" />
-    
-       
+        <!--
+          [UGC画像差し替えポイント] 正方形 400×400px 推奨
+          <img src="./images/ugc-photo-2.jpg" alt="" class="review-ugc-img" />
+        -->
+        <div class="review-ugc-wrap">
+          <div class="review-ugc-placeholder" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="ugc-camera-icon">
+              <rect x="6" y="12" width="36" height="28" rx="2" stroke="#D6CFC4" stroke-width="1"/>
+              <circle cx="24" cy="26" r="7" stroke="#D6CFC4" stroke-width="1"/>
+              <path d="M17 12L20 8H28L31 12" stroke="#D6CFC4" stroke-width="1" stroke-linecap="round"/>
+            </svg>
+            <span>ugc-photo-2.jpg</span>
+          </div>
         </div>
         <div class="review-content">
           <h3 class="review-headline">「一日中褒められた」</h3>
@@ -1175,9 +1202,19 @@ mark {
       </article>
 
       <article class="review-card">
-          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/391B76D7-6CB0-4763-A9E8-232945C778AF.webp?v=1774835441#" alt="" class="review-ugc-img" />
-        
-  
+        <!--
+          [UGC画像差し替えポイント] 正方形 400×400px 推奨
+          <img src="./images/ugc-photo-3.jpg" alt="" class="review-ugc-img" />
+        -->
+        <div class="review-ugc-wrap">
+          <div class="review-ugc-placeholder" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="ugc-camera-icon">
+              <rect x="6" y="12" width="36" height="28" rx="2" stroke="#D6CFC4" stroke-width="1"/>
+              <circle cx="24" cy="26" r="7" stroke="#D6CFC4" stroke-width="1"/>
+              <path d="M17 12L20 8H28L31 12" stroke="#D6CFC4" stroke-width="1" stroke-linecap="round"/>
+            </svg>
+            <span>ugc-photo-3.jpg</span>
+          </div>
         </div>
         <div class="review-content">
           <h3 class="review-headline">「つけてることを忘れる」</h3>
@@ -1201,10 +1238,20 @@ mark {
 
     <div class="benefit-grid">
 
-
-     
-          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/0BB23EC6-3DA1-4593-A30D-27962AA1BAC1.webp?v=1773741757#" alt="" class="benefit-img" />
-       
+      <div class="benefit-item">
+        <div class="benefit-number-row">
+          <span class="benefit-num">01</span>
+          <svg class="benefit-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="16" cy="20" r="9" stroke="currentColor" stroke-width="1"/>
+            <circle cx="9" cy="11" r="4" stroke="currentColor" stroke-width="1"/>
+            <circle cx="23" cy="9" r="3" stroke="currentColor" stroke-width="1"/>
+            <circle cx="27" cy="17" r="2" stroke="currentColor" stroke-width="1"/>
+          </svg>
+        </div>
+        <!--
+          [画像差し替えポイント] 600×400px 推奨
+          <img src="./images/benefit-soap.jpg" alt="" class="benefit-img" />
+        -->
         <div class="benefit-img-placeholder" aria-hidden="true">benefit-soap.jpg</div>
         <h3 class="benefit-heading">石鹸の香り</h3>
         <ul class="benefit-list">
@@ -1225,7 +1272,13 @@ mark {
       </div>
 
       <div class="benefit-item">
-     
+        <div class="benefit-number-row">
+          <span class="benefit-num">02</span>
+          <svg class="benefit-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 28C16 28 6 22 6 14C6 8 11 4 16 4C21 4 26 8 26 14C26 22 16 28 16 28Z" stroke="currentColor" stroke-width="1"/>
+            <line x1="16" y1="4" x2="16" y2="28" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2"/>
+          </svg>
+        </div>
         <!--
           [画像差し替えポイント] 600×400px 推奨
           <img src="./images/benefit-ingredients.jpg" alt="" class="benefit-img" />
@@ -1250,10 +1303,17 @@ mark {
       </div>
 
       <div class="benefit-item">
- 
-     
-          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/f97f0733db45bed02e09cf4d53d09007.webp?v=1774664460#" alt="" class="benefit-img" />
-       
+        <div class="benefit-number-row">
+          <span class="benefit-num">03</span>
+          <svg class="benefit-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="1"/>
+            <path d="M16 9V16L20 19" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <!--
+          [画像差し替えポイント] 600×400px 推奨
+          <img src="./images/benefit-longevity.jpg" alt="" class="benefit-img" />
+        -->
         <div class="benefit-img-placeholder" aria-hidden="true">benefit-longevity.jpg</div>
         <h3 class="benefit-heading">24時間持続</h3>
         <ul class="benefit-list">
@@ -1330,9 +1390,23 @@ mark {
   <section class="purchase-section" id="purchase">
     <div class="purchase-inner">
       <div class="purchase-image-col">
-       
-          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731#" alt="PURELAYER Blanc Pur オードパルファン 50ml" class="product-img" />
-     
+        <!--
+          [画像差し替えポイント] 800×1000px、背景透過PNG 推奨
+          <img src="./images/product-main.jpg" alt="PURELAYER Blanc Pur オードパルファン 50ml" class="product-img" />
+        -->
+        <div class="product-img-placeholder">
+          <div class="product-img-inner">
+            <svg viewBox="0 0 90 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:90px;opacity:0.55">
+              <rect x="30" y="7" width="30" height="11" rx="2.5" fill="none" stroke="#B8A99A" stroke-width="1"/>
+              <rect x="34" y="2" width="22" height="7" rx="1.5" fill="none" stroke="#B8A99A" stroke-width="1"/>
+              <path d="M18 18 Q16 34 14 52 L14 116 Q14 126 24 127 L66 127 Q76 126 76 116 L76 52 Q74 34 72 18 Z" fill="rgba(232,226,217,0.2)" stroke="#B8A99A" stroke-width="1"/>
+              <text x="45" y="82" text-anchor="middle" font-family="Georgia,serif" font-size="7.5" fill="#B8A99A" letter-spacing="2.5">PURE</text>
+              <text x="45" y="95" text-anchor="middle" font-family="Georgia,serif" font-size="7.5" fill="#B8A99A" letter-spacing="2.5">LAYER</text>
+              <text x="45" y="110" text-anchor="middle" font-family="Georgia,serif" font-size="5" fill="#C9A96E" letter-spacing="1.5">Blanc Pur</text>
+            </svg>
+            <span class="product-img-label">製品ボトル画像</span>
+            <span class="product-img-sub">product-main.jpg</span>
+          </div>
         </div>
       </div>
 
@@ -1346,7 +1420,7 @@ mark {
           <span class="purchase-tax">税込</span>
         </div>
 
-        <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women" class="purchase-btn">
+        <a href="#" class="purchase-btn">
           今すぐ購入する
           <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="btn-icon" aria-hidden="true">
             <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
