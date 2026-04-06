@@ -1,11 +1,9 @@
 <style>
 /* ════════════════════════════════════════════════
-   PURELAYER — Landing Page v4
-   Hero & Quiz redesigned for maximum conversion
-   All other sections preserved from v3
+   PURELAYER — Landing Page v5
+   Sandwich FV · Real Images · Compact Guarantee
    ════════════════════════════════════════════════ */
 
-/* ── Variables ── */
 :root {
   --c-bg:        #F9F9F9;
   --c-bg-alt:    #F3F1EE;
@@ -28,9 +26,9 @@
   --fw-reg:   400;
   --fw-mid:   500;
 
-  --max-w:   1120px;
-  --pad-v:   clamp(5rem, 10vw, 9rem);
-  --pad-h:   clamp(1.5rem, 6vw, 4rem);
+  --max-w:  1120px;
+  --pad-v:  clamp(4.5rem, 9vw, 8rem);
+  --pad-h:  clamp(1.25rem, 5vw, 3.5rem);
 
   --ease:     0.45s cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-out: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -51,13 +49,10 @@ img    { display: block; max-width: 100%; height: auto; }
 a      { text-decoration: none; color: inherit; }
 ul     { list-style: none; }
 button { cursor: pointer; border: none; background: none; font: inherit; }
-mark {
-  background: transparent;
-  color: var(--c-accent-dk);
-  font-weight: var(--fw-reg);
-}
+mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--fw-reg); }
+.sp-br { display: none; }
 
-/* ── Shared utilities ── */
+/* ── Shared ── */
 .section-label {
   font-family: var(--ff-serif);
   font-size: .68rem;
@@ -76,7 +71,7 @@ mark {
   line-height: 1.35;
   text-align: center;
   color: var(--c-text);
-  margin-bottom: clamp(3rem, 6vw, 5rem);
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
 }
 
 /* Fade-in */
@@ -86,14 +81,14 @@ mark {
 .quiz-wrapper,
 .guarantee-badge {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .65s ease, transform .65s ease;
+  transform: translateY(22px);
+  transition: opacity .6s ease, transform .6s ease;
 }
 .benefit-item.in-view,
 .review-card.in-view,
 .purchase-inner.in-view,
 .quiz-wrapper.in-view,
-.guarantee-badge.in-view  { opacity: 1; transform: translateY(0); }
+.guarantee-badge.in-view { opacity: 1; transform: translateY(0); }
 .benefit-item:nth-child(2)    { transition-delay: .1s; }
 .benefit-item:nth-child(3)    { transition-delay: .2s; }
 .review-card:nth-child(2)     { transition-delay: .1s; }
@@ -101,22 +96,18 @@ mark {
 .guarantee-badge:nth-child(2) { transition-delay: .1s; }
 .guarantee-badge:nth-child(3) { transition-delay: .2s; }
 
-/* btn-icon */
 .btn-icon { width: 16px; transition: transform .3s; flex-shrink: 0; }
 .quiz-submit-btn:hover .btn-icon,
 .purchase-btn:hover    .btn-icon { transform: translateX(3px); }
 
-/* SP改行ヘルパー */
-.br-sp-only { display: none; }
-
-/* ═══════════════════════════════════════════
+/* ════════════════════════════════
    HEADER
-═══════════════════════════════════════════ */
+════════════════════════════════ */
 .site-header {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 200;
-  background: rgba(249,249,249,.9);
+  background: rgba(249,249,249,.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--c-border);
@@ -145,12 +136,10 @@ mark {
 }
 .header-nav a:hover { color: var(--c-text); }
 
-/* ═══════════════════════════════════════════
-   HERO v4
-   診断への期待感を主役に
-   Desktop: text-left / bottle-right 2col
-   Mobile:  copy → CTA button → bottle image
-═══════════════════════════════════════════ */
+/* ════════════════════════════════
+   HERO v5 — サンドイッチ構造
+   ① コピー → ② 画像 → ③ サブ + CTA
+════════════════════════════════ */
 .hero {
   position: relative;
   min-height: 100svh;
@@ -162,13 +151,12 @@ mark {
   padding-top: 64px;
 }
 
-/* Background */
 .hero-bg {
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 60% 70% at 75% 40%, rgba(232,226,217,.55) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 65% at 15% 75%, rgba(201,169,110,.06) 0%, transparent 60%),
-    linear-gradient(158deg, #FAFAFA 0%, #F2EDE7 55%, #EAE5DD 100%);
+    radial-gradient(ellipse 70% 80% at 50% 30%, rgba(232,226,217,.5) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 55% at 20% 85%, rgba(201,169,110,.06) 0%, transparent 55%),
+    linear-gradient(170deg, #FAFAFA 0%, #F2EDE7 55%, #EAE5DD 100%);
 }
 .hero-grain {
   position: absolute; inset: 0;
@@ -176,55 +164,52 @@ mark {
   background-size: 200px; opacity: .6; pointer-events: none;
 }
 
-/* ── 2カラムレイアウト ── */
-.hero-layout {
+/* ─ サンドイッチラッパー ─ */
+.hero-sandwich {
   position: relative; z-index: 2;
-  width: 100%; max-width: var(--max-w);
-  display: grid;
-  /* text:55% / bottle:45% で言葉を優先 */
-  grid-template-columns: 55fr 45fr;
+  width: 100%; max-width: 660px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: clamp(2rem, 5vw, 5rem);
-  padding: clamp(3rem, 7vw, 5rem) var(--pad-h);
-  animation: heroFadeUp 1.1s var(--ease-out) both;
+  text-align: center;
+  padding: clamp(3rem, 7vw, 5rem) var(--pad-h) clamp(2rem, 4vw, 3rem);
+  gap: 0;
+  animation: fadeUp 1.1s var(--ease-out) both;
 }
-@keyframes heroFadeUp {
+@keyframes fadeUp {
   from { opacity: 0; transform: translateY(26px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── 左カラム：テキスト ── */
-.hero-content { text-align: left; }
+/* ── ① メインコピー ── */
+.hero-top { margin-bottom: clamp(1.6rem, 3.5vw, 2.4rem); }
 
 .hero-eyebrow {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: .55rem;
-  font-size: .65rem;
+  gap: .5rem;
+  font-size: .64rem;
   letter-spacing: .28em;
   text-transform: uppercase;
   color: var(--c-accent);
-  margin-bottom: 1.4rem;
-  animation: heroFadeUp 1.1s .1s both;
+  margin-bottom: 1rem;
+  animation: fadeUp 1.1s .1s both;
 }
 .eyebrow-dot {
-  display: inline-block;
   width: 5px; height: 5px;
   border-radius: 50%;
   background: var(--c-gold);
   flex-shrink: 0;
 }
 
-/* ── メインコピー：視認性最優先 ── */
 .hero-headline {
   font-family: var(--ff-serif);
-  font-size: clamp(2.1rem, 4.8vw, 3.6rem);
+  font-size: clamp(2rem, 6vw, 3.4rem);
   font-weight: var(--fw-light);
   line-height: 1.28;
   letter-spacing: .01em;
   color: var(--c-text);
-  margin-bottom: 1.2rem;
-  animation: heroFadeUp 1.1s .18s both;
+  animation: fadeUp 1.1s .18s both;
 }
 .hero-headline em {
   font-style: italic;
@@ -232,116 +217,98 @@ mark {
   display: block;
 }
 
-/* ── サブコピー ── */
-.hero-sub {
-  font-size: clamp(.82rem, 1.5vw, .92rem);
-  line-height: 1.85;
-  color: var(--c-text-mid);
-  margin-bottom: 2rem;
-  animation: heroFadeUp 1.1s .26s both;
+/* ── ② FV画像 ── */
+.hero-image-wrap {
+  width: 100%;
+  /* スマホ：画面幅の70%・最大320px。デスクトップで少し大きく */
+  max-width: clamp(220px, 65vw, 360px);
+  margin: 0 auto clamp(1.6rem, 3.5vw, 2.4rem);
+  animation: fadeUp 1.1s .28s both;
+}
+.hero-fv-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  /* 下部を背景に溶かして浮遊感を演出 */
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  filter: drop-shadow(0 12px 40px rgba(140,123,110,.14));
 }
 
-/* ── CTA ブロック ── */
+/* ── ③ サブコピー + CTA ── */
+.hero-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.hero-sub {
+  font-size: clamp(.82rem, 1.8vw, .9rem);
+  line-height: 1.85;
+  color: var(--c-text-mid);
+  animation: fadeUp 1.1s .36s both;
+}
+
 .hero-cta-wrap {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: .55rem;
-  margin-bottom: 1.75rem;
-  animation: heroFadeUp 1.1s .34s both;
+  align-items: center;
+  gap: .5rem;
+  animation: fadeUp 1.1s .44s both;
 }
 .hero-cta {
   display: inline-flex;
   align-items: center;
-  gap: .65rem;
+  gap: .6rem;
   padding: 1em 2.4em;
-  /* ブランドトーン内で最もコントラストの高いスタイル */
   background: var(--c-text);
   color: var(--c-white);
-  font-size: clamp(.8rem, 1.4vw, .88rem);
+  font-size: clamp(.8rem, 1.6vw, .88rem);
   letter-spacing: .16em;
-  transition: background var(--ease), transform .15s;
   white-space: nowrap;
+  transition: background var(--ease), transform .15s;
 }
 .hero-cta:hover  { background: var(--c-accent-dk); }
 .hero-cta:active { transform: scale(.98); }
-.cta-arrow-svg { width: 15px; transition: transform .3s; }
+.cta-arrow-svg { width: 14px; transition: transform .3s; }
 .hero-cta:hover .cta-arrow-svg { transform: translateX(3px); }
 
-/* ボタン下：心理的ハードル軽減 */
 .hero-cta-meta {
-  font-size: .68rem;
-  letter-spacing: .08em;
+  font-size: .66rem;
+  letter-spacing: .06em;
   color: var(--c-text-light);
 }
 
-/* ── 社会的証明（小） ── */
 .hero-trust {
   display: flex;
   align-items: center;
-  gap: .6rem;
-  animation: heroFadeUp 1.1s .42s both;
+  gap: .55rem;
+  animation: fadeUp 1.1s .52s both;
 }
 .trust-stars {
-  font-size: .8rem;
+  font-size: .78rem;
   letter-spacing: .06em;
   color: var(--c-gold);
 }
 .trust-copy {
-  font-size: .72rem;
+  font-size: .7rem;
   color: var(--c-text-mid);
   letter-spacing: .04em;
 }
 .trust-copy strong { color: var(--c-text); font-weight: var(--fw-reg); }
 
-/* ── 右カラム：ボトル（テキストの補佐役） ── */
-.hero-product-col {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: heroFadeUp 1.3s .2s both;
-}
-.hero-bottle-img {
-  width: 100%;
-  max-width: 340px;
-  /* テキストの邪魔をしないよう透過グラデーション処理 */
-  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-  filter: drop-shadow(0 16px 48px rgba(140,123,110,.15));
-}
-.hero-bottle-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  padding: 2rem;
-  border: 1px dashed var(--c-beige-mid);
-  background: rgba(232,226,217,.14);
-  width: 100%;
-  max-width: 300px;
-  /* ボトルにも同様のグラデーションフェード */
-  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
-}
-.hero-bottle-svg { width: min(190px, 45vw); }
-.hero-bottle-hint {
-  font-size: .64rem;
-  letter-spacing: .1em;
-  color: var(--c-text-light);
-  text-align: center;
-}
-
 /* Scroll indicator */
 .scroll-indicator {
   position: absolute;
-  bottom: 2.2rem; left: 50%;
+  bottom: 2rem; left: 50%;
   transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: .45rem;
+  display: flex; flex-direction: column; align-items: center; gap: .4rem;
   color: var(--c-text-light); z-index: 2;
-  animation: heroFadeUp 1.5s .9s both;
+  animation: fadeUp 1.5s .9s both;
 }
 .scroll-line {
-  display: block; width: 1px; height: 36px;
+  display: block; width: 1px; height: 32px;
   background: linear-gradient(to bottom, transparent, var(--c-accent));
   animation: scrollPulse 2s ease-in-out infinite;
 }
@@ -349,20 +316,17 @@ mark {
   0%,100% { opacity: .3; transform: scaleY(.6); }
   50%     { opacity: 1;  transform: scaleY(1); }
 }
-.scroll-text { font-size: .6rem; letter-spacing: .25em; }
+.scroll-text { font-size: .58rem; letter-spacing: .25em; }
 
-/* ═══════════════════════════════════════════
-   QUIZ v4
-   購入前セルフチェック + STEPインジケーター
-═══════════════════════════════════════════ */
+/* ════════════════════════════════
+   QUIZ（v4から変更なし）
+════════════════════════════════ */
 .quiz-section {
   padding: var(--pad-v) var(--pad-h);
   background: var(--c-white);
   position: relative;
   overflow: hidden;
 }
-
-/* ── ヘッダーブロック ── */
 .quiz-header {
   max-width: 600px;
   margin: 0 auto clamp(2rem, 4vw, 3rem);
@@ -381,8 +345,6 @@ mark {
   color: var(--c-text-mid);
   line-height: 1.8;
 }
-
-/* ── プログレスバー ── */
 .quiz-progress-wrap {
   max-width: 600px;
   margin: 0 auto clamp(1.8rem, 3.5vw, 2.5rem);
@@ -395,25 +357,18 @@ mark {
   background: linear-gradient(90deg, var(--c-accent), var(--c-gold));
   transition: width .4s var(--ease-out);
 }
-
-/* ── フォームラッパー ── */
 .quiz-wrapper {
   max-width: 600px;
   margin: 0 auto;
   transition: opacity .4s ease;
 }
-
-/* ── 質問リスト ── */
 .quiz-list { display: flex; flex-direction: column; }
-
 .quiz-item {
   border-bottom: 1px solid var(--c-border);
   transition: background .2s;
 }
 .quiz-item:first-child { border-top: 1px solid var(--c-border); }
 .quiz-item.checked { background: rgba(184,169,154,.055); }
-
-/* STEP ラベル */
 .quiz-step-label {
   padding: .75rem .75rem .1rem;
   font-size: .6rem;
@@ -423,10 +378,7 @@ mark {
   transition: color .2s;
   user-select: none;
 }
-.quiz-step-label span { font-weight: var(--fw-reg); }
 .quiz-item.checked .quiz-step-label { color: var(--c-accent); }
-
-/* ラベル行 */
 .quiz-label {
   display: flex;
   align-items: center;
@@ -435,8 +387,6 @@ mark {
   cursor: pointer;
 }
 .quiz-checkbox { position: absolute; opacity: 0; width: 0; height: 0; }
-
-/* SVGチェックアイコン */
 .quiz-check-icon {
   flex-shrink: 0;
   width: 22px; height: 22px;
@@ -451,7 +401,6 @@ mark {
 }
 .quiz-item.checked .quiz-check-icon { color: var(--c-accent-dk); }
 .quiz-item.checked .check-path      { stroke-dashoffset: 0; }
-
 .quiz-check-text {
   font-size: .87rem;
   line-height: 1.6;
@@ -459,14 +408,12 @@ mark {
   transition: color .2s;
 }
 .quiz-item.checked .quiz-check-text { color: var(--c-accent-dk); }
-
-/* ── Submit エリア ── */
 .quiz-submit-area {
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: .65rem;
+  gap: .6rem;
 }
 .quiz-submit-btn {
   display: flex;
@@ -483,15 +430,12 @@ mark {
 }
 .quiz-submit-btn:hover  { background: var(--c-accent-dk); }
 .quiz-submit-btn:active { transform: scale(.98); }
-
 .quiz-submit-meta {
   text-align: center;
-  font-size: .68rem;
+  font-size: .66rem;
   color: var(--c-text-light);
   letter-spacing: .06em;
 }
-
-/* ── Loading ── */
 .quiz-loading {
   display: none;
   position: absolute; inset: 0;
@@ -502,7 +446,6 @@ mark {
 }
 .quiz-loading.active { display: flex; animation: fadeIn .3s ease both; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
 .loading-inner {
   display: flex; flex-direction: column; align-items: center; gap: 1.6rem;
   text-align: center;
@@ -520,8 +463,6 @@ mark {
   animation: loadingPulse 1.2s ease-in-out infinite;
 }
 @keyframes loadingPulse { 0%,100% { opacity: .5; } 50% { opacity: 1; } }
-
-/* ── Result ── */
 .quiz-result {
   max-width: var(--max-w); margin: 0 auto;
   overflow: hidden;
@@ -529,7 +470,6 @@ mark {
   transition: max-height .8s cubic-bezier(0.4,0,0.2,1), opacity .5s ease;
 }
 .quiz-result.active { max-height: 700px; opacity: 1; }
-
 .result-positive, .result-neutral {
   padding: clamp(3rem, 8vw, 6rem) var(--pad-h);
   text-align: center;
@@ -552,7 +492,7 @@ mark {
   font-weight: var(--fw-light);
   line-height: 1.15; letter-spacing: .01em;
   color: var(--c-text); margin-bottom: 1.5rem;
-  animation: heroFadeUp .8s var(--ease-out) both;
+  animation: fadeUp .8s var(--ease-out) both;
 }
 .result-declaration em { font-style: italic; color: var(--c-accent-dk); display: block; }
 .result-declaration-sm {
@@ -561,7 +501,7 @@ mark {
   font-weight: var(--fw-light);
   line-height: 1.2; letter-spacing: .01em;
   color: var(--c-text); margin-bottom: 1.5rem;
-  animation: heroFadeUp .8s var(--ease-out) both;
+  animation: fadeUp .8s var(--ease-out) both;
 }
 .result-declaration-sm em { font-style: italic; color: var(--c-accent-dk); }
 .result-sub-copy {
@@ -578,7 +518,7 @@ mark {
   font-size: .85rem; letter-spacing: .14em;
   transition: background var(--ease);
   max-width: 420px; width: 100%;
-  animation: heroFadeUp .9s .15s var(--ease-out) both;
+  animation: fadeUp .9s .15s var(--ease-out) both;
 }
 .result-cta-primary:hover { background: var(--c-accent-dk); }
 .result-cta-secondary {
@@ -587,16 +527,12 @@ mark {
   transition: color .2s, border-color .2s;
 }
 .result-cta-secondary:hover { color: var(--c-text); border-color: var(--c-text); }
-.result-msg {
-  font-family: var(--ff-serif); font-size: 1.1rem; margin-bottom: .4rem;
-}
+.result-msg { font-family: var(--ff-serif); font-size: 1.1rem; margin-bottom: .4rem; }
 .result-sub { font-size: .78rem; color: var(--c-text-mid); }
 
-/* ═══════════════════════════════════════════
-   以下、v3から変更なし
-═══════════════════════════════════════════ */
-
-/* REVIEWS */
+/* ════════════════════════════════
+   REVIEWS（実UGC画像）
+════════════════════════════════ */
 .reviews-section {
   padding: var(--pad-v) var(--pad-h);
   background: var(--c-bg-alt);
@@ -618,21 +554,13 @@ mark {
 .review-ugc-wrap { overflow: hidden; }
 .review-ugc-img {
   width: 100%; aspect-ratio: 1; object-fit: cover;
+  display: block;
   transition: transform .6s var(--ease);
 }
 .review-card:hover .review-ugc-img { transform: scale(1.04); }
-.review-ugc-placeholder {
-  width: 100%; aspect-ratio: 1;
-  background: var(--c-bg-alt);
-  border-bottom: 1px solid var(--c-border);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: .5rem;
-  color: var(--c-text-light); font-size: .66rem; letter-spacing: .08em;
-}
-.ugc-camera-icon { width: 34px; }
 .review-content {
-  padding: 1.4rem 1.5rem 1.5rem;
-  display: flex; flex-direction: column; gap: .6rem; flex: 1;
+  padding: 1.3rem 1.4rem 1.4rem;
+  display: flex; flex-direction: column; gap: .55rem; flex: 1;
 }
 .review-headline {
   font-family: var(--ff-serif);
@@ -642,16 +570,16 @@ mark {
   color: var(--c-text);
 }
 .stars-svg { width: 76px; }
-.review-body {
-  font-size: .8rem; color: var(--c-text-mid); line-height: 1.75; flex: 1;
-}
+.review-body { font-size: .8rem; color: var(--c-text-mid); line-height: 1.75; flex: 1; }
 .review-byline {
   font-size: .7rem; color: var(--c-text-light);
   letter-spacing: .05em;
-  border-top: 1px solid var(--c-border); padding-top: .75rem; margin-top: auto;
+  border-top: 1px solid var(--c-border); padding-top: .7rem; margin-top: auto;
 }
 
-/* PRODUCT */
+/* ════════════════════════════════
+   PRODUCT（実画像 + ベネフィット）
+════════════════════════════════ */
 .story-section {
   padding: var(--pad-v) var(--pad-h);
   background: var(--c-white); text-align: center;
@@ -665,35 +593,37 @@ mark {
 .benefit-item { text-align: left; }
 .benefit-number-row {
   display: flex; align-items: center; gap: .75rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.1rem;
 }
 .benefit-num {
   font-family: var(--ff-serif); font-size: .7rem;
   letter-spacing: .2em; color: var(--c-accent);
 }
 .benefit-icon { width: 26px; height: 26px; color: var(--c-accent); }
-.benefit-img {
-  width: 100%; aspect-ratio: 3/2; object-fit: cover;
+
+/* 実画像ラッパー */
+.benefit-img-wrap {
+  overflow: hidden;
   margin-bottom: 1.3rem;
+}
+.benefit-img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  display: block;
   transition: transform .6s var(--ease);
 }
-.benefit-img-placeholder {
-  width: 100%; aspect-ratio: 3/2;
-  background: var(--c-bg-alt);
-  border: 1px dashed var(--c-beige-mid);
-  display: flex; align-items: center; justify-content: center;
-  font-size: .68rem; color: var(--c-text-light); letter-spacing: .1em;
-  margin-bottom: 1.3rem;
-}
+.benefit-img-wrap:hover .benefit-img { transform: scale(1.03); }
+
 .benefit-heading {
   font-family: var(--ff-serif);
   font-size: clamp(1.3rem, 2.5vw, 1.7rem);
   font-weight: var(--fw-light);
-  letter-spacing: .04em; margin-bottom: .9rem;
+  letter-spacing: .04em; margin-bottom: .85rem;
 }
 .benefit-list {
   display: flex; flex-direction: column; gap: .45rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.1rem;
 }
 .benefit-list li {
   display: flex; align-items: flex-start; gap: .55rem;
@@ -708,12 +638,15 @@ mark {
   font-weight: var(--fw-light);
   letter-spacing: .1em;
   background: var(--c-hl);
-  padding: .25em .75em;
+  padding: .22em .7em;
   color: var(--c-accent-dk);
   border: 1px solid rgba(201,169,110,.2);
 }
 
-/* GUARANTEE */
+/* ════════════════════════════════
+   GUARANTEE（コンパクト3バッジ）
+   スマホ1画面に収まる高さに最適化
+════════════════════════════════ */
 .guarantee-section {
   padding: var(--pad-v) var(--pad-h);
   background: var(--c-bg-alt);
@@ -722,18 +655,20 @@ mark {
 }
 .guarantee-badges {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* 常に3列。スマホでは横スクロールなし・縦積み */
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: var(--c-border);
   border: 1px solid var(--c-border);
-  max-width: 800px; margin: 0 auto;
+  max-width: 720px; margin: 0 auto;
   overflow: hidden;
 }
 .guarantee-badge {
   background: var(--c-white);
-  padding: clamp(2rem,5vw,2.8rem) clamp(1.5rem,3vw,2rem);
+  /* パディングを引き算：スマホ1画面対応 */
+  padding: clamp(1.2rem, 3.5vw, 2rem) clamp(.75rem, 2vw, 1.5rem);
   display: flex; flex-direction: column;
-  align-items: center; gap: .75rem;
+  align-items: center; gap: .55rem;
   text-align: center;
   position: relative;
 }
@@ -744,27 +679,34 @@ mark {
   height: 2px;
   background: linear-gradient(90deg, var(--c-accent), var(--c-gold));
 }
+
 .gbadge-icon {
-  width: 52px; height: 52px;
+  width: 44px; height: 44px;
   border-radius: 50%;
   border: 1px solid var(--c-border);
   background: var(--c-bg-alt);
   display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
 }
-.gbadge-icon svg { width: 28px; height: 28px; color: var(--c-accent-dk); }
+.gbadge-icon svg { width: 24px; height: 24px; color: var(--c-accent-dk); }
+
 .gbadge-title {
   font-family: var(--ff-serif);
-  font-size: clamp(1rem, 2vw, 1.15rem);
+  /* スマホでコンパクト */
+  font-size: clamp(.78rem, 1.8vw, 1rem);
   font-weight: var(--fw-light);
-  line-height: 1.4; letter-spacing: .03em;
+  line-height: 1.35; letter-spacing: .02em;
 }
 .gbadge-title strong { font-weight: var(--fw-reg); color: var(--c-text); }
 .gbadge-sub {
-  font-size: .72rem; color: var(--c-text-light);
-  letter-spacing: .06em; line-height: 1.6;
+  font-size: clamp(.62rem, 1.2vw, .72rem);
+  color: var(--c-text-light);
+  letter-spacing: .04em; line-height: 1.55;
 }
 
-/* PURCHASE */
+/* ════════════════════════════════
+   PURCHASE（実画像）
+════════════════════════════════ */
 .purchase-section {
   padding: var(--pad-v) var(--pad-h);
   background: var(--c-white);
@@ -777,19 +719,13 @@ mark {
   align-items: center;
 }
 .purchase-image-col { position: relative; }
-.product-img { width: 100%; height: auto; object-fit: contain; }
-.product-img-placeholder {
-  width: 100%; aspect-ratio: 4/5;
-  background: var(--c-beige);
-  border: 1px dashed var(--c-beige-mid);
-  display: flex; align-items: center; justify-content: center; text-align: center;
-  color: var(--c-text-light);
+.product-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 4/5;
+  display: block;
 }
-.product-img-inner { display: flex; flex-direction: column; gap: .5rem; align-items: center; }
-.product-img-label {
-  font-family: var(--ff-serif); font-size: .88rem; letter-spacing: .1em; color: var(--c-accent); margin-top: .5rem;
-}
-.product-img-sub { font-size: .68rem; color: var(--c-text-light); letter-spacing: .08em; }
 .purchase-eyebrow {
   font-size: .66rem; letter-spacing: .28em; text-transform: uppercase;
   color: var(--c-accent); margin-bottom: .75rem;
@@ -830,7 +766,7 @@ mark {
 .purchase-btn:hover  { background: var(--c-accent-dk); }
 .purchase-btn:active { transform: scale(.98); }
 .purchase-microcopy {
-  text-align: center; font-size: .72rem;
+  text-align: center; font-size: .7rem;
   color: var(--c-text-mid); letter-spacing: .1em;
   margin-bottom: 1.4rem;
 }
@@ -842,7 +778,9 @@ mark {
   padding: .28em .8em; border-radius: 999px;
 }
 
-/* FOOTER */
+/* ════════════════════════════════
+   FOOTER
+════════════════════════════════ */
 .site-footer {
   padding: 3rem var(--pad-h);
   background: var(--c-text); text-align: center;
@@ -853,62 +791,33 @@ mark {
 }
 .footer-copy { font-size: .68rem; color: var(--c-text-light); letter-spacing: .1em; }
 
-/* ═══════════════════════════════════════════
+/* ════════════════════════════════
    RESPONSIVE
-═══════════════════════════════════════════ */
-
-/* Tablet landscape → 2col still works, reduce gap */
-@media (max-width: 1024px) {
-  .hero-layout { grid-template-columns: 58fr 42fr; }
-}
-
-/* Tablet portrait → single col。スマホ順: コピー→ボタン→画像 */
+════════════════════════════════ */
 @media (max-width: 768px) {
-  .hero-layout {
-    grid-template-columns: 1fr;
-    text-align: center;
-    padding-top: clamp(3rem, 8vw, 5rem);
-    padding-bottom: clamp(2rem, 5vw, 4rem);
-    gap: 2rem;
-  }
-  .hero-content { text-align: center; order: 1; }
-  .hero-eyebrow { justify-content: center; }
-  .hero-cta-wrap { align-items: center; }
-  .hero-trust { justify-content: center; }
-  /* ボトルを一番下へ */
-  .hero-product-col {
-    order: 2;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-  .hero-bottle-placeholder {
-    max-width: 200px; padding: 1.5rem;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-  .hero-bottle-svg { width: 130px; }
-
   .purchase-inner { grid-template-columns: 1fr; }
-  .purchase-image-col { max-width: 360px; margin: 0 auto; width: 100%; }
+  .purchase-image-col { max-width: 380px; margin: 0 auto; width: 100%; }
   .header-nav { display: none; }
-  .guarantee-badges { grid-template-columns: 1fr; }
+  /* 保証バッジ：スマホでも3列維持 */
+  .guarantee-badges { max-width: 100%; }
   .result-declaration { font-size: clamp(2.2rem, 9vw, 3.2rem); }
 }
 
-@media (max-width: 480px) {
-  :root { --pad-v: 4rem; }
-  .br-sp-only { display: inline; }
-  .hero-headline { font-size: clamp(1.75rem, 7.5vw, 2.4rem); }
+@media (max-width: 540px) {
+  .sp-br { display: inline; }
   .benefit-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .reviews-grid { grid-template-columns: 1fr; }
   .result-cta-primary { font-size: .78rem; }
-  .quiz-progress-wrap { max-width: 100%; }
+  /* 保証バッジ：縦積みはせず、コンパクト3列を維持。ただし極小では縦積み */
+  .hero-image-wrap { max-width: clamp(200px, 75vw, 300px); }
 }
 
-@media (max-width: 360px) {
-  .hero-headline { font-size: 1.6rem; }
+@media (max-width: 380px) {
+  .hero-headline { font-size: 1.75rem; }
+  /* 380px未満のみ保証バッジを縦積み */
+  .guarantee-badges { grid-template-columns: 1fr; }
+  .guarantee-badge--hero::before { height: 2px; top: 0; bottom: auto; left: 0; right: 0; }
 }
-
    </style>
 
 <!DOCTYPE html>
@@ -918,15 +827,23 @@ mark {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PURELAYER — まとう、無垢な空気感。</title>
   <link rel="stylesheet" href="style.css" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
+   <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vvn8p99ehp");
+</script>
 </head>
 <body>
 
-  <!-- ══════════════════════════════════
+  <!-- ══════════════════════
        HEADER
-  ══════════════════════════════════ -->
+  ══════════════════════ -->
   <header class="site-header">
     <div class="header-inner">
       <div class="logo">PURELAYER</div>
@@ -938,34 +855,45 @@ mark {
     </div>
   </header>
 
-  <!-- ══════════════════════════════════
-       HERO（v4：診断への期待感を主役に）
-  ══════════════════════════════════ -->
+  <!-- ══════════════════════
+       HERO v5 — サンドイッチ構造
+       言葉 → モノ → 納得 → 行動
+  ══════════════════════ -->
   <section class="hero" id="hero">
     <div class="hero-bg"><div class="hero-grain"></div></div>
 
-    <!-- デスクトップ：左テキスト / 右ボトル。スマホ：コピー→ボタン→画像の順 -->
-    <div class="hero-layout">
+    <div class="hero-sandwich">
 
-      <!-- 左カラム：コピー + CTA -->
-      <div class="hero-content">
+      <!-- ① メインコピー -->
+      <div class="hero-top">
         <p class="hero-eyebrow">
           <span class="eyebrow-dot"></span>
           Purchase Diagnostic
         </p>
-
         <h1 class="hero-headline">
-          購入前に、<br />
-          30秒で香りの<br class="br-sp-only" />
-          <em>相性をセルフチェック。</em>
+          購入前に、30秒で<br />
+          香りの<em>相性をセルフチェック。</em>
         </h1>
+      </div>
 
+      <!-- ② FV画像（中央：大きすぎず、テキストを邪魔しない） -->
+      <div class="hero-image-wrap">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/BA46FCE4-53C4-4E9A-BEF7-0E90519E8543.webp?v=1773317864"
+          alt="PURELAYER Blanc Pur — 清潔感のある石鹸香調フレグランス"
+          class="hero-fv-img"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+
+      <!-- ③ サブコピー + ④ CTA -->
+      <div class="hero-bottom">
         <p class="hero-sub">
           もう、香水選びで失敗しない。<br />
-          PURELAYERがあなたに合うか、<br class="br-sp-only" />5つの質問で判定します。
+          PURELAYERがあなたに合うか、<br class="sp-br" />5つの質問で判定します。
         </p>
 
-        <!-- Primary CTA -->
         <div class="hero-cta-wrap">
           <a href="#quiz" class="hero-cta" id="heroCtaBtn">
             無料で相性を診断する
@@ -976,41 +904,13 @@ mark {
           <p class="hero-cta-meta">※ 所要時間30秒 / 登録不要</p>
         </div>
 
-        <!-- 信頼トリガー：小さなソーシャルプルーフ -->
         <div class="hero-trust">
           <span class="trust-stars" aria-label="星5つ">★★★★★</span>
           <span class="trust-copy">累計 <strong>2,400+</strong> 人が診断済み</span>
         </div>
       </div>
 
-      <!-- 右カラム：製品ボトル（テキストの補佐役） -->
-      <div class="hero-product-col">
-        <!--
-          ╔═══════════════════════════════════════════════════╗
-          ║  [最重要・画像差し替えポイント]                       ║
-          ║  広告（TikTok/Instagram）と同一のボトル画像を配置。    ║
-          ║  推奨：背景透過PNG、縦長 600×800px 以上              ║
-          ║  差し替え：このdivを削除し以下のimgに置き換える        ║
-          ║  <img src="./images/hero-bottle.png"              ║
-          ║       alt="PURELAYER Blanc Pur 50ml"             ║
-          ║       class="hero-bottle-img" />                 ║
-          ╚═══════════════════════════════════════════════════╝
-        -->
-        <div class="hero-bottle-placeholder" aria-hidden="true">
-          <svg viewBox="0 0 120 220" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-bottle-svg">
-            <rect x="42" y="10" width="36" height="14" rx="3" fill="none" stroke="#B8A99A" stroke-width="1"/>
-            <rect x="49" y="3" width="22" height="9" rx="2" fill="none" stroke="#B8A99A" stroke-width="1"/>
-            <path d="M28 24 Q26 44 24 66 L24 182 Q24 194 36 196 L84 196 Q96 194 96 182 L96 66 Q94 44 92 24 Z" fill="rgba(232,226,217,0.25)" stroke="#B8A99A" stroke-width="1"/>
-            <path d="M36 58 L84 58" stroke="#D6CFC4" stroke-width="0.5" stroke-dasharray="4 4"/>
-            <text x="60" y="122" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#B8A99A" letter-spacing="3">PURE</text>
-            <text x="60" y="138" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#B8A99A" letter-spacing="3">LAYER</text>
-            <text x="60" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="6.5" fill="#C9A96E" letter-spacing="2">Blanc Pur</text>
-          </svg>
-          <p class="hero-bottle-hint">hero-bottle.png を配置</p>
-        </div>
-      </div>
-
-    </div><!-- /.hero-layout -->
+    </div><!-- /.hero-sandwich -->
 
     <a href="#quiz" class="scroll-indicator" aria-label="下へスクロール">
       <span class="scroll-line"></span>
@@ -1018,12 +918,11 @@ mark {
     </a>
   </section>
 
-  <!-- ══════════════════════════════════
-       QUIZ（v4：STEP表示 + セルフチェック強調）
-  ══════════════════════════════════ -->
+  <!-- ══════════════════════
+       QUIZ（v4から継承・変更なし）
+  ══════════════════════ -->
   <section class="quiz-section" id="quiz">
 
-    <!-- 診断ヘッダー -->
     <div class="quiz-header">
       <p class="section-label">Self Check</p>
       <h2 class="quiz-title">購入前の相性チェック</h2>
@@ -1033,7 +932,6 @@ mark {
       </p>
     </div>
 
-    <!-- 進行バー -->
     <div class="quiz-progress-wrap" id="quizProgressWrap" aria-hidden="true">
       <div class="quiz-progress-bar" id="quizProgressBar" style="width:0%"></div>
     </div>
@@ -1126,7 +1024,6 @@ mark {
       </form>
     </div>
 
-    <!-- LOADING STATE -->
     <div class="quiz-loading" id="quizLoading" aria-hidden="true">
       <div class="loading-inner">
         <div class="loading-ring"></div>
@@ -1134,17 +1031,15 @@ mark {
       </div>
     </div>
 
-    <!-- RESULT -->
     <div class="quiz-result" id="quizResult" aria-live="polite">
       <div class="result-inner" id="resultInner"></div>
     </div>
 
   </section>
 
-  <!-- ══════════════════════════════════
-       REVIEWS（スキャナブル化）
-       ※ 以下、全セクション変更なし
-  ══════════════════════════════════ -->
+  <!-- ══════════════════════
+       REVIEWS（UGC画像挿入済み）
+  ══════════════════════ -->
   <section class="reviews-section" id="reviews">
     <p class="section-label">Reviews</p>
     <h2 class="section-title-centered">使った人が、変わった。</h2>
@@ -1152,19 +1047,13 @@ mark {
     <div class="reviews-grid">
 
       <article class="review-card">
-        <!--
-          [UGC画像差し替えポイント] 正方形 400×400px 推奨
-          <img src="./images/ugc-photo-1.jpg" alt="" class="review-ugc-img" />
-        -->
         <div class="review-ugc-wrap">
-          <div class="review-ugc-placeholder" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="ugc-camera-icon">
-              <rect x="6" y="12" width="36" height="28" rx="2" stroke="#D6CFC4" stroke-width="1"/>
-              <circle cx="24" cy="26" r="7" stroke="#D6CFC4" stroke-width="1"/>
-              <path d="M17 12L20 8H28L31 12" stroke="#D6CFC4" stroke-width="1" stroke-linecap="round"/>
-            </svg>
-            <span>ugc-photo-1.jpg</span>
-          </div>
+          <img
+            src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670"
+            alt="PURELAYERを使用中のユーザー写真"
+            class="review-ugc-img"
+            loading="lazy"
+          />
         </div>
         <div class="review-content">
           <h3 class="review-headline">「まるで石鹸そのもの」</h3>
@@ -1177,19 +1066,13 @@ mark {
       </article>
 
       <article class="review-card">
-        <!--
-          [UGC画像差し替えポイント] 正方形 400×400px 推奨
-          <img src="./images/ugc-photo-2.jpg" alt="" class="review-ugc-img" />
-        -->
         <div class="review-ugc-wrap">
-          <div class="review-ugc-placeholder" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="ugc-camera-icon">
-              <rect x="6" y="12" width="36" height="28" rx="2" stroke="#D6CFC4" stroke-width="1"/>
-              <circle cx="24" cy="26" r="7" stroke="#D6CFC4" stroke-width="1"/>
-              <path d="M17 12L20 8H28L31 12" stroke="#D6CFC4" stroke-width="1" stroke-linecap="round"/>
-            </svg>
-            <span>ugc-photo-2.jpg</span>
-          </div>
+          <img
+            src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670"
+            alt="PURELAYERを使用中のユーザー写真"
+            class="review-ugc-img"
+            loading="lazy"
+          />
         </div>
         <div class="review-content">
           <h3 class="review-headline">「一日中褒められた」</h3>
@@ -1202,19 +1085,13 @@ mark {
       </article>
 
       <article class="review-card">
-        <!--
-          [UGC画像差し替えポイント] 正方形 400×400px 推奨
-          <img src="./images/ugc-photo-3.jpg" alt="" class="review-ugc-img" />
-        -->
         <div class="review-ugc-wrap">
-          <div class="review-ugc-placeholder" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="ugc-camera-icon">
-              <rect x="6" y="12" width="36" height="28" rx="2" stroke="#D6CFC4" stroke-width="1"/>
-              <circle cx="24" cy="26" r="7" stroke="#D6CFC4" stroke-width="1"/>
-              <path d="M17 12L20 8H28L31 12" stroke="#D6CFC4" stroke-width="1" stroke-linecap="round"/>
-            </svg>
-            <span>ugc-photo-3.jpg</span>
-          </div>
+          <img
+            src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2872.webp?v=1773467332"
+            alt="PURELAYERを使用中のユーザー写真"
+            class="review-ugc-img"
+            loading="lazy"
+          />
         </div>
         <div class="review-content">
           <h3 class="review-headline">「つけてることを忘れる」</h3>
@@ -1229,9 +1106,9 @@ mark {
     </div>
   </section>
 
-  <!-- ══════════════════════════════════
-       PRODUCT（情報の断捨離・ベネフィット特化）
-  ══════════════════════════════════ -->
+  <!-- ══════════════════════
+       PRODUCT（実画像挿入 + テキスト断捨離）
+  ══════════════════════ -->
   <section class="story-section" id="product">
     <p class="section-label">Why PURELAYER</p>
     <h2 class="section-title-centered">PURELAYERが選ばれる理由</h2>
@@ -1248,11 +1125,14 @@ mark {
             <circle cx="27" cy="17" r="2" stroke="currentColor" stroke-width="1"/>
           </svg>
         </div>
-        <!--
-          [画像差し替えポイント] 600×400px 推奨
-          <img src="./images/benefit-soap.jpg" alt="" class="benefit-img" />
-        -->
-        <div class="benefit-img-placeholder" aria-hidden="true">benefit-soap.jpg</div>
+        <div class="benefit-img-wrap">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/0BB23EC6-3DA1-4593-A30D-27962AA1BAC1.webp?v=1773741757"
+            alt="石鹸のような清潔感のある香り"
+            class="benefit-img"
+            loading="lazy"
+          />
+        </div>
         <h3 class="benefit-heading">石鹸の香り</h3>
         <ul class="benefit-list">
           <li>
@@ -1279,11 +1159,14 @@ mark {
             <line x1="16" y1="4" x2="16" y2="28" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2"/>
           </svg>
         </div>
-        <!--
-          [画像差し替えポイント] 600×400px 推奨
-          <img src="./images/benefit-ingredients.jpg" alt="" class="benefit-img" />
-        -->
-        <div class="benefit-img-placeholder" aria-hidden="true">benefit-ingredients.jpg</div>
+        <div class="benefit-img-wrap">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/9b2c5e30664f5856257a415893cb9c12.webp?v=1774662750"
+            alt="肌に優しいボタニカル成分"
+            class="benefit-img"
+            loading="lazy"
+          />
+        </div>
         <h3 class="benefit-heading">肌に優しい</h3>
         <ul class="benefit-list">
           <li>
@@ -1310,11 +1193,14 @@ mark {
             <path d="M16 9V16L20 19" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <!--
-          [画像差し替えポイント] 600×400px 推奨
-          <img src="./images/benefit-longevity.jpg" alt="" class="benefit-img" />
-        -->
-        <div class="benefit-img-placeholder" aria-hidden="true">benefit-longevity.jpg</div>
+        <div class="benefit-img-wrap">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/f97f0733db45bed02e09cf4d53d09007.webp?v=1774664460"
+            alt="24時間持続する清潔感"
+            class="benefit-img"
+            loading="lazy"
+          />
+        </div>
         <h3 class="benefit-heading">24時間持続</h3>
         <ul class="benefit-list">
           <li>
@@ -1336,9 +1222,9 @@ mark {
     </div>
   </section>
 
-  <!-- ══════════════════════════════════
-       GUARANTEE（バッジ型・超シンプル）
-  ══════════════════════════════════ -->
+  <!-- ══════════════════════
+       GUARANTEE（コンパクト3バッジ）
+  ══════════════════════ -->
   <section class="guarantee-section" id="guarantee">
     <p class="section-label">Our Promise</p>
     <h2 class="section-title-centered">失敗のリスク、ゼロ。</h2>
@@ -1354,8 +1240,8 @@ mark {
             <circle cx="28" cy="28" r="3" stroke="currentColor" stroke-width="1"/>
           </svg>
         </div>
-        <p class="gbadge-title">全国どこでも<br /><strong>送料無料</strong></p>
-        <p class="gbadge-sub">追加コストなし</p>
+        <p class="gbadge-title"><strong>送料無料</strong></p>
+        <p class="gbadge-sub">全国一律・追加コストなし</p>
       </div>
 
       <div class="guarantee-badge guarantee-badge--hero">
@@ -1366,8 +1252,8 @@ mark {
             <path d="M10 24H26" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2"/>
           </svg>
         </div>
-        <p class="gbadge-title"><strong>2ml</strong> テストキット<br />同梱</p>
-        <p class="gbadge-sub">開封前に香りを確認<br />未開封なら返品OK</p>
+        <p class="gbadge-title"><strong>2ml</strong>テストキット付</p>
+        <p class="gbadge-sub">開封前に確認 / 未開封なら返品OK</p>
       </div>
 
       <div class="guarantee-badge">
@@ -1377,37 +1263,25 @@ mark {
             <path d="M12 18L16.5 22.5L24 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <p class="gbadge-title"><strong>30日間</strong><br />全額返金保証</p>
+        <p class="gbadge-title"><strong>30日間</strong>全額返金</p>
         <p class="gbadge-sub">理由不問で対応</p>
       </div>
 
     </div>
   </section>
 
-  <!-- ══════════════════════════════════
-       PURCHASE / CTA
-  ══════════════════════════════════ -->
+  <!-- ══════════════════════
+       PURCHASE / CTA（実画像挿入）
+  ══════════════════════ -->
   <section class="purchase-section" id="purchase">
     <div class="purchase-inner">
       <div class="purchase-image-col">
-        <!--
-          [画像差し替えポイント] 800×1000px、背景透過PNG 推奨
-          <img src="./images/product-main.jpg" alt="PURELAYER Blanc Pur オードパルファン 50ml" class="product-img" />
-        -->
-        <div class="product-img-placeholder">
-          <div class="product-img-inner">
-            <svg viewBox="0 0 90 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:90px;opacity:0.55">
-              <rect x="30" y="7" width="30" height="11" rx="2.5" fill="none" stroke="#B8A99A" stroke-width="1"/>
-              <rect x="34" y="2" width="22" height="7" rx="1.5" fill="none" stroke="#B8A99A" stroke-width="1"/>
-              <path d="M18 18 Q16 34 14 52 L14 116 Q14 126 24 127 L66 127 Q76 126 76 116 L76 52 Q74 34 72 18 Z" fill="rgba(232,226,217,0.2)" stroke="#B8A99A" stroke-width="1"/>
-              <text x="45" y="82" text-anchor="middle" font-family="Georgia,serif" font-size="7.5" fill="#B8A99A" letter-spacing="2.5">PURE</text>
-              <text x="45" y="95" text-anchor="middle" font-family="Georgia,serif" font-size="7.5" fill="#B8A99A" letter-spacing="2.5">LAYER</text>
-              <text x="45" y="110" text-anchor="middle" font-family="Georgia,serif" font-size="5" fill="#C9A96E" letter-spacing="1.5">Blanc Pur</text>
-            </svg>
-            <span class="product-img-label">製品ボトル画像</span>
-            <span class="product-img-sub">product-main.jpg</span>
-          </div>
-        </div>
+        <img
+          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731"
+          alt="PURELAYER Blanc Pur オードパルファン 50ml"
+          class="product-img"
+          loading="lazy"
+        />
       </div>
 
       <div class="purchase-detail-col">
@@ -1438,36 +1312,33 @@ mark {
     </div>
   </section>
 
-  <!-- ══════════════════════════════════
+  <!-- ══════════════════════
        FOOTER
-  ══════════════════════════════════ -->
+  ══════════════════════ -->
   <footer class="site-footer">
     <p class="footer-logo">PURELAYER</p>
     <p class="footer-copy">&copy; 2025 PURELAYER All Rights Reserved.</p>
   </footer>
 
-  <!-- ══════════════════════════════════
-       SCRIPT
-  ══════════════════════════════════ -->
+  <!-- ══════════════════════
+       SCRIPT（v4から継承・変更なし）
+  ══════════════════════ -->
   <script>
   (function () {
     'use strict';
 
-    /* ─── 要素取得 ─── */
-    const quizSubmit    = document.getElementById('quizSubmit');
-    const quizLoading   = document.getElementById('quizLoading');
-    const quizResult    = document.getElementById('quizResult');
-    const resultInner   = document.getElementById('resultInner');
-    const quizSection   = document.getElementById('quiz');
-    const progressBar   = document.getElementById('quizProgressBar');
-    const heroCtaBtn    = document.getElementById('heroCtaBtn');
+    const quizSubmit  = document.getElementById('quizSubmit');
+    const quizLoading = document.getElementById('quizLoading');
+    const quizResult  = document.getElementById('quizResult');
+    const resultInner = document.getElementById('resultInner');
+    const quizSection = document.getElementById('quiz');
+    const progressBar = document.getElementById('quizProgressBar');
+    const heroCtaBtn  = document.getElementById('heroCtaBtn');
 
-    /* ─── FV「診断する」ボタン → Quiz セクションへスムーズスクロール ─── */
     if (heroCtaBtn) {
       heroCtaBtn.addEventListener('click', function (e) {
         e.preventDefault();
         quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        /* スクロール後、最初の質問にフォーカスを移す（アクセシビリティ） */
         setTimeout(function () {
           var firstCb = quizSection.querySelector('.quiz-checkbox');
           if (firstCb) firstCb.focus({ preventScroll: true });
@@ -1475,7 +1346,6 @@ mark {
       });
     }
 
-    /* ─── チェックボックス：ビジュアル更新 + プログレスバー更新 ─── */
     document.querySelectorAll('.quiz-checkbox').forEach(function (cb) {
       cb.addEventListener('change', function () {
         this.closest('.quiz-item').classList.toggle('checked', this.checked);
@@ -1486,104 +1356,79 @@ mark {
     function updateProgress() {
       var total   = document.querySelectorAll('.quiz-checkbox').length;
       var checked = document.querySelectorAll('.quiz-checkbox:checked').length;
-      var pct     = Math.round((checked / total) * 100);
-      if (progressBar) progressBar.style.width = pct + '%';
+      if (progressBar) progressBar.style.width = Math.round((checked / total) * 100) + '%';
     }
 
-    /* ─── 共通アイコン ─── */
     const arrowSvg = `<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
       style="width:14px;display:inline-block;vertical-align:middle;margin-left:6px" aria-hidden="true">
       <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1"
         stroke-linecap="round" stroke-linejoin="round"/>
     </svg>`;
 
-    /* ─── 診断ボタン ─── */
     quizSubmit.addEventListener('click', function () {
       const count = document.querySelectorAll('.quiz-checkbox:checked').length;
+      if (count === 0) { showResult(0); return; }
 
-      if (count === 0) {
-        showResult(0);
-        return;
-      }
-
-      /* ① フォームをフェードアウト */
       var wrapper = document.querySelector('.quiz-wrapper');
       wrapper.style.transition = 'opacity .4s ease';
       wrapper.style.opacity    = '0';
       wrapper.style.pointerEvents = 'none';
 
-      /* ② ローディング */
       quizLoading.classList.add('active');
       quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-      /* ③ 1500ms 後に結果 */
       setTimeout(function () {
         quizLoading.classList.remove('active');
         showResult(count);
       }, 1500);
     });
 
-    /* ─── 結果描画 ─── */
     function showResult(count) {
       var html = '';
-
       if (count === 0) {
-        html = `
-          <div class="result-none">
-            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"
-              style="width:28px;color:var(--c-accent);margin-bottom:.75rem" aria-hidden="true">
-              <circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="1"/>
-              <path d="M14 9V15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-              <circle cx="14" cy="19" r=".8" fill="currentColor"/>
-            </svg>
-            <p class="result-msg">まだチェックが入っていません。</p>
-            <p class="result-sub">当てはまる項目を選んでから押してください。</p>
-          </div>`;
+        html = `<div class="result-none">
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"
+            style="width:28px;color:var(--c-accent);margin-bottom:.75rem" aria-hidden="true">
+            <circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="1"/>
+            <path d="M14 9V15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <circle cx="14" cy="19" r=".8" fill="currentColor"/>
+          </svg>
+          <p class="result-msg">まだチェックが入っていません。</p>
+          <p class="result-sub">当てはまる項目を選んでから押してください。</p>
+        </div>`;
       } else if (count >= 3) {
-        html = `
-          <div class="result-positive">
-            <p class="result-eyebrow">診断結果 — ${count}/5 項目が一致</p>
-            <h2 class="result-declaration">PURELAYERは<br /><em>あなたのための</em><br />香水です。</h2>
-            <p class="result-sub-copy">香りに敏感なあなたには、透明な石鹸香調が最もよく合います。</p>
-            <div class="result-cta-group">
-              <a href="#purchase" class="result-cta-primary">
-                あなたに最適な香りの構成を詳しく見る ${arrowSvg}
-              </a>
-              <a href="#product" class="result-cta-secondary">製品概要を確認する</a>
-            </div>
-          </div>`;
+        html = `<div class="result-positive">
+          <p class="result-eyebrow">診断結果 — ${count}/5 項目が一致</p>
+          <h2 class="result-declaration">PURELAYERは<br /><em>あなたのための</em><br />香水です。</h2>
+          <p class="result-sub-copy">香りに敏感なあなたには、透明な石鹸香調が最もよく合います。</p>
+          <div class="result-cta-group">
+            <a href="#purchase" class="result-cta-primary">あなたに最適な香りの構成を詳しく見る ${arrowSvg}</a>
+            <a href="#product" class="result-cta-secondary">製品概要を確認する</a>
+          </div>
+        </div>`;
       } else {
-        html = `
-          <div class="result-neutral">
-            <p class="result-eyebrow">診断結果 — ${count}/5 項目が一致</p>
-            <h2 class="result-declaration-sm">清潔な香りへの<br /><em>関心が芽生えています。</em></h2>
-            <p class="result-sub-copy">香りに慣れていない方にも馴染む、ほのかな石鹸香調。まず試してみてください。</p>
-            <div class="result-cta-group">
-              <a href="#purchase" class="result-cta-primary">
-                まずは試してみる ${arrowSvg}
-              </a>
-            </div>
-          </div>`;
+        html = `<div class="result-neutral">
+          <p class="result-eyebrow">診断結果 — ${count}/5 項目が一致</p>
+          <h2 class="result-declaration-sm">清潔な香りへの<br /><em>関心が芽生えています。</em></h2>
+          <p class="result-sub-copy">香りに慣れていない方にも馴染む、ほのかな石鹸香調。まず試してみてください。</p>
+          <div class="result-cta-group">
+            <a href="#purchase" class="result-cta-primary">まずは試してみる ${arrowSvg}</a>
+          </div>
+        </div>`;
       }
-
       resultInner.innerHTML = html;
       quizResult.classList.add('active');
-
       setTimeout(function () {
         quizResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 60);
     }
 
-    /* ─── Intersection Observer フェードイン ─── */
     const fadeEls = document.querySelectorAll(
       '.benefit-item, .review-card, .purchase-inner, .quiz-wrapper, .guarantee-badge'
     );
     const io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          io.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) { entry.target.classList.add('in-view'); io.unobserve(entry.target); }
       });
     }, { threshold: 0.1 });
     fadeEls.forEach(function (el) { io.observe(el); });
