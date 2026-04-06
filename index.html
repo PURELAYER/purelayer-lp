@@ -1,10 +1,10 @@
 <style>
-/* ====================================================
-   PURELAYER — Landing Page Stylesheet v2
-   Quiet Luxury / Minimal Japanese Aesthetic
-   ==================================================== */
+/* ════════════════════════════════════════════════
+   PURELAYER — Landing Page v3
+   Information Reduction × Emotional Amplification
+   ════════════════════════════════════════════════ */
 
-/* ── CSS Variables ── */
+/* ── Variables ── */
 :root {
   --c-bg:        #F9F9F9;
   --c-bg-alt:    #F3F1EE;
@@ -18,25 +18,24 @@
   --c-accent-dk: #8C7B6E;
   --c-border:    #E2DDD7;
   --c-gold:      #C9A96E;
-  --c-highlight: rgba(201,169,110,0.12);
+  --c-hl:        rgba(201,169,110,0.13);
 
   --ff-serif: 'Cormorant Garamond', 'Noto Serif JP', Georgia, serif;
   --ff-sans:  'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
 
-  --fw-light:   300;
-  --fw-regular: 400;
-  --fw-medium:  500;
+  --fw-light:  300;
+  --fw-reg:    400;
+  --fw-mid:    500;
 
   --max-w:       1120px;
-  --section-pad: clamp(5rem, 10vw, 9rem);
+  --pad-v:       clamp(5rem, 10vw, 9rem);
+  --pad-h:       clamp(1.5rem, 6vw, 4rem);
 
-  --shadow-sm: 0 2px 16px rgba(0,0,0,0.05);
-  --shadow-md: 0 6px 40px rgba(0,0,0,0.08);
-
-  --transition: 0.45s cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease:  0.45s cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-out: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ── Reset & Base ── */
+/* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 16px; scroll-behavior: smooth; }
 body {
@@ -47,83 +46,81 @@ body {
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
 }
-img { display: block; max-width: 100%; height: auto; }
-a { text-decoration: none; color: inherit; }
-ul { list-style: none; }
+img  { display: block; max-width: 100%; height: auto; }
+a    { text-decoration: none; color: inherit; }
+ul   { list-style: none; }
 button { cursor: pointer; border: none; background: none; font: inherit; }
-
-/* ── Scannable highlight keyword ── */
-.highlight-keyword {
-  background: var(--c-highlight);
-  padding: 0 0.2em;
-  border-radius: 2px;
-}
-
-/* ── Quiz mark tag (スキャナブル) ── */
 mark {
   background: transparent;
   color: var(--c-accent-dk);
-  font-weight: var(--fw-regular);
+  font-weight: var(--fw-reg);
 }
 
-/* ── Utility ── */
+/* ── Shared utilities ── */
 .section-label {
   font-family: var(--ff-serif);
-  font-size: 0.7rem;
-  letter-spacing: 0.25em;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--c-accent);
+  display: block;
   margin-bottom: 1rem;
+  text-align: center;
 }
-.section-title {
+.section-title-centered {
   font-family: var(--ff-serif);
-  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-size: clamp(1.7rem, 3.8vw, 2.6rem);
   font-weight: var(--fw-light);
-  letter-spacing: 0.04em;
-  line-height: 1.4;
+  letter-spacing: 0.03em;
+  line-height: 1.35;
+  text-align: center;
   color: var(--c-text);
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: clamp(3rem, 6vw, 5rem);
 }
-.section-title em { font-style: italic; color: var(--c-accent-dk); }
 
-/* ── Fade-in ── */
-.story-item,
+/* Fade-in via IntersectionObserver */
+.benefit-item,
 .review-card,
 .purchase-inner,
 .quiz-wrapper,
-.guarantee-item {
+.guarantee-badge {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
 }
-.story-item.in-view,
+.benefit-item.in-view,
 .review-card.in-view,
 .purchase-inner.in-view,
 .quiz-wrapper.in-view,
-.guarantee-item.in-view { opacity: 1; transform: translateY(0); }
-.story-item:nth-child(2)    { transition-delay: 0.12s; }
-.story-item:nth-child(3)    { transition-delay: 0.24s; }
-.review-card:nth-child(2)   { transition-delay: 0.12s; }
-.review-card:nth-child(3)   { transition-delay: 0.24s; }
-.guarantee-item:nth-child(2){ transition-delay: 0.12s; }
-.guarantee-item:nth-child(3){ transition-delay: 0.24s; }
+.guarantee-badge.in-view { opacity: 1; transform: translateY(0); }
+.benefit-item:nth-child(2)   { transition-delay: .1s; }
+.benefit-item:nth-child(3)   { transition-delay: .2s; }
+.review-card:nth-child(2)    { transition-delay: .1s; }
+.review-card:nth-child(3)    { transition-delay: .2s; }
+.guarantee-badge:nth-child(2){ transition-delay: .1s; }
+.guarantee-badge:nth-child(3){ transition-delay: .2s; }
 
-/* ══════════════════════════════════════
+/* btn-icon hover shift */
+.btn-icon { width: 16px; transition: transform 0.3s; flex-shrink: 0; }
+.quiz-submit-btn:hover .btn-icon,
+.purchase-btn:hover    .btn-icon { transform: translateX(3px); }
+
+/* ════════════════════════════════════
    HEADER
-══════════════════════════════════════ */
+════════════════════════════════════ */
 .site-header {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 100;
-  background: rgba(249,249,249,0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  z-index: 200;
+  background: rgba(249,249,249,0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--c-border);
 }
 .header-inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: 0 clamp(1.5rem, 5vw, 3rem);
+  padding: 0 var(--pad-h);
   height: 64px;
   display: flex;
   align-items: center;
@@ -131,22 +128,22 @@ mark {
 }
 .logo {
   font-family: var(--ff-serif);
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   letter-spacing: 0.22em;
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-mid);
 }
 .header-nav { display: flex; gap: 2rem; }
 .header-nav a {
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
   color: var(--c-text-mid);
-  transition: color 0.2s;
+  transition: color .2s;
 }
 .header-nav a:hover { color: var(--c-text); }
 
-/* ══════════════════════════════════════
-   ① HERO（2カラム・製品ボトル大胆配置）
-══════════════════════════════════════ */
+/* ════════════════════════════════════
+   HERO（2カラム・製品ボトル）
+════════════════════════════════════ */
 .hero {
   position: relative;
   min-height: 100svh;
@@ -157,750 +154,582 @@ mark {
   overflow: hidden;
   padding-top: 64px;
 }
-
 .hero-bg {
-  position: absolute;
-  inset: 0;
-  /*
-    [背景画像差し替えポイント]
-    background-image: url('./images/hero-bg.jpg');
-    background-size: cover;
-    background-position: center;
-  */
+  position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 65% 80% at 72% 38%, rgba(232,226,217,0.6) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 60% at 18% 80%, rgba(201,169,110,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 80% at 72% 38%, rgba(232,226,217,.6) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 60% at 18% 80%, rgba(201,169,110,.07) 0%, transparent 60%),
     linear-gradient(155deg, #F9F9F9 0%, #F0ECE6 50%, #E8E4DC 100%);
 }
 .hero-grain {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-  background-size: 200px;
-  opacity: 0.6;
-  pointer-events: none;
+  background-size: 200px; opacity: .6; pointer-events: none;
 }
-
-/* Hero 2カラムレイアウト */
 .hero-layout {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: var(--max-w);
+  position: relative; z-index: 2;
+  width: 100%; max-width: var(--max-w);
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 6vw, 4rem);
-  gap: clamp(2rem, 5vw, 4rem);
-  animation: heroFadeUp 1.2s cubic-bezier(0.25,0.1,0.25,1) both;
+  padding: clamp(2rem,6vw,4rem) var(--pad-h);
+  gap: clamp(2rem,5vw,4rem);
+  animation: fadeUp 1.2s var(--ease-out) both;
 }
-@keyframes heroFadeUp {
-  from { opacity: 0; transform: translateY(30px); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
-/* 左：コピー */
 .hero-content { text-align: left; }
-
 .hero-eyebrow {
-  font-size: 0.68rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--c-accent);
-  margin-bottom: 1.4rem;
-  animation: heroFadeUp 1.2s 0.15s both;
+  font-size: .66rem; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--c-accent); margin-bottom: 1.3rem;
+  animation: fadeUp 1.2s .15s both;
 }
 .hero-headline {
   font-family: var(--ff-serif);
   font-size: clamp(1.8rem, 4.5vw, 3.2rem);
   font-weight: var(--fw-light);
-  line-height: 1.35;
-  letter-spacing: 0.02em;
-  margin-bottom: 1.4rem;
-  animation: heroFadeUp 1.2s 0.25s both;
+  line-height: 1.32; letter-spacing: .02em;
+  margin-bottom: 1.3rem;
+  animation: fadeUp 1.2s .25s both;
 }
 .hero-headline em { font-style: italic; color: var(--c-accent-dk); }
 .hero-sub {
-  font-size: 0.83rem;
-  letter-spacing: 0.18em;
-  color: var(--c-text-mid);
+  font-size: .82rem; letter-spacing: .18em; color: var(--c-text-mid);
   margin-bottom: 2.2rem;
-  animation: heroFadeUp 1.2s 0.35s both;
+  animation: fadeUp 1.2s .35s both;
 }
 .hero-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.9em 2.2em;
+  display: inline-flex; align-items: center; gap: .6rem;
+  padding: .9em 2.2em;
   border: 1px solid var(--c-accent-dk);
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  color: var(--c-accent-dk);
-  transition: background var(--transition), color var(--transition);
-  animation: heroFadeUp 1.2s 0.45s both;
+  font-size: .78rem; letter-spacing: .2em; color: var(--c-accent-dk);
+  transition: background var(--ease), color var(--ease);
+  animation: fadeUp 1.2s .45s both;
 }
 .hero-cta:hover { background: var(--c-accent-dk); color: var(--c-white); }
-.cta-arrow-svg { width: 16px; transition: transform 0.3s; }
+.cta-arrow-svg { width: 15px; transition: transform .3s; }
 .hero-cta:hover .cta-arrow-svg { transform: translateX(3px); }
 
-/* 右：製品ボトル */
+/* Product bottle col */
 .hero-product-col {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: heroFadeUp 1.4s 0.3s both;
+  display: flex; align-items: center; justify-content: center;
+  animation: fadeUp 1.4s .3s both;
 }
 .hero-bottle-img {
-  width: 100%;
-  max-width: 340px;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 20px 60px rgba(140,123,110,0.18));
+  width: 100%; max-width: 340px;
+  filter: drop-shadow(0 20px 60px rgba(140,123,110,.18));
 }
 .hero-bottle-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+  display: flex; flex-direction: column; align-items: center; gap: 1rem;
   padding: 2.5rem;
   border: 1px dashed var(--c-beige-mid);
-  background: rgba(232,226,217,0.18);
-  width: 100%;
-  max-width: 320px;
+  background: rgba(232,226,217,.18);
+  width: 100%; max-width: 320px;
 }
-.hero-bottle-svg { width: min(200px, 50vw); }
-.hero-bottle-hint {
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  color: var(--c-text-light);
-  text-align: center;
-}
+.hero-bottle-svg { width: min(200px, 48vw); }
+.hero-bottle-hint { font-size: .66rem; letter-spacing: .1em; color: var(--c-text-light); text-align: center; }
 
-/* Scroll indicator */
 .scroll-indicator {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
+  position: absolute; bottom: 2.5rem; left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--c-text-light);
-  animation: heroFadeUp 1.5s 0.8s both;
-  z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  color: var(--c-text-light); z-index: 2;
+  animation: fadeUp 1.5s .8s both;
 }
 .scroll-line {
-  display: block;
-  width: 1px; height: 40px;
+  display: block; width: 1px; height: 40px;
   background: linear-gradient(to bottom, transparent, var(--c-accent));
   animation: scrollPulse 2s ease-in-out infinite;
 }
 @keyframes scrollPulse {
-  0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
-  50%       { opacity: 1;   transform: scaleY(1); }
+  0%, 100% { opacity: .3; transform: scaleY(.6); }
+  50%       { opacity: 1;  transform: scaleY(1); }
 }
-.scroll-text { font-size: 0.62rem; letter-spacing: 0.25em; }
+.scroll-text { font-size: .6rem; letter-spacing: .25em; }
 
-/* ══════════════════════════════════════
-   ② QUIZ（SVGチェックアイコン）
-══════════════════════════════════════ */
+/* ════════════════════════════════════
+   QUIZ
+════════════════════════════════════ */
 .quiz-section {
-  padding: var(--section-pad) clamp(1.5rem, 6vw, 4rem);
+  padding: var(--pad-v) var(--pad-h);
   background: var(--c-white);
+  position: relative;
+  overflow: hidden;
 }
-.quiz-wrapper { max-width: 660px; margin: 0 auto; }
+.quiz-wrapper {
+  max-width: 640px; margin: 0 auto;
+  transition: opacity .4s ease;
+}
 .quiz-title {
   font-family: var(--ff-serif);
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: var(--fw-light);
-  letter-spacing: 0.04em;
-  margin-bottom: 0.75rem;
+  letter-spacing: .04em; margin-bottom: 2.2rem;
+  text-align: center;
 }
-.quiz-desc {
-  font-size: 0.85rem;
-  color: var(--c-text-mid);
-  margin-bottom: 2.5rem;
-  line-height: 1.8;
-}
-.br-sp { display: none; }
-
+.quiz-list { display: flex; flex-direction: column; }
 .quiz-item {
   border-bottom: 1px solid var(--c-border);
-  transition: background 0.2s;
+  transition: background .2s;
 }
 .quiz-item:first-child { border-top: 1px solid var(--c-border); }
-.quiz-item.checked { background: rgba(184,169,154,0.06); }
-
+.quiz-item.checked { background: rgba(184,169,154,.06); }
 .quiz-label {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  padding: 1.05rem 0.75rem;
-  cursor: pointer;
+  display: flex; align-items: center; gap: .9rem;
+  padding: 1.05rem .75rem; cursor: pointer;
 }
 .quiz-checkbox { position: absolute; opacity: 0; width: 0; height: 0; }
-
-/* SVGチェックアイコン */
 .quiz-check-icon {
-  flex-shrink: 0;
-  width: 22px; height: 22px;
-  color: var(--c-beige-mid);
-  transition: color 0.2s;
+  flex-shrink: 0; width: 22px; height: 22px;
+  color: var(--c-beige-mid); transition: color .2s;
 }
 .quiz-check-icon svg { width: 100%; height: 100%; }
 .check-path {
-  stroke-dasharray: 14;
-  stroke-dashoffset: 14;
-  transition: stroke-dashoffset 0.3s ease;
+  stroke-dasharray: 14; stroke-dashoffset: 14;
+  transition: stroke-dashoffset .3s ease;
 }
-.quiz-checkbox:checked ~ .quiz-check-icon { color: var(--c-accent-dk); }
-/* チェック後にパスを描画 */
+.quiz-item.checked .quiz-check-icon { color: var(--c-accent-dk); }
 .quiz-item.checked .check-path { stroke-dashoffset: 0; }
-
 .quiz-check-text {
-  font-size: 0.88rem;
-  line-height: 1.6;
-  letter-spacing: 0.03em;
+  font-size: .87rem; line-height: 1.6; letter-spacing: .03em;
 }
 .quiz-item.checked .quiz-check-text { color: var(--c-accent-dk); }
 
 .quiz-submit-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.7rem;
-  width: 100%;
-  margin-top: 2rem;
-  padding: 1.05em 2em;
-  background: var(--c-text);
-  color: var(--c-white);
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  transition: background var(--transition), transform 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: .7rem;
+  width: 100%; margin-top: 2rem;
+  padding: 1.1em 2em;
+  background: var(--c-text); color: var(--c-white);
+  font-size: .85rem; letter-spacing: .15em;
+  transition: background var(--ease), transform .2s;
 }
 .quiz-submit-btn:hover  { background: var(--c-accent-dk); }
-.quiz-submit-btn:active { transform: scale(0.98); }
+.quiz-submit-btn:active { transform: scale(.98); }
 
-.btn-icon { width: 16px; transition: transform 0.3s; }
-.quiz-submit-btn:hover .btn-icon,
-.purchase-btn:hover     .btn-icon { transform: translateX(3px); }
-
-/* Quiz Result */
-.quiz-result {
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: max-height 0.7s cubic-bezier(0.4,0,0.2,1), opacity 0.5s ease;
-  margin-top: 0;
+/* ── Loading overlay ── */
+.quiz-loading {
+  display: none;
+  position: absolute; inset: 0;
+  background: var(--c-white);
+  align-items: center; justify-content: center;
+  z-index: 10;
 }
-.quiz-result.active { max-height: 520px; opacity: 1; margin-top: 1.75rem; }
+.quiz-loading.active { display: flex; animation: fadeIn .35s ease both; }
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+.loading-inner {
+  display: flex; flex-direction: column; align-items: center; gap: 1.6rem;
+  text-align: center;
+}
+.loading-ring {
+  width: 36px; height: 36px;
+  border: 1px solid var(--c-beige-mid);
+  border-top-color: var(--c-accent-dk);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text {
+  font-size: .78rem; letter-spacing: .2em; color: var(--c-text-mid);
+  animation: loadingPulse 1.2s ease-in-out infinite;
+}
+@keyframes loadingPulse {
+  0%, 100% { opacity: .5; }
+  50%       { opacity: 1; }
+}
+
+/* ── Result ── */
+.quiz-result {
+  max-width: var(--max-w); margin: 0 auto;
+  overflow: hidden; max-height: 0; opacity: 0;
+  transition: max-height .8s cubic-bezier(0.4,0,0.2,1), opacity .5s ease;
+}
+.quiz-result.active { max-height: 700px; opacity: 1; }
 
 .result-positive,
-.result-neutral,
+.result-neutral {
+  padding: clamp(3rem, 8vw, 6rem) var(--pad-h);
+  text-align: center;
+  border-top: 1px solid var(--c-border);
+}
 .result-none {
-  padding: 2rem;
+  padding: 2.5rem;
   border: 1px solid var(--c-border);
   background: var(--c-bg);
   text-align: center;
+  max-width: 500px; margin: 0 auto;
 }
-.result-badge {
-  display: inline-block;
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--c-white);
-  background: var(--c-gold);
-  padding: 0.3em 1.2em;
-  margin-bottom: 1rem;
+.result-eyebrow {
+  font-size: .68rem; letter-spacing: .25em; text-transform: uppercase;
+  color: var(--c-gold); margin-bottom: 2rem;
 }
-.result-badge.neutral { background: var(--c-accent); }
-.result-headline {
-  font-family: var(--ff-serif);
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-  font-weight: var(--fw-light);
-  line-height: 1.5;
-  margin-bottom: 0.9rem;
-}
-.result-headline strong { font-weight: var(--fw-medium); color: var(--c-accent-dk); }
-.result-detail {
-  font-size: 0.82rem;
-  color: var(--c-text-mid);
-  margin-bottom: 1.4rem;
-  max-width: 440px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.result-cta {
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.8rem;
-  letter-spacing: 0.15em;
-  color: var(--c-accent-dk);
-  border-bottom: 1px solid var(--c-accent);
-  padding-bottom: 2px;
-  transition: color 0.2s, border-color 0.2s;
-}
-.result-cta:hover { color: var(--c-text); border-color: var(--c-text); }
-.result-msg {
-  font-family: var(--ff-serif);
-  font-size: 1.1rem;
-  margin-bottom: 0.4rem;
-}
-.result-sub { font-size: 0.8rem; color: var(--c-text-mid); }
 
-/* ══════════════════════════════════════
-   ③ REVIEWS（UGC画像追加）
-══════════════════════════════════════ */
+/* 巨大タイポグラフィ断言 */
+.result-declaration {
+  font-family: var(--ff-serif);
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-weight: var(--fw-light);
+  line-height: 1.15; letter-spacing: .01em;
+  color: var(--c-text);
+  margin-bottom: 1.5rem;
+  animation: fadeUp .8s var(--ease-out) both;
+}
+.result-declaration em {
+  font-style: italic; color: var(--c-accent-dk); display: block;
+}
+.result-declaration-sm {
+  font-family: var(--ff-serif);
+  font-size: clamp(2rem, 5.5vw, 3.8rem);
+  font-weight: var(--fw-light);
+  line-height: 1.2; letter-spacing: .01em;
+  color: var(--c-text);
+  margin-bottom: 1.5rem;
+  animation: fadeUp .8s var(--ease-out) both;
+}
+.result-declaration-sm em { font-style: italic; color: var(--c-accent-dk); }
+
+.result-sub-copy {
+  font-size: .85rem; color: var(--c-text-mid);
+  max-width: 480px; margin: 0 auto 2.5rem;
+  line-height: 1.85;
+}
+
+/* CTAグループ */
+.result-cta-group {
+  display: flex; flex-direction: column; align-items: center; gap: 1rem;
+}
+.result-cta-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  padding: 1.1em 2.4em;
+  background: var(--c-text); color: var(--c-white);
+  font-size: .85rem; letter-spacing: .14em;
+  transition: background var(--ease);
+  max-width: 420px; width: 100%;
+  animation: fadeUp .9s .15s var(--ease-out) both;
+}
+.result-cta-primary:hover { background: var(--c-accent-dk); }
+.result-cta-secondary {
+  font-size: .75rem; letter-spacing: .14em; color: var(--c-text-mid);
+  border-bottom: 1px solid var(--c-border); padding-bottom: 2px;
+  transition: color .2s, border-color .2s;
+}
+.result-cta-secondary:hover { color: var(--c-text); border-color: var(--c-text); }
+
+.result-msg {
+  font-family: var(--ff-serif); font-size: 1.1rem; margin-bottom: .4rem;
+}
+.result-sub { font-size: .78rem; color: var(--c-text-mid); }
+
+/* ════════════════════════════════════
+   REVIEWS（スキャナブル）
+════════════════════════════════════ */
 .reviews-section {
-  padding: var(--section-pad) clamp(1.5rem, 6vw, 4rem);
+  padding: var(--pad-v) var(--pad-h);
   background: var(--c-bg-alt);
   text-align: center;
 }
-.reviews-section .section-label,
-.reviews-section .section-title { text-align: center; }
-
 .reviews-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
-  max-width: var(--max-w);
-  margin: 0 auto;
+  max-width: var(--max-w); margin: 0 auto;
 }
-
 .review-card {
   background: var(--c-white);
   border: 1px solid var(--c-border);
-  text-align: left;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
+  text-align: left;
+  display: flex; flex-direction: column;
 }
 
-/* UGC画像エリア */
-.review-ugc-wrap { width: 100%; overflow: hidden; }
+/* UGC */
+.review-ugc-wrap { overflow: hidden; }
 .review-ugc-img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s var(--transition);
+  width: 100%; aspect-ratio: 1; object-fit: cover;
+  transition: transform .6s var(--ease);
 }
-.review-card:hover .review-ugc-img { transform: scale(1.03); }
-
-/* UGCプレースホルダー */
+.review-card:hover .review-ugc-img { transform: scale(1.04); }
 .review-ugc-placeholder {
-  width: 100%;
-  aspect-ratio: 1 / 1;
+  width: 100%; aspect-ratio: 1;
   background: var(--c-bg-alt);
   border-bottom: 1px solid var(--c-border);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  color: var(--c-text-light);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: .5rem;
+  color: var(--c-text-light); font-size: .66rem; letter-spacing: .08em;
 }
-.ugc-camera-icon { width: 36px; }
+.ugc-camera-icon { width: 34px; }
 
-/* レビュー本文エリア */
-.review-card > .review-stars,
-.review-card > .review-body,
-.review-card > .review-footer { padding-left: 1.5rem; padding-right: 1.5rem; }
-.review-card > .review-stars { padding-top: 1.25rem; }
-.review-card > .review-footer { padding-bottom: 1.25rem; }
-
-.stars-svg { width: 80px; display: block; }
-.review-body {
-  font-size: 0.82rem;
-  color: var(--c-text-mid);
-  line-height: 1.85;
-  flex: 1;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+/* Review content */
+.review-content {
+  padding: 1.4rem 1.5rem 1.5rem;
+  display: flex; flex-direction: column; gap: .6rem; flex: 1;
 }
-.review-em { color: var(--c-text); font-weight: var(--fw-regular); }
-.review-footer {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  border-top: 1px solid var(--c-border);
-  padding-top: 1rem;
-}
-.review-avatar {
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  background: var(--c-beige);
-  color: var(--c-accent-dk);
+.review-headline {
   font-family: var(--ff-serif);
-  font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+  font-weight: var(--fw-light);
+  letter-spacing: .03em; line-height: 1.3;
+  color: var(--c-text);
 }
-.review-name { font-size: 0.82rem; letter-spacing: 0.05em; }
-.review-meta { font-size: 0.72rem; color: var(--c-text-light); }
+.stars-svg { width: 76px; }
+.review-body {
+  font-size: .8rem; color: var(--c-text-mid); line-height: 1.75; flex: 1;
+}
+.review-byline {
+  font-size: .7rem; color: var(--c-text-light);
+  letter-spacing: .05em;
+  border-top: 1px solid var(--c-border); padding-top: .75rem; margin-top: auto;
+}
 
-/* ══════════════════════════════════════
-   ④ PRODUCT STORY（SVGアイコン + スキャナブル）
-══════════════════════════════════════ */
+/* ════════════════════════════════════
+   PRODUCT / BENEFIT（断捨離・箇条書き）
+════════════════════════════════════ */
 .story-section {
-  padding: var(--section-pad) clamp(1.5rem, 6vw, 4rem);
-  background: var(--c-white);
-  text-align: center;
+  padding: var(--pad-v) var(--pad-h);
+  background: var(--c-white); text-align: center;
 }
-.story-section .section-label,
-.story-section .section-title { text-align: center; }
-
-.story-grid {
+.benefit-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 3rem 2rem;
-  max-width: var(--max-w);
-  margin: 0 auto;
+  gap: 2.5rem 2rem;
+  max-width: var(--max-w); margin: 0 auto;
 }
-.story-item { text-align: left; }
-
-.story-meta-row {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+.benefit-item { text-align: left; }
+.benefit-number-row {
+  display: flex; align-items: center; gap: .75rem;
   margin-bottom: 1.2rem;
 }
-.story-number {
-  font-family: var(--ff-serif);
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  color: var(--c-accent);
+.benefit-num {
+  font-family: var(--ff-serif); font-size: .7rem;
+  letter-spacing: .2em; color: var(--c-accent);
 }
-.story-icon { width: 28px; height: 28px; color: var(--c-accent); }
+.benefit-icon { width: 26px; height: 26px; color: var(--c-accent); }
 
-.story-image-wrap { margin-bottom: 1.4rem; overflow: hidden; }
-.story-img {
-  width: 100%;
-  aspect-ratio: 3/2;
-  object-fit: cover;
-  transition: transform 0.7s var(--transition);
+/* Benefit image */
+.benefit-img {
+  width: 100%; aspect-ratio: 3/2; object-fit: cover;
+  margin-bottom: 1.3rem;
+  transition: transform .6s var(--ease);
 }
-.story-image-wrap:hover .story-img { transform: scale(1.03); }
-
-.story-img-placeholder {
-  width: 100%;
-  aspect-ratio: 3/2;
+.benefit-img-placeholder {
+  width: 100%; aspect-ratio: 3/2;
   background: var(--c-bg-alt);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border: 1px dashed var(--c-beige-mid);
-  color: var(--c-text-light);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  transition: transform 0.7s var(--transition);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .68rem; color: var(--c-text-light); letter-spacing: .1em;
+  margin-bottom: 1.3rem;
 }
-.story-img-placeholder::before { content: attr(data-label); }
-.story-image-wrap:hover .story-img-placeholder { transform: scale(1.03); }
 
-.story-heading {
+/* Heading + bullets */
+.benefit-heading {
   font-family: var(--ff-serif);
-  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
   font-weight: var(--fw-light);
-  letter-spacing: 0.04em;
-  line-height: 1.5;
-  margin-bottom: 0.85rem;
+  letter-spacing: .04em; margin-bottom: .9rem;
 }
-.story-body {
-  font-size: 0.82rem;
-  color: var(--c-text-mid);
-  line-height: 1.9;
+.benefit-list {
+  display: flex; flex-direction: column; gap: .45rem;
+  margin-bottom: 1.2rem;
 }
-.story-body strong { color: var(--c-text); font-weight: var(--fw-regular); }
+.benefit-list li {
+  display: flex; align-items: flex-start; gap: .55rem;
+  font-size: .82rem; color: var(--c-text-mid); line-height: 1.65;
+}
+.benefit-list li svg { width: 13px; height: 13px; flex-shrink: 0; margin-top: .22em; color: var(--c-accent-dk); }
+.benefit-list strong { color: var(--c-text); font-weight: var(--fw-reg); }
 
-/* ══════════════════════════════════════
-   GUARANTEE（新規：Risk Reversal）
-══════════════════════════════════════ */
+/* Killer keyword chip */
+.benefit-kw {
+  display: inline-block;
+  font-family: var(--ff-serif);
+  font-size: clamp(.9rem, 1.8vw, 1.05rem);
+  font-weight: var(--fw-light);
+  letter-spacing: .1em;
+  background: var(--c-hl);
+  padding: .25em .75em;
+  color: var(--c-accent-dk);
+  border: 1px solid rgba(201,169,110,.2);
+}
+
+/* ════════════════════════════════════
+   GUARANTEE（バッジ型・超シンプル）
+════════════════════════════════════ */
 .guarantee-section {
-  padding: var(--section-pad) clamp(1.5rem, 6vw, 4rem);
-  background: var(--c-bg);
+  padding: var(--pad-v) var(--pad-h);
+  background: var(--c-bg-alt);
   border-top: 1px solid var(--c-border);
   text-align: center;
 }
-.guarantee-inner { max-width: var(--max-w); margin: 0 auto; }
-.guarantee-title em { font-style: italic; color: var(--c-accent-dk); }
-.guarantee-lead {
-  font-size: 0.88rem;
-  color: var(--c-text-mid);
-  margin-top: -1.5rem;
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
-}
-
-.guarantee-grid {
+.guarantee-badges {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1px;
   background: var(--c-border);
   border: 1px solid var(--c-border);
+  max-width: 800px; margin: 0 auto;
   overflow: hidden;
 }
-.guarantee-item {
+.guarantee-badge {
   background: var(--c-white);
-  padding: clamp(1.75rem, 4vw, 2.5rem) clamp(1.5rem, 3vw, 2rem);
-  text-align: left;
+  padding: clamp(2rem,5vw,2.8rem) clamp(1.5rem,3vw,2rem);
+  display: flex; flex-direction: column;
+  align-items: center; gap: .75rem;
+  text-align: center;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
 }
-
-/* Featured guarantee item */
-.guarantee-item--featured {
-  background: var(--c-bg-alt);
-}
-.guarantee-item--featured::before {
+/* Featured center badge */
+.guarantee-badge--hero { background: var(--c-bg); }
+.guarantee-badge--hero::before {
   content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
+  position: absolute; top: 0; left: 0; right: 0;
   height: 2px;
   background: linear-gradient(90deg, var(--c-accent), var(--c-gold));
 }
 
-.guarantee-icon-wrap {
-  width: 44px; height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--c-border);
-  background: var(--c-white);
+.gbadge-icon {
+  width: 52px; height: 52px;
   border-radius: 50%;
-}
-.guarantee-icon { width: 26px; height: 26px; color: var(--c-accent-dk); }
-
-.guarantee-heading {
-  font-family: var(--ff-serif);
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  font-weight: var(--fw-light);
-  letter-spacing: 0.03em;
-  line-height: 1.4;
-}
-.guarantee-body {
-  font-size: 0.82rem;
-  color: var(--c-text-mid);
-  line-height: 1.85;
-  flex: 1;
-}
-.guarantee-body strong { color: var(--c-text); font-weight: var(--fw-regular); }
-
-.guarantee-feat-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  color: var(--c-gold);
-  border: 1px solid var(--c-gold);
-  padding: 0.25em 0.7em;
-  margin-top: 0.25rem;
-  align-self: flex-start;
-}
-
-/* ══════════════════════════════════════
-   PURCHASE / CTA
-══════════════════════════════════════ */
-.purchase-section {
-  padding: var(--section-pad) clamp(1.5rem, 6vw, 4rem);
+  border: 1px solid var(--c-border);
   background: var(--c-bg-alt);
+  display: flex; align-items: center; justify-content: center;
+}
+.gbadge-icon svg { width: 28px; height: 28px; color: var(--c-accent-dk); }
+
+.gbadge-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: var(--fw-light);
+  line-height: 1.4; letter-spacing: .03em;
+}
+.gbadge-title strong { font-weight: var(--fw-reg); color: var(--c-text); }
+.gbadge-sub {
+  font-size: .72rem; color: var(--c-text-light);
+  letter-spacing: .06em; line-height: 1.6;
+}
+
+/* ════════════════════════════════════
+   PURCHASE / CTA
+════════════════════════════════════ */
+.purchase-section {
+  padding: var(--pad-v) var(--pad-h);
+  background: var(--c-white);
 }
 .purchase-inner {
-  max-width: 980px;
-  margin: 0 auto;
+  max-width: 960px; margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(2.5rem, 6vw, 5rem);
+  gap: clamp(2.5rem,6vw,5rem);
   align-items: center;
 }
-
 .purchase-image-col { position: relative; }
 .product-img { width: 100%; height: auto; object-fit: contain; }
 .product-img-placeholder {
-  width: 100%;
-  aspect-ratio: 4/5;
+  width: 100%; aspect-ratio: 4/5;
   background: var(--c-beige);
   border: 1px dashed var(--c-beige-mid);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  display: flex; align-items: center; justify-content: center; text-align: center;
   color: var(--c-text-light);
 }
-.product-img-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: center;
-}
-.product-img-label {
-  font-family: var(--ff-serif);
-  font-size: 0.9rem;
-  letter-spacing: 0.1em;
-  color: var(--c-accent);
-  margin-top: 0.5rem;
-}
-.product-img-sub { font-size: 0.7rem; color: var(--c-text-light); letter-spacing: 0.08em; }
+.product-img-inner { display: flex; flex-direction: column; gap: .5rem; align-items: center; }
+.product-img-label { font-family: var(--ff-serif); font-size: .88rem; letter-spacing: .1em; color: var(--c-accent); margin-top: .5rem; }
+.product-img-sub   { font-size: .68rem; color: var(--c-text-light); letter-spacing: .08em; }
 
 .purchase-eyebrow {
-  font-size: 0.68rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--c-accent);
-  margin-bottom: 0.75rem;
+  font-size: .66rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--c-accent); margin-bottom: .75rem;
 }
 .purchase-title {
   font-family: var(--ff-serif);
   font-size: clamp(2rem, 4.5vw, 3rem);
-  font-weight: var(--fw-light);
-  letter-spacing: 0.06em;
-  line-height: 1.2;
-  margin-bottom: 1rem;
+  font-weight: var(--fw-light); letter-spacing: .06em;
+  line-height: 1.2; margin-bottom: 1rem;
 }
 .purchase-title em {
-  font-style: italic;
-  display: block;
-  font-size: 0.7em;
-  color: var(--c-accent-dk);
-  margin-top: 0.2em;
+  font-style: italic; display: block;
+  font-size: .7em; color: var(--c-accent-dk); margin-top: .2em;
 }
 .purchase-desc {
-  font-size: 0.82rem;
-  color: var(--c-text-mid);
-  line-height: 1.8;
-  margin-bottom: 1.6rem;
-  padding-bottom: 1.6rem;
+  font-size: .8rem; color: var(--c-text-mid); line-height: 1.75;
+  margin-bottom: 1.5rem; padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--c-border);
 }
-.purchase-desc strong { color: var(--c-text); font-weight: var(--fw-regular); }
-
 .purchase-price-wrap {
-  display: flex;
-  align-items: baseline;
-  gap: 0.4rem;
-  margin-bottom: 1.4rem;
+  display: flex; align-items: baseline; gap: .4rem;
+  margin-bottom: 1.6rem;
 }
 .purchase-price {
   font-family: var(--ff-serif);
-  font-size: clamp(1.7rem, 3.5vw, 2.2rem);
-  font-weight: var(--fw-light);
-  letter-spacing: 0.04em;
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: var(--fw-light); letter-spacing: .04em;
 }
-.purchase-tax { font-size: 0.75rem; color: var(--c-text-light); }
-
-/* ミニ保証リスト（絵文字→SVGアイコン） */
-.purchase-guarantee-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  margin-bottom: 1.6rem;
-}
-.purchase-guarantee-list li {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.8rem;
-  color: var(--c-text-mid);
-}
-.purchase-guarantee-list li svg {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  color: var(--c-accent-dk);
-}
-.purchase-guarantee-list strong { color: var(--c-text); font-weight: var(--fw-regular); }
-
+.purchase-tax { font-size: .72rem; color: var(--c-text-light); }
 .purchase-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  width: 100%;
-  padding: 1.1em 2em;
-  background: var(--c-text);
-  color: var(--c-white);
-  font-size: 0.85rem;
-  letter-spacing: 0.18em;
-  transition: background var(--transition), transform 0.2s;
-  margin-bottom: 1.2rem;
+  display: flex; align-items: center; justify-content: center; gap: .75rem;
+  width: 100%; padding: 1.15em 2em;
+  background: var(--c-text); color: var(--c-white);
+  font-size: .85rem; letter-spacing: .18em;
+  transition: background var(--ease), transform .2s;
+  margin-bottom: .9rem;
 }
 .purchase-btn:hover  { background: var(--c-accent-dk); }
-.purchase-btn:active { transform: scale(0.98); }
-
-.purchase-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.purchase-btn:active { transform: scale(.98); }
+.purchase-microcopy {
+  text-align: center; font-size: .72rem;
+  color: var(--c-text-mid); letter-spacing: .1em;
+  margin-bottom: 1.4rem;
+}
+.purchase-badges { display: flex; gap: .5rem; flex-wrap: wrap; }
 .badge {
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
+  font-size: .66rem; letter-spacing: .1em;
   color: var(--c-accent-dk);
   border: 1px solid var(--c-accent);
-  padding: 0.3em 0.8em;
-  border-radius: 999px;
+  padding: .28em .8em; border-radius: 999px;
 }
 
-/* ══════════════════════════════════════
+/* ════════════════════════════════════
    FOOTER
-══════════════════════════════════════ */
+════════════════════════════════════ */
 .site-footer {
-  padding: 3rem clamp(1.5rem, 6vw, 4rem);
-  background: var(--c-text);
-  text-align: center;
+  padding: 3rem var(--pad-h);
+  background: var(--c-text); text-align: center;
 }
 .footer-logo {
-  font-family: var(--ff-serif);
-  font-size: 1.1rem;
-  letter-spacing: 0.25em;
-  color: var(--c-beige);
-  margin-bottom: 0.75rem;
+  font-family: var(--ff-serif); font-size: 1.1rem;
+  letter-spacing: .25em; color: var(--c-beige); margin-bottom: .75rem;
 }
-.footer-copy { font-size: 0.7rem; color: var(--c-text-light); letter-spacing: 0.1em; }
+.footer-copy { font-size: .68rem; color: var(--c-text-light); letter-spacing: .1em; }
 
-/* ══════════════════════════════════════
+/* ════════════════════════════════════
    RESPONSIVE
-══════════════════════════════════════ */
-
-/* Tablet */
+════════════════════════════════════ */
 @media (max-width: 900px) {
   .hero-layout {
     grid-template-columns: 1fr;
     text-align: center;
-    padding-top: clamp(3rem, 8vw, 5rem);
-    padding-bottom: clamp(3rem, 8vw, 5rem);
+    padding-top: clamp(3rem,8vw,5rem);
+    padding-bottom: clamp(3rem,8vw,5rem);
   }
   .hero-content { text-align: center; }
   .hero-product-col { order: -1; }
   .hero-bottle-placeholder { max-width: 220px; }
   .hero-bottle-svg { width: 140px; }
 }
-
 @media (max-width: 768px) {
   .purchase-inner { grid-template-columns: 1fr; }
   .purchase-image-col { max-width: 360px; margin: 0 auto; width: 100%; }
   .header-nav { display: none; }
-  .guarantee-grid { grid-template-columns: 1fr; }
+  .guarantee-badges { grid-template-columns: 1fr; }
+  .result-declaration { font-size: clamp(2.2rem,9vw,3.2rem); }
 }
-
-/* Mobile */
 @media (max-width: 480px) {
-  :root { --section-pad: 4rem; }
-
-  .hero-headline { font-size: clamp(1.6rem, 7.5vw, 2.2rem); }
-  .br-sp { display: inline; }
-
-  .story-grid  { grid-template-columns: 1fr; gap: 2.5rem; }
-  .reviews-grid{ grid-template-columns: 1fr; }
-
-  .quiz-label  { padding: 1rem 0.5rem; }
-  .purchase-inner { gap: 2rem; }
-  .purchase-title { font-size: 2rem; }
+  :root { --pad-v: 4rem; }
+  .benefit-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .result-cta-primary { font-size: .78rem; }
 }
-
 @media (max-width: 360px) {
   .hero-headline { font-size: 1.5rem; }
 }
@@ -920,9 +749,9 @@ mark {
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════════════
+  <!-- ══════════════════════════════════
        HEADER
-  ═══════════════════════════════════════════ -->
+  ══════════════════════════════════ -->
   <header class="site-header">
     <div class="header-inner">
       <div class="logo">PURELAYER</div>
@@ -934,14 +763,13 @@ mark {
     </div>
   </header>
 
-  <!-- ═══════════════════════════════════════════
-       ① HERO（刷新：製品ボトル大胆配置 + 2カラム）
-  ═══════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════
+       HERO
+  ══════════════════════════════════ -->
   <section class="hero" id="hero">
     <div class="hero-bg"><div class="hero-grain"></div></div>
 
     <div class="hero-layout">
-      <!-- 左カラム：コピー -->
       <div class="hero-content">
         <p class="hero-eyebrow">Fragrance Diagnostic</p>
         <h1 class="hero-headline">
@@ -952,25 +780,20 @@ mark {
         <p class="hero-sub">まとう、無垢な空気感。PURELAYER診断</p>
         <a href="#quiz" class="hero-cta">
           診断をはじめる
-          <svg class="cta-arrow-svg" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="cta-arrow-svg" aria-hidden="true">
             <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
       </div>
 
-      <!-- 右カラム：製品ボトル（広告との視覚的連続性） -->
       <div class="hero-product-col">
         <!--
-          ╔══════════════════════════════════════════════════════════╗
-          ║  [最重要 画像差し替えポイント]                              ║
-          ║  広告（TikTok / Instagram）で使用した製品ボトル画像と       ║
-          ║  同じ画像をここに配置してください。                          ║
-          ║  推奨：背景透過PNG、縦長 600×800px 以上                    ║
-          ║  差し替え方法：下のdivを削除し、以下のimgタグに置き換える    ║
-          ║  <img src="./images/hero-bottle.png"                     ║
-          ║       alt="PURELAYER Blanc Pur 50ml"                    ║
-          ║       class="hero-bottle-img" />                        ║
-          ╚══════════════════════════════════════════════════════════╝
+          [最重要・画像差し替えポイント]
+          広告で使用した製品ボトル画像と同一のものを配置することで
+          広告→LPの視覚的連続性が生まれます。
+          推奨：背景透過PNG、縦長 600×800px 以上
+          差し替え：下の div を削除し、以下に置き換え
+          <img src="./images/hero-bottle.png" alt="PURELAYER Blanc Pur 50ml" class="hero-bottle-img" />
         -->
         <div class="hero-bottle-placeholder" aria-hidden="true">
           <svg viewBox="0 0 120 220" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-bottle-svg">
@@ -981,7 +804,6 @@ mark {
             <text x="60" y="122" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#B8A99A" letter-spacing="3">PURE</text>
             <text x="60" y="138" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#B8A99A" letter-spacing="3">LAYER</text>
             <text x="60" y="158" text-anchor="middle" font-family="Georgia,serif" font-size="6.5" fill="#C9A96E" letter-spacing="2">Blanc Pur</text>
-            <text x="60" y="171" text-anchor="middle" font-family="Georgia,serif" font-size="5" fill="#C9A96E" letter-spacing="1">Eau de Parfum 50ml</text>
           </svg>
           <p class="hero-bottle-hint">hero-bottle.png を配置</p>
         </div>
@@ -994,19 +816,15 @@ mark {
     </a>
   </section>
 
-  <!-- ═══════════════════════════════════════════
-       ② QUIZ（診断ロジック維持・チェックアイコンSVG化）
-  ═══════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════
+       QUIZ + RESULT
+  ══════════════════════════════════ -->
   <section class="quiz-section" id="quiz">
-    <div class="section-label">Diagnostic</div>
     <div class="quiz-wrapper">
+      <p class="section-label">Diagnostic</p>
       <h2 class="quiz-title">あなたの香りの感覚は？</h2>
-      <p class="quiz-desc">
-        当てはまる項目にチェックを入れてください。<br class="br-sp" />
-        あなたにぴったりの香りをご提案します。
-      </p>
 
-      <form class="quiz-form" id="quizForm" novalidate>
+      <form id="quizForm" novalidate>
         <ul class="quiz-list">
           <li class="quiz-item">
             <label class="quiz-label">
@@ -1077,266 +895,272 @@ mark {
           </svg>
         </button>
       </form>
+    </div>
 
-      <div class="quiz-result" id="quizResult" aria-live="polite">
-        <div class="result-inner" id="resultInner"></div>
+    <!-- LOADING STATE -->
+    <div class="quiz-loading" id="quizLoading" aria-hidden="true">
+      <div class="loading-inner">
+        <div class="loading-ring"></div>
+        <p class="loading-text">あなたの清潔感を分析中...</p>
       </div>
+    </div>
+
+    <!-- RESULT — 全画面表示 -->
+    <div class="quiz-result" id="quizResult" aria-live="polite">
+      <div class="result-inner" id="resultInner"></div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
-       ③ SOCIAL PROOF（UGC画像エリア追加）
-  ═══════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════
+       REVIEWS（スキャナブル化）
+  ══════════════════════════════════ -->
   <section class="reviews-section" id="reviews">
-    <div class="section-label">Reviews</div>
-    <h2 class="section-title">同じ悩みを抱えていた方たちの声</h2>
+    <p class="section-label">Reviews</p>
+    <h2 class="section-title-centered">使った人が、変わった。</h2>
 
     <div class="reviews-grid">
 
       <article class="review-card">
         <!--
-          [UGC画像差し替えポイント]
-          ユーザーが商品を手に取っている自然な写真（SNS投稿風）
-          推奨：正方形 400×400px（または 4:3）
-          <img src="./images/ugc-photo-1.jpg" alt="Ayaka S.さんの投稿写真" class="review-ugc-img" />
+          [UGC画像差し替えポイント] 正方形 400×400px 推奨
+          <img src="./images/ugc-photo-1.jpg" alt="" class="review-ugc-img" />
         -->
         <div class="review-ugc-wrap">
-          <div class="review-ugc-placeholder">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="ugc-camera-icon" aria-hidden="true">
+          <div class="review-ugc-placeholder" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="ugc-camera-icon">
               <rect x="6" y="12" width="36" height="28" rx="2" stroke="#D6CFC4" stroke-width="1"/>
               <circle cx="24" cy="26" r="7" stroke="#D6CFC4" stroke-width="1"/>
-              <path d="M17 12L20 8H28L31 12" stroke="#D6CFC4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="24" cy="26" r="3" stroke="#D6CFC4" stroke-width="0.8"/>
+              <path d="M17 12L20 8H28L31 12" stroke="#D6CFC4" stroke-width="1" stroke-linecap="round"/>
             </svg>
             <span>ugc-photo-1.jpg</span>
           </div>
         </div>
-        <div class="review-stars" aria-label="星5つ">
-          <svg viewBox="0 0 88 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="stars-svg" aria-hidden="true">
-            <g fill="#C9A96E">
-              <path d="M7 1L8.6 4.6L12.5 5.1L9.75 7.8L10.4 11.7L7 9.8L3.6 11.7L4.25 7.8L1.5 5.1L5.4 4.6Z"/>
-              <path d="M23 1L24.6 4.6L28.5 5.1L25.75 7.8L26.4 11.7L23 9.8L19.6 11.7L20.25 7.8L17.5 5.1L21.4 4.6Z"/>
-              <path d="M39 1L40.6 4.6L44.5 5.1L41.75 7.8L42.4 11.7L39 9.8L35.6 11.7L36.25 7.8L33.5 5.1L37.4 4.6Z"/>
-              <path d="M55 1L56.6 4.6L60.5 5.1L57.75 7.8L58.4 11.7L55 9.8L51.6 11.7L52.25 7.8L49.5 5.1L53.4 4.6Z"/>
-              <path d="M71 1L72.6 4.6L76.5 5.1L73.75 7.8L74.4 11.7L71 9.8L67.6 11.7L68.25 7.8L65.5 5.1L69.4 4.6Z"/>
-            </g>
-          </svg>
+        <div class="review-content">
+          <h3 class="review-headline">「まるで石鹸そのもの」</h3>
+          <div class="review-stars" aria-label="星5つ">
+            <svg viewBox="0 0 88 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="stars-svg" aria-hidden="true"><g fill="#C9A96E"><path d="M7 1L8.6 4.6L12.5 5.1L9.75 7.8L10.4 11.7L7 9.8L3.6 11.7L4.25 7.8L1.5 5.1L5.4 4.6Z"/><path d="M23 1L24.6 4.6L28.5 5.1L25.75 7.8L26.4 11.7L23 9.8L19.6 11.7L20.25 7.8L17.5 5.1L21.4 4.6Z"/><path d="M39 1L40.6 4.6L44.5 5.1L41.75 7.8L42.4 11.7L39 9.8L35.6 11.7L36.25 7.8L33.5 5.1L37.4 4.6Z"/><path d="M55 1L56.6 4.6L60.5 5.1L57.75 7.8L58.4 11.7L55 9.8L51.6 11.7L52.25 7.8L49.5 5.1L53.4 4.6Z"/><path d="M71 1L72.6 4.6L76.5 5.1L73.75 7.8L74.4 11.7L71 9.8L67.6 11.7L68.25 7.8L65.5 5.1L69.4 4.6Z"/></g></svg>
+          </div>
+          <p class="review-body">職場で「なにかいい匂いがする」と声をかけてもらえました。</p>
+          <p class="review-byline">Ayaka S. — 会社員・28歳</p>
         </div>
-        <p class="review-body">「香水は苦手」とずっと思っていたのですが、PURELAYERは別物でした。<strong class="review-em">石鹸のような澄んだ香り</strong>で、職場でも「なにかいい匂いがする」と声をかけてもらえました。</p>
-        <footer class="review-footer">
-          <span class="review-avatar">A</span>
-          <div><p class="review-name">Ayaka S.</p><p class="review-meta">会社員・28歳</p></div>
-        </footer>
       </article>
 
       <article class="review-card">
         <!--
-          [UGC画像差し替えポイント]
-          推奨：正方形 400×400px
-          <img src="./images/ugc-photo-2.jpg" alt="Kenji M.さんの投稿写真" class="review-ugc-img" />
+          [UGC画像差し替えポイント] 正方形 400×400px 推奨
+          <img src="./images/ugc-photo-2.jpg" alt="" class="review-ugc-img" />
         -->
         <div class="review-ugc-wrap">
-          <div class="review-ugc-placeholder">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="ugc-camera-icon" aria-hidden="true">
+          <div class="review-ugc-placeholder" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="ugc-camera-icon">
               <rect x="6" y="12" width="36" height="28" rx="2" stroke="#D6CFC4" stroke-width="1"/>
               <circle cx="24" cy="26" r="7" stroke="#D6CFC4" stroke-width="1"/>
-              <path d="M17 12L20 8H28L31 12" stroke="#D6CFC4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="24" cy="26" r="3" stroke="#D6CFC4" stroke-width="0.8"/>
+              <path d="M17 12L20 8H28L31 12" stroke="#D6CFC4" stroke-width="1" stroke-linecap="round"/>
             </svg>
             <span>ugc-photo-2.jpg</span>
           </div>
         </div>
-        <div class="review-stars" aria-label="星5つ">
-          <svg viewBox="0 0 88 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="stars-svg" aria-hidden="true">
-            <g fill="#C9A96E">
-              <path d="M7 1L8.6 4.6L12.5 5.1L9.75 7.8L10.4 11.7L7 9.8L3.6 11.7L4.25 7.8L1.5 5.1L5.4 4.6Z"/>
-              <path d="M23 1L24.6 4.6L28.5 5.1L25.75 7.8L26.4 11.7L23 9.8L19.6 11.7L20.25 7.8L17.5 5.1L21.4 4.6Z"/>
-              <path d="M39 1L40.6 4.6L44.5 5.1L41.75 7.8L42.4 11.7L39 9.8L35.6 11.7L36.25 7.8L33.5 5.1L37.4 4.6Z"/>
-              <path d="M55 1L56.6 4.6L60.5 5.1L57.75 7.8L58.4 11.7L55 9.8L51.6 11.7L52.25 7.8L49.5 5.1L53.4 4.6Z"/>
-              <path d="M71 1L72.6 4.6L76.5 5.1L73.75 7.8L74.4 11.7L71 9.8L67.6 11.7L68.25 7.8L65.5 5.1L69.4 4.6Z"/>
-            </g>
-          </svg>
+        <div class="review-content">
+          <h3 class="review-headline">「一日中褒められた」</h3>
+          <div class="review-stars" aria-label="星5つ">
+            <svg viewBox="0 0 88 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="stars-svg" aria-hidden="true"><g fill="#C9A96E"><path d="M7 1L8.6 4.6L12.5 5.1L9.75 7.8L10.4 11.7L7 9.8L3.6 11.7L4.25 7.8L1.5 5.1L5.4 4.6Z"/><path d="M23 1L24.6 4.6L28.5 5.1L25.75 7.8L26.4 11.7L23 9.8L19.6 11.7L20.25 7.8L17.5 5.1L21.4 4.6Z"/><path d="M39 1L40.6 4.6L44.5 5.1L41.75 7.8L42.4 11.7L39 9.8L35.6 11.7L36.25 7.8L33.5 5.1L37.4 4.6Z"/><path d="M55 1L56.6 4.6L60.5 5.1L57.75 7.8L58.4 11.7L55 9.8L51.6 11.7L52.25 7.8L49.5 5.1L53.4 4.6Z"/><path d="M71 1L72.6 4.6L76.5 5.1L73.75 7.8L74.4 11.7L71 9.8L67.6 11.7L68.25 7.8L65.5 5.1L69.4 4.6Z"/></g></svg>
+          </div>
+          <p class="review-body">かすかに香るのに清潔感は格段にアップ。香害の心配がゼロです。</p>
+          <p class="review-byline">Kenji M. — エンジニア・33歳</p>
         </div>
-        <p class="review-body">香害が怖くて香りものを避けてきましたが、これは本当に軽い。<strong class="review-em">自分だけにかすかに感じる程度</strong>なのに、清潔感は格段にアップしたと実感しています。</p>
-        <footer class="review-footer">
-          <span class="review-avatar">K</span>
-          <div><p class="review-name">Kenji M.</p><p class="review-meta">エンジニア・33歳</p></div>
-        </footer>
       </article>
 
       <article class="review-card">
         <!--
-          [UGC画像差し替えポイント]
-          推奨：正方形 400×400px
-          <img src="./images/ugc-photo-3.jpg" alt="Misaki T.さんの投稿写真" class="review-ugc-img" />
+          [UGC画像差し替えポイント] 正方形 400×400px 推奨
+          <img src="./images/ugc-photo-3.jpg" alt="" class="review-ugc-img" />
         -->
         <div class="review-ugc-wrap">
-          <div class="review-ugc-placeholder">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="ugc-camera-icon" aria-hidden="true">
+          <div class="review-ugc-placeholder" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="ugc-camera-icon">
               <rect x="6" y="12" width="36" height="28" rx="2" stroke="#D6CFC4" stroke-width="1"/>
               <circle cx="24" cy="26" r="7" stroke="#D6CFC4" stroke-width="1"/>
-              <path d="M17 12L20 8H28L31 12" stroke="#D6CFC4" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="24" cy="26" r="3" stroke="#D6CFC4" stroke-width="0.8"/>
+              <path d="M17 12L20 8H28L31 12" stroke="#D6CFC4" stroke-width="1" stroke-linecap="round"/>
             </svg>
             <span>ugc-photo-3.jpg</span>
           </div>
         </div>
-        <div class="review-stars" aria-label="星5つ">
-          <svg viewBox="0 0 88 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="stars-svg" aria-hidden="true">
-            <g fill="#C9A96E">
-              <path d="M7 1L8.6 4.6L12.5 5.1L9.75 7.8L10.4 11.7L7 9.8L3.6 11.7L4.25 7.8L1.5 5.1L5.4 4.6Z"/>
-              <path d="M23 1L24.6 4.6L28.5 5.1L25.75 7.8L26.4 11.7L23 9.8L19.6 11.7L20.25 7.8L17.5 5.1L21.4 4.6Z"/>
-              <path d="M39 1L40.6 4.6L44.5 5.1L41.75 7.8L42.4 11.7L39 9.8L35.6 11.7L36.25 7.8L33.5 5.1L37.4 4.6Z"/>
-              <path d="M55 1L56.6 4.6L60.5 5.1L57.75 7.8L58.4 11.7L55 9.8L51.6 11.7L52.25 7.8L65.5 5.1L69.4 4.6Z"/>
-              <path d="M71 1L72.6 4.6L76.5 5.1L73.75 7.8L74.4 11.7L71 9.8L67.6 11.7L68.25 7.8L65.5 5.1L69.4 4.6Z"/>
-            </g>
-          </svg>
+        <div class="review-content">
+          <h3 class="review-headline">「つけてることを忘れる」</h3>
+          <div class="review-stars" aria-label="星5つ">
+            <svg viewBox="0 0 88 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="stars-svg" aria-hidden="true"><g fill="#C9A96E"><path d="M7 1L8.6 4.6L12.5 5.1L9.75 7.8L10.4 11.7L7 9.8L3.6 11.7L4.25 7.8L1.5 5.1L5.4 4.6Z"/><path d="M23 1L24.6 4.6L28.5 5.1L25.75 7.8L26.4 11.7L23 9.8L19.6 11.7L20.25 7.8L17.5 5.1L21.4 4.6Z"/><path d="M39 1L40.6 4.6L44.5 5.1L41.75 7.8L42.4 11.7L39 9.8L35.6 11.7L36.25 7.8L33.5 5.1L37.4 4.6Z"/><path d="M55 1L56.6 4.6L60.5 5.1L57.75 7.8L58.4 11.7L55 9.8L51.6 11.7L52.25 7.8L49.5 5.1L53.4 4.6Z"/><path d="M71 1L72.6 4.6L76.5 5.1L73.75 7.8L74.4 11.7L71 9.8L67.6 11.7L68.25 7.8L65.5 5.1L69.4 4.6Z"/></g></svg>
+          </div>
+          <p class="review-body">自然すぎて存在を忘れるのに、「いい香り」と褒められる不思議。</p>
+          <p class="review-byline">Misaki T. — 学生・21歳</p>
         </div>
-        <p class="review-body">柔軟剤のふんわり感が好きで探していたら出会いました。<strong class="review-em">つけているのを忘れるくらい自然</strong>で、でも「いい香り」と褒められる不思議な香りです。</p>
-        <footer class="review-footer">
-          <span class="review-avatar">M</span>
-          <div><p class="review-name">Misaki T.</p><p class="review-meta">学生・21歳</p></div>
-        </footer>
       </article>
 
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
-       ④ PRODUCT STORY（SVGアイコン + スキャナブル強化）
-  ═══════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════
+       PRODUCT（情報の断捨離・ベネフィット特化）
+  ══════════════════════════════════ -->
   <section class="story-section" id="product">
-    <div class="section-label">Why PURELAYER</div>
-    <h2 class="section-title">なぜPURELAYERなのか</h2>
+    <p class="section-label">Why PURELAYER</p>
+    <h2 class="section-title-centered">PURELAYERが選ばれる理由</h2>
 
-    <div class="story-grid">
+    <div class="benefit-grid">
 
-      <div class="story-item">
-        <div class="story-meta-row">
-          <span class="story-number">01</span>
-          <svg class="story-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <div class="benefit-item">
+        <div class="benefit-number-row">
+          <span class="benefit-num">01</span>
+          <svg class="benefit-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <circle cx="16" cy="20" r="9" stroke="currentColor" stroke-width="1"/>
             <circle cx="9" cy="11" r="4" stroke="currentColor" stroke-width="1"/>
             <circle cx="23" cy="9" r="3" stroke="currentColor" stroke-width="1"/>
             <circle cx="27" cy="17" r="2" stroke="currentColor" stroke-width="1"/>
           </svg>
         </div>
-        <div class="story-image-wrap">
-          <!-- [画像差し替えポイント] 石鹸・白い泡の接写。600×400px
-               <img src="./images/benefit-soap.jpg" alt="石鹸の香り" class="story-img" /> -->
-          <div class="story-img-placeholder" data-label="石鹸の香りイメージ"></div>
-        </div>
-        <h3 class="story-heading">究極の<span class="highlight-keyword">石鹸の香り</span></h3>
-        <p class="story-body">化学的な「香水らしさ」を削ぎ落とし、まるで<strong>お風呂上がりの香り</strong>のような清潔で無垢な香りを追求しました。誰もが「いい匂い」と感じる、普遍的な清潔感です。</p>
+        <!--
+          [画像差し替えポイント] 600×400px 推奨
+          <img src="./images/benefit-soap.jpg" alt="" class="benefit-img" />
+        -->
+        <div class="benefit-img-placeholder" aria-hidden="true">benefit-soap.jpg</div>
+        <h3 class="benefit-heading">石鹸の香り</h3>
+        <ul class="benefit-list">
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><strong>お風呂上がり</strong>のような清潔感</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>誰もが好ましいと感じる普遍的な香り</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>「ツンとした匂い」ゼロ</span>
+          </li>
+        </ul>
+        <p class="benefit-kw">石鹸の香り</p>
       </div>
 
-      <div class="story-item">
-        <div class="story-meta-row">
-          <span class="story-number">02</span>
-          <svg class="story-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <div class="benefit-item">
+        <div class="benefit-number-row">
+          <span class="benefit-num">02</span>
+          <svg class="benefit-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M16 28C16 28 6 22 6 14C6 8 11 4 16 4C21 4 26 8 26 14C26 22 16 28 16 28Z" stroke="currentColor" stroke-width="1"/>
             <line x1="16" y1="4" x2="16" y2="28" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2"/>
-            <path d="M10 14 Q13 18 16 14 Q19 10 22 14" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
           </svg>
         </div>
-        <div class="story-image-wrap">
-          <!-- [画像差し替えポイント] ボタニカル素材。600×400px
-               <img src="./images/benefit-ingredients.jpg" alt="成分" class="story-img" /> -->
-          <div class="story-img-placeholder" data-label="成分・ボタニカルイメージ"></div>
-        </div>
-        <h3 class="story-heading">肌に優しい<span class="highlight-keyword">成分設計</span></h3>
-        <p class="story-body">敏感肌・乾燥肌の方でも安心の<strong>低刺激処方</strong>。アレルゲン物質を徹底排除し、ボタニカル成分が肌に密着。香りと肌ケアを両立します。</p>
+        <!--
+          [画像差し替えポイント] 600×400px 推奨
+          <img src="./images/benefit-ingredients.jpg" alt="" class="benefit-img" />
+        -->
+        <div class="benefit-img-placeholder" aria-hidden="true">benefit-ingredients.jpg</div>
+        <h3 class="benefit-heading">肌に優しい</h3>
+        <ul class="benefit-list">
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><strong>敏感肌・乾燥肌</strong>でも安心</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>アレルゲン物質ゼロ設計</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>ボタニカル成分が肌に密着</span>
+          </li>
+        </ul>
+        <p class="benefit-kw">低刺激処方</p>
       </div>
 
-      <div class="story-item">
-        <div class="story-meta-row">
-          <span class="story-number">03</span>
-          <svg class="story-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <div class="benefit-item">
+        <div class="benefit-number-row">
+          <span class="benefit-num">03</span>
+          <svg class="benefit-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="1"/>
             <path d="M16 9V16L20 19" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M5 16H7M25 16H27M16 5V7M16 25V27" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
           </svg>
         </div>
-        <div class="story-image-wrap">
-          <!-- [画像差し替えポイント] 朝〜夜の光の変化。600×400px
-               <img src="./images/benefit-longevity.jpg" alt="持続性" class="story-img" /> -->
-          <div class="story-img-placeholder" data-label="24時間持続イメージ"></div>
-        </div>
-        <h3 class="story-heading"><span class="highlight-keyword">24時間持続</span>する清潔感</h3>
-        <p class="story-body">独自のスローリリース技術で、朝つけた香りが夕方まで続きます。<strong>1〜2プッシュ</strong>だけで、香害を気にせず1日中ほのかな清潔感をキープ。</p>
+        <!--
+          [画像差し替えポイント] 600×400px 推奨
+          <img src="./images/benefit-longevity.jpg" alt="" class="benefit-img" />
+        -->
+        <div class="benefit-img-placeholder" aria-hidden="true">benefit-longevity.jpg</div>
+        <h3 class="benefit-heading">24時間持続</h3>
+        <ul class="benefit-list">
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>朝から夜まで清潔感が続く</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><strong>1〜2プッシュ</strong>で一日中OK</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>つけすぎ・香害の心配なし</span>
+          </li>
+        </ul>
+        <p class="benefit-kw">24時間持続</p>
       </div>
 
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
-       ⑤-A GUARANTEE（Risk Reversal 新規追加）
-  ═══════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════
+       GUARANTEE（バッジ型・超シンプル）
+  ══════════════════════════════════ -->
   <section class="guarantee-section" id="guarantee">
-    <div class="guarantee-inner">
-      <div class="section-label">Our Promise</div>
-      <h2 class="section-title">失敗させない、<em>3つの約束</em></h2>
-      <p class="guarantee-lead">はじめての香りへの不安を、すべて取り除きます。</p>
+    <p class="section-label">Our Promise</p>
+    <h2 class="section-title-centered">失敗のリスク、ゼロ。</h2>
 
-      <div class="guarantee-grid">
+    <div class="guarantee-badges">
 
-        <div class="guarantee-item">
-          <div class="guarantee-icon-wrap">
-            <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="guarantee-icon" aria-hidden="true">
-              <rect x="4" y="15" width="24" height="16" rx="1.5" stroke="currentColor" stroke-width="1"/>
-              <path d="M28 19H34.5L38.5 26V31H28V19Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
-              <circle cx="10" cy="32" r="3.5" stroke="currentColor" stroke-width="1"/>
-              <circle cx="32" cy="32" r="3.5" stroke="currentColor" stroke-width="1"/>
-              <path d="M13.5 32H28.5" stroke="currentColor" stroke-width="1"/>
-            </svg>
-          </div>
-          <h3 class="guarantee-heading"><span class="highlight-keyword">全国どこでも送料無料</span></h3>
-          <p class="guarantee-body">北海道から沖縄まで、全国一律送料無料。表示価格がそのままお支払い金額です。予期せぬコストは一切なし。</p>
+      <div class="guarantee-badge">
+        <div class="gbadge-icon">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="3" y="13" width="20" height="14" rx="1.5" stroke="currentColor" stroke-width="1"/>
+            <path d="M23 17H29L33 23V27H23V17Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+            <circle cx="8.5" cy="28" r="3" stroke="currentColor" stroke-width="1"/>
+            <circle cx="28" cy="28" r="3" stroke="currentColor" stroke-width="1"/>
+          </svg>
         </div>
-
-        <div class="guarantee-item guarantee-item--featured">
-          <div class="guarantee-icon-wrap">
-            <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="guarantee-icon" aria-hidden="true">
-              <path d="M17 7V24L10 36H34L27 24V7" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M14 7H30" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-              <path d="M12 28H32" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2"/>
-              <circle cx="22" cy="18" r="2" stroke="currentColor" stroke-width="0.8"/>
-            </svg>
-          </div>
-          <h3 class="guarantee-heading"><span class="highlight-keyword">2mlテストキット同梱</span></h3>
-          <p class="guarantee-body">本品を開封する前に、<strong>同梱の2mlテストキット</strong>で実際の香りを確認できます。もしイメージと違えば、<strong>未開封の本品をそのまま返品可能</strong>。はじめての方でも絶対に損しない仕組みです。</p>
-          <span class="guarantee-feat-tag">
-            <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:10px" aria-hidden="true">
-              <path d="M2 6L5 9L10 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            安心の返品対応
-          </span>
-        </div>
-
-        <div class="guarantee-item">
-          <div class="guarantee-icon-wrap">
-            <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="guarantee-icon" aria-hidden="true">
-              <path d="M22 4L37 11V24C37 32 22 40 22 40C22 40 7 32 7 24V11L22 4Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
-              <path d="M15 22L19.5 26.5L29 16" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3 class="guarantee-heading"><span class="highlight-keyword">30日間全額返金保証</span></h3>
-          <p class="guarantee-body">ご購入から<strong>30日以内</strong>であれば、理由を問わず全額返金いたします。品質への絶対的な自信があるからこそ、提供できる保証です。</p>
-        </div>
-
+        <p class="gbadge-title">全国どこでも<br /><strong>送料無料</strong></p>
+        <p class="gbadge-sub">追加コストなし</p>
       </div>
+
+      <div class="guarantee-badge guarantee-badge--hero">
+        <div class="gbadge-icon">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M14 6V20L9 30H27L22 20V6" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M11 6H25" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <path d="M10 24H26" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2"/>
+          </svg>
+        </div>
+        <p class="gbadge-title"><strong>2ml</strong> テストキット<br />同梱</p>
+        <p class="gbadge-sub">開封前に香りを確認<br />未開封なら返品OK</p>
+      </div>
+
+      <div class="guarantee-badge">
+        <div class="gbadge-icon">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M18 3L32 9V21C32 28 18 33 18 33C18 33 4 28 4 21V9L18 3Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+            <path d="M12 18L16.5 22.5L24 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="gbadge-title"><strong>30日間</strong><br />全額返金保証</p>
+        <p class="gbadge-sub">理由不問で対応</p>
+      </div>
+
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
-       ⑤-B CTA / PURCHASE（絵文字排除・SVGアイコン）
-  ═══════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════
+       PURCHASE / CTA
+  ══════════════════════════════════ -->
   <section class="purchase-section" id="purchase">
     <div class="purchase-inner">
       <div class="purchase-image-col">
         <!--
-          [画像差し替えポイント]
-          製品ボトルの高品質スタジオ写真。推奨：800×1000px、背景透過PNG
+          [画像差し替えポイント] 800×1000px、背景透過PNG 推奨
           <img src="./images/product-main.jpg" alt="PURELAYER Blanc Pur オードパルファン 50ml" class="product-img" />
         -->
         <div class="product-img-placeholder">
@@ -1345,7 +1169,6 @@ mark {
               <rect x="30" y="7" width="30" height="11" rx="2.5" fill="none" stroke="#B8A99A" stroke-width="1"/>
               <rect x="34" y="2" width="22" height="7" rx="1.5" fill="none" stroke="#B8A99A" stroke-width="1"/>
               <path d="M18 18 Q16 34 14 52 L14 116 Q14 126 24 127 L66 127 Q76 126 76 116 L76 52 Q74 34 72 18 Z" fill="rgba(232,226,217,0.2)" stroke="#B8A99A" stroke-width="1"/>
-              <path d="M24 48 L66 48" stroke="#D6CFC4" stroke-width="0.5" stroke-dasharray="3 3"/>
               <text x="45" y="82" text-anchor="middle" font-family="Georgia,serif" font-size="7.5" fill="#B8A99A" letter-spacing="2.5">PURE</text>
               <text x="45" y="95" text-anchor="middle" font-family="Georgia,serif" font-size="7.5" fill="#B8A99A" letter-spacing="2.5">LAYER</text>
               <text x="45" y="110" text-anchor="middle" font-family="Georgia,serif" font-size="5" fill="#C9A96E" letter-spacing="1.5">Blanc Pur</text>
@@ -1359,42 +1182,12 @@ mark {
       <div class="purchase-detail-col">
         <p class="purchase-eyebrow">New Collection</p>
         <h2 class="purchase-title">PURELAYER<br /><em>Blanc Pur</em></h2>
-        <p class="purchase-desc">
-          オードパルファン 50ml<br />
-          清潔感と透明感を纏う、<strong>石鹸香調フレグランス</strong>。
-        </p>
+        <p class="purchase-desc">オードパルファン 50ml — 石鹸香調フレグランス</p>
 
         <div class="purchase-price-wrap">
           <span class="purchase-price">¥8,800</span>
           <span class="purchase-tax">税込</span>
         </div>
-
-        <!-- ミニ保証リスト（絵文字→SVGアイコン） -->
-        <ul class="purchase-guarantee-list">
-          <li>
-            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M8 1.5L13 4V8.5C13 11.5 8 14 8 14C8 14 3 11.5 3 8.5V4L8 1.5Z" stroke="currentColor" stroke-width="0.9" stroke-linejoin="round"/>
-              <path d="M5.5 8L7 9.5L10.5 5.5" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span><strong>30日間全額返金保証</strong></span>
-          </li>
-          <li>
-            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M7 3V9.5L4.5 13.5H11.5L9 9.5V3" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M5.5 3H10.5" stroke="currentColor" stroke-width="0.9" stroke-linecap="round"/>
-            </svg>
-            <span><strong>2mlテストキット</strong>同梱・安心確認</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="1.5" y="5.5" width="9" height="6" rx="0.75" stroke="currentColor" stroke-width="0.9"/>
-              <path d="M10.5 7L13 5V11L10.5 9" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="4" cy="12.5" r="1.5" stroke="currentColor" stroke-width="0.8"/>
-              <circle cx="8.5" cy="12.5" r="1.5" stroke="currentColor" stroke-width="0.8"/>
-            </svg>
-            <span>全国<strong>送料無料</strong>・最短当日発送</span>
-          </li>
-        </ul>
 
         <a href="#" class="purchase-btn">
           今すぐ購入する
@@ -1402,6 +1195,8 @@ mark {
             <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
+
+        <p class="purchase-microcopy">送料無料 · 最短当日発送 · 30日返金保証</p>
 
         <div class="purchase-badges">
           <span class="badge">低刺激処方</span>
@@ -1412,90 +1207,134 @@ mark {
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
+  <!-- ══════════════════════════════════
        FOOTER
-  ═══════════════════════════════════════════ -->
+  ══════════════════════════════════ -->
   <footer class="site-footer">
     <p class="footer-logo">PURELAYER</p>
     <p class="footer-copy">&copy; 2025 PURELAYER All Rights Reserved.</p>
   </footer>
 
-  <!-- ═══════════════════════════════════════════
-       SCRIPT — 診断ロジック維持
-  ═══════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════
+       SCRIPT
+  ══════════════════════════════════ -->
   <script>
-    (function () {
-      'use strict';
+  (function () {
+    'use strict';
 
-      const quizSubmit  = document.getElementById('quizSubmit');
-      const quizResult  = document.getElementById('quizResult');
-      const resultInner = document.getElementById('resultInner');
+    /* ─── 要素取得 ─── */
+    const quizSubmit  = document.getElementById('quizSubmit');
+    const quizLoading = document.getElementById('quizLoading');
+    const quizResult  = document.getElementById('quizResult');
+    const resultInner = document.getElementById('resultInner');
+    const quizSection = document.getElementById('quiz');
 
-      const arrowSvg = `<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
-        style="width:13px;display:inline-block;vertical-align:middle;margin-left:5px" aria-hidden="true">
-        <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1"
-          stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>`;
+    /* ─── 共通アイコン ─── */
+    const arrowSvg = `<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+      style="width:14px;display:inline-block;vertical-align:middle;margin-left:6px" aria-hidden="true">
+      <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1"
+        stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`;
 
-      quizSubmit.addEventListener('click', function () {
-        const count = document.querySelectorAll('.quiz-checkbox:checked').length;
-        let html = '';
+    /* ─── 診断ボタン ─── */
+    quizSubmit.addEventListener('click', function () {
+      const count = document.querySelectorAll('.quiz-checkbox:checked').length;
 
-        if (count === 0) {
-          html = `<div class="result-none">
+      if (count === 0) {
+        /* 未選択の場合 — ローディングなしで即表示 */
+        showResult(0);
+        return;
+      }
+
+      /* ① フォームをフェードアウト */
+      document.querySelector('.quiz-wrapper').style.opacity = '0';
+      document.querySelector('.quiz-wrapper').style.pointerEvents = 'none';
+
+      /* ② ローディング表示 */
+      quizLoading.classList.add('active');
+      quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      /* ③ 1500ms 後に結果を表示 */
+      setTimeout(function () {
+        quizLoading.classList.remove('active');
+        showResult(count);
+      }, 1500);
+    });
+
+    /* ─── 結果描画 ─── */
+    function showResult(count) {
+      let html = '';
+
+      if (count === 0) {
+        html = `
+          <div class="result-none">
             <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"
-              style="width:28px;color:var(--c-accent);margin-bottom:.5rem" aria-hidden="true">
+              style="width:28px;color:var(--c-accent);margin-bottom:.75rem" aria-hidden="true">
               <circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="1"/>
               <path d="M14 9V15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-              <circle cx="14" cy="19" r="0.8" fill="currentColor"/>
+              <circle cx="14" cy="19" r=".8" fill="currentColor"/>
             </svg>
             <p class="result-msg">まだチェックが入っていません。</p>
-            <p class="result-sub">当てはまる項目を選んでから「結果を見る」を押してください。</p>
+            <p class="result-sub">当てはまる項目を選んでから押してください。</p>
           </div>`;
-        } else if (count >= 3) {
-          html = `<div class="result-positive">
-            <p class="result-badge">あなたにぴったり</p>
-            <p class="result-headline">PURELAYERは、あなたにとって<br /><strong>「運命の香り」</strong>になる可能性が高いです</p>
-            <p class="result-detail">${count}項目が一致。香りに敏感で清潔感を大切にするあなたには、PURELAYERの透明な<strong>石鹸香調</strong>が理想的です。</p>
-            <a href="#purchase" class="result-cta">製品を見てみる ${arrowSvg}</a>
+      } else if (count >= 3) {
+        html = `
+          <div class="result-positive">
+            <p class="result-eyebrow">診断結果 — ${count}/5 項目が一致</p>
+            <h2 class="result-declaration">PURELAYERは<br /><em>あなたのための</em><br />香水です。</h2>
+            <p class="result-sub-copy">香りに敏感なあなたには、透明な石鹸香調が最もよく合います。</p>
+            <div class="result-cta-group">
+              <a href="#purchase" class="result-cta-primary">
+                あなたに最適な香りの構成を詳しく見る ${arrowSvg}
+              </a>
+              <a href="#product" class="result-cta-secondary">製品概要を確認する</a>
+            </div>
           </div>`;
-        } else {
-          html = `<div class="result-neutral">
-            <p class="result-badge neutral">${count}項目が一致</p>
-            <p class="result-headline">清潔な香りへの関心が<br />芽生えているかもしれません</p>
-            <p class="result-detail">PURELAYERは香りに慣れていない方にも自然に馴染む、ほのかな<strong>石鹸香調フレグランス</strong>です。</p>
-            <a href="#purchase" class="result-cta">まずは試してみる ${arrowSvg}</a>
+      } else {
+        html = `
+          <div class="result-neutral">
+            <p class="result-eyebrow">診断結果 — ${count}/5 項目が一致</p>
+            <h2 class="result-declaration-sm">清潔な香りへの<br /><em>関心が芽生えています。</em></h2>
+            <p class="result-sub-copy">香りに慣れていない方にも馴染む、ほのかな石鹸香調。まず試してみてください。</p>
+            <div class="result-cta-group">
+              <a href="#purchase" class="result-cta-primary">
+                まずは試してみる ${arrowSvg}
+              </a>
+            </div>
           </div>`;
+      }
+
+      resultInner.innerHTML = html;
+      quizResult.classList.add('active');
+
+      /* スムーズスクロール */
+      setTimeout(function () {
+        quizResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+    }
+
+    /* ─── チェックボックス ビジュアル ─── */
+    document.querySelectorAll('.quiz-checkbox').forEach(function (cb) {
+      cb.addEventListener('change', function () {
+        this.closest('.quiz-item').classList.toggle('checked', this.checked);
+      });
+    });
+
+    /* ─── Intersection Observer フェードイン ─── */
+    const fadeEls = document.querySelectorAll(
+      '.benefit-item, .review-card, .purchase-inner, .quiz-wrapper, .guarantee-badge'
+    );
+    const io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
         }
-
-        resultInner.innerHTML = html;
-        quizResult.classList.add('active');
-        setTimeout(function () {
-          quizResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 80);
       });
+    }, { threshold: 0.1 });
+    fadeEls.forEach(function (el) { io.observe(el); });
 
-      // チェックボックスのビジュアル更新
-      document.querySelectorAll('.quiz-checkbox').forEach(function (cb) {
-        cb.addEventListener('change', function () {
-          this.closest('.quiz-item').classList.toggle('checked', this.checked);
-        });
-      });
-
-      // Intersection Observer フェードイン
-      const fadeEls = document.querySelectorAll(
-        '.story-item, .review-card, .purchase-inner, .quiz-wrapper, .guarantee-item'
-      );
-      const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      fadeEls.forEach(function (el) { observer.observe(el); });
-    })();
+  })();
   </script>
 </body>
 </html>
