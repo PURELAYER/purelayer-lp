@@ -137,23 +137,21 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
 .header-nav a:hover { color: var(--c-text); }
 
 /* ════════════════════════════════
-   HERO v6
+   HERO v7
    · 高さ: 80vh（残20%で診断セクションをチラ見せ）
-   · 背景: フルブリード画像 + 薄いオーバーレイ
-   · コンテンツ: 中央縦積み、テキスト最小化
+   · 背景: フルブリード画像 + オーバーレイ強化
+   · マイクロコピー追加 + 見出しコントラスト向上
 ════════════════════════════════ */
 .hero {
-  /* ── 80vh固定。残り20%でQuizセクションの冒頭が見える ── */
   position: relative;
   height: 80vh;
-  min-height: 480px;     /* 極小デバイスでの最低保証 */
-  max-height: 860px;     /* 巨大モニターで間延びしない */
+  min-height: 480px;
+  max-height: 860px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  /* headerの高さ分だけ上にパディング。ただしheightに含めない */
   padding-top: 64px;
 }
 
@@ -161,26 +159,41 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
 .hero-bg {
   position: absolute;
   inset: 0;
-  /* 左右の余白ゼロ、width:100%でぴったり収める */
   width: 100%;
   height: 100%;
-  background-image: url('https://cdn.shopify.com/s/files/1/0957/4570/4304/files/61A7FD0F-EA14-44A0-82BF-DF2673295D65.webp?v=1771823771#');
+  background-image: url('https://cdn.shopify.com/s/files/1/0957/4570/4304/files/BA46FCE4-53C4-4E9A-BEF7-0E90519E8543.webp?v=1773317864');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
 }
 
-/* ── 薄く上品なオーバーレイ（文字可読性を確保） ── */
+/* ── オーバーレイ（v7：わずかに不透明度を上げてコントラスト強化） ── */
 .hero-overlay {
   position: absolute;
   inset: 0;
-  /* オフホワイト×ベージュの薄いグラデーション */
   background: linear-gradient(
     160deg,
-    rgba(249,249,249,0.72) 0%,
-    rgba(240,236,230,0.60) 50%,
-    rgba(232,226,217,0.52) 100%
+    rgba(249,249,249,0.80) 0%,
+    rgba(240,236,230,0.70) 45%,
+    rgba(232,226,217,0.62) 100%
   );
+}
+
+/* ── テキスト背後のラジアルグロー（見出しコントラスト補強） ── */
+.hero-text-glow {
+  position: absolute;
+  /* コンテンツが集中する中央エリアだけを明るくする */
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(700px, 95vw);
+  height: 65%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(249,249,249,0.55) 0%,
+    rgba(249,249,249,0.25) 45%,
+    transparent 75%
+  );
+  pointer-events: none;
 }
 
 /* ── コンテンツエリア ── */
@@ -191,10 +204,9 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   flex-direction: column;
   align-items: center;
   text-align: center;
-  /* 水平パディングのみ。高さはflexboxに委ねる */
   padding: 0 var(--pad-h);
-  gap: 1.4rem;
-  max-width: 680px;
+  gap: 1.25rem;
+  max-width: 700px;
   width: 100%;
   animation: heroFadeUp 1s var(--ease-out) both;
 }
@@ -203,38 +215,47 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── アイブロウ ── */
-.hero-eyebrow {
+/* ── マイクロコピー（ロゴ直下・コピー上のアノテーション） ── */
+.hero-microcopy {
   display: inline-flex;
   align-items: center;
-  gap: .5rem;
+  gap: .45rem;
+  /* 半透明の白背景で背景画像上でもクッキリ読める */
+  background: rgba(255,255,255,0.68);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(184,169,154,0.25);
+  border-radius: 2px;
+  padding: .32em .9em;
   font-size: .62rem;
-  letter-spacing: .3em;
-  text-transform: uppercase;
+  letter-spacing: .18em;
   color: var(--c-accent-dk);
-  animation: heroFadeUp 1s .1s both;
+  font-family: var(--ff-sans);
+  font-weight: var(--fw-light);
+  /* アニメーション */
+  animation: heroFadeUp 1s .05s both;
 }
-.eyebrow-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--c-gold);
+.microcopy-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--c-accent-dk);
   flex-shrink: 0;
 }
 
-/* ── メインコピー：1行・セリフ体・視認性最優先 ── */
+/* ── メインコピー：視認性強化版 ── */
 .hero-headline {
   font-family: var(--ff-serif);
-  /* 1行で収まるよう clamp で制御。
-     最大値はスマホ横幅でも1行に収まるサイズ */
   font-size: clamp(1.35rem, 4.2vw, 2.4rem);
   font-weight: var(--fw-light);
   line-height: 1.25;
   letter-spacing: .03em;
   color: var(--c-text);
-  /* 折り返しを避けるためwhite-spaceを制限しない。
-     ただしスマホ幅でどうしても折れる場合は2行も許容 */
   white-space: nowrap;
-  animation: heroFadeUp 1s .18s both;
+  /* 微細なドロップシャドウ：輪郭を際立たせるが視覚的には気付かないレベル */
+  text-shadow:
+    0 1px 4px rgba(249,249,249,0.9),
+    0 0px 12px rgba(249,249,249,0.7);
+  animation: heroFadeUp 1s .15s both;
 }
 
 /* ── CTAブロック ── */
@@ -243,10 +264,10 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   flex-direction: column;
   align-items: center;
   gap: .45rem;
-  animation: heroFadeUp 1s .28s both;
+  animation: heroFadeUp 1s .25s both;
 }
 
-/* ボタン本体：塗りつぶし・クリックしやすい高さ */
+/* ボタン本体 */
 .hero-cta {
   display: inline-flex;
   align-items: center;
@@ -258,7 +279,6 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   letter-spacing: .14em;
   white-space: nowrap;
   transition: background var(--ease), transform .15s;
-  /* タップ領域を確保 */
   min-height: 48px;
 }
 .hero-cta:hover  { background: var(--c-accent-dk); }
@@ -278,7 +298,7 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   display: flex;
   align-items: center;
   gap: .5rem;
-  animation: heroFadeUp 1s .38s both;
+  animation: heroFadeUp 1s .35s both;
 }
 .trust-stars {
   font-size: .76rem;
@@ -539,8 +559,8 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
 
 /* ヘッダー高さが64pxなので、80vh計算に含まれないよう調整 */
 @media (max-width: 768px) {
-  /* 1行コピーが折れる場合のフォールバック */
   .hero-headline { white-space: normal; }
+  .hero-microcopy { font-size: .58rem; letter-spacing: .12em; }
   .purchase-inner { grid-template-columns: 1fr; }
   .purchase-image-col { max-width: 380px; margin: 0 auto; width: 100%; }
   .header-nav { display: none; }
@@ -551,6 +571,7 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
 @media (max-width: 540px) {
   .hero { min-height: 420px; }
   .hero-headline { font-size: clamp(1.15rem, 5.5vw, 1.6rem); white-space: normal; }
+  .hero-microcopy { font-size: .56rem; letter-spacing: .1em; padding: .28em .75em; }
   .benefit-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .reviews-grid { grid-template-columns: 1fr; }
 }
@@ -568,9 +589,10 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PURELAYER — まとう、無垢な空気感。</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Outfit:wght@400;500&display=swap" rel="stylesheet">
+
 
   <!-- ── 解析スクリプト ── -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
@@ -599,25 +621,33 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   </header>
 
   <!-- ══════════════════════════════════════════
-       HERO v6
+       HERO v7
        · 高さ 80vh（残20%で診断セクションをチラ見せ）
-       · 背景画像フルブリード + オーバーレイ
-       · メインコピー1行 + CTAのみ（サブコピーなし）
+       · 背景画像フルブリード + オーバーレイ強化
+       · マイクロコピー（ロゴ直下）+ メインコピー1行
   ══════════════════════════════════════════ -->
   <section class="hero" id="hero">
     <!-- フルブリード背景 + オーバーレイ -->
     <div class="hero-bg" aria-hidden="true">
       <div class="hero-overlay"></div>
+      <!-- テキスト背後のラジアルグロー（コピー可読性補強） -->
+      <div class="hero-text-glow" aria-hidden="true"></div>
     </div>
 
     <!-- コンテンツ：中央縦積み -->
     <div class="hero-inner">
-      <p class="hero-eyebrow">
-        <span class="eyebrow-dot"></span>
-        Purchase Diagnostic
+
+      <!-- マイクロコピー：ロゴの直下・メインコピーの上 -->
+      <p class="hero-microcopy">
+        <!-- 時計アイコン（細ラインSVG） -->
+        <svg class="microcopy-icon" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1"/>
+          <path d="M9 5.5V9L11.5 11" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        登録不要。30秒であなたに合うか診断できます
       </p>
 
-      <!-- メインコピー：1行・セリフ体 -->
+      <!-- メインコピー：1行・セリフ体・視認性最優先 -->
       <h1 class="hero-headline">
         購入前に、香りの相性をセルフチェック。
       </h1>
@@ -981,7 +1011,7 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
           <span class="purchase-tax">税込</span>
         </div>
 
-        <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women" class="purchase-btn">
+        <a href="#" class="purchase-btn">
           今すぐ購入する
           <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="btn-icon" aria-hidden="true">
             <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
