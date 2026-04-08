@@ -137,28 +137,24 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
 .header-nav a:hover { color: var(--c-text); }
 
 /* ════════════════════════════════
-   HERO v9
-   · ロゴ 20% 縮小
-   · コピー Bold / 視線中心
-   · チップ→CTAの順（心理的抵抗最小化）
-   · ボタン: ドロップシャドウ + 高級感ホバー
-   · ↓ シェブロン: 静かに上下
+   HERO v10
+   · 高さ 58vh — 診断の最初の質問まで画面内
+   · 余白を凝縮 / コピー Bold / CTA「↓」文言
 ════════════════════════════════ */
 
-/* ── ロゴ 20% 縮小（既存 1.2rem → 0.96rem） ── */
 .logo {
   font-family: var(--ff-serif);
-  font-size: 0.96rem;          /* 1.2rem × 0.8 = 0.96rem */
+  font-size: 0.96rem;
   letter-spacing: .22em;
   font-weight: var(--fw-mid);
 }
 
-/* ── セクション本体 ── */
 .hero {
   position: relative;
-  height: 80vh;
-  min-height: 500px;
-  max-height: 880px;
+  /* 58vh に縮小。スクロールなしで診断の最初の質問が見える */
+  height: 58vh;
+  min-height: 340px;
+  max-height: 560px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -169,7 +165,6 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   border-bottom: 1px solid var(--c-border);
 }
 
-/* ── コンテンツ集約エリア ── */
 .hero-inner {
   position: relative;
   z-index: 2;
@@ -178,117 +173,95 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   align-items: center;
   text-align: center;
   padding: 0 var(--pad-h);
-  gap: 1.5rem;
+  /* 余白を詰める */
+  gap: 1rem;
   max-width: 860px;
   width: 100%;
-  animation: heroFadeUp .85s var(--ease-out) both;
+  animation: heroFadeUp .75s var(--ease-out) both;
 }
 @keyframes heroFadeUp {
-  from { opacity: 0; transform: translateY(18px); }
+  from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── メインコピー：Bold・大きく・視線の中心 ── */
 .hero-headline {
   font-family: var(--ff-serif);
-  font-size: clamp(1.15rem, 3.2vw, 2.1rem);
-  /* light→500 に変更して Bold 感を出す */
+  font-size: clamp(1.1rem, 3vw, 2rem);
   font-weight: 500;
-  line-height: 1.3;
-  letter-spacing: .025em;
+  line-height: 1.25;
+  letter-spacing: .02em;
   color: var(--c-text);
   white-space: nowrap;
-  animation: heroFadeUp .85s .1s both;
+  animation: heroFadeUp .75s .08s both;
 }
 
-/* ── ソーシャルプルーフ ── */
-.hero-trust {
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-  animation: heroFadeUp .85s .18s both;
-}
-.trust-stars { font-size: .76rem; letter-spacing: .05em; color: var(--c-gold); }
-.trust-copy  { font-size: .68rem; color: var(--c-text-mid); letter-spacing: .04em; }
-.trust-copy strong { color: var(--c-text); font-weight: var(--fw-reg); }
-
-/* ── CTA ブロック：チップ → ボタンを縦積み ── */
 .hero-cta-block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .6rem;
-  animation: heroFadeUp .85s .26s both;
+  gap: .5rem;
+  animation: heroFadeUp .75s .16s both;
 }
 
-/* ── カプセルチップ（ボタン直上） ── */
 .hero-chip {
   display: inline-flex;
   align-items: center;
   gap: .4rem;
   border: 1px solid var(--c-beige-mid);
   border-radius: 999px;
-  padding: .3em 1em;
+  padding: .28em .9em;
   background: transparent;
-  font-size: .6rem;
-  letter-spacing: .18em;
+  font-size: .58rem;
+  letter-spacing: .16em;
   color: var(--c-accent-dk);
   font-family: var(--ff-sans);
   font-weight: var(--fw-light);
   white-space: nowrap;
 }
 .chip-icon {
-  width: 12px; height: 12px;
+  width: 11px; height: 11px;
   color: var(--c-accent);
   flex-shrink: 0;
 }
 
-/* ── CTA ボタン：ドロップシャドウ + 高級感ホバー ── */
 .hero-cta {
   display: inline-flex;
   align-items: center;
-  gap: .65rem;
-  padding: 1em 2.6em;
+  justify-content: center;
+  gap: .5rem;
+  padding: .88em 2.4em;
   background: var(--c-text);
   color: var(--c-white);
-  font-size: clamp(.8rem, 1.4vw, .88rem);
-  letter-spacing: .16em;
+  font-size: clamp(.8rem, 1.4vw, .86rem);
+  letter-spacing: .14em;
   white-space: nowrap;
   border: none;
-  min-height: 52px;
-  /* 繊細なドロップシャドウ */
+  min-height: 48px;
   box-shadow:
-    0 2px 8px  rgba(51,51,51,.18),
-    0 6px 24px rgba(51,51,51,.10);
+    0 2px 8px  rgba(51,51,51,.16),
+    0 6px 22px rgba(51,51,51,.09);
   transition:
-    background     .38s cubic-bezier(0.16,1,0.3,1),
-    box-shadow     .38s cubic-bezier(0.16,1,0.3,1),
-    transform      .18s ease,
-    letter-spacing .38s cubic-bezier(0.16,1,0.3,1);
+    background     .36s cubic-bezier(0.16,1,0.3,1),
+    box-shadow     .36s cubic-bezier(0.16,1,0.3,1),
+    transform      .16s ease,
+    letter-spacing .36s cubic-bezier(0.16,1,0.3,1);
 }
-/* ホバー：影を深く・字間をわずかに広げる高級感演出 */
 .hero-cta:hover {
   background: var(--c-accent-dk);
   box-shadow:
-    0 4px 16px rgba(140,123,110,.28),
-    0 12px 36px rgba(140,123,110,.16);
-  letter-spacing: .22em;
+    0 4px 14px rgba(140,123,110,.26),
+    0 10px 32px rgba(140,123,110,.14);
+  letter-spacing: .20em;
 }
 .hero-cta:active {
   transform: scale(.97);
-  box-shadow: 0 1px 4px rgba(51,51,51,.15);
+  box-shadow: 0 1px 4px rgba(51,51,51,.14);
 }
-.cta-arrow-svg {
-  width: 15px;
-  flex-shrink: 0;
-  transition: transform .38s cubic-bezier(0.16,1,0.3,1);
-}
-.hero-cta:hover .cta-arrow-svg { transform: translateX(5px); }
 
-/* ── ↓ シェブロン：FV最下部で静かに上下 ── */
+/* シェブロンは 58vh の底辺に貼り付く */
 .scroll-chevron {
   position: absolute;
-  bottom: 1.8rem;
+  bottom: 1.2rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -297,16 +270,16 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   color: var(--c-beige-mid);
   z-index: 2;
   transition: color .2s;
-  animation: heroFadeUp 1.2s .9s both;
+  animation: heroFadeUp 1s .7s both;
 }
 .scroll-chevron:hover { color: var(--c-accent); }
 .chevron-svg {
-  width: 22px; height: 22px;
-  animation: chevronBounce 2.4s ease-in-out infinite;
+  width: 20px; height: 20px;
+  animation: chevronBounce 2.2s ease-in-out infinite;
 }
 @keyframes chevronBounce {
-  0%,100% { transform: translateY(0);    opacity: .45; }
-  50%     { transform: translateY(5px);  opacity: 1;   }
+  0%,100% { transform: translateY(0);   opacity: .4; }
+  50%     { transform: translateY(4px); opacity: 1;  }
 }
 
 /* ════════════════════════════════
@@ -528,9 +501,9 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
    RESPONSIVE
 ════════════════════════════════ */
 @media (max-width: 768px) {
-  .hero-headline { white-space: normal; font-size: clamp(1.05rem, 4.5vw, 1.5rem); }
-  .hero-chip { font-size: .56rem; }
-  .hero-cta { letter-spacing: .12em; } /* ホバー前の初期値を調整 */
+  .hero-headline { white-space: normal; font-size: clamp(1rem, 4.2vw, 1.4rem); }
+  .hero-chip { font-size: .54rem; }
+  .hero-cta { letter-spacing: .12em; }
   .purchase-inner { grid-template-columns: 1fr; }
   .purchase-image-col { max-width: 380px; margin: 0 auto; width: 100%; }
   .header-nav { display: none; }
@@ -539,17 +512,17 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
 }
 
 @media (max-width: 540px) {
-  .hero { min-height: 440px; }
-  .hero-headline { font-size: clamp(1rem, 5vw, 1.35rem); white-space: normal; }
-  .hero-chip { font-size: .54rem; letter-spacing: .12em; padding: .28em .8em; }
-  .hero-inner { gap: 1.2rem; }
-  .hero-cta { padding: .9em 2em; min-height: 48px; letter-spacing: .12em; }
+  .hero { min-height: 300px; max-height: 480px; }
+  .hero-headline { font-size: clamp(.95rem, 4.8vw, 1.25rem); white-space: normal; }
+  .hero-chip { font-size: .52rem; letter-spacing: .1em; padding: .25em .75em; }
+  .hero-inner { gap: .85rem; }
+  .hero-cta { padding: .82em 1.8em; min-height: 44px; font-size: .78rem; letter-spacing: .1em; }
   .benefit-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .reviews-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 380px) {
-  .hero-headline { font-size: .95rem; }
+  .hero-headline { font-size: .9rem; }
   .guarantee-badges { grid-template-columns: 1fr; }
 }
    </style>
@@ -592,54 +565,40 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   </header>
 
   <!-- ══════════════════════════════════════════
-       HERO v9
-       · ロゴ 20% 縮小 / コピー Bold / チップをCTA直上へ
-       · ボタン: ドロップシャドウ + 高級感ホバー
-       · スクロール誘導: 静かに上下する「↓」シェブロン
+       HERO v10
+       · 高さ 58vh — 診断の最初の質問まで画面内に収める
+       · コピー凝縮 / CTA文言に「↓」で方向を明示
   ══════════════════════════════════════════ -->
   <section class="hero" id="hero">
 
     <div class="hero-inner">
 
-      <!-- メインコピー：Bold・視線中心 -->
+      <!-- メインコピー：1行・Bold -->
       <h1 class="hero-headline">
-        あなたを一瞬で「清潔感のある人」にする、正解の香りがわかります。
+        Oud Stallionがあなたにマッチするかテストできます
       </h1>
 
-      <!-- ソーシャルプルーフ -->
-      <div class="hero-trust">
-        <span class="trust-stars" aria-label="星5つ">★★★★★</span>
-        <span class="trust-copy">累計 <strong>2,400+</strong> 人が診断済み</span>
-      </div>
-
-      <!-- CTA ブロック：チップ → ボタン の順（心理的抵抗最小化） -->
+      <!-- CTA ブロック：チップ → ボタン -->
       <div class="hero-cta-block">
-        <!-- カプセルチップ：ボタン直上に移動 -->
         <p class="hero-chip">
-          <!-- 時計アイコン -->
           <svg class="chip-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1"/>
             <path d="M8 5V8L10 9.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <!-- 稲妻アイコン -->
           <svg class="chip-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M9.5 2L4 9H8.5L6.5 14L13 7H8.5L9.5 2Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <span>30sec&thinsp;/&thinsp;登録不要</span>
         </p>
 
-        <!-- CTA：ドロップシャドウ + 高級感ホバー -->
         <a href="#quiz" class="hero-cta" id="heroCtaBtn">
-          無料で相性を診断する
-          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="cta-arrow-svg" aria-hidden="true">
-            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          ↓ 30秒で相性をチェックする
         </a>
       </div>
 
     </div>
 
-    <!-- ↓ シェブロン：FV最下部で静かに上下 -->
+    <!-- シェブロン -->
     <a href="#quiz" class="scroll-chevron" aria-label="診断セクションへスクロール">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="chevron-svg" aria-hidden="true">
         <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
