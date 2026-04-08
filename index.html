@@ -526,221 +526,16 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   .guarantee-badges { grid-template-columns: 1fr; }
 }
 
-   /* ════════════════════════════════
-   HERO v11 — 機能美 × 高級感
-════════════════════════════════ */
-
-.logo {
-  font-family: var(--ff-serif);
-  font-size: 0.96rem;
-  letter-spacing: .22em;
-  font-weight: var(--fw-mid);
-}
-
-.hero {
-  position: relative;
-  height: 58vh;
-  min-height: 360px;
-  max-height: 580px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* 指示3: 放射状グラデーション */
-  background: radial-gradient(ellipse at 50% 44%, #FFFFFF 0%, #F2F2F2 100%);
-  overflow: hidden;
-  padding-top: 64px;
-  border-bottom: 1px solid var(--c-border);
-}
-
-.hero-inner {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 0 var(--pad-h);
-  /* 指示2: 余白を1.4倍に拡張 */
-  gap: 1.5rem;
-  max-width: 860px;
-  width: 100%;
-  animation: heroFadeUp .75s var(--ease-out) both;
-}
-
-/* 指示1: 信頼バッジ */
-.hero-trust-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: .35rem;
-  font-family: var(--ff-sans);
-  font-size: .6rem;
-  font-weight: var(--fw-light);
-  letter-spacing: .12em;
-  color: var(--c-text-light);
-  animation: heroFadeUp .75s .04s both;
-}
-.hero-trust-stars {
-  display: inline-flex;
-  gap: 1px;
-  line-height: 1;
-}
-.hero-trust-stars svg {
-  width: 9px;
-  height: 9px;
-  fill: var(--c-gold);
-}
-.hero-trust-sep {
-  color: var(--c-beige-mid);
-  font-size: .55rem;
-}
-
-.hero-headline {
-  font-family: var(--ff-serif);
-  font-size: clamp(1.1rem, 3vw, 2rem);
-  font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: .02em;
-  color: var(--c-text);
-  white-space: nowrap;
-  animation: heroFadeUp .75s .1s both;
-}
-
-.hero-cta-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* 指示2: チップとボタンの間も広げる */
-  gap: .75rem;
-  animation: heroFadeUp .75s .18s both;
-}
-
-.hero-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: .4rem;
-  border: 1px solid var(--c-beige-mid);
-  border-radius: 999px;
-  padding: .28em .9em;
-  background: transparent;
-  font-size: .58rem;
-  letter-spacing: .16em;
-  color: var(--c-accent-dk);
-  font-family: var(--ff-sans);
-  font-weight: var(--fw-light);
-  white-space: nowrap;
-}
-.chip-icon {
-  width: 11px; height: 11px;
-  color: var(--c-accent);
-  flex-shrink: 0;
-}
-
-/* 指示4: ボタンの質感 */
-.hero-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: .5rem;
-  padding: .95em 2.6em;
-  background: var(--c-text);
-  color: var(--c-white);
-  font-size: clamp(.8rem, 1.4vw, .86rem);
-  letter-spacing: .14em;
-  white-space: nowrap;
-  border: none;
-  min-height: 50px;
-  /* 繊細な多層シャドウ */
-  box-shadow:
-    0 1px 2px  rgba(51,51,51,.10),
-    0 4px 12px rgba(51,51,51,.12),
-    0 10px 28px rgba(51,51,51,.08),
-    inset 0 1px 0 rgba(255,255,255,.06);
-  transition:
-    background      .4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow      .4s cubic-bezier(0.16, 1, 0.3, 1),
-    transform       .18s ease,
-    letter-spacing  .4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.hero-cta:hover {
-  background: var(--c-accent-dk);
-  box-shadow:
-    0 2px 4px  rgba(140,123,110,.16),
-    0 8px 22px rgba(140,123,110,.22),
-    0 18px 44px rgba(140,123,110,.12),
-    inset 0 1px 0 rgba(255,255,255,.08);
-  letter-spacing: .20em;
-  transform: translateY(-1px);
-}
-.hero-cta:active {
-  transform: scale(.97) translateY(0);
-  box-shadow:
-    0 1px 3px rgba(51,51,51,.14),
-    inset 0 1px 0 rgba(255,255,255,.04);
-}
-
-/* 指示5: スクロール誘導アイコン（↓テキスト版） */
-.scroll-chevron {
-  position: absolute;
-  bottom: 1.4rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .3rem;
-  color: var(--c-beige-mid);
-  z-index: 2;
-  transition: color .25s;
-  animation: heroFadeUp 1s .75s both;
-  text-decoration: none;
-}
-.scroll-chevron:hover { color: var(--c-accent); }
-.scroll-chevron-label {
-  font-family: var(--ff-sans);
-  font-size: .52rem;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  font-weight: var(--fw-light);
-  line-height: 1;
-}
-.chevron-svg {
-  width: 18px; height: 18px;
-  animation: chevronFloat 2.4s ease-in-out infinite;
-}
-@keyframes chevronFloat {
-  0%, 100% { transform: translateY(0);   opacity: .35; }
-  50%       { transform: translateY(5px); opacity: .9;  }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .hero-headline { white-space: normal; font-size: clamp(1rem, 4.2vw, 1.4rem); }
-  .hero-chip     { font-size: .54rem; }
-  .hero-cta      { letter-spacing: .12em; }
-  .hero-inner    { gap: 1.25rem; }
-}
-@media (max-width: 540px) {
-  .hero         { min-height: 300px; max-height: 480px; }
-  .hero-headline { font-size: clamp(.95rem, 4.8vw, 1.25rem); white-space: normal; }
-  .hero-chip    { font-size: .52rem; letter-spacing: .1em; padding: .25em .75em; }
-  .hero-inner   { gap: 1rem; }
-  .hero-cta     { padding: .85em 1.8em; min-height: 46px; font-size: .78rem; letter-spacing: .1em; }
-}
-@media (max-width: 380px) {
-  .hero-headline { font-size: .9rem; }
-}
-
-   /* ════════════════════════════════
-   HERO v12 — ヒエラルキー再構築
-   1.メインコピー > 2.ボタン > 3.メリット > 4.信頼性
+ /* ════════════════════════════════
+   HERO v13 — ラグジュアリースペーシング
+   黄金比ベースの余白再設計
 ════════════════════════════════ */
 
 .hero {
   position: relative;
-  height: 58vh;
-  min-height: 360px;
-  max-height: 580px;
+  height: 62vh;
+  min-height: 420px;
+  max-height: 660px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -759,31 +554,37 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   align-items: center;
   text-align: center;
   padding: 0 var(--pad-h);
-  gap: 1.5rem;
-  max-width: 880px;
+  /*
+    黄金比ベースのgap設計
+    各要素間を個別制御するためgapは廃止し
+    margin-bottomで序列ごとに差をつける
+  */
+  gap: 0;
+  max-width: 900px;
   width: 100%;
   animation: heroFadeUp .75s var(--ease-out) both;
 }
 
-/* ── レイヤー4: 信頼性（安心の隠し味） ── */
+/* ── レイヤー4: 信頼性バッジ ── */
+/* ロゴ〜バッジ間はheaderの高さ分 padding-top で自然に確保済み */
 .hero-trust-badge {
   display: inline-flex;
   align-items: center;
   gap: .3rem;
   font-family: var(--ff-sans);
-  /* 前バージョンの約半分 */
-  font-size: .52rem;
+  font-size: .5rem;
   font-weight: var(--fw-light);
   letter-spacing: .1em;
-  /* #999 で意図的に沈める */
   color: #999999;
+  /* バッジ〜コピー間: 広めに */
+  margin-bottom: 2.2rem;
   animation: heroFadeUp .75s .04s both;
 }
 .hero-trust-stars {
   display: inline-flex;
   gap: 1px;
   line-height: 1;
-  opacity: .55;
+  opacity: .5;
 }
 .hero-trust-stars svg {
   width: 7px;
@@ -792,47 +593,57 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
 }
 .hero-trust-sep {
   color: var(--c-beige-mid);
-  font-size: .48rem;
-  opacity: .6;
+  font-size: .46rem;
+  opacity: .55;
 }
 
 /* ── レイヤー1: メインコピー（王様） ── */
 .hero-headline {
   font-family: var(--ff-serif);
-  /* 前バージョンの 1.2倍 + 最重量ウェイト */
-  font-size: clamp(1.32rem, 3.6vw, 2.4rem);
+  /*
+    v12の1.3倍: clamp(1.32→2.4) × 1.3
+    = clamp(1.72rem, 4.7vw, 3.12rem)
+  */
+  font-size: clamp(1.72rem, 4.7vw, 3.12rem);
   font-weight: 600;
-  line-height: 1.22;
+  /* 指示1: 迫力と読みやすさを両立 */
+  line-height: 1.5;
   letter-spacing: .025em;
   color: var(--c-text);
   white-space: nowrap;
+  /* コピー〜チップ間: 黄金比的余裕 */
+  margin-bottom: 2.8rem;
   animation: heroFadeUp .75s .1s both;
 }
 
-/* ── レイヤー3: メリット表示（チップ） ── */
+/* ── レイヤー2+3: チップ＋ボタンブロック ── */
 .hero-cta-block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .8rem;
+  /* チップ〜ボタン間 */
+  gap: 1.4rem;
   animation: heroFadeUp .75s .18s both;
 }
 
+/* ── レイヤー3: 診断チップ（洗練された補助情報） ── */
 .hero-chip {
   display: inline-flex;
   align-items: center;
   gap: .4rem;
-  border: 1px solid var(--c-beige-mid);
+  /* 指示3: 透過度を上げて主張を抑える */
+  border: 1px solid rgba(214, 207, 196, 0.55);
   border-radius: 999px;
-  padding: .26em .9em;
+  padding: .3em 1.1em;
   background: transparent;
-  /* メインコピーより二回り小さく・細く */
   font-size: .56rem;
   font-weight: var(--fw-light);
-  letter-spacing: .13em;
+  /* 指示3: 文字間隔を広げて洗練度UP */
+  letter-spacing: .2em;
   color: var(--c-accent-dk);
   font-family: var(--ff-sans);
   white-space: nowrap;
+  opacity: .85;
 }
 .chip-icon {
   width: 10px; height: 10px;
@@ -840,22 +651,23 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   flex-shrink: 0;
 }
 
-/* ── レイヤー2: CTAボタン（力強く） ── */
+/* ── レイヤー2: CTAボタン（ゆとりある存在感） ── */
 .hero-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: .55rem;
-  padding: 1em 2.8em;
+  /* 指示4: 上下パディングを増やしてゆとり */
+  padding: 1.2em 3em;
   background: var(--c-text);
   color: var(--c-white);
-  /* ボタンテキストをやや大きく・力強く */
-  font-size: clamp(.88rem, 1.6vw, .96rem);
+  /* 指示4: 1px大きく + weight強め */
+  font-size: clamp(.9rem, 1.6vw, 1rem);
   font-weight: var(--fw-mid);
   letter-spacing: .16em;
   white-space: nowrap;
   border: none;
-  min-height: 52px;
+  min-height: 56px;
   box-shadow:
     0 1px 2px  rgba(51,51,51,.10),
     0 4px 12px rgba(51,51,51,.12),
@@ -887,7 +699,7 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
 /* ── スクロール誘導 ── */
 .scroll-chevron {
   position: absolute;
-  bottom: 1.4rem;
+  bottom: 1.6rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -897,14 +709,14 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   color: var(--c-beige-mid);
   z-index: 2;
   transition: color .25s;
-  animation: heroFadeUp 1s .75s both;
+  animation: heroFadeUp 1s .8s both;
   text-decoration: none;
 }
 .scroll-chevron:hover { color: var(--c-accent); }
 .scroll-chevron-label {
   font-family: var(--ff-sans);
-  font-size: .52rem;
-  letter-spacing: .22em;
+  font-size: .5rem;
+  letter-spacing: .24em;
   text-transform: uppercase;
   font-weight: var(--fw-light);
   line-height: 1;
@@ -914,24 +726,35 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   animation: chevronFloat 2.4s ease-in-out infinite;
 }
 @keyframes chevronFloat {
-  0%, 100% { transform: translateY(0);   opacity: .35; }
-  50%       { transform: translateY(5px); opacity: .9;  }
+  0%, 100% { transform: translateY(0);   opacity: .3; }
+  50%       { transform: translateY(5px); opacity: .85; }
 }
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .hero-headline { white-space: normal; font-size: clamp(1.1rem, 4.6vw, 1.65rem); }
-  .hero-chip     { font-size: .52rem; }
-  .hero-inner    { gap: 1.25rem; }
+  .hero          { min-height: 400px; }
+  .hero-headline {
+    white-space: normal;
+    font-size: clamp(1.3rem, 5.2vw, 2rem);
+    margin-bottom: 2rem;
+  }
+  .hero-trust-badge { margin-bottom: 1.6rem; }
 }
 @media (max-width: 540px) {
-  .hero          { min-height: 300px; max-height: 480px; }
-  .hero-headline { font-size: clamp(1rem, 5vw, 1.35rem); white-space: normal; }
-  .hero-inner    { gap: 1rem; }
-  .hero-cta      { padding: .9em 1.9em; min-height: 48px; font-size: .84rem; }
+  .hero          { min-height: 320px; max-height: 520px; }
+  .hero-headline {
+    font-size: clamp(1.05rem, 5.5vw, 1.5rem);
+    white-space: normal;
+    line-height: 1.45;
+    margin-bottom: 1.6rem;
+  }
+  .hero-trust-badge { margin-bottom: 1.2rem; }
+  .hero-cta-block   { gap: 1rem; }
+  .hero-cta  { padding: 1em 2em; min-height: 50px; font-size: .86rem; }
+  .hero-chip { letter-spacing: .14em; }
 }
 @media (max-width: 380px) {
-  .hero-headline { font-size: .95rem; }
+  .hero-headline { font-size: 1rem; line-height: 1.4; }
 }
    
    </style>
@@ -982,7 +805,7 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
 
   <div class="hero-inner">
 
-    <!-- レイヤー4: 信頼性（沈めた隠し味） -->
+    <!-- レイヤー4: 信頼性（意識の外縁） -->
     <div class="hero-trust-badge">
       <span class="hero-trust-stars" aria-label="星5つ">
         <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8"/></svg>
@@ -997,13 +820,13 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
 
     <!-- レイヤー1: メインコピー（王様） -->
     <h1 class="hero-headline">
-      Oud Stallionがあなたに<br>マッチするかテストできます
+      Oud Stallionがあなたにマッチするかテストできます
     </h1>
 
-    <!-- レイヤー2+3: メリットチップ → CTAボタン -->
+    <!-- レイヤー2+3: チップ → ボタン -->
     <div class="hero-cta-block">
 
-      <!-- レイヤー3: メリット（二回り小さく・控えめ） -->
+      <!-- レイヤー3: 補助情報チップ -->
       <p class="hero-chip">
         <svg class="chip-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M9.5 2L4 9H8.5L6.5 14L13 7H8.5L9.5 2Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1011,7 +834,7 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
         <span>わずか5問で判定（登録不要）</span>
       </p>
 
-      <!-- レイヤー2: CTAボタン（力強く） -->
+      <!-- レイヤー2: CTAボタン -->
       <a href="#quiz" class="hero-cta" id="heroCtaBtn">
         ↓ 30秒で相性をチェックする
       </a>
