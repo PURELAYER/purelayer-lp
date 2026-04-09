@@ -526,234 +526,285 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   .guarantee-badges { grid-template-columns: 1fr; }
 }
 
- /* ════════════════════════════════
-   HERO v13 — ラグジュアリースペーシング
-   黄金比ベースの余白再設計
+/* ════════════════════════════════
+   INTRO STRIP — ツール型UI導入エリア
 ════════════════════════════════ */
 
-.hero {
-  position: relative;
-  height: 62vh;
-  min-height: 420px;
-  max-height: 660px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(ellipse at 50% 44%, #FFFFFF 0%, #F2F2F2 100%);
-  overflow: hidden;
-  padding-top: 64px;
+.intro-strip {
+  padding-top: 64px; /* ヘッダー分オフセット */
+  background: radial-gradient(ellipse at 50% 60%, #FFFFFF 0%, #F2F2F2 100%);
   border-bottom: 1px solid var(--c-border);
 }
 
-.hero-inner {
-  position: relative;
-  z-index: 2;
+.intro-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 3rem) var(--pad-h) clamp(1.6rem, 3vw, 2.4rem);
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: clamp(1.4rem, 3vw, 2rem);
   text-align: center;
-  padding: 0 var(--pad-h);
-  /*
-    黄金比ベースのgap設計
-    各要素間を個別制御するためgapは廃止し
-    margin-bottomで序列ごとに差をつける
-  */
-  gap: 0;
-  max-width: 900px;
-  width: 100%;
-  animation: heroFadeUp .75s var(--ease-out) both;
+  animation: introFadeUp .7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* ── レイヤー4: 信頼性バッジ ── */
-/* ロゴ〜バッジ間はheaderの高さ分 padding-top で自然に確保済み */
-.hero-trust-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: .3rem;
-  font-family: var(--ff-sans);
-  font-size: .5rem;
-  font-weight: var(--fw-light);
-  letter-spacing: .1em;
-  color: #999999;
-  /* バッジ〜コピー間: 広めに */
-  margin-bottom: 2.2rem;
-  animation: heroFadeUp .75s .04s both;
-}
-.hero-trust-stars {
-  display: inline-flex;
-  gap: 1px;
-  line-height: 1;
-  opacity: .5;
-}
-.hero-trust-stars svg {
-  width: 7px;
-  height: 7px;
-  fill: var(--c-gold);
-}
-.hero-trust-sep {
-  color: var(--c-beige-mid);
-  font-size: .46rem;
-  opacity: .55;
+@keyframes introFadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── レイヤー1: メインコピー（王様） ── */
-.hero-headline {
+/* ブランド名 */
+.intro-brand {
   font-family: var(--ff-serif);
-  /*
-    v12の1.3倍: clamp(1.32→2.4) × 1.3
-    = clamp(1.72rem, 4.7vw, 3.12rem)
-  */
-  font-size: clamp(2.3rem, 4.7vw, 3.12rem);
-  font-weight: 400;
-  /* 指示1: 迫力と読みやすさを両立 */
-  line-height: 1.5;
-  letter-spacing: .025em;
+  font-size: .78rem;
+  letter-spacing: .32em;
+  font-weight: var(--fw-mid);
   color: var(--c-text);
-  white-space: nowrap;
-  /* コピー〜チップ間: 黄金比的余裕 */
-  margin-bottom: 2.8rem;
+  text-transform: uppercase;
 }
 
-/* ── レイヤー2+3: チップ＋ボタンブロック ── */
-.hero-cta-block {
+/* メインコピー */
+.intro-headline {
+  font-family: var(--ff-serif);
+  font-size: clamp(1.3rem, 3.8vw, 2rem);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: .03em;
+  color: var(--c-text);
+  margin: 0;
+}
+
+/* 3ベネフィットアイコン列 */
+.intro-benefits {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(1.6rem, 5vw, 3.2rem);
+}
+
+.intro-benefit {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* チップ〜ボタン間 */
-  gap: 1.4rem;
-  animation: heroFadeUp .75s .18s both;
+  gap: .55rem;
 }
 
-/* ── レイヤー3: 診断チップ（洗練された補助情報） ── */
-.hero-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: .4rem;
-  /* 指示3: 透過度を上げて主張を抑える */
-  border: 1px solid rgba(214, 207, 196, 0.55);
-  border-radius: 999px;
-  padding: .3em 1.1em;
-  background: transparent;
-  font-size: .56rem;
-  font-weight: var(--fw-light);
-  /* 指示3: 文字間隔を広げて洗練度UP */
-  letter-spacing: .2em;
+.intro-benefit-icon {
+  width: 36px;
+  height: 36px;
   color: var(--c-accent-dk);
-  font-family: var(--ff-sans);
-  white-space: nowrap;
-  opacity: .85;
-}
-.chip-icon {
-  width: 10px; height: 10px;
-  color: var(--c-accent);
   flex-shrink: 0;
 }
 
-/* ── レイヤー2: CTAボタン（ゆとりある存在感） ── */
-.hero-cta {
+.intro-benefit-label {
+  font-family: var(--ff-sans);
+  font-size: .58rem;
+  letter-spacing: .18em;
+  color: var(--c-text-mid);
+  font-weight: var(--fw-light);
+  white-space: nowrap;
+}
+
+/* 信頼バッジ（隠し味） */
+.intro-trust {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: .55rem;
-  /* 指示4: 上下パディングを増やしてゆとり */
-  padding: 1.2em 3em;
-  background: var(--c-text);
-  color: var(--c-white);
-  /* 指示4: 1px大きく + weight強め */
-  font-size: clamp(.9rem, 1.6vw, 1rem);
-  font-weight: var(--fw-mid);
-  letter-spacing: .16em;
-  white-space: nowrap;
-  border: none;
-  min-height: 56px;
-  box-shadow:
-    0 1px 2px  rgba(51,51,51,.10),
-    0 4px 12px rgba(51,51,51,.12),
-    0 10px 28px rgba(51,51,51,.08),
-    inset 0 1px 0 rgba(255,255,255,.06);
-  transition:
-    background      .4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow      .4s cubic-bezier(0.16, 1, 0.3, 1),
-    transform       .18s ease,
-    letter-spacing  .4s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: .28rem;
+  font-family: var(--ff-sans);
+  font-size: .48rem;
+  font-weight: var(--fw-light);
+  letter-spacing: .1em;
+  color: #aaaaaa;
 }
-.hero-cta:hover {
-  background: var(--c-accent-dk);
-  box-shadow:
-    0 2px 4px  rgba(140,123,110,.16),
-    0 8px 22px rgba(140,123,110,.22),
-    0 18px 44px rgba(140,123,110,.12),
-    inset 0 1px 0 rgba(255,255,255,.08);
-  letter-spacing: .22em;
-  transform: translateY(-1px);
+.intro-trust-stars {
+  display: inline-flex;
+  gap: 1px;
+  opacity: .5;
 }
-.hero-cta:active {
-  transform: scale(.97) translateY(0);
-  box-shadow:
-    0 1px 3px rgba(51,51,51,.14),
-    inset 0 1px 0 rgba(255,255,255,.04);
+.intro-trust-stars svg {
+  width: 6px;
+  height: 6px;
+  fill: var(--c-gold);
 }
 
-/* ── スクロール誘導 ── */
-.scroll-chevron {
-  position: absolute;
-  bottom: 1.6rem;
-  left: 50%;
-  transform: translateX(-50%);
+/* ════════════════════════════════
+   QUIZ — ツール型（Q1 Above the fold）
+════════════════════════════════ */
+
+.quiz-section {
+  padding: 0;
+  background: var(--c-white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Q1を確実にfold内に収めるパネル */
+.quiz-atf-panel {
+  min-height: calc(100svh - 64px);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: .3rem;
-  color: var(--c-beige-mid);
-  z-index: 2;
-  transition: color .25s;
-  animation: heroFadeUp 1s .8s both;
-  text-decoration: none;
-}
-.scroll-chevron:hover { color: var(--c-accent); }
-.scroll-chevron-label {
-  font-family: var(--ff-sans);
-  font-size: .5rem;
-  letter-spacing: .24em;
-  text-transform: uppercase;
-  font-weight: var(--fw-light);
-  line-height: 1;
-}
-.chevron-svg {
-  width: 18px; height: 18px;
-  animation: chevronFloat 2.4s ease-in-out infinite;
-}
-@keyframes chevronFloat {
-  0%, 100% { transform: translateY(0);   opacity: .3; }
-  50%       { transform: translateY(5px); opacity: .85; }
+  justify-content: center;
+  padding: clamp(2.5rem, 5vw, 4rem) var(--pad-h) clamp(2rem, 4vw, 3rem);
+  border-bottom: 1px solid var(--c-border);
+  background: var(--c-white);
 }
 
-/* ── Responsive ── */
+/* プログレスバー（クイズ上部） */
+.quiz-progress-wrap {
+  max-width: 560px;
+  margin: 0 auto clamp(1.6rem, 3vw, 2.4rem);
+  height: 1px; /* より繊細に */
+  background: var(--c-beige);
+  overflow: hidden;
+}
+
+.quiz-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--c-accent), var(--c-gold));
+  transition: width .4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Q1 ヘッダー */
+.quiz-q1-header {
+  max-width: 560px;
+  margin: 0 auto clamp(1.8rem, 3.5vw, 2.8rem);
+  text-align: center;
+}
+
+.quiz-step-indicator {
+  font-family: var(--ff-sans);
+  font-size: .58rem;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  display: block;
+  margin-bottom: .9rem;
+}
+
+.quiz-q1-text {
+  font-family: var(--ff-serif);
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  font-weight: var(--fw-light);
+  line-height: 1.5;
+  letter-spacing: .03em;
+  color: var(--c-text);
+  margin: 0;
+}
+
+.quiz-q1-text mark {
+  background: transparent;
+  color: var(--c-accent-dk);
+  font-weight: var(--fw-reg);
+}
+
+/* Q1 チェックアイテム（ツール型スタイル） */
+.quiz-list {
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+/* Q1のみ大きく・タップしやすく */
+.quiz-atf-panel .quiz-item {
+  border-bottom: 1px solid var(--c-border);
+  transition: background .2s;
+}
+.quiz-atf-panel .quiz-item:first-child {
+  border-top: 1px solid var(--c-border);
+}
+.quiz-atf-panel .quiz-item.checked {
+  background: rgba(184, 169, 154, .06);
+}
+
+.quiz-atf-panel .quiz-step-label {
+  padding: .7rem .6rem .08rem;
+  font-size: .56rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--c-beige-mid);
+  transition: color .2s;
+  user-select: none;
+}
+.quiz-atf-panel .quiz-item.checked .quiz-step-label {
+  color: var(--c-accent);
+}
+
+.quiz-atf-panel .quiz-label {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  /* タップ領域を広く */
+  padding: .85rem .6rem 1.1rem;
+  cursor: pointer;
+}
+
+.quiz-atf-panel .quiz-check-text {
+  font-size: clamp(.88rem, 2vw, 1rem);
+  line-height: 1.6;
+  letter-spacing: .02em;
+  transition: color .2s;
+}
+.quiz-atf-panel .quiz-item.checked .quiz-check-text {
+  color: var(--c-accent-dk);
+}
+
+/* 残りの質問リストエリア（Q2〜Q5）*/
+.quiz-remaining {
+  padding: clamp(2rem, 4vw, 3rem) var(--pad-h) 0;
+}
+
+/* ヘッダー（Q2〜用） */
+.quiz-header {
+  max-width: 560px;
+  margin: 0 auto clamp(1.4rem, 3vw, 2rem);
+  text-align: center;
+}
+.quiz-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: var(--fw-light);
+  letter-spacing: .04em;
+  margin-bottom: .6rem;
+  color: var(--c-text);
+}
+.quiz-lead {
+  font-size: .8rem;
+  color: var(--c-text-mid);
+  line-height: 1.8;
+}
+
+/* Q2〜Q5 ラッパー */
+.quiz-wrapper {
+  max-width: 560px;
+  margin: 0 auto;
+  transition: opacity .4s ease;
+}
+
+/* ════════════════════════════════
+   Responsive
+════════════════════════════════ */
+
 @media (max-width: 768px) {
-  .hero          { min-height: 400px; }
-  .hero-headline {
-    white-space: normal;
-    font-size: clamp(1.3rem, 5.2vw, 2rem);
-    margin-bottom: 2rem;
-  }
-  .hero-trust-badge { margin-bottom: 1.6rem; }
+  .intro-benefits { gap: clamp(1.2rem, 4vw, 2rem); }
+  .intro-benefit-icon { width: 30px; height: 30px; }
 }
+
 @media (max-width: 540px) {
-  .hero          { min-height: 320px; max-height: 520px; }
-  .hero-headline {
-    font-size: clamp(1.05rem, 5.5vw, 1.5rem);
-    white-space: normal;
-    line-height: 1.45;
-    margin-bottom: 1.6rem;
-  }
-  .hero-trust-badge { margin-bottom: 1.2rem; }
-  .hero-cta-block   { gap: 1rem; }
-  .hero-cta  { padding: 1em 2em; min-height: 50px; font-size: .86rem; }
-  .hero-chip { letter-spacing: .14em; }
+  .intro-inner { gap: 1.2rem; }
+  .intro-headline { font-size: clamp(1.1rem, 5vw, 1.4rem); }
+  .intro-benefits { gap: 1.4rem; }
+  .intro-benefit-icon { width: 28px; height: 28px; }
+  .intro-benefit-label { font-size: .54rem; letter-spacing: .12em; }
+  .quiz-atf-panel .quiz-check-text { font-size: .86rem; }
+  .quiz-q1-text { font-size: clamp(1.2rem, 5vw, 1.6rem); }
 }
+
 @media (max-width: 380px) {
-  .hero-headline { font-size: 1rem; line-height: 1.4; }
+  .intro-headline { font-size: 1.05rem; }
+  .intro-benefits { gap: 1rem; }
+  .intro-benefit-label { letter-spacing: .08em; }
 }
    
    </style>
@@ -800,92 +851,154 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
        · 高さ 58vh — 診断の最初の質問まで画面内に収める
        · コピー凝縮 / CTA文言に「↓」で方向を明示
   ══════════════════════════════════════════ -->
-  <section class="hero" id="hero">
+  <!-- ══════════════════════
+     INTRO STRIP（Hero代替）
+══════════════════════ -->
+<div class="intro-strip">
+  <div class="intro-inner">
 
-  <div class="hero-inner">
+    <!-- ブランド -->
+    <p class="intro-brand">PURELAYER</p>
 
-    <!-- レイヤー4: 信頼性（意識の外縁） -->
-    <div class="hero-trust-badge">
-      <span class="hero-trust-stars" aria-label="星5つ">
-        <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8"/></svg>
-        <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8"/></svg>
-        <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8"/></svg>
-        <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8"/></svg>
-        <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8"/></svg>
+    <!-- メインコピー -->
+    <h1 class="intro-headline">
+      あなたの肌に、<br />石鹸の清潔感を。
+    </h1>
+
+    <!-- 3ベネフィットアイコン -->
+    <div class="intro-benefits">
+
+      <!-- 5問で判定 -->
+      <div class="intro-benefit">
+        <svg class="intro-benefit-icon" viewBox="0 0 36 36" fill="none"
+             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- リスト＋チェック -->
+          <rect x="6" y="8" width="24" height="20" rx="2" stroke="currentColor" stroke-width="1"/>
+          <path d="M11 15L14.5 18.5L20 12" stroke="currentColor" stroke-width="1"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="11" y1="22" x2="25" y2="22" stroke="currentColor"
+                stroke-width="1" stroke-linecap="round" stroke-dasharray="2 2"/>
+          <line x1="11" y1="25.5" x2="20" y2="25.5" stroke="currentColor"
+                stroke-width="1" stroke-linecap="round" stroke-dasharray="2 2"/>
+        </svg>
+        <span class="intro-benefit-label">5問で判定</span>
+      </div>
+
+      <!-- 登録不要 -->
+      <div class="intro-benefit">
+        <svg class="intro-benefit-icon" viewBox="0 0 36 36" fill="none"
+             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- シールド＋錠前 -->
+          <path d="M18 4L31 9V19C31 26 18 32 18 32C18 32 5 26 5 19V9L18 4Z"
+                stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+          <rect x="14" y="16" width="8" height="7" rx="1" stroke="currentColor" stroke-width="1"/>
+          <path d="M15.5 16V14.5C15.5 12.6 20.5 12.6 20.5 14.5V16"
+                stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+        <span class="intro-benefit-label">登録不要</span>
+      </div>
+
+      <!-- 無料診断 -->
+      <div class="intro-benefit">
+        <svg class="intro-benefit-icon" viewBox="0 0 36 36" fill="none"
+             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- 贈り物ボックス -->
+          <rect x="6" y="16" width="24" height="16" rx="1" stroke="currentColor" stroke-width="1"/>
+          <rect x="4" y="10" width="28" height="6" rx="1" stroke="currentColor" stroke-width="1"/>
+          <path d="M18 10V32" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+          <!-- リボン -->
+          <path d="M18 10C18 10 14 4 11 5C8 6 9 10 12 10"
+                stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+          <path d="M18 10C18 10 22 4 25 5C28 6 27 10 24 10"
+                stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+        <span class="intro-benefit-label">無料診断</span>
+      </div>
+
+    </div>
+
+    <!-- 信頼バッジ（隠し味） -->
+    <div class="intro-trust">
+      <span class="intro-trust-stars" aria-label="星5つ">
+        <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8" fill="currentColor"/></svg>
+        <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8" fill="currentColor"/></svg>
+        <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8" fill="currentColor"/></svg>
+        <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8" fill="currentColor"/></svg>
+        <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8" fill="currentColor"/></svg>
       </span>
-      <span class="hero-trust-sep">|</span>
+      <span style="color: var(--c-beige-mid); font-size: .44rem;">|</span>
       <span>累計診断数 5,000件突破</span>
     </div>
 
-    <!-- レイヤー1: メインコピー（王様） -->
-    <h1 class="hero-headline">
-      Oud Stallionとあなたの<br>相性をテストできます
-    </h1>
-
-    <!-- レイヤー2+3: チップ → ボタン -->
-    <div class="hero-cta-block">
-
-      <!-- レイヤー3: 補助情報チップ -->
-      <p class="hero-chip">
-        <svg class="chip-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M9.5 2L4 9H8.5L6.5 14L13 7H8.5L9.5 2Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>わずか5問で判定（登録不要）</span>
-      </p>
-
-      <!-- レイヤー2: CTAボタン -->
-      <a href="#quiz" class="hero-cta" id="heroCtaBtn">
-        ↓ 30秒で相性をチェックする
-      </a>
-
-    </div>
   </div>
+</div>
 
-  <!-- スクロール誘導 -->
-  <a href="#quiz" class="scroll-chevron" aria-label="診断セクションへスクロール">
-    <span class="scroll-chevron-label">scroll</span>
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="chevron-svg" aria-hidden="true">
-      <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
 
-</section>
-   
-  <!-- ══════════════════════
-       QUIZ（変更なし）
-  ══════════════════════ -->
-  <section class="quiz-section" id="quiz">
+<!-- ══════════════════════════════════════════
+     QUIZ — Q1 Above the fold パネル
+══════════════════════════════════════════ -->
+<section class="quiz-section" id="quiz">
+
+  <!-- Q1専用パネル: fold内に確実に表示 -->
+  <div class="quiz-atf-panel">
+
+    <!-- プログレスバー -->
+    <div class="quiz-progress-wrap" id="quizProgressWrap" aria-hidden="true">
+      <div class="quiz-progress-bar" id="quizProgressBar" style="width:0%"></div>
+    </div>
+
+    <!-- Q1 見出し -->
+    <div class="quiz-q1-header">
+      <span class="quiz-step-indicator">Question 01 / 05</span>
+      <h2 class="quiz-q1-text">
+        香水特有の<mark>「ツンとした匂い」</mark>が<br />苦手と感じることがある
+      </h2>
+    </div>
+
+    <!-- Q1 選択肢（単体） -->
+    <ul class="quiz-list" id="q1List">
+      <li class="quiz-item" data-step="1">
+        <div class="quiz-step-label" aria-hidden="true">STEP <span>01</span> / 05</div>
+        <label class="quiz-label">
+          <input type="checkbox" class="quiz-checkbox" value="1" />
+          <span class="quiz-check-icon" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="10" r="8.5" stroke="currentColor" stroke-width="1"/>
+              <path class="check-path" d="M6.5 10.5L9 13L13.5 7"
+                    stroke="currentColor" stroke-width="1.2"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="quiz-check-text">はい、強い香りは苦手です</span>
+        </label>
+      </li>
+    </ul>
+
+    <!-- Q1専用 次へ誘導 -->
+    <div style="max-width:560px; margin: 1.6rem auto 0; text-align:center;">
+      <p style="font-size:.58rem; letter-spacing:.18em; color:var(--c-text-light);">
+        ↓ 続けて残り4問に答えてください
+      </p>
+    </div>
+
+  </div><!-- /.quiz-atf-panel -->
+
+
+  <!-- Q2〜Q5 + 送信（fold以降） -->
+  <div class="quiz-remaining">
 
     <div class="quiz-header">
       <p class="section-label">Self Check</p>
       <h2 class="quiz-title">購入前の相性チェック</h2>
       <p class="quiz-lead">
         当てはまる項目を選んでください。<br />
-        あなたとOud Stallionの相性を判定します。
+        あなたとPURELAYERの相性を判定します。
       </p>
     </div>
 
-    <div class="quiz-progress-wrap" id="quizProgressWrap" aria-hidden="true">
-      <div class="quiz-progress-bar" id="quizProgressBar" style="width:0%"></div>
-    </div>
-
-    <div class="quiz-wrapper">
+    <div class="quiz-wrapper" id="quizWrapper">
       <form id="quizForm" novalidate>
         <ul class="quiz-list">
-
-          <li class="quiz-item" data-step="1">
-            <div class="quiz-step-label" aria-hidden="true">STEP <span>01</span> / 05</div>
-            <label class="quiz-label">
-              <input type="checkbox" class="quiz-checkbox" value="1" />
-              <span class="quiz-check-icon" aria-hidden="true">
-                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="10" cy="10" r="8.5" stroke="currentColor" stroke-width="1"/>
-                  <path class="check-path" d="M6.5 10.5L9 13L13.5 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              <span class="quiz-check-text">香水特有の<mark>「ツンとした匂い」</mark>が苦手だ</span>
-            </label>
-          </li>
 
           <li class="quiz-item" data-step="2">
             <div class="quiz-step-label" aria-hidden="true">STEP <span>02</span> / 05</div>
@@ -894,7 +1007,9 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
               <span class="quiz-check-icon" aria-hidden="true">
                 <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="10" cy="10" r="8.5" stroke="currentColor" stroke-width="1"/>
-                  <path class="check-path" d="M6.5 10.5L9 13L13.5 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class="check-path" d="M6.5 10.5L9 13L13.5 7"
+                        stroke="currentColor" stroke-width="1.2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
               <span class="quiz-check-text">周囲に<mark>「清潔感のある人」</mark>という印象を与えたい</span>
@@ -908,7 +1023,9 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
               <span class="quiz-check-icon" aria-hidden="true">
                 <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="10" cy="10" r="8.5" stroke="currentColor" stroke-width="1"/>
-                  <path class="check-path" d="M6.5 10.5L9 13L13.5 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class="check-path" d="M6.5 10.5L9 13L13.5 7"
+                        stroke="currentColor" stroke-width="1.2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
               <span class="quiz-check-text">職場や学校でも、<mark>さりげなく香り</mark>を楽しみたい</span>
@@ -922,7 +1039,9 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
               <span class="quiz-check-icon" aria-hidden="true">
                 <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="10" cy="10" r="8.5" stroke="currentColor" stroke-width="1"/>
-                  <path class="check-path" d="M6.5 10.5L9 13L13.5 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class="check-path" d="M6.5 10.5L9 13L13.5 7"
+                        stroke="currentColor" stroke-width="1.2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
               <span class="quiz-check-text">柔軟剤のような、<mark>自然で優しい香り</mark>が好きだ</span>
@@ -936,7 +1055,9 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
               <span class="quiz-check-icon" aria-hidden="true">
                 <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="10" cy="10" r="8.5" stroke="currentColor" stroke-width="1"/>
-                  <path class="check-path" d="M6.5 10.5L9 13L13.5 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class="check-path" d="M6.5 10.5L9 13L13.5 7"
+                        stroke="currentColor" stroke-width="1.2"
+                        stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
               <span class="quiz-check-text">自分の香りが<mark>「香害」</mark>になっていないか不安になることがある</span>
@@ -948,28 +1069,35 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
         <div class="quiz-submit-area">
           <button type="button" class="quiz-submit-btn" id="quizSubmit">
             相性を判定する
-            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="btn-icon" aria-hidden="true">
-              <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
+                 class="btn-icon" aria-hidden="true">
+              <path d="M4 10H16M16 10L11 5M16 10L11 15"
+                    stroke="currentColor" stroke-width="1"
+                    stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
           <p class="quiz-submit-meta">※ 個人情報の入力は不要です</p>
         </div>
+
       </form>
+    </div><!-- /.quiz-wrapper -->
+
+  </div><!-- /.quiz-remaining -->
+
+  <!-- ローディング・結果（既存のまま流用） -->
+  <div class="quiz-loading" id="quizLoading" aria-hidden="true">
+    <div class="loading-inner">
+      <div class="loading-ring"></div>
+      <p class="loading-text">あなたの清潔感を分析中...</p>
     </div>
+  </div>
 
-    <div class="quiz-loading" id="quizLoading" aria-hidden="true">
-      <div class="loading-inner">
-        <div class="loading-ring"></div>
-        <p class="loading-text">あなたの清潔感を分析中...</p>
-      </div>
-    </div>
+  <div class="quiz-result" id="quizResult" aria-live="polite">
+    <div class="result-inner" id="resultInner"></div>
+  </div>
 
-    <div class="quiz-result" id="quizResult" aria-live="polite">
-      <div class="result-inner" id="resultInner"></div>
-    </div>
-
-  </section>
-
+</section>
+   
   <!-- ══════════════════════
        REVIEWS（変更なし）
   ══════════════════════ -->
@@ -1258,7 +1386,19 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
 
     quizSubmit.addEventListener('click', function () {
       const count = document.querySelectorAll('.quiz-checkbox:checked').length;
-      if (count === 0) { showResult(0); return; }
+      if (count === 0) { showResult(0); return; 
+                       /* Q1（ATFパネル）のチェックを全体カウントに統合 */
+const q1Checkbox = document.querySelector('#q1List .quiz-checkbox');
+if (q1Checkbox) {
+  q1Checkbox.addEventListener('change', function () {
+    this.closest('.quiz-item').classList.toggle('checked', this.checked);
+    updateProgress();
+  });
+}
+
+/* 判定ボタンは全チェックボックス（Q1含む）を集計 */
+/* updateProgress / quizSubmit の querySelectorAll は
+   document全体を対象にしているためQ1も自動集計されます */}
 
       var wrapper = document.querySelector('.quiz-wrapper');
       wrapper.style.transition = 'opacity .4s ease';
