@@ -1381,127 +1381,104 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   ══════════════════════ -->
   <script>
   (function () {
-    'use strict';
+  'use strict';
 
-    const quizSubmit  = document.getElementById('quizSubmit');
-    const quizLoading = document.getElementById('quizLoading');
-    const quizResult  = document.getElementById('quizResult');
-    const resultInner = document.getElementById('resultInner');
-    const quizSection = document.getElementById('quiz');
-    const progressBar = document.getElementById('quizProgressBar');
-    const heroCtaBtn  = document.getElementById('heroCtaBtn');
+  const progressBar  = document.getElementById('diagProgressBar');
+  const submitBtn    = document.getElementById('diagSubmit');
+  const loading      = document.getElementById('diagLoading');
+  const resultWrap   = document.getElementById('diagResult');
+  const resultInner  = document.getElementById('diagResultInner');
+  const formWrap     = document.getElementById('diagFormWrap');
 
-    if (heroCtaBtn) {
-      heroCtaBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        setTimeout(function () {
-          var firstCb = quizSection.querySelector('.quiz-checkbox');
-          if (firstCb) firstCb.focus({ preventScroll: true });
-        }, 700);
-      });
-    }
-
-    document.querySelectorAll('.quiz-checkbox').forEach(function (cb) {
-      cb.addEventListener('change', function () {
-        this.closest('.quiz-item').classList.toggle('checked', this.checked);
-        updateProgress();
-      });
+  /* チェック変化 → プログレス更新 */
+  document.querySelectorAll('.diag-checkbox').forEach(function (cb) {
+    cb.addEventListener('change', function () {
+      this.closest('.diag-item').classList.toggle('checked', this.checked);
+      updateProgress();
     });
-
-    function updateProgress() {
-      var total   = document.querySelectorAll('.quiz-checkbox').length;
-      var checked = document.querySelectorAll('.quiz-checkbox:checked').length;
-      if (progressBar) progressBar.style.width = Math.round((checked / total) * 100) + '%';
-    }
-
-    const arrowSvg = `<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
-      style="width:14px;display:inline-block;vertical-align:middle;margin-left:6px" aria-hidden="true">
-      <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1"
-        stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>`;
-
-    quizSubmit.addEventListener('click', function () {
-      const count = document.querySelectorAll('.quiz-checkbox:checked').length;
-      if (count === 0) { showResult(0); return; 
-                       /* Q1（ATFパネル）のチェックを全体カウントに統合 */
-const q1Checkbox = document.querySelector('#q1List .quiz-checkbox');
-if (q1Checkbox) {
-  q1Checkbox.addEventListener('change', function () {
-    this.closest('.quiz-item').classList.toggle('checked', this.checked);
-    updateProgress();
   });
-}
 
-/* 判定ボタンは全チェックボックス（Q1含む）を集計 */
-/* updateProgress / quizSubmit の querySelectorAll は
-   document全体を対象にしているためQ1も自動集計されます */}
+  function updateProgress() {
+    var total   = document.querySelectorAll('.diag-checkbox').length;
+    var checked = document.querySelectorAll('.diag-checkbox:checked').length;
+    if (progressBar) progressBar.style.width = Math.round((checked / total) * 100) + '%';
+  }
 
-      var wrapper = document.querySelector('.quiz-wrapper');
-      wrapper.style.transition = 'opacity .4s ease';
-      wrapper.style.opacity    = '0';
-      wrapper.style.pointerEvents = 'none';
+  const arrowSvg = `<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+    style="width:13px;display:inline-block;vertical-align:middle;margin-left:5px" aria-hidden="true">
+    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1"
+      stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`;
 
-      quizLoading.classList.add('active');
-      quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  /* 判定 */
+  submitBtn.addEventListener('click', function () {
+    var count = document.querySelectorAll('.diag-checkbox:checked').length;
+    if (count === 0) { renderResult(0); return; }
 
-      setTimeout(function () {
-        quizLoading.classList.remove('active');
-        showResult(count);
-      }, 1500);
-    });
+    formWrap.style.transition   = 'opacity .4s ease';
+    formWrap.style.opacity      = '0';
+    formWrap.style.pointerEvents = 'none';
+    loading.classList.add('active');
 
-    function showResult(count) {
-      var html = '';
-      if (count === 0) {
-        html = `<div class="result-none">
-          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"
-            style="width:28px;color:var(--c-accent);margin-bottom:.75rem" aria-hidden="true">
-            <circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="1"/>
-            <path d="M14 9V15" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-            <circle cx="14" cy="19" r=".8" fill="currentColor"/>
-          </svg>
-          <p class="result-msg">まだチェックが入っていません。</p>
-          <p class="result-sub">当てはまる項目を選んでから押してください。</p>
-        </div>`;
-      } else if (count >= 3) {
-        html = `<div class="result-positive">
-          <p class="result-eyebrow">診断結果 — ${count}/5 項目が一致</p>
-          <h2 class="result-declaration">PURELAYERは<br /><em>あなたのための</em><br />香水です。</h2>
-          <p class="result-sub-copy">香りに敏感なあなたには、透明な石鹸香調が最もよく合います。</p>
-          <div class="result-cta-group">
-            <a href="#purchase" class="result-cta-primary">あなたに最適な香りの構成を詳しく見る ${arrowSvg}</a>
-            <a href="#product" class="result-cta-secondary">製品概要を確認する</a>
-          </div>
-        </div>`;
-      } else {
-        html = `<div class="result-neutral">
-          <p class="result-eyebrow">診断結果 — ${count}/5 項目が一致</p>
-          <h2 class="result-declaration-sm">清潔な香りへの<br /><em>関心が芽生えています。</em></h2>
-          <p class="result-sub-copy">香りに慣れていない方にも馴染む、ほのかな石鹸香調。まず試してみてください。</p>
-          <div class="result-cta-group">
-            <a href="#purchase" class="result-cta-primary">まずは試してみる ${arrowSvg}</a>
-          </div>
-        </div>`;
-      }
-      resultInner.innerHTML = html;
-      quizResult.classList.add('active');
-      setTimeout(function () {
-        quizResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 60);
+    setTimeout(function () {
+      loading.classList.remove('active');
+      renderResult(count);
+    }, 1500);
+  });
+
+  function renderResult(count) {
+    var html = '';
+    if (count === 0) {
+      html = `<div class="result-none" style="max-width:500px;margin:2rem auto;padding:2rem;
+              border:1px solid var(--c-border);background:rgba(243,241,238,.6);text-align:center;">
+        <p class="result-msg" style="font-family:var(--ff-serif);font-size:1.05rem;margin-bottom:.4rem;">
+          まだチェックが入っていません。</p>
+        <p class="result-sub" style="font-size:.76rem;color:var(--c-text-mid);">
+          当てはまる項目を選んでから押してください。</p>
+      </div>`;
+    } else if (count >= 3) {
+      html = `<div class="result-positive" style="padding:clamp(3rem,8vw,6rem) var(--pad-h);text-align:center;">
+        <p class="result-eyebrow">診断結果 &mdash; ${count}/5 項目が一致</p>
+        <h2 class="result-declaration">PURELAYERは<br /><em>あなたのための</em><br />香水です。</h2>
+        <p class="result-sub-copy">香りに敏感なあなたには、透明な石鹸香調が最もよく合います。</p>
+        <div class="result-cta-group">
+          <a href="#purchase" class="result-cta-primary">あなたに最適な香りを詳しく見る ${arrowSvg}</a>
+          <a href="#product"  class="result-cta-secondary">製品概要を確認する</a>
+        </div>
+      </div>`;
+    } else {
+      html = `<div class="result-neutral" style="padding:clamp(3rem,8vw,6rem) var(--pad-h);text-align:center;">
+        <p class="result-eyebrow">診断結果 &mdash; ${count}/5 項目が一致</p>
+        <h2 class="result-declaration-sm">清潔な香りへの<br /><em>関心が芽生えています。</em></h2>
+        <p class="result-sub-copy">香りに慣れていない方にも馴染む、ほのかな石鹸香調。まず試してみてください。</p>
+        <div class="result-cta-group">
+          <a href="#purchase" class="result-cta-primary">まずは試してみる ${arrowSvg}</a>
+        </div>
+      </div>`;
     }
 
-    const fadeEls = document.querySelectorAll(
-      '.benefit-item, .review-card, .purchase-inner, .quiz-wrapper, .guarantee-badge'
-    );
-    const io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) { entry.target.classList.add('in-view'); io.unobserve(entry.target); }
-      });
-    }, { threshold: 0.1 });
-    fadeEls.forEach(function (el) { io.observe(el); });
+    resultInner.innerHTML = html;
+    resultWrap.classList.add('active');
+    setTimeout(function () {
+      resultWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 60);
+  }
 
-  })();
+  /* IntersectionObserver（既存セクション用） */
+  var fadeEls = document.querySelectorAll(
+    '.benefit-item, .review-card, .purchase-inner, .guarantee-badge'
+  );
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(function (el) { io.observe(el); });
+
+})();
   </script>
 </body>
 </html>
