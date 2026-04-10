@@ -527,356 +527,266 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
 }
 
 /* ════════════════════════════════
-   DIAGNOSTIC FLOW — 完全統合版
-   FV → Q1〜Q5 を一続きの体験として設計
+   BRIDGE HERO — 広告同期型FV
+   「紹介」→「理由付け」→「診断」
 ════════════════════════════════ */
 
-/* ── 統合ラッパー ── */
+/* ── 統合ラッパー（グラデーション継続） ── */
 .diag-flow {
-  padding-top: 64px; /* fixed header offset */
-  /* グラデーションをセクションを跨いで一続きに */
-  background:
-    radial-gradient(ellipse at 50% 18%, #FFFFFF 0%, #F0EFEC 55%, #E8E6E1 100%);
-  min-height: 100svh;
+  padding-top: 64px;
+  background: #F9F9F9;
+  position: relative;
 }
 
-/* ── FV: イントロ ── */
-.diag-intro {
-  max-width: 600px;
+/* ── FVビジュアルパネル ── */
+.bridge-hero {
+  position: relative;
+  width: 100%;
+  /* スマホで「紹介」+「Q1食い込み」が1画面に収まる高さ */
+  min-height: 92svh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+}
+
+/* 背景写真レイヤー */
+.bridge-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bridge-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+/* 写真の上に重ねるグラデーションオーバーレイ（可読性確保） */
+.bridge-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(249,249,249,.18)  0%,
+      rgba(249,249,249,.55) 40%,
+      rgba(249,249,249,.88) 70%,
+      rgba(249,249,249,1)  100%
+    );
+}
+
+/* ── コピーブロック ── */
+.bridge-copy {
+  position: relative;
+  z-index: 2;
+  padding: clamp(2.4rem, 6svh, 4rem) var(--pad-h) clamp(1.6rem, 3svh, 2.4rem);
+  max-width: 640px;
+  /* モバイルは左揃え、広告的リアリティ */
   margin: 0 auto;
-  padding: clamp(2.2rem, 5svh, 3.8rem) var(--pad-h) clamp(1.6rem, 3.5svh, 2.6rem);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: clamp(1.2rem, 2.5svh, 1.8rem);
-  text-align: center;
-  animation: diagFadeUp .65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  gap: clamp(.9rem, 2svh, 1.4rem);
+  animation: bridgeFadeUp .7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-@keyframes diagFadeUp {
-  from { opacity: 0; transform: translateY(10px); }
+@keyframes bridgeFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.diag-brand {
+/* ブランド名 */
+.bridge-brand {
   font-family: var(--ff-serif);
-  font-size: .72rem;
+  font-size: .68rem;
   letter-spacing: .32em;
   font-weight: var(--fw-mid);
-  color: var(--c-text);
+  color: var(--c-accent-dk);
   text-transform: uppercase;
 }
 
-.diag-headline {
+/* バイラルバッジ（SNS話題感） */
+.bridge-viral-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  align-self: flex-start;
+  background: rgba(255,255,255,.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(201,169,110,.28);
+  border-radius: 999px;
+  padding: .3em .9em;
+  font-family: var(--ff-sans);
+  font-size: .58rem;
+  font-weight: var(--fw-light);
+  letter-spacing: .14em;
+  color: var(--c-accent-dk);
+  white-space: nowrap;
+}
+.bridge-viral-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--c-gold);
+  flex-shrink: 0;
+  animation: viralPulse 2s ease-in-out infinite;
+}
+@keyframes viralPulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: .5; transform: scale(.7); }
+}
+
+/* メインコピー */
+.bridge-headline {
   font-family: var(--ff-serif);
-  font-size: clamp(1.5rem, 4.2vw, 2.3rem);
+  font-size: clamp(1.55rem, 5.2vw, 2.6rem);
   font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: .03em;
+  line-height: 1.38;
+  letter-spacing: .02em;
   color: var(--c-text);
   margin: 0;
 }
-
-/* 3ベネフィット */
-.diag-benefits {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: clamp(1.8rem, 5vw, 3.4rem);
-}
-
-.diag-benefit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .5rem;
-}
-
-.diag-benefit-icon {
-  width: 32px;
-  height: 32px;
+/* 「清潔感の塊。」を金色に */
+.bridge-headline em {
+  font-style: italic;
   color: var(--c-accent-dk);
 }
 
-.diag-benefit-label {
+/* サブコピー */
+.bridge-sub {
+  font-family: var(--ff-sans);
+  font-size: clamp(.78rem, 1.8vw, .86rem);
+  font-weight: var(--fw-light);
+  line-height: 1.8;
+  color: var(--c-text-mid);
+  letter-spacing: .03em;
+  max-width: 460px;
+}
+
+/* 3ベネフィット（コンパクト横並び） */
+.bridge-benefits {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  padding-top: .2rem;
+}
+
+.bridge-benefit {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.bridge-benefit-icon {
+  width: 14px; height: 14px;
+  color: var(--c-accent);
+  flex-shrink: 0;
+}
+
+.bridge-benefit-label {
   font-family: var(--ff-sans);
   font-size: .55rem;
-  letter-spacing: .18em;
+  letter-spacing: .15em;
   color: var(--c-text-mid);
   font-weight: var(--fw-light);
   white-space: nowrap;
 }
 
-/* 信頼バッジ（隠し味） */
-.diag-trust {
+/* 信頼バッジ */
+.bridge-trust {
   display: inline-flex;
   align-items: center;
-  gap: .28rem;
+  gap: .3rem;
   font-size: .46rem;
-  font-weight: var(--fw-light);
   letter-spacing: .1em;
   color: #aaaaaa;
   font-family: var(--ff-sans);
 }
-.diag-trust-stars {
+.bridge-trust-stars {
   display: inline-flex;
   gap: 1px;
   opacity: .45;
 }
-.diag-trust-stars svg {
-  width: 6px; height: 6px;
-  fill: var(--c-gold);
-}
+.bridge-trust-stars svg { width: 6px; height: 6px; fill: var(--c-gold); }
 
-/* ── 区切り線（極細） ── */
-.diag-divider {
-  max-width: 600px;
+/* ── ブリッジ文エリア ── */
+.bridge-panel {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
   margin: 0 auto;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--c-beige-mid) 30%,
-    var(--c-beige-mid) 70%,
-    transparent 100%
-  );
-  opacity: .5;
+  padding: 0 var(--pad-h) clamp(1.4rem, 3svh, 2rem);
+  animation: bridgeFadeUp .7s .12s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* ── 診断フォーム ── */
-.diag-form-wrap {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: clamp(1.6rem, 3.5svh, 2.8rem) var(--pad-h) clamp(2.4rem, 5svh, 4rem);
-  animation: diagFadeUp .65s .1s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-/* プログレス */
-.diag-progress-wrap {
-  height: 1px;
-  background: rgba(214, 207, 196, .4);
-  margin-bottom: clamp(1.8rem, 4svh, 3rem);
-  overflow: hidden;
-}
-.diag-progress-bar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--c-accent), var(--c-gold));
-  transition: width .5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* 質問リスト */
-.diag-list {
-  list-style: none;
+.bridge-text {
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
+  gap: .7rem;
+  background: rgba(255,255,255,.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--c-border);
+  border-left: 2px solid var(--c-gold);
+  padding: .9rem 1.1rem;
 }
 
-.diag-item {
-  border-bottom: 1px solid rgba(226, 221, 215, .7);
-  transition: background .25s;
-}
-.diag-item:first-child {
-  border-top: 1px solid rgba(226, 221, 215, .7);
-}
-.diag-item.checked {
-  background: rgba(184, 169, 154, .055);
-}
-
-.diag-step-label {
-  padding: .75rem .5rem .1rem;
-  font-size: .54rem;
-  letter-spacing: .24em;
-  text-transform: uppercase;
-  color: rgba(214, 207, 196, .9);
-  transition: color .25s;
-  user-select: none;
-  font-family: var(--ff-sans);
-  font-weight: var(--fw-light);
-}
-.diag-item.checked .diag-step-label { color: var(--c-accent); }
-
-.diag-label {
-  display: flex;
-  align-items: center;
-  gap: .9rem;
-  padding: .7rem .5rem 1.1rem;
-  cursor: pointer;
-}
-
-/* チェックアイコン */
-.diag-check-icon {
+.bridge-text-icon {
+  width: 14px; height: 14px;
+  color: var(--c-gold);
   flex-shrink: 0;
-  width: 22px; height: 22px;
-  color: rgba(214, 207, 196, .8);
-  transition: color .25s;
+  margin-top: .15em;
 }
-.diag-check-icon svg { width: 100%; height: 100%; }
-.diag-item.checked .diag-check-icon { color: var(--c-accent-dk); }
 
-.check-path {
-  stroke-dasharray: 14;
-  stroke-dashoffset: 14;
-  transition: stroke-dashoffset .3s ease;
-}
-.diag-item.checked .check-path { stroke-dashoffset: 0; }
-
-/* 質問テキスト */
-.diag-q-text {
+.bridge-text p {
   font-family: var(--ff-sans);
-  font-size: clamp(.88rem, 2vw, .96rem);
-  line-height: 1.65;
-  letter-spacing: .02em;
-  color: var(--c-text);
-  transition: color .25s;
+  font-size: clamp(.72rem, 1.6vw, .78rem);
   font-weight: var(--fw-light);
+  line-height: 1.75;
+  letter-spacing: .03em;
+  color: var(--c-text-mid);
+  margin: 0;
 }
-.diag-item.checked .diag-q-text { color: var(--c-accent-dk); }
 
-.diag-q-text mark {
-  background: transparent;
-  color: var(--c-accent-dk);
+.bridge-text strong {
+  color: var(--c-text);
   font-weight: var(--fw-reg);
 }
 
-/* hidden checkbox */
-.diag-checkbox { position: absolute; opacity: 0; width: 0; height: 0; }
-
-/* ── 送信エリア ── */
-.diag-submit-area {
-  margin-top: clamp(1.8rem, 4svh, 2.8rem);
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: .6rem;
-}
-
-.diag-submit-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .7rem;
-  width: 100%;
-  padding: 1.15em 2em;
-  background: var(--c-text);
-  color: var(--c-white);
-  font-size: clamp(.88rem, 1.8vw, .96rem);
-  font-weight: var(--fw-mid);
-  letter-spacing: .16em;
-  font-family: var(--ff-sans);
-  border: none;
-  cursor: pointer;
-  box-shadow:
-    0 1px 2px  rgba(51,51,51,.10),
-    0 4px 12px rgba(51,51,51,.11),
-    0 10px 28px rgba(51,51,51,.07),
-    inset 0 1px 0 rgba(255,255,255,.06);
-  transition:
-    background  .4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow  .4s cubic-bezier(0.16, 1, 0.3, 1),
-    transform   .16s ease,
-    letter-spacing .4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.diag-submit-btn:hover {
-  background: var(--c-accent-dk);
-  box-shadow:
-    0 2px 4px  rgba(140,123,110,.16),
-    0 8px 22px rgba(140,123,110,.20),
-    0 18px 44px rgba(140,123,110,.10),
-    inset 0 1px 0 rgba(255,255,255,.08);
-  letter-spacing: .22em;
-  transform: translateY(-1px);
-}
-.diag-submit-btn:active {
-  transform: scale(.97) translateY(0);
-  box-shadow: 0 1px 3px rgba(51,51,51,.14);
-}
-
-.btn-icon { width: 16px; flex-shrink: 0; transition: transform .3s; }
-.diag-submit-btn:hover .btn-icon { transform: translateX(3px); }
-
-.diag-submit-meta {
-  text-align: center;
-  font-size: .62rem;
-  color: var(--c-text-light);
-  letter-spacing: .08em;
-  font-family: var(--ff-sans);
-}
-
-/* ── ローディング ── */
-.diag-loading {
-  display: none;
-  position: absolute; inset: 0;
-  background: rgba(249,249,249,.96);
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-.diag-loading.active {
-  display: flex;
-  animation: diagFadeIn .3s ease both;
-}
-@keyframes diagFadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-.diag-loading-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.4rem;
-  text-align: center;
-}
-.diag-loading-ring {
-  width: 32px; height: 32px;
-  border: 1px solid var(--c-beige-mid);
-  border-top-color: var(--c-accent-dk);
-  border-radius: 50%;
-  animation: diagSpin .9s linear infinite;
-}
-@keyframes diagSpin { to { transform: rotate(360deg); } }
-
-.diag-loading-text {
-  font-size: .74rem;
-  letter-spacing: .2em;
-  color: var(--c-text-mid);
-  font-family: var(--ff-sans);
-  animation: diagPulse 1.2s ease-in-out infinite;
-}
-@keyframes diagPulse { 0%,100%{opacity:.4} 50%{opacity:1} }
-
-/* ── 結果エリア（既存流用・背景統一） ── */
-.diag-result {
-  max-width: var(--max-w);
+/* ── 診断フォームへの継続（既存 .diag-form-wrap の上書き） ── */
+.diag-form-wrap {
+  max-width: 640px;
   margin: 0 auto;
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: max-height .8s cubic-bezier(0.4,0,0.2,1), opacity .5s ease;
+  padding: clamp(1.4rem, 3svh, 2.2rem) var(--pad-h) clamp(2.4rem, 5svh, 4rem);
+  background: var(--c-white);
+  position: relative;
+  z-index: 2;
 }
-.diag-result.active { max-height: 700px; opacity: 1; }
 
-/* 結果内の背景をフロー全体に馴染ませる */
-.result-positive,
-.result-neutral {
-  background: transparent;
-  border-top: 1px solid var(--c-border);
+.diag-progress-wrap {
+  height: 1px;
+  background: rgba(214, 207, 196, .4);
+  margin-bottom: clamp(1.4rem, 3svh, 2.2rem);
+  overflow: hidden;
 }
-.result-none { background: rgba(243,241,238,.6); }
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .diag-benefits { gap: clamp(1.4rem, 4vw, 2.4rem); }
-  .diag-benefit-icon { width: 28px; height: 28px; }
+  .bridge-hero { min-height: 95svh; }
+  .bridge-headline { font-size: clamp(1.35rem, 5.8vw, 2rem); }
 }
 @media (max-width: 540px) {
-  .diag-intro { gap: 1.1rem; }
-  .diag-headline { font-size: clamp(1.2rem, 5.5vw, 1.6rem); }
-  .diag-benefits { gap: 1.3rem; }
-  .diag-benefit-label { font-size: .52rem; letter-spacing: .12em; }
-  .diag-q-text { font-size: .86rem; }
+  .bridge-copy   { gap: .85rem; }
+  .bridge-sub    { font-size: .76rem; }
+  .bridge-benefits { gap: 1rem; }
+  .bridge-benefit-label { font-size: .52rem; }
 }
 @media (max-width: 380px) {
-  .diag-headline { font-size: 1.1rem; }
-  .diag-benefits { gap: .9rem; }
+  .bridge-headline { font-size: 1.25rem; }
+  .bridge-benefits { flex-wrap: wrap; gap: .7rem; }
 }
    
    </style>
@@ -927,82 +837,141 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
      DIAGNOSTIC FLOW — FV + Q1〜Q5 完全統合
 ══════════════════════════════════════════════ -->
    <section>
+<!-- ══════════════════════════════════════════════
+     BRIDGE HERO — 広告同期型FV
+     「紹介」→「ブリッジ」→「診断」
+══════════════════════════════════════════════ -->
 <div class="diag-flow" id="diagFlow">
   <div style="position:relative;">
 
-    <!-- ▌FV イントロ ▌ -->
-    <div class="diag-intro">
+    <!-- ▌FVビジュアルパネル ▌ -->
+    <div class="bridge-hero">
 
-      <p class="diag-brand">PURELAYER</p>
-
-      <h1 class="diag-headline">Oud Stallionとの<br />相性チェック</h1>
-
-      <!-- 3ベネフィット -->
-      <div class="diag-benefits">
-
-        <div class="diag-benefit">
-          <svg class="diag-benefit-icon" viewBox="0 0 32 32" fill="none"
-               xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="5" y="7" width="22" height="18" rx="2" stroke="currentColor" stroke-width="1"/>
-            <path d="M10 14L13.5 17.5L19 11" stroke="currentColor" stroke-width="1"
-                  stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="10" y1="21" x2="22" y2="21" stroke="currentColor"
-                  stroke-width=".8" stroke-linecap="round" stroke-dasharray="2 2"/>
-          </svg>
-          <span class="diag-benefit-label">5問で判定</span>
-        </div>
-
-        <div class="diag-benefit">
-          <svg class="diag-benefit-icon" viewBox="0 0 32 32" fill="none"
-               xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M16 3L28 8V18C28 24 16 29 16 29C16 29 4 24 4 18V8L16 3Z"
-                  stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
-            <rect x="12" y="15" width="8" height="7" rx="1" stroke="currentColor" stroke-width="1"/>
-            <path d="M13.5 15V13.5C13.5 11.8 18.5 11.8 18.5 13.5V15"
-                  stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-          </svg>
-          <span class="diag-benefit-label">登録不要</span>
-        </div>
-
-        <div class="diag-benefit">
-          <svg class="diag-benefit-icon" viewBox="0 0 32 32" fill="none"
-               xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="5" y="14" width="22" height="14" rx="1" stroke="currentColor" stroke-width="1"/>
-            <rect x="3" y="9"  width="26" height="5"  rx="1" stroke="currentColor" stroke-width="1"/>
-            <line x1="16" y1="9"  x2="16" y2="28" stroke="currentColor"
-                  stroke-width="1" stroke-linecap="round"/>
-            <path d="M16 9C16 9 13 4 10.5 5C8 6 8.5 9 11 9"
-                  stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-            <path d="M16 9C16 9 19 4 21.5 5C24 6 23.5 9 21 9"
-                  stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-          </svg>
-          <span class="diag-benefit-label">無料診断</span>
-        </div>
-
+      <!-- 背景写真（ボトル・清潔感） -->
+      <div class="bridge-hero-bg">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731"
+          alt=""
+          aria-hidden="true"
+          fetchpriority="high"
+          draggable="false"
+        />
       </div>
 
-      <!-- 信頼バッジ（隠し味） -->
-      <div class="diag-trust">
-        <span class="diag-trust-stars" aria-label="星5つ">
-          <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8" fill="currentColor"/></svg>
-          <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8" fill="currentColor"/></svg>
-          <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8" fill="currentColor"/></svg>
-          <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8" fill="currentColor"/></svg>
-          <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8" fill="currentColor"/></svg>
-        </span>
-        <span style="color:var(--c-beige-mid);font-size:.42rem;">|</span>
-        <span>累計診断数 5,000件突破</span>
-      </div>
+      <!-- コピーブロック -->
+      <div class="bridge-copy">
 
-    </div><!-- /.diag-intro -->
+        <p class="bridge-brand">PURELAYER — Oud Stallion</p>
 
-    <!-- 極細区切り線（グラデーションを分断しない） -->
-    <div class="diag-divider"></div>
+        <!-- SNS話題感バッジ -->
+        <div class="bridge-viral-badge">
+          <span class="bridge-viral-dot"></span>
+          SNSで話題・学校・職場で絶賛
+        </div>
 
-    <!-- ▌診断フォーム Q1〜Q5 ▌ -->
+        <!-- メインコピー -->
+        <h1 class="bridge-headline">
+          学校・職場で「いい匂い」と<br />
+          絶賛された、<em>清潔感の塊。</em>
+        </h1>
+
+        <!-- サブコピー -->
+        <p class="bridge-sub">
+          SNSで話題のOud Stallion。<br />
+          なぜこれほどまでに褒められるのか？
+        </p>
+
+        <!-- 3ベネフィット（横並びコンパクト） -->
+        <div class="bridge-benefits">
+
+          <div class="bridge-benefit">
+            <svg class="bridge-benefit-icon" viewBox="0 0 16 16" fill="none"
+                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="2" y="2" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1"/>
+              <path d="M5 8L7.2 10L11 6" stroke="currentColor" stroke-width="1"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="bridge-benefit-label">5問で判定</span>
+          </div>
+
+          <div class="bridge-benefit">
+            <svg class="bridge-benefit-icon" viewBox="0 0 16 16" fill="none"
+                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M8 1.5L14 4V9C14 12.5 8 15 8 15C8 15 2 12.5 2 9V4L8 1.5Z"
+                    stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+              <rect x="6" y="8" width="4" height="3.5" rx=".5" stroke="currentColor" stroke-width=".9"/>
+              <path d="M6.8 8V7C6.8 5.8 9.2 5.8 9.2 7V8"
+                    stroke="currentColor" stroke-width=".9" stroke-linecap="round"/>
+            </svg>
+            <span class="bridge-benefit-label">登録不要</span>
+          </div>
+
+          <div class="bridge-benefit">
+            <svg class="bridge-benefit-icon" viewBox="0 0 16 16" fill="none"
+                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="2.5" y="7" width="11" height="7" rx="1" stroke="currentColor" stroke-width="1"/>
+              <rect x="1.5" y="4.5" width="13" height="2.5" rx=".8" stroke="currentColor" stroke-width="1"/>
+              <line x1="8" y1="4.5" x2="8" y2="14" stroke="currentColor"
+                    stroke-width="1" stroke-linecap="round"/>
+              <path d="M8 4.5C8 4.5 6.5 2 5 2.5C3.5 3 3.8 4.5 5.5 4.5"
+                    stroke="currentColor" stroke-width=".9" stroke-linecap="round"/>
+              <path d="M8 4.5C8 4.5 9.5 2 11 2.5C12.5 3 12.2 4.5 10.5 4.5"
+                    stroke="currentColor" stroke-width=".9" stroke-linecap="round"/>
+            </svg>
+            <span class="bridge-benefit-label">無料診断</span>
+          </div>
+
+        </div>
+
+        <!-- 信頼バッジ（隠し味） -->
+        <div class="bridge-trust">
+          <span class="bridge-trust-stars" aria-label="星5つ">
+            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8"
+                       fill="currentColor"/></svg>
+            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8"
+                       fill="currentColor"/></svg>
+            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8"
+                       fill="currentColor"/></svg>
+            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8"
+                       fill="currentColor"/></svg>
+            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8"
+                       fill="currentColor"/></svg>
+          </span>
+          <span style="color:var(--c-beige-mid);font-size:.4rem;">|</span>
+          <span>累計診断数 5,000件突破</span>
+        </div>
+
+      </div><!-- /.bridge-copy -->
+
+      <!-- ブリッジ文（Q1への動機付け） -->
+      <div class="bridge-panel">
+        <div class="bridge-text">
+          <svg class="bridge-text-icon" viewBox="0 0 16 16" fill="none"
+               xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1"/>
+            <path d="M8 5V8.5" stroke="currentColor" stroke-width="1.1"
+                  stroke-linecap="round"/>
+            <circle cx="8" cy="10.8" r=".6" fill="currentColor"/>
+          </svg>
+          <p>
+            ※ 香りは<strong>肌質で変化</strong>します。あなたが使った時に
+            <strong>「本当に褒められるか」</strong>、
+            相性を30秒で判定します。
+          </p>
+        </div>
+      </div><!-- /.bridge-panel -->
+
+    </div><!-- /.bridge-hero -->
+
+
+    <!-- ▌診断フォーム Q1〜Q5（ロジック・質問内容は無改変） ▌ -->
     <div class="diag-form-wrap" id="diagFormWrap">
 
-      <!-- プログレスバー -->
       <div class="diag-progress-wrap" aria-hidden="true">
         <div class="diag-progress-bar" id="diagProgressBar"></div>
       </div>
@@ -1118,7 +1087,7 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
       </form>
     </div><!-- /.diag-form-wrap -->
 
-    <!-- ローディング -->
+    <!-- ローディング（無改変） -->
     <div class="diag-loading" id="diagLoading" aria-hidden="true">
       <div class="diag-loading-inner">
         <div class="diag-loading-ring"></div>
@@ -1126,12 +1095,12 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
       </div>
     </div>
 
-    <!-- 結果 -->
+    <!-- 結果（無改変） -->
     <div class="diag-result" id="diagResult" aria-live="polite">
       <div id="diagResultInner"></div>
     </div>
 
-  </div><!-- /position:relative wrapper -->
+  </div>
 </div><!-- /.diag-flow -->
 </section>
    
