@@ -526,6 +526,359 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
   .guarantee-badges { grid-template-columns: 1fr; }
 }
 
+   /* ════════════════════════════════
+   DIAGNOSTIC FLOW — 完全統合版
+   FV → Q1〜Q5 を一続きの体験として設計
+════════════════════════════════ */
+
+/* ── 統合ラッパー ── */
+.diag-flow {
+  padding-top: 64px; /* fixed header offset */
+  /* グラデーションをセクションを跨いで一続きに */
+  background:
+    radial-gradient(ellipse at 50% 18%, #FFFFFF 0%, #F0EFEC 55%, #E8E6E1 100%);
+  min-height: 100svh;
+}
+
+/* ── FV: イントロ ── */
+.diag-intro {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: clamp(2.2rem, 5svh, 3.8rem) var(--pad-h) clamp(1.6rem, 3.5svh, 2.6rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.2rem, 2.5svh, 1.8rem);
+  text-align: center;
+  animation: diagFadeUp .65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes diagFadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.diag-brand {
+  font-family: var(--ff-serif);
+  font-size: .72rem;
+  letter-spacing: .32em;
+  font-weight: var(--fw-mid);
+  color: var(--c-text);
+  text-transform: uppercase;
+}
+
+.diag-headline {
+  font-family: var(--ff-serif);
+  font-size: clamp(1.5rem, 4.2vw, 2.3rem);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: .03em;
+  color: var(--c-text);
+  margin: 0;
+}
+
+/* 3ベネフィット */
+.diag-benefits {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(1.8rem, 5vw, 3.4rem);
+}
+
+.diag-benefit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+}
+
+.diag-benefit-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--c-accent-dk);
+}
+
+.diag-benefit-label {
+  font-family: var(--ff-sans);
+  font-size: .55rem;
+  letter-spacing: .18em;
+  color: var(--c-text-mid);
+  font-weight: var(--fw-light);
+  white-space: nowrap;
+}
+
+/* 信頼バッジ（隠し味） */
+.diag-trust {
+  display: inline-flex;
+  align-items: center;
+  gap: .28rem;
+  font-size: .46rem;
+  font-weight: var(--fw-light);
+  letter-spacing: .1em;
+  color: #aaaaaa;
+  font-family: var(--ff-sans);
+}
+.diag-trust-stars {
+  display: inline-flex;
+  gap: 1px;
+  opacity: .45;
+}
+.diag-trust-stars svg {
+  width: 6px; height: 6px;
+  fill: var(--c-gold);
+}
+
+/* ── 区切り線（極細） ── */
+.diag-divider {
+  max-width: 600px;
+  margin: 0 auto;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--c-beige-mid) 30%,
+    var(--c-beige-mid) 70%,
+    transparent 100%
+  );
+  opacity: .5;
+}
+
+/* ── 診断フォーム ── */
+.diag-form-wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: clamp(1.6rem, 3.5svh, 2.8rem) var(--pad-h) clamp(2.4rem, 5svh, 4rem);
+  animation: diagFadeUp .65s .1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* プログレス */
+.diag-progress-wrap {
+  height: 1px;
+  background: rgba(214, 207, 196, .4);
+  margin-bottom: clamp(1.8rem, 4svh, 3rem);
+  overflow: hidden;
+}
+.diag-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--c-accent), var(--c-gold));
+  transition: width .5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 質問リスト */
+.diag-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.diag-item {
+  border-bottom: 1px solid rgba(226, 221, 215, .7);
+  transition: background .25s;
+}
+.diag-item:first-child {
+  border-top: 1px solid rgba(226, 221, 215, .7);
+}
+.diag-item.checked {
+  background: rgba(184, 169, 154, .055);
+}
+
+.diag-step-label {
+  padding: .75rem .5rem .1rem;
+  font-size: .54rem;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: rgba(214, 207, 196, .9);
+  transition: color .25s;
+  user-select: none;
+  font-family: var(--ff-sans);
+  font-weight: var(--fw-light);
+}
+.diag-item.checked .diag-step-label { color: var(--c-accent); }
+
+.diag-label {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  padding: .7rem .5rem 1.1rem;
+  cursor: pointer;
+}
+
+/* チェックアイコン */
+.diag-check-icon {
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  color: rgba(214, 207, 196, .8);
+  transition: color .25s;
+}
+.diag-check-icon svg { width: 100%; height: 100%; }
+.diag-item.checked .diag-check-icon { color: var(--c-accent-dk); }
+
+.check-path {
+  stroke-dasharray: 14;
+  stroke-dashoffset: 14;
+  transition: stroke-dashoffset .3s ease;
+}
+.diag-item.checked .check-path { stroke-dashoffset: 0; }
+
+/* 質問テキスト */
+.diag-q-text {
+  font-family: var(--ff-sans);
+  font-size: clamp(.88rem, 2vw, .96rem);
+  line-height: 1.65;
+  letter-spacing: .02em;
+  color: var(--c-text);
+  transition: color .25s;
+  font-weight: var(--fw-light);
+}
+.diag-item.checked .diag-q-text { color: var(--c-accent-dk); }
+
+.diag-q-text mark {
+  background: transparent;
+  color: var(--c-accent-dk);
+  font-weight: var(--fw-reg);
+}
+
+/* hidden checkbox */
+.diag-checkbox { position: absolute; opacity: 0; width: 0; height: 0; }
+
+/* ── 送信エリア ── */
+.diag-submit-area {
+  margin-top: clamp(1.8rem, 4svh, 2.8rem);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: .6rem;
+}
+
+.diag-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .7rem;
+  width: 100%;
+  padding: 1.15em 2em;
+  background: var(--c-text);
+  color: var(--c-white);
+  font-size: clamp(.88rem, 1.8vw, .96rem);
+  font-weight: var(--fw-mid);
+  letter-spacing: .16em;
+  font-family: var(--ff-sans);
+  border: none;
+  cursor: pointer;
+  box-shadow:
+    0 1px 2px  rgba(51,51,51,.10),
+    0 4px 12px rgba(51,51,51,.11),
+    0 10px 28px rgba(51,51,51,.07),
+    inset 0 1px 0 rgba(255,255,255,.06);
+  transition:
+    background  .4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow  .4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform   .16s ease,
+    letter-spacing .4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.diag-submit-btn:hover {
+  background: var(--c-accent-dk);
+  box-shadow:
+    0 2px 4px  rgba(140,123,110,.16),
+    0 8px 22px rgba(140,123,110,.20),
+    0 18px 44px rgba(140,123,110,.10),
+    inset 0 1px 0 rgba(255,255,255,.08);
+  letter-spacing: .22em;
+  transform: translateY(-1px);
+}
+.diag-submit-btn:active {
+  transform: scale(.97) translateY(0);
+  box-shadow: 0 1px 3px rgba(51,51,51,.14);
+}
+
+.btn-icon { width: 16px; flex-shrink: 0; transition: transform .3s; }
+.diag-submit-btn:hover .btn-icon { transform: translateX(3px); }
+
+.diag-submit-meta {
+  text-align: center;
+  font-size: .62rem;
+  color: var(--c-text-light);
+  letter-spacing: .08em;
+  font-family: var(--ff-sans);
+}
+
+/* ── ローディング ── */
+.diag-loading {
+  display: none;
+  position: absolute; inset: 0;
+  background: rgba(249,249,249,.96);
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.diag-loading.active {
+  display: flex;
+  animation: diagFadeIn .3s ease both;
+}
+@keyframes diagFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.diag-loading-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  text-align: center;
+}
+.diag-loading-ring {
+  width: 32px; height: 32px;
+  border: 1px solid var(--c-beige-mid);
+  border-top-color: var(--c-accent-dk);
+  border-radius: 50%;
+  animation: diagSpin .9s linear infinite;
+}
+@keyframes diagSpin { to { transform: rotate(360deg); } }
+
+.diag-loading-text {
+  font-size: .74rem;
+  letter-spacing: .2em;
+  color: var(--c-text-mid);
+  font-family: var(--ff-sans);
+  animation: diagPulse 1.2s ease-in-out infinite;
+}
+@keyframes diagPulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+
+/* ── 結果エリア（既存流用・背景統一） ── */
+.diag-result {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height .8s cubic-bezier(0.4,0,0.2,1), opacity .5s ease;
+}
+.diag-result.active { max-height: 700px; opacity: 1; }
+
+/* 結果内の背景をフロー全体に馴染ませる */
+.result-positive,
+.result-neutral {
+  background: transparent;
+  border-top: 1px solid var(--c-border);
+}
+.result-none { background: rgba(243,241,238,.6); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .diag-benefits { gap: clamp(1.4rem, 4vw, 2.4rem); }
+  .diag-benefit-icon { width: 28px; height: 28px; }
+}
+@media (max-width: 540px) {
+  .diag-intro { gap: 1.1rem; }
+  .diag-headline { font-size: clamp(1.2rem, 5.5vw, 1.6rem); }
+  .diag-benefits { gap: 1.3rem; }
+  .diag-benefit-label { font-size: .52rem; letter-spacing: .12em; }
+  .diag-q-text { font-size: .86rem; }
+}
+@media (max-width: 380px) {
+  .diag-headline { font-size: 1.1rem; }
+  .diag-benefits { gap: .9rem; }
+}
+   
 /* ════════════════════════════════
    BRIDGE HERO — 広告同期型FV
    「紹介」→「理由付け」→「診断」
@@ -565,19 +918,7 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
 }
 
 /* 写真の上に重ねるグラデーションオーバーレイ（可読性確保） */
-.bridge-hero-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(249,249,249,.18)  0%,
-      rgba(249,249,249,.55) 40%,
-      rgba(249,249,249,.88) 70%,
-      rgba(249,249,249,1)  100%
-    );
-}
+
 
 /* ── コピーブロック ── */
 .bridge-copy {
@@ -850,7 +1191,7 @@ mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--
       <!-- 背景写真（ボトル・清潔感） -->
       <div class="bridge-hero-bg">
         <img
-          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731"
+          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/4D3C3BA0-E0DD-4E99-A03A-CE12B93F1443.webp?v=1775784238"
           alt=""
           aria-hidden="true"
           fetchpriority="high"
