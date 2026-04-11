@@ -1,1994 +1,421 @@
-<style>
-/* ════════════════════════════════════════════════
-   PURELAYER — Landing Page v6
-   80vh Hero · BG Image Full-bleed · Peek Effect
-   Analytics: Cloudflare + Microsoft Clarity
-   ════════════════════════════════════════════════ */
-
-:root {
-  --c-bg:        #F9F9F9;
-  --c-bg-alt:    #F3F1EE;
-  --c-beige:     #E8E2D9;
-  --c-beige-mid: #D6CFC4;
-  --c-white:     #FFFFFF;
-  --c-text:      #333333;
-  --c-text-mid:  #666666;
-  --c-text-light:#999999;
-  --c-accent:    #B8A99A;
-  --c-accent-dk: #8C7B6E;
-  --c-border:    #E2DDD7;
-  --c-gold:      #C9A96E;
-  --c-hl:        rgba(201,169,110,0.13);
-
-  --ff-serif: 'Cormorant Garamond', 'Noto Serif JP', Georgia, serif;
-  --ff-sans:  'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
-
-  --fw-light: 300;
-  --fw-reg:   400;
-  --fw-mid:   500;
-
-  --max-w:  1120px;
-  --pad-v:  clamp(4.5rem, 9vw, 8rem);
-  --pad-h:  clamp(1.25rem, 5vw, 3.5rem);
-
-  --ease:     0.45s cubic-bezier(0.25, 0.1, 0.25, 1);
-  --ease-out: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* ── Reset ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; scroll-behavior: smooth; }
-body {
-  background: var(--c-bg);
-  color: var(--c-text);
-  font-family: var(--ff-sans);
-  font-weight: var(--fw-light);
-  line-height: 1.8;
-  -webkit-font-smoothing: antialiased;
-}
-img    { display: block; max-width: 100%; height: auto; }
-a      { text-decoration: none; color: inherit; }
-ul     { list-style: none; }
-button { cursor: pointer; border: none; background: none; font: inherit; }
-mark   { background: transparent; color: var(--c-accent-dk); font-weight: var(--fw-reg); }
-
-/* ── Shared ── */
-.section-label {
-  font-family: var(--ff-serif);
-  font-size: .68rem;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--c-accent);
-  display: block;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-.section-title-centered {
-  font-family: var(--ff-serif);
-  font-size: clamp(1.7rem, 3.8vw, 2.6rem);
-  font-weight: var(--fw-light);
-  letter-spacing: .03em;
-  line-height: 1.35;
-  text-align: center;
-  color: var(--c-text);
-  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
-}
-
-/* Fade-in */
-.benefit-item,
-.review-card,
-.purchase-inner,
-.quiz-wrapper,
-.guarantee-badge {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity .6s ease, transform .6s ease;
-}
-.benefit-item.in-view,
-.review-card.in-view,
-.purchase-inner.in-view,
-.quiz-wrapper.in-view,
-.guarantee-badge.in-view { opacity: 1; transform: translateY(0); }
-.benefit-item:nth-child(2)    { transition-delay: .1s; }
-.benefit-item:nth-child(3)    { transition-delay: .2s; }
-.review-card:nth-child(2)     { transition-delay: .1s; }
-.review-card:nth-child(3)     { transition-delay: .2s; }
-.guarantee-badge:nth-child(2) { transition-delay: .1s; }
-.guarantee-badge:nth-child(3) { transition-delay: .2s; }
-
-.btn-icon { width: 16px; transition: transform .3s; flex-shrink: 0; }
-.quiz-submit-btn:hover .btn-icon,
-.purchase-btn:hover    .btn-icon { transform: translateX(3px); }
-
-/* ════════════════════════════════
-   HEADER
-════════════════════════════════ */
-.site-header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 200;
-  background: rgba(249,249,249,.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--c-border);
-}
-.header-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 var(--pad-h);
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.logo {
-  font-family: var(--ff-serif);
-  font-size: 1.2rem;
-  letter-spacing: .22em;
-  font-weight: var(--fw-mid);
-}
-.header-nav { display: flex; gap: 2rem; }
-.header-nav a {
-  font-size: .72rem;
-  letter-spacing: .16em;
-  color: var(--c-text-mid);
-  transition: color .2s;
-}
-.header-nav a:hover { color: var(--c-text); }
-
-/* ════════════════════════════════
-   HERO v10
-   · 高さ 58vh — 診断の最初の質問まで画面内
-   · 余白を凝縮 / コピー Bold / CTA「↓」文言
-════════════════════════════════ */
-
-.logo {
-  font-family: var(--ff-serif);
-  font-size: 0.96rem;
-  letter-spacing: .22em;
-  font-weight: var(--fw-mid);
-}
-
-.hero {
-  position: relative;
-  /* 58vh に縮小。スクロールなしで診断の最初の質問が見える */
-  height: 58vh;
-  min-height: 340px;
-  max-height: 560px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #F9F9F9;
-  overflow: hidden;
-  padding-top: 64px;
-  border-bottom: 1px solid var(--c-border);
-}
-
-.hero-inner {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 0 var(--pad-h);
-  /* 余白を詰める */
-  gap: 1rem;
-  max-width: 860px;
-  width: 100%;
-  animation: heroFadeUp .75s var(--ease-out) both;
-}
-@keyframes heroFadeUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.hero-headline {
-  font-family: var(--ff-serif);
-  font-size: clamp(1.1rem, 3vw, 2rem);
-  font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: .02em;
-  color: var(--c-text);
-  white-space: nowrap;
-  animation: heroFadeUp .75s .08s both;
-}
-
-.hero-cta-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .5rem;
-  animation: heroFadeUp .75s .16s both;
-}
-
-.hero-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: .4rem;
-  border: 1px solid var(--c-beige-mid);
-  border-radius: 999px;
-  padding: .28em .9em;
-  background: transparent;
-  font-size: .58rem;
-  letter-spacing: .16em;
-  color: var(--c-accent-dk);
-  font-family: var(--ff-sans);
-  font-weight: var(--fw-light);
-  white-space: nowrap;
-}
-.chip-icon {
-  width: 11px; height: 11px;
-  color: var(--c-accent);
-  flex-shrink: 0;
-}
-
-.hero-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: .5rem;
-  padding: .88em 2.4em;
-  background: var(--c-text);
-  color: var(--c-white);
-  font-size: clamp(.8rem, 1.4vw, .86rem);
-  letter-spacing: .14em;
-  white-space: nowrap;
-  border: none;
-  min-height: 48px;
-  box-shadow:
-    0 2px 8px  rgba(51,51,51,.16),
-    0 6px 22px rgba(51,51,51,.09);
-  transition:
-    background     .36s cubic-bezier(0.16,1,0.3,1),
-    box-shadow     .36s cubic-bezier(0.16,1,0.3,1),
-    transform      .16s ease,
-    letter-spacing .36s cubic-bezier(0.16,1,0.3,1);
-}
-.hero-cta:hover {
-  background: var(--c-accent-dk);
-  box-shadow:
-    0 4px 14px rgba(140,123,110,.26),
-    0 10px 32px rgba(140,123,110,.14);
-  letter-spacing: .20em;
-}
-.hero-cta:active {
-  transform: scale(.97);
-  box-shadow: 0 1px 4px rgba(51,51,51,.14);
-}
-
-/* シェブロンは 58vh の底辺に貼り付く */
-.scroll-chevron {
-  position: absolute;
-  bottom: 1.2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--c-beige-mid);
-  z-index: 2;
-  transition: color .2s;
-  animation: heroFadeUp 1s .7s both;
-}
-.scroll-chevron:hover { color: var(--c-accent); }
-.chevron-svg {
-  width: 20px; height: 20px;
-  animation: chevronBounce 2.2s ease-in-out infinite;
-}
-@keyframes chevronBounce {
-  0%,100% { transform: translateY(0);   opacity: .4; }
-  50%     { transform: translateY(4px); opacity: 1;  }
-}
-
-/* ════════════════════════════════
-   QUIZ（変更なし）
-════════════════════════════════ */
-.quiz-section {
-  padding: var(--pad-v) var(--pad-h);
-  background: var(--c-white);
-  position: relative;
-  overflow: hidden;
-}
-.quiz-header {
-  max-width: 600px;
-  margin: 0 auto clamp(2rem, 4vw, 3rem);
-  text-align: center;
-}
-.quiz-title {
-  font-family: var(--ff-serif);
-  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-  font-weight: var(--fw-light);
-  letter-spacing: .04em;
-  margin-bottom: .75rem;
-  color: var(--c-text);
-}
-.quiz-lead { font-size: .84rem; color: var(--c-text-mid); line-height: 1.8; }
-.quiz-progress-wrap {
-  max-width: 600px;
-  margin: 0 auto clamp(1.8rem, 3.5vw, 2.5rem);
-  height: 2px;
-  background: var(--c-beige);
-  overflow: hidden;
-}
-.quiz-progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--c-accent), var(--c-gold));
-  transition: width .4s var(--ease-out);
-}
-.quiz-wrapper { max-width: 600px; margin: 0 auto; transition: opacity .4s ease; }
-.quiz-list { display: flex; flex-direction: column; }
-.quiz-item {
-  border-bottom: 1px solid var(--c-border);
-  transition: background .2s;
-}
-.quiz-item:first-child { border-top: 1px solid var(--c-border); }
-.quiz-item.checked { background: rgba(184,169,154,.055); }
-.quiz-step-label {
-  padding: .75rem .75rem .1rem;
-  font-size: .6rem;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--c-beige-mid);
-  transition: color .2s;
-  user-select: none;
-}
-.quiz-item.checked .quiz-step-label { color: var(--c-accent); }
-.quiz-label {
-  display: flex;
-  align-items: center;
-  gap: .9rem;
-  padding: .65rem .75rem 1rem;
-  cursor: pointer;
-}
-.quiz-checkbox { position: absolute; opacity: 0; width: 0; height: 0; }
-.quiz-check-icon {
-  flex-shrink: 0;
-  width: 22px; height: 22px;
-  color: var(--c-beige-mid);
-  transition: color .2s;
-}
-.quiz-check-icon svg { width: 100%; height: 100%; }
-.check-path {
-  stroke-dasharray: 14;
-  stroke-dashoffset: 14;
-  transition: stroke-dashoffset .3s ease;
-}
-.quiz-item.checked .quiz-check-icon { color: var(--c-accent-dk); }
-.quiz-item.checked .check-path      { stroke-dashoffset: 0; }
-.quiz-check-text { font-size: .87rem; line-height: 1.6; letter-spacing: .03em; transition: color .2s; }
-.quiz-item.checked .quiz-check-text { color: var(--c-accent-dk); }
-.quiz-submit-area {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: .6rem;
-}
-.quiz-submit-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .7rem;
-  width: 100%;
-  padding: 1.15em 2em;
-  background: var(--c-text);
-  color: var(--c-white);
-  font-size: .88rem;
-  letter-spacing: .15em;
-  transition: background var(--ease), transform .15s;
-}
-.quiz-submit-btn:hover  { background: var(--c-accent-dk); }
-.quiz-submit-btn:active { transform: scale(.98); }
-.quiz-submit-meta { text-align: center; font-size: .66rem; color: var(--c-text-light); letter-spacing: .06em; }
-.quiz-loading {
-  display: none;
-  position: absolute; inset: 0;
-  background: var(--c-white);
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-.quiz-loading.active { display: flex; animation: fadeIn .3s ease both; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.loading-inner { display: flex; flex-direction: column; align-items: center; gap: 1.6rem; text-align: center; }
-.loading-ring {
-  width: 36px; height: 36px;
-  border: 1px solid var(--c-beige-mid);
-  border-top-color: var(--c-accent-dk);
-  border-radius: 50%;
-  animation: spin .9s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.loading-text { font-size: .78rem; letter-spacing: .2em; color: var(--c-text-mid); animation: loadingPulse 1.2s ease-in-out infinite; }
-@keyframes loadingPulse { 0%,100% { opacity: .5; } 50% { opacity: 1; } }
-.quiz-result { max-width: var(--max-w); margin: 0 auto; overflow: hidden; max-height: 0; opacity: 0; transition: max-height .8s cubic-bezier(0.4,0,0.2,1), opacity .5s ease; }
-.quiz-result.active { max-height: 700px; opacity: 1; }
-.result-positive, .result-neutral { padding: clamp(3rem, 8vw, 6rem) var(--pad-h); text-align: center; border-top: 1px solid var(--c-border); }
-.result-none { padding: 2.5rem; border: 1px solid var(--c-border); background: var(--c-bg); text-align: center; max-width: 500px; margin: 0 auto; }
-.result-eyebrow { font-size: .68rem; letter-spacing: .25em; text-transform: uppercase; color: var(--c-gold); margin-bottom: 2rem; }
-.result-declaration { font-family: var(--ff-serif); font-size: clamp(2.8rem, 8vw, 5.5rem); font-weight: var(--fw-light); line-height: 1.15; letter-spacing: .01em; color: var(--c-text); margin-bottom: 1.5rem; animation: heroFadeUp .8s var(--ease-out) both; }
-.result-declaration em { font-style: italic; color: var(--c-accent-dk); display: block; }
-.result-declaration-sm { font-family: var(--ff-serif); font-size: clamp(2rem, 5.5vw, 3.8rem); font-weight: var(--fw-light); line-height: 1.2; letter-spacing: .01em; color: var(--c-text); margin-bottom: 1.5rem; animation: heroFadeUp .8s var(--ease-out) both; }
-.result-declaration-sm em { font-style: italic; color: var(--c-accent-dk); }
-.result-sub-copy { font-size: .85rem; color: var(--c-text-mid); max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.85; }
-.result-cta-group { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
-.result-cta-primary { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: 1.1em 2.4em; background: var(--c-text); color: var(--c-white); font-size: .85rem; letter-spacing: .14em; transition: background var(--ease); max-width: 420px; width: 100%; animation: heroFadeUp .9s .15s var(--ease-out) both; }
-.result-cta-primary:hover { background: var(--c-accent-dk); }
-.result-cta-secondary { font-size: .75rem; letter-spacing: .14em; color: var(--c-text-mid); border-bottom: 1px solid var(--c-border); padding-bottom: 2px; transition: color .2s, border-color .2s; }
-.result-cta-secondary:hover { color: var(--c-text); border-color: var(--c-text); }
-.result-msg { font-family: var(--ff-serif); font-size: 1.1rem; margin-bottom: .4rem; }
-.result-sub { font-size: .78rem; color: var(--c-text-mid); }
-
-/* ════════════════════════════════
-   REVIEWS（変更なし）
-════════════════════════════════ */
-.reviews-section { padding: var(--pad-v) var(--pad-h); background: var(--c-bg-alt); text-align: center; }
-.reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; max-width: var(--max-w); margin: 0 auto; }
-.review-card { background: var(--c-white); border: 1px solid var(--c-border); overflow: hidden; text-align: left; display: flex; flex-direction: column; }
-.review-ugc-wrap { overflow: hidden; }
-.review-ugc-img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; transition: transform .6s var(--ease); }
-.review-card:hover .review-ugc-img { transform: scale(1.04); }
-.review-content { padding: 1.3rem 1.4rem 1.4rem; display: flex; flex-direction: column; gap: .55rem; flex: 1; }
-.review-headline { font-family: var(--ff-serif); font-size: clamp(1.1rem, 2.4vw, 1.35rem); font-weight: var(--fw-light); letter-spacing: .03em; line-height: 1.3; color: var(--c-text); }
-.stars-svg { width: 76px; }
-.review-body { font-size: .8rem; color: var(--c-text-mid); line-height: 1.75; flex: 1; }
-.review-byline { font-size: .7rem; color: var(--c-text-light); letter-spacing: .05em; border-top: 1px solid var(--c-border); padding-top: .7rem; margin-top: auto; }
-
-/* ════════════════════════════════
-   PRODUCT（変更なし）
-════════════════════════════════ */
-.story-section { padding: var(--pad-v) var(--pad-h); background: var(--c-white); text-align: center; }
-.benefit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2.5rem 2rem; max-width: var(--max-w); margin: 0 auto; }
-.benefit-item { text-align: left; }
-.benefit-number-row { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.1rem; }
-.benefit-num { font-family: var(--ff-serif); font-size: .7rem; letter-spacing: .2em; color: var(--c-accent); }
-.benefit-icon { width: 26px; height: 26px; color: var(--c-accent); }
-.benefit-img-wrap { overflow: hidden; margin-bottom: 1.3rem; }
-.benefit-img { width: 100%; aspect-ratio: 3/2; object-fit: cover; display: block; transition: transform .6s var(--ease); }
-.benefit-img-wrap:hover .benefit-img { transform: scale(1.03); }
-.benefit-heading { font-family: var(--ff-serif); font-size: clamp(1.3rem, 2.5vw, 1.7rem); font-weight: var(--fw-light); letter-spacing: .04em; margin-bottom: .85rem; }
-.benefit-list { display: flex; flex-direction: column; gap: .45rem; margin-bottom: 1.1rem; }
-.benefit-list li { display: flex; align-items: flex-start; gap: .55rem; font-size: .82rem; color: var(--c-text-mid); line-height: 1.65; }
-.benefit-list li svg { width: 13px; height: 13px; flex-shrink: 0; margin-top: .22em; color: var(--c-accent-dk); }
-.benefit-list strong { color: var(--c-text); font-weight: var(--fw-reg); }
-.benefit-kw { display: inline-block; font-family: var(--ff-serif); font-size: clamp(.9rem, 1.8vw, 1.05rem); font-weight: var(--fw-light); letter-spacing: .1em; background: var(--c-hl); padding: .22em .7em; color: var(--c-accent-dk); border: 1px solid rgba(201,169,110,.2); }
-
-/* ════════════════════════════════
-   GUARANTEE（変更なし）
-════════════════════════════════ */
-.guarantee-section { padding: var(--pad-v) var(--pad-h); background: var(--c-bg-alt); border-top: 1px solid var(--c-border); text-align: center; }
-.guarantee-badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--c-border); border: 1px solid var(--c-border); max-width: 720px; margin: 0 auto; overflow: hidden; }
-.guarantee-badge { background: var(--c-white); padding: clamp(1.2rem, 3.5vw, 2rem) clamp(.75rem, 2vw, 1.5rem); display: flex; flex-direction: column; align-items: center; gap: .55rem; text-align: center; position: relative; }
-.guarantee-badge--hero { background: var(--c-bg); }
-.guarantee-badge--hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--c-accent), var(--c-gold)); }
-.gbadge-icon { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--c-border); background: var(--c-bg-alt); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.gbadge-icon svg { width: 24px; height: 24px; color: var(--c-accent-dk); }
-.gbadge-title { font-family: var(--ff-serif); font-size: clamp(.78rem, 1.8vw, 1rem); font-weight: var(--fw-light); line-height: 1.35; letter-spacing: .02em; }
-.gbadge-title strong { font-weight: var(--fw-reg); color: var(--c-text); }
-.gbadge-sub { font-size: clamp(.62rem, 1.2vw, .72rem); color: var(--c-text-light); letter-spacing: .04em; line-height: 1.55; }
-
-/* ════════════════════════════════
-   PURCHASE（変更なし）
-════════════════════════════════ */
-.purchase-section { padding: var(--pad-v) var(--pad-h); background: var(--c-white); }
-.purchase-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem,6vw,5rem); align-items: center; }
-.purchase-image-col { position: relative; }
-.product-img { width: 100%; height: auto; object-fit: cover; aspect-ratio: 4/5; display: block; }
-.purchase-eyebrow { font-size: .66rem; letter-spacing: .28em; text-transform: uppercase; color: var(--c-accent); margin-bottom: .75rem; }
-.purchase-title { font-family: var(--ff-serif); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: var(--fw-light); letter-spacing: .06em; line-height: 1.2; margin-bottom: 1rem; }
-.purchase-title em { font-style: italic; display: block; font-size: .7em; color: var(--c-accent-dk); margin-top: .2em; }
-.purchase-desc { font-size: .8rem; color: var(--c-text-mid); line-height: 1.75; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--c-border); }
-.purchase-price-wrap { display: flex; align-items: baseline; gap: .4rem; margin-bottom: 1.6rem; }
-.purchase-price { font-family: var(--ff-serif); font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: var(--fw-light); letter-spacing: .04em; }
-.purchase-tax { font-size: .72rem; color: var(--c-text-light); }
-.purchase-btn { display: flex; align-items: center; justify-content: center; gap: .75rem; width: 100%; padding: 1.15em 2em; background: var(--c-text); color: var(--c-white); font-size: .85rem; letter-spacing: .18em; transition: background var(--ease), transform .2s; margin-bottom: .9rem; }
-.purchase-btn:hover  { background: var(--c-accent-dk); }
-.purchase-btn:active { transform: scale(.98); }
-.purchase-microcopy { text-align: center; font-size: .7rem; color: var(--c-text-mid); letter-spacing: .1em; margin-bottom: 1.4rem; }
-.purchase-badges { display: flex; gap: .5rem; flex-wrap: wrap; }
-.badge { font-size: .66rem; letter-spacing: .1em; color: var(--c-accent-dk); border: 1px solid var(--c-accent); padding: .28em .8em; border-radius: 999px; }
-
-/* ════════════════════════════════
-   FOOTER（変更なし）
-════════════════════════════════ */
-.site-footer { padding: 3rem var(--pad-h); background: var(--c-text); text-align: center; }
-.footer-logo { font-family: var(--ff-serif); font-size: 1.1rem; letter-spacing: .25em; color: var(--c-beige); margin-bottom: .75rem; }
-.footer-copy { font-size: .68rem; color: var(--c-text-light); letter-spacing: .1em; }
-
-/* ════════════════════════════════
-   RESPONSIVE
-════════════════════════════════ */
-@media (max-width: 768px) {
-  .hero-headline { white-space: normal; font-size: clamp(1rem, 4.2vw, 1.4rem); }
-  .hero-chip { font-size: .54rem; }
-  .hero-cta { letter-spacing: .12em; }
-  .purchase-inner { grid-template-columns: 1fr; }
-  .purchase-image-col { max-width: 380px; margin: 0 auto; width: 100%; }
-  .header-nav { display: none; }
-  .guarantee-badges { max-width: 100%; }
-  .result-declaration { font-size: clamp(2.2rem, 9vw, 3.2rem); }
-}
-
-@media (max-width: 540px) {
-  .hero { min-height: 300px; max-height: 480px; }
-  .hero-headline { font-size: clamp(.95rem, 4.8vw, 1.25rem); white-space: normal; }
-  .hero-chip { font-size: .52rem; letter-spacing: .1em; padding: .25em .75em; }
-  .hero-inner { gap: .85rem; }
-  .hero-cta { padding: .82em 1.8em; min-height: 44px; font-size: .78rem; letter-spacing: .1em; }
-  .benefit-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .reviews-grid { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 380px) {
-  .hero-headline { font-size: .9rem; }
-  .guarantee-badges { grid-template-columns: 1fr; }
-}
-
-   /* ════════════════════════════════
-   DIAGNOSTIC FLOW — 完全統合版
-   FV → Q1〜Q5 を一続きの体験として設計
-════════════════════════════════ */
-
-/* ── 統合ラッパー ── */
-.diag-flow {
-  padding-top: 64px; /* fixed header offset */
-  /* グラデーションをセクションを跨いで一続きに */
-  background:
-    radial-gradient(ellipse at 50% 18%, #FFFFFF 0%, #F0EFEC 55%, #E8E6E1 100%);
-  min-height: 100svh;
-}
-
-/* ── FV: イントロ ── */
-.diag-intro {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: clamp(2.2rem, 5svh, 3.8rem) var(--pad-h) clamp(1.6rem, 3.5svh, 2.6rem);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(1.2rem, 2.5svh, 1.8rem);
-  text-align: center;
-  animation: diagFadeUp .65s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes diagFadeUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.diag-brand {
-  font-family: var(--ff-serif);
-  font-size: .72rem;
-  letter-spacing: .32em;
-  font-weight: var(--fw-mid);
-  color: var(--c-text);
-  text-transform: uppercase;
-}
-
-.diag-headline {
-  font-family: var(--ff-serif);
-  font-size: clamp(1.5rem, 4.2vw, 2.3rem);
-  font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: .03em;
-  color: var(--c-text);
-  margin: 0;
-}
-
-/* 3ベネフィット */
-.diag-benefits {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: clamp(1.8rem, 5vw, 3.4rem);
-}
-
-.diag-benefit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .5rem;
-}
-
-.diag-benefit-icon {
-  width: 32px;
-  height: 32px;
-  color: var(--c-accent-dk);
-}
-
-.diag-benefit-label {
-  font-family: var(--ff-sans);
-  font-size: .55rem;
-  letter-spacing: .18em;
-  color: var(--c-text-mid);
-  font-weight: var(--fw-light);
-  white-space: nowrap;
-}
-
-/* 信頼バッジ（隠し味） */
-.diag-trust {
-  display: inline-flex;
-  align-items: center;
-  gap: .28rem;
-  font-size: .46rem;
-  font-weight: var(--fw-light);
-  letter-spacing: .1em;
-  color: #aaaaaa;
-  font-family: var(--ff-sans);
-}
-.diag-trust-stars {
-  display: inline-flex;
-  gap: 1px;
-  opacity: .45;
-}
-.diag-trust-stars svg {
-  width: 6px; height: 6px;
-  fill: var(--c-gold);
-}
-
-/* ── 区切り線（極細） ── */
-.diag-divider {
-  max-width: 600px;
-  margin: 0 auto;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--c-beige-mid) 30%,
-    var(--c-beige-mid) 70%,
-    transparent 100%
-  );
-  opacity: .5;
-}
-
-/* ── 診断フォーム ── */
-.diag-form-wrap {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: clamp(1.6rem, 3.5svh, 2.8rem) var(--pad-h) clamp(2.4rem, 5svh, 4rem);
-  animation: diagFadeUp .65s .1s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-/* プログレス */
-.diag-progress-wrap {
-  height: 1px;
-  background: rgba(214, 207, 196, .4);
-  margin-bottom: clamp(1.8rem, 4svh, 3rem);
-  overflow: hidden;
-}
-.diag-progress-bar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--c-accent), var(--c-gold));
-  transition: width .5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* 質問リスト */
-.diag-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-}
-
-.diag-item {
-  border-bottom: 1px solid rgba(226, 221, 215, .7);
-  transition: background .25s;
-}
-.diag-item:first-child {
-  border-top: 1px solid rgba(226, 221, 215, .7);
-}
-.diag-item.checked {
-  background: rgba(184, 169, 154, .055);
-}
-
-.diag-step-label {
-  padding: .75rem .5rem .1rem;
-  font-size: .54rem;
-  letter-spacing: .24em;
-  text-transform: uppercase;
-  color: rgba(214, 207, 196, .9);
-  transition: color .25s;
-  user-select: none;
-  font-family: var(--ff-sans);
-  font-weight: var(--fw-light);
-}
-.diag-item.checked .diag-step-label { color: var(--c-accent); }
-
-.diag-label {
-  display: flex;
-  align-items: center;
-  gap: .9rem;
-  padding: .7rem .5rem 1.1rem;
-  cursor: pointer;
-}
-
-/* チェックアイコン */
-.diag-check-icon {
-  flex-shrink: 0;
-  width: 22px; height: 22px;
-  color: rgba(214, 207, 196, .8);
-  transition: color .25s;
-}
-.diag-check-icon svg { width: 100%; height: 100%; }
-.diag-item.checked .diag-check-icon { color: var(--c-accent-dk); }
-
-.check-path {
-  stroke-dasharray: 14;
-  stroke-dashoffset: 14;
-  transition: stroke-dashoffset .3s ease;
-}
-.diag-item.checked .check-path { stroke-dashoffset: 0; }
-
-/* 質問テキスト */
-.diag-q-text {
-  font-family: var(--ff-sans);
-  font-size: clamp(.88rem, 2vw, .96rem);
-  line-height: 1.65;
-  letter-spacing: .02em;
-  color: var(--c-text);
-  transition: color .25s;
-  font-weight: var(--fw-light);
-}
-.diag-item.checked .diag-q-text { color: var(--c-accent-dk); }
-
-.diag-q-text mark {
-  background: transparent;
-  color: var(--c-accent-dk);
-  font-weight: var(--fw-reg);
-}
-
-/* hidden checkbox */
-.diag-checkbox { position: absolute; opacity: 0; width: 0; height: 0; }
-
-/* ── 送信エリア ── */
-.diag-submit-area {
-  margin-top: clamp(1.8rem, 4svh, 2.8rem);
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: .6rem;
-}
-
-.diag-submit-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .7rem;
-  width: 100%;
-  padding: 1.15em 2em;
-  background: var(--c-text);
-  color: var(--c-white);
-  font-size: clamp(.88rem, 1.8vw, .96rem);
-  font-weight: var(--fw-mid);
-  letter-spacing: .16em;
-  font-family: var(--ff-sans);
-  border: none;
-  cursor: pointer;
-  box-shadow:
-    0 1px 2px  rgba(51,51,51,.10),
-    0 4px 12px rgba(51,51,51,.11),
-    0 10px 28px rgba(51,51,51,.07),
-    inset 0 1px 0 rgba(255,255,255,.06);
-  transition:
-    background  .4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow  .4s cubic-bezier(0.16, 1, 0.3, 1),
-    transform   .16s ease,
-    letter-spacing .4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.diag-submit-btn:hover {
-  background: var(--c-accent-dk);
-  box-shadow:
-    0 2px 4px  rgba(140,123,110,.16),
-    0 8px 22px rgba(140,123,110,.20),
-    0 18px 44px rgba(140,123,110,.10),
-    inset 0 1px 0 rgba(255,255,255,.08);
-  letter-spacing: .22em;
-  transform: translateY(-1px);
-}
-.diag-submit-btn:active {
-  transform: scale(.97) translateY(0);
-  box-shadow: 0 1px 3px rgba(51,51,51,.14);
-}
-
-.btn-icon { width: 16px; flex-shrink: 0; transition: transform .3s; }
-.diag-submit-btn:hover .btn-icon { transform: translateX(3px); }
-
-.diag-submit-meta {
-  text-align: center;
-  font-size: .62rem;
-  color: var(--c-text-light);
-  letter-spacing: .08em;
-  font-family: var(--ff-sans);
-}
-
-/* ── ローディング ── */
-.diag-loading {
-  display: none;
-  position: absolute; inset: 0;
-  background: rgba(249,249,249,.96);
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-.diag-loading.active {
-  display: flex;
-  animation: diagFadeIn .3s ease both;
-}
-@keyframes diagFadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-.diag-loading-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.4rem;
-  text-align: center;
-}
-.diag-loading-ring {
-  width: 32px; height: 32px;
-  border: 1px solid var(--c-beige-mid);
-  border-top-color: var(--c-accent-dk);
-  border-radius: 50%;
-  animation: diagSpin .9s linear infinite;
-}
-@keyframes diagSpin { to { transform: rotate(360deg); } }
-
-.diag-loading-text {
-  font-size: .74rem;
-  letter-spacing: .2em;
-  color: var(--c-text-mid);
-  font-family: var(--ff-sans);
-  animation: diagPulse 1.2s ease-in-out infinite;
-}
-@keyframes diagPulse { 0%,100%{opacity:.4} 50%{opacity:1} }
-
-/* ── 結果エリア（既存流用・背景統一） ── */
-.diag-result {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: max-height .8s cubic-bezier(0.4,0,0.2,1), opacity .5s ease;
-}
-.diag-result.active { max-height: 700px; opacity: 1; }
-
-/* 結果内の背景をフロー全体に馴染ませる */
-.result-positive,
-.result-neutral {
-  background: transparent;
-  border-top: 1px solid var(--c-border);
-}
-.result-none { background: rgba(243,241,238,.6); }
-
-/* ── Responsive ── */
-@media (max-width: 768px) {
-  .diag-benefits { gap: clamp(1.4rem, 4vw, 2.4rem); }
-  .diag-benefit-icon { width: 28px; height: 28px; }
-}
-@media (max-width: 540px) {
-  .diag-intro { gap: 1.1rem; }
-  .diag-headline { font-size: clamp(1.2rem, 5.5vw, 1.6rem); }
-  .diag-benefits { gap: 1.3rem; }
-  .diag-benefit-label { font-size: .52rem; letter-spacing: .12em; }
-  .diag-q-text { font-size: .86rem; }
-}
-@media (max-width: 380px) {
-  .diag-headline { font-size: 1.1rem; }
-  .diag-benefits { gap: .9rem; }
-}
-   
-/* ════════════════════════════════
-   BRIDGE HERO — 広告同期型FV
-   「紹介」→「理由付け」→「診断」
-════════════════════════════════ */
-
-/* ── 統合ラッパー（グラデーション継続） ── */
-.diag-flow {
-  padding-top: 64px;
-  background: #F9F9F9;
-  position: relative;
-}
-
-/* ── FVビジュアルパネル ── */
-.bridge-hero {
-  position: relative;
-  width: 100%;
-  /* スマホで「紹介」+「Q1食い込み」が1画面に収まる高さ */
-  min-height: 92svh;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  overflow: hidden;
-}
-
-/* 背景写真レイヤー */
-.bridge-hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.bridge-hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-  display: block;
-}
-
-/* 写真の上に重ねるグラデーションオーバーレイ（可読性確保） */
-
-
-/* ── コピーブロック ── */
-.bridge-copy {
-  position: relative;
-  z-index: 2;
-  padding: clamp(2.4rem, 6svh, 4rem) var(--pad-h) clamp(1.6rem, 3svh, 2.4rem);
-  max-width: 640px;
-  /* モバイルは左揃え、広告的リアリティ */
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(.9rem, 2svh, 1.4rem);
-  animation: bridgeFadeUp .7s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes bridgeFadeUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ブランド名 */
-.bridge-brand {
-  font-family: var(--ff-serif);
-  font-size: .68rem;
-  letter-spacing: .32em;
-  font-weight: var(--fw-mid);
-  color: var(--c-accent-dk);
-  text-transform: uppercase;
-}
-
-/* バイラルバッジ（SNS話題感） */
-.bridge-viral-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  align-self: flex-start;
-  background: rgba(255,255,255,.82);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(201,169,110,.28);
-  border-radius: 999px;
-  padding: .3em .9em;
-  font-family: var(--ff-sans);
-  font-size: .58rem;
-  font-weight: var(--fw-light);
-  letter-spacing: .14em;
-  color: var(--c-accent-dk);
-  white-space: nowrap;
-}
-.bridge-viral-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--c-gold);
-  flex-shrink: 0;
-  animation: viralPulse 2s ease-in-out infinite;
-}
-@keyframes viralPulse {
-  0%,100% { opacity: 1; transform: scale(1); }
-  50%      { opacity: .5; transform: scale(.7); }
-}
-
-/* メインコピー */
-.bridge-headline {
-  font-family: var(--ff-serif);
-  font-size: clamp(1.55rem, 5.2vw, 2.6rem);
-  font-weight: 500;
-  line-height: 1.38;
-  letter-spacing: .02em;
-  color: var(--c-text);
-  margin: 0;
-}
-/* 「清潔感の塊。」を金色に */
-.bridge-headline em {
-  font-style: italic;
-  color: var(--c-accent-dk);
-}
-
-/* サブコピー */
-.bridge-sub {
-  font-family: var(--ff-sans);
-  font-size: clamp(.78rem, 1.8vw, .86rem);
-  font-weight: var(--fw-light);
-  line-height: 1.8;
-  color: var(--c-text-mid);
-  letter-spacing: .03em;
-  max-width: 460px;
-}
-
-/* 3ベネフィット（コンパクト横並び） */
-.bridge-benefits {
-  display: flex;
-  align-items: center;
-  gap: 1.4rem;
-  padding-top: .2rem;
-}
-
-.bridge-benefit {
-  display: flex;
-  align-items: center;
-  gap: .4rem;
-}
-
-.bridge-benefit-icon {
-  width: 14px; height: 14px;
-  color: var(--c-accent);
-  flex-shrink: 0;
-}
-
-.bridge-benefit-label {
-  font-family: var(--ff-sans);
-  font-size: .55rem;
-  letter-spacing: .15em;
-  color: var(--c-text-mid);
-  font-weight: var(--fw-light);
-  white-space: nowrap;
-}
-
-/* 信頼バッジ */
-.bridge-trust {
-  display: inline-flex;
-  align-items: center;
-  gap: .3rem;
-  font-size: .46rem;
-  letter-spacing: .1em;
-  color: #aaaaaa;
-  font-family: var(--ff-sans);
-}
-.bridge-trust-stars {
-  display: inline-flex;
-  gap: 1px;
-  opacity: .45;
-}
-.bridge-trust-stars svg { width: 6px; height: 6px; fill: var(--c-gold); }
-
-/* ── ブリッジ文エリア ── */
-.bridge-panel {
-  position: relative;
-  z-index: 2;
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 0 var(--pad-h) clamp(1.4rem, 3svh, 2rem);
-  animation: bridgeFadeUp .7s .12s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.bridge-text {
-  display: flex;
-  align-items: flex-start;
-  gap: .7rem;
-  background: rgba(255,255,255,.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--c-border);
-  border-left: 2px solid var(--c-gold);
-  padding: .9rem 1.1rem;
-}
-
-.bridge-text-icon {
-  width: 14px; height: 14px;
-  color: var(--c-gold);
-  flex-shrink: 0;
-  margin-top: .15em;
-}
-
-.bridge-text p {
-  font-family: var(--ff-sans);
-  font-size: clamp(.72rem, 1.6vw, .78rem);
-  font-weight: var(--fw-light);
-  line-height: 1.75;
-  letter-spacing: .03em;
-  color: var(--c-text-mid);
-  margin: 0;
-}
-
-.bridge-text strong {
-  color: var(--c-text);
-  font-weight: var(--fw-reg);
-}
-
-/* ── 診断フォームへの継続（既存 .diag-form-wrap の上書き） ── */
-.diag-form-wrap {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: clamp(1.4rem, 3svh, 2.2rem) var(--pad-h) clamp(2.4rem, 5svh, 4rem);
-  background: var(--c-white);
-  position: relative;
-  z-index: 2;
-}
-
-.diag-progress-wrap {
-  height: 1px;
-  background: rgba(214, 207, 196, .4);
-  margin-bottom: clamp(1.4rem, 3svh, 2.2rem);
-  overflow: hidden;
-}
-
-/* ── Responsive ── */
-@media (max-width: 768px) {
-  .bridge-hero { min-height: 95svh; }
-  .bridge-headline { font-size: clamp(1.35rem, 5.8vw, 2rem); }
-}
-@media (max-width: 540px) {
-  .bridge-copy   { gap: .85rem; }
-  .bridge-sub    { font-size: .76rem; }
-  .bridge-benefits { gap: 1rem; }
-  .bridge-benefit-label { font-size: .52rem; }
-}
-@media (max-width: 380px) {
-  .bridge-headline { font-size: 1.25rem; }
-  .bridge-benefits { flex-wrap: wrap; gap: .7rem; }
-}
-
-   /* ════════════════════════════════
-   ATTACK FV — 超攻撃的ヒエラルキー
-   65vh固定 + Q1強制露出
-════════════════════════════════ */
-
-.atk-flow {
-  padding-top: 64px;
-  background: var(--c-bg);
-}
-
-/* ── FVパネル: 65vh固定 ── */
-.atk-hero {
-  position: relative;
-  height: 65vh;
-  min-height: 360px;
-  max-height: 580px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-  padding: 0 var(--pad-h);
-}
-
-/* ボトル写真: 透過10〜15% */
-.atk-hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-.atk-hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
-  display: block;
-  opacity: .12;
-  mix-blend-mode: multiply;
-}
-
-/* ── コンテンツ層 ── */
-.atk-inner {
-  position: relative;
-  z-index: 2;
-  max-width: 900px;
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(.9rem, 2vh, 1.4rem);
-  animation: atkFade .55s cubic-bezier(0.16,1,0.3,1) both;
-}
-@keyframes atkFade {
-  from { opacity:0; transform:translateY(10px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-
-/* ── 極小ブランド名 ── */
-.atk-brand {
-  font-family: var(--ff-serif);
-  font-size: .58rem;
-  letter-spacing: .28em;
-  color: var(--c-accent);
-  font-weight: var(--fw-light);
-  text-transform: uppercase;
-}
-
-/* ── メインコピー: 王 ── */
-.atk-headline {
-  font-family: var(--ff-serif);
-  /*
-    画面幅いっぱいに広がる流体サイズ
-    min: 2.4rem / 推奨: 8vw / max: 5.5rem
-  */
-  font-size: clamp(2.4rem, 8vw, 5.5rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -.01em;
-  color: var(--c-text);
-  margin: 0;
-}
-.atk-headline em {
-  font-style: italic;
-  color: var(--c-accent-dk);
-}
-
-/* ── 要約3点: メインの1/4以下のサイズ ── */
-.atk-summary {
-  display: flex;
-  flex-direction: column;
-  gap: .28rem;
-  padding-left: .1rem;
-}
-.atk-summary-item {
-  display: flex;
-  align-items: baseline;
-  gap: .5rem;
-  font-family: var(--ff-sans);
-  /* メイン最小2.4rem → 1/4 = 約.6rem */
-  font-size: .62rem;
-  font-weight: var(--fw-light);
-  letter-spacing: .06em;
-  color: var(--c-text-mid);
-  line-height: 1.5;
-}
-.atk-summary-dot {
-  font-size: .5rem;
-  color: var(--c-accent);
-  flex-shrink: 0;
-  line-height: 1.8;
-}
-
-/* ── 信頼+ベネフィット: 一行に圧縮 ── */
-.atk-meta {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-.atk-trust {
-  display: inline-flex;
-  align-items: center;
-  gap: .25rem;
-  font-size: .48rem;
-  letter-spacing: .1em;
-  color: #b0b0b0;
-  font-family: var(--ff-sans);
-}
-.atk-trust-stars { display:inline-flex; gap:1px; opacity:.4; }
-.atk-trust-stars svg { width:5px; height:5px; fill:var(--c-gold); }
-
-.atk-benefit-list {
-  display: flex;
-  gap: .8rem;
-}
-.atk-benefit-chip {
-  font-size: .48rem;
-  letter-spacing: .13em;
-  color: #b8b8b8;
-  font-family: var(--ff-sans);
-  font-weight: var(--fw-light);
-  white-space: nowrap;
-}
-.atk-benefit-sep {
-  color: var(--c-beige-mid);
-  font-size: .42rem;
-}
-
-/* ════════════════════════════════
-   BRIDGE TEXT — ブリッジ文
-   FVとQ1の接合部（余白なし）
-════════════════════════════════ */
-.atk-bridge {
-  background: var(--c-white);
-  padding: clamp(.9rem, 2vh, 1.3rem) var(--pad-h);
-  border-top: 1px solid var(--c-border);
-  border-bottom: 1px solid var(--c-border);
-}
-.atk-bridge-inner {
-  max-width: 640px;
-  margin: 0 auto;
-  display: flex;
-  align-items: flex-start;
-  gap: .6rem;
-}
-.atk-bridge-line {
-  width: 2px;
-  align-self: stretch;
-  background: var(--c-gold);
-  flex-shrink: 0;
-  border-radius: 1px;
-  opacity: .7;
-}
-.atk-bridge-text {
-  font-family: var(--ff-sans);
-  font-size: clamp(.68rem, 1.5vw, .74rem);
-  font-weight: var(--fw-light);
-  line-height: 1.75;
-  color: var(--c-text-mid);
-  letter-spacing: .03em;
-}
-.atk-bridge-text strong {
-  color: var(--c-text);
-  font-weight: var(--fw-reg);
-}
-
-/* ════════════════════════════════
-   DIAG FORM — Q1強制露出
-   marginなし・即開始
-════════════════════════════════ */
-.atk-form-wrap {
-  background: var(--c-white);
-  max-width: 640px;
-  margin: 0 auto;
-  padding: clamp(1rem, 2.5vh, 1.6rem) var(--pad-h) clamp(2rem, 5vh, 3.5rem);
-}
-
-/* プログレス（極細） */
-.atk-progress {
-  height: 1px;
-  background: rgba(214,207,196,.35);
-  margin-bottom: clamp(1.2rem, 2.5vh, 1.8rem);
-  overflow: hidden;
-}
-.atk-progress-bar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--c-accent), var(--c-gold));
-  transition: width .45s cubic-bezier(0.16,1,0.3,1);
-}
-
-/* Q1〜Q5: 既存 .diag-* スタイルをそのまま流用 */
-
-/* ── ローディング ── */
-.atk-loading {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(249,249,249,.95);
-  align-items: center;
-  justify-content: center;
-  z-index: 300;
-}
-.atk-loading.active {
-  display: flex;
-  animation: atkFadeIn .3s ease both;
-}
-@keyframes atkFadeIn { from{opacity:0} to{opacity:1} }
-.atk-loading-ring {
-  width: 30px; height: 30px;
-  border: 1px solid var(--c-beige-mid);
-  border-top-color: var(--c-accent-dk);
-  border-radius: 50%;
-  animation: atkSpin .9s linear infinite;
-}
-@keyframes atkSpin { to{transform:rotate(360deg)} }
-.atk-loading-inner { display:flex; flex-direction:column; align-items:center; gap:1.2rem; }
-.atk-loading-text {
-  font-size: .72rem;
-  letter-spacing: .2em;
-  color: var(--c-text-mid);
-  font-family: var(--ff-sans);
-  animation: atkPulse 1.2s ease-in-out infinite;
-}
-@keyframes atkPulse { 0%,100%{opacity:.4} 50%{opacity:1} }
-
-/* ── 結果 ── */
-.atk-result {
-  max-width: 900px;
-  margin: 0 auto;
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: max-height .8s cubic-bezier(0.4,0,0.2,1), opacity .5s ease;
-}
-.atk-result.active { max-height:700px; opacity:1; }
-
-/* ── Responsive ── */
-@media (max-width: 768px) {
-  .atk-headline { font-size: clamp(2rem, 9vw, 3.6rem); }
-}
-@media (max-width: 540px) {
-  .atk-hero { min-height: 300px; }
-  .atk-headline { font-size: clamp(1.8rem, 10vw, 3rem); line-height: 1.15; }
-  .atk-summary-item { font-size: .6rem; }
-  .atk-benefit-list { gap: .5rem; }
-}
-@media (max-width: 380px) {
-  .atk-headline { font-size: 1.65rem; }
-}
-   
-   </style>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PURELAYER — まとう、無垢な空気感。</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【公式】PURELAYER Oud Stallion - 清潔感の塊</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Noto+Sans+JP:wght@400;700;900&display=swap');
 
-  <!-- ── 解析スクリプト ── -->
-  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "vvn8p99ehp");
-  </script>
+    :root {
+      --primary: #1a1a1a;
+      --gold: #D4af37;
+      --gold-dark: #b5952f;
+      --bg-color: #fafafa;
+      --text: #333;
+      --accent: #E5E5E5;
+    }
+
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+    body, html {
+      margin: 0; padding: 0;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      background-color: #e0e0e0; /* Outer background for desktop */
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* TikTok/Mobile optimized wrapper */
+    .app-container {
+      max-width: 480px;
+      margin: 0 auto;
+      background-color: #fff;
+      box-shadow: 0 0 30px rgba(0,0,0,0.1);
+      position: relative;
+      padding-bottom: 110px; /* Spacer for bottom CTA */
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    section { padding: 60px 24px; }
+    img { max-width: 100%; height: auto; display: block; border-radius: 8px;}
+
+    h1, h2, h3 { color: var(--primary); line-height: 1.4; margin: 0; }
+    p { margin: 0 0 15px 0; }
+
+    .text-center { text-align: center; }
+    .text-gold { color: var(--gold); }
+    
+    /* Buttons */
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 18px;
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 18px;
+      border-radius: 30px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #e8c668, #D4af37);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+    .btn::after {
+      content: '';
+      position: absolute; top: 0; left: -100%;
+      width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: shine 3s infinite;
+    }
+    @keyframes shine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+    .btn-pulse { animation: pulse 2s infinite; }
+    .btn:active { transform: scale(0.98); }
+
+    /* FV Section */
+    .fv {
+      padding-top: 40px;
+      padding-bottom: 40px;
+      position: relative;
+      background: linear-gradient(180deg, #fff 0%, var(--bg-color) 100%);
+    }
+    .fv-hook {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: 900;
+      font-size: 14px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .fv h1 { font-size: 28px; font-weight: 900; margin-bottom: 12px; }
+    .fv-sub { font-size: 16px; color: #555; font-weight: 700; margin-bottom: 30px; }
+    
+    .img-fluid { width: 100%; max-height: 420px; object-fit: cover; margin-bottom: 25px; border-radius: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.06); }
+    
+    .rating-box { margin-bottom: 30px; }
+    .stars { font-size: 26px; color: var(--gold); letter-spacing: 2px; display: block; margin-bottom: 8px; text-shadow: 0 2px 4px rgba(212,175,55,0.3);}
+    .rating-text { font-weight: 800; font-size: 18px; }
+
+    /* Empathy Section */
+    .bg-gray { background-color: var(--bg-color); border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; }
+    .sec-header { text-align: center; margin-bottom: 40px; position: relative; }
+    .sec-header h2 { font-size: 26px; font-weight: 900; display: inline-block; letter-spacing: -0.5px;}
+    .sec-header h2::after {
+      content: ''; display: block; width: 40px; height: 4px; background: var(--gold); margin: 15px auto 0; border-radius: 2px;
+    }
+    
+    .worry-list { display: flex; flex-direction: column; gap: 16px; }
+    .worry-item {
+      background: #fff;
+      padding: 22px 20px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 16px;
+      display: flex; align-items: center; gap: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      border-left: 5px solid #d4d4d4;
+    }
+    .worry-item::before { content: '🤔'; font-size: 22px; }
+
+    /* Solution Section */
+    .solution { background: var(--primary); color: #fff; text-align: center; padding: 70px 24px; }
+    .solution h2 { color: var(--gold); font-size: 28px; line-height: 1.5; margin-bottom: 24px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+    .solution h2::after { display: none; }
+    .solution p { font-size: 17px; font-weight: 700; opacity: 0.9; }
+
+    /* Benefit Section */
+    .benefit-item {
+      text-align: center; margin-bottom: 50px;
+    }
+    .benefit-item:last-child { margin-bottom: 0; }
+    .benefit-icon { font-size: 45px; margin-bottom: 15px; }
+    .benefit-title { font-size: 22px; font-weight: 900; margin-bottom: 12px; color: var(--gold-dark); }
+    .benefit-text { color: #444; font-size: 16px; font-weight: 700; line-height: 1.7;}
+    
+    .scene-tags { display: flex; gap: 12px; justify-content: center; margin-top: 25px; flex-wrap: wrap; }
+    .scene-tag { background: #f0f0f0; padding: 10px 22px; border-radius: 30px; font-weight: 800; font-size: 14px; color: var(--primary); box-shadow: inset 0 0 0 1px #e0e0e0;}
+
+    /* Trust Section */
+    .trust { border-top: 2px solid #eee; border-bottom: 2px solid #eee; padding: 0; }
+    .trust-msg { font-size: 24px; font-weight: 900; text-align: center; line-height: 1.6; padding: 50px 20px;}
+
+    /* Evidence (Reviews) */
+    .review-card {
+      background: #fff; border: 1px solid #f0f0f0; border-radius: 14px; padding: 25px; margin-bottom: 20px; position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+    .review-user { font-size: 13px; color: #888; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .review-user.male::before { content: '👨'; font-size: 18px;}
+    .review-user.female::before { content: '👩'; font-size: 18px;}
+    .review-stars { color: var(--gold); font-size: 16px; margin-bottom: 12px; }
+    .review-text { font-weight: 800; font-size: 15px; line-height: 1.6;}
+    .lifestyle-img { height: 250px; object-fit: cover; width: 100%; border-radius: 16px; margin-bottom: 35px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+    /* Price / Detail Section */
+    .price-card {
+      border: 2px solid var(--accent); border-radius: 18px; padding: 35px 20px; text-align: center; margin-bottom: 25px; background: #fff; position: relative; transition: all 0.3s ease;
+    }
+    .price-card.recommend {
+      border-color: var(--gold);
+      transform: scale(1.03);
+      box-shadow: 0 15px 35px rgba(212,175,55,0.18);
+      z-index: 2;
+      background: linear-gradient(180deg, #fff 0%, #fffcf5 100%);
+    }
+    .badge-pop {
+      position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
+      background: var(--gold); color: #fff; font-weight: 900; font-size: 13px; padding: 8px 24px; border-radius: 30px; white-space: nowrap;
+      box-shadow: 0 4px 10px rgba(212,175,55,0.3);
+    }
+    .vol { font-size: 22px; font-weight: 900; margin-bottom: 5px; color: var(--primary); }
+    .price-val { font-size: 34px; font-weight: 900; color: var(--primary); margin: 15px 0; }
+    .bonus { background: #fff8e1; border: 2px solid #ffe082; color: #d84315; padding: 16px; border-radius: 10px; font-size: 15px; font-weight: 800; display: inline-block; width: 100%; margin-top: 20px; box-shadow: 0 4px 10px rgba(255,213,79,0.2);}
+
+    /* Guarantee */
+    .g-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .g-card { border: 2px dashed #ccc; border-radius: 14px; padding: 25px; text-align: center; font-weight: 800; font-size: 18px; display: flex; flex-direction: column; align-items: center; gap: 12px; background: #fff;}
+
+    /* Diagnostic */
+    .diag-container { background: #fff; border-radius: 18px; padding: 35px 24px; box-shadow: 0 8px 25px rgba(0,0,0,0.06); border: 1px solid #f0f0f0;}
+    .check-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 30px; }
+    .check-item { display: flex; align-items: center; gap: 15px; font-weight: 800; font-size: 16px; background: var(--bg-color); padding: 18px; border-radius: 10px; cursor: pointer; transition: background 0.2s; border: 1px solid #eee;}
+    .check-item:hover { background: #f0f0f0; }
+    .check-item input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--gold); cursor: pointer; border-radius: 4px; }
+    
+    /* Fixed Bottom CTA */
+    .floating-cta {
+      position: fixed;
+      bottom: 0; left: 0; width: 100%;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      padding: 15px 0 25px;
+      z-index: 999;
+      box-shadow: 0 -5px 25px rgba(0,0,0,0.08);
+      display: flex; justify-content: center;
+    }
+    .cta-inner { width: 100%; max-width: 480px; padding: 0 24px; }
+    .floating-cta .btn { width: 100%; padding: 20px; font-size: 19px;}
+    
+    .text-sm { font-size: 13px; color: #777; margin-top: 10px; font-weight: 700;}
+  </style>
 </head>
 <body>
 
-  <!-- ══════════════════════
-       HEADER
-  ══════════════════════ -->
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="logo">PURELAYER</div>
-      <nav class="header-nav">
-        <a href="#quiz">診断</a>
-        <a href="#product">製品</a>
-        <a href="#purchase">購入</a>
-      </nav>
+<div class="app-container">
+
+  <!-- ==================== ファーストビュー ==================== -->
+  <section class="fv text-center" id="fv">
+    <div class="fv-hook">香水初心者は絶対見て！</div>
+    <h1>学校・職場で<br>褒められまくった香水</h1>
+    <div class="fv-sub">清潔感の塊。これ1本で全部いける。</div>
+    
+    <!-- Generated Product Image -->
+    <img src="file:///C:/Users/obeob/.gemini/antigravity/brain/dd5b2863-8b0a-4b18-957a-c3e76bd497c6/premium_perfume_bottle_1775874439052.png" alt="PURELAYER Oud Stallion" class="img-fluid">
+    
+    <div class="rating-box">
+      <span class="stars">★★★★★</span>
+      <span class="rating-text">「もっと早く出会いたかった」</span>
     </div>
-  </header>
+    
+    <a href="#diagnostic" class="btn btn-gold btn-pulse">
+      無料で自分に合うかチェック
+      <span style="font-size:13px; font-weight:700; display:block; margin-top:6px; opacity: 0.9;">▶︎ 1分でわかる簡単診断</span>
+    </a>
+  </section>
 
-  <!-- ══════════════════════════════════════════
-       HERO v10
-       · 高さ 58vh — 診断の最初の質問まで画面内に収める
-       · コピー凝縮 / CTA文言に「↓」で方向を明示
-  ══════════════════════════════════════════ -->
- <!-- ══════════════════════════════════════════════
-     DIAGNOSTIC FLOW — FV + Q1〜Q5 完全統合
-══════════════════════════════════════════════ -->
-   <section>
-<!-- ══════════════════════════════════════════════
-     ATTACK FV — 超攻撃的ヒエラルキー構造
-     65vh固定 / Q1強制露出
-══════════════════════════════════════════════ -->
-<div class="atk-flow" id="atkFlow">
+  <!-- ==================== 共感 ==================== -->
+  <section class="bg-gray" id="empathy">
+    <div class="sec-header">
+      <h2>香水選び、<br>こんな悩みありませんか？</h2>
+    </div>
+    <div class="worry-list">
+      <div class="worry-item">強すぎる香りが苦手で酔う…</div>
+      <div class="worry-item">種類が多すぎてどれを選べばいいかわからない…</div>
+      <div class="worry-item">失敗してクローゼットの肥やしにしたくない…</div>
+    </div>
+  </section>
 
-  <!-- ▌FV: 65vh ▌ -->
-  <section class="atk-hero" id="hero">
+  <!-- ==================== 解決提示 ==================== -->
+  <section class="solution" id="solution">
+    <h2>それ、全部<br>『Oud Stallion』で<br>解決します。</h2>
+    <p>誰からも好かれる「究極の無難」でありながら<br>圧倒的な完成度を誇る1本です。</p>
+  </section>
 
-    <!-- ボトル写真: opacity 12% -->
-    <div class="atk-hero-bg" aria-hidden="true">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731"
-        alt=""
-        fetchpriority="high"
-        draggable="false"
-      />
+  <!-- ==================== 商品ベネフィット ==================== -->
+  <section id="benefit">
+    <div class="sec-header">
+      <h2>なぜ、ここまで<br>選ばれるのか？</h2>
+    </div>
+    
+    <div class="benefit-item">
+      <div class="benefit-icon">🫧</div>
+      <div class="benefit-title">柔軟剤のような清潔な香り</div>
+      <div class="benefit-text">すれ違った瞬間、「なんかいい匂いする」と振り返られる自然な清潔感。</div>
     </div>
 
-    <div class="atk-inner">
+    <div class="benefit-item">
+      <div class="benefit-icon">⏱️</div>
+      <div class="benefit-title">朝つけて、夜まで持続</div>
+      <div class="benefit-text">香水特有のキツい飛び方はしません。肌に馴染みながら1日中優しく香ります。</div>
+    </div>
 
-      <!-- 極小ブランド名 -->
-      <p class="atk-brand">PURELAYER — Oud Stallion</p>
+    <div class="benefit-item">
+      <div class="benefit-icon">✨</div>
+      <div class="benefit-title">強すぎない絶妙なバランス</div>
+      <div class="benefit-text">「香水つけてる感」を極限まで抑えた、自分も周りも心地よい設計です。</div>
+    </div>
 
-      <!-- メインコピー: 画面幅いっぱい -->
-      <h1 class="atk-headline">
-        学校・職場で<br />
-        「いい匂い」と<br />
-        <em>絶賛された。</em>
-      </h1>
+    <div class="text-center" style="margin-top:50px;">
+      <p style="font-weight:900; font-size:20px;">どんなシーンでも、これ1本。</p>
+      <div class="scene-tags">
+        <span class="scene-tag">🏫 学校</span>
+        <span class="scene-tag">🏢 オフィス</span>
+        <span class="scene-tag">🥂 デート</span>
+      </div>
+    </div>
+  </section>
 
-      <!-- 要約3点: メインの1/4以下 -->
-      <ul class="atk-summary" aria-label="製品の特徴">
-        <li class="atk-summary-item">
-          <span class="atk-summary-dot">●</span>
-          誰とも被らない、唯一無二の「清潔感」
-        </li>
-        <li class="atk-summary-item">
-          <span class="atk-summary-dot">●</span>
-          朝付けて夜まで続く、驚異の持続力
-        </li>
-        <li class="atk-summary-item">
-          <span class="atk-summary-dot">●</span>
-          香水初心者が選ぶ、失敗しない一本
-        </li>
-      </ul>
+  <!-- ==================== 信頼 ==================== -->
+  <section class="trust bg-gray">
+    <div class="trust-msg">
+      「超マイナーだから<br><span class="text-gold">人と被らない。</span><br>でも、完成度は高い。」
+    </div>
+  </section>
 
-      <!-- 信頼+ベネフィット: 一行圧縮 -->
-      <div class="atk-meta">
-        <div class="atk-trust">
-          <span class="atk-trust-stars" aria-label="星5つ">
-            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8" fill="currentColor"/></svg>
-            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8" fill="currentColor"/></svg>
-            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8" fill="currentColor"/></svg>
-            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8" fill="currentColor"/></svg>
-            <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><polygon points="5,1 6.2,3.8 9.5,4.1 7.2,6.2 7.9,9.5 5,7.9 2.1,9.5 2.8,6.2 0.5,4.1 3.8,3.8" fill="currentColor"/></svg>
-          </span>
-          <span style="color:var(--c-beige-mid)">|</span>
-          <span>累計5,000件</span>
-        </div>
-        <div class="atk-benefit-list">
-          <span class="atk-benefit-chip">5問で判定</span>
-          <span class="atk-benefit-sep">/</span>
-          <span class="atk-benefit-chip">登録不要</span>
-          <span class="atk-benefit-sep">/</span>
-          <span class="atk-benefit-chip">無料</span>
-        </div>
+  <!-- ==================== 証拠（レビュー） ==================== -->
+  <section id="evidence">
+    <div class="sec-header">
+      <h2>愛用者のリアルな声</h2>
+    </div>
+    
+    <!-- Generated Lifestyle Image -->
+    <img src="file:///C:/Users/obeob/.gemini/antigravity/brain/dd5b2863-8b0a-4b18-957a-c3e76bd497c6/clean_lifestyle_1775874420110.png" alt="Clean Lifestyle" class="lifestyle-img">
+
+    <div class="review-card">
+      <div class="review-user male">20代 男性 / 会社員</div>
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">「職場で『柔軟剤変えた？いい匂い』と言われました。香水バレしないのが最高です。毎日使ってます。」</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-user female">20代 女性 / 大学生</div>
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">「ユニセックスで使えるので彼氏とシェアしてます。甘すぎず、ずっと深呼吸したくなるような清潔感のある香り！」</div>
+    </div>
+  </section>
+
+  <!-- ==================== 商品詳細・オファー ==================== -->
+  <section class="bg-gray" id="offer">
+    <div class="sec-header">
+      <h2>今だけの特別セット</h2>
+    </div>
+
+    <!-- 100ml -->
+    <div class="price-card recommend">
+      <div class="badge-pop">1番人気！圧倒的にお得</div>
+      <div class="vol">100ml ボトル</div>
+      <div class="price-val">14,800円</div>
+      <p class="text-sm">（税込・送料無料）</p>
+      <div class="bonus">
+        🎁 豪華特典付き<br>
+        2mlテストキット ＋ 10mlアトマイザー無料！
+      </div>
+    </div>
+
+    <!-- 50ml -->
+    <div class="price-card">
+      <div class="vol">50ml ボトル</div>
+      <div class="price-val">5,980円</div>
+      <p class="text-sm">（税込・送料無料）</p>
+      <div class="bonus">
+        🎁 10mlアトマイザー無料！
+      </div>
+    </div>
+
+    <!-- 10ml -->
+    <div class="price-card" style="padding: 25px;">
+      <div class="vol">10ml トライアル</div>
+      <div class="price-val" style="font-size:28px;">1,750円</div>
+      <p class="text-sm">（税込・送料別）</p>
+    </div>
+    
+    <div style="margin-top:40px;">
+      <a href="#diagnostic" class="btn btn-pulse">お得なセットを今すぐ試す</a>
+    </div>
+  </section>
+
+  <!-- ==================== リスク排除 ==================== -->
+  <section id="guarantee">
+    <div class="sec-header">
+      <h2>安心の3つの保証</h2>
+    </div>
+    <div class="g-grid">
+      <div class="g-card">
+        <span style="font-size:36px;">📦</span>
+        <span>全国どこでも<br><span class="text-gold">送料無料</span></span>
+      </div>
+      <div class="g-card">
+        <span style="font-size:36px;">📅</span>
+        <span>安心の<br><span class="text-gold">30日間返品保証</span><br><span class="text-sm" style="font-weight:700;">(※未開封に限る)</span></span>
+      </div>
+      <div class="g-card">
+        <span style="font-size:36px;">🧪</span>
+        <span>まずはテストキットで<br><span class="text-gold">香りを事前確認OK</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 診断導線 ==================== -->
+  <section class="bg-gray" id="diagnostic" style="padding-bottom: 80px;">
+    <div class="sec-header">
+      <h2>自分に合うか無料診断</h2>
+    </div>
+    
+    <div class="diag-container">
+      <p class="text-center" style="font-weight:900; font-size:18px; margin-bottom:25px;">2つ以上当てはまったら、<br>Oud Stallionが最適です！</p>
+      
+      <div class="check-list">
+        <label class="check-item">
+          <input type="checkbox"> 洗い立てのシャツの香りが好き
+        </label>
+        <label class="check-item">
+          <input type="checkbox"> 「香水つけてます」感は出したくない
+        </label>
+        <label class="check-item">
+          <input type="checkbox"> 学校や職場でデイリー使いしたい
+        </label>
+        <label class="check-item">
+          <input type="checkbox"> 男女ウケどちらも狙いたい
+        </label>
       </div>
 
+      <a href="#offer" class="btn btn-gold btn-pulse">
+        診断完了！今すぐ試す
+      </a>
     </div>
-  </section><!-- /.atk-hero -->
+  </section>
 
+</div>
 
-  <!-- ▌ブリッジ文: FVとQ1の接合部 ▌ -->
-  <div class="atk-bridge">
-    <div class="atk-bridge-inner">
-      <div class="atk-bridge-line" aria-hidden="true"></div>
-      <p class="atk-bridge-text">
-        ※ 香りは<strong>肌質で変化</strong>します。
-        あなたが使った時に<strong>「本当に褒められるか」</strong>、
-        相性を30秒で判定します。
-      </p>
-    </div>
+<!-- 固定CTA -->
+<div class="floating-cta">
+  <div class="cta-inner">
+    <a href="#diagnostic" class="btn btn-gold btn-pulse">
+      無料でチェックする
+      <span style="display:block; font-size:13px; font-weight:800; margin-top:4px; opacity:0.9;">▶︎ あなたに合うか1分診断</span>
+    </a>
   </div>
+</div>
 
-  <!-- ▌診断フォーム: Q1〜Q5（余白なしで即開始） ▌ -->
-  <div class="atk-form-wrap" id="atkFormWrap">
-
-    <div class="atk-progress" aria-hidden="true">
-      <div class="atk-progress-bar" id="atkProgressBar"></div>
-    </div>
-
-    <form id="atkForm" novalidate>
-      <ul class="diag-list">
-
-        <li class="diag-item" data-step="1">
-          <div class="diag-step-label" aria-hidden="true">Q 01 / 05</div>
-          <label class="diag-label">
-            <input type="checkbox" class="atk-checkbox" value="1" />
-            <span class="diag-check-icon" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="10" cy="10" r="8.5" stroke="currentColor" stroke-width="1"/>
-                <path class="check-path" d="M6.5 10.5L9 13L13.5 7"
-                      stroke="currentColor" stroke-width="1.2"
-                      stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="diag-q-text">
-              香水特有の<mark>「ツンとした匂い」</mark>が苦手だ
-            </span>
-          </label>
-        </li>
-
-        <li class="diag-item" data-step="2">
-          <div class="diag-step-label" aria-hidden="true">Q 02 / 05</div>
-          <label class="diag-label">
-            <input type="checkbox" class="atk-checkbox" value="2" />
-            <span class="diag-check-icon" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="10" cy="10" r="8.5" stroke="currentColor" stroke-width="1"/>
-                <path class="check-path" d="M6.5 10.5L9 13L13.5 7"
-                      stroke="currentColor" stroke-width="1.2"
-                      stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="diag-q-text">
-              周囲に<mark>「清潔感のある人」</mark>という印象を与えたい
-            </span>
-          </label>
-        </li>
-
-        <li class="diag-item" data-step="3">
-          <div class="diag-step-label" aria-hidden="true">Q 03 / 05</div>
-          <label class="diag-label">
-            <input type="checkbox" class="atk-checkbox" value="3" />
-            <span class="diag-check-icon" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="10" cy="10" r="8.5" stroke="currentColor" stroke-width="1"/>
-                <path class="check-path" d="M6.5 10.5L9 13L13.5 7"
-                      stroke="currentColor" stroke-width="1.2"
-                      stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="diag-q-text">
-              職場や学校でも、<mark>さりげなく香り</mark>を楽しみたい
-            </span>
-          </label>
-        </li>
-
-        <li class="diag-item" data-step="4">
-          <div class="diag-step-label" aria-hidden="true">Q 04 / 05</div>
-          <label class="diag-label">
-            <input type="checkbox" class="atk-checkbox" value="4" />
-            <span class="diag-check-icon" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="10" cy="10" r="8.5" stroke="currentColor" stroke-width="1"/>
-                <path class="check-path" d="M6.5 10.5L9 13L13.5 7"
-                      stroke="currentColor" stroke-width="1.2"
-                      stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="diag-q-text">
-              柔軟剤のような、<mark>自然で優しい香り</mark>が好きだ
-            </span>
-          </label>
-        </li>
-
-        <li class="diag-item" data-step="5">
-          <div class="diag-step-label" aria-hidden="true">Q 05 / 05</div>
-          <label class="diag-label">
-            <input type="checkbox" class="atk-checkbox" value="5" />
-            <span class="diag-check-icon" aria-hidden="true">
-              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="10" cy="10" r="8.5" stroke="currentColor" stroke-width="1"/>
-                <path class="check-path" d="M6.5 10.5L9 13L13.5 7"
-                      stroke="currentColor" stroke-width="1.2"
-                      stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="diag-q-text">
-              自分の香りが<mark>「香害」</mark>になっていないか不安になることがある
-            </span>
-          </label>
-        </li>
-
-      </ul>
-
-      <div class="diag-submit-area">
-        <button type="button" class="diag-submit-btn" id="atkSubmit">
-          相性を判定する
-          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
-               class="btn-icon" aria-hidden="true">
-            <path d="M4 10H16M16 10L11 5M16 10L11 15"
-                  stroke="currentColor" stroke-width="1"
-                  stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <p class="diag-submit-meta">※ 個人情報の入力は不要です</p>
-      </div>
-
-    </form>
-  </div><!-- /.atk-form-wrap -->
-
-  <!-- ローディング -->
-  <div class="atk-loading" id="atkLoading" aria-hidden="true">
-    <div class="atk-loading-inner">
-      <div class="atk-loading-ring"></div>
-      <p class="atk-loading-text">あなたの清潔感を分析中...</p>
-    </div>
-  </div>
-
-  <!-- 結果 -->
-  <div class="atk-result" id="atkResult" aria-live="polite">
-    <div id="atkResultInner"></div>
-  </div>
-
-</div><!-- /.atk-flow -->
-</section>
-   
-  <!-- ══════════════════════
-       REVIEWS（変更なし）
-  ══════════════════════ -->
-  <section class="reviews-section" id="reviews">
-    <p class="section-label">Reviews</p>
-    <h2 class="section-title-centered">使った人が、変わった。</h2>
-
-    <div class="reviews-grid">
-
-      <article class="review-card">
-        <div class="review-ugc-wrap">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670"
-            alt="PURELAYERを使用中のユーザー写真"
-            class="review-ugc-img"
-            loading="lazy"
-          />
-        </div>
-        <div class="review-content">
-          <h3 class="review-headline">「まるで石鹸そのもの」</h3>
-          <div class="review-stars" aria-label="星5つ">
-            <svg viewBox="0 0 88 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="stars-svg" aria-hidden="true"><g fill="#C9A96E"><path d="M7 1L8.6 4.6L12.5 5.1L9.75 7.8L10.4 11.7L7 9.8L3.6 11.7L4.25 7.8L1.5 5.1L5.4 4.6Z"/><path d="M23 1L24.6 4.6L28.5 5.1L25.75 7.8L26.4 11.7L23 9.8L19.6 11.7L20.25 7.8L17.5 5.1L21.4 4.6Z"/><path d="M39 1L40.6 4.6L44.5 5.1L41.75 7.8L42.4 11.7L39 9.8L35.6 11.7L36.25 7.8L33.5 5.1L37.4 4.6Z"/><path d="M55 1L56.6 4.6L60.5 5.1L57.75 7.8L58.4 11.7L55 9.8L51.6 11.7L52.25 7.8L49.5 5.1L53.4 4.6Z"/><path d="M71 1L72.6 4.6L76.5 5.1L73.75 7.8L74.4 11.7L71 9.8L67.6 11.7L68.25 7.8L65.5 5.1L69.4 4.6Z"/></g></svg>
-          </div>
-          <p class="review-body">職場で「なにかいい匂いがする」と声をかけてもらえました。</p>
-          <p class="review-byline">Ayaka S. — 会社員・28歳</p>
-        </div>
-      </article>
-
-      <article class="review-card">
-        <div class="review-ugc-wrap">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670"
-            alt="PURELAYERを使用中のユーザー写真"
-            class="review-ugc-img"
-            loading="lazy"
-          />
-        </div>
-        <div class="review-content">
-          <h3 class="review-headline">「一日中褒められた」</h3>
-          <div class="review-stars" aria-label="星5つ">
-            <svg viewBox="0 0 88 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="stars-svg" aria-hidden="true"><g fill="#C9A96E"><path d="M7 1L8.6 4.6L12.5 5.1L9.75 7.8L10.4 11.7L7 9.8L3.6 11.7L4.25 7.8L1.5 5.1L5.4 4.6Z"/><path d="M23 1L24.6 4.6L28.5 5.1L25.75 7.8L26.4 11.7L23 9.8L19.6 11.7L20.25 7.8L17.5 5.1L21.4 4.6Z"/><path d="M39 1L40.6 4.6L44.5 5.1L41.75 7.8L42.4 11.7L39 9.8L35.6 11.7L36.25 7.8L33.5 5.1L37.4 4.6Z"/><path d="M55 1L56.6 4.6L60.5 5.1L57.75 7.8L58.4 11.7L55 9.8L51.6 11.7L52.25 7.8L49.5 5.1L53.4 4.6Z"/><path d="M71 1L72.6 4.6L76.5 5.1L73.75 7.8L74.4 11.7L71 9.8L67.6 11.7L68.25 7.8L65.5 5.1L69.4 4.6Z"/></g></svg>
-          </div>
-          <p class="review-body">かすかに香るのに清潔感は格段にアップ。香害の心配がゼロです。</p>
-          <p class="review-byline">Kenji M. — エンジニア・33歳</p>
-        </div>
-      </article>
-
-      <article class="review-card">
-        <div class="review-ugc-wrap">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2872.webp?v=1773467332"
-            alt="PURELAYERを使用中のユーザー写真"
-            class="review-ugc-img"
-            loading="lazy"
-          />
-        </div>
-        <div class="review-content">
-          <h3 class="review-headline">「つけてることを忘れる」</h3>
-          <div class="review-stars" aria-label="星5つ">
-            <svg viewBox="0 0 88 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="stars-svg" aria-hidden="true"><g fill="#C9A96E"><path d="M7 1L8.6 4.6L12.5 5.1L9.75 7.8L10.4 11.7L7 9.8L3.6 11.7L4.25 7.8L1.5 5.1L5.4 4.6Z"/><path d="M23 1L24.6 4.6L28.5 5.1L25.75 7.8L26.4 11.7L23 9.8L19.6 11.7L20.25 7.8L17.5 5.1L21.4 4.6Z"/><path d="M39 1L40.6 4.6L44.5 5.1L41.75 7.8L42.4 11.7L39 9.8L35.6 11.7L36.25 7.8L33.5 5.1L37.4 4.6Z"/><path d="M55 1L56.6 4.6L60.5 5.1L57.75 7.8L58.4 11.7L55 9.8L51.6 11.7L68.25 7.8L65.5 5.1L69.4 4.6Z"/><path d="M71 1L72.6 4.6L76.5 5.1L73.75 7.8L74.4 11.7L71 9.8L67.6 11.7L68.25 7.8L65.5 5.1L69.4 4.6Z"/></g></svg>
-          </div>
-          <p class="review-body">自然すぎて存在を忘れるのに、「いい香り」と褒められる不思議。</p>
-          <p class="review-byline">Misaki T. — 学生・21歳</p>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════
-       PRODUCT（変更なし）
-  ══════════════════════ -->
-  <section class="story-section" id="product">
-    <p class="section-label">Why PURELAYER</p>
-    <h2 class="section-title-centered">PURELAYERが選ばれる理由</h2>
-
-    <div class="benefit-grid">
-
-      <div class="benefit-item">
-        <div class="benefit-number-row">
-          <span class="benefit-num">01</span>
-          <svg class="benefit-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle cx="16" cy="20" r="9" stroke="currentColor" stroke-width="1"/>
-            <circle cx="9" cy="11" r="4" stroke="currentColor" stroke-width="1"/>
-            <circle cx="23" cy="9" r="3" stroke="currentColor" stroke-width="1"/>
-            <circle cx="27" cy="17" r="2" stroke="currentColor" stroke-width="1"/>
-          </svg>
-        </div>
-        <div class="benefit-img-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/0BB23EC6-3DA1-4593-A30D-27962AA1BAC1.webp?v=1773741757" alt="石鹸のような清潔感のある香り" class="benefit-img" loading="lazy" />
-        </div>
-        <h3 class="benefit-heading">石鹸の香り</h3>
-        <ul class="benefit-list">
-          <li><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>お風呂上がり</strong>のような清潔感</span></li>
-          <li><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg><span>誰もが好ましいと感じる普遍的な香り</span></li>
-          <li><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg><span>「ツンとした匂い」ゼロ</span></li>
-        </ul>
-        <p class="benefit-kw">石鹸の香り</p>
-      </div>
-
-      <div class="benefit-item">
-        <div class="benefit-number-row">
-          <span class="benefit-num">02</span>
-          <svg class="benefit-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M16 28C16 28 6 22 6 14C6 8 11 4 16 4C21 4 26 8 26 14C26 22 16 28 16 28Z" stroke="currentColor" stroke-width="1"/>
-            <line x1="16" y1="4" x2="16" y2="28" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2"/>
-          </svg>
-        </div>
-        <div class="benefit-img-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/9b2c5e30664f5856257a415893cb9c12.webp?v=1774662750" alt="肌に優しいボタニカル成分" class="benefit-img" loading="lazy" />
-        </div>
-        <h3 class="benefit-heading">肌に優しい</h3>
-        <ul class="benefit-list">
-          <li><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>敏感肌・乾燥肌</strong>でも安心</span></li>
-          <li><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg><span>アレルゲン物質ゼロ設計</span></li>
-          <li><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg><span>ボタニカル成分が肌に密着</span></li>
-        </ul>
-        <p class="benefit-kw">低刺激処方</p>
-      </div>
-
-      <div class="benefit-item">
-        <div class="benefit-number-row">
-          <span class="benefit-num">03</span>
-          <svg class="benefit-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="1"/>
-            <path d="M16 9V16L20 19" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="benefit-img-wrap">
-          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/f97f0733db45bed02e09cf4d53d09007.webp?v=1774664460" alt="24時間持続する清潔感" class="benefit-img" loading="lazy" />
-        </div>
-        <h3 class="benefit-heading">24時間持続</h3>
-        <ul class="benefit-list">
-          <li><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg><span>朝から夜まで清潔感が続く</span></li>
-          <li><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>1〜2プッシュ</strong>で一日中OK</span></li>
-          <li><svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg><span>つけすぎ・香害の心配なし</span></li>
-        </ul>
-        <p class="benefit-kw">24時間持続</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════
-       GUARANTEE（変更なし）
-  ══════════════════════ -->
-  <section class="guarantee-section" id="guarantee">
-    <p class="section-label">Our Promise</p>
-    <h2 class="section-title-centered">失敗のリスク、ゼロ。</h2>
-
-    <div class="guarantee-badges">
-
-      <div class="guarantee-badge">
-        <div class="gbadge-icon">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="3" y="13" width="20" height="14" rx="1.5" stroke="currentColor" stroke-width="1"/>
-            <path d="M23 17H29L33 23V27H23V17Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
-            <circle cx="8.5" cy="28" r="3" stroke="currentColor" stroke-width="1"/>
-            <circle cx="28" cy="28" r="3" stroke="currentColor" stroke-width="1"/>
-          </svg>
-        </div>
-        <p class="gbadge-title"><strong>送料無料</strong></p>
-        <p class="gbadge-sub">全国一律・追加コストなし</p>
-      </div>
-
-      <div class="guarantee-badge guarantee-badge--hero">
-        <div class="gbadge-icon">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M14 6V20L9 30H27L22 20V6" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M11 6H25" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-            <path d="M10 24H26" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 2"/>
-          </svg>
-        </div>
-        <p class="gbadge-title"><strong>2ml</strong>テストキット付</p>
-        <p class="gbadge-sub">開封前に確認 / 未開封なら返品OK</p>
-      </div>
-
-      <div class="guarantee-badge">
-        <div class="gbadge-icon">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M18 3L32 9V21C32 28 18 33 18 33C18 33 4 28 4 21V9L18 3Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
-            <path d="M12 18L16.5 22.5L24 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <p class="gbadge-title"><strong>30日間</strong>全額返金</p>
-        <p class="gbadge-sub">理由不問で対応</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════
-       PURCHASE（変更なし）
-  ══════════════════════ -->
-  <section class="purchase-section" id="purchase">
-    <div class="purchase-inner">
-      <div class="purchase-image-col">
-        <img
-          src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731"
-          alt="PURELAYER Blanc Pur オードパルファン 50ml"
-          class="product-img"
-          loading="lazy"
-        />
-      </div>
-
-      <div class="purchase-detail-col">
-        <p class="purchase-eyebrow">New Collection</p>
-        <h2 class="purchase-title">PURELAYER<br /><em>Blanc Pur</em></h2>
-        <p class="purchase-desc">オードパルファン 50ml — 石鹸香調フレグランス</p>
-
-        <div class="purchase-price-wrap">
-          <span class="purchase-price">¥8,800</span>
-          <span class="purchase-tax">税込</span>
-        </div>
-
-        <a href="https://nemveil.com/products/premium-arabic-perfume-unisex-long-lasting-gentle-fragrance-luxury-eau-de-parfum-elegant-cologne-gift-for-men-and-women" class="purchase-btn">
-          今すぐ購入する
-          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="btn-icon" aria-hidden="true">
-            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-
-        <p class="purchase-microcopy">送料無料 · 最短当日発送 · 30日返金保証</p>
-
-        <div class="purchase-badges">
-          <span class="badge">低刺激処方</span>
-          <span class="badge">香害ゼロ設計</span>
-          <span class="badge">国内製造</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════
-       FOOTER（変更なし）
-  ══════════════════════ -->
-  <footer class="site-footer">
-    <p class="footer-logo">PURELAYER</p>
-    <p class="footer-copy">&copy; 2025 PURELAYER All Rights Reserved.</p>
-  </footer>
-
-  <!-- ══════════════════════
-       SCRIPT（変更なし）
-  ══════════════════════ -->
-<script>
-(function () {
-  'use strict';
-
-  var progressBar = document.getElementById('atkProgressBar');
-  var submitBtn   = document.getElementById('atkSubmit');
-  var loading     = document.getElementById('atkLoading');
-  var resultWrap  = document.getElementById('atkResult');
-  var resultInner = document.getElementById('atkResultInner');
-  var formWrap    = document.getElementById('atkFormWrap');
-
-  document.querySelectorAll('.atk-checkbox').forEach(function (cb) {
-    cb.addEventListener('change', function () {
-      this.closest('.diag-item').classList.toggle('checked', this.checked);
-      var total   = document.querySelectorAll('.atk-checkbox').length;
-      var checked = document.querySelectorAll('.atk-checkbox:checked').length;
-      if (progressBar) progressBar.style.width = Math.round((checked / total) * 100) + '%';
-    });
-  });
-
-  var arrow = '<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"'
-    + ' style="width:13px;display:inline-block;vertical-align:middle;margin-left:5px"'
-    + ' aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12"'
-    + ' stroke="currentColor" stroke-width="1" stroke-linecap="round"'
-    + ' stroke-linejoin="round"/></svg>';
-
-  submitBtn.addEventListener('click', function () {
-    var count = document.querySelectorAll('.atk-checkbox:checked').length;
-    if (count === 0) { render(0); return; }
-    formWrap.style.opacity      = '0';
-    formWrap.style.pointerEvents = 'none';
-    loading.classList.add('active');
-    setTimeout(function () { loading.classList.remove('active'); render(count); }, 1500);
-  });
-
-  function render(count) {
-    var html = '';
-    if (count === 0) {
-      html = '<div class="result-none" style="max-width:500px;margin:2rem auto;padding:2rem;'
-           + 'border:1px solid var(--c-border);text-align:center;">'
-           + '<p class="result-msg">まだチェックが入っていません。</p>'
-           + '<p class="result-sub">当てはまる項目を選んでから押してください。</p></div>';
-    } else if (count >= 3) {
-      html = '<div class="result-positive" style="padding:clamp(3rem,8vw,5rem) var(--pad-h);text-align:center;">'
-           + '<p class="result-eyebrow">診断結果 &mdash; ' + count + '/5 項目が一致</p>'
-           + '<h2 class="result-declaration">PURELAYERは<br /><em>あなたのための</em><br />香水です。</h2>'
-           + '<p class="result-sub-copy">香りに敏感なあなたには、透明な石鹸香調が最もよく合います。</p>'
-           + '<div class="result-cta-group">'
-           + '<a href="#purchase" class="result-cta-primary">あなたに最適な香りを詳しく見る ' + arrow + '</a>'
-           + '<a href="#product" class="result-cta-secondary">製品概要を確認する</a>'
-           + '</div></div>';
-    } else {
-      html = '<div class="result-neutral" style="padding:clamp(3rem,8vw,5rem) var(--pad-h);text-align:center;">'
-           + '<p class="result-eyebrow">診断結果 &mdash; ' + count + '/5 項目が一致</p>'
-           + '<h2 class="result-declaration-sm">清潔な香りへの<br /><em>関心が芽生えています。</em></h2>'
-           + '<p class="result-sub-copy">香りに慣れていない方にも馴染む、ほのかな石鹸香調。まず試してみてください。</p>'
-           + '<div class="result-cta-group">'
-           + '<a href="#purchase" class="result-cta-primary">まずは試してみる ' + arrow + '</a>'
-           + '</div></div>';
-    }
-    resultInner.innerHTML = html;
-    resultWrap.classList.add('active');
-    setTimeout(function () {
-      resultWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 60);
-  }
-
-  /* 既存セクション用 IntersectionObserver */
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.benefit-item,.review-card,.purchase-inner,.guarantee-badge')
-    .forEach(function (el) { io.observe(el); });
-
-})();
-</script>
 </body>
 </html>
