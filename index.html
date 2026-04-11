@@ -9,6 +9,7 @@
   }
 
   * { box-sizing: border-box; scroll-behavior: smooth; }
+  
   body, html {
     margin: 0; padding: 0;
     font-family: 'Shippori Mincho', serif;
@@ -18,7 +19,6 @@
     letter-spacing: 0.15em;
   }
 
-  /* レスポンシブ・スマホ最適化拡張 */
   .app-container {
     width: 100%;
     max-width: 768px;
@@ -40,7 +40,6 @@
 
   .icon-svg { width: 32px; height: 32px; stroke: var(--primary); stroke-width: 1px; fill: none; margin: 0 auto 20px; display: block; }
 
-  /* CTA視認性・高タップ領域（高さ60px） */
   .btn {
     display: flex; align-items: center; justify-content: center;
     width: 100%; min-height: 60px; padding: 18px 24px;
@@ -59,19 +58,14 @@
   .btn:hover:after { width: 100%; }
   .btn:hover { color: #fff; }
 
-  /* Heroフルワイド・スマホファースト最適化 */
   .hero {
     min-height: 90vh;
     display: flex; flex-direction: column; justify-content: flex-start; align-items: center;
-    text-align: center; padding: 0 0 50px 0; /* 画像を端まで広げるため上と左右のpaddingを除去 */
+    text-align: center; padding: 0 0 50px 0; 
     border-bottom: 1px solid var(--border);
   }
-  .hero-img-wrap {
-    width: 100%; max-width: 100%; margin: 0 0 40px 0;
-  }
-  .hero-img-wrap img { 
-    width: 100%; height: 50vh; object-fit: cover; border-radius: 0; filter: contrast(1.05); 
-  }
+  .hero-img-wrap { width: 100%; max-width: 100%; margin: 0 0 40px 0; }
+  .hero-img-wrap img { width: 100%; height: 50vh; object-fit: cover; border-radius: 0; filter: contrast(1.05); }
   
   .hero-content { position: relative; z-index: 1; width: 100%; padding: 0 24px; }
   .hero-badge {
@@ -79,51 +73,80 @@
     display: inline-block; letter-spacing: 0.3em; font-family: 'Inter', sans-serif;
   }
   
-  /* メインコピーの大文字化・行間調整 */
   .hero h1 { font-size: 1.6rem; font-weight: 500; margin-bottom: 25px; line-height: 1.4; letter-spacing: 0.1em; }
-  .hero h1 .strong { 
-    font-size: 2.6rem; font-weight: 700; display: block; margin-top: 15px; 
-    line-height: 1.15; letter-spacing: 0.05em; 
-  }
+  .hero h1 .strong { font-size: 2.6rem; font-weight: 700; display: block; margin-top: 15px; line-height: 1.15; letter-spacing: 0.05em; }
   .hero .sub { font-size: 1rem; opacity: 0.85; letter-spacing: 0.2em; margin-top: 35px; line-height: 2.4; }
 
-  /* タイポグラフィ強弱と可読性向上（ベースフォントサイズ拡大） */
   .sec-title { font-size: 1.5rem; text-align: center; margin-bottom: 60px; font-weight: 500; }
   .sec-title .strong { font-size: 2.3rem; font-weight: 700; display: block; margin-top: 15px; letter-spacing: 0.1em; }
   .desc-micro { font-size: 0.95rem; opacity: 0.75; line-height: 2.2; margin-top: 10px; }
 
+
+  /* ========================================================
+     スマホ表示における最外周の余白撤廃＆コンテナ制限解除
+     セクションと画像のフルスクリーン化（隙間ゼロ）
+  ======================================================== */
   @media (max-width: 768px) {
-    .app-container { max-width: 100%; }
-    .hero h1 .strong { font-size: 2.9rem; } /* スマホで劇的に拡大 */
-    section { padding: 80px 20px; } /* 余白最適化 */
+    /* 1. Body/Htmlの余白完全排除 */
+    body, html { margin: 0 !important; padding: 0 !important; background-color: #fff; }
+    
+    /* 2. メインラップの制限解除とフルワイド化 */
+    .app-container {
+      max-width: 100% !important;
+      width: 100% !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      margin: 0 !important;
+      box-shadow: none !important;
+    }
+
+    /* 3. 各セクションの余白最適化（上下をvhに、左右paddingを0にしてフルワイド化を担保） */
+    section { 
+      padding-left: 0 !important; 
+      padding-right: 0 !important; 
+      padding-top: 8vh; padding-bottom: 8vh;
+    }
+    
+    /* テキストやコンテンツの中身が端にくっつかないようインナーに余白を設ける */
+    .hero-content, .worry-list, .sec-title, .desc-micro, 
+    .benefit-item, .diag-list, .text-center {
+      padding-left: 24px; padding-right: 24px;
+    }
+    
+    /* 4. 画像のフルスクリーン化（1pxの隙間もなく画面端まで広げる） */
+    .hero-img-wrap { margin-bottom: 4vh; }
+    .hero-img-wrap img { width: 100vw !important; height: auto; min-height: 45vh; border-radius: 0; }
+    .lifestyle-img { width: 100vw !important; border-radius: 0 !important; }
+    
+    .hero h1 .strong { font-size: 2.4rem; }
+    
+    .comp-table-wrapper { padding: 0 24px; margin-top: 4vh; }
+    .review-slider-wrapper { padding: 0 24px 30px; }
+    
+    /* オファーカードの適正余白 */
+    .plan-card { margin-left: 24px !important; margin-right: 24px !important; }
+    footer { padding-left: 24px; padding-right: 24px; }
   }
+
+
+  /* ======================================================== */
 
   .worry-list { display: flex; flex-direction: column; gap: 20px; border-top: 1px solid var(--border); padding-top: 60px; }
   .worry-item {
     text-align: center; font-size: 1.05rem; font-weight: 500;
-    padding: 35px 20px; border: 1px solid var(--border); line-height: 2;
+    padding: 35px 20px; border: 1px solid var(--border); line-height: 2; background: #fff;
   }
 
-  /* ベネフィット */
   .benefit-item { text-align: center; margin-bottom: 80px; }
   .benefit-item:last-child { margin-bottom: 0; }
   .benefit-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 20px; }
 
-  /* 横スクロール比較表（画面端までフルワイド化） */
   .comp-table-wrapper {
-    overflow-x: auto;
-    margin: 40px -24px 0; /* 親のpaddingを打ち消し端まで広げる */
-    padding: 0 24px 30px;
+    overflow-x: auto; margin-top: 40px; padding-bottom: 30px;
     -webkit-overflow-scrolling: touch;
   }
-  .comp-table {
-    width: 100%; min-width: 600px;
-    border-collapse: collapse; text-align: center;
-  }
-  .comp-table th, .comp-table td {
-    padding: 25px 15px; border-bottom: 1px solid var(--border);
-    vertical-align: middle; line-height: 1.6;
-  }
+  .comp-table { width: 100%; min-width: 600px; border-collapse: collapse; text-align: center; }
+  .comp-table th, .comp-table td { padding: 25px 15px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.6; }
   .comp-table th { font-size: 0.9rem; letter-spacing: 0.2em; font-weight: 500; font-family: 'Inter', sans-serif;}
   .comp-table .row-label { text-align: left; font-weight: 600; font-size: 1.05rem; width: 25%; }
   .pure-col { background: #fff; border-left: 2px solid var(--primary); border-right: 2px solid var(--primary); position: relative; }
@@ -133,33 +156,28 @@
   .other-eval { font-size: 1.2rem; font-weight: 500; display: block; margin-bottom: 5px; opacity: 0.8;}
   .comp-micro { font-size: 0.8rem; opacity: 0.7; letter-spacing: 0.1em; }
 
-  /* レビュースライダー（横スワイプフルワイド化） */
   .review-slider-wrapper {
-    margin: 0 -24px; padding: 0 24px 30px;
     overflow-x: auto; scroll-snap-type: x mandatory;
-    display: flex; gap: 20px; 
+    display: flex; gap: 20px; padding-bottom: 30px;
     -webkit-overflow-scrolling: touch;
   }
   .review-slider-wrapper::-webkit-scrollbar { display: none; }
   .rev-slide {
-    flex: 0 0 88%; 
-    scroll-snap-align: center;
-    border: 1px solid var(--border);
-    padding: 24px; background: #fff;
+    flex: 0 0 88%; scroll-snap-align: center;
+    border: 1px solid var(--border); padding: 24px; background: #fff;
   }
   @media (min-width: 768px) { .rev-slide { flex: 0 0 45%; } }
+  .lifestyle-img { height: 40vh; object-fit: cover; margin-bottom: 40px; filter: grayscale(15%); width: 100%; border-radius: 0; }
   .rev-img { width: 100%; height: 260px; object-fit: cover; margin-bottom: 25px; filter: grayscale(15%); border-radius: 0; }
   .rev-user { font-size: 0.85rem; font-family: 'Inter', sans-serif; letter-spacing: 0.25em; margin-bottom: 15px; opacity: 0.6; font-weight: 500; }
   .rev-text { font-size: 1.05rem; line-height: 2.2; }
 
-  /* オファー */
-  .plan-card { border: 1px solid var(--border); padding: 60px 24px; text-align: center; margin-bottom: 20px; background: transparent;}
+  .plan-card { border: 1px solid var(--border); margin: 0 0 20px; padding: 60px 24px; text-align: center; background: transparent; }
   .plan-card.recommend { border: 1px solid var(--primary); background: #fff; box-shadow: 0 30px 50px rgba(0,0,0,0.04); }
   .plan-label { font-size: 0.85rem; letter-spacing: 0.3em; margin-bottom: 20px; display: inline-block; font-family: 'Inter', sans-serif; }
   .plan-price { font-size: 2.8rem; font-family: 'Inter', sans-serif; font-weight: 300; margin: 15px 0 25px; letter-spacing: 0.05em; }
   .plan-bonus { font-size: 0.95rem; margin-top: 25px; line-height: 2; padding-top: 25px; border-top: 1px solid var(--border); }
   
-  /* 診断ロジック */
   .diag-step { font-family: 'Inter', sans-serif; font-size: 0.85rem; letter-spacing: 0.3em; margin-bottom: 20px; opacity: 0.6; }
   .diag-list { border-top: 1px solid var(--primary); padding: 50px 0 20px; }
   .diag-item { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 40px; cursor: pointer; }
@@ -173,28 +191,20 @@
   }
   .diag-text { font-size: 1.05rem; line-height: 1.9; font-weight: 500;}
 
-  /* 常設(Sticky) CTAの実装 */
+  /* 常設CTA（Z-index最前面固定・既存維持） */
   .floating-cta {
     position: fixed; bottom: 0; left: 0; width: 100%;
     background: rgba(255,255,255,0.98); backdrop-filter: blur(15px);
-    padding: 16px 0 20px; border-top: 1px solid var(--border); z-index: 999;
+    padding: 16px 20px 24px; border-top: 1px solid var(--border); 
+    z-index: 9999; 
     transform: translateY(150%);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: 0 -10px 30px rgba(0,0,0,0.06);
   }
-  .floating-cta.is-visible {
-    transform: translateY(0);
-  }
-  .cta-inner { max-width: 768px; margin: 0 auto; padding: 0 24px; }
-  .btn-sticky {
-    background: #fff;
-    color: var(--primary);
-    border: 2px solid var(--primary);
-    font-weight: 700;
-  }
-  .btn-sticky:hover {
-    background: var(--primary); color: #fff;
-  }
+  .floating-cta.is-visible { transform: translateY(0); }
+  .cta-inner { max-width: 768px; margin: 0 auto; width: 100%; }
+  .btn-sticky { background: #fff; color: var(--primary); border: 2px solid var(--primary); font-weight: 700; }
+  .btn-sticky:hover { background: var(--primary); color: #fff; }
   
   footer { padding: 50px 24px 150px; text-align: center; border-top: 1px solid var(--border); }
   .footer-text { font-size: 0.8rem; letter-spacing: 0.2em; opacity: 0.5; font-family: 'Inter', sans-serif; }
@@ -204,7 +214,7 @@
 
   <section class="hero" id="hero">
     <div class="hero-img-wrap">
-      <img src="file:///C:/Users/obeob/.gemini/antigravity/brain/dd5b2863-8b0a-4b18-957a-c3e76bd497c6/premium_perfume_bottle_1775874439052.png" alt="PURELAYER" class="hero-img">
+      <img src="file:///C:/Users/obeob/.gemini/antigravity/brain/dd5b2863-8b0a-4b18-957a-c3e76bd497c6/premium_perfume_bottle_1775874439052.png" alt="PURELAYER">
     </div>
     
     <div class="hero-content">
@@ -237,7 +247,7 @@
     <h2 class="sec-title">
       圧倒的な<br><span class="strong">アドバンテージ</span>
     </h2>
-    <p class="desc-micro text-center">横にスクロールしてご確認いただけます。</p>
+    <p class="desc-micro text-center" style="margin-bottom: 20px;">※横にスクロールしてご確認いただけます</p>
     
     <div class="comp-table-wrapper">
       <table class="comp-table">
@@ -297,6 +307,8 @@
     <h2 class="sec-title" style="margin-bottom: 50px;">
       証明された<br><span class="strong">価値</span>
     </h2>
+
+    <img src="file:///C:/Users/obeob/.gemini/antigravity/brain/dd5b2863-8b0a-4b18-957a-c3e76bd497c6/clean_lifestyle_1775874420110.png" alt="Clean Lifestyle" class="lifestyle-img">
 
     <div class="review-slider-wrapper">
       <div class="rev-slide">
