@@ -292,72 +292,7 @@
         </div>
     </footer>
 
-    <script src="script.js">
-      // script.js
-
-/**
- * Redirects the user to the Shopify checkout with the specified variant IDs
- * @param {string} checkoutUrl - The formatted Shopify checkout URL
- */
-const checkout = (checkoutUrl) => {
-    // Add simple loading state to button
-    const eventTarget = event.currentTarget;
-    const originalText = eventTarget.innerHTML;
     
-    eventTarget.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 処理中...';
-    eventTarget.style.opacity = '0.8';
-    eventTarget.style.pointerEvents = 'none';
-
-    // Simulate a tiny delay for UX feedback before redirecting
-    setTimeout(() => {
-        window.location.href = checkoutUrl;
-    }, 400); // 400ms delay to show loading state
-};
-
-// Smooth scrolling for anchor links (e.g., from hero button to plans section)
-document.addEventListener('DOMContentLoaded', () => {
-    const scrollLinks = document.querySelectorAll('a[href^="#"]');
-    
-    scrollLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-                // Adjust scroll position taking fixed navbar into account
-                const navHeight = document.querySelector('.navbar').offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-});
-            // ■ 展開用 JS (script.jsの末尾等に追加) ■
-document.addEventListener('DOMContentLoaded', () => {
-    const loadMoreBtn = document.getElementById('load-more-reviews');
-    const hiddenReviews = document.getElementById('hidden-reviews');
-    
-    if (loadMoreBtn && hiddenReviews) {
-        loadMoreBtn.addEventListener('click', () => {
-            if (hiddenReviews.classList.contains('is-open')) {
-                hiddenReviews.classList.remove('is-open');
-                loadMoreBtn.textContent = '全てのレビューを見る（20+）';
-            } else {
-                hiddenReviews.classList.add('is-open');
-                loadMoreBtn.textContent = '閉じる';
-            }
-        });
-    }
-});
-
-
-    </script>
 </body>
 </html>
 
@@ -1176,3 +1111,140 @@ footer {
 
 </style>
 
+<script>
+    // script.js
+
+/**
+ * Redirects the user to the Shopify checkout with the specified variant IDs
+ * @param {string} checkoutUrl - The formatted Shopify checkout URL
+ */
+const checkout = (checkoutUrl) => {
+    // Add simple loading state to button
+    const eventTarget = event.currentTarget;
+    const originalText = eventTarget.innerHTML;
+    
+    eventTarget.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 処理中...';
+    eventTarget.style.opacity = '0.8';
+    eventTarget.style.pointerEvents = 'none';
+
+    // Simulate a tiny delay for UX feedback before redirecting
+    setTimeout(() => {
+        window.location.href = checkoutUrl;
+    }, 400); // 400ms delay to show loading state
+};
+
+// DOM Events (Smooth scroll & Review Accordion)
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Smooth scrolling for anchor links
+    const scrollLinks = document.querySelectorAll('a[href^="#"]');
+    
+    scrollLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const href = this.getAttribute('href');
+            if(href === '#') return;
+
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                // Adjust scroll position taking fixed navbar into account
+                const navHeight = document.querySelector('.navbar').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // 2. Reviews Accordion Logic
+    const loadMoreBtn = document.getElementById('load-more-reviews');
+    const hiddenReviews = document.getElementById('hidden-reviews');
+    
+    if (loadMoreBtn && hiddenReviews) {
+        loadMoreBtn.addEventListener('click', () => {
+            if (hiddenReviews.classList.contains('is-open')) {
+                // Close
+                hiddenReviews.classList.remove('is-open');
+                loadMoreBtn.textContent = '全てのレビューを見る（20+）';
+            } else {
+                // Open
+                hiddenReviews.classList.add('is-open');
+                loadMoreBtn.textContent = '閉じる';
+            }
+        });
+    }
+});
+    // script.js
+
+/**
+ * Redirects the user to the Shopify checkout with the specified variant IDs
+ * @param {string} checkoutUrl - The formatted Shopify checkout URL
+ */
+const checkout = (checkoutUrl) => {
+    // Add simple loading state to button
+    const eventTarget = event.currentTarget;
+    const originalText = eventTarget.innerHTML;
+    
+    eventTarget.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 処理中...';
+    eventTarget.style.opacity = '0.8';
+    eventTarget.style.pointerEvents = 'none';
+
+    // Simulate a tiny delay for UX feedback before redirecting
+    setTimeout(() => {
+        window.location.href = checkoutUrl;
+    }, 400); // 400ms delay to show loading state
+};
+
+// DOM Events (Smooth scroll & Review Accordion)
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Smooth scrolling for anchor links
+    const scrollLinks = document.querySelectorAll('a[href^="#"]');
+    
+    scrollLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const href = this.getAttribute('href');
+            if(href === '#') return;
+
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                // Adjust scroll position taking fixed navbar into account
+                const navHeight = document.querySelector('.navbar').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // 2. Reviews Accordion Logic
+    const loadMoreBtn = document.getElementById('load-more-reviews');
+    const hiddenReviews = document.getElementById('hidden-reviews');
+    
+    if (loadMoreBtn && hiddenReviews) {
+        loadMoreBtn.addEventListener('click', () => {
+            if (hiddenReviews.classList.contains('is-open')) {
+                // Close
+                hiddenReviews.classList.remove('is-open');
+                loadMoreBtn.textContent = '全てのレビューを見る（20+）';
+            } else {
+                // Open
+                hiddenReviews.classList.add('is-open');
+                loadMoreBtn.textContent = '閉じる';
+            }
+        });
+    }
+});
+
+</script>
