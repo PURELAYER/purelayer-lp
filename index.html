@@ -1,421 +1,327 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>【公式】PURELAYER Oud Stallion - 清潔感の塊</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
 
-    :root {
-      --primary: #1a1a1a;
-      --gold: #D4af37;
-      --gold-dark: #b5952f;
-      --bg-color: #fafafa;
-      --text: #333;
-      --accent: #E5E5E5;
-    }
+  :root {
+    --primary: #1A1A1A;
+    --text: #1A1A1A;
+    --bg-color: #FAFAFA;
+    --border: #EAEAEA;
+  }
 
-    * { box-sizing: border-box; scroll-behavior: smooth; }
-    body, html {
-      margin: 0; padding: 0;
-      font-family: 'Inter', 'Noto Sans JP', sans-serif;
-      background-color: #e0e0e0; /* Outer background for desktop */
-      color: var(--text);
-      line-height: 1.6;
-    }
+  * { box-sizing: border-box; scroll-behavior: smooth; }
+  body, html {
+    margin: 0; padding: 0;
+    font-family: 'Shippori Mincho', serif;
+    background-color: var(--bg-color);
+    color: var(--text);
+    line-height: 2;
+    letter-spacing: 0.15em;
+  }
 
-    /* TikTok/Mobile optimized wrapper */
-    .app-container {
-      max-width: 480px;
-      margin: 0 auto;
-      background-color: #fff;
-      box-shadow: 0 0 30px rgba(0,0,0,0.1);
-      position: relative;
-      padding-bottom: 110px; /* Spacer for bottom CTA */
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
+  .app-container {
+    max-width: 480px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 0 30px rgba(0,0,0,0.03);
+    position: relative;
+    padding-bottom: 120px;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
 
-    section { padding: 60px 24px; }
-    img { max-width: 100%; height: auto; display: block; border-radius: 8px;}
+  /* セクション間余白 */
+  section { padding: 100px 24px; position: relative; }
+  
+  img { max-width: 100%; height: auto; display: block; }
+  h1, h2, h3, h4 { margin: 0; font-weight: 500; line-height: 1.5; color: var(--primary); }
+  p { margin: 0 0 15px 0; }
+  .text-center { text-align: center; }
 
-    h1, h2, h3 { color: var(--primary); line-height: 1.4; margin: 0; }
-    p { margin: 0 0 15px 0; }
+  /* アイコン (SVG 1px stroke) */
+  .icon-svg { width: 28px; height: 28px; stroke: var(--primary); stroke-width: 1px; fill: none; margin: 0 auto 20px; display: block; }
 
-    .text-center { text-align: center; }
-    .text-gold { color: var(--gold); }
+  /* 洗練された質感のボタン */
+  .btn {
+    display: block; width: 100%; padding: 22px;
+    background: transparent; color: var(--primary);
+    text-align: center; text-decoration: none;
+    font-weight: 500; font-size: 0.85rem;
+    border: 1px solid var(--primary); border-radius: 0;
+    transition: all 0.4s ease;
+    letter-spacing: 0.25em;
+    position: relative; overflow: hidden;
+  }
+  .btn:after {
+    content: ''; position: absolute; left: 0; top: 0; width: 0%; height: 100%;
+    background: var(--primary); z-index: -1; transition: width 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .btn:hover:after { width: 100%; }
+  .btn:hover { color: #fff; }
+
+  /* Hero (70vh, Q1露出) */
+  .hero {
+    height: 70vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 0 24px;
+  }
+  .hero-bg {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 65%; opacity: 0.2; z-index: 0; pointer-events: none; filter: contrast(1.2);
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-badge {
+    font-size: 0.75rem; border: 1px solid var(--primary); padding: 4px 18px; margin-bottom: 30px;
+    display: inline-block; letter-spacing: 0.3em; font-family: 'Inter', sans-serif;
+  }
+  .hero h1 { font-size: 1.6rem; font-weight: 500; margin-bottom: 20px; }
+  .hero h1 .strong { font-size: 2.6rem; font-weight: 700; display: block; margin-top: 15px; letter-spacing: 0.1em; }
+  .hero .sub { font-size: 0.8rem; opacity: 0.8; letter-spacing: 0.25em; margin-top: 30px; line-height: 2.4; }
+
+  /* タイポグラフィ強弱の徹底 */
+  .sec-title { font-size: 1.4rem; text-align: center; margin-bottom: 60px; font-weight: 500; }
+  .sec-title .strong { font-size: 2.2rem; font-weight: 700; display: block; margin-top: 15px; letter-spacing: 0.1em; }
+  .desc-micro { font-size: 0.8rem; opacity: 0.65; line-height: 2.2; margin-top: 10px; }
+
+  /* 問題提起 (Q1相当) のデザイン */
+  .worry-list { display: flex; flex-direction: column; gap: 20px; border-top: 1px solid var(--border); padding-top: 60px; }
+  .worry-item {
+    text-align: center; font-size: 0.95rem; font-weight: 500;
+    padding: 35px 20px; border: 1px solid var(--border);
+    line-height: 2;
+  }
+
+  /* 比較表（カード化） */
+  .comparison { display: flex; gap: 15px; margin-top: 40px; }
+  .comp-card {
+    flex: 1; padding: 45px 15px; text-align: center; border: 1px solid var(--border);
+    display: flex; flex-direction: column; align-items: center; background: #fff;
+  }
+  .comp-card.purelayer {
+    border: none; box-shadow: 0 20px 40px rgba(0,0,0,0.05); z-index: 2; transform: scale(1.02);
+  }
+  .comp-brand { font-size: 0.75rem; letter-spacing: 0.25em; margin-bottom: 25px; font-family: 'Inter', sans-serif;}
+  .comp-eval { font-size: 1.3rem; font-weight: 600; margin-bottom: 15px; }
+  .comp-desc { font-size: 0.8rem; opacity: 0.75; line-height: 2; }
+
+  /* ベネフィット */
+  .benefit-item { text-align: center; margin-bottom: 80px; }
+  .benefit-item:last-child { margin-bottom: 0; }
+  .benefit-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 20px; }
+
+  /* レビュー・エビデンス */
+  .lifestyle-img { width: 100%; height: 380px; object-fit: cover; filter: grayscale(15%) contrast(1.05); margin-bottom: 50px; }
+  .review-grid { display: flex; flex-direction: column; gap: 40px; }
+  .review-card { padding: 0 0 0 25px; border-left: 1px solid var(--primary); }
+  .review-user { font-size: 0.75rem; font-family: 'Inter', sans-serif; letter-spacing: 0.2em; margin-bottom: 20px; opacity: 0.6; }
+  .review-text { font-size: 0.95rem; line-height: 2.3; font-weight: 400; }
+
+  /* オファー */
+  .plan-card { border: 1px solid var(--border); padding: 60px 24px; text-align: center; margin-bottom: 20px; background: transparent;}
+  .plan-card.recommend { border: 1px solid var(--primary); background: #fff; box-shadow: 0 30px 50px rgba(0,0,0,0.04); }
+  .plan-label { font-size: 0.75rem; letter-spacing: 0.3em; margin-bottom: 20px; display: inline-block; font-family: 'Inter', sans-serif; }
+  .plan-price { font-size: 2.6rem; font-family: 'Inter', sans-serif; font-weight: 300; margin: 15px 0 25px; letter-spacing: 0.05em; }
+  .plan-bonus { font-size: 0.8rem; margin-top: 25px; line-height: 2; padding-top: 25px; border-top: 1px solid var(--border); }
+  
+  /* 診断チェックリスト */
+  .diag-list { border-top: 1px solid var(--primary); border-bottom: 1px solid var(--primary); padding: 40px 0; }
+  .diag-item { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 35px; cursor: pointer; }
+  .diag-item:last-child { margin-bottom: 0; }
+  .diag-checkbox {
+    appearance: none; width: 22px; height: 22px; border: 1px solid var(--primary);
+    border-radius: 0; outline: none; flex-shrink: 0; margin-top: 4px; position: relative;
+    cursor: pointer;
+  }
+  .diag-checkbox:checked::after {
+    content: ''; position: absolute; top: 4px; left: 4px; width: 12px; height: 12px; background: var(--primary);
+  }
+  .diag-text { font-size: 0.95rem; line-height: 1.9; font-weight: 500;}
+
+  /* Fixed Bottom CTA */
+  .floating-cta {
+    position: fixed; bottom: 0; left: 0; width: 100%;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(15px);
+    padding: 24px 0; border-top: 1px solid var(--border); z-index: 100;
+  }
+  .cta-inner { max-width: 480px; margin: 0 auto; padding: 0 24px; }
+  
+  footer { padding: 50px 24px 150px; text-align: center; border-top: 1px solid var(--border); }
+  .footer-text { font-size: 0.7rem; letter-spacing: 0.2em; opacity: 0.5; font-family: 'Inter', sans-serif; }
+</style>
+
+<!-- ==============================================
+     以下を既存のHTMLの <section id="fv"> (または <section id="hero">) から
+     最後まで差し替えてください。
+=============================================== -->
+
+  <section class="hero" id="hero">
+    <img src="file:///C:/Users/obeob/.gemini/antigravity/brain/dd5b2863-8b0a-4b18-957a-c3e76bd497c6/premium_perfume_bottle_1775874439052.png" alt="PURELAYER" class="hero-bg">
     
-    /* Buttons */
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 18px;
-      background: var(--primary);
-      color: #fff;
-      text-align: center;
-      text-decoration: none;
-      font-weight: 800;
-      font-size: 18px;
-      border-radius: 30px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-    .btn-gold {
-      background: linear-gradient(135deg, #e8c668, #D4af37);
-      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    }
-    .btn::after {
-      content: '';
-      position: absolute; top: 0; left: -100%;
-      width: 50%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-      animation: shine 3s infinite;
-    }
-    @keyframes shine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
-    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
-    .btn-pulse { animation: pulse 2s infinite; }
-    .btn:active { transform: scale(0.98); }
-
-    /* FV Section */
-    .fv {
-      padding-top: 40px;
-      padding-bottom: 40px;
-      position: relative;
-      background: linear-gradient(180deg, #fff 0%, var(--bg-color) 100%);
-    }
-    .fv-hook {
-      display: inline-block;
-      background: var(--primary);
-      color: #fff;
-      padding: 8px 20px;
-      border-radius: 30px;
-      font-weight: 900;
-      font-size: 14px;
-      margin-bottom: 20px;
-      letter-spacing: 1px;
-    }
-    .fv h1 { font-size: 28px; font-weight: 900; margin-bottom: 12px; }
-    .fv-sub { font-size: 16px; color: #555; font-weight: 700; margin-bottom: 30px; }
-    
-    .img-fluid { width: 100%; max-height: 420px; object-fit: cover; margin-bottom: 25px; border-radius: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.06); }
-    
-    .rating-box { margin-bottom: 30px; }
-    .stars { font-size: 26px; color: var(--gold); letter-spacing: 2px; display: block; margin-bottom: 8px; text-shadow: 0 2px 4px rgba(212,175,55,0.3);}
-    .rating-text { font-weight: 800; font-size: 18px; }
-
-    /* Empathy Section */
-    .bg-gray { background-color: var(--bg-color); border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; }
-    .sec-header { text-align: center; margin-bottom: 40px; position: relative; }
-    .sec-header h2 { font-size: 26px; font-weight: 900; display: inline-block; letter-spacing: -0.5px;}
-    .sec-header h2::after {
-      content: ''; display: block; width: 40px; height: 4px; background: var(--gold); margin: 15px auto 0; border-radius: 2px;
-    }
-    
-    .worry-list { display: flex; flex-direction: column; gap: 16px; }
-    .worry-item {
-      background: #fff;
-      padding: 22px 20px;
-      border-radius: 14px;
-      font-weight: 800;
-      font-size: 16px;
-      display: flex; align-items: center; gap: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-      border-left: 5px solid #d4d4d4;
-    }
-    .worry-item::before { content: '🤔'; font-size: 22px; }
-
-    /* Solution Section */
-    .solution { background: var(--primary); color: #fff; text-align: center; padding: 70px 24px; }
-    .solution h2 { color: var(--gold); font-size: 28px; line-height: 1.5; margin-bottom: 24px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-    .solution h2::after { display: none; }
-    .solution p { font-size: 17px; font-weight: 700; opacity: 0.9; }
-
-    /* Benefit Section */
-    .benefit-item {
-      text-align: center; margin-bottom: 50px;
-    }
-    .benefit-item:last-child { margin-bottom: 0; }
-    .benefit-icon { font-size: 45px; margin-bottom: 15px; }
-    .benefit-title { font-size: 22px; font-weight: 900; margin-bottom: 12px; color: var(--gold-dark); }
-    .benefit-text { color: #444; font-size: 16px; font-weight: 700; line-height: 1.7;}
-    
-    .scene-tags { display: flex; gap: 12px; justify-content: center; margin-top: 25px; flex-wrap: wrap; }
-    .scene-tag { background: #f0f0f0; padding: 10px 22px; border-radius: 30px; font-weight: 800; font-size: 14px; color: var(--primary); box-shadow: inset 0 0 0 1px #e0e0e0;}
-
-    /* Trust Section */
-    .trust { border-top: 2px solid #eee; border-bottom: 2px solid #eee; padding: 0; }
-    .trust-msg { font-size: 24px; font-weight: 900; text-align: center; line-height: 1.6; padding: 50px 20px;}
-
-    /* Evidence (Reviews) */
-    .review-card {
-      background: #fff; border: 1px solid #f0f0f0; border-radius: 14px; padding: 25px; margin-bottom: 20px; position: relative;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-    }
-    .review-user { font-size: 13px; color: #888; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-    .review-user.male::before { content: '👨'; font-size: 18px;}
-    .review-user.female::before { content: '👩'; font-size: 18px;}
-    .review-stars { color: var(--gold); font-size: 16px; margin-bottom: 12px; }
-    .review-text { font-weight: 800; font-size: 15px; line-height: 1.6;}
-    .lifestyle-img { height: 250px; object-fit: cover; width: 100%; border-radius: 16px; margin-bottom: 35px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-
-    /* Price / Detail Section */
-    .price-card {
-      border: 2px solid var(--accent); border-radius: 18px; padding: 35px 20px; text-align: center; margin-bottom: 25px; background: #fff; position: relative; transition: all 0.3s ease;
-    }
-    .price-card.recommend {
-      border-color: var(--gold);
-      transform: scale(1.03);
-      box-shadow: 0 15px 35px rgba(212,175,55,0.18);
-      z-index: 2;
-      background: linear-gradient(180deg, #fff 0%, #fffcf5 100%);
-    }
-    .badge-pop {
-      position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
-      background: var(--gold); color: #fff; font-weight: 900; font-size: 13px; padding: 8px 24px; border-radius: 30px; white-space: nowrap;
-      box-shadow: 0 4px 10px rgba(212,175,55,0.3);
-    }
-    .vol { font-size: 22px; font-weight: 900; margin-bottom: 5px; color: var(--primary); }
-    .price-val { font-size: 34px; font-weight: 900; color: var(--primary); margin: 15px 0; }
-    .bonus { background: #fff8e1; border: 2px solid #ffe082; color: #d84315; padding: 16px; border-radius: 10px; font-size: 15px; font-weight: 800; display: inline-block; width: 100%; margin-top: 20px; box-shadow: 0 4px 10px rgba(255,213,79,0.2);}
-
-    /* Guarantee */
-    .g-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-    .g-card { border: 2px dashed #ccc; border-radius: 14px; padding: 25px; text-align: center; font-weight: 800; font-size: 18px; display: flex; flex-direction: column; align-items: center; gap: 12px; background: #fff;}
-
-    /* Diagnostic */
-    .diag-container { background: #fff; border-radius: 18px; padding: 35px 24px; box-shadow: 0 8px 25px rgba(0,0,0,0.06); border: 1px solid #f0f0f0;}
-    .check-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 30px; }
-    .check-item { display: flex; align-items: center; gap: 15px; font-weight: 800; font-size: 16px; background: var(--bg-color); padding: 18px; border-radius: 10px; cursor: pointer; transition: background 0.2s; border: 1px solid #eee;}
-    .check-item:hover { background: #f0f0f0; }
-    .check-item input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--gold); cursor: pointer; border-radius: 4px; }
-    
-    /* Fixed Bottom CTA */
-    .floating-cta {
-      position: fixed;
-      bottom: 0; left: 0; width: 100%;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      padding: 15px 0 25px;
-      z-index: 999;
-      box-shadow: 0 -5px 25px rgba(0,0,0,0.08);
-      display: flex; justify-content: center;
-    }
-    .cta-inner { width: 100%; max-width: 480px; padding: 0 24px; }
-    .floating-cta .btn { width: 100%; padding: 20px; font-size: 19px;}
-    
-    .text-sm { font-size: 13px; color: #777; margin-top: 10px; font-weight: 700;}
-  </style>
-</head>
-<body>
-
-<div class="app-container">
-
-  <!-- ==================== ファーストビュー ==================== -->
-  <section class="fv text-center" id="fv">
-    <div class="fv-hook">香水初心者は絶対見て！</div>
-    <h1>学校・職場で<br>褒められまくった香水</h1>
-    <div class="fv-sub">清潔感の塊。これ1本で全部いける。</div>
-    
-    <!-- Generated Product Image -->
-    <img src="file:///C:/Users/obeob/.gemini/antigravity/brain/dd5b2863-8b0a-4b18-957a-c3e76bd497c6/premium_perfume_bottle_1775874439052.png" alt="PURELAYER Oud Stallion" class="img-fluid">
-    
-    <div class="rating-box">
-      <span class="stars">★★★★★</span>
-      <span class="rating-text">「もっと早く出会いたかった」</span>
+    <div class="hero-content">
+      <div class="hero-badge">PERFUME FOR ALL</div>
+      <h1>
+        学校・職場で<br>
+        <span class="strong">絶賛される理由。</span>
+      </h1>
+      <div class="sub">
+        それは「清潔感の塊」。<br>
+        この一本が、あなたの印象を決定づける。
+      </div>
     </div>
-    
-    <a href="#diagnostic" class="btn btn-gold btn-pulse">
-      無料で自分に合うかチェック
-      <span style="font-size:13px; font-weight:700; display:block; margin-top:6px; opacity: 0.9;">▶︎ 1分でわかる簡単診断</span>
-    </a>
   </section>
 
-  <!-- ==================== 共感 ==================== -->
-  <section class="bg-gray" id="empathy">
-    <div class="sec-header">
-      <h2>香水選び、<br>こんな悩みありませんか？</h2>
-    </div>
+  <section id="empathy">
+    <h2 class="sec-title">
+      香水選びの<br><span class="strong">終着点</span>
+    </h2>
+    <p class="desc-micro text-center" style="margin-bottom: 40px;">以下に該当するなら、すぐにお試しください。</p>
+    
     <div class="worry-list">
-      <div class="worry-item">強すぎる香りが苦手で酔う…</div>
-      <div class="worry-item">種類が多すぎてどれを選べばいいかわからない…</div>
-      <div class="worry-item">失敗してクローゼットの肥やしにしたくない…</div>
+      <div class="worry-item">強すぎる香りで、周囲を不快にしていないか。</div>
+      <div class="worry-item">無数にある種類から、正解を見つけられない。</div>
+      <div class="worry-item">決して安くないからこそ、失敗したくない。</div>
     </div>
   </section>
 
-  <!-- ==================== 解決提示 ==================== -->
-  <section class="solution" id="solution">
-    <h2>それ、全部<br>『Oud Stallion』で<br>解決します。</h2>
-    <p>誰からも好かれる「究極の無難」でありながら<br>圧倒的な完成度を誇る1本です。</p>
+  <section id="comparison">
+    <h2 class="sec-title">
+      究極の無難、<br><span class="strong">圧倒的な完成度</span>
+    </h2>
+    <div class="comparison">
+      <div class="comp-card">
+        <div class="comp-brand">GENERAL PERFUME</div>
+        <div class="comp-eval">難解な個性</div>
+        <div class="comp-desc">主張が強く、TPOや相手を選ぶ。使いこなすには知識と経験が必要。</div>
+      </div>
+      <div class="comp-card purelayer">
+        <div class="comp-brand">PURELAYER</div>
+        <div class="comp-eval">清潔感の塊</div>
+        <div class="comp-desc">誰からも好まれる「自然な香り」。シーンを問わず、あなたの魅力を引き上げる。</div>
+      </div>
+    </div>
   </section>
 
-  <!-- ==================== 商品ベネフィット ==================== -->
   <section id="benefit">
-    <div class="sec-header">
-      <h2>なぜ、ここまで<br>選ばれるのか？</h2>
-    </div>
-    
+    <h2 class="sec-title" style="margin-bottom: 80px;">
+      計算尽くされた<br><span class="strong">美学</span>
+    </h2>
+
     <div class="benefit-item">
-      <div class="benefit-icon">🫧</div>
-      <div class="benefit-title">柔軟剤のような清潔な香り</div>
-      <div class="benefit-text">すれ違った瞬間、「なんかいい匂いする」と振り返られる自然な清潔感。</div>
+      <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+      <h3 class="benefit-title">洗い立てのシャツのような</h3>
+      <p class="desc-micro">自然な清潔感。<br>すれ違った瞬間、誰もがその心地よさに振り返る。</p>
     </div>
 
     <div class="benefit-item">
-      <div class="benefit-icon">⏱️</div>
-      <div class="benefit-title">朝つけて、夜まで持続</div>
-      <div class="benefit-text">香水特有のキツい飛び方はしません。肌に馴染みながら1日中優しく香ります。</div>
+      <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+      <h3 class="benefit-title">時間とともに肌に馴染む</h3>
+      <p class="desc-micro">香水特有の鋭さはなく、<br>朝から夜まで、あなたの体温とともに優しく持続する。</p>
     </div>
 
     <div class="benefit-item">
-      <div class="benefit-icon">✨</div>
-      <div class="benefit-title">強すぎない絶妙なバランス</div>
-      <div class="benefit-text">「香水つけてる感」を極限まで抑えた、自分も周りも心地よい設計です。</div>
-    </div>
-
-    <div class="text-center" style="margin-top:50px;">
-      <p style="font-weight:900; font-size:20px;">どんなシーンでも、これ1本。</p>
-      <div class="scene-tags">
-        <span class="scene-tag">🏫 学校</span>
-        <span class="scene-tag">🏢 オフィス</span>
-        <span class="scene-tag">🥂 デート</span>
-      </div>
+      <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+      <h3 class="benefit-title">絶妙な配合バランス</h3>
+      <p class="desc-micro">「香水をつけている感」を極限まで排除。<br>自分自身も、周囲も深い安らぎを覚える設計。</p>
     </div>
   </section>
 
-  <!-- ==================== 信頼 ==================== -->
-  <section class="trust bg-gray">
-    <div class="trust-msg">
-      「超マイナーだから<br><span class="text-gold">人と被らない。</span><br>でも、完成度は高い。」
-    </div>
-  </section>
-
-  <!-- ==================== 証拠（レビュー） ==================== -->
   <section id="evidence">
-    <div class="sec-header">
-      <h2>愛用者のリアルな声</h2>
-    </div>
-    
-    <!-- Generated Lifestyle Image -->
+    <h2 class="sec-title">
+      証明された<br><span class="strong">価値</span>
+    </h2>
+
     <img src="file:///C:/Users/obeob/.gemini/antigravity/brain/dd5b2863-8b0a-4b18-957a-c3e76bd497c6/clean_lifestyle_1775874420110.png" alt="Clean Lifestyle" class="lifestyle-img">
-
-    <div class="review-card">
-      <div class="review-user male">20代 男性 / 会社員</div>
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">「職場で『柔軟剤変えた？いい匂い』と言われました。香水バレしないのが最高です。毎日使ってます。」</div>
-    </div>
-
-    <div class="review-card">
-      <div class="review-user female">20代 女性 / 大学生</div>
-      <div class="review-stars">★★★★★</div>
-      <div class="review-text">「ユニセックスで使えるので彼氏とシェアしてます。甘すぎず、ずっと深呼吸したくなるような清潔感のある香り！」</div>
-    </div>
-  </section>
-
-  <!-- ==================== 商品詳細・オファー ==================== -->
-  <section class="bg-gray" id="offer">
-    <div class="sec-header">
-      <h2>今だけの特別セット</h2>
-    </div>
-
-    <!-- 100ml -->
-    <div class="price-card recommend">
-      <div class="badge-pop">1番人気！圧倒的にお得</div>
-      <div class="vol">100ml ボトル</div>
-      <div class="price-val">14,800円</div>
-      <p class="text-sm">（税込・送料無料）</p>
-      <div class="bonus">
-        🎁 豪華特典付き<br>
-        2mlテストキット ＋ 10mlアトマイザー無料！
-      </div>
-    </div>
-
-    <!-- 50ml -->
-    <div class="price-card">
-      <div class="vol">50ml ボトル</div>
-      <div class="price-val">5,980円</div>
-      <p class="text-sm">（税込・送料無料）</p>
-      <div class="bonus">
-        🎁 10mlアトマイザー無料！
-      </div>
-    </div>
-
-    <!-- 10ml -->
-    <div class="price-card" style="padding: 25px;">
-      <div class="vol">10ml トライアル</div>
-      <div class="price-val" style="font-size:28px;">1,750円</div>
-      <p class="text-sm">（税込・送料別）</p>
-    </div>
     
-    <div style="margin-top:40px;">
-      <a href="#diagnostic" class="btn btn-pulse">お得なセットを今すぐ試す</a>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="review-user">MENS / 20s</div>
+        <div class="review-text">「柔軟剤、何使ってる？」と職場で聞かれる回数が増えた。決して『香水』とは言われない。それが最高の賛辞だと思う。</div>
+      </div>
+      <div class="review-card">
+        <div class="review-user">WOMENS / 20s</div>
+        <div class="review-text">深呼吸したくなるような透明感。ユニセックスで彼と共有しているけれど、不思議とそれぞれの肌に合わせた香りに変化する。</div>
+      </div>
     </div>
   </section>
 
-  <!-- ==================== リスク排除 ==================== -->
   <section id="guarantee">
-    <div class="sec-header">
-      <h2>安心の3つの保証</h2>
+    <h2 class="sec-title" style="margin-bottom: 80px;">
+      妥協のない<br><span class="strong">顧客体験</span>
+    </h2>
+
+    <div class="benefit-item">
+      <svg class="icon-svg" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+      <h3 class="benefit-title">30日間の返品保証</h3>
+      <p class="desc-micro">本当に満足いただけるか。<br>未開封品に限り、30日間の見直し期間をご用意しています。</p>
     </div>
-    <div class="g-grid">
-      <div class="g-card">
-        <span style="font-size:36px;">📦</span>
-        <span>全国どこでも<br><span class="text-gold">送料無料</span></span>
-      </div>
-      <div class="g-card">
-        <span style="font-size:36px;">📅</span>
-        <span>安心の<br><span class="text-gold">30日間返品保証</span><br><span class="text-sm" style="font-weight:700;">(※未開封に限る)</span></span>
-      </div>
-      <div class="g-card">
-        <span style="font-size:36px;">🧪</span>
-        <span>まずはテストキットで<br><span class="text-gold">香りを事前確認OK</span></span>
-      </div>
+
+    <div class="benefit-item">
+      <svg class="icon-svg" viewBox="0 0 24 24"><path d="M10 2v7.31"></path><path d="M14 9.3V1.99"></path><path d="M8.5 2h7"></path><path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path><line x1="5.52" y1="16" x2="18.48" y2="16"></line></svg>
+      <h3 class="benefit-title">テストキット同梱</h3>
+      <p class="desc-micro">100mlボトルには、事前に香りを確認できる<br>2mlのテストキットが付属します。</p>
     </div>
   </section>
 
-  <!-- ==================== 診断導線 ==================== -->
-  <section class="bg-gray" id="diagnostic" style="padding-bottom: 80px;">
-    <div class="sec-header">
-      <h2>自分に合うか無料診断</h2>
-    </div>
+  <section id="offer">
+    <h2 class="sec-title">
+      あなたの印象を<br><span class="strong">確信に変える</span>
+    </h2>
     
-    <div class="diag-container">
-      <p class="text-center" style="font-weight:900; font-size:18px; margin-bottom:25px;">2つ以上当てはまったら、<br>Oud Stallionが最適です！</p>
-      
-      <div class="check-list">
-        <label class="check-item">
-          <input type="checkbox"> 洗い立てのシャツの香りが好き
-        </label>
-        <label class="check-item">
-          <input type="checkbox"> 「香水つけてます」感は出したくない
-        </label>
-        <label class="check-item">
-          <input type="checkbox"> 学校や職場でデイリー使いしたい
-        </label>
-        <label class="check-item">
-          <input type="checkbox"> 男女ウケどちらも狙いたい
-        </label>
-      </div>
+    <div class="plan-card recommend">
+      <span class="plan-label">SIGNATURE SIZES</span>
+      <h3 class="plan-price">¥14,800</h3>
+      <p class="desc-micro">100ml ボトル / 送料無料</p>
+      <p class="plan-bonus">10ml アトマイザー & 2ml テストキット付</p>
+      <a href="#diagnostic" class="btn" style="margin-top: 40px;">適性を診断して購入</a>
+    </div>
 
-      <a href="#offer" class="btn btn-gold btn-pulse">
-        診断完了！今すぐ試す
-      </a>
+    <div class="plan-card">
+      <span class="plan-label">STANDARD SIZES</span>
+      <h3 class="plan-price">¥5,980</h3>
+      <p class="desc-micro">50ml ボトル / 送料無料</p>
+      <p class="plan-bonus">10ml アトマイザー付</p>
+      <a href="#diagnostic" class="btn" style="margin-top: 40px;">適性を診断して購入</a>
     </div>
   </section>
 
-</div>
+  <section id="diagnostic">
+    <h2 class="sec-title" style="margin-bottom: 30px;">
+      DIAGNOSTIC
+    </h2>
+    <p class="desc-micro text-center" style="margin-bottom: 50px;">以下の項目に2つ以上該当する場合、<br>Oud Stallionはあなたにふさわしい選択です。</p>
+    
+    <div class="diag-list">
+      <label class="diag-item">
+        <input type="checkbox" class="diag-checkbox">
+        <span class="diag-text">洗い立てのリネンのような、清潔な香りを好む</span>
+      </label>
+      <label class="diag-item">
+        <input type="checkbox" class="diag-checkbox">
+        <span class="diag-text">「香水をつけている感」を相手に与えたくない</span>
+      </label>
+      <label class="diag-item">
+        <input type="checkbox" class="diag-checkbox">
+        <span class="diag-text">ビジネスからプライベートまでシームレスに使いたい</span>
+      </label>
+      <label class="diag-item">
+        <input type="checkbox" class="diag-checkbox">
+        <span class="diag-text">性別を問わず、本質的な良さを理解される香りを求めている</span>
+      </label>
+    </div>
+
+    <div style="text-align: center; margin-top: 60px;">
+      <a href="#" class="btn" style="border-width: 2px;">診断を完了し、購入へ進む</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-text">© PURELAYER All Rights Reserved.</div>
+  </footer>
+
+</div><!-- /.app-container の閉じタグ -->
 
 <!-- 固定CTA -->
 <div class="floating-cta">
   <div class="cta-inner">
-    <a href="#diagnostic" class="btn btn-gold btn-pulse">
-      無料でチェックする
-      <span style="display:block; font-size:13px; font-weight:800; margin-top:4px; opacity:0.9;">▶︎ あなたに合うか1分診断</span>
-    </a>
+    <a href="#diagnostic" class="btn">適性を診断する</a>
   </div>
 </div>
-
-</body>
-</html>
