@@ -18,8 +18,10 @@
     letter-spacing: 0.15em;
   }
 
+  /* レスポンシブ・スマホ最適化拡張 */
   .app-container {
-    max-width: 480px;
+    width: 100%;
+    max-width: 768px;
     margin: 0 auto;
     background-color: #fff;
     box-shadow: 0 0 30px rgba(0,0,0,0.03);
@@ -29,7 +31,6 @@
     min-height: 100vh;
   }
 
-  /* セクション間余白 */
   section { padding: 100px 24px; position: relative; }
   
   img { max-width: 100%; height: auto; display: block; }
@@ -37,12 +38,12 @@
   p { margin: 0 0 15px 0; }
   .text-center { text-align: center; }
 
-  /* アイコン (SVG 1px stroke) */
   .icon-svg { width: 28px; height: 28px; stroke: var(--primary); stroke-width: 1px; fill: none; margin: 0 auto 20px; display: block; }
 
-  /* 洗練された質感のボタン */
+  /* CTA視認性・押しやすさ（高さ54px以上） */
   .btn {
-    display: block; width: 100%; padding: 22px;
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; min-height: 58px; padding: 16px 22px;
     background: transparent; color: var(--primary);
     text-align: center; text-decoration: none;
     font-weight: 500; font-size: 0.85rem;
@@ -58,31 +59,45 @@
   .btn:hover:after { width: 100%; }
   .btn:hover { color: #fff; }
 
-  /* Hero (70vh, Q1露出) */
+  /* Hero縦長配置・スマホファースト最適化 */
   .hero {
-    height: 70vh;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center; padding: 0 24px;
+    min-height: 85vh;
+    display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+    text-align: center; padding: 60px 24px 40px;
+    border-bottom: 1px solid var(--border);
   }
-  .hero-bg {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 65%; opacity: 0.2; z-index: 0; pointer-events: none; filter: contrast(1.2);
+  /* 画像と文字が重ならない配置 */
+  .hero-img-wrap {
+    width: 100%; max-width: 280px; margin: 0 auto 40px;
+    order: -1; /* 文字の上に配置 */
   }
-  .hero-content { position: relative; z-index: 1; }
+  .hero-img-wrap img { filter: contrast(1.1); }
+  
+  .hero-content { position: relative; z-index: 1; width: 100%; }
   .hero-badge {
-    font-size: 0.75rem; border: 1px solid var(--primary); padding: 4px 18px; margin-bottom: 30px;
+    font-size: 0.75rem; border: 1px solid var(--primary); padding: 4px 18px; margin-bottom: 25px;
     display: inline-block; letter-spacing: 0.3em; font-family: 'Inter', sans-serif;
   }
-  .hero h1 { font-size: 1.6rem; font-weight: 500; margin-bottom: 20px; }
-  .hero h1 .strong { font-size: 2.6rem; font-weight: 700; display: block; margin-top: 15px; letter-spacing: 0.1em; }
-  .hero .sub { font-size: 0.8rem; opacity: 0.8; letter-spacing: 0.25em; margin-top: 30px; line-height: 2.4; }
+  
+  /* メインコピーの大文字化・行間調整 */
+  .hero h1 { font-size: 1.4rem; font-weight: 500; margin-bottom: 25px; line-height: 1.4; letter-spacing: 0.1em; }
+  .hero h1 .strong { 
+    font-size: 2.4rem; font-weight: 700; display: block; margin-top: 15px; 
+    line-height: 1.15; letter-spacing: 0.05em; 
+  }
+  .hero .sub { font-size: 0.8rem; opacity: 0.8; letter-spacing: 0.25em; margin-top: 35px; line-height: 2.4; }
 
-  /* タイポグラフィ強弱の徹底 */
+  @media (max-width: 768px) {
+    .app-container { max-width: 100%; }
+    .hero h1 .strong { font-size: 2.8rem; } /* スマホで劇的に拡大 */
+    .hero-img-wrap { max-width: 220px; }
+  }
+
+  /* タイポグラフィ強弱 */
   .sec-title { font-size: 1.4rem; text-align: center; margin-bottom: 60px; font-weight: 500; }
   .sec-title .strong { font-size: 2.2rem; font-weight: 700; display: block; margin-top: 15px; letter-spacing: 0.1em; }
   .desc-micro { font-size: 0.8rem; opacity: 0.65; line-height: 2.2; margin-top: 10px; }
 
-  /* 問題提起 (Q1相当) のデザイン */
   .worry-list { display: flex; flex-direction: column; gap: 20px; border-top: 1px solid var(--border); padding-top: 60px; }
   .worry-item {
     text-align: center; font-size: 0.95rem; font-weight: 500;
@@ -90,30 +105,53 @@
     line-height: 2;
   }
 
-  /* 比較表（カード化） */
-  .comparison { display: flex; gap: 15px; margin-top: 40px; }
-  .comp-card {
-    flex: 1; padding: 45px 15px; text-align: center; border: 1px solid var(--border);
-    display: flex; flex-direction: column; align-items: center; background: #fff;
-  }
-  .comp-card.purelayer {
-    border: none; box-shadow: 0 20px 40px rgba(0,0,0,0.05); z-index: 2; transform: scale(1.02);
-  }
-  .comp-brand { font-size: 0.75rem; letter-spacing: 0.25em; margin-bottom: 25px; font-family: 'Inter', sans-serif;}
-  .comp-eval { font-size: 1.3rem; font-weight: 600; margin-bottom: 15px; }
-  .comp-desc { font-size: 0.8rem; opacity: 0.75; line-height: 2; }
-
   /* ベネフィット */
   .benefit-item { text-align: center; margin-bottom: 80px; }
   .benefit-item:last-child { margin-bottom: 0; }
   .benefit-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 20px; }
 
-  /* レビュー・エビデンス */
-  .lifestyle-img { width: 100%; height: 380px; object-fit: cover; filter: grayscale(15%) contrast(1.05); margin-bottom: 50px; }
-  .review-grid { display: flex; flex-direction: column; gap: 40px; }
-  .review-card { padding: 0 0 0 25px; border-left: 1px solid var(--primary); }
-  .review-user { font-size: 0.75rem; font-family: 'Inter', sans-serif; letter-spacing: 0.2em; margin-bottom: 20px; opacity: 0.6; }
-  .review-text { font-size: 0.95rem; line-height: 2.3; font-weight: 400; }
+  /* 新規：横スクロール比較表 */
+  .comp-table-wrapper {
+    overflow-x: auto;
+    margin: 40px -24px 0;
+    padding: 0 24px 30px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .comp-table {
+    width: 100%; min-width: 600px;
+    border-collapse: collapse; text-align: center;
+  }
+  .comp-table th, .comp-table td {
+    padding: 25px 15px; border-bottom: 1px solid var(--border);
+    vertical-align: middle; line-height: 1.6;
+  }
+  .comp-table th { font-size: 0.8rem; letter-spacing: 0.2em; font-weight: 500; font-family: 'Inter', sans-serif;}
+  .comp-table .row-label { text-align: left; font-weight: 600; font-size: 0.95rem; width: 25%; }
+  .pure-col { background: #fff; border-left: 2px solid var(--primary); border-right: 2px solid var(--primary); position: relative; }
+  .comp-table thead .pure-col { border-top: 2px solid var(--primary); font-weight: 700; box-shadow: 0 -10px 20px rgba(0,0,0,0.02);}
+  .comp-table tbody tr:last-child .pure-col { border-bottom: 2px solid var(--primary); box-shadow: 0 10px 20px rgba(0,0,0,0.02);}
+  .pure-eval { font-size: 1.4rem; font-weight: 700; display: block; margin-bottom: 5px; }
+  .other-eval { font-size: 1.1rem; font-weight: 500; display: block; margin-bottom: 5px; opacity: 0.8;}
+  .comp-micro { font-size: 0.7rem; opacity: 0.7; letter-spacing: 0.1em; }
+
+  /* 拡張：レビュースライダー（横スワイプ） */
+  .review-slider-wrapper {
+    margin: 0 -24px; padding: 0 24px;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    display: flex; gap: 20px; padding-bottom: 30px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .review-slider-wrapper::-webkit-scrollbar { display: none; }
+  .rev-slide {
+    flex: 0 0 85%; /* 次のカードの端を見せる */
+    scroll-snap-align: center;
+    border: 1px solid var(--border);
+    padding: 24px; background: #fff;
+  }
+  @media (min-width: 768px) { .rev-slide { flex: 0 0 45%; } }
+  .rev-img { width: 100%; height: 220px; object-fit: cover; margin-bottom: 25px; filter: grayscale(15%); }
+  .rev-user { font-size: 0.75rem; font-family: 'Inter', sans-serif; letter-spacing: 0.25em; margin-bottom: 15px; opacity: 0.5; }
+  .rev-text { font-size: 0.95rem; line-height: 2.2; }
 
   /* オファー */
   .plan-card { border: 1px solid var(--border); padding: 60px 24px; text-align: center; margin-bottom: 20px; background: transparent;}
@@ -122,10 +160,10 @@
   .plan-price { font-size: 2.6rem; font-family: 'Inter', sans-serif; font-weight: 300; margin: 15px 0 25px; letter-spacing: 0.05em; }
   .plan-bonus { font-size: 0.8rem; margin-top: 25px; line-height: 2; padding-top: 25px; border-top: 1px solid var(--border); }
   
-  /* 診断チェックリスト */
-  .diag-list { border-top: 1px solid var(--primary); border-bottom: 1px solid var(--primary); padding: 40px 0; }
-  .diag-item { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 35px; cursor: pointer; }
-  .diag-item:last-child { margin-bottom: 0; }
+  /* 診断ロジック（Step 1/6） */
+  .diag-step { font-family: 'Inter', sans-serif; font-size: 0.75rem; letter-spacing: 0.3em; margin-bottom: 20px; opacity: 0.6; }
+  .diag-list { border-top: 1px solid var(--primary); padding: 50px 0 20px; }
+  .diag-item { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 40px; cursor: pointer; }
   .diag-checkbox {
     appearance: none; width: 22px; height: 22px; border: 1px solid var(--primary);
     border-radius: 0; outline: none; flex-shrink: 0; margin-top: 4px; position: relative;
@@ -136,25 +174,26 @@
   }
   .diag-text { font-size: 0.95rem; line-height: 1.9; font-weight: 500;}
 
-  /* Fixed Bottom CTA */
   .floating-cta {
     position: fixed; bottom: 0; left: 0; width: 100%;
     background: rgba(255,255,255,0.95); backdrop-filter: blur(15px);
     padding: 24px 0; border-top: 1px solid var(--border); z-index: 100;
   }
-  .cta-inner { max-width: 480px; margin: 0 auto; padding: 0 24px; }
-  
+  .cta-inner { max-width: 768px; margin: 0 auto; padding: 0 24px; }
   footer { padding: 50px 24px 150px; text-align: center; border-top: 1px solid var(--border); }
   .footer-text { font-size: 0.7rem; letter-spacing: 0.2em; opacity: 0.5; font-family: 'Inter', sans-serif; }
 </style>
 
-<!-- ==============================================
-     以下を既存のHTMLの <section id="fv"> (または <section id="hero">) から
-     最後まで差し替えてください。
-=============================================== -->
+<div class="app-container">
 
+  <!-- ===============================
+       Hero / FV
+  ================================ -->
   <section class="hero" id="hero">
-    <img src="file:///C:/Users/obeob/.gemini/antigravity/brain/dd5b2863-8b0a-4b18-957a-c3e76bd497c6/premium_perfume_bottle_1775874439052.png" alt="PURELAYER" class="hero-bg">
+    <!-- 重なりを解消した画像の独自配置 -->
+    <div class="hero-img-wrap">
+      <img src="file:///C:/Users/obeob/.gemini/antigravity/brain/dd5b2863-8b0a-4b18-957a-c3e76bd497c6/premium_perfume_bottle_1775874439052.png" alt="PURELAYER" class="hero-img">
+    </div>
     
     <div class="hero-content">
       <div class="hero-badge">PERFUME FOR ALL</div>
@@ -169,6 +208,9 @@
     </div>
   </section>
 
+  <!-- ===============================
+       Empathy
+  ================================ -->
   <section id="empathy">
     <h2 class="sec-title">
       香水選びの<br><span class="strong">終着点</span>
@@ -182,24 +224,48 @@
     </div>
   </section>
 
+  <!-- ===============================
+       Comparison 表構築
+  ================================ -->
   <section id="comparison">
     <h2 class="sec-title">
-      究極の無難、<br><span class="strong">圧倒的な完成度</span>
+      圧倒的な<br><span class="strong">アドバンテージ</span>
     </h2>
-    <div class="comparison">
-      <div class="comp-card">
-        <div class="comp-brand">GENERAL PERFUME</div>
-        <div class="comp-eval">難解な個性</div>
-        <div class="comp-desc">主張が強く、TPOや相手を選ぶ。使いこなすには知識と経験が必要。</div>
-      </div>
-      <div class="comp-card purelayer">
-        <div class="comp-brand">PURELAYER</div>
-        <div class="comp-eval">清潔感の塊</div>
-        <div class="comp-desc">誰からも好まれる「自然な香り」。シーンを問わず、あなたの魅力を引き上げる。</div>
-      </div>
+    <p class="desc-micro text-center">横にスクロールしてご確認いただけます。</p>
+    
+    <div class="comp-table-wrapper">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="pure-col">PURELAYER</th>
+            <th>GENERAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">持続時間</td>
+            <td class="pure-col"><span class="pure-eval">24h+</span><span class="comp-micro">体温で長時間キープ</span></td>
+            <td><span class="other-eval">3h</span><span class="comp-micro">すぐに消えてしまう</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">香りの癖</td>
+            <td class="pure-col"><span class="pure-eval">清潔感</span><span class="comp-micro">万人に好まれる自然さ</span></td>
+            <td><span class="other-eval">強い</span><span class="comp-micro">TPOや相手を選ぶ</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">初心者適正</td>
+            <td class="pure-col"><span class="pure-eval">◎</span><span class="comp-micro">絶対に失敗しない設計</span></td>
+            <td><span class="other-eval">△</span><span class="comp-micro">使いこなす経験が必要</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
+  <!-- ===============================
+       Benefit
+  ================================ -->
   <section id="benefit">
     <h2 class="sec-title" style="margin-bottom: 80px;">
       計算尽くされた<br><span class="strong">美学</span>
@@ -224,25 +290,57 @@
     </div>
   </section>
 
+  <!-- ===============================
+       Evidence (横スワイプ6枚構造)
+  ================================ -->
   <section id="evidence">
-    <h2 class="sec-title">
+    <h2 class="sec-title" style="margin-bottom: 50px;">
       証明された<br><span class="strong">価値</span>
     </h2>
 
-    <img src="file:///C:/Users/obeob/.gemini/antigravity/brain/dd5b2863-8b0a-4b18-957a-c3e76bd497c6/clean_lifestyle_1775874420110.png" alt="Clean Lifestyle" class="lifestyle-img">
-    
-    <div class="review-grid">
-      <div class="review-card">
-        <div class="review-user">MENS / 20s</div>
-        <div class="review-text">「柔軟剤、何使ってる？」と職場で聞かれる回数が増えた。決して『香水』とは言われない。それが最高の賛辞だと思う。</div>
+    <div class="review-slider-wrapper">
+      <!-- 1 -->
+      <div class="rev-slide">
+        <img src="file:///C:/Users/obeob/.gemini/antigravity/brain/dd5b2863-8b0a-4b18-957a-c3e76bd497c6/clean_lifestyle_1775874420110.png" class="rev-img">
+        <div class="rev-user">MENS / 20s</div>
+        <div class="rev-text">「柔軟剤、何使ってる？」と職場で聞かれる回数が増えた。決して『香水』とは言われない。それが最高の賛辞だと思う。</div>
       </div>
-      <div class="review-card">
-        <div class="review-user">WOMENS / 20s</div>
-        <div class="review-text">深呼吸したくなるような透明感。ユニセックスで彼と共有しているけれど、不思議とそれぞれの肌に合わせた香りに変化する。</div>
+      <!-- 2 -->
+      <div class="rev-slide">
+        <img src="file:///C:/Users/obeob/.gemini/antigravity/brain/dd5b2863-8b0a-4b18-957a-c3e76bd497c6/clean_lifestyle_1775874420110.png" class="rev-img" style="filter: grayscale(40%) sepia(20%);">
+        <div class="rev-user">WOMENS / 20s</div>
+        <div class="rev-text">深呼吸したくなるような透明感。ユニセックスで彼と共有しているけれど、不思議とそれぞれの肌に合わせた香りに変化する。</div>
+      </div>
+      <!-- 3 -->
+      <div class="rev-slide">
+        <div class="rev-img" style="background:#ECECEC;"></div>
+        <div class="rev-user">MENS / 30s</div>
+        <div class="rev-text">強すぎる香りが苦手で長年避けてきたが、これに出会って価値観が変わった。ビジネスシーンでも全く嫌味にならない。</div>
+      </div>
+      <!-- 4 -->
+      <div class="rev-slide">
+        <div class="rev-img" style="background:#E2E2E2;"></div>
+        <div class="rev-user">WOMENS / 30s</div>
+        <div class="rev-text">香水酔いしやすい体質ですが、Oud Stallionは一日中着けて心地よい。主張しすぎない控えめな存在感が絶妙です。</div>
+      </div>
+      <!-- 5 -->
+      <div class="rev-slide">
+        <div class="rev-img" style="background:#D9D9D9;"></div>
+        <div class="rev-user">MENS / 20s</div>
+        <div class="rev-text">デートの時に毎回褒められる。香りに詳しくない自分でも「これだけあれば安心」と思える、まさに究極の無難。安心感が違う。</div>
+      </div>
+      <!-- 6 -->
+      <div class="rev-slide">
+        <div class="rev-img" style="background:#CFCFCF;"></div>
+        <div class="rev-user">WOMENS / 20s</div>
+        <div class="rev-text">寝る前に少しだけ手首につけると、洗い立てのリネンの香りに包まれて安眠できる。生活の一部になっている香り。</div>
       </div>
     </div>
   </section>
 
+  <!-- ===============================
+       Guarantee
+  ================================ -->
   <section id="guarantee">
     <h2 class="sec-title" style="margin-bottom: 80px;">
       妥協のない<br><span class="strong">顧客体験</span>
@@ -261,6 +359,9 @@
     </div>
   </section>
 
+  <!-- ===============================
+       Offer
+  ================================ -->
   <section id="offer">
     <h2 class="sec-title">
       あなたの印象を<br><span class="strong">確信に変える</span>
@@ -283,28 +384,46 @@
     </div>
   </section>
 
+  <!-- ===============================
+       Diagnostic 6 Questions
+  ================================ -->
   <section id="diagnostic">
-    <h2 class="sec-title" style="margin-bottom: 30px;">
-      DIAGNOSTIC
-    </h2>
-    <p class="desc-micro text-center" style="margin-bottom: 50px;">以下の項目に2つ以上該当する場合、<br>Oud Stallionはあなたにふさわしい選択です。</p>
+    <div class="text-center">
+      <div class="diag-step">STEP 1 / 6</div>
+      <h2 class="sec-title" style="margin-bottom: 30px;">DIAGNOSTIC</h2>
+      <p class="desc-micro" style="margin-bottom: 50px;">以下の項目に2つ以上該当する場合、<br>Oud Stallionはあなたにふさわしい選択です。</p>
+    </div>
     
     <div class="diag-list">
+      <!-- Q1 -->
       <label class="diag-item">
         <input type="checkbox" class="diag-checkbox">
         <span class="diag-text">洗い立てのリネンのような、清潔な香りを好む</span>
       </label>
+      <!-- Q2 -->
       <label class="diag-item">
         <input type="checkbox" class="diag-checkbox">
         <span class="diag-text">「香水をつけている感」を相手に与えたくない</span>
       </label>
+      <!-- Q3 -->
       <label class="diag-item">
         <input type="checkbox" class="diag-checkbox">
         <span class="diag-text">ビジネスからプライベートまでシームレスに使いたい</span>
       </label>
+      <!-- Q4 -->
       <label class="diag-item">
         <input type="checkbox" class="diag-checkbox">
         <span class="diag-text">性別を問わず、本質的な良さを理解される香りを求めている</span>
+      </label>
+      <!-- Q5 -->
+      <label class="diag-item">
+        <input type="checkbox" class="diag-checkbox">
+        <span class="diag-text">香水特有の強いアルコール臭やツンとした匂いが苦手</span>
+      </label>
+      <!-- Q6 -->
+      <label class="diag-item">
+        <input type="checkbox" class="diag-checkbox">
+        <span class="diag-text">パートナーとシェアできる、馴染みの良い香りを探している</span>
       </label>
     </div>
 
@@ -317,11 +436,11 @@
     <div class="footer-text">© PURELAYER All Rights Reserved.</div>
   </footer>
 
-</div><!-- /.app-container の閉じタグ -->
+</div>
 
-<!-- 固定CTA -->
 <div class="floating-cta">
   <div class="cta-inner">
     <a href="#diagnostic" class="btn">適性を診断する</a>
   </div>
 </div>
+
