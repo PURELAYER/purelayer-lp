@@ -10,7 +10,9 @@
 <body>
     <!-- 告知バー -->
     <div class="announcement-bar">
-        全国一律送料無料 / 30日間全額返金保証 / 無料診断実施中
+        <div class="announcement-slide active">全国一律送料無料</div>
+        <div class="announcement-slide">30日間全額返金保証</div>
+        <div class="announcement-slide">まずはお試し無料診断</div>
     </div>
 
     <!-- ヘッダー -->
@@ -28,7 +30,7 @@
         <section class="product-info">
             <h1 class="product-title">Oud Stallion</h1>
             <p class="product-meta">Eau de Parfum . Unisex</p>
-            <p class="catchphrase">学校・職場で「いい匂い」と<br>褒められまくった、清潔感の塊。</p>
+            <p class="catchphrase">香水選びに迷うすべての人へ。<br>圧倒的な清潔感と24時間続く持続力で、<br>既存の香水を凌駕する体験を。</p>
         </section>
 
         <!-- Plans Section -->
@@ -71,16 +73,25 @@
 
             <button id="main-add-to-cart" class="btn-primary">カートに追加する</button>
             <div class="benefits-text">
-                <span>送料無料</span>
+                <span>
+                    <span class="benefits-icon"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    送料無料
+                </span>
                 <span class="benefits-separator">/</span>
-                <span>30日間返金保証</span>
+                <span>
+                    <span class="benefits-icon"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+                    30日間返金保証
+                </span>
             </div>
         </section>
 
         <!-- Accordions -->
         <section class="accordions">
             <div class="accordion-item">
-                <div class="accordion-header">商品の詳細 <span class="accordion-icon">+</span></div>
+                <div class="accordion-header">
+                    商品の詳細 
+                    <span class="accordion-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+                </div>
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         Oud Stallionは、強い香水が苦手な方でも安心して使える、透明感と清潔感にこだわったユニセックスフレグランスです。<br><br>24時間ほのかに続く香りは、すれ違った時に思わず振り返ってしまうような、誰とも被らないマイナーブランドならではの特別な魅力を引き出します。
@@ -88,7 +99,10 @@
                 </div>
             </div>
             <div class="accordion-item">
-                <div class="accordion-header">香りの構成 <span class="accordion-icon">+</span></div>
+                <div class="accordion-header">
+                    香りの構成 
+                    <span class="accordion-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+                </div>
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         Top Notes : ベルガモット, ホワイトティー<br>
@@ -99,7 +113,10 @@
                 </div>
             </div>
             <div class="accordion-item">
-                <div class="accordion-header">全額返金保証について <span class="accordion-icon">+</span></div>
+                <div class="accordion-header">
+                    全額返金保証について 
+                    <span class="accordion-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+                </div>
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         香りにご満足いただけない場合、お届けから30日以内であれば全額返金いたします。まずは気軽にあなたの肌でお試しください。
@@ -107,7 +124,10 @@
                 </div>
             </div>
             <div class="accordion-item">
-                <div class="accordion-header">よくある質問 <span class="accordion-icon">+</span></div>
+                <div class="accordion-header">
+                    よくある質問 
+                    <span class="accordion-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+                </div>
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         Q. 保管方法は？<br>直射日光を避け、涼しい場所で保管してください。<br><br>
@@ -120,12 +140,60 @@
         <!-- Fragrance Quiz Section -->
         <section class="quiz-section">
             <h3 class="quiz-title">あなたに合う香りか、<br>30秒でお調べします。</h3>
-            <p class="quiz-desc">普段、どのようなシーンで香りを纏いたいですか？</p>
-            <div class="quiz-options">
-                <div class="quiz-option">職場や学校など日常使いで</div>
-                <div class="quiz-option">特別なデートやお出かけで</div>
-                <div class="quiz-option">リラックスしたい就寝前に</div>
+            
+            <div id="quiz-container">
+                <!-- Q1 -->
+                <div class="quiz-step active" data-step="1">
+                    <p class="quiz-ques">Q1. 最も香りを纏いたいシーンは？</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option">職場や学校などの日常</div>
+                        <div class="quiz-option">特別なデートやディナー</div>
+                        <div class="quiz-option">自宅でのリラックスタイム</div>
+                    </div>
+                </div>
+                <!-- Q2 -->
+                <div class="quiz-step" data-step="2">
+                    <p class="quiz-ques">Q2. 普段の服装のテイストは？</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option">シンプル・モノトーン</div>
+                        <div class="quiz-option">カジュアル・ストリート</div>
+                        <div class="quiz-option">モード・エレガント</div>
+                    </div>
+                </div>
+                <!-- Q3 -->
+                <div class="quiz-step" data-step="3">
+                    <p class="quiz-ques">Q3. 周りに与えたい印象は？</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option">清潔感があり知的な印象</div>
+                        <div class="quiz-option">親しみやすく優しい印象</div>
+                        <div class="quiz-option">ミステリアスで色気のある印象</div>
+                    </div>
+                </div>
+                <!-- Q4 -->
+                <div class="quiz-step" data-step="4">
+                    <p class="quiz-ques">Q4. 香水選びで最も重視することは？</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option">人と被らないユニークさ</div>
+                        <div class="quiz-option">長時間の持続力</div>
+                        <div class="quiz-option">きつくない、自然な香り立ち</div>
+                    </div>
+                </div>
+                <!-- Q5 -->
+                <div class="quiz-step" data-step="5">
+                    <p class="quiz-ques">Q5. 過去の香水に対する不満は？</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option">匂いが強すぎて酔う</div>
+                        <div class="quiz-option">すぐに香りが飛んでしまう</div>
+                        <div class="quiz-option">ありきたりで印象に残らない</div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="quiz-submit-container" style="display:none; text-align:center;">
+                    <button id="show-quiz-result" class="btn-primary" style="margin-top:1rem;">診断結果を見る</button>
+                </div>
             </div>
+
             <div id="quiz-result" class="quiz-result">
                 あなたには「Oud Stallion」が最適です。<br>
                 <span class="quiz-result-sub">清潔感を演出しながら、あなたのライフスタイルに静かに寄り添います。</span>
@@ -141,7 +209,7 @@
                 <!-- Javascript will inject reviews here -->
             </div>
 
-            <button id="load-more-reviews" class="btn-secondary">もっと見る</button>
+            <button id="load-more-reviews" class="btn-secondary">全てのレビューを見る</button>
         </section>
 
         <!-- Final CTA Section -->
@@ -158,14 +226,23 @@
         <button id="sticky-btn" class="btn-primary">カートに追加する</button>
     </div>
 
-    <script src="script.js">
-
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
 
 <script>
-     document.addEventListener('DOMContentLoaded', () => {
+    ocument.addEventListener('DOMContentLoaded', () => {
+
+    // --- 0. Announcement Bar Slider ---
+    const slides = document.querySelectorAll('.announcement-slide');
+    if (slides.length > 0) {
+        let currentSlide = 0;
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 3500); // 3.5 seconds
+    }
 
     // --- 1. Accordion Logic ---
     const accordions = document.querySelectorAll('.accordion-item');
@@ -176,7 +253,6 @@
         header.addEventListener('click', () => {
             const isOpen = item.classList.contains('open');
 
-            // Optionally close others
             accordions.forEach(a => {
                 a.classList.remove('open');
                 a.querySelector('.accordion-content').style.maxHeight = '0px';
@@ -184,7 +260,6 @@
 
             if (!isOpen) {
                 item.classList.add('open');
-                // Set max-height to scrollHeight to trigger transition smoothly
                 content.style.maxHeight = content.scrollHeight + 'px';
             } else {
                 item.classList.remove('open');
@@ -193,7 +268,6 @@
         });
     });
 
-    // --- window resize for accordions ---
     window.addEventListener('resize', () => {
         accordions.forEach(item => {
             if (item.classList.contains('open')) {
@@ -239,11 +313,10 @@
 
     if (finalAddToCart) {
         finalAddToCart.addEventListener('click', () => {
-            handleCheckout('100ml'); // 最終CTAは100mlフルセット
+            handleCheckout('100ml'); 
         });
     }
 
-    // Plan card selection UI update logic
     const planCards = document.querySelectorAll('.plan-card');
     planCards.forEach(card => {
         card.addEventListener('click', () => {
@@ -255,18 +328,41 @@
     });
 
 
-    // --- 3. Quiz Logic ---
-    const quizOptions = document.querySelectorAll('.quiz-option');
+    // --- 3. Quiz Step Logic ---
+    const quizSteps = document.querySelectorAll('.quiz-step');
+    const quizSubmitContainer = document.querySelector('.quiz-submit-container');
+    const showResultBtn = document.getElementById('show-quiz-result');
     const quizResult = document.getElementById('quiz-result');
-    const quizOptionsContainer = document.querySelector('.quiz-options');
-
-    if (quizOptions.length > 0 && quizResult) {
-        quizOptions.forEach(opt => {
-            opt.addEventListener('click', () => {
-                quizOptionsContainer.style.display = 'none';
-                quizResult.style.display = 'block';
+    
+    if (quizSteps.length > 0) {
+        quizSteps.forEach((step, index) => {
+            const options = step.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.addEventListener('click', () => {
+                    options.forEach(o => o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                    
+                    // Transition to next step shortly after selection
+                    setTimeout(() => {
+                        step.classList.remove('active');
+                        if (index + 1 < quizSteps.length) {
+                            quizSteps[index + 1].classList.add('active');
+                        } else {
+                            // Last question answered
+                            quizSubmitContainer.style.display = 'block';
+                        }
+                    }, 400);
+                });
             });
         });
+
+        if (showResultBtn && quizResult) {
+            showResultBtn.addEventListener('click', () => {
+                quizSubmitContainer.style.display = 'none';
+                document.getElementById('quiz-container').style.display = 'none';
+                quizResult.style.display = 'block';
+            });
+        }
     }
 
 
@@ -274,48 +370,60 @@
     const reviewsContainer = document.getElementById('reviews-container');
     const loadMoreBtn = document.getElementById('load-more-reviews');
     
-    // Generate Reviews Array
     const dummyReviews = [
-        { name: "Yuki S.", rating: 5, date: "2026/04/10", text: "本当にいい匂い！職場で何使ってるか聞かれました。強すぎないので普段使いにぴったりです。" },
-        { name: "Takumi M.", rating: 5, date: "2026/04/05", text: "香水は苦手でしたが、これはクリーンで自然な香り。毎日つけてます。" },
-        { name: "Aoi K.", rating: 4, date: "2026/04/01", text: "彼氏へのプレゼントで購入。落ち着いた清潔感のある香りで大正解でした！" },
-        { name: "Kenji H.", rating: 5, date: "2026/03/28", text: "マイナーブランドで誰とも被らないのが最高。持続力も高く、夜まで香りが続きます。" },
+        { name: "Yuki S.", rating: 5, date: "2026/04/10", text: "香水特有のキツさが全く無く、自然な清潔感。職場で何を使っているかよく聞かれます。" },
+        { name: "Takumi M.", rating: 5, date: "2026/04/05", text: "持続力が本当に高い。朝つけて夜までほのかに残っていて、リラックスできます。" },
+        { name: "Aoi K.", rating: 4, date: "2026/04/01", text: "人とかぶらないのが良いです。パッケージもミニマルで部屋に置いておくだけで◎" },
+        { name: "Kenji H.", rating: 5, date: "2026/03/28", text: "もうこれ以外考えられない。圧倒的なクオリティです。" },
+        { name: "Sayaka R.", rating: 5, date: "2026/03/25", text: "想像以上の香りでした。誰に会っても良い匂いがすると褒められます。" }
     ];
-    for(let i=5; i<=20; i++) {
+    for(let i=6; i<=20; i++) {
         dummyReviews.push({
             name: `Anonymous`,
-            rating: Math.random() > 0.3 ? 5 : 4,
+            rating: Math.random() > 0.2 ? 5 : 4,
             date: `2026/03/${Math.floor(Math.random() * 20)+1}`.padStart(2, '0'),
             text: "清潔感があって最高です。万人受けする上品な香りだと思います。ボトルも美しいです。"
         });
     }
 
+    // 2, 6, 12, 17 will have dummy image placeholders
+    const indicesWithImages = [2, 6, 12, 17];
+
     if (reviewsContainer) {
         dummyReviews.forEach((review, index) => {
             const div = document.createElement('div');
-            div.className = `review-card ${index < 4 ? 'visible' : ''}`;
+            initVisible = index < 5 ? 'visible' : ''; // show first 5 initially
+            div.className = `review-card ${initVisible}`;
+            
+            const starSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
+            const emptyStarSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
+            const stars = starSvg.repeat(review.rating) + emptyStarSvg.repeat(5 - review.rating);
+
+            const checkSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+
+            let imageHtml = '';
+            if (indicesWithImages.includes(index)) {
+                imageHtml = `<div class="review-image-placeholder"></div>`;
+            }
+
             div.innerHTML = `
                 <div class="review-header">
-                    <div class="review-author">${review.name}</div>
+                    <div class="review-author">${review.name} <span class="verified-badge">${checkSvg} Verified</span></div>
                     <div class="review-date">${review.date}</div>
                 </div>
+                <div class="review-stars">${stars}</div>
                 <div class="review-text">${review.text}</div>
+                ${imageHtml}
             `;
             reviewsContainer.appendChild(div);
         });
 
-        let visibleCount = 4;
-        if(loadMoreBtn) {
+        // "全てのレビューを見る" button logic - load all remaining
+        if (loadMoreBtn) {
             loadMoreBtn.addEventListener('click', () => {
                 const cards = document.querySelectorAll('.review-card');
-                const end = visibleCount + 4;
-                for(let i = visibleCount; i < end && i < cards.length; i++) {
-                    cards[i].classList.add('visible');
-                }
-                visibleCount += 4;
-                if(visibleCount >= cards.length) {
-                    loadMoreBtn.style.display = 'none';
-                }
+                cards.forEach(c => c.classList.add('visible'));
+                loadMoreBtn.style.display = 'none'; // hide button after all are shown
             });
         }
     }
@@ -327,7 +435,6 @@
     if (mainAddToCart && stickyCta) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // if main add-to-cart button is not in viewport AND scrolled past
                 if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
                     stickyCta.classList.add('visible');
                 } else {
@@ -339,14 +446,15 @@
         observer.observe(mainAddToCart);
     }
 });
+
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@300;400&display=swap');
 
 :root {
-  --bg-color: #F9F9F9; /* オフホワイト */
-  --text-color: #1A1A1A; /* 墨色 */
+  --bg-color: #F9F9F9;
+  --text-color: #1A1A1A;
   --border-color: #D6D6D6;
   --spacing-base: 1.5rem;
 }
@@ -355,7 +463,7 @@
 
 body {
   font-family: 'Cormorant Garamond', 'Noto Serif JP', serif;
-  font-weight: 300; /* 細めベース */
+  font-weight: 300;
   background-color: var(--bg-color);
   color: var(--text-color);
   line-height: 1.8;
@@ -364,21 +472,38 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* 太字の排除 */
+/* Typography Reset */
 h1, h2, h3, h4, h5, h6, b, strong {
   font-weight: 400;
 }
 
-/* Announcement Bar */
+/* Announcement Slide */
 .announcement-bar {
+  position: relative;
+  overflow: hidden;
+  height: 38px;
   background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.announcement-slide {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.8s ease;
   color: #ffffff;
   font-size: 0.75rem;
   text-align: center;
-  padding: 0.6rem 1rem;
-  font-weight: 300;
   letter-spacing: 0.15em;
+  font-weight: 300;
   font-family: 'Noto Serif JP', serif;
+}
+.announcement-slide.active {
+  opacity: 1;
 }
 
 /* Container */
@@ -416,9 +541,9 @@ header {
   z-index: 100;
 }
 .brand-logo {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 400;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
 }
 
@@ -449,8 +574,10 @@ header {
   text-transform: uppercase;
 }
 .catchphrase {
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: var(--text-color);
+  letter-spacing: 0.15em;
+  line-height: 2;
 }
 
 /* Plans Section */
@@ -538,7 +665,7 @@ header {
   font-family: inherit;
 }
 .btn-primary:hover {
-  background-color: #ffffff;
+  background-color: var(--bg-color);
   color: var(--text-color);
 }
 
@@ -571,6 +698,11 @@ header {
   margin: 0 0.5rem;
   color: #ccc;
 }
+.benefits-icon svg {
+  vertical-align: middle;
+  margin-top: -2px;
+  margin-right: 4px;
+}
 
 /* Accordions */
 .accordions {
@@ -588,12 +720,10 @@ header {
   cursor: pointer;
   font-size: 1.05rem;
 }
-.accordion-icon {
-  font-size: 1.2rem;
-  font-weight: 300;
+.accordion-icon svg {
   transition: transform 0.4s ease;
 }
-.accordion-item.open .accordion-icon {
+.accordion-item.open .accordion-icon svg {
   transform: rotate(45deg);
 }
 .accordion-content {
@@ -616,13 +746,20 @@ header {
 }
 .quiz-title {
   font-size: 1.2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   line-height: 1.6;
 }
-.quiz-desc {
-  font-size: 0.9rem;
-  color: #555;
-  margin-bottom: 2rem;
+.quiz-step {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+.quiz-step.active {
+  display: block;
+}
+.quiz-ques {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.1em;
 }
 .quiz-options {
   display: flex;
@@ -633,11 +770,13 @@ header {
   border: 1px solid var(--border-color);
   padding: 1.25rem;
   cursor: pointer;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   transition: all 0.3s ease;
+  letter-spacing: 0.1em;
 }
-.quiz-option:hover {
+.quiz-option.selected {
   border-color: var(--text-color);
+  background-color: rgba(26,26,26,0.02);
 }
 .quiz-result {
   display: none;
@@ -686,6 +825,40 @@ header {
 .review-author { font-size: 0.95rem; }
 .review-date { font-size: 0.8rem; color: #888; }
 .review-text { font-size: 0.95rem; color: #333; }
+.review-stars {
+  margin-bottom: 0.5rem;
+  display: flex;
+  gap: 2px;
+  color: var(--text-color); 
+}
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-color);
+  font-size: 0.75rem;
+  opacity: 0.5; /* Premium faint look */
+}
+
+/* Image Placeholder for reviews */
+.review-image-placeholder {
+  width: 100px;
+  height: 100px;
+  background-color: #EBEBEB;
+  border-radius: 4px;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+.review-image-placeholder::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 24px; height: 24px;
+  transform: translate(-50%, -50%);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B0B0B0' stroke-width='1.5'%3E%3Crect x='3' y='3' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Ccircle cx='8.5' cy='8.5' r='1.5'%3E%3C/circle%3E%3Cpolyline points='21 15 16 10 5 21'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: cover;
+}
 
 /* Final CTA */
 .final-cta {
