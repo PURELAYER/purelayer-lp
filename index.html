@@ -8,8 +8,8 @@
     <!-- Google Fonts 最速読み込み（LCP最適化） -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet"></noscript>
     
     <meta name="description" content="清潔感と存在感の最適解。一度つけたら、必ず聞かれる香水「Oud Stallion by Maison Criveli」">
 
@@ -20,31 +20,36 @@
         body{font-family:'Cormorant Garamond','Noto Serif JP',serif;font-weight:300;background-color:var(--bg-color);color:var(--text-color);line-height:1.8;letter-spacing:0.1em;padding-bottom:100px;-webkit-font-smoothing:antialiased}
         h1,h2,h3,h4,h5,h6,b,strong{font-weight:400}
         .container{max-width:600px;margin:0 auto;padding:0 var(--spacing-base);background-color:var(--bg-color)}
+        
         .full-width{margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);max-width:100vw;width:100vw}
         @media(max-width:600px){.full-width{margin-left:calc(-1 * var(--spacing-base));margin-right:calc(-1 * var(--spacing-base));width:calc(100% + var(--spacing-base) * 2)}}
-        .announcement-bar{position:relative;overflow:hidden;height:38px;background-color:#000;display:flex;align-items:center;justify-content:center}
-        .announcement-slide{position:absolute;top:50%;left:0;width:100%;transform:translateY(-50%);opacity:0;transition:opacity 0.8s ease;color:#FAF7F2;font-size:0.75rem;text-align:center;letter-spacing:0.15em;font-weight:300;font-family:'Noto Serif JP',serif}
+        
+        /* FV圧縮 (直帰率改善) */
+        .announcement-bar{position:relative;overflow:hidden;height:32px;background-color:#000;display:flex;align-items:center;justify-content:center}
+        .announcement-slide{position:absolute;top:50%;left:0;width:100%;transform:translateY(-50%);opacity:0;transition:opacity 0.8s ease;color:#FAF7F2;font-size:0.7rem;text-align:center;letter-spacing:0.15em;font-weight:300;font-family:'Noto Serif JP',serif}
         .announcement-slide.active{opacity:1}
-        header{display:flex;justify-content:center;align-items:center;padding:1.5rem 0;background-color:var(--bg-color);position:sticky;top:0;z-index:100}
-        .brand-logo{font-size:1rem;font-weight:400;letter-spacing:0.25em;text-transform:uppercase}
         
-        .hero-image-wrapper{position:relative;display:inline-block;width:100%}
-        .trust-badge{position:absolute;top:1.5rem;left:1.5rem;background-color:rgba(255,255,255,0.95);border:1px solid #D6D6D6;color:var(--text-color);padding:0.6rem 0.8rem;font-size:0.7rem;letter-spacing:0.1em;text-align:center;border-radius:2px;z-index:10;box-shadow:0 4px 15px rgba(0,0,0,0.06);line-height:1.4}
-        .hero-image{width:100%;height:auto;display:block;object-fit:cover;aspect-ratio:4/5;background-color:#f1eee8}
+        header{display:flex;justify-content:center;align-items:center;padding:0.8rem 0;background-color:var(--bg-color);position:sticky;top:0;z-index:100}
+        .brand-logo{font-size:0.85rem;font-weight:500;letter-spacing:0.25em;text-transform:uppercase}
         
-        .product-info{padding:3rem 0 2rem;text-align:center}
-        .hero-main-copy{font-size:2.2rem;line-height:1.4;letter-spacing:0.05em;margin-bottom:0.5rem;font-weight:300}
-        .hero-reviews-summary{margin-bottom:1rem;color:var(--text-color)}
-        .hero-sub-copy{font-size:0.9rem;color:#555;letter-spacing:0.1em;margin-bottom:2rem}
+        /* Hero 40vh 制限による情報の引き上げ */
+        .hero-image-wrapper{position:relative;width:100%;height:40vh;overflow:hidden;display:block}
+        .trust-badge{position:absolute;top:1rem;left:1rem;background-color:rgba(255,255,255,0.95);border:1px solid #D6D6D6;color:var(--text-color);padding:0.5rem 0.6rem;font-size:0.65rem;letter-spacing:0.1em;text-align:center;border-radius:2px;z-index:10;box-shadow:0 4px 15px rgba(0,0,0,0.06);line-height:1.4}
+        .hero-image{width:100%;height:100%;display:block;object-fit:cover;object-position:center;background-color:#f1eee8}
         
-        .plans-section{padding:1rem 0 3rem}
+        .product-info{padding:1.5rem 0 1.5rem;text-align:center}
+        .hero-main-copy{font-size:1.8rem;line-height:1.3;letter-spacing:0.05em;margin-bottom:0.5rem;font-weight:400}
+        .hero-reviews-summary{margin-bottom:0.8rem;color:var(--text-color)}
+        .hero-sub-copy{font-size:0.85rem;color:#555;letter-spacing:0.1em;margin-bottom:1.5rem}
+        
+        /* Plans */
+        .plans-section{padding:0.5rem 0 3rem}
         .plan-card{position:relative;border:1px solid var(--border-color);padding:1.25rem;margin-bottom:1rem;cursor:pointer;display:flex;align-items:center;background-color:#fff;transition:all 0.3s ease}
         .plan-card.active{border-color:var(--text-color)}
         
         .plan-outline{background-color:transparent;border:1px dashed var(--border-color);opacity:0.8}
         .plan-outline.active{border:1px solid var(--text-color);opacity:1;border-style:solid}
         
-        .plan-badge{position:absolute;top:-10px;right:15px;background:var(--text-color);color:#FAF7F2;font-size:0.65rem;padding:2px 8px;letter-spacing:0.1em}
         .plan-radio-container{position:relative;width:18px;height:18px;margin-right:1.25rem}
         .plan-radio{opacity:0;position:absolute;cursor:pointer}
         .custom-radio{position:absolute;top:0;left:0;height:18px;width:18px;background-color:transparent;border:1px solid var(--border-color);border-radius:50%;transition:all 0.3s ease}
@@ -60,23 +65,28 @@
         .plan-card.best-value-card.active{border-width:2px}
         .best-value-label{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--text-color);color:#FAF7F2;font-size:0.65rem;padding:3px 15px;letter-spacing:0.15em;font-weight:400;white-space:nowrap}
         .highlight-text{color:#8C7D70;font-weight:600}
-        
-        .ugc-highlight{background-color:#fff;border-left:3px solid var(--text-color);padding:1.2rem;margin-bottom:1.5rem;text-align:left;font-size:0.9rem;color:#333;box-shadow:0 2px 10px rgba(0,0,0,0.03)}
-        .ugc-author{display:block;margin-top:0.5rem;font-size:0.75rem;color:#666}
 
-        .btn-primary{width:100%;background-color:var(--text-color);color:#FAF7F2;border:1px solid var(--text-color);padding:1.25rem;font-size:0.95rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.1em;margin-top:1.5rem;font-family:inherit}
+        /* 横スクロール UGC Slider */
+        .ugc-slider-container{margin:1.5rem calc(-50vw + 50%);width:100vw;padding-left:var(--spacing-base);padding-top:5px;padding-bottom:10px}
+        @media(max-width:600px){.ugc-slider-container{margin:1.5rem calc(-1 * var(--spacing-base));width:calc(100% + var(--spacing-base) * 2)}}
+        .ugc-slider{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1rem;padding-right:var(--spacing-base);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+        .ugc-slider::-webkit-scrollbar{display:none}
+        .ugc-card{flex:0 0 85%;scroll-snap-align:center;background-color:#fff;padding:1.4rem;font-size:0.85rem;color:#333;border-radius:4px;box-shadow:0 3px 12px rgba(0,0,0,0.06);border:none}
+        .ugc-author{display:block;margin-top:0.6rem;font-size:0.75rem;color:#777}
+        
+        /* Stock Indicator & Buy Button */
+        .btn-primary{width:100%;background-color:var(--text-color);color:#FAF7F2;border:1px solid var(--text-color);padding:1.25rem;font-size:0.95rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.1em;margin-top:1rem;font-family:inherit}
         .btn-primary:hover{background-color:transparent;color:var(--text-color)}
         
-        /* Stock Indicator CSS */
         .stock-indicator{margin-top:1rem;text-align:left}
-        .stock-text{font-size:0.75rem;color:#666;margin-bottom:0.4rem;letter-spacing:0.05em;font-weight:300}
-        .stock-text strong{color:#8C7D70;font-weight:600}
-        .stock-bar{width:100%;height:4px;background-color:var(--border-color);border-radius:2px;overflow:hidden}
-        .stock-progress{height:100%;background-color:#8C7D70;border-radius:2px}
+        .stock-text{font-size:0.8rem;color:#444;margin-bottom:0.5rem;letter-spacing:0.05em;font-weight:400}
+        .stock-text strong{color:#b54a4a;font-weight:700;font-size:1.1em}
+        .stock-bar{width:100%;height:5px;background-color:rgba(0,0,0,0.05);border-radius:3px;overflow:hidden}
+        .stock-progress{height:100%;background-color:#b54a4a;border-radius:3px}
 
-        .micro-copy{font-size:0.75rem;color:#666;text-align:center;margin-top:1rem;letter-spacing:0.1em}
+        .micro-copy{font-size:0.75rem;color:#666;text-align:center;margin-top:1.2rem;letter-spacing:0.1em}
 
-        .btn-quiz-outline{display:block;text-align:center;box-sizing:border-box;border:1px solid var(--text-color);background-color:transparent;color:var(--text-color);padding:1.25rem;font-size:0.95rem;margin-top:1rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.1em;width:100%;text-decoration:none}
+        .btn-quiz-outline{display:block;text-align:center;box-sizing:border-box;border:1px solid var(--text-color);background-color:transparent;color:var(--text-color);padding:1.25rem;font-size:0.95rem;margin-top:1.2rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.1em;width:100%;text-decoration:none}
         .btn-quiz-outline:hover{background-color:rgba(0,0,0,0.03)}
     </style>
 </head>
@@ -98,7 +108,7 @@
         <section class="hero full-width" style="text-align:center;">
             <div class="hero-image-wrapper">
                 <div class="trust-badge">30日間<br>全額返金<br>保証</div>
-                <!-- 速度改善: eager, fetchpriority, CLS防止 -->
+                <!-- 速度改善: eager, fetchpriority, 固定コンテナでのCLS防止 -->
                 <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731#" alt="Oud Stallion by Maison Criveli" class="hero-image" fetchpriority="high" loading="eager">
             </div>
             
@@ -112,10 +122,10 @@
             </div>
         </section>
 
-        <!-- Plans Section (AOV向上：100ml デフォルトアンカリング) -->
+        <!-- Plans Section (100ml アンカリング継続) -->
         <section class="plans-section" id="purchase">
             
-            <!-- 100ml 唯一の正解としてのデザイン -->
+            <!-- 100ml (一番人気・デフォルト) -->
             <label class="plan-card best-value-card active">
                 <div class="best-value-label">迷ったらこれ / MOST POPULAR</div>
                 <div class="plan-radio-container">
@@ -155,21 +165,32 @@
                 </div>
             </label>
 
-            <!-- CTA直上の最強UGC -->
-            <div class="ugc-highlight">
-                <p>「職場で3人に『どこの香水？』と聞かれました。清潔感の塊です。」</p>
-                <span class="ugc-author">— Yukiさん / 20代男性</span>
+            <!-- CTA直上: 横スクロール型の最強UGC スライダー -->
+            <div class="ugc-slider-container">
+                <div class="ugc-slider">
+                    <div class="ugc-card">
+                        <p>「職場で3人に『どこの香水？』と聞かれました。清潔感の塊です。」</p>
+                        <span class="ugc-author">— Yukiさん / 20代男性</span>
+                    </div>
+                    <div class="ugc-card">
+                        <p>「デパコスの強い匂いが無理な自分には神。柔軟剤の延長みたいな自然さ。」</p>
+                        <span class="ugc-author">— Sotaさん / 20代男性</span>
+                    </div>
+                    <div class="ugc-card">
+                        <p>「高いから迷ったけどテストキットで試せたのがデカい。ガチでおすすめできる。」</p>
+                        <span class="ugc-author">— Miyuさん / 30代女性</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- 購入ボタンと在庫インジケーター（希少性エンハンス） -->
+            <!-- 購入ボタンと再配置された在庫インジケーター（希少性増強） -->
             <button id="main-add-to-cart" class="btn-primary">カートに追加する</button>
             <div class="stock-indicator">
-                <div class="stock-text">在庫残りわずか：本日分はあと <strong>7セット</strong> で終了です（無料テストキット付）</div>
+                <div class="stock-text">在庫残りわずか：本日分はあと <strong>7セット</strong> で終了です</div>
                 <div class="stock-bar"><div class="stock-progress" style="width: 14%;"></div></div>
             </div>
 
             <p class="micro-copy">30日間全額返金保証 | 100mlはテストキット付</p>
-            
             <a href="#quiz-section" class="btn-quiz-outline">自分に合うか30秒診断を受ける</a>
         </section>
 
@@ -194,7 +215,6 @@
                 </div>
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
-                        <!-- ラグジュアリーな線画SVGとテキストの組み合わせ -->
                         <div class="note-item-minimal">
                             <div class="note-icon-svg">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
@@ -209,7 +229,6 @@
                                 <div class="note-desc-minimal">清潔感の象徴</div>
                             </div>
                         </div>
-
                         <div class="note-item-minimal">
                             <div class="note-icon-svg">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
@@ -222,7 +241,6 @@
                                 <div class="note-desc-minimal">洗練された透明感</div>
                             </div>
                         </div>
-
                         <div class="note-item-minimal">
                             <div class="note-icon-svg">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
@@ -357,6 +375,7 @@
     <script src="script.js" defer></script>
 </body>
 </html>
+
 
 
 
