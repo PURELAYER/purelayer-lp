@@ -8,8 +8,8 @@
     <!-- Google Fonts 最速読み込み（LCP最適化） -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet"></noscript>
     
     <meta name="description" content="清潔感と存在感の最適解。一度つけたら、必ず聞かれる香水「Oud Stallion by Maison Criveli」">
 
@@ -33,14 +33,18 @@
         .hero-image{width:100%;height:auto;display:block;object-fit:cover;aspect-ratio:4/5;background-color:#f1eee8}
         
         .product-info{padding:3rem 0 2rem;text-align:center}
-        .hero-authority{font-size:0.75rem;color:var(--text-color);letter-spacing:0.15em;margin-bottom:0.8rem;text-transform:uppercase}
-        .hero-main-copy{font-size:2.2rem;line-height:1.4;letter-spacing:0.05em;margin-bottom:1rem;font-weight:300}
+        .hero-main-copy{font-size:2.2rem;line-height:1.4;letter-spacing:0.05em;margin-bottom:0.5rem;font-weight:300}
+        .hero-reviews-summary{margin-bottom:1rem;color:var(--text-color)}
         .hero-sub-copy{font-size:0.9rem;color:#555;letter-spacing:0.1em;margin-bottom:2rem}
-        .btn-jump-quiz{display:inline-block;text-align:center;border-bottom:1px solid var(--text-color);text-decoration:none;color:var(--text-color);font-size:0.9rem;padding-bottom:2px}
         
         .plans-section{padding:1rem 0 3rem}
         .plan-card{position:relative;border:1px solid var(--border-color);padding:1.25rem;margin-bottom:1rem;cursor:pointer;display:flex;align-items:center;background-color:#fff;transition:all 0.3s ease}
         .plan-card.active{border-color:var(--text-color)}
+        
+        .plan-outline{background-color:transparent;border:1px dashed var(--border-color);opacity:0.8}
+        .plan-outline.active{border:1px solid var(--text-color);opacity:1;border-style:solid}
+        
+        .plan-badge{position:absolute;top:-10px;right:15px;background:var(--text-color);color:#FAF7F2;font-size:0.65rem;padding:2px 8px;letter-spacing:0.1em}
         .plan-radio-container{position:relative;width:18px;height:18px;margin-right:1.25rem}
         .plan-radio{opacity:0;position:absolute;cursor:pointer}
         .custom-radio{position:absolute;top:0;left:0;height:18px;width:18px;background-color:transparent;border:1px solid var(--border-color);border-radius:50%;transition:all 0.3s ease}
@@ -51,15 +55,21 @@
         .plan-price{font-size:1.1rem;color:var(--text-color)}
         .plan-extra{font-size:0.85rem;color:#666;margin-top:0.2rem}
         
-        /* 100ml Special Styling */
-        .plan-card.best-value-card{background-color:#F5EFE6;border:1px solid var(--text-color);margin-top:2rem}
+        /* 50ml Best Value Styling (New Default) */
+        .plan-card.best-value-card{background-color:#F5EFE6;border:1px solid var(--text-color);margin-top:1.5rem}
         .plan-card.best-value-card.active{border-width:2px}
         .best-value-label{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--text-color);color:#FAF7F2;font-size:0.65rem;padding:3px 15px;letter-spacing:0.15em;font-weight:400;white-space:nowrap}
         .highlight-text{color:#ab4a4a;font-weight:600}
         
+        .ugc-highlight{background-color:#fff;border-left:3px solid var(--text-color);padding:1.2rem;margin-bottom:1.5rem;text-align:left;font-size:0.9rem;color:#333;box-shadow:0 2px 10px rgba(0,0,0,0.03)}
+        .ugc-author{display:block;margin-top:0.5rem;font-size:0.75rem;color:#666}
+
         .btn-primary{width:100%;background-color:var(--text-color);color:#FAF7F2;border:1px solid var(--text-color);padding:1.25rem;font-size:0.95rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.1em;margin-top:1.5rem;font-family:inherit}
         .btn-primary:hover{background-color:transparent;color:var(--text-color)}
         
+        .btn-quiz-outline{display:block;text-align:center;box-sizing:border-box;border:1px solid var(--text-color);background-color:transparent;color:var(--text-color);padding:1.25rem;font-size:0.95rem;margin-top:1rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.1em;width:100%;text-decoration:none}
+        .btn-quiz-outline:hover{background-color:rgba(0,0,0,0.03)}
+
         .micro-copy{font-size:0.75rem;color:#666;text-align:center;margin-top:1rem;letter-spacing:0.1em}
     </style>
 </head>
@@ -81,49 +91,55 @@
         <section class="hero full-width" style="text-align:center;">
             <div class="hero-image-wrapper">
                 <div class="trust-badge">30日間<br>全額返金<br>保証</div>
-                <!-- 速度改善: loading="eager", fetchpriority="high", CLS防止 aspect-ratio -->
-                <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731#" alt="Oud Stallion by Maison Criveli" class="hero-image" fetchpriority="high" loading="eager" style="aspect-ratio: 4/5;">
+                <!-- 速度改善: loading="eager", fetchpriority="high", aspect-ratio -->
+                <img src="file:///C:/Users/obeob/.gemini/antigravity/brain/38407f58-6333-4538-b713-e33f30ce8877/oud_stallion_perfume_1775957620955.png" alt="Oud Stallion by Maison Criveli" class="hero-image" fetchpriority="high" loading="eager">
             </div>
             
             <div class="product-info">
-                <div class="hero-authority">香水初心者満足度 98.7%</div>
                 <h2 class="hero-main-copy">一度つけたら、<br>必ず聞かれる香水。</h2>
+                <div class="hero-reviews-summary">
+                    <span style="font-size:1rem; letter-spacing:2px;">★★★★★</span>
+                    <span style="font-size:0.85rem; margin-left:5px; color:#555;">4.8 (124件のレビュー)</span>
+                </div>
                 <p class="hero-sub-copy">Oud Stallion by Maison Criveli<br>— 清潔感と存在感の最適解</p>
-                <a href="#quiz-section" class="btn-jump-quiz">あなたに合うか30秒診断 &rarr;</a>
+                <!-- 古いテキストリンクの診断導線を排除 -->
             </div>
         </section>
 
         <!-- Plans Section -->
         <section class="plans-section" id="purchase">
-            <label class="plan-card">
+            
+            <!-- 10ml はアウトライン形式でお試し用として控えめに -->
+            <label class="plan-card plan-outline">
                 <div class="plan-radio-container">
                     <input type="radio" name="plan" value="10ml" class="plan-radio">
                     <span class="custom-radio"></span>
                 </div>
                 <div class="plan-details">
-                    <span class="plan-name">10ml 単品</span>
+                    <span class="plan-name">10ml お試し単品</span>
                     <span class="plan-price">¥1,750</span>
-                    <div class="plan-extra">お試しや持ち運びに最適</div>
+                    <div class="plan-extra">持ち運びに最適</div>
                 </div>
             </label>
 
-            <label class="plan-card">
+            <!-- 50ml をデフォルト化し「唯一の正解」として訴求 -->
+            <label class="plan-card best-value-card active">
+                <div class="best-value-label">迷ったらこれ / MOST POPULAR</div>
                 <div class="plan-radio-container">
-                    <input type="radio" name="plan" value="50ml" class="plan-radio">
+                    <input type="radio" name="plan" value="50ml" class="plan-radio" checked>
                     <span class="custom-radio"></span>
                 </div>
                 <div class="plan-details">
                     <span class="plan-name">50ml ボトルセット</span>
                     <span class="plan-price">¥8,980</span>
-                    <div class="plan-extra">+ 10mlアトマイザー（特典）付き</div>
+                    <div class="plan-extra highlight-text">+ 10mlアトマイザー（限定特典）付き</div>
                 </div>
             </label>
 
-            <!-- 100ml 唯一の正解としてのデザイン -->
-            <label class="plan-card best-value-card active">
-                <div class="best-value-label">迷ったらこれ / MOST POPULAR</div>
+            <!-- 100ml はプレミアム選択肢として配置 -->
+            <label class="plan-card">
                 <div class="plan-radio-container">
-                    <input type="radio" name="plan" value="100ml" class="plan-radio" checked>
+                    <input type="radio" name="plan" value="100ml" class="plan-radio">
                     <span class="custom-radio"></span>
                 </div>
                 <div class="plan-details">
@@ -133,8 +149,17 @@
                 </div>
             </label>
 
+            <!-- CTA直上の最強UGC -->
+            <div class="ugc-highlight">
+                <p>「職場で3人に『どこの香水？』と聞かれました。清潔感の塊です。」</p>
+                <span class="ugc-author">— Yukiさん / 20代男性</span>
+            </div>
+
+            <!-- 購入ボタンとマイクロコピーと診断導線 -->
             <button id="main-add-to-cart" class="btn-primary">カートに追加する</button>
             <p class="micro-copy">30日間全額返金保証 | 100mlはテストキット付</p>
+            
+            <a href="#quiz-section" class="btn-quiz-outline">自分に合うか30秒診断を受ける</a>
         </section>
 
         <!-- Accordions -->
@@ -158,18 +183,18 @@
                 </div>
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
-                        <!-- Dossier形式 ベネフィット変換 -->
-                        <div class="note-item-dossier">
-                            <div class="note-emoji">🍋</div>
-                            <div class="note-text-dossier"><strong>Bergamot:</strong> 清潔感の象徴。第一印象を爽やかに。</div>
+                        <!-- ラグジュアリーなミニマルフォーマットに切り替え（絵文字廃止） -->
+                        <div class="note-item-minimal">
+                            <div class="note-title-minimal">Top - Bergamot</div>
+                            <div class="note-desc-minimal">清潔感の象徴</div>
                         </div>
-                        <div class="note-item-dossier">
-                            <div class="note-emoji">🍵</div>
-                            <div class="note-text-dossier"><strong>White Tea:</strong> 心を落ち着かせる、上品で繊細な奥行き。</div>
+                        <div class="note-item-minimal">
+                            <div class="note-title-minimal">Heart - White Tea</div>
+                            <div class="note-desc-minimal">洗練された透明感</div>
                         </div>
-                        <div class="note-item-dossier">
-                            <div class="note-emoji">☁️</div>
-                            <div class="note-text-dossier"><strong>Musk:</strong> 肌に馴染み、24時間続くほのかな色気。</div>
+                        <div class="note-item-minimal">
+                            <div class="note-title-minimal">Base - Musk</div>
+                            <div class="note-desc-minimal">肌に馴染む24時間の余韻</div>
                         </div>
                     </div>
                 </div>
@@ -208,10 +233,6 @@
                             <p class="faq-q">Q. 持続時間はどのくらいですか？</p>
                             <p class="faq-a">A. 朝つけてから夕方まで、約8〜10時間ほど心地よく持続します。</p>
                         </div>
-                        <div class="faq-item">
-                            <p class="faq-q">Q. 男性の使用にも合いますか？</p>
-                            <p class="faq-a">A. はい、性別問わず好まれる中性的な香りです。</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -231,7 +252,7 @@
                         <div class="quiz-option">自宅でのリラックスタイム</div>
                     </div>
                 </div>
-                <!-- 省略せず全て配置 -->
+                <!-- 2,3,4,5... -->
                 <div class="quiz-step" data-step="2">
                     <p class="quiz-ques">Q2. 普段の服装のテイストは？</p>
                     <div class="quiz-options">
@@ -280,17 +301,15 @@
         <section class="reviews-section">
             <h2 class="section-title">Reviews</h2>
             <div class="reviews-meta">4.8 / 5.0 (124)</div>
-            
             <div id="reviews-container"></div>
             <button id="load-more-reviews" class="btn-secondary">全てのレビューを見る</button>
         </section>
 
     </main>
 
-    <!-- 最強オファー直接カート追加CTA -->
+    <!-- Sticky CTA -->
     <div class="sticky-cta visible">
-        <!-- 直接 100ml をカートに追加するロジックを実装 -->
-        <button id="sticky-btn" class="btn-primary" style="margin:0; padding:1rem; font-size:0.9rem;">お得な100mlを購入する</button>
+        <button id="sticky-btn" class="btn-primary" style="margin:0; padding:1rem; font-size:0.9rem;">カートに追加する</button>
     </div>
 
     <!-- 非クリティカルCSS (レンダリングブロック回避) -->
@@ -374,8 +393,7 @@
     };
 
     bindClick('main-add-to-cart', triggerCheckout);
-    // 常設ボタンは、最も売上につながる100ml直行に設計（摩擦排除）
-    bindClick('sticky-btn', () => handleCheckout('100ml'));
+    bindClick('sticky-btn', triggerCheckout);
 
     // Plan Selection UX
     const planCards = document.querySelectorAll('.plan-card');
@@ -472,7 +490,6 @@
 
             let imageHtml = '';
             if (reviewImagesData[index]) {
-                // LCP/パフォーマンス対策: loading="lazy", decoding="async", CSS内でのaspect-ratioによるCLS防止
                 imageHtml = `<img src="${reviewImagesData[index]}" class="review-image" loading="lazy" decoding="async" alt="User review photo">`;
             }
 
@@ -497,7 +514,7 @@
         }
     }
 
-    // 5. Sticky CTA Visibility Check
+    // 5. Sticky CTA Visibility Check & Dynamic Add
     const stickyCta = document.querySelector('.sticky-cta');
     const mainAtc = document.getElementById('main-add-to-cart');
     
@@ -515,7 +532,6 @@
         observer.observe(mainAtc);
     }
 });
-
 </script>
 
 <style>
@@ -573,26 +589,29 @@
   color: #444;
 }
 
-/* Scent Notes: Dossier Style */
-.note-item-dossier {
-  display: flex;
-  align-items: flex-start;
+/* Minimal Scent Notes */
+.note-item-minimal {
   margin-bottom: 1.2rem;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.8rem;
 }
-.note-emoji {
-  font-size: 1.2rem;
-  margin-right: 0.8rem;
-  line-height: 1.2;
+.note-item-minimal:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
-.note-text-dossier {
-  flex: 1;
-}
-.note-text-dossier strong {
+.note-title-minimal {
   font-weight: 600;
   color: var(--text-color);
-  margin-right: 0.3rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.note-desc-minimal {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.2rem;
 }
 
 /* FAQ */
@@ -723,7 +742,7 @@
   opacity: 0.5;
 }
 
-/* User Review Actual Image - CLS 防止のための aspect-ratio 指定 */
+/* User Review Actual Image CLS Prevention */
 .review-image {
   width: 140px;
   height: 140px;
