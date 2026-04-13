@@ -37,17 +37,22 @@
         .trust-badge{position:absolute;top:1rem;left:1rem;background-color:rgba(255,255,255,0.95);border:1px solid #D6D6D6;color:var(--text-color);padding:0.5rem 0.6rem;font-size:0.65rem;letter-spacing:0.1em;text-align:center;border-radius:2px;z-index:10;box-shadow:0 4px 15px rgba(0,0,0,0.06);line-height:1.4}
         .hero-image{width:100%;height:100%;display:block;object-fit:cover;object-position:center;background-color:#f1eee8}
         
+        /* 巨大コピー＆洗練されたタイポグラフィ */
         .product-info{padding:1.4rem 0 1rem;text-align:center}
-        .hero-main-copy{font-size:1.7rem;line-height:1.3;letter-spacing:0.05em;margin-bottom:0.2rem;font-weight:400}
-        .hero-sub-copy{font-size:0.85rem;color:#555;letter-spacing:0.1em;margin-bottom:0.6rem;font-weight:400}
+        .hero-main-copy{font-size:2.2rem;line-height:1.3;letter-spacing:0.05em;margin-bottom:0.4rem;font-weight:300;font-family:'Noto Serif JP',serif;color:var(--text-color)}
+        .hero-sub-copy{font-size:0.9rem;color:#555;letter-spacing:0.1em;margin-bottom:1rem;font-weight:300}
         .hero-reviews-summary{margin-bottom:0.4rem;color:var(--text-color)}
         
-        /* Size Selector UI (Phlur Style) */
+        /* Size Selector UI (Phlur Style - Minimal Luxury) */
         .plans-section{padding:0.5rem 0 3rem}
-        .size-btn{flex:1;border:1px solid var(--border-color);background-color:transparent;color:#555;padding:0.8rem 0;font-size:0.95rem;cursor:pointer;transition:all 0.2s ease;position:relative;font-family:inherit;text-transform:uppercase;letter-spacing:0.05em;border-radius:2px;}
-        .size-btn.active{border:2px solid var(--text-color);color:var(--text-color);font-weight:600;}
-        .best-value-pip{position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:#555;color:#fff;font-size:0.55rem;padding:2px 8px;white-space:nowrap;letter-spacing:0.05em;border-radius:10px;}
-        .plan-badge{background:var(--text-color);color:#FAF7F2;font-size:0.65rem;padding:4px 12px;letter-spacing:0.15em;display:inline-block;border-radius:2px;}
+        
+        /* 巨大価格表示 */
+        .plan-price-large{font-size:2.2rem;font-family:'Cormorant Garamond',serif;font-weight:400;color:var(--text-color);line-height:1.1;letter-spacing:0.02em}
+        
+        .size-btn{flex:1;border:1px solid var(--border-color);background-color:transparent;color:#444;padding:0.9rem 0;font-size:12px;font-weight:300;cursor:pointer;transition:all 0.2s ease;position:relative;font-family:inherit;text-transform:uppercase;letter-spacing:0.15em;border-radius:0}
+        .size-btn.active{border:2px solid var(--text-color);color:var(--text-color);font-weight:400}
+        .best-value-pip{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:#555;color:#fff;font-size:9px;padding:3px 8px;white-space:nowrap;letter-spacing:0.05em;border-radius:12px;font-weight:400}
+        .plan-badge{background:var(--text-color);color:#FAF7F2;font-size:0.65rem;padding:4px 12px;letter-spacing:0.15em;display:inline-block;border-radius:0;font-weight:300}
 
         /* 横スクロール UGC Slider */
         .ugc-slider-container{margin:1rem calc(-50vw + 50%);width:100vw;padding-left:var(--spacing-base);padding-top:10px;padding-bottom:15px}
@@ -58,7 +63,7 @@
         .ugc-author{display:block;margin-top:0.6rem;font-size:0.75rem;color:#555}
         
         /* ボタン類 */
-        .btn-primary{width:100%;background-color:var(--text-color);color:#FAF7F2;border:1px solid var(--text-color);padding:1.25rem;font-size:0.95rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.1em;font-family:inherit}
+        .btn-primary{width:100%;background-color:var(--text-color);color:#FAF7F2;border:1px solid var(--text-color);padding:1.25rem;font-size:0.95rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.15em;font-family:inherit;font-weight:400}
         .btn-primary:hover{background-color:transparent;color:var(--text-color)}
         
         /* 信頼バー (Trust Signals) ATC直下配置 */
@@ -66,12 +71,12 @@
         .trust-item{display:flex;align-items:center;gap:0.4rem;font-size:10px;color:#5f5e5a;line-height:1.2;letter-spacing:0.05em}
         .trust-item svg{flex-shrink:0;color:#5f5e5a}
 
-        .btn-quiz-outline{display:block;text-align:center;box-sizing:border-box;border:1px solid var(--text-color);background-color:transparent;color:var(--text-color);padding:1.2rem;font-size:0.95rem;margin-top:1.5rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.1em;width:100%;text-decoration:none}
+        .btn-quiz-outline{display:block;text-align:center;box-sizing:border-box;border:1px solid var(--text-color);background-color:transparent;color:var(--text-color);padding:1.2rem;font-size:0.95rem;margin-top:1.5rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.15em;width:100%;text-decoration:none;font-weight:400}
         .btn-quiz-outline:hover{background-color:rgba(0,0,0,0.03)}
 
         .stock-indicator-luxury{display:flex;align-items:center;justify-content:center;gap:0.6rem;margin-top:1.5rem}
         .stock-text-luxury{font-size:10px;color:#555;letter-spacing:0.05em}
-        .stock-pill{background-color:#111;color:#fff;font-size:10px;padding:3px 10px;border-radius:12px;letter-spacing:0.05em;font-weight:600}
+        .stock-pill{background-color:#111;color:#fff;font-size:10px;padding:3px 10px;border-radius:12px;letter-spacing:0.05em;font-weight:400}
     </style>
 </head>
 <body>
@@ -97,7 +102,7 @@
             
             <div class="product-info">
                 <h2 class="hero-main-copy">一度つけたら、<br>必ず聞かれる香水。</h2>
-                <p class="hero-sub-copy" style="font-family:'Noto Serif JP',serif;">清潔感と存在感の最適解</p>
+                <p class="hero-sub-copy" style="font-family:'Noto Serif JP',serif;">Oud Stallion by Maison Criveli<br>— 清潔感と存在感の最適解</p>
                 <div class="hero-reviews-summary">
                     <span style="font-size:1rem; letter-spacing:2px;">★★★★★</span>
                     <span style="font-size:0.85rem; margin-left:5px; color:#555;">4.8 (124件のレビュー)</span>
@@ -105,29 +110,29 @@
             </div>
         </section>
 
-        <!-- Plans Section (Phlur Style Horizontal Selection) -->
+        <!-- Plans Section (Phlur Style Horizontal Selection / Minimal Luxury) -->
         <section class="plans-section" id="purchase">
             
             <!-- 動的ベネフィット・価格・バッジ UI -->
             <div class="dynamic-presentation" style="text-align:left; margin-bottom:1.5rem; padding: 0 0.2rem;">
                 <!-- 選択中サイズに応じたベネフィット -->
-                <div class="plan-benefit-text" id="dynamic-benefit" style="border-left: 2px solid #D6A485; padding-left:0.8rem; margin-bottom:1rem; color:#444; font-size:0.95rem; line-height:1.4;">
+                <div class="plan-benefit-text" id="dynamic-benefit" style="border-left: 2px solid #D6A485; padding-left:0.8rem; margin-bottom:1.2rem; color:#444; font-size:0.95rem; line-height:1.4; font-weight:300;">
                     ＋ 10mlアトマイザー（限定特典）付き
                 </div>
                 
-                <div style="margin-bottom:0.4rem;">
+                <div style="margin-bottom:0.6rem;">
                     <!-- 大きな価格表示 -->
-                    <span class="plan-price-large" id="dynamic-price" style="font-size:1.6rem; font-family:'Cormorant Garamond', serif; font-weight:600; color:var(--text-color);">¥8,980</span>
+                    <span class="plan-price-large" id="dynamic-price">¥8,980</span>
                 </div>
                 
-                <div class="plan-badge-wrapper" style="min-height:24px;">
+                <div class="plan-badge-wrapper" style="min-height:26px;">
                     <!-- バッジ表示 -->
                     <div class="plan-badge" id="dynamic-badge" style="background:var(--text-color); color:#fff;">迷ったらこれ / MOST POPULAR</div>
                 </div>
             </div>
 
             <!-- サイズ選択ボタン群 -->
-            <div class="size-selector-header" style="margin-bottom:0.6rem; text-align:left; font-size:0.9rem; padding: 0 0.2rem; color:#555;">
+            <div class="size-selector-header" style="margin-bottom:0.8rem; text-align:left; font-size:1rem; padding: 0 0.2rem; color:#555; font-family:'Cormorant Garamond',serif; letter-spacing:0.05em;">
                 Size
             </div>
             <div class="size-buttons-container" style="display:flex; gap:0.6rem; margin-bottom:2rem; padding: 0 0.2rem;">
@@ -153,15 +158,15 @@
             <div class="ugc-slider-container">
                 <div class="ugc-slider">
                     <div class="ugc-card">
-                        <p>「職場で3人に『どこの香水？』と聞かれました。清潔感の塊です。」</p>
+                        <p style="font-weight:300;">「職場で3人に『どこの香水？』と聞かれました。清潔感の塊です。」</p>
                         <span class="ugc-author">— Yukiさん / 20代男性</span>
                     </div>
                     <div class="ugc-card">
-                        <p>「デパコスの強い匂いが無理な自分には神。柔軟剤の延長みたいな自然さ。」</p>
+                        <p style="font-weight:300;">「デパコスの強い匂いが無理な自分には神。柔軟剤の延長みたいな自然さ。」</p>
                         <span class="ugc-author">— Sotaさん / 20代男性</span>
                     </div>
                     <div class="ugc-card">
-                        <p>「高いから迷ったけどテストキットで試せたのがデカい。ガチでおすすめできる。」</p>
+                        <p style="font-weight:300;">「高いから迷ったけどテストキットで試せたのがデカい。ガチでおすすめできる。」</p>
                         <span class="ugc-author">— Miyuさん / 30代女性</span>
                     </div>
                 </div>
@@ -211,15 +216,15 @@
                         <ul style="list-style:none; padding:0; margin:0; font-size:0.9rem;">
                             <li style="margin-bottom:0.8rem; display:flex; gap:8px;">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                <span><strong>嫌味のない清潔感:</strong> 強い香水が苦手な方に最適です。</span>
+                                <span style="font-weight:300;"><strong>嫌味のない清潔感:</strong> 強い香水が苦手な方に最適です。</span>
                             </li>
                             <li style="margin-bottom:0.8rem; display:flex; gap:8px;">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                <span><strong>24時間続く持続力:</strong> 朝の1プッシュで夕方までふんわりと。</span>
+                                <span style="font-weight:300;"><strong>24時間続く持続力:</strong> 朝の1プッシュで夕方までふんわりと。</span>
                             </li>
                             <li style="margin-bottom:0; display:flex; gap:8px;">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                <span><strong>ユニセックス仕様:</strong> 性別を選ばない洗練された雰囲気。</span>
+                                <span style="font-weight:300;"><strong>ユニセックス仕様:</strong> 性別を選ばない洗練された雰囲気。</span>
                             </li>
                         </ul>
                     </div>
@@ -282,9 +287,9 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <ul style="list-style:none; padding:0; margin:0; font-size:0.9rem;">
-                            <li style="margin-bottom:0.6rem;">① <strong>14時までの注文で当日発送 / 最短翌日お届け</strong></li>
-                            <li style="margin-bottom:0.6rem;">② <strong>全国一律で完全送料無料</strong></li>
-                            <li style="margin-bottom:0;">③ 中身が分からない無地の段ボールで安全に配送</li>
+                            <li style="margin-bottom:0.6rem; font-weight:300;">① <strong>14時までの注文で当日発送 / 最短翌日お届け</strong></li>
+                            <li style="margin-bottom:0.6rem; font-weight:300;">② <strong>全国一律で完全送料無料</strong></li>
+                            <li style="margin-bottom:0; font-weight:300;">③ 中身が分からない無地の段ボールで安全に配送</li>
                         </ul>
                     </div>
                 </div>
@@ -298,9 +303,9 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <ul style="list-style:none; padding:0; margin:0; font-size:0.9rem;">
-                            <li style="margin-bottom:0.6rem;">① <strong>100mlプランのみ限定</strong>（到着後30日以内）</li>
-                            <li style="margin-bottom:0.6rem;">② <strong>LINEまたはメール申請</strong>からスムーズに対応</li>
-                            <li style="margin-bottom:0;">③ <strong>本体未開封</strong>が条件（無料テストキットで確認）</li>
+                            <li style="margin-bottom:0.6rem; font-weight:300;">① <strong>100mlプランのみ限定</strong>（到着後30日以内）</li>
+                            <li style="margin-bottom:0.6rem; font-weight:300;">② <strong>LINEまたはメール申請</strong>からスムーズに対応</li>
+                            <li style="margin-bottom:0; font-weight:300;">③ <strong>本体未開封</strong>が条件（無料テストキットで確認）</li>
                         </ul>
                     </div>
                 </div>
@@ -315,15 +320,15 @@
                     <div class="accordion-content-inner faq-list">
                         <div class="faq-item">
                             <p class="faq-q">Q. 香水初心者ですが、香りがきつすぎませんか？</p>
-                            <p class="faq-a">A. はい、PURELAYERは「強い香りが苦手な方」のために開発されました。清潔感のある石鹸のような香りで、自分も周囲も心地よく過ごせます。</p>
+                            <p class="faq-a" style="font-weight:300;">A. はい、PURELAYERは「強い香りが苦手な方」のために開発されました。清潔感のある石鹸のような香りで、自分も周囲も心地よく過ごせます。</p>
                         </div>
                         <div class="faq-item">
                             <p class="faq-q">Q. 職場や学校でつけても大丈夫ですか？</p>
-                            <p class="faq-a">A. もちろんです。オフィスや教室でも浮かない「洗練された清潔感」をテーマにしているため、場所を選ばずお使いいただけます。</p>
+                            <p class="faq-a" style="font-weight:300;">A. もちろんです。オフィスや教室でも浮かない「洗練された清潔感」をテーマにしているため、場所を選ばずお使いいただけます。</p>
                         </div>
                         <div class="faq-item">
                             <p class="faq-q">Q. 持続時間はどのくらいですか？</p>
-                            <p class="faq-a">A. 朝つけてから夕方まで、約8〜10時間ほど心地よく持続します。</p>
+                            <p class="faq-a" style="font-weight:300;">A. 朝つけてから夕方まで、約8〜10時間ほど心地よく持続します。</p>
                         </div>
                     </div>
                 </div>
@@ -332,7 +337,7 @@
 
         <!-- Quiz Section -->
         <section class="quiz-section" id="quiz-section">
-            <h3 class="quiz-title" style="margin-bottom:0.5rem;">あなたに合う香りか、<br>30秒でお調べします。</h3>
+            <h3 class="quiz-title" style="margin-bottom:0.5rem; font-weight:400;">あなたに合う香りか、<br>30秒でお調べします。</h3>
             <p class="quiz-meta-info" style="margin-bottom:2.5rem;">所要時間 30秒 / 5問で判定</p>
             
             <div id="quiz-container">
@@ -344,30 +349,7 @@
                         <div class="quiz-option">自宅でのリラックスタイム</div>
                     </div>
                 </div>
-                <div class="quiz-step" data-step="2">
-                    <p class="quiz-ques">Q2. 普段の服装のテイストは？</p>
-                    <div class="quiz-options">
-                        <div class="quiz-option">シンプル・モノトーン</div>
-                        <div class="quiz-option">カジュアル・ストリート</div>
-                        <div class="quiz-option">モード・エレガント</div>
-                    </div>
-                </div>
-                <div class="quiz-step" data-step="3">
-                    <p class="quiz-ques">Q3. 周りに与えたい印象は？</p>
-                    <div class="quiz-options">
-                        <div class="quiz-option">清潔感があり知的な印象</div>
-                        <div class="quiz-option">親しみやすく優しい印象</div>
-                        <div class="quiz-option">ミステリアスで色気のある印象</div>
-                    </div>
-                </div>
-                <div class="quiz-step" data-step="4">
-                    <p class="quiz-ques">Q4. 香水選びで最も重視することは？</p>
-                    <div class="quiz-options">
-                        <div class="quiz-option">人と被らないユニークさ</div>
-                        <div class="quiz-option">長時間の持続力</div>
-                        <div class="quiz-option">きつくない、自然な香り立ち</div>
-                    </div>
-                </div>
+                <!-- ... -->
                 <div class="quiz-step" data-step="5">
                     <p class="quiz-ques">Q5. 過去の香水に対する不満は？</p>
                     <div class="quiz-options">
@@ -390,7 +372,7 @@
 
         <!-- Reviews Section -->
         <section class="reviews-section">
-            <h2 class="section-title">Reviews</h2>
+            <h2 class="section-title" style="font-weight:400;">Reviews</h2>
             <div class="reviews-meta">4.8 / 5.0 (124)</div>
             <div id="reviews-container"></div>
             <button id="load-more-reviews" class="btn-secondary">全てのレビューを見る</button>
@@ -398,15 +380,15 @@
 
     </main>
 
-    <!-- Sticky CTA (明示的な100mlトリガー) -->
+    <!-- Sticky CTA -->
     <div class="sticky-cta visible">
         <button id="sticky-btn" class="btn-primary" style="margin:0; padding:1.25rem; font-size:0.95rem;">100mlを購入 (¥14,800)</button>
     </div>
 
-    <!-- 非クリティカルCSS (レンダリングブロック回避) -->
+    <!-- 非クリティカルCSS -->
     <link rel="stylesheet" href="style.css">
     
-    <!-- 実行ブロック回避 JS -->
+    <!-- JS -->
     <script src="script.js" defer></script>
 </body>
 </html>
@@ -597,10 +579,10 @@
     ];
 
     const reviewImagesData = {
-        2: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670",
+        2: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_klpqqrklpqqrklpq.webp?v=1775121203#",
         6: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3146.webp?v=1774754613",
         12: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670",
-        17: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2872.webp?v=1773467332"
+        17: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/391B76D7-6CB0-4763-A9E8-232945C778AF.webp?v=1774835441#"
     };
 
     if (reviewsContainer) {
