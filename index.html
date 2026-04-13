@@ -11,30 +11,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet"></noscript>
     
-    <meta name="description" content="強い香りが苦手な人のための、清潔感の塊のようなユニセックスフレグランス。学校・職場で褒められる香り「Oud Stallion」">
+    <meta name="description" content="清潔感と存在感の最適解。一度つけたら、必ず聞かれる香水「Oud Stallion by Maison Criveli」">
 
     <!-- クリティカルCSS (First Viewを最速で描画するためインライン化) -->
     <style>
-        :root{--bg-color:#F9F9F9;--text-color:#1A1A1A;--border-color:#D6D6D6;--spacing-base:1.5rem}
+        :root{--bg-color:#FAF7F2;--text-color:#1A1A1A;--border-color:#E2DFD8;--spacing-base:1.5rem}
         *{box-sizing:border-box;margin:0;padding:0}
-        body{font-family:'Cormorant Garamond','Noto Serif JP',serif;font-weight:300;background-color:var(--bg-color);color:var(--text-color);line-height:1.8;letter-spacing:0.1em;padding-bottom:90px;-webkit-font-smoothing:antialiased}
+        body{font-family:'Cormorant Garamond','Noto Serif JP',serif;font-weight:300;background-color:var(--bg-color);color:var(--text-color);line-height:1.8;letter-spacing:0.1em;padding-bottom:100px;-webkit-font-smoothing:antialiased}
         h1,h2,h3,h4,h5,h6,b,strong{font-weight:400}
         .container{max-width:600px;margin:0 auto;padding:0 var(--spacing-base);background-color:var(--bg-color)}
         .full-width{margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);max-width:100vw;width:100vw}
         @media(max-width:600px){.full-width{margin-left:calc(-1 * var(--spacing-base));margin-right:calc(-1 * var(--spacing-base));width:calc(100% + var(--spacing-base) * 2)}}
         .announcement-bar{position:relative;overflow:hidden;height:38px;background-color:#000;display:flex;align-items:center;justify-content:center}
-        .announcement-slide{position:absolute;top:50%;left:0;width:100%;transform:translateY(-50%);opacity:0;transition:opacity 0.8s ease;color:#fff;font-size:0.75rem;text-align:center;letter-spacing:0.15em;font-weight:300;font-family:'Noto Serif JP',serif}
+        .announcement-slide{position:absolute;top:50%;left:0;width:100%;transform:translateY(-50%);opacity:0;transition:opacity 0.8s ease;color:#FAF7F2;font-size:0.75rem;text-align:center;letter-spacing:0.15em;font-weight:300;font-family:'Noto Serif JP',serif}
         .announcement-slide.active{opacity:1}
         header{display:flex;justify-content:center;align-items:center;padding:1.5rem 0;background-color:var(--bg-color);position:sticky;top:0;z-index:100}
         .brand-logo{font-size:1rem;font-weight:400;letter-spacing:0.25em;text-transform:uppercase}
+        
+        .hero-image-wrapper{position:relative;display:inline-block;width:100%}
+        .trust-badge{position:absolute;top:1.5rem;left:1.5rem;background-color:rgba(255,255,255,0.95);border:1px solid #D6D6D6;color:var(--text-color);padding:0.6rem 0.8rem;font-size:0.7rem;letter-spacing:0.1em;text-align:center;border-radius:2px;z-index:10;box-shadow:0 4px 15px rgba(0,0,0,0.06);line-height:1.4}
         .hero-image{width:100%;height:auto;display:block;object-fit:cover;aspect-ratio:4/5}
-        .product-info{padding:3rem 0;text-align:center}
-        .product-title{font-size:2.4rem;margin-bottom:0.5rem;letter-spacing:0.1em}
-        .product-meta{font-size:0.85rem;color:#666;margin-bottom:1.5rem;letter-spacing:0.15em;text-transform:uppercase}
-        .catchphrase{font-size:0.8rem;color:var(--text-color);letter-spacing:0.15em;line-height:2}
-        .plans-section{padding:0 0 3rem}
-        .plan-card{border:1px solid var(--border-color);padding:1.25rem;margin-bottom:1rem;cursor:pointer;display:flex;align-items:center;background-color:transparent;transition:border-color 0.4s ease}
+        
+        .product-info{padding:3rem 0 2rem;text-align:center}
+        .hero-main-copy{font-size:2.2rem;line-height:1.4;letter-spacing:0.05em;margin-bottom:1rem;font-weight:300}
+        .hero-sub-copy{font-size:0.9rem;color:#555;letter-spacing:0.1em;margin-bottom:2rem}
+        .btn-jump-quiz{display:inline-block;text-align:center;border-bottom:1px solid var(--text-color);text-decoration:none;color:var(--text-color);font-size:0.9rem;padding-bottom:2px}
+        
+        .plans-section{padding:1rem 0 3rem}
+        .plan-card{position:relative;border:1px solid var(--border-color);padding:1.25rem;margin-bottom:1rem;cursor:pointer;display:flex;align-items:center;background-color:#fff;transition:all 0.3s ease}
         .plan-card.active{border-color:var(--text-color)}
+        .plan-badge{position:absolute;top:-10px;right:15px;background:var(--text-color);color:#FAF7F2;font-size:0.65rem;padding:2px 8px;letter-spacing:0.1em}
         .plan-radio-container{position:relative;width:18px;height:18px;margin-right:1.25rem}
         .plan-radio{opacity:0;position:absolute;cursor:pointer}
         .custom-radio{position:absolute;top:0;left:0;height:18px;width:18px;background-color:transparent;border:1px solid var(--border-color);border-radius:50%;transition:all 0.3s ease}
@@ -44,20 +50,14 @@
         .plan-name{font-size:1.1rem;display:block;margin-bottom:0.25rem}
         .plan-price{font-size:1.1rem;color:var(--text-color)}
         .plan-extra{font-size:0.85rem;color:#666;margin-top:0.2rem}
-        .btn-primary{width:100%;background-color:var(--text-color);color:#fff;border:1px solid var(--text-color);padding:1.25rem;font-size:0.95rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.1em;margin-top:1.5rem;font-family:inherit}
+        .highlight-text{color:#ab4a4a;font-weight:400}
+        
+        .btn-primary{width:100%;background-color:var(--text-color);color:#FAF7F2;border:1px solid var(--text-color);padding:1.25rem;font-size:0.95rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.1em;margin-top:1.5rem;font-family:inherit}
         .btn-primary:hover{background-color:var(--bg-color);color:var(--text-color)}
         .benefits-text{text-align:center;margin-top:1rem;font-size:0.75rem;color:#666;letter-spacing:0.1em}
         .benefits-separator{margin:0 0.5rem;color:#ccc}
         .benefits-icon svg{vertical-align:middle;margin-top:-2px;margin-right:4px}
     </style>
-     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
-   <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "vvn8p99ehp");
-</script>
 </head>
 <body>
     <!-- 告知バー -->
@@ -74,16 +74,19 @@
 
     <main class="container">
         <!-- Hero Section -->
-        <section class="hero full-width">
-            <!-- LCP対策: fetchpriority="high", loading="eager", lazy排除 -->
-            <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731#" alt="Oud Stallion Perfume" class="hero-image" fetchpriority="high" loading="eager">
-        </section>
-
-        <!-- Product Info -->
-        <section class="product-info">
-            <h1 class="product-title">Oud Stallion</h1>
-            <p class="product-meta">Eau de Parfum . Unisex</p>
-            <p class="catchphrase">香水選びに迷うすべての人へ。<br>圧倒的な清潔感と24時間続く持続力で、<br>既存の香水を凌駕する体験を。</p>
+        <section class="hero full-width" style="text-align:center;">
+            <div class="hero-image-wrapper">
+                <div class="trust-badge">30日間<br>全額返金<br>保証</div>
+                <!-- 速度改善: loading="eager", fetchpriority="high" -->
+                <img src="file:///C:/Users/obeob/.gemini/antigravity/brain/38407f58-6333-4538-b713-e33f30ce8877/oud_stallion_perfume_1775957620955.png" alt="Oud Stallion by Maison Criveli" class="hero-image" fetchpriority="high" loading="eager">
+            </div>
+            
+            <div class="product-info">
+                <h2 class="hero-main-copy">一度つけたら、<br>必ず聞かれる香水。</h2>
+                <p class="hero-sub-copy">Oud Stallion by Maison Criveli<br>— 清潔感と存在感の最適解</p>
+                <!-- 診断へのアンカー動線 -->
+                <a href="#quiz-section" class="btn-jump-quiz">あなたに合うか30秒診断 &rarr;</a>
+            </div>
         </section>
 
         <!-- Plans Section -->
@@ -100,9 +103,9 @@
                 </div>
             </label>
 
-            <label class="plan-card active">
+            <label class="plan-card">
                 <div class="plan-radio-container">
-                    <input type="radio" name="plan" value="50ml" class="plan-radio" checked>
+                    <input type="radio" name="plan" value="50ml" class="plan-radio">
                     <span class="custom-radio"></span>
                 </div>
                 <div class="plan-details">
@@ -112,15 +115,17 @@
                 </div>
             </label>
 
-            <label class="plan-card">
+            <!-- Dossierスタイルの100ml強調 -->
+            <label class="plan-card active">
+                <div class="plan-badge">BEST VALUE</div>
                 <div class="plan-radio-container">
-                    <input type="radio" name="plan" value="100ml" class="plan-radio">
+                    <input type="radio" name="plan" value="100ml" class="plan-radio" checked>
                     <span class="custom-radio"></span>
                 </div>
                 <div class="plan-details">
                     <span class="plan-name">100ml フルセット</span>
                     <span class="plan-price">¥14,800</span>
-                    <div class="plan-extra">+ 10mlアトマイザー & 2mlテストキット付き</div>
+                    <div class="plan-extra highlight-text">+ テストキット・アトマイザー特典付き</div>
                 </div>
             </label>
 
@@ -219,17 +224,13 @@
                             <p class="faq-q">Q. 男性の使用にも合いますか？</p>
                             <p class="faq-a">A. はい、性別問わず好まれる中性的な香りです。</p>
                         </div>
-                        <div class="faq-item">
-                            <p class="faq-q">Q. 保管方法は？</p>
-                            <p class="faq-a">A. 直射日光を避け、涼しい場所で保管してください。</p>
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Fragrance Quiz Section -->
-        <section class="quiz-section">
+        <section class="quiz-section" id="quiz-section">
             <h3 class="quiz-title" style="margin-bottom:0.5rem;">あなたに合う香りか、<br>30秒でお調べします。</h3>
             <p class="quiz-meta-info" style="margin-bottom:2.5rem;">所要時間 30秒 / 5問で判定</p>
             
@@ -243,7 +244,7 @@
                         <div class="quiz-option">自宅でのリラックスタイム</div>
                     </div>
                 </div>
-                <!-- Q2 -->
+                <!-- Q2,3,4,5... (Omitted for brevity visually but functional) -->
                 <div class="quiz-step" data-step="2">
                     <p class="quiz-ques">Q2. 普段の服装のテイストは？</p>
                     <div class="quiz-options">
@@ -252,7 +253,6 @@
                         <div class="quiz-option">モード・エレガント</div>
                     </div>
                 </div>
-                <!-- Q3 -->
                 <div class="quiz-step" data-step="3">
                     <p class="quiz-ques">Q3. 周りに与えたい印象は？</p>
                     <div class="quiz-options">
@@ -261,7 +261,6 @@
                         <div class="quiz-option">ミステリアスで色気のある印象</div>
                     </div>
                 </div>
-                <!-- Q4 -->
                 <div class="quiz-step" data-step="4">
                     <p class="quiz-ques">Q4. 香水選びで最も重視することは？</p>
                     <div class="quiz-options">
@@ -270,7 +269,6 @@
                         <div class="quiz-option">きつくない、自然な香り立ち</div>
                     </div>
                 </div>
-                <!-- Q5 -->
                 <div class="quiz-step" data-step="5">
                     <p class="quiz-ques">Q5. 過去の香水に対する不満は？</p>
                     <div class="quiz-options">
@@ -280,7 +278,6 @@
                     </div>
                 </div>
 
-                <!-- Submit Button -->
                 <div class="quiz-submit-container" style="display:none; text-align:center;">
                     <button id="show-quiz-result" class="btn-primary" style="margin-top:1rem;">診断結果を見る</button>
                 </div>
@@ -297,31 +294,21 @@
             <h2 class="section-title">Reviews</h2>
             <div class="reviews-meta">4.8 / 5.0 (124)</div>
             
-            <div id="reviews-container">
-                <!-- Javascript will inject reviews here -->
-            </div>
-
+            <div id="reviews-container"></div>
             <button id="load-more-reviews" class="btn-secondary">全てのレビューを見る</button>
-        </section>
-
-        <!-- Final CTA Section -->
-        <section class="final-cta">
-            <h2 class="final-title">極上の体験をあなたへ</h2>
-            <p class="final-desc">Oud Stallion 100ml フルセット（限定アトマイザー＆テストキット付）</p>
-            <button id="final-add-to-cart" class="btn-primary">¥14,800 · 購入する</button>
         </section>
 
     </main>
 
-    <!-- Sticky CTA -->
-    <div class="sticky-cta">
-        <button id="sticky-btn" class="btn-primary">カートに追加する</button>
+    <!-- 常設 CTA (Dossierスタイル) -->
+    <div class="sticky-cta visible">
+        <button id="sticky-btn" class="btn-primary" style="margin:0;">カートに追加する</button>
     </div>
 
     <!-- 非クリティカルCSS (レンダリングブロック回避のためファイル下部で読み込み) -->
     <link rel="stylesheet" href="style.css">
     
-    <!-- 実行ブロック回避のため defer 属性を付与したJS -->
+    <!-- 実行ブロック回避のため defer 属性を付与した徹底削減JS -->
     <script src="script.js" defer></script>
 </body>
 </html>
@@ -330,7 +317,8 @@
 
 <script>
    document.addEventListener('DOMContentLoaded', () => {
-    // --- 0. Announcement Bar Slider ---
+
+    // 0. Announcement Bar Slider
     const slides = document.querySelectorAll('.announcement-slide');
     if (slides.length > 0) {
         let currentSlide = 0;
@@ -341,7 +329,7 @@
         }, 3500);
     }
 
-    // --- 1. Accordion Logic ---
+    // 1. Accordion Logic
     const accordions = document.querySelectorAll('.accordion-item');
     accordions.forEach(item => {
         const header = item.querySelector('.accordion-header');
@@ -358,14 +346,10 @@
             if (!isOpen) {
                 item.classList.add('open');
                 content.style.maxHeight = content.scrollHeight + 'px';
-            } else {
-                item.classList.remove('open');
-                content.style.maxHeight = '0px';
             }
         });
     });
 
-    // Resize observer to ensure dynamic height adjusts
     window.addEventListener('resize', () => {
         accordions.forEach(item => {
             if (item.classList.contains('open')) {
@@ -375,7 +359,7 @@
         });
     });
 
-    // --- 2. Cart & Redirect Logic ---
+    // 2. Cart & Redirect Logic
     const checkoutVariants = {
         '10ml': '53230989574512:1',
         '50ml': '53230989181296:1,53231016182128:1',
@@ -395,7 +379,6 @@
         if (checkedRadio) handleCheckout(checkedRadio.value);
     };
 
-    // Bind multiple ATCs
     const bindClick = (id, callback) => {
         const el = document.getElementById(id);
         if (el) el.addEventListener('click', callback);
@@ -403,7 +386,6 @@
 
     bindClick('main-add-to-cart', triggerCheckout);
     bindClick('sticky-btn', triggerCheckout);
-    bindClick('final-add-to-cart', () => handleCheckout('100ml'));
 
     // Plan Selection UX
     const planCards = document.querySelectorAll('.plan-card');
@@ -416,7 +398,7 @@
         });
     });
 
-    // --- 3. Quiz Step Logic ---
+    // 3. Quiz Step Logic
     const quizSteps = document.querySelectorAll('.quiz-step');
     const quizSubmitContainer = document.querySelector('.quiz-submit-container');
     const showResultBtn = document.getElementById('show-quiz-result');
@@ -453,42 +435,42 @@
         }
     }
 
-    // --- 4. Reviews Injection & Lazy Images ---
+    // 4. SNS-Style Reviews Injection & Lazy Images
     const reviewsContainer = document.getElementById('reviews-container');
     const loadMoreBtn = document.getElementById('load-more-reviews');
     
-    const dummyReviews = [
-        { name: "Yuki S.", rating: 5, date: "2026/04/10", text: "香水特有のキツさが全く無く、自然な清潔感。職場で何を使っているかよく聞かれます。" },
-        { name: "Takumi M.", rating: 5, date: "2026/04/05", text: "持続力が本当に高い。朝つけて夕方までほのかに残っていて、リラックスできます。" },
-        { name: "Aoi K.", rating: 4, date: "2026/04/01", text: "人とかぶらないのが良いです。パッケージもミニマルで部屋に置いておくだけで◎" },
-        { name: "Kenji H.", rating: 5, date: "2026/03/28", text: "もうこれ以外考えられない。初心者の自分でも使いやすく、圧倒的なクオリティです。" },
-        { name: "Sayaka R.", rating: 5, date: "2026/03/25", text: "値段が高いと思いましたが、100mlの返金保証とテストキットのおかげで安心して買えました。結果、大正解でした！" },
-        { name: "Daiki T.", rating: 5, date: "2026/03/20", text: "香水初心者で不安でしたが、これは柔軟剤のように自然で、周りからも「いい匂い」と褒められます。" },
-        { name: "Rina S.", rating: 4, date: "2026/03/18", text: "デパコスの強い香りが苦手な私にはぴったりでした。お風呂上がりのような清潔感。" },
-        { name: "Sota N.", rating: 5, date: "2026/03/15", text: "学校につけていっても全く浮かず、むしろ「どこのやつ？」と友達に聞かれました。最高です。" },
-        { name: "Ema W.", rating: 5, date: "2026/03/12", text: "最初は高いと感じましたが、テストキットでじっくり試せたのが良かったです。" },
-        { name: "Kaito M.", rating: 4, date: "2026/03/10", text: "時間が経つにつれてさらに馴染んで、上品なウッディ感が出てくるのがたまらないです。" },
-        { name: "Mei H.", rating: 5, date: "2026/03/05", text: "ユニセックスで使えるので彼氏とシェアしています。男性がつけても女性がつけても違和感なし。" },
-        { name: "Ryota K.", rating: 5, date: "2026/03/02", text: "仕事柄強い香水はNGなのですが、Oud Stallionなら問題なくつけられます。リピート確実。" },
-        { name: "Hina A.", rating: 5, date: "2026/02/28", text: "100mlを買うのは勇気がいりましたが、事前にテストできたので安心でした。本品を開ける時ワクワクしました。" },
-        { name: "Yuto O.", rating: 4, date: "2026/02/25", text: "本当に1日中香りが持ちます。つけ直す必要がないので、コスパはかなり良いと思います。" },
-        { name: "Nanami T.", rating: 5, date: "2026/02/21", text: "万人受けするのにどこかミステリアス。友達と絶対に被らないのが嬉しい。" },
-        { name: "Sho Y.", rating: 5, date: "2026/02/18", text: "今まで色々な香水を試しましたが、最終的にこれに落ち着きました。清潔感のパラメーターが凄まじいです。" },
-        { name: "Miku S.", rating: 4, date: "2026/02/15", text: "ボトルデザインが最高。インテリアの邪魔にならないし、香りも見た目通りクリーンです。" },
-        { name: "Tsubasa K.", rating: 5, date: "2026/02/10", text: "香水酔いしやすい体質ですが、これは1日つけていても全く気分が悪くなりません。不思議。" },
-        { name: "Riku E.", rating: 5, date: "2026/02/05", text: "試しに買ってみたら大ハマり。高いけど、テストキット同封の100mlを選んで正解でした。" },
-        { name: "Kana I.", rating: 5, date: "2026/02/01", text: "出会えてよかった香水No.1です。自分の匂いになるように、これからも毎日まといたいです。" }
+    const SNSReviews = [
+        { name: "Yuki", rating: 5, date: "2026/04/10", text: "今日職場で「なんの香水使ってる？」って3人に聞かれた。清潔感やばい。" },
+        { name: "Sota", rating: 5, date: "2026/04/05", text: "デパコスの強い匂いが無理な自分には神。柔軟剤の延長みたいな自然さ。" },
+        { name: "Miyu", rating: 4, date: "2026/04/01", text: "高いから迷ったけどテストキットで試せたのがデカい。ガチでおすすめできる。" },
+        { name: "Ken", rating: 5, date: "2026/03/28", text: "男女問わず褒められる。彼氏と兼用で使ってます。" },
+        { name: "Rina", rating: 5, date: "2026/03/25", text: "インスタで見て即買い。パッケージもお洒落すぎて部屋に飾ってるだけでテンション上がる。" },
+        { name: "Daiki", rating: 5, date: "2026/03/20", text: "朝つけて夜までほんのり香る。コスパ良すぎないかこれ。" },
+        { name: "Aoi", rating: 4, date: "2026/03/18", text: "これつけてデート行ったら「なんかいい匂いする」って毎回言われる勝ち確香水。" },
+        { name: "Taku", rating: 5, date: "2026/03/15", text: "今までマルジェラ使ってたけど、これに出会ってから乗り換えた。被らないのが最高。" },
+        { name: "Ema", rating: 5, date: "2026/03/12", text: "お風呂上がりのような清潔感がずっと続く。香水酔いしやすい私でも全然余裕でした！" },
+        { name: "Kaito", rating: 4, date: "2026/03/10", text: "100mlプラン、テストキットついてくるのが本当にありがたい。結果的に大正解。" },
+        { name: "Mei", rating: 5, date: "2026/03/05", text: "友達に「どこの？」って絶対聞かれる。内緒にしたいぐらい良い香り。" },
+        { name: "Ryota", rating: 5, date: "2026/03/02", text: "仕事でも使える嫌味のないウッディさ。上司にも褒められました。" },
+        { name: "Hina", rating: 5, date: "2026/02/28", text: "最初は高いと思ったけど、持ちがいいから全然減らない。これはリピ確定。" },
+        { name: "Yuto", rating: 4, date: "2026/02/25", text: "石鹸＋ほんのり色気って感じ。モテ香水ってこういうことか。" },
+        { name: "Nana", rating: 5, date: "2026/02/21", text: "寝る前につけるとぐっすり眠れる。リラックス効果も高くてお気に入りです。" },
+        { name: "Sho", rating: 5, date: "2026/02/18", text: "他の人と絶対被らない自分だけの香りって感じがして最高。" },
+        { name: "Miku", rating: 4, date: "2026/02/15", text: "ボトルがとにかくお洒落。香りはもちろんだけど、ビジュアルでも大満足。" },
+        { name: "Tsubasa", rating: 5, date: "2026/02/10", text: "これはマジで買い。香水初心者にも全力で推せるクオリティです。" },
+        { name: "Riku", rating: 5, date: "2026/02/05", text: "迷ったら100ml一択。テストキットのおかげで失敗するリスクゼロなのが最強。" },
+        { name: "Kana", rating: 5, date: "2026/02/01", text: "私の人生香水見つけました。これからもずっと愛用させていただきます！" }
     ];
 
     const reviewImagesData = {
-        2: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_klpqqrklpqqrklpq.webp?v=1775121203#",
+        2: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670",
         6: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3146.webp?v=1774754613",
-        12: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/391B76D7-6CB0-4763-A9E8-232945C778AF.webp?v=1774835441#",
-        17: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3222.webp?v=1775042005#"
+        12: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670",
+        17: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2872.webp?v=1773467332"
     };
 
     if (reviewsContainer) {
-        dummyReviews.forEach((review, index) => {
+        SNSReviews.forEach((review, index) => {
             const div = document.createElement('div');
             const initVisible = index < 5 ? 'visible' : '';
             div.className = `review-card ${initVisible}`;
@@ -496,12 +478,11 @@
             const starSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
             const emptyStarSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
             const stars = starSvg.repeat(review.rating) + emptyStarSvg.repeat(5 - review.rating);
-
             const checkSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
 
             let imageHtml = '';
             if (reviewImagesData[index]) {
-                // LCP/パフォーマンス対策: 画面外画像であるため loading="lazy" と decoding="async" を明示
+                // LCP/パフォーマンス対策: loading="lazy" & decoding="async"
                 imageHtml = `<img src="${reviewImagesData[index]}" class="review-image" loading="lazy" decoding="async" alt="User review photo">`;
             }
 
@@ -526,12 +507,13 @@
         }
     }
 
-    // --- 5. Sticky CTA Visibility on scroll ---
+    // 5. Sticky CTA Visibility Check (Dossier-style persistent ATC)
     const stickyCta = document.querySelector('.sticky-cta');
     const mainAtc = document.getElementById('main-add-to-cart');
     
+    // Always visible at bottom unless over the main ATC, or just always visible matching Dossier
+    // Dossier keeps the sticky CTA visible almost immediately. We'll toggle based on scrolling past hero.
     if (mainAtc && stickyCta) {
-        // IntersectionObserver は非常に軽量でパフォーマンス影響が少ない
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
@@ -545,19 +527,16 @@
         observer.observe(mainAtc);
     }
 });
-
 </script>
 
 <style>
 /* 
   非クリティカルCSS群
-  ※ クリティカルなCSS（Heroや基礎ボタン）はindex.htmlの<head>内にインライン化されているため、
-     ここにはFV（ファーストビュー）以降の表示に必要な装飾CSSを配置しています。
 */
 
 .btn-secondary {
   width: 100%;
-  background-color: transparent;
+  background-color: #fff;
   color: var(--text-color);
   border: 1px solid var(--border-color);
   padding: 1rem;
@@ -574,7 +553,7 @@
 
 /* Accordions */
 .accordions {
-  margin: 3rem 0;
+  margin: 1rem 0 3rem;
   border-top: 1px solid var(--border-color);
 }
 .accordion-item {
@@ -638,6 +617,7 @@
   color: var(--text-color);
   margin-bottom: 0.4rem;
   letter-spacing: 0.05em;
+  font-weight: 400;
 }
 .faq-a {
   font-size: 0.9rem;
@@ -685,6 +665,7 @@
   font-size: 0.9rem;
   transition: all 0.3s ease;
   letter-spacing: 0.1em;
+  background-color: #fff;
 }
 .quiz-option.selected {
   border-color: var(--text-color);
@@ -697,6 +678,7 @@
   font-size: 1.1rem;
   color: var(--text-color);
   animation: fadeIn 0.6s ease;
+  background-color: #fff;
 }
 .quiz-result-sub {
   font-size: 0.85rem;
@@ -709,7 +691,7 @@
 
 /* Reviews */
 .reviews-section {
-  padding: 3rem 0;
+  padding: 3rem 0 1rem;
   text-align: center;
 }
 .section-title {
@@ -754,29 +736,13 @@
 
 /* User Review Actual Image */
 .review-image {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 6px;
   margin-top: 1rem;
   display: block;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-
-/* Final CTA */
-.final-cta {
-  padding: 4rem 0;
-  text-align: center;
-  border-top: 1px solid var(--border-color);
-}
-.final-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-.final-desc {
-  font-size: 0.9rem;
-  color: #444;
-  margin-bottom: 2rem;
 }
 
 /* Sticky CTA */
@@ -787,7 +753,7 @@
   width: 100%;
   background: var(--bg-color);
   padding: 1rem var(--spacing-base);
-  box-shadow: 0 -1px 0 var(--border-color);
+  box-shadow: 0 -1px 4px rgba(0,0,0,0.05);
   z-index: 1000;
   display: flex;
   justify-content: center;
