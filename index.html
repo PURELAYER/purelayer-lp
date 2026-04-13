@@ -8,8 +8,8 @@
     <!-- Google Fonts 最速読み込み（LCP最適化） -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;400i;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;400i;600&display=swap" rel="stylesheet"></noscript>
     
     <meta name="description" content="清潔感と存在感の最適解。一度つけたら、必ず聞かれる香水「Oud Stallion by Maison Criveli」">
 
@@ -18,7 +18,7 @@
         :root{--bg-color:#FAF7F2;--text-color:#1A1A1A;--border-color:#E2DFD8;--spacing-base:1.5rem}
         *{box-sizing:border-box;margin:0;padding:0}
         body{font-family:'Cormorant Garamond','Noto Serif JP',serif;font-weight:300;background-color:var(--bg-color);color:var(--text-color);line-height:1.8;letter-spacing:0.1em;padding-bottom:100px;-webkit-font-smoothing:antialiased}
-        h1,h2,h3,h4,h5,h6,b,strong{font-weight:400}
+        h1,h2,h3,h4,h5,h6,b,strong{font-weight:600}
         .container{max-width:600px;margin:0 auto;padding:0 var(--spacing-base);background-color:var(--bg-color)}
         
         .full-width{margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);max-width:100vw;width:100vw}
@@ -29,7 +29,7 @@
         .announcement-slide{position:absolute;top:50%;left:0;width:100%;transform:translateY(-50%);opacity:0;transition:opacity 0.8s ease;color:#FAF7F2;font-size:0.7rem;text-align:center;letter-spacing:0.15em;font-weight:300;font-family:'Noto Serif JP',serif}
         .announcement-slide.active{opacity:1}
         
-        header{display:flex;justify-content:center;align-items:center;padding:0.7rem 0;background-color:var(--bg-color);position:sticky;top:0;z-index:100}
+        header{display:flex;justify-content:center;align-items:center;padding:0.6rem 0;background-color:var(--bg-color);position:sticky;top:0;z-index:100}
         .brand-logo{font-size:0.8rem;font-weight:500;letter-spacing:0.25em;text-transform:uppercase}
         
         /* Hero: 更に15%圧縮 (32vh) => プランのチラ見えを物理確定 */
@@ -37,10 +37,11 @@
         .trust-badge{position:absolute;top:1rem;left:1rem;background-color:rgba(255,255,255,0.95);border:1px solid #D6D6D6;color:var(--text-color);padding:0.5rem 0.6rem;font-size:0.65rem;letter-spacing:0.1em;text-align:center;border-radius:2px;z-index:10;box-shadow:0 4px 15px rgba(0,0,0,0.06);line-height:1.4}
         .hero-image{width:100%;height:100%;display:block;object-fit:cover;object-position:center;background-color:#f1eee8}
         
-        .product-info{padding:1.4rem 0;text-align:center}
-        .hero-main-copy{font-size:1.7rem;line-height:1.3;letter-spacing:0.05em;margin-bottom:0.4rem;font-weight:400}
-        .hero-reviews-summary{margin-bottom:0.6rem;color:var(--text-color)}
-        .hero-sub-copy{font-size:0.85rem;color:#555;letter-spacing:0.1em;margin-bottom:0.5rem}
+        /* サブコピー復活・マージン微調整 */
+        .product-info{padding:1.4rem 0 1rem;text-align:center}
+        .hero-main-copy{font-size:1.7rem;line-height:1.3;letter-spacing:0.05em;margin-bottom:0.2rem;font-weight:400}
+        .hero-sub-copy{font-size:0.85rem;color:#555;letter-spacing:0.1em;margin-bottom:0.6rem;font-weight:400}
+        .hero-reviews-summary{margin-bottom:0.4rem;color:var(--text-color)}
         
         /* Plans */
         .plans-section{padding:0.5rem 0 3rem}
@@ -60,13 +61,18 @@
         .plan-price{font-size:1.1rem;color:var(--text-color)}
         .plan-extra{font-size:0.85rem;color:#666;margin-top:0.2rem}
         
-        /* 100ml Special Styling */
-        .plan-card.best-value-card{background-color:#F5EFE6;border:1px solid var(--text-color);margin-top:1.5rem}
-        .plan-card.best-value-card.active{border-width:2px}
-        .best-value-label{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--text-color);color:#FAF7F2;font-size:0.65rem;padding:3px 15px;letter-spacing:0.15em;font-weight:400;white-space:nowrap}
+        /* アンカリングバッジ (P1解消のため 100=BEST VALUE / 50=MOST POPULAR へ) */
+        .plan-card.best-value-card{background-color:#F8F5F0;border:1px solid var(--border-color);margin-top:1.5rem}
+        .plan-card.best-value-card.active{border-color:var(--text-color);border-width:2px}
+        .best-value-label{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#555;color:#fff;font-size:0.65rem;padding:3px 15px;letter-spacing:0.15em;font-weight:400;white-space:nowrap}
+        
+        .plan-card.most-popular-card{background-color:#F5EFE6;border:1px solid var(--text-color);margin-top:1.5rem}
+        .plan-card.most-popular-card.active{border-width:2px}
+        .most-popular-label{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--text-color);color:#FAF7F2;font-size:0.65rem;padding:3px 15px;letter-spacing:0.15em;font-weight:400;white-space:nowrap}
+        
         .highlight-text{color:#8C7D70;font-weight:600}
 
-        /* 横スクロール UGC Slider (差別化：ベージュトーン、深緑の枠線) */
+        /* 横スクロール UGC Slider */
         .ugc-slider-container{margin:1rem calc(-50vw + 50%);width:100vw;padding-left:var(--spacing-base);padding-top:10px;padding-bottom:15px}
         @media(max-width:600px){.ugc-slider-container{margin:1rem calc(-1 * var(--spacing-base));width:calc(100% + var(--spacing-base) * 2)}}
         .ugc-slider{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1rem;padding-right:var(--spacing-base);-webkit-overflow-scrolling:touch;scrollbar-width:none}
@@ -74,18 +80,21 @@
         .ugc-card{flex:0 0 85%;scroll-snap-align:center;background-color:#F0ECE3;border-left:2px solid #3B6D11;padding:1.4rem;font-size:0.85rem;color:#333;border-radius:2px}
         .ugc-author{display:block;margin-top:0.6rem;font-size:0.75rem;color:#555}
         
-        /* 逃げ道の最適化 & 緊急性の品格化 */
+        /* 逃げ道の最適化 & ATC周り */
         .btn-primary{width:100%;background-color:var(--text-color);color:#FAF7F2;border:1px solid var(--text-color);padding:1.25rem;font-size:0.95rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.1em;font-family:inherit}
         .btn-primary:hover{background-color:transparent;color:var(--text-color)}
         
-        .micro-copy{font-size:0.75rem;color:#666;text-align:center;margin-top:0.5rem;margin-bottom:0.5rem;letter-spacing:0.1em}
+        /* 信頼バー (Trust Signals) ATC直下配置 */
+        .trust-signals-bar{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-top:1rem;padding:0 0.2rem}
+        .trust-item{display:flex;align-items:center;gap:0.4rem;font-size:10px;color:#5f5e5a;line-height:1.2;letter-spacing:0.05em}
+        .trust-item svg{flex-shrink:0;color:#5f5e5a}
 
-        .btn-quiz-outline{display:block;text-align:center;box-sizing:border-box;border:1px solid var(--text-color);background-color:transparent;color:var(--text-color);padding:1.2rem;font-size:0.95rem;margin-top:0.5rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.1em;width:100%;text-decoration:none}
+        .btn-quiz-outline{display:block;text-align:center;box-sizing:border-box;border:1px solid var(--text-color);background-color:transparent;color:var(--text-color);padding:1.2rem;font-size:0.95rem;margin-top:1.5rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.1em;width:100%;text-decoration:none}
         .btn-quiz-outline:hover{background-color:rgba(0,0,0,0.03)}
 
-        .stock-indicator-luxury { display:flex; align-items:center; justify-content:center; gap:0.6rem; margin-top:1.5rem; }
-        .stock-text-luxury { font-size:10px; color:#555; letter-spacing:0.05em; }
-        .stock-pill { background-color:#111; color:#fff; font-size:10px; padding:3px 10px; border-radius:12px; letter-spacing:0.05em; font-weight:600; }
+        .stock-indicator-luxury{display:flex;align-items:center;justify-content:center;gap:0.6rem;margin-top:1.5rem}
+        .stock-text-luxury{font-size:10px;color:#555;letter-spacing:0.05em}
+        .stock-pill{background-color:#111;color:#fff;font-size:10px;padding:3px 10px;border-radius:12px;letter-spacing:0.05em;font-weight:600}
     </style>
 </head>
 <body>
@@ -112,22 +121,22 @@
             
             <div class="product-info">
                 <h2 class="hero-main-copy">一度つけたら、<br>必ず聞かれる香水。</h2>
+                <p class="hero-sub-copy" style="font-family:'Noto Serif JP',serif;">清潔感と存在感の最適解</p>
                 <div class="hero-reviews-summary">
                     <span style="font-size:1rem; letter-spacing:2px;">★★★★★</span>
                     <span style="font-size:0.85rem; margin-left:5px; color:#555;">4.8 (124件のレビュー)</span>
                 </div>
-                <p class="hero-sub-copy">Oud Stallion by Maison Criveli</p>
             </div>
         </section>
 
-        <!-- Plans Section (100ml アンカリング継続) -->
+        <!-- Plans Section -->
         <section class="plans-section" id="purchase">
             
-            <!-- 100ml (一番人気・デフォルト) -->
-            <label class="plan-card best-value-card active">
-                <div class="best-value-label">迷ったらこれ / MOST POPULAR</div>
+            <!-- 100ml (BEST VALUE) -->
+            <label class="plan-card best-value-card">
+                <div class="best-value-label">BEST VALUE / 最もお得</div>
                 <div class="plan-radio-container">
-                    <input type="radio" name="plan" value="100ml" class="plan-radio" checked>
+                    <input type="radio" name="plan" value="100ml" class="plan-radio">
                     <span class="custom-radio"></span>
                 </div>
                 <div class="plan-details">
@@ -137,10 +146,11 @@
                 </div>
             </label>
 
-            <!-- 50ml -->
-            <label class="plan-card">
+            <!-- 50ml (デフォルトアンカリング・1番手に近い心理的基準点) -->
+            <label class="plan-card most-popular-card active">
+                <div class="most-popular-label">迷ったらこれ / MOST POPULAR</div>
                 <div class="plan-radio-container">
-                    <input type="radio" name="plan" value="50ml" class="plan-radio">
+                    <input type="radio" name="plan" value="50ml" class="plan-radio" checked>
                     <span class="custom-radio"></span>
                 </div>
                 <div class="plan-details">
@@ -181,9 +191,28 @@
                 </div>
             </div>
 
-            <!-- 逃げ道の最適化: [ATC] -> [返金テキスト] -> [診断] -> [在庫] -->
+            <!-- 逃げ道の最適化: [ATC] -> [信頼バー] -> [診断] -> [在庫] -->
             <button id="main-add-to-cart" class="btn-primary">カートに追加する</button>
-            <p class="micro-copy">30日間全額返金保証 | 100mlはテストキット付</p>
+            
+            <div class="trust-signals-bar">
+                <div class="trust-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <span>30日間全額返金保証</span>
+                </div>
+                <div class="trust-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                    <span>最短翌日発送 (送料無料)</span>
+                </div>
+                <div class="trust-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31"></path><path d="M14 9.3V1.99"></path><path d="M8.5 2h7"></path><path d="M14 9.3a6.5 6.5 0 11-4 0"></path><line x1="5.52" y1="16" x2="18.48" y2="16"></line></svg>
+                    <span>無料テストキット付</span>
+                </div>
+                <div class="trust-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 0 8.48A11.83 11.83 0 0 1 11 20"></path><line x1="11" y1="20" x2="14" y2="10"></line></svg>
+                    <span>天然由来の高品質香料</span>
+                </div>
+            </div>
+
             <a href="#quiz-section" class="btn-quiz-outline">自分に合うか30秒診断を受ける</a>
             
             <div class="stock-indicator-luxury">
@@ -206,7 +235,7 @@
                         <ul style="list-style:none; padding:0; margin:0; font-size:0.9rem;">
                             <li style="margin-bottom:0.8rem; display:flex; gap:8px;">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                <span><strong>嫌忌のない石鹸の香り:</strong> 強い香水が苦手な方に最適です。</span>
+                                <span><strong>嫌味のない清潔感:</strong> 強い香水が苦手な方に最適です。</span>
                             </li>
                             <li style="margin-bottom:0.8rem; display:flex; gap:8px;">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -214,7 +243,7 @@
                             </li>
                             <li style="margin-bottom:0; display:flex; gap:8px;">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                <span><strong>ユニセックス仕様:</strong> 性別を選ばない圧倒的な清潔感。</span>
+                                <span><strong>ユニセックス仕様:</strong> 性別を選ばない洗練された雰囲気。</span>
                             </li>
                         </ul>
                     </div>
@@ -265,6 +294,23 @@
                                 <div class="note-desc-minimal">肌に馴染む24時間の余韻</div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- アコーディオン P3解消・配送スケジュールの明文化 -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    配送・送料について 
+                    <span class="accordion-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <ul style="list-style:none; padding:0; margin:0; font-size:0.9rem;">
+                            <li style="margin-bottom:0.6rem;">① <strong>14時までの注文で当日発送 / 最短翌日お届け</strong></li>
+                            <li style="margin-bottom:0.6rem;">② <strong>全国一律で完全送料無料</strong></li>
+                            <li style="margin-bottom:0;">③ 中身が分からない無地の段ボールで安全に配送</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -397,8 +443,9 @@
 
 
 
+
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+ document.addEventListener('DOMContentLoaded', () => {
 
     // 0. Announcement Bar Slider
     const slides = document.querySelectorAll('.announcement-slide');
@@ -647,6 +694,7 @@
   align-items: center;
   cursor: pointer;
   font-size: 1.05rem;
+  font-weight: 600;
 }
 .accordion-icon svg {
   transition: transform 0.4s ease;
@@ -713,7 +761,7 @@
   color: var(--text-color);
   margin-bottom: 0.4rem;
   letter-spacing: 0.05em;
-  font-weight: 400;
+  font-weight: 600;
 }
 .faq-a {
   font-size: 0.9rem;
@@ -731,6 +779,7 @@
 .quiz-title {
   font-size: 1.2rem;
   line-height: 1.6;
+  font-weight: 600;
 }
 .quiz-meta-info {
   font-size: 0.8rem;
@@ -748,6 +797,7 @@
   font-size: 1rem;
   margin-bottom: 1.5rem;
   letter-spacing: 0.1em;
+  font-weight: 600;
 }
 .quiz-options {
   display: flex;
@@ -775,12 +825,14 @@
   color: var(--text-color);
   animation: fadeIn 0.6s ease;
   background-color: #fff;
+  font-weight: 600;
 }
 .quiz-result-sub {
   font-size: 0.85rem;
   color: #555;
   display: block;
   margin-top: 1rem;
+  font-weight: 300;
 }
 
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
@@ -794,6 +846,7 @@
   font-size: 1.5rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
+  font-weight: 600;
 }
 .reviews-meta {
   font-size: 0.9rem;
@@ -812,7 +865,7 @@
   justify-content: space-between;
   margin-bottom: 0.5rem;
 }
-.review-author { font-size: 0.95rem; }
+.review-author { font-size: 0.95rem; font-weight: 600; }
 .review-date { font-size: 0.8rem; color: #888; }
 .review-text { font-size: 0.95rem; color: #333; }
 .review-stars {
@@ -828,6 +881,7 @@
   color: var(--text-color);
   font-size: 0.75rem;
   opacity: 0.5;
+  font-weight: 400;
 }
 
 /* User Review Actual Image CLS Prevention */
@@ -862,5 +916,4 @@
   margin-top: 0;
   max-width: 600px;
 }
-
 </style>
