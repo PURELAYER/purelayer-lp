@@ -17,16 +17,17 @@
     <style>
         :root{--bg-color:#FAF7F2;--text-color:#1A1A1A;--border-color:#E2DFD8;--spacing-base:1.5rem}
         *{box-sizing:border-box;margin:0;padding:0}
-        body{font-family:'Cormorant Garamond','Noto Serif JP',serif;font-weight:300;background-color:var(--bg-color);color:var(--text-color);line-height:1.8;letter-spacing:0.1em;padding-bottom:100px;-webkit-font-smoothing:antialiased}
-        h1,h2,h3,h4,h5,h6,b,strong{font-weight:600}
-        .container{max-width:600px;margin:0 auto;padding:0 var(--spacing-base);background-color:var(--bg-color)}
+        body{font-family:'Cormorant Garamond','Noto Serif JP',serif;font-weight:400;background-color:var(--bg-color);color:var(--text-color);line-height:1.8;letter-spacing:0.1em;padding-bottom:100px;-webkit-font-smoothing:antialiased}
         
+        /* 階層化による太文字の完全排除 */
+        h1,h2,h3,h4,h5,h6,b,strong{font-weight:400}
+        
+        .container{max-width:600px;margin:0 auto;padding:0 var(--spacing-base);background-color:var(--bg-color)}
         .full-width{margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);max-width:100vw;width:100vw}
         @media(max-width:600px){.full-width{margin-left:calc(-1 * var(--spacing-base));margin-right:calc(-1 * var(--spacing-base));width:calc(100% + var(--spacing-base) * 2)}}
         
-        /* FV圧縮 (直帰率改善) */
         .announcement-bar{position:relative;overflow:hidden;height:32px;background-color:#000;display:flex;align-items:center;justify-content:center}
-        .announcement-slide{position:absolute;top:50%;left:0;width:100%;transform:translateY(-50%);opacity:0;transition:opacity 0.8s ease;color:#FAF7F2;font-size:0.7rem;text-align:center;letter-spacing:0.15em;font-weight:300;font-family:'Noto Serif JP',serif}
+        .announcement-slide{position:absolute;top:50%;left:0;width:100%;transform:translateY(-50%);opacity:0;transition:opacity 0.8s ease;color:#FAF7F2;font-size:0.7rem;text-align:center;letter-spacing:0.15em;font-weight:300;font-family:'Noto Serif JP',serif;text-transform:uppercase}
         .announcement-slide.active{opacity:1}
         
         header{display:flex;justify-content:center;align-items:center;padding:0.6rem 0;background-color:var(--bg-color);position:sticky;top:0;z-index:100}
@@ -34,57 +35,58 @@
         
         /* Hero */
         .hero-image-wrapper{position:relative;width:100%;height:32vh;overflow:hidden;display:block}
-        .trust-badge{position:absolute;top:1rem;left:1rem;background-color:rgba(255,255,255,0.95);border:1px solid #D6D6D6;color:var(--text-color);padding:0.5rem 0.6rem;font-size:0.65rem;letter-spacing:0.1em;text-align:center;border-radius:2px;z-index:10;box-shadow:0 4px 15px rgba(0,0,0,0.06);line-height:1.4}
+        .trust-badge{position:absolute;top:1rem;left:1rem;background-color:rgba(255,255,255,0.95);border:1px solid #E2DFD8;color:var(--text-color);padding:0.5rem 0.6rem;font-size:0.65rem;letter-spacing:0.1em;text-align:center;border-radius:2px;z-index:10;line-height:1.4}
         .hero-image{width:100%;height:100%;display:block;object-fit:cover;object-position:center;background-color:#f1eee8}
         
-        /* 巨大コピー＆洗練されたタイポグラフィ */
+        /* 第2層レイヤー (標準サイズに戻し主張を弱める) */
         .product-info{padding:1.4rem 0 1rem;text-align:center}
-        .hero-main-copy{font-size:2.2rem;line-height:1.3;letter-spacing:0.05em;margin-bottom:0.4rem;font-weight:300;font-family:'Noto Serif JP',serif;color:var(--text-color)}
-        .hero-sub-copy{font-size:0.9rem;color:#555;letter-spacing:0.1em;margin-bottom:1rem;font-weight:300}
-        .hero-reviews-summary{margin-bottom:0.4rem;color:var(--text-color)}
+        .hero-main-copy{font-size:1.6rem;line-height:1.4;letter-spacing:0.05em;margin-bottom:0.2rem;font-weight:400;color:var(--text-color)}
+        .hero-sub-copy{font-size:0.85rem;color:#888;letter-spacing:0.1em;margin-bottom:0.8rem;font-weight:300;font-style:italic}
+        .hero-reviews-summary{margin-bottom:0.4rem;color:#888;font-size:0.8rem;font-style:italic}
         
-        /* Size Selector UI (Phlur Style - Minimal Luxury) */
         .plans-section{padding:0.5rem 0 3rem}
         
-        /* 巨大価格表示 */
-        .plan-price-large{font-size:2.2rem;font-family:'Cormorant Garamond',serif;font-weight:400;color:var(--text-color);line-height:1.1;letter-spacing:0.02em}
+        /* 第1層レイヤー (唯一の絶対的主張: 22px セリフ) */
+        .plan-price-large{font-size:22px;font-family:'Cormorant Garamond',serif;font-weight:400;color:var(--text-color);line-height:1;letter-spacing:0.02em;display:block}
         
-        .size-btn{flex:1;border:1px solid var(--border-color);background-color:transparent;color:#444;padding:0.9rem 0;font-size:12px;font-weight:300;cursor:pointer;transition:all 0.2s ease;position:relative;font-family:inherit;text-transform:uppercase;letter-spacing:0.15em;border-radius:0}
-        .size-btn.active{border:2px solid var(--text-color);color:var(--text-color);font-weight:400}
-        .best-value-pip{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:#555;color:#fff;font-size:9px;padding:3px 8px;white-space:nowrap;letter-spacing:0.05em;border-radius:12px;font-weight:400}
-        .plan-badge{background:var(--text-color);color:#FAF7F2;font-size:0.65rem;padding:4px 12px;letter-spacing:0.15em;display:inline-block;border-radius:0;font-weight:300}
+        /* 第3層レイヤー (エディトリアルバッジ / 脱広告ベネフィット) */
+        .plan-badge{background:transparent;color:#888;font-size:0.65rem;letter-spacing:0.3em;display:inline-block;border-radius:0;font-weight:400;text-transform:uppercase;font-style:italic}
+        .plan-benefit-text{font-style:italic;color:#888;font-size:0.85rem;letter-spacing:0.05em;margin-top:0.4rem}
 
-        /* 横スクロール UGC Slider */
+        /* 削ぎ落とされたSizeボタン */
+        .size-btn{flex:1;border:0.5px solid #dedbd4;background-color:transparent;color:#666;padding:0.7rem 0;font-size:11px;font-weight:400;cursor:pointer;transition:all 0.2s ease;font-family:inherit;text-transform:uppercase;letter-spacing:0.15em;border-radius:0}
+        .size-btn.active{border:1.5px solid var(--text-color);color:var(--text-color);background-color:#fff}
+
+        /* 横スクロール UGC Slider (第3層として少しトーンダウン) */
         .ugc-slider-container{margin:1rem calc(-50vw + 50%);width:100vw;padding-left:var(--spacing-base);padding-top:10px;padding-bottom:15px}
         @media(max-width:600px){.ugc-slider-container{margin:1rem calc(-1 * var(--spacing-base));width:calc(100% + var(--spacing-base) * 2)}}
         .ugc-slider{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1rem;padding-right:var(--spacing-base);-webkit-overflow-scrolling:touch;scrollbar-width:none}
         .ugc-slider::-webkit-scrollbar{display:none}
-        .ugc-card{flex:0 0 85%;scroll-snap-align:center;background-color:#F0ECE3;border-left:2px solid #3B6D11;padding:1.4rem;font-size:0.85rem;color:#333;border-radius:2px}
-        .ugc-author{display:block;margin-top:0.6rem;font-size:0.75rem;color:#555}
+        .ugc-card{flex:0 0 85%;scroll-snap-align:center;background-color:#F7F5F0;border-left:1.5px solid #888;padding:1.4rem;font-size:0.85rem;color:#444;border-radius:0}
+        .ugc-author{display:block;margin-top:0.6rem;font-size:0.75rem;color:#888;font-style:italic}
         
-        /* ボタン類 */
+        /* ボタン類 (第2層) */
         .btn-primary{width:100%;background-color:var(--text-color);color:#FAF7F2;border:1px solid var(--text-color);padding:1.25rem;font-size:0.95rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.15em;font-family:inherit;font-weight:400}
         .btn-primary:hover{background-color:transparent;color:var(--text-color)}
         
-        /* 信頼バー (Trust Signals) ATC直下配置 */
         .trust-signals-bar{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-top:1rem;padding:0 0.2rem}
-        .trust-item{display:flex;align-items:center;gap:0.4rem;font-size:10px;color:#5f5e5a;line-height:1.2;letter-spacing:0.05em}
-        .trust-item svg{flex-shrink:0;color:#5f5e5a}
+        .trust-item{display:flex;align-items:center;gap:0.4rem;font-size:10px;color:#888;line-height:1.2;letter-spacing:0.05em}
+        .trust-item svg{flex-shrink:0;color:#888}
 
-        .btn-quiz-outline{display:block;text-align:center;box-sizing:border-box;border:1px solid var(--text-color);background-color:transparent;color:var(--text-color);padding:1.2rem;font-size:0.95rem;margin-top:1.5rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.15em;width:100%;text-decoration:none;font-weight:400}
+        .btn-quiz-outline{display:block;text-align:center;box-sizing:border-box;border:1px solid var(--border-color);background-color:transparent;color:#666;padding:1.2rem;font-size:0.95rem;margin-top:1.5rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.15em;width:100%;text-decoration:none;font-weight:400}
         .btn-quiz-outline:hover{background-color:rgba(0,0,0,0.03)}
 
         .stock-indicator-luxury{display:flex;align-items:center;justify-content:center;gap:0.6rem;margin-top:1.5rem}
-        .stock-text-luxury{font-size:10px;color:#555;letter-spacing:0.05em}
-        .stock-pill{background-color:#111;color:#fff;font-size:10px;padding:3px 10px;border-radius:12px;letter-spacing:0.05em;font-weight:400}
+        .stock-text-luxury{font-size:10px;color:#888;letter-spacing:0.05em;font-style:italic}
+        .stock-pill{background-color:transparent;border:1px solid #888;color:#888;font-size:9px;padding:3px 10px;border-radius:0;letter-spacing:0.15em;font-weight:400;text-transform:uppercase}
     </style>
 </head>
 <body>
     <!-- 告知バー -->
     <div class="announcement-bar">
-        <div class="announcement-slide active">全国一律送料無料</div>
-        <div class="announcement-slide">30日間全額返金保証</div>
-        <div class="announcement-slide">まずはお試し無料診断</div>
+        <div class="announcement-slide active">Free Shipping</div>
+        <div class="announcement-slide">30-Day Guarantee</div>
+        <div class="announcement-slide">Fragrance Quiz</div>
     </div>
 
     <!-- ヘッダー -->
@@ -96,101 +98,94 @@
         <!-- Hero Section -->
         <section class="hero full-width" style="text-align:center;">
             <div class="hero-image-wrapper">
-                <div class="trust-badge">30日間<br>全額返金<br>保証</div>
-                <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731#" alt="Oud Stallion by Maison Criveli" class="hero-image" fetchpriority="high" loading="eager">
+                <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731#" alt="Oud Stallion" class="hero-image" fetchpriority="high" loading="eager">
             </div>
             
             <div class="product-info">
-                <h2 class="hero-main-copy">一度つけたら、<br>必ず聞かれる香水。</h2>
-                <p class="hero-sub-copy" style="font-family:'Noto Serif JP',serif;">Oud Stallion by Maison Criveli<br>— 清潔感と存在感の最適解</p>
+                <!-- 階層2: 控えめな声量になったコピー -->
+                <h1 class="hero-main-copy">一度つけたら、必ず聞かれる香水。</h1>
+                <!-- 階層3: イタリック＋グレーで添える -->
+                <p class="hero-sub-copy">Oud Stallion by Maison Crivelli</p>
                 <div class="hero-reviews-summary">
-                    <span style="font-size:1rem; letter-spacing:2px;">★★★★★</span>
-                    <span style="font-size:0.85rem; margin-left:5px; color:#555;">4.8 (124件のレビュー)</span>
+                    <span>★★★★★</span> 4.8 (124 reviews)
                 </div>
             </div>
         </section>
 
-        <!-- Plans Section (Phlur Style Horizontal Selection / Minimal Luxury) -->
+        <!-- Plans Section (Editorial Phlur Style) -->
         <section class="plans-section" id="purchase">
             
-            <!-- 動的ベネフィット・価格・バッジ UI -->
-            <div class="dynamic-presentation" style="text-align:left; margin-bottom:1.5rem; padding: 0 0.2rem;">
-                <!-- 選択中サイズに応じたベネフィット -->
-                <div class="plan-benefit-text" id="dynamic-benefit" style="border-left: 2px solid #D6A485; padding-left:0.8rem; margin-bottom:1.2rem; color:#444; font-size:0.95rem; line-height:1.4; font-weight:300;">
-                    ＋ 10mlアトマイザー（限定特典）付き
-                </div>
+            <div class="dynamic-presentation" style="text-align:left; margin-bottom:1.5rem; padding: 0;">
                 
-                <div style="margin-bottom:0.6rem;">
-                    <!-- 大きな価格表示 -->
+                <!-- 階層3: エディトリアルバッジ (ベタ塗り廃止) -->
+                <div class="plan-badge-wrapper" style="min-height:22px; margin-bottom:0.2rem;">
+                    <div class="plan-badge" id="dynamic-badge" style="color:#888;">MOST POPULAR</div>
+                </div>
+
+                <!-- 階層1: 絶対的アンカー (22px セリフ体) -->
+                <div style="margin-bottom:0.2rem;">
                     <span class="plan-price-large" id="dynamic-price">¥8,980</span>
                 </div>
                 
-                <div class="plan-badge-wrapper" style="min-height:26px;">
-                    <!-- バッジ表示 -->
-                    <div class="plan-badge" id="dynamic-badge" style="background:var(--text-color); color:#fff;">迷ったらこれ / MOST POPULAR</div>
+                <!-- 階層3: 脱広告・引き算のベネフィット (イタリック、境界線なし) -->
+                <div class="plan-benefit-text" id="dynamic-benefit">
+                    10mlアトマイザー付き · 限定特典
                 </div>
             </div>
 
             <!-- サイズ選択ボタン群 -->
-            <div class="size-selector-header" style="margin-bottom:0.8rem; text-align:left; font-size:1rem; padding: 0 0.2rem; color:#555; font-family:'Cormorant Garamond',serif; letter-spacing:0.05em;">
+            <div class="size-selector-header" style="margin-bottom:0.6rem; text-align:left; font-size:0.9rem; padding: 0; color:#888; letter-spacing:0.05em; font-style:italic">
                 Size
             </div>
-            <div class="size-buttons-container" style="display:flex; gap:0.6rem; margin-bottom:2rem; padding: 0 0.2rem;">
-                <!-- 100ml -->
+            <div class="size-buttons-container" style="display:flex; gap:0.4rem; margin-bottom:2rem; padding: 0;">
                 <button type="button" class="size-btn" data-plan="100ml">
                     100ml
-                    <div class="best-value-pip">BEST VALUE</div>
                 </button>
-                <!-- 50ml (Default) -->
                 <button type="button" class="size-btn active" data-plan="50ml">
                     50ml
                 </button>
-                <!-- 10ml -->
                 <button type="button" class="size-btn" data-plan="10ml">
                     10ml
                 </button>
             </div>
             
-            <!-- JavaScript連携用の隠しインプット -->
             <input type="hidden" name="plan" id="selected-plan-input" value="50ml">
 
-            <!-- 横スクロール UCG Slider -->
+            <!-- UCG Slider -->
             <div class="ugc-slider-container">
                 <div class="ugc-slider">
                     <div class="ugc-card">
-                        <p style="font-weight:300;">「職場で3人に『どこの香水？』と聞かれました。清潔感の塊です。」</p>
-                        <span class="ugc-author">— Yukiさん / 20代男性</span>
+                        <p style="font-weight:400;">「職場で3人に『どこの香水？』と聞かれました。清潔感の塊です。」</p>
+                        <span class="ugc-author">— Yuki / 20s Male</span>
                     </div>
                     <div class="ugc-card">
-                        <p style="font-weight:300;">「デパコスの強い匂いが無理な自分には神。柔軟剤の延長みたいな自然さ。」</p>
-                        <span class="ugc-author">— Sotaさん / 20代男性</span>
+                        <p style="font-weight:400;">「デパコスの強い匂いが無理な自分には神。柔軟剤の延長みたいな自然さ。」</p>
+                        <span class="ugc-author">— Sota / 20s Male</span>
                     </div>
                     <div class="ugc-card">
-                        <p style="font-weight:300;">「高いから迷ったけどテストキットで試せたのがデカい。ガチでおすすめできる。」</p>
-                        <span class="ugc-author">— Miyuさん / 30代女性</span>
+                        <p style="font-weight:400;">「高いから迷ったけどテストキットで試せたのがデカい。ガチでおすすめできる。」</p>
+                        <span class="ugc-author">— Miyu / 30s Female</span>
                     </div>
                 </div>
             </div>
 
-            <!-- 決済ボタン -->
             <button id="main-add-to-cart" class="btn-primary">カートに追加する</button>
             
-            <!-- 信頼バー -->
             <div class="trust-signals-bar">
                 <div class="trust-item">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                     <span>30日間全額返金保証</span>
                 </div>
                 <div class="trust-item">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
                     <span>最短翌日発送 (送料無料)</span>
                 </div>
                 <div class="trust-item">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31"></path><path d="M14 9.3V1.99"></path><path d="M8.5 2h7"></path><path d="M14 9.3a6.5 6.5 0 11-4 0"></path><line x1="5.52" y1="16" x2="18.48" y2="16"></line></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31"></path><path d="M14 9.3V1.99"></path><path d="M8.5 2h7"></path><path d="M14 9.3a6.5 6.5 0 11-4 0"></path><line x1="5.52" y1="16" x2="18.48" y2="16"></line></svg>
                     <span>無料キット付(100ml)</span>
                 </div>
                 <div class="trust-item">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 0 8.48A11.83 11.83 0 0 1 11 20"></path><line x1="11" y1="20" x2="14" y2="10"></line></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 0 8.48A11.83 11.83 0 0 1 11 20"></path><line x1="11" y1="20" x2="14" y2="10"></line></svg>
                     <span>天然素材の高品質香料</span>
                 </div>
             </div>
@@ -198,8 +193,8 @@
             <a href="#quiz-section" class="btn-quiz-outline">自分に合うか30秒診断を受ける</a>
             
             <div class="stock-indicator-luxury">
-                <span class="stock-text-luxury">本日分は終了間近（無料キット付）</span>
-                <span class="stock-pill">残り7</span>
+                <span class="stock-text-luxury">Low in stock</span>
+                <span class="stock-pill">Only 7 left</span>
             </div>
             
         </section>
@@ -215,16 +210,16 @@
                     <div class="accordion-content-inner">
                         <ul style="list-style:none; padding:0; margin:0; font-size:0.9rem;">
                             <li style="margin-bottom:0.8rem; display:flex; gap:8px;">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                <span style="font-weight:300;"><strong>嫌味のない清潔感:</strong> 強い香水が苦手な方に最適です。</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"></circle></svg>
+                                <span style="font-weight:400; color:#555"><strong>嫌味のない清潔感:</strong> 強い香水が苦手な方に最適です。</span>
                             </li>
                             <li style="margin-bottom:0.8rem; display:flex; gap:8px;">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                <span style="font-weight:300;"><strong>24時間続く持続力:</strong> 朝の1プッシュで夕方までふんわりと。</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"></circle></svg>
+                                <span style="font-weight:400; color:#555"><strong>24時間続く持続力:</strong> 朝の1プッシュで夕方までふんわりと。</span>
                             </li>
                             <li style="margin-bottom:0; display:flex; gap:8px;">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.5" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                <span style="font-weight:300;"><strong>ユニセックス仕様:</strong> 性別を選ばない洗練された雰囲気。</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"></circle></svg>
+                                <span style="font-weight:400; color:#555"><strong>ユニセックス仕様:</strong> 性別を選ばない洗練された雰囲気。</span>
                             </li>
                         </ul>
                     </div>
@@ -240,7 +235,7 @@
                     <div class="accordion-content-inner">
                         <div class="note-item-minimal">
                             <div class="note-icon-svg">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="12" cy="12" r="8"></circle>
                                     <line x1="12" y1="4" x2="12" y2="2"></line>
                                     <path d="M14.5 4.5l1.5-1.5"></path>
@@ -254,7 +249,7 @@
                         </div>
                         <div class="note-item-minimal">
                             <div class="note-icon-svg">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 0 8.48A11.83 11.83 0 0 1 11 20"></path>
                                     <line x1="11" y1="20" x2="14" y2="10"></line>
                                 </svg>
@@ -266,7 +261,7 @@
                         </div>
                         <div class="note-item-minimal">
                             <div class="note-icon-svg">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
                                 </svg>
                             </div>
@@ -287,9 +282,9 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <ul style="list-style:none; padding:0; margin:0; font-size:0.9rem;">
-                            <li style="margin-bottom:0.6rem; font-weight:300;">① <strong>14時までの注文で当日発送 / 最短翌日お届け</strong></li>
-                            <li style="margin-bottom:0.6rem; font-weight:300;">② <strong>全国一律で完全送料無料</strong></li>
-                            <li style="margin-bottom:0; font-weight:300;">③ 中身が分からない無地の段ボールで安全に配送</li>
+                            <li style="margin-bottom:0.6rem; font-weight:400; color:#555">① <strong>14時までの注文で当日発送 / 最短翌日お届け</strong></li>
+                            <li style="margin-bottom:0.6rem; font-weight:400; color:#555">② <strong>全国一律で完全送料無料</strong></li>
+                            <li style="margin-bottom:0; font-weight:400; color:#555">③ 中身が分からない無地の段ボールで安全に配送</li>
                         </ul>
                     </div>
                 </div>
@@ -303,9 +298,9 @@
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <ul style="list-style:none; padding:0; margin:0; font-size:0.9rem;">
-                            <li style="margin-bottom:0.6rem; font-weight:300;">① <strong>100mlプランのみ限定</strong>（到着後30日以内）</li>
-                            <li style="margin-bottom:0.6rem; font-weight:300;">② <strong>LINEまたはメール申請</strong>からスムーズに対応</li>
-                            <li style="margin-bottom:0; font-weight:300;">③ <strong>本体未開封</strong>が条件（無料テストキットで確認）</li>
+                            <li style="margin-bottom:0.6rem; font-weight:400; color:#555">① <strong>100mlプランのみ限定</strong>（到着後30日以内）</li>
+                            <li style="margin-bottom:0.6rem; font-weight:400; color:#555">② <strong>LINEまたはメール申請</strong>からスムーズに対応</li>
+                            <li style="margin-bottom:0; font-weight:400; color:#555">③ <strong>本体未開封</strong>が条件（無料テストキットで確認）</li>
                         </ul>
                     </div>
                 </div>
@@ -320,15 +315,15 @@
                     <div class="accordion-content-inner faq-list">
                         <div class="faq-item">
                             <p class="faq-q">Q. 香水初心者ですが、香りがきつすぎませんか？</p>
-                            <p class="faq-a" style="font-weight:300;">A. はい、PURELAYERは「強い香りが苦手な方」のために開発されました。清潔感のある石鹸のような香りで、自分も周囲も心地よく過ごせます。</p>
+                            <p class="faq-a" style="font-weight:400;">A. はい、PURELAYERは「強い香りが苦手な方」のために開発されました。清潔感のある石鹸のような香りで、自分も周囲も心地よく過ごせます。</p>
                         </div>
                         <div class="faq-item">
                             <p class="faq-q">Q. 職場や学校でつけても大丈夫ですか？</p>
-                            <p class="faq-a" style="font-weight:300;">A. もちろんです。オフィスや教室でも浮かない「洗練された清潔感」をテーマにしているため、場所を選ばずお使いいただけます。</p>
+                            <p class="faq-a" style="font-weight:400;">A. もちろんです。オフィスや教室でも浮かない「洗練された清潔感」をテーマにしているため、場所を選ばずお使いいただけます。</p>
                         </div>
                         <div class="faq-item">
                             <p class="faq-q">Q. 持続時間はどのくらいですか？</p>
-                            <p class="faq-a" style="font-weight:300;">A. 朝つけてから夕方まで、約8〜10時間ほど心地よく持続します。</p>
+                            <p class="faq-a" style="font-weight:400;">A. 朝つけてから夕方まで、約8〜10時間ほど心地よく持続します。</p>
                         </div>
                     </div>
                 </div>
@@ -373,9 +368,9 @@
         <!-- Reviews Section -->
         <section class="reviews-section">
             <h2 class="section-title" style="font-weight:400;">Reviews</h2>
-            <div class="reviews-meta">4.8 / 5.0 (124)</div>
+            <div class="reviews-meta" style="font-style:italic">4.8 / 5.0 (124)</div>
             <div id="reviews-container"></div>
-            <button id="load-more-reviews" class="btn-secondary">全てのレビューを見る</button>
+            <button id="load-more-reviews" class="btn-quiz-outline" style="border:1px solid #e0ddd7; margin-top:0">全てのレビューを見る</button>
         </section>
 
     </main>
@@ -429,24 +424,24 @@
         });
     });
 
-    // 2. Dynamic Plan Size Selection (Phlur Style)
+    // 2. Dynamic Plan Size Selection (Editorial Style)
     const planData = {
         '100ml': {
             price: '¥14,800',
-            benefit: '【返金保証対象】 2mlテストキット ＋ 10mlアトマイザー無料同封',
-            badge: 'BEST VALUE / 最もお得',
-            badgeColor: '#555'
+            benefit: 'テストキット付き · 30日間返金保証',
+            badge: 'BEST VALUE',
+            badgeColor: 'transparent'
         },
         '50ml': {
             price: '¥8,980',
-            benefit: '＋ 10mlアトマイザー（限定特典）付き',
-            badge: '迷ったらこれ / MOST POPULAR',
-            badgeColor: 'var(--text-color)'
+            benefit: '10mlアトマイザー付き · 限定特典',
+            badge: 'MOST POPULAR',
+            badgeColor: 'transparent'
         },
         '10ml': {
             price: '¥1,750',
-            benefit: 'お試し単品　持ち運びに最適',
-            badge: '', // No badge
+            benefit: 'お試し単品 · 持ち運びに最適',
+            badge: '', 
             badgeColor: 'transparent'
         }
     };
@@ -460,17 +455,13 @@
     if (sizeBtns.length > 0) {
         sizeBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove active classes
                 sizeBtns.forEach(c => c.classList.remove('active'));
                 
-                // Add active
                 btn.classList.add('active');
                 
-                // Fetch selection
                 const planKey = btn.getAttribute('data-plan');
                 hiddenPlanInput.value = planKey;
                 
-                // Swap text and UI
                 const pData = planData[planKey];
                 dynamicPrice.textContent = pData.price;
                 dynamicBenefit.textContent = pData.benefit;
@@ -551,7 +542,7 @@
         }
     }
 
-    // 5. SNS-Style Reviews Injection & Lazy Images
+    // 5. SNS-Style Reviews Injection
     const reviewsContainer = document.getElementById('reviews-container');
     const loadMoreBtn = document.getElementById('load-more-reviews');
     
@@ -579,10 +570,10 @@
     ];
 
     const reviewImagesData = {
-        2: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_klpqqrklpqqrklpq.webp?v=1775121203#",
+        2: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670",
         6: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3146.webp?v=1774754613",
-        12: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3222.webp?v=1775042005#",
-        17: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/391B76D7-6CB0-4763-A9E8-232945C778AF.webp?v=1774835441#"
+        12: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670",
+        17: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2872.webp?v=1773467332"
     };
 
     if (reviewsContainer) {
@@ -640,6 +631,7 @@
         observer.observe(mainAtc);
     }
 });
+
 </script>
 
 <style>
