@@ -55,11 +55,11 @@
         .plan-price{font-size:1.1rem;color:var(--text-color)}
         .plan-extra{font-size:0.85rem;color:#666;margin-top:0.2rem}
         
-        /* 50ml Best Value Styling (New Default) */
+        /* 100ml Special Styling */
         .plan-card.best-value-card{background-color:#F5EFE6;border:1px solid var(--text-color);margin-top:1.5rem}
         .plan-card.best-value-card.active{border-width:2px}
         .best-value-label{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--text-color);color:#FAF7F2;font-size:0.65rem;padding:3px 15px;letter-spacing:0.15em;font-weight:400;white-space:nowrap}
-        .highlight-text{color:#ab4a4a;font-weight:600}
+        .highlight-text{color:#8C7D70;font-weight:600}
         
         .ugc-highlight{background-color:#fff;border-left:3px solid var(--text-color);padding:1.2rem;margin-bottom:1.5rem;text-align:left;font-size:0.9rem;color:#333;box-shadow:0 2px 10px rgba(0,0,0,0.03)}
         .ugc-author{display:block;margin-top:0.5rem;font-size:0.75rem;color:#666}
@@ -67,10 +67,17 @@
         .btn-primary{width:100%;background-color:var(--text-color);color:#FAF7F2;border:1px solid var(--text-color);padding:1.25rem;font-size:0.95rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.1em;margin-top:1.5rem;font-family:inherit}
         .btn-primary:hover{background-color:transparent;color:var(--text-color)}
         
-        .btn-quiz-outline{display:block;text-align:center;box-sizing:border-box;border:1px solid var(--text-color);background-color:transparent;color:var(--text-color);padding:1.25rem;font-size:0.95rem;margin-top:1rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.1em;width:100%;text-decoration:none}
-        .btn-quiz-outline:hover{background-color:rgba(0,0,0,0.03)}
+        /* Stock Indicator CSS */
+        .stock-indicator{margin-top:1rem;text-align:left}
+        .stock-text{font-size:0.75rem;color:#666;margin-bottom:0.4rem;letter-spacing:0.05em;font-weight:300}
+        .stock-text strong{color:#8C7D70;font-weight:600}
+        .stock-bar{width:100%;height:4px;background-color:var(--border-color);border-radius:2px;overflow:hidden}
+        .stock-progress{height:100%;background-color:#8C7D70;border-radius:2px}
 
         .micro-copy{font-size:0.75rem;color:#666;text-align:center;margin-top:1rem;letter-spacing:0.1em}
+
+        .btn-quiz-outline{display:block;text-align:center;box-sizing:border-box;border:1px solid var(--text-color);background-color:transparent;color:var(--text-color);padding:1.25rem;font-size:0.95rem;margin-top:1rem;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;letter-spacing:0.1em;width:100%;text-decoration:none}
+        .btn-quiz-outline:hover{background-color:rgba(0,0,0,0.03)}
     </style>
 </head>
 <body>
@@ -91,7 +98,7 @@
         <section class="hero full-width" style="text-align:center;">
             <div class="hero-image-wrapper">
                 <div class="trust-badge">30日間<br>全額返金<br>保証</div>
-                <!-- 速度改善: loading="eager", fetchpriority="high", aspect-ratio -->
+                <!-- 速度改善: eager, fetchpriority, CLS防止 -->
                 <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731#" alt="Oud Stallion by Maison Criveli" class="hero-image" fetchpriority="high" loading="eager">
             </div>
             
@@ -102,13 +109,39 @@
                     <span style="font-size:0.85rem; margin-left:5px; color:#555;">4.8 (124件のレビュー)</span>
                 </div>
                 <p class="hero-sub-copy">Oud Stallion by Maison Criveli<br>— 清潔感と存在感の最適解</p>
-                <!-- 古いテキストリンクの診断導線を排除 -->
             </div>
         </section>
 
-        <!-- Plans Section -->
+        <!-- Plans Section (AOV向上：100ml デフォルトアンカリング) -->
         <section class="plans-section" id="purchase">
             
+            <!-- 100ml 唯一の正解としてのデザイン -->
+            <label class="plan-card best-value-card active">
+                <div class="best-value-label">迷ったらこれ / MOST POPULAR</div>
+                <div class="plan-radio-container">
+                    <input type="radio" name="plan" value="100ml" class="plan-radio" checked>
+                    <span class="custom-radio"></span>
+                </div>
+                <div class="plan-details">
+                    <span class="plan-name">100ml フルセット</span>
+                    <span class="plan-price">¥14,800</span>
+                    <div class="plan-extra highlight-text">【返金保証対象】2mlテストキット無料同封</div>
+                </div>
+            </label>
+
+            <!-- 50ml -->
+            <label class="plan-card">
+                <div class="plan-radio-container">
+                    <input type="radio" name="plan" value="50ml" class="plan-radio">
+                    <span class="custom-radio"></span>
+                </div>
+                <div class="plan-details">
+                    <span class="plan-name">50ml ボトルセット</span>
+                    <span class="plan-price">¥8,980</span>
+                    <div class="plan-extra">+ 10mlアトマイザー（限定特典）付き</div>
+                </div>
+            </label>
+
             <!-- 10ml はアウトライン形式でお試し用として控えめに -->
             <label class="plan-card plan-outline">
                 <div class="plan-radio-container">
@@ -122,41 +155,19 @@
                 </div>
             </label>
 
-            <!-- 50ml をデフォルト化し「唯一の正解」として訴求 -->
-            <label class="plan-card best-value-card active">
-                <div class="best-value-label">迷ったらこれ / MOST POPULAR</div>
-                <div class="plan-radio-container">
-                    <input type="radio" name="plan" value="50ml" class="plan-radio" checked>
-                    <span class="custom-radio"></span>
-                </div>
-                <div class="plan-details">
-                    <span class="plan-name">50ml ボトルセット</span>
-                    <span class="plan-price">¥8,980</span>
-                    <div class="plan-extra highlight-text">+ 10mlアトマイザー（限定特典）付き</div>
-                </div>
-            </label>
-
-            <!-- 100ml はプレミアム選択肢として配置 -->
-            <label class="plan-card">
-                <div class="plan-radio-container">
-                    <input type="radio" name="plan" value="100ml" class="plan-radio">
-                    <span class="custom-radio"></span>
-                </div>
-                <div class="plan-details">
-                    <span class="plan-name">100ml フルセット</span>
-                    <span class="plan-price">¥14,800</span>
-                    <div class="plan-extra highlight-text">【返金保証対象】2mlテストキット無料同封</div>
-                </div>
-            </label>
-
             <!-- CTA直上の最強UGC -->
             <div class="ugc-highlight">
                 <p>「職場で3人に『どこの香水？』と聞かれました。清潔感の塊です。」</p>
                 <span class="ugc-author">— Yukiさん / 20代男性</span>
             </div>
 
-            <!-- 購入ボタンとマイクロコピーと診断導線 -->
+            <!-- 購入ボタンと在庫インジケーター（希少性エンハンス） -->
             <button id="main-add-to-cart" class="btn-primary">カートに追加する</button>
+            <div class="stock-indicator">
+                <div class="stock-text">在庫残りわずか：本日分はあと <strong>7セット</strong> で終了です（無料テストキット付）</div>
+                <div class="stock-bar"><div class="stock-progress" style="width: 14%;"></div></div>
+            </div>
+
             <p class="micro-copy">30日間全額返金保証 | 100mlはテストキット付</p>
             
             <a href="#quiz-section" class="btn-quiz-outline">自分に合うか30秒診断を受ける</a>
@@ -183,18 +194,45 @@
                 </div>
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
-                        <!-- ラグジュアリーなミニマルフォーマットに切り替え（絵文字廃止） -->
+                        <!-- ラグジュアリーな線画SVGとテキストの組み合わせ -->
                         <div class="note-item-minimal">
-                            <div class="note-title-minimal">Top - Bergamot</div>
-                            <div class="note-desc-minimal">清潔感の象徴</div>
+                            <div class="note-icon-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="8"></circle>
+                                    <line x1="12" y1="4" x2="12" y2="2"></line>
+                                    <path d="M14.5 4.5l1.5-1.5"></path>
+                                    <path d="M12 4c-2 0-3.5 1.5-4 3"></path>
+                                </svg>
+                            </div>
+                            <div class="note-text-group">
+                                <div class="note-title-minimal">Top - Bergamot</div>
+                                <div class="note-desc-minimal">清潔感の象徴</div>
+                            </div>
                         </div>
+
                         <div class="note-item-minimal">
-                            <div class="note-title-minimal">Heart - White Tea</div>
-                            <div class="note-desc-minimal">洗練された透明感</div>
+                            <div class="note-icon-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 0 8.48A11.83 11.83 0 0 1 11 20"></path>
+                                    <line x1="11" y1="20" x2="14" y2="10"></line>
+                                </svg>
+                            </div>
+                            <div class="note-text-group">
+                                <div class="note-title-minimal">Heart - White Tea</div>
+                                <div class="note-desc-minimal">洗練された透明感</div>
+                            </div>
                         </div>
+
                         <div class="note-item-minimal">
-                            <div class="note-title-minimal">Base - Musk</div>
-                            <div class="note-desc-minimal">肌に馴染む24時間の余韻</div>
+                            <div class="note-icon-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+                                </svg>
+                            </div>
+                            <div class="note-text-group">
+                                <div class="note-title-minimal">Base - Musk</div>
+                                <div class="note-desc-minimal">肌に馴染む24時間の余韻</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -323,8 +361,9 @@
 
 
 
+
 <script>
-   document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
 
     // 0. Announcement Bar Slider
     const slides = document.querySelectorAll('.announcement-slide');
@@ -589,16 +628,27 @@
   color: #444;
 }
 
-/* Minimal Scent Notes */
+/* Minimal Scent Notes with SVGs */
 .note-item-minimal {
-  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
   border-bottom: 1px solid var(--border-color);
-  padding-bottom: 0.8rem;
+  padding-bottom: 1.2rem;
 }
 .note-item-minimal:last-child {
   border-bottom: none;
   margin-bottom: 0;
   padding-bottom: 0;
+}
+.note-icon-svg {
+  color: var(--text-color);
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+.note-text-group {
+  flex: 1;
 }
 .note-title-minimal {
   font-weight: 600;
@@ -607,11 +657,12 @@
   font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  line-height: 1.3;
 }
 .note-desc-minimal {
   font-size: 0.9rem;
   color: #555;
-  margin-top: 0.2rem;
+  margin-top: 0.4rem;
 }
 
 /* FAQ */
@@ -774,4 +825,5 @@
   margin-top: 0;
   max-width: 600px;
 }
+
 </style>
