@@ -25,6 +25,9 @@
         h1,h2,h3,h4,h5,h6{font-family:'Cormorant Garamond','Noto Serif JP',serif;font-weight:400}
         b,strong{font-weight:400} 
         
+        .pc-hide{display:block}
+        @media(min-width:601px){.pc-hide{display:none}}
+        
         /* 日本語の強調用（太字の代わり） */
         .highlight-text{background-color:rgba(214,164,133,0.15);padding:0 6px;border-radius:2px;font-weight:400;color:#333}
 
@@ -39,39 +42,43 @@
         header{display:flex;justify-content:center;align-items:center;padding:0.6rem 0;background-color:var(--bg-color);position:sticky;top:0;z-index:100}
         .brand-logo{font-size:0.8rem;font-weight:400;letter-spacing:0.25em;font-family:'Cormorant Garamond',serif}
         
-        /* Hero (P1: ボトルの余白設定・エンブレム) */
+        /* Hero (ボトル画像の拡大とシームレス化 P1/P2) */
         .hero-section{position:relative;width:100%;margin-bottom:1rem;display:flex;justify-content:center;padding-top:1.5rem}
-        .hero-image-wrapper{position:relative;width:65%;display:block;margin:0 auto}
-        .hero-image{width:100%;height:auto;display:block;object-fit:contain}
+        .hero-image-wrapper{position:relative;width:75%;display:block;margin:0 auto;border:none}
+        .hero-image{width:100%;height:auto;display:block;object-fit:contain;border:none;background-color:transparent}
         
         /* 保証エンブレムの復活 */
-        .trust-badge-fv{position:absolute;top:-10px;left:-15px;background-color:transparent;border:0.5px solid #888;color:#555;padding:0.4rem 0.5rem;font-size:0.6rem;letter-spacing:0.1em;text-align:center;line-height:1.4;border-radius:0}
+        .trust-badge-fv{position:absolute;top:0px;left:-5px;background-color:transparent;border:0.5px solid #888;color:#555;padding:0.4rem 0.5rem;font-size:0.6rem;letter-spacing:0.1em;text-align:center;line-height:1.4;border-radius:0}
         
         /* 第2層レイヤー */
-        .product-info{padding:1.4rem 0 1rem;text-align:center}
+        .product-info{padding:1.4rem 0 0;text-align:center}
         .hero-main-copy{font-size:1.6rem;line-height:1.4;letter-spacing:0.05em;margin-bottom:0.4rem;font-weight:400;color:var(--text-color)}
-        .hero-sub-copy{font-size:0.85rem;color:#888;letter-spacing:0.1em;margin-bottom:0.8rem;font-weight:300} /* 斜体廃止 */
-        .hero-reviews-summary{margin-bottom:0.4rem;color:#888;font-size:0.8rem}
+        .hero-sub-copy{font-size:0.85rem;color:#888;letter-spacing:0.1em;margin-bottom:0.8rem;font-weight:300} 
+        .hero-reviews-summary{margin-bottom:1.5rem;color:#888;font-size:0.8rem}
         
-        .plans-section{padding:0.5rem 0 3rem}
+        /* 境界の明確化 (P3) */
+        .plans-section-wrapper{margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);max-width:100vw;width:100vw;background-color:#eeeae0;padding:2rem var(--spacing-base) 3rem;border-top:0.5px solid #dddbd4}
+        @media(max-width:600px){.plans-section-wrapper{margin-left:calc(-1 * var(--spacing-base));margin-right:calc(-1 * var(--spacing-base));width:calc(100% + var(--spacing-base) * 2)}}
         
+        .plans-inner-container{max-width:600px;margin:0 auto}
+
         /* 第1層レイヤー */
         .plan-price-large{font-size:22px;font-family:'Cormorant Garamond',serif;font-weight:400;color:var(--text-color);line-height:1;letter-spacing:0.02em;display:block}
         
         /* 第3層レイヤー */
-        .plan-badge{background:transparent;color:#888;font-size:0.65rem;letter-spacing:0.2em;display:inline-block;border-radius:0;font-weight:400} /* 斜体廃止 */
+        .plan-badge{background:transparent;color:#888;font-size:10px;letter-spacing:0.1em;display:inline-block;border-radius:0;font-weight:400} 
         .plan-benefit-text{color:#888;font-size:0.8rem;letter-spacing:0.05em;margin-top:0.4rem;font-weight:300}
 
-        /* 削ぎ落とされたSizeボタン */
-        .size-btn{flex:1;border:0.5px solid #dedbd4;background-color:transparent;color:#666;padding:0.7rem 0;font-size:11px;font-weight:300;cursor:pointer;transition:all 0.2s ease;font-family:inherit;letter-spacing:0.15em;border-radius:0}
+        /* 削ぎ落とされたSizeボタン (P2/P3 小文字統一) */
+        .size-btn{flex:1;border:0.5px solid #d4d2cc;background-color:transparent;color:#666;padding:0.7rem 0;font-size:11px;font-weight:300;cursor:pointer;transition:all 0.2s ease;font-family:inherit;letter-spacing:0.04em;border-radius:0;text-transform:lowercase}
         .size-btn.active{border:1px solid var(--text-color);color:var(--text-color);background-color:#fff;font-weight:400}
 
-        /* 横スクロール UGC Slider (第3層として少しトーンダウン) */
+        /* 横スクロール UGC Slider */
         .ugc-slider-container{margin:1rem calc(-50vw + 50%);width:100vw;padding-left:var(--spacing-base);padding-top:10px;padding-bottom:15px}
         @media(max-width:600px){.ugc-slider-container{margin:1rem calc(-1 * var(--spacing-base));width:calc(100% + var(--spacing-base) * 2)}}
         .ugc-slider{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1.5rem;padding-right:var(--spacing-base);-webkit-overflow-scrolling:touch;scrollbar-width:none}
         .ugc-slider::-webkit-scrollbar{display:none}
-        .ugc-card{flex:0 0 85%;scroll-snap-align:center;background-color:#F7F5F0;border-left:1px solid #ccc;padding:1.4rem;font-size:0.85rem;color:#444;border-radius:0}
+        .ugc-card{flex:0 0 85%;scroll-snap-align:center;background-color:#FAF7F2;border-left:1px solid #ccc;padding:1.4rem;font-size:0.85rem;color:#444;border-radius:0}
         .ugc-author{display:block;margin-top:0.6rem;font-size:0.7rem;color:#888} 
         
         /* ボタン類 (第2層) */
@@ -95,6 +102,8 @@
         .stock-bar-bg{width:100%;height:1px;background-color:#E2DFD8}
         .stock-bar-fill{width:14%;height:100%;background-color:var(--text-color)}
         
+        /* Accordion, Review areas etc */
+        .accordions { padding-top: 2rem; }
     </style>
 </head>
 <body>
@@ -110,7 +119,7 @@
     </header>
 
     <main class="container">
-        <!-- Hero Section (P1: 空気感を持たせた再設計) -->
+        <!-- Hero Section (ボトル画像の拡大とシームレス化 P1) -->
         <section class="hero-section full-width">
             <div class="hero-image-wrapper">
                 <div class="trust-badge-fv">30日間<br>返金保証</div>
@@ -119,111 +128,113 @@
         </section>
         
         <div class="product-info">
-            <!-- 階層2: -->
-            <h1 class="hero-main-copy">一度つけたら、必ず聞かれる香水。</h1>
-            <!-- 階層3: 斜体廃止 -->
+            <!-- P2: タイポグラフィ改行制御 -->
+            <h1 class="hero-main-copy">一度つけたら、<br class="pc-hide">必ず聞かれる香水。</h1>
+            
             <p class="hero-sub-copy">Oud Stallion by Maison Crivelli</p>
             <div class="hero-reviews-summary">
                 <span>★★★★★</span> 4.8 (124件のレビュー)
             </div>
         </div>
 
-        <!-- Plans Section (Editorial Phlur Style) -->
-        <section class="plans-section" id="purchase">
-            
-            <div class="dynamic-presentation" style="text-align:left; margin-bottom:1.5rem; padding: 0;">
+        <!-- 境界の明確化 (P3) - 背景の差別化 -->
+        <div class="plans-section-wrapper" id="purchase">
+            <div class="plans-inner-container">
                 
-                <!-- 階層3: エディトリアルバッジ -->
-                <div class="plan-badge-wrapper" style="min-height:20px; margin-bottom:0.2rem;">
-                    <div class="plan-badge" id="dynamic-badge">一番人気</div>
+                <div class="dynamic-presentation" style="text-align:left; margin-bottom:1.5rem; padding: 0;">
+                    
+                    <!-- 階層3: エディトリアルバッジ (P1 刷新) -->
+                    <div class="plan-badge-wrapper" style="min-height:20px; margin-bottom:0.2rem;">
+                        <div class="plan-badge" id="dynamic-badge">人気 No.1 / 迷ったらこれ</div>
+                    </div>
+
+                    <!-- 階層1: 価格 -->
+                    <div style="margin-bottom:0.2rem;">
+                        <span class="plan-price-large" id="dynamic-price">¥8,980</span>
+                    </div>
+                    
+                    <div class="plan-benefit-text" id="dynamic-benefit">
+                        10mlアトマイザー付き · 限定特典
+                    </div>
                 </div>
 
-                <!-- 階層1: 価格 -->
-                <div style="margin-bottom:0.2rem;">
-                    <span class="plan-price-large" id="dynamic-price">¥8,980</span>
+                <!-- サイズ選択ボタン群 (P2 小文字統一 ml表記) -->
+                <div class="size-selector-header" style="margin-bottom:0.6rem; text-align:left; font-size:0.85rem; padding: 0; color:#888; letter-spacing:0.05em">
+                    サイズ
+                </div>
+                <div class="size-buttons-container" style="display:flex; gap:0.4rem; margin-bottom:2rem; padding: 0;">
+                    <button type="button" class="size-btn" data-plan="100ml">
+                        100ml
+                    </button>
+                    <!-- 初期の選択を50mlに徹底 -->
+                    <button type="button" class="size-btn active" data-plan="50ml">
+                        50ml
+                    </button>
+                    <button type="button" class="size-btn" data-plan="10ml">
+                        10ml
+                    </button>
                 </div>
                 
-                <!-- 階層3: 斜体廃止のベネフィット -->
-                <div class="plan-benefit-text" id="dynamic-benefit">
-                    10mlアトマイザー付き · 限定特典
-                </div>
-            </div>
+                <input type="hidden" name="plan" id="selected-plan-input" value="50ml">
 
-            <!-- サイズ選択ボタン群 -->
-            <div class="size-selector-header" style="margin-bottom:0.6rem; text-align:left; font-size:0.85rem; padding: 0; color:#888; letter-spacing:0.05em">
-                サイズ
-            </div>
-            <div class="size-buttons-container" style="display:flex; gap:0.4rem; margin-bottom:2rem; padding: 0;">
-                <button type="button" class="size-btn" data-plan="100ml">
-                    100ml
-                </button>
-                <button type="button" class="size-btn active" data-plan="50ml">
-                    50ml
-                </button>
-                <button type="button" class="size-btn" data-plan="10ml">
-                    10ml
-                </button>
-            </div>
-            
-            <input type="hidden" name="plan" id="selected-plan-input" value="50ml">
-
-            <!-- UCG Slider -->
-            <div class="ugc-slider-container">
-                <div class="ugc-slider">
-                    <div class="ugc-card">
-                        <p style="font-weight:300;">「職場で3人に『どこの香水？』と聞かれました。清潔感の塊です。」</p>
-                        <span class="ugc-author">— Yukiさん / 20代男性</span>
-                    </div>
-                    <div class="ugc-card">
-                        <p style="font-weight:300;">「デパコスの強い匂いが無理な自分には神。柔軟剤の延長みたいな自然さ。」</p>
-                        <span class="ugc-author">— Sotaさん / 20代男性</span>
-                    </div>
-                    <div class="ugc-card">
-                        <p style="font-weight:300;">「高いから迷ったけどテストキットで試せたのがデカい。ガチでおすすめできる。」</p>
-                        <span class="ugc-author">— Miyuさん / 30代女性</span>
+                <!-- UCG Slider -->
+                <div class="ugc-slider-container">
+                    <div class="ugc-slider">
+                        <div class="ugc-card">
+                            <p style="font-weight:300;">「職場で3人に『どこの香水？』と聞かれました。清潔感の塊です。」</p>
+                            <span class="ugc-author">— Yukiさん / 20代男性</span>
+                        </div>
+                        <div class="ugc-card">
+                            <p style="font-weight:300;">「デパコスの強い匂いが無理な自分には神。柔軟剤の延長みたいな自然さ。」</p>
+                            <span class="ugc-author">— Sotaさん / 20代男性</span>
+                        </div>
+                        <div class="ugc-card">
+                            <p style="font-weight:300;">「高いから迷ったけどテストキットで試せたのがデカい。ガチでおすすめできる。」</p>
+                            <span class="ugc-author">— Miyuさん / 30代女性</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <button id="main-add-to-cart" class="btn-primary">カートに追加する</button>
-            
-            <!-- 信頼アイコンバー（密集解消・余白確保の2行・縦積み版） -->
-            <div class="trust-signals-bar">
-                <div class="trust-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                    <span>30日間全額返金保証</span>
-                </div>
-                <div class="trust-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                    <span>翌営業日発送</span>
-                </div>
-                <div class="trust-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                    <span>累計評価 4.8 (124件)</span>
-                </div>
-                <div class="trust-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-                    <span>全国送料無料</span>
-                </div>
-            </div>
-
-            <!-- 在庫インジケーター（P4: 洗練されたバー＋ピルバッジ） -->
-            <div class="stock-wrap">
-                <div class="stock-header">
-                    <span class="stock-label">在庫残りわずか</span>
-                    <div class="stock-badge">
-                        <div class="stock-dot"></div>
-                        残り 7
+                <button id="main-add-to-cart" class="btn-primary">カートに追加する</button>
+                
+                <!-- 信頼アイコンバー -->
+                <div class="trust-signals-bar">
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <span>30日間全額返金保証</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        <span>翌営業日発送</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <span>累計評価 4.8 (124件)</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                        <span>全国送料無料</span>
                     </div>
                 </div>
-                <div class="stock-bar-bg">
-                    <div class="stock-bar-fill"></div>
-                </div>
-            </div>
 
-            <a href="#quiz-section" class="btn-quiz-outline">自分に合うか30秒診断を受ける</a>
-            
-        </section>
+                <!-- 在庫インジケーター -->
+                <div class="stock-wrap">
+                    <div class="stock-header">
+                        <span class="stock-label">在庫残りわずか</span>
+                        <div class="stock-badge">
+                            <div class="stock-dot"></div>
+                            残り 7
+                        </div>
+                    </div>
+                    <div class="stock-bar-bg">
+                        <div class="stock-bar-fill"></div>
+                    </div>
+                </div>
+
+                <a href="#quiz-section" class="btn-quiz-outline">自分に合うか30秒診断を受ける</a>
+                
+            </div>
+        </div>
 
         <!-- Accordions -->
         <section class="accordions">
@@ -364,18 +375,19 @@
             <h3 class="quiz-title" style="margin-bottom:0.5rem; font-weight:400; font-family:'Cormorant Garamond','Noto Serif JP',serif">あなたに合う香りか、<br>30秒でお調べします。</h3>
             <p class="quiz-meta-info" style="margin-bottom:2.5rem; color:#888; font-size:0.8rem;">所要時間 30秒 / 5問で判定</p>
             
+            <!-- (P5) 質問文の強調回避（ブランドカラーの左枠線を使用） -->
             <div id="quiz-container">
                 <div class="quiz-step active" data-step="1">
-                    <p class="quiz-ques">Q1. 最も香りを纏いたいシーンは？</p>
+                    <p class="quiz-ques" style="border-left:2px solid #3B6D11; padding-left:10px; font-weight:400; margin-bottom:1rem; color:#333;">Q1. 最も香りを纏いたいシーンは？</p>
                     <div class="quiz-options">
                         <div class="quiz-option">職場や学校などの日常</div>
                         <div class="quiz-option">特別なデートやディナー</div>
                         <div class="quiz-option">自宅でのリラックスタイム</div>
                     </div>
                 </div>
-                <!-- ... -->
+                <!-- 省略されていたステップも同様のスタイル（本番では全適応） -->
                 <div class="quiz-step" data-step="5">
-                    <p class="quiz-ques">Q5. 過去の香水に対する不満は？</p>
+                    <p class="quiz-ques" style="border-left:2px solid #3B6D11; padding-left:10px; font-weight:400; margin-bottom:1rem; color:#333;">Q5. 過去の香水に対する不満は？</p>
                     <div class="quiz-options">
                         <div class="quiz-option">匂いが強すぎて酔う</div>
                         <div class="quiz-option">すぐに香りが飛んでしまう</div>
@@ -453,18 +465,18 @@
         });
     });
 
-    // 2. Dynamic Plan Size Selection (Editorial Style + Japanese Refinement)
+    // 2. Dynamic Plan Size Selection (P1 Final Badge Update)
     const planData = {
         '100ml': {
             price: '¥14,800',
             benefit: 'テストキット付き · 30日間返金保証',
-            badge: '最もお得',
+            badge: 'コスパ最高 / 最もおトク',
             badgeColor: 'transparent'
         },
         '50ml': {
             price: '¥8,980',
             benefit: '10mlアトマイザー付き · 限定特典',
-            badge: '一番人気',
+            badge: '人気 No.1 / 迷ったらこれ',
             badgeColor: 'transparent'
         },
         '10ml': {
@@ -571,7 +583,7 @@
         }
     }
 
-    // 5. SNS-Style Reviews Injection (Italics Removed)
+    // 5. SNS-Style Reviews Injection
     const reviewsContainer = document.getElementById('reviews-container');
     const loadMoreBtn = document.getElementById('load-more-reviews');
     
@@ -599,10 +611,10 @@
     ];
 
     const reviewImagesData = {
-        2: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670",
+        2: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_klpqqrklpqqrklpq.webp?v=1775121203#",
         6: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3146.webp?v=1774754613",
-        12: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_r1orabr1orabr1or.webp?v=1773367670",
-        17: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2872.webp?v=1773467332"
+        12: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3222.webp?v=1775042005#",
+        17: "https://cdn.shopify.com/s/files/1/0957/4570/4304/files/391B76D7-6CB0-4763-A9E8-232945C778AF.webp?v=1774835441#"
     };
 
     if (reviewsContainer) {
@@ -660,6 +672,7 @@
         observer.observe(mainAtc);
     }
 });
+
 
 </script>
 
