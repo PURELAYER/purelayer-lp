@@ -39,28 +39,28 @@
         header{display:flex;justify-content:center;align-items:center;padding:0.6rem 0;background-color:var(--bg-color);position:sticky;top:0;z-index:100}
         .brand-logo{font-size:0.8rem;font-weight:400;letter-spacing:0.25em;font-family:'Cormorant Garamond',serif}
         
-        /* -------- Hero (ボトル画像の中央配置とサイズ適正化 完全修正) -------- */
+        /* -------- Hero (ダイナミック拡大と強制的中央配置) -------- */
         .hero-section{
             position:relative;
             width:100%;
-            margin-bottom:1rem;
-            /* Flexboxによる物理的・強制的な中央配置 */
+            /* 上下左右の余計なパディング/マージンを完全排除（タイトルとの距離のみ1rem確保） */
+            margin: 0 0 1rem 0;
+            padding: 0;
             display:flex;
             justify-content:center;
             align-items:center;
-            padding-top:1.5rem;
         }
         .hero-image-wrapper{
             position:relative;
             display:flex;
             justify-content:center;
             align-items:center;
-            /* 画面幅の70〜75%で主役化、不要な枠線・パディングを全削除 */
-            width:75%;
-            max-width:75vw;
+            /* Dossierのように画面幅ギリギリ（92%）まで極限拡大 */
+            width:92%;
+            max-width:92%;
+            margin:0 auto;
             border:none;
             padding:0;
-            margin:0;
         }
         .hero-image{
             width:100%;
@@ -69,13 +69,15 @@
             object-fit:contain;
             border:none;
             background-color:transparent;
+            margin:0;
+            padding:0;
         }
         
-        /* 保証エンブレムの再調整 */
-        .trust-badge-fv{position:absolute;top:0;left:-5%;background-color:transparent;border:0.5px solid #888;color:#555;padding:0.4rem 0.5rem;font-size:0.6rem;letter-spacing:0.1em;text-align:center;line-height:1.4;border-radius:0;z-index:2}
+        /* 巨大化した画像に対し、左上に被りすぎないよう調整 */
+        .trust-badge-fv{position:absolute;top:2px;left:0;background-color:transparent;border:0.5px solid #888;color:#555;padding:0.4rem 0.5rem;font-size:0.6rem;letter-spacing:0.1em;text-align:center;line-height:1.4;border-radius:0;z-index:2}
         /* ----------------------------------------------------------- */
 
-        .product-info{padding:1.4rem 0 0;text-align:center}
+        .product-info{padding:0.5rem 0 0;text-align:center}
         .hero-main-copy{font-size:1.6rem;line-height:1.4;letter-spacing:0.05em;margin-bottom:0.4rem;font-weight:400;color:var(--text-color)}
         .hero-sub-copy{font-size:0.85rem;color:#888;letter-spacing:0.1em;margin-bottom:0.8rem;font-weight:300} 
         .hero-reviews-summary{margin-bottom:1.5rem;color:#888;font-size:0.8rem}
@@ -133,7 +135,7 @@
     </header>
 
     <main class="container">
-        <!-- Hero Section (Flex Centralization & Size Optimization) -->
+        <!-- Hero Section (Dossierダイナミック拡大配置) -->
         <section class="hero-section full-width">
             <div class="hero-image-wrapper">
                 <div class="trust-badge-fv">30日間<br>返金保証</div>
@@ -423,7 +425,6 @@
     <script src="script.js" defer></script>
 </body>
 </html>
-
 
 
 <script>
