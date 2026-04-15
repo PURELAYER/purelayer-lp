@@ -9,19 +9,15 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
-    <meta name="description" content="清潔感だけで、勝手に褒められる。学校・職場で3人に聞かれた香水 Oud Stallion — ¥1,750からお試し。">
+    <meta name="description" content="学校や職場で『どこの香水？』と聞かれた香り。累計販売1,000本突破、満足度98.2%。¥1,750からお試し。">
     <style>
         *{box-sizing:border-box;margin:0;padding:0}
         html{scroll-behavior:smooth}
         body{
             font-family:'Helvetica Neue',Arial,'Hiragino Kaku Gothic ProN','Hiragino Sans','BIZ UDPGothic',Meiryo,sans-serif;
-            font-weight:300;
-            background:#FAF7F2;
-            color:#1A1A1A;
-            line-height:1.7;
-            letter-spacing:.06em;
-            -webkit-font-smoothing:antialiased;
-            overflow-x:hidden;
+            font-weight:300;background:#FAF7F2;color:#1A1A1A;
+            line-height:1.7;letter-spacing:.06em;
+            -webkit-font-smoothing:antialiased;overflow-x:hidden;
         }
 
         /* ===== HEADER ===== */
@@ -32,87 +28,87 @@
         }
         .header-logo{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:400;letter-spacing:.3em}
 
+        /* ===== 信頼バナー: マジョリティの安心感 ===== */
+        .social-bar{
+            background:#F5F0E8;
+            padding:10px 20px;
+            display:flex;align-items:center;justify-content:center;gap:16px;
+            min-height:40px;
+            font-size:10px;color:#555;letter-spacing:.06em;
+        }
+        .social-bar-item{display:flex;align-items:center;gap:5px;white-space:nowrap}
+        .social-bar-num{
+            font-family:'Cormorant Garamond',serif;
+            font-size:14px;color:#1A1A1A;font-weight:400;
+        }
+        .social-bar-sep{color:#ccc;font-size:10px}
+
         /* ===== SECTION 1: HERO ===== */
         .hero{padding:0;text-align:center}
 
-        /* 社会的証明バナー — 広告の「褒められまくった」の答え合わせ */
-        .proof-bar{
-            background:#F5F0E8;
-            padding:14px 20px;
-            display:flex;align-items:center;justify-content:center;gap:12px;
-            min-height:52px;
-        }
-        .proof-bar-num{
-            font-family:'Cormorant Garamond','Noto Serif JP',serif;
-            font-size:22px;line-height:1;color:#1A1A1A;
-        }
-        .proof-bar-text{font-size:9px;color:#555;line-height:1.4;text-align:left;letter-spacing:.04em}
-
-        /* コピーエリア — 広告→LP の「感情の連続性」の核 */
-        .hero-copy{padding:28px 28px 20px}
+        /* コピー — 広告のフックを100%再現 */
+        .hero-copy{padding:24px 24px 16px}
         .hero-h1{
             font-family:'Cormorant Garamond','Noto Serif JP',serif;
-            font-size:24px;font-weight:400;
-            line-height:1.45;letter-spacing:.06em;
+            font-size:21px;font-weight:400;
+            line-height:1.5;letter-spacing:.06em;
             margin-bottom:10px;
         }
         .hero-sub{
-            font-size:13px;color:#888;
-            line-height:1.65;font-weight:300;
-            letter-spacing:.04em;margin-bottom:4px;
+            font-size:12.5px;color:#666;
+            line-height:1.7;font-weight:300;
+            letter-spacing:.04em;margin-bottom:0;
         }
-        .hero-stars{font-size:11px;color:#aaa;margin-bottom:0;letter-spacing:.03em}
 
-        /* ボトル画像 — 広告2枚目とトーンを合わせる（明るいグレー背景に白トーン） */
+        /* ボトル画像 */
         .hero-visual{
-            width:100%;padding:0;margin:8px 0 0;
+            width:100%;padding:0;margin:4px 0 0;
             display:flex;justify-content:center;align-items:center;
-            background:linear-gradient(180deg, #FAF7F2 0%, #F0EDE6 50%, #FAF7F2 100%);
-            aspect-ratio:1/1;
-            overflow:hidden;
-            position:relative;
+            background:linear-gradient(180deg,#FAF7F2 0%,#F0EDE6 50%,#FAF7F2 100%);
+            aspect-ratio:1/1;overflow:hidden;position:relative;
         }
         .hero-visual picture{display:block;width:88%;height:auto;margin:0 auto}
         .hero-visual img{width:100%;height:auto;display:block;object-fit:contain}
-
-        /* 広告キーワードの「エコー」— 広告で見た言葉を1~2語だけ繰り返す */
         .hero-echo{
-            position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
-            background:rgba(255,255,255,.88);
-            border:0.5px solid #E2DFD8;
-            padding:7px 16px;
-            font-size:10px;color:#555;letter-spacing:.08em;
-            white-space:nowrap;
-            border-radius:1px;
+            position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+            background:rgba(255,255,255,.9);border:.5px solid #E2DFD8;
+            padding:6px 14px;font-size:10px;color:#555;letter-spacing:.06em;
+            white-space:nowrap;border-radius:1px;
         }
 
-        /* Low-risk offer — 価格を「体験」に翻訳 */
-        .low-risk-offer{
-            padding:16px 28px 6px;
-            font-size:11px;color:#888;
-            letter-spacing:.04em;
+        /* レビューサマリ */
+        .hero-review-line{
+            padding:10px 24px 4px;
+            font-size:11px;color:#aaa;letter-spacing:.03em;
         }
 
-        /* サイズ選択 — ラジオボタン・リスト */
-        .plan-selector{padding:12px 24px 16px;text-align:left}
+        /* 10mlお試しボタン（目立たせる） */
+        .trial-cta-area{padding:8px 24px 0}
+        .btn-trial{
+            width:100%;padding:14px;
+            background:transparent;color:#1A1A1A;
+            border:1.5px solid #1A1A1A;
+            font-family:inherit;font-size:13px;font-weight:300;
+            letter-spacing:.08em;cursor:pointer;border-radius:2px;
+        }
+        .btn-trial:active{opacity:.85}
+        .trial-note{font-size:9px;color:#aaa;text-align:center;margin-top:5px;letter-spacing:.03em}
+
+        /* サイズ選択 */
+        .plan-selector{padding:16px 24px 12px;text-align:left}
         .plan-label{font-size:11px;color:#888;margin-bottom:8px;display:block;letter-spacing:.08em}
         .plan-list{display:flex;flex-direction:column;gap:0}
         .plan-row{
             display:flex;align-items:center;gap:10px;
-            padding:14px;
-            border:0.5px solid #E2DFD8;
-            border-bottom:none;
-            cursor:pointer;
-            transition:background .15s;
+            padding:13px 14px;border:.5px solid #E2DFD8;border-bottom:none;
+            cursor:pointer;transition:background .15s;
         }
         .plan-row:first-child{border-radius:3px 3px 0 0}
-        .plan-row:last-child{border-bottom:0.5px solid #E2DFD8;border-radius:0 0 3px 3px}
+        .plan-row:last-child{border-bottom:.5px solid #E2DFD8;border-radius:0 0 3px 3px}
         .plan-row.active{background:#fff;border-color:#1A1A1A}
         .plan-radio{
-            width:16px;height:16px;
-            border:1.5px solid #ccc;border-radius:50%;
-            flex-shrink:0;
-            display:flex;align-items:center;justify-content:center;
+            width:16px;height:16px;border:1.5px solid #ccc;border-radius:50%;
+            flex-shrink:0;display:flex;align-items:center;justify-content:center;
         }
         .plan-row.active .plan-radio{border-color:#1A1A1A}
         .plan-radio-dot{width:8px;height:8px;border-radius:50%;background:#1A1A1A;display:none}
@@ -122,35 +118,42 @@
         .plan-tag{font-size:8px;color:#888;letter-spacing:.06em;margin-left:6px}
         .plan-price{font-family:'Cormorant Garamond',serif;font-size:16px;color:#1A1A1A;font-weight:400}
 
-        /* 主CTA */
-        .cta-area{padding:0 24px 36px}
+        /* 主CTA + 安心ラベル凝縮 */
+        .cta-area{padding:4px 24px 12px}
         .btn-main{
             width:100%;padding:18px;
-            background:#1A1A1A;color:#FAF7F2;
-            border:none;font-family:inherit;font-size:14px;font-weight:300;
+            background:#1A1A1A;color:#FAF7F2;border:none;
+            font-family:inherit;font-size:14px;font-weight:300;
             letter-spacing:.12em;cursor:pointer;border-radius:2px;
         }
         .btn-main:active{opacity:.85}
-        .cta-sub{font-size:10px;color:#aaa;text-align:center;margin-top:8px;letter-spacing:.04em}
+
+        /* CTA周囲の安心アイコン群（高密度） */
+        .cta-assurance{
+            display:flex;justify-content:center;gap:14px;
+            padding:10px 0 0;
+            font-size:9px;color:#999;letter-spacing:.04em;
+        }
+        .cta-assurance-item{display:flex;align-items:center;gap:4px;white-space:nowrap}
+        .cta-assurance-item svg{width:12px;height:12px;flex-shrink:0;color:#bbb}
 
         /* ===== SECTION 2: PROOF ===== */
-        .proof{padding:40px 28px;border-top:0.5px solid #E2DFD8}
+        .proof{padding:36px 24px;border-top:.5px solid #E2DFD8}
         .proof-section-title{
             font-family:'Cormorant Garamond','Noto Serif JP',serif;
             font-size:15px;font-weight:400;letter-spacing:.1em;
-            text-align:center;margin-bottom:28px;color:#1A1A1A;
+            text-align:center;margin-bottom:24px;color:#1A1A1A;
         }
-
-        .proof-benefits{margin-bottom:32px}
+        .proof-benefits{margin-bottom:28px}
         .benefit-item{
             display:flex;gap:10px;align-items:flex-start;
-            margin-bottom:14px;font-size:13px;color:#333;line-height:1.55;
+            margin-bottom:12px;font-size:13px;color:#333;line-height:1.55;
         }
         .benefit-check{flex-shrink:0;font-size:13px;color:#3B6D11;margin-top:2px}
 
-        .ugc-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
-        .ugc-card{background:#fff;border:0.5px solid #E8E5DE;padding:16px 18px;border-radius:2px}
-        .ugc-quote{font-size:13px;color:#333;line-height:1.6;margin-bottom:8px;font-weight:300}
+        .ugc-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+        .ugc-card{background:#fff;border:.5px solid #E8E5DE;padding:14px 16px;border-radius:2px}
+        .ugc-quote{font-size:13px;color:#333;line-height:1.6;margin-bottom:6px;font-weight:300}
         .ugc-attr{font-size:10px;color:#aaa;letter-spacing:.04em}
 
         .trust-row{
@@ -161,22 +164,20 @@
         .trust-cell svg{width:18px;height:18px;color:#bbb}
 
         /* ===== SECTION 3: CLOSING ===== */
-        .closing{padding:40px 28px;border-top:0.5px solid #E2DFD8}
+        .closing{padding:36px 24px;border-top:.5px solid #E2DFD8}
         .closing-title{
             font-family:'Cormorant Garamond','Noto Serif JP',serif;
             font-size:16px;font-weight:400;
-            text-align:center;margin-bottom:28px;letter-spacing:.08em;
+            text-align:center;margin-bottom:24px;letter-spacing:.08em;
         }
-
-        .faq-list{margin-bottom:32px}
-        .faq-item{margin-bottom:18px}
-        .faq-q{font-size:13px;color:#333;margin-bottom:6px;font-weight:400}
+        .faq-list{margin-bottom:28px}
+        .faq-item{margin-bottom:16px}
+        .faq-q{font-size:13px;color:#333;margin-bottom:5px;font-weight:400}
         .faq-a{font-size:12px;color:#888;line-height:1.6;font-weight:300}
 
         .guarantee-box{
-            text-align:center;padding:22px;
-            border:0.5px solid #E2DFD8;border-radius:2px;
-            margin-bottom:24px;
+            text-align:center;padding:20px;
+            border:.5px solid #E2DFD8;border-radius:2px;margin-bottom:20px;
         }
         .guarantee-headline{
             font-family:'Cormorant Garamond','Noto Serif JP',serif;
@@ -184,11 +185,11 @@
         }
         .guarantee-sub{font-size:11px;color:#888;font-weight:300}
 
-        .final-cta{padding:0 0 60px}
+        .final-cta{padding:0 0 64px}
         .btn-final{
             width:100%;padding:20px;
-            background:#1A1A1A;color:#FAF7F2;
-            border:none;font-family:inherit;font-size:15px;font-weight:300;
+            background:#1A1A1A;color:#FAF7F2;border:none;
+            font-family:inherit;font-size:15px;font-weight:300;
             letter-spacing:.12em;cursor:pointer;border-radius:2px;
         }
         .btn-final:active{opacity:.85}
@@ -198,8 +199,7 @@
         .sticky-cta{
             position:fixed;bottom:0;left:0;right:0;
             background:#FAF7F2;padding:10px 16px;
-            border-top:0.5px solid #E2DFD8;z-index:200;
-            display:none;
+            border-top:.5px solid #E2DFD8;z-index:200;display:none;
         }
         .sticky-cta.visible{display:block}
         .sticky-cta .btn-main{padding:14px;font-size:13px}
@@ -207,7 +207,6 @@
 </head>
 <body>
 
-    <!-- HEADER: 出口ゼロ -->
     <div class="header">
         <div class="header-logo">PURELAYER</div>
     </div>
@@ -215,38 +214,45 @@
     <!-- ===================== SECTION 1: HERO ===================== -->
     <section class="hero">
 
-        <!-- 広告の「答え合わせ」— 数字で即確信させる -->
-        <div class="proof-bar">
-            <div class="proof-bar-num">3人</div>
-            <div class="proof-bar-text">職場・学校で話しかけられた<br>「どこの香水？」と聞かれた実績</div>
+        <!-- 信頼バナー: マジョリティの安心感 -->
+        <div class="social-bar">
+            <div class="social-bar-item">
+                累計販売数 <span class="social-bar-num">1,000</span>本突破
+            </div>
+            <span class="social-bar-sep">|</span>
+            <div class="social-bar-item">
+                満足度 <span class="social-bar-num">98.2</span>%
+            </div>
         </div>
 
-        <!-- コピー: 広告の「褒められまくった」→ LP「勝手に褒められる」で感情直結 -->
+        <!-- H1: 広告フックの100%再現 -->
         <div class="hero-copy">
-            <h1 class="hero-h1">清潔感だけで、<br>勝手に褒められる。</h1>
-            <p class="hero-sub">すれ違いざまに振り返らせる。<br>あなたの印象を変える一滴。</p>
-            <div class="hero-stars">★★★★★ 4.8（124件のレビュー）</div>
+            <h1 class="hero-h1">学校や職場で、<br>「どこの香水？」と聞かれた香り。</h1>
+            <p class="hero-sub">強すぎない。なのに、なぜか印象に残る。<br>「シャンプーみたいでいい匂い」と言われる清潔感。</p>
         </div>
 
-        <!-- ボトル画像 — 広告2枚目のトーンとリンクするグラデ背景 -->
+        <!-- ボトル画像 -->
         <div class="hero-visual">
             <picture>
                 <source type="image/avif" srcset="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731&format=avif">
                 <source type="image/webp" srcset="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731&format=webp">
                 <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731#" alt="Oud Stallion by Maison Crivelli" fetchpriority="high" loading="eager" width="800" height="800">
             </picture>
-            <!-- 広告キーワードの「エコー」= 広告で見た言葉をLPで反復 -->
             <div class="hero-echo">香水初心者にも選ばれています</div>
         </div>
 
-        <!-- 価格を「体験の約束」に翻訳する一行 -->
-        <div class="low-risk-offer">
-            コーヒー代で、褒められる体験を試す（10ml ¥1,750）
+        <!-- レビューサマリ -->
+        <div class="hero-review-line">★★★★★ 4.8（124件のレビュー）</div>
+
+        <!-- 10mlお試し: 独立ボタン（目立たせる） -->
+        <div class="trial-cta-area">
+            <button type="button" id="trial-cta" class="btn-trial">まず試す → 10ml ¥1,750（コーヒー代で体験）</button>
+            <div class="trial-note">送料無料 · 最短明日届く</div>
         </div>
 
         <!-- サイズ選択 -->
         <div class="plan-selector">
-            <span class="plan-label">サイズを選ぶ</span>
+            <span class="plan-label">または、サイズを選ぶ</span>
             <div class="plan-list">
                 <div class="plan-row" data-plan="10ml">
                     <div class="plan-radio"><div class="plan-radio-dot"></div></div>
@@ -272,10 +278,23 @@
             </div>
         </div>
 
-        <!-- 主CTA -->
+        <!-- 主CTA + 安心アイコン凝縮 -->
         <div class="cta-area">
-            <button type="button" id="main-cta" class="btn-main">今すぐ体験する</button>
-            <div class="cta-sub">送料無料 · 30日間全額返金保証</div>
+            <button type="button" id="main-cta" class="btn-main">カートに追加する</button>
+            <div class="cta-assurance">
+                <div class="cta-assurance-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    30日間返金保証
+                </div>
+                <div class="cta-assurance-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    最短明日届く
+                </div>
+                <div class="cta-assurance-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                    送料無料
+                </div>
+            </div>
         </div>
     </section>
 
@@ -315,19 +334,19 @@
 
         <div class="trust-row">
             <div class="trust-cell">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                 <span>評価 4.8 / 5.0</span>
             </div>
             <div class="trust-cell">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 <span>30日間<br>全額返金保証</span>
             </div>
             <div class="trust-cell">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                 <span>翌営業日<br>発送</span>
             </div>
             <div class="trust-cell">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
                 <span>全国<br>送料無料</span>
             </div>
         </div>
@@ -390,17 +409,25 @@ document.addEventListener('DOMContentLoaded', () => {
         '100ml': '53230989214064:1,53231016182128:1,53230989541744:1'
     };
 
-    function goCheckout() {
-        const variants = checkoutVariants[selectedPlan];
+    function goCheckout(plan) {
+        const p = plan || selectedPlan;
+        const variants = checkoutVariants[p];
         if (variants) {
             window.location.href = 'https://nemveil.com/cart/' + variants + '?checkout';
         }
     }
 
+    // Main CTA & Final CTA → 選択中のプランで決済
     ['main-cta', 'final-cta', 'sticky-cta-btn'].forEach(id => {
         const el = document.getElementById(id);
-        if (el) el.addEventListener('click', goCheckout);
+        if (el) el.addEventListener('click', () => goCheckout());
     });
+
+    // 10mlお試し専用ボタン → 常に10mlで決済
+    const trialBtn = document.getElementById('trial-cta');
+    if (trialBtn) {
+        trialBtn.addEventListener('click', () => goCheckout('10ml'));
+    }
 
     // ===== 3. Sticky CTA Visibility =====
     const stickyCta = document.getElementById('sticky-cta');
