@@ -38,11 +38,12 @@
         header{display:flex;justify-content:center;align-items:center;height:45px;background-color:var(--bg-color);position:sticky;top:0;z-index:100}
         .brand-logo{font-size:0.8rem;font-weight:400;letter-spacing:0.25em;font-family:'Cormorant Garamond',serif}
         
-        /* Bridge Section */
-        .bridge-tags-wrapper{background-color:#111;width:100vw;margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);padding:18px var(--spacing-base);box-sizing:border-box;min-height:55px;display:flex;align-items:center;justify-content:center;}
-        @media(max-width:600px){.bridge-tags-wrapper{margin-left:calc(-1 * var(--spacing-base));margin-right:calc(-1 * var(--spacing-base));width:calc(100% + var(--spacing-base) * 2)}}
-        .bridge-single-copy{color:#FAF7F2;font-family:'Cormorant Garamond','Noto Serif JP',serif;font-size:13px;letter-spacing:0.15em;font-weight:300;text-align:center;}
-        
+        /* Social Proof Banner (Cream Background) */
+        .social-proof-banner{background-color:#F5F0E8;width:100vw;margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);padding:14px 1rem;box-sizing:border-box;min-height:55px;display:flex;align-items:center;justify-content:center;gap:12px;border-bottom:0.5px solid #E2DFD8}
+        @media(max-width:600px){.social-proof-banner{margin-left:calc(-1 * var(--spacing-base));margin-right:calc(-1 * var(--spacing-base));width:calc(100% + var(--spacing-base) * 2)}}
+        .sp-number{font-family:'Cormorant Garamond','Noto Serif JP',serif;font-size:20px;color:var(--text-color);line-height:1;}
+        .sp-text{font-size:9px;color:#555;line-height:1.4;letter-spacing:0.05em;font-weight:400;}
+
         /* Hero */
         .hero-section{position:relative;width:100%;margin:0 0 1rem 0;padding:0;display:flex;justify-content:center;align-items:center}
         .hero-image-wrapper{position:relative;display:flex;justify-content:center;align-items:center;width:92%;max-width:92%;margin:0 auto;border:none;padding:0;aspect-ratio:1/1}
@@ -51,10 +52,15 @@
         
         .trust-badge-fv{position:absolute;top:2px;left:0;background-color:transparent;border:0.5px solid #aaa;color:#888;padding:0.4rem 0.5rem;font-size:0.6rem;letter-spacing:0.1em;text-align:center;line-height:1.4;border-radius:0;z-index:2}
 
-        .product-info{padding:0.5rem 0 0;text-align:center;min-height:130px} /* CLS */
+        /* Floating Review Widgets */
+        .floating-widgets-container{position:absolute;right:0;top:50%;transform:translateY(-50%);width:48%;display:flex;flex-direction:column;gap:16px;z-index:5}
+        .floating-widget{background:rgba(255,255,255,0.95);border:0.5px solid #E2DFD8;padding:10px;border-radius:2px;box-shadow:0 4px 15px rgba(0,0,0,0.03)}
+        .fw-text{font-size:9px;color:#333;line-height:1.4;margin-bottom:6px;font-weight:400}
+        .fw-author{font-size:8px;color:#888}
+
+        .product-info{padding:0.5rem 0 0;text-align:center;min-height:130px} 
         .hero-main-copy{font-size:1.4rem;line-height:1.5;letter-spacing:0.08em;margin-bottom:0.2rem;font-weight:400;color:var(--text-color);min-height:72px}
         
-        /* De-emphasized sub-copies */
         .hero-sub-copy{font-size:0.85rem;color:#aaa;letter-spacing:0.1em;margin-bottom:0.8rem;font-weight:300;min-height:20px} 
         .hero-reviews-summary{margin-bottom:1.5rem;color:#aaa;font-size:0.75rem;min-height:20px;letter-spacing:0.05em}
         
@@ -126,16 +132,31 @@
 
     <main class="container">
         
-        <!-- P1: 感情の純度を高めるブリッジセクション（1文コピー化） -->
-        <div class="bridge-tags-wrapper">
-            <div class="bridge-single-copy">
-                職場で3人に、香水を褒められた日。
+        <!-- 社会的証明バナー（ユーザーの確信度を引き上げる） -->
+        <div class="social-proof-banner">
+            <div class="sp-number">3人</div>
+            <div class="sp-text">
+                職場・学校で話しかけられた<br>
+                「どこの香水？」と聞かれた実績
             </div>
         </div>
 
         <section class="hero-section full-width">
             <div class="hero-image-wrapper">
                 <div class="trust-badge-fv">30日間<br>返金保証</div>
+                
+                <!-- スクロールを惹きつけるリアルレビューカード -->
+                <div class="floating-widgets-container">
+                    <div class="floating-widget">
+                        <div class="fw-text">「職場で3人に『どこの香水？』と聞かれました」</div>
+                        <div class="fw-author">— Yukiさん・20代男性</div>
+                    </div>
+                    <div class="floating-widget">
+                        <div class="fw-text">「デートで好きな人に褒められた」</div>
+                        <div class="fw-author">— Saeさん・20代女性</div>
+                    </div>
+                </div>
+
                 <picture style="display:block; width:100%; height:100%;">
                     <source type="image/avif" srcset="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731&format=avif">
                     <source type="image/webp" srcset="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731&format=webp">
@@ -153,11 +174,14 @@
         </section>
         
         <div class="product-info">
-            <!-- P2: メインコピー（H1）の刷新 -->
-            <h1 class="hero-main-copy">香水、<br class="pc-hide">はじめて褒められた。</h1>
+            <!-- 過去形から未来形へ（ユーザー体験のシフト） -->
+            <h1 class="hero-main-copy">清潔感だけで、<br class="pc-hide">勝手に褒められる。</h1>
             
-            <p class="hero-sub-copy">Oud Stallion by Maison Crivelli</p>
+            <p class="hero-sub-copy pc-hide">強い香りは要らない。初心者でも一発で正解の香水。</p>
+            
             <div class="hero-reviews-summary">
+                <!-- 文脈の付与により、価格を価値に転換 -->
+                <div style="font-size:11px; color:#888; margin-bottom:6px; letter-spacing:0.05em;">コーヒー代で、職場で褒められる体験を試せる（10ml ¥1,750）</div>
                 <span>★★★★★</span> 4.8 (124件のレビュー)
             </div>
         </div>
@@ -169,7 +193,6 @@
                     <div class="plan-badge-wrapper">
                         <div class="plan-badge" id="dynamic-badge">人気 No.1 / 迷ったらこれ</div>
                     </div>
-                    <!-- P4: 価格の絶対王者化（26px化） -->
                     <div style="margin-bottom:0.2rem; min-height:26px;">
                         <span class="plan-price-large" id="dynamic-price">¥8,980</span>
                     </div>
@@ -212,12 +235,9 @@
                     </div>
                 </div>
 
-                <!-- P3: 第2の入口（10mlお試しボタンの独立化） -->
                 <button type="button" id="trial-10ml-btn" class="btn-primary-outline">まず試す → 10ml ¥1,750</button>
-                
                 <button type="button" id="main-add-to-cart" class="btn-primary">カートに追加する</button>
                 
-                <!-- P4: 補足エリアへの「香水診断で選ぶ」移動 -->
                 <a href="#quiz-section" class="quiz-link-subtext">香水診断で選ぶ</a>
                 
                 <div class="trust-signals-bar">
