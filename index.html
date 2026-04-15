@@ -9,7 +9,7 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
-    <meta name="description" content="清潔感だけで、勝手に褒められる。Oud Stallion by Maison Crivelli — ¥1,750からお試し。">
+    <meta name="description" content="清潔感だけで、勝手に褒められる。学校・職場で3人に聞かれた香水 Oud Stallion — ¥1,750からお試し。">
     <style>
         *{box-sizing:border-box;margin:0;padding:0}
         html{scroll-behavior:smooth}
@@ -24,10 +24,10 @@
             overflow-x:hidden;
         }
 
-        /* ===== HEADER: 出口ゼロ ===== */
+        /* ===== HEADER ===== */
         .header{
             display:flex;justify-content:center;align-items:center;
-            height:40px;background:#FAF7F2;
+            height:42px;background:#FAF7F2;
             position:sticky;top:0;z-index:100;
         }
         .header-logo{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:400;letter-spacing:.3em}
@@ -35,47 +35,71 @@
         /* ===== SECTION 1: HERO ===== */
         .hero{padding:0;text-align:center}
 
-        /* 社会的証明バナー */
+        /* 社会的証明バナー — 広告の「褒められまくった」の答え合わせ */
         .proof-bar{
             background:#F5F0E8;
-            padding:12px 16px;
-            display:flex;align-items:center;justify-content:center;gap:10px;
-            min-height:50px;
+            padding:14px 20px;
+            display:flex;align-items:center;justify-content:center;gap:12px;
+            min-height:52px;
         }
-        .proof-bar-num{font-family:'Cormorant Garamond','Noto Serif JP',serif;font-size:20px;line-height:1;color:#1A1A1A}
-        .proof-bar-text{font-size:9px;color:#555;line-height:1.35;text-align:left;letter-spacing:.04em}
-
-        /* ボトル画像: 画面幅フル */
-        .hero-visual{
-            width:100%;padding:0;margin:0;
-            display:flex;justify-content:center;align-items:center;
-            background:#FAF7F2;
-            aspect-ratio:1/1;
-            overflow:hidden;
+        .proof-bar-num{
+            font-family:'Cormorant Garamond','Noto Serif JP',serif;
+            font-size:22px;line-height:1;color:#1A1A1A;
         }
-        .hero-visual picture{display:block;width:94%;height:auto;margin:0 auto}
-        .hero-visual img{width:100%;height:auto;display:block;object-fit:contain}
+        .proof-bar-text{font-size:9px;color:#555;line-height:1.4;text-align:left;letter-spacing:.04em}
 
-        /* コピー＋CTA */
-        .hero-copy{padding:0 24px 0}
+        /* コピーエリア — 広告→LP の「感情の連続性」の核 */
+        .hero-copy{padding:28px 28px 20px}
         .hero-h1{
             font-family:'Cormorant Garamond','Noto Serif JP',serif;
-            font-size:22px;font-weight:400;
-            line-height:1.5;letter-spacing:.08em;
-            margin-bottom:4px;
+            font-size:24px;font-weight:400;
+            line-height:1.45;letter-spacing:.06em;
+            margin-bottom:10px;
         }
-        .hero-sub{font-size:13px;color:#888;margin-bottom:6px;font-weight:300;letter-spacing:.05em}
-        .hero-stars{font-size:11px;color:#aaa;margin-bottom:20px;letter-spacing:.03em}
+        .hero-sub{
+            font-size:13px;color:#888;
+            line-height:1.65;font-weight:300;
+            letter-spacing:.04em;margin-bottom:4px;
+        }
+        .hero-stars{font-size:11px;color:#aaa;margin-bottom:0;letter-spacing:.03em}
 
-        /* サイズ選択：ラジオボタン・リスト形式 */
-        .plan-selector{
-            padding:0 24px;margin-bottom:16px;text-align:left;
+        /* ボトル画像 — 広告2枚目とトーンを合わせる（明るいグレー背景に白トーン） */
+        .hero-visual{
+            width:100%;padding:0;margin:8px 0 0;
+            display:flex;justify-content:center;align-items:center;
+            background:linear-gradient(180deg, #FAF7F2 0%, #F0EDE6 50%, #FAF7F2 100%);
+            aspect-ratio:1/1;
+            overflow:hidden;
+            position:relative;
         }
+        .hero-visual picture{display:block;width:88%;height:auto;margin:0 auto}
+        .hero-visual img{width:100%;height:auto;display:block;object-fit:contain}
+
+        /* 広告キーワードの「エコー」— 広告で見た言葉を1~2語だけ繰り返す */
+        .hero-echo{
+            position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+            background:rgba(255,255,255,.88);
+            border:0.5px solid #E2DFD8;
+            padding:7px 16px;
+            font-size:10px;color:#555;letter-spacing:.08em;
+            white-space:nowrap;
+            border-radius:1px;
+        }
+
+        /* Low-risk offer — 価格を「体験」に翻訳 */
+        .low-risk-offer{
+            padding:16px 28px 6px;
+            font-size:11px;color:#888;
+            letter-spacing:.04em;
+        }
+
+        /* サイズ選択 — ラジオボタン・リスト */
+        .plan-selector{padding:12px 24px 16px;text-align:left}
         .plan-label{font-size:11px;color:#888;margin-bottom:8px;display:block;letter-spacing:.08em}
         .plan-list{display:flex;flex-direction:column;gap:0}
         .plan-row{
             display:flex;align-items:center;gap:10px;
-            padding:14px 14px;
+            padding:14px;
             border:0.5px solid #E2DFD8;
             border-bottom:none;
             cursor:pointer;
@@ -84,8 +108,6 @@
         .plan-row:first-child{border-radius:3px 3px 0 0}
         .plan-row:last-child{border-bottom:0.5px solid #E2DFD8;border-radius:0 0 3px 3px}
         .plan-row.active{background:#fff;border-color:#1A1A1A}
-        .plan-row:hover{background:rgba(255,255,255,.6)}
-
         .plan-radio{
             width:16px;height:16px;
             border:1.5px solid #ccc;border-radius:50%;
@@ -93,64 +115,53 @@
             display:flex;align-items:center;justify-content:center;
         }
         .plan-row.active .plan-radio{border-color:#1A1A1A}
-        .plan-radio-dot{
-            width:8px;height:8px;
-            border-radius:50%;background:#1A1A1A;
-            display:none;
-        }
+        .plan-radio-dot{width:8px;height:8px;border-radius:50%;background:#1A1A1A;display:none}
         .plan-row.active .plan-radio-dot{display:block}
-
         .plan-info{flex:1;display:flex;justify-content:space-between;align-items:center}
         .plan-size{font-size:13px;color:#1A1A1A;font-weight:400;letter-spacing:.04em}
         .plan-tag{font-size:8px;color:#888;letter-spacing:.06em;margin-left:6px}
         .plan-price{font-family:'Cormorant Garamond',serif;font-size:16px;color:#1A1A1A;font-weight:400}
 
         /* 主CTA */
-        .cta-area{padding:0 24px 32px}
+        .cta-area{padding:0 24px 36px}
         .btn-main{
-            width:100%;
-            padding:18px;
+            width:100%;padding:18px;
             background:#1A1A1A;color:#FAF7F2;
-            border:none;
-            font-family:inherit;font-size:14px;font-weight:300;
-            letter-spacing:.12em;
-            cursor:pointer;
-            border-radius:2px;
+            border:none;font-family:inherit;font-size:14px;font-weight:300;
+            letter-spacing:.12em;cursor:pointer;border-radius:2px;
         }
         .btn-main:active{opacity:.85}
         .cta-sub{font-size:10px;color:#aaa;text-align:center;margin-top:8px;letter-spacing:.04em}
 
         /* ===== SECTION 2: PROOF ===== */
-        .proof{padding:40px 24px;border-top:0.5px solid #E2DFD8}
+        .proof{padding:40px 28px;border-top:0.5px solid #E2DFD8}
+        .proof-section-title{
+            font-family:'Cormorant Garamond','Noto Serif JP',serif;
+            font-size:15px;font-weight:400;letter-spacing:.1em;
+            text-align:center;margin-bottom:28px;color:#1A1A1A;
+        }
 
         .proof-benefits{margin-bottom:32px}
-        .proof-benefits-title{font-size:10px;color:#888;letter-spacing:.12em;margin-bottom:14px;text-transform:uppercase}
         .benefit-item{
             display:flex;gap:10px;align-items:flex-start;
-            margin-bottom:16px;font-size:13px;color:#333;line-height:1.5;
+            margin-bottom:14px;font-size:13px;color:#333;line-height:1.55;
         }
-        .benefit-check{flex-shrink:0;font-size:14px;color:#3B6D11;margin-top:1px}
+        .benefit-check{flex-shrink:0;font-size:13px;color:#3B6D11;margin-top:2px}
 
-        /* UGCカード */
-        .ugc-cards{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
-        .ugc-card{
-            background:#fff;border:0.5px solid #E8E5DE;
-            padding:16px 18px;
-            border-radius:2px;
-        }
+        .ugc-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+        .ugc-card{background:#fff;border:0.5px solid #E8E5DE;padding:16px 18px;border-radius:2px}
         .ugc-quote{font-size:13px;color:#333;line-height:1.6;margin-bottom:8px;font-weight:300}
         .ugc-attr{font-size:10px;color:#aaa;letter-spacing:.04em}
 
-        /* 実績アイコン */
         .trust-row{
-            display:flex;justify-content:center;gap:24px;
+            display:flex;justify-content:center;gap:20px;
             font-size:10px;color:#888;letter-spacing:.04em;text-align:center;
         }
         .trust-cell{display:flex;flex-direction:column;align-items:center;gap:6px;line-height:1.3}
         .trust-cell svg{width:18px;height:18px;color:#bbb}
 
         /* ===== SECTION 3: CLOSING ===== */
-        .closing{padding:40px 24px;border-top:0.5px solid #E2DFD8}
+        .closing{padding:40px 28px;border-top:0.5px solid #E2DFD8}
         .closing-title{
             font-family:'Cormorant Garamond','Noto Serif JP',serif;
             font-size:16px;font-weight:400;
@@ -163,29 +174,22 @@
         .faq-a{font-size:12px;color:#888;line-height:1.6;font-weight:300}
 
         .guarantee-box{
-            text-align:center;
-            padding:20px;
-            border:0.5px solid #E2DFD8;
-            border-radius:2px;
+            text-align:center;padding:22px;
+            border:0.5px solid #E2DFD8;border-radius:2px;
             margin-bottom:24px;
         }
         .guarantee-headline{
             font-family:'Cormorant Garamond','Noto Serif JP',serif;
-            font-size:16px;font-weight:400;
-            margin-bottom:6px;
+            font-size:17px;font-weight:400;margin-bottom:6px;
         }
         .guarantee-sub{font-size:11px;color:#888;font-weight:300}
 
         .final-cta{padding:0 0 60px}
         .btn-final{
-            width:100%;
-            padding:20px;
+            width:100%;padding:20px;
             background:#1A1A1A;color:#FAF7F2;
-            border:none;
-            font-family:inherit;font-size:15px;font-weight:300;
-            letter-spacing:.12em;
-            cursor:pointer;
-            border-radius:2px;
+            border:none;font-family:inherit;font-size:15px;font-weight:300;
+            letter-spacing:.12em;cursor:pointer;border-radius:2px;
         }
         .btn-final:active{opacity:.85}
         .final-note{font-size:10px;color:#aaa;text-align:center;margin-top:10px}
@@ -193,10 +197,8 @@
         /* Sticky CTA */
         .sticky-cta{
             position:fixed;bottom:0;left:0;right:0;
-            background:#FAF7F2;
-            padding:10px 16px;
-            border-top:0.5px solid #E2DFD8;
-            z-index:200;
+            background:#FAF7F2;padding:10px 16px;
+            border-top:0.5px solid #E2DFD8;z-index:200;
             display:none;
         }
         .sticky-cta.visible{display:block}
@@ -205,37 +207,44 @@
 </head>
 <body>
 
-    <!-- ===== HEADER: 出口ゼロ ===== -->
+    <!-- HEADER: 出口ゼロ -->
     <div class="header">
         <div class="header-logo">PURELAYER</div>
     </div>
 
-    <!-- ===== SECTION 1: HERO ===== -->
+    <!-- ===================== SECTION 1: HERO ===================== -->
     <section class="hero">
 
-        <!-- 社会的証明バナー -->
+        <!-- 広告の「答え合わせ」— 数字で即確信させる -->
         <div class="proof-bar">
             <div class="proof-bar-num">3人</div>
             <div class="proof-bar-text">職場・学校で話しかけられた<br>「どこの香水？」と聞かれた実績</div>
         </div>
 
-        <!-- ボトル画像 -->
+        <!-- コピー: 広告の「褒められまくった」→ LP「勝手に褒められる」で感情直結 -->
+        <div class="hero-copy">
+            <h1 class="hero-h1">清潔感だけで、<br>勝手に褒められる。</h1>
+            <p class="hero-sub">すれ違いざまに振り返らせる。<br>あなたの印象を変える一滴。</p>
+            <div class="hero-stars">★★★★★ 4.8（124件のレビュー）</div>
+        </div>
+
+        <!-- ボトル画像 — 広告2枚目のトーンとリンクするグラデ背景 -->
         <div class="hero-visual">
             <picture>
                 <source type="image/avif" srcset="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731&format=avif">
                 <source type="image/webp" srcset="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731&format=webp">
-                <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731#" alt="Oud Stallion" fetchpriority="high" loading="eager" width="800" height="800">
+                <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731#" alt="Oud Stallion by Maison Crivelli" fetchpriority="high" loading="eager" width="800" height="800">
             </picture>
+            <!-- 広告キーワードの「エコー」= 広告で見た言葉をLPで反復 -->
+            <div class="hero-echo">香水初心者にも選ばれています</div>
         </div>
 
-        <!-- コピー -->
-        <div class="hero-copy">
-            <h1 class="hero-h1">清潔感だけで、<br>勝手に褒められる。</h1>
-            <p class="hero-sub">Oud Stallion by Maison Crivelli</p>
-            <div class="hero-stars">★★★★★ 4.8（124件）</div>
+        <!-- 価格を「体験の約束」に翻訳する一行 -->
+        <div class="low-risk-offer">
+            コーヒー代で、褒められる体験を試す（10ml ¥1,750）
         </div>
 
-        <!-- サイズ選択: ラジオボタン・リスト形式 -->
+        <!-- サイズ選択 -->
         <div class="plan-selector">
             <span class="plan-label">サイズを選ぶ</span>
             <div class="plan-list">
@@ -270,22 +279,22 @@
         </div>
     </section>
 
-    <!-- ===== SECTION 2: PROOF ===== -->
+    <!-- ===================== SECTION 2: PROOF ===================== -->
     <section class="proof">
+        <div class="proof-section-title">選ばれる理由</div>
 
         <div class="proof-benefits">
-            <div class="proof-benefits-title">選ばれる理由</div>
             <div class="benefit-item">
                 <span class="benefit-check">✓</span>
-                <span>洗剤のような清潔感 — 強い香りが苦手な方でも安心</span>
+                <span>シャンプーしたての清潔感 — 強い香りが苦手な人に選ばれています</span>
             </div>
             <div class="benefit-item">
                 <span class="benefit-check">✓</span>
-                <span>朝の1プッシュで10時間持続 — つけ直す手間なし</span>
+                <span>朝の1プッシュで丸一日持続 — つけ直す手間なし</span>
             </div>
             <div class="benefit-item">
                 <span class="benefit-check">✓</span>
-                <span>肌に優しい処方 — ユニセックスで誰にでも似合う</span>
+                <span>学校・職場・デートまで全シーン対応 — 場所を選ばない</span>
             </div>
         </div>
 
@@ -295,12 +304,12 @@
                 <div class="ugc-attr">— Yukiさん · 20代男性 · 購入者</div>
             </div>
             <div class="ugc-card">
-                <div class="ugc-quote">「デートで『いい匂いする』って言われた。これ一本で勝ち確。」</div>
-                <div class="ugc-attr">— Aoiさん · 20代女性 · 購入者</div>
+                <div class="ugc-quote">「デパコスの強い匂いが無理な自分には神。柔軟剤の延長みたいな自然さ。」</div>
+                <div class="ugc-attr">— Sotaさん · 20代男性 · 購入者</div>
             </div>
             <div class="ugc-card">
-                <div class="ugc-quote">「テストキットで試して即100mlリピ。朝つけて夜まで香る。」</div>
-                <div class="ugc-attr">— Kaitoさん · 30代男性 · 購入者</div>
+                <div class="ugc-quote">「デートで『いい匂いする』って毎回言われる。これ一本で勝ち確。」</div>
+                <div class="ugc-attr">— Aoiさん · 20代女性 · 購入者</div>
             </div>
         </div>
 
@@ -324,24 +333,24 @@
         </div>
     </section>
 
-    <!-- ===== SECTION 3: CLOSING ===== -->
+    <!-- ===================== SECTION 3: CLOSING ===================== -->
     <section class="closing">
         <div class="closing-title">買わない理由を、なくす。</div>
 
         <div class="faq-list">
             <div class="faq-item">
                 <div class="faq-q">Q. 香りはきつくないですか？</div>
-                <div class="faq-a">A. 「強い香りが苦手な方」のために開発された処方です。石鹸のような清潔感がふんわり続き、職場でも教室でも浮きません。</div>
+                <div class="faq-a">A. 「強い香りが苦手な方」のために開発しました。石鹸のような清潔感がふんわり続き、学校でも職場でも浮きません。広告でも紹介した通り「シャンプーしたての匂い」が一番近い表現です。</div>
             </div>
             <div class="faq-item">
                 <div class="faq-q">Q. 届くのはいつですか？</div>
-                <div class="faq-a">A. 14時までのご注文で当日発送、最短翌日にお届けします。中身が分からない無地の段ボールで配送します。</div>
+                <div class="faq-a">A. 14時までのご注文で当日発送。最短翌日にお届けします。中身が分からない無地の段ボールで配送します。</div>
             </div>
         </div>
 
         <div class="guarantee-box">
             <div class="guarantee-headline">30日間 全額返金保証</div>
-            <div class="guarantee-sub">お肌に合わなかった場合、開封済みでも全額返金いたします。</div>
+            <div class="guarantee-sub">合わなかったら返金できます。リスクはゼロです。</div>
         </div>
 
         <div class="final-cta">
@@ -388,7 +397,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Bind all CTAs
     ['main-cta', 'final-cta', 'sticky-cta-btn'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.addEventListener('click', goCheckout);
