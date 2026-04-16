@@ -28,17 +28,23 @@
         }
         .header-logo{font-family:'Cormorant Garamond',serif;font-size:12px;font-weight:400;letter-spacing:.3em}
 
-        /* ===== 信頼バナー ===== */
+        /* ===== ブリッジバナー（広告動詞タグ） ===== */
         .social-bar{
             background:#F5F0E8;
             padding:8px 16px;
-            display:flex;align-items:center;justify-content:center;gap:14px;
+            display:flex;align-items:center;justify-content:center;gap:8px;
             min-height:32px;
-            font-size:9px;color:#555;letter-spacing:.06em;
+            font-size:9px;color:#555;letter-spacing:.04em;
+            flex-wrap:wrap;
         }
-        .social-bar-item{display:flex;align-items:center;gap:4px;white-space:nowrap}
-        .social-bar-num{font-family:'Cormorant Garamond',serif;font-size:13px;color:#1A1A1A;font-weight:400}
-        .social-bar-sep{color:#ccc;font-size:9px}
+        .bridge-chip{
+            display:inline-flex;align-items:center;
+            border:.5px solid #ccc;border-radius:1px;
+            padding:3px 8px;
+            font-family:'Cormorant Garamond','Noto Serif JP',serif;
+            font-size:9px;color:#444;letter-spacing:.04em;
+            white-space:nowrap;
+        }
 
         /* ===== SECTION 1: HERO ===== */
         .hero{padding:0;text-align:center}
@@ -49,7 +55,12 @@
             font-family:'Cormorant Garamond','Noto Serif JP',serif;
             font-size:20px;font-weight:400;
             line-height:1.45;letter-spacing:.06em;
-            margin-bottom:6px;
+            margin-bottom:2px;
+        }
+        .hero-h1-attr{
+            font-size:10px;color:#aaa;font-weight:300;
+            letter-spacing:.04em;margin-bottom:6px;
+            display:block;
         }
         .hero-sub{
             font-size:12px;color:#666;
@@ -77,9 +88,9 @@
             white-space:nowrap;border-radius:1px;
         }
 
-        /* 星→お試し→プラン の流れを極限圧縮 */
+        /* 星→コピー→画像 の流れ（安全信号を先に） */
         .hero-review-line{
-            padding:6px 24px 0;
+            padding:0 24px 2px;
             font-size:10px;color:#aaa;letter-spacing:.03em;
         }
 
@@ -202,14 +213,6 @@
         .sticky-cta.visible{display:block}
         .sticky-cta .btn-main{padding:13px;font-size:12px}
     </style>
-     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
-   <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "vvn8p99ehp");
-</script>
 </head>
 <body>
 
@@ -220,19 +223,23 @@
     <!-- ===================== SECTION 1: HERO ===================== -->
     <section class="hero">
 
+        <!-- ブリッジ: 広告フックの動詞をそのままタグ化 -->
         <div class="social-bar">
-            <div class="social-bar-item">
-                累計販売数 <span class="social-bar-num">1,000</span>本突破
-            </div>
-            <span class="social-bar-sep">|</span>
-            <div class="social-bar-item">
-                満足度 <span class="social-bar-num">98.2</span>%
-            </div>
+            <span class="bridge-chip">褒められた</span>
+            <span class="bridge-chip">振り返らせた</span>
+            <span class="bridge-chip">職場でバレた</span>
+            <span class="bridge-chip">累計1,000本</span>
         </div>
 
         <div class="hero-copy">
-            <h1 class="hero-h1">学校や職場で、<br>「どこの香水？」と聞かれた香り。</h1>
-            <p class="hero-sub">強すぎない。なのに、なぜか印象に残る。<br>「シャンプーみたいでいい匂い」と言われる清潔感。</p>
+            <!-- 安全信号: 言葉を読む前に「多くの人が満足」を脳に送る -->
+            <div class="hero-review-line">★★★★★ 4.8 / 124件のレビュー</div>
+
+            <!-- H1: ブランドの主張 → 実在ユーザーの成功体験の引用 -->
+            <h1 class="hero-h1">「これ、なんの香水？」と、<br>職場で3人に聞かれた。</h1>
+            <span class="hero-h1-attr">— Yukiさん / 20代男性（購入済み）</span>
+
+            <p class="hero-sub">強い香りじゃないのに、なぜか印象に残る。<br>「シャンプーみたいでいい匂い」と褒められた清潔感。</p>
         </div>
 
         <!-- 画像: Shopifyリサイズ(&width=600)でLCP最適化 + aspect-ratio 4:3 で高さ圧縮 -->
@@ -249,14 +256,13 @@
                     style="width:100%;height:auto;"
                 >
             </picture>
-            <div class="hero-echo">香水初心者にも選ばれています</div>
+            <div class="hero-echo">満足度 98.2% · 初心者に選ばれています</div>
         </div>
 
-        <!-- 信頼→行動の流れ: エコー直後に★、その直後にお試しボタン -->
-        <div class="hero-review-line">★★★★★ 4.8（124件のレビュー）</div>
+        <!-- ★はH1直上に移動済み。ここはスペーサー不要 -->
 
         <div class="trial-cta-area">
-            <button type="button" id="trial-cta" class="btn-trial">まず試す → 10ml ¥1,750（コーヒー代で体験）</button>
+            <button type="button" id="trial-cta" class="btn-trial">成功体験を予約する（10ml ¥1,750）</button>
             <div class="trial-note">送料無料 · 最短明日届く</div>
         </div>
 
@@ -288,7 +294,7 @@
         </div>
 
         <div class="cta-area">
-            <button type="button" id="main-cta" class="btn-main">カートに追加する</button>
+            <button type="button" id="main-cta" class="btn-main">成功体験を予約する</button>
             <div class="cta-assurance">
                 <div class="cta-assurance-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -388,7 +394,7 @@
 
     <!-- Sticky CTA -->
     <div class="sticky-cta" id="sticky-cta">
-        <button type="button" id="sticky-cta-btn" class="btn-main">今すぐ体験する（¥1,750〜）</button>
+        <button type="button" id="sticky-cta-btn" class="btn-main">成功体験を予約する（¥1,750〜）</button>
     </div>
 
     <script src="script.js" defer></script>
