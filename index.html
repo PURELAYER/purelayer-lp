@@ -45,6 +45,15 @@
             font-size:9px;color:#444;letter-spacing:.04em;
             white-space:nowrap;
         }
+        .bridge-chip-dark{
+            display:inline-flex;align-items:center;
+            border:none;border-radius:1px;
+            padding:3px 10px;
+            font-family:'Cormorant Garamond','Noto Serif JP',serif;
+            font-size:9px;color:#F5F2EC;letter-spacing:.04em;
+            background:#1A1A1A;
+            white-space:nowrap;
+        }
 
         /* ===== SECTION 1: HERO ===== */
         .hero{padding:0;text-align:center}
@@ -80,12 +89,14 @@
         .hero-visual picture{display:block;width:82%;height:auto;margin:0 auto}
         .hero-visual img{width:100%;height:auto;display:block;object-fit:contain}
 
-        /* エコーチップ — 画像の下にくっつける */
-        .hero-echo{
-            position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
-            background:rgba(255,255,255,.9);border:.5px solid #E2DFD8;
-            padding:4px 12px;font-size:9px;color:#555;letter-spacing:.06em;
-            white-space:nowrap;border-radius:1px;
+        /* 黒帯オーバーレイ — 画像最下部に重なる初心者訴求 */
+        .hero-overlay-bar{
+            position:absolute;bottom:0;left:0;right:0;
+            background:rgba(26,26,26,.9);
+            padding:10px 16px;
+            text-align:center;
+            font-size:10px;color:#F5F2EC;letter-spacing:.06em;
+            font-weight:300;
         }
 
         /* 星→コピー→画像 の流れ（安全信号を先に） */
@@ -94,14 +105,14 @@
             font-size:10px;color:#aaa;letter-spacing:.03em;
         }
 
-        /* 10mlお試しボタン */
+        /* 10mlお試しボタン（黒反転 = ページ最優先アクション） */
         .trial-cta-area{padding:8px 24px 0}
         .btn-trial{
-            width:100%;padding:12px;
-            background:transparent;color:#1A1A1A;
-            border:1.5px solid #1A1A1A;
-            font-family:inherit;font-size:12px;font-weight:300;
-            letter-spacing:.08em;cursor:pointer;border-radius:2px;
+            width:100%;padding:14px;
+            background:#1A1A1A;color:#F5F2EC;
+            border:none;
+            font-family:inherit;font-size:13px;font-weight:300;
+            letter-spacing:.1em;cursor:pointer;border-radius:2px;
         }
         .btn-trial:active{opacity:.85}
         .trial-note{font-size:8px;color:#aaa;text-align:center;margin-top:3px;letter-spacing:.03em}
@@ -212,7 +223,29 @@
         }
         .sticky-cta.visible{display:block}
         .sticky-cta .btn-main{padding:13px;font-size:12px}
+
+        /* スクロール誘発: バウンス矢印 */
+        .scroll-hint{
+            text-align:center;padding:8px 0 4px;
+            color:#bbb;font-size:14px;line-height:1;
+        }
+        .scroll-hint span{
+            display:inline-block;
+            animation:bounce 1.5s infinite;
+        }
+        @keyframes bounce{
+            0%,100%{transform:translateY(0)}
+            50%{transform:translateY(5px)}
+        }
     </style>
+     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
+   <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vvn8p99ehp");
+</script>
 </head>
 <body>
 
@@ -223,12 +256,11 @@
     <!-- ===================== SECTION 1: HERO ===================== -->
     <section class="hero">
 
-        <!-- ブリッジ: 広告フックの動詞をそのままタグ化 -->
+        <!-- ブリッジ: 3タグに絞り + 権威チップを黒反転 -->
         <div class="social-bar">
             <span class="bridge-chip">褒められた</span>
-            <span class="bridge-chip">振り返らせた</span>
-            <span class="bridge-chip">職場でバレた</span>
-            <span class="bridge-chip">累計1,000本</span>
+            <span class="bridge-chip">初心者向け</span>
+            <span class="bridge-chip-dark">累計1,000本</span>
         </div>
 
         <div class="hero-copy">
@@ -256,7 +288,7 @@
                     style="width:100%;height:auto;"
                 >
             </picture>
-            <div class="hero-echo">満足度 98.2% · 初心者に選ばれています</div>
+            <div class="hero-overlay-bar">香水初心者の91%が「これでよかった」と回答</div>
         </div>
 
         <!-- ★はH1直上に移動済み。ここはスペーサー不要 -->
@@ -292,6 +324,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- スクロール誘発: 控えめなバウンス矢印 -->
+        <div class="scroll-hint"><span>∨</span></div>
 
         <div class="cta-area">
             <button type="button" id="main-cta" class="btn-main">成功体験を予約する</button>
