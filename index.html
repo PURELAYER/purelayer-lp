@@ -83,15 +83,15 @@
             letter-spacing:.02em;
         }
 
-        /* レビュー行 */
-        .tt-stars{font-size:11px;color:#888;padding:4px 0 8px;letter-spacing:.02em}
+        /* レビュー行（画像直下） */
+        .tt-stars{font-size:11px;color:#888;padding:10px 0 4px;letter-spacing:.02em}
 
-        /* メインコピー: TikTok広告のトーンを完全移植 */
-        .tt-copy{padding:0 24px 8px}
+        /* メインコピー: 画像の下に配置（広告構図を再現） */
+        .tt-copy{padding:0 24px 10px}
         .tt-h1{
             font-family:var(--sys-sans);
             font-size:22px;font-weight:800;
-            line-height:1.4;letter-spacing:0;
+            line-height:1.3;letter-spacing:-.02em;
             color:var(--text);
             margin-bottom:4px;
         }
@@ -100,8 +100,9 @@
             letter-spacing:.02em;display:block;margin-bottom:6px;
         }
         .tt-sub{
-            font-size:13px;color:#666;font-weight:400;
-            line-height:1.55;letter-spacing:.02em;
+            font-family:var(--brand-serif);
+            font-size:12px;color:#888;font-weight:300;
+            line-height:1.55;letter-spacing:.04em;
         }
 
         /* 商品画像: 白背景・クリーンカット */
@@ -116,14 +117,16 @@
         .tt-visual picture{display:block;width:80%;margin:0 auto}
         .tt-visual img{width:100%;height:auto;display:block;object-fit:contain}
 
-        /* 初心者訴求オーバーレイ */
+        /* 初心者訴求オーバーレイ（幅70%・角丸・浮遊感） */
         .tt-overlay{
-            position:absolute;bottom:0;left:0;right:0;
-            background:rgba(26,26,26,.88);
-            padding:10px 16px;
+            position:absolute;bottom:12px;left:50%;transform:translateX(-50%);
+            width:70%;
+            background:rgba(26,26,26,.80);
+            padding:8px 14px;
             text-align:center;
-            font-size:11px;color:#F5F2EC;letter-spacing:.04em;
-            font-weight:500;
+            font-size:10px;color:#F5F2EC;letter-spacing:.04em;
+            font-weight:400;
+            border-radius:4px;
         }
 
         /* 巨大CTA（FV内・スクロール不要） */
@@ -276,23 +279,14 @@
          ===================================================== -->
     <section class="tiktok-fv">
 
-        <!-- タグチップ（TikTokの丸タグ風） -->
+        <!-- タグチップ（ヘッダー直下） -->
         <div class="tt-chips">
             <span class="tt-chip">褒められた</span>
             <span class="tt-chip">初心者向け</span>
             <span class="tt-chip-dark">累計1,000本</span>
         </div>
 
-        <div class="tt-stars">★★★★★ 4.8 / 124件のレビュー</div>
-
-        <!-- メインコピー: TikTok広告のゴシック太字を完全再現 -->
-        <div class="tt-copy">
-            <h1 class="tt-h1">「これ、なんの香水？」と、<br>職場で3人に聞かれた。</h1>
-            <span class="tt-h1-attr">— Yukiさん / 20代男性（購入済み）</span>
-            <p class="tt-sub">強い香りじゃないのに、なぜか印象に残る。<br>「シャンプーみたいでいい匂い」と褒められた清潔感。</p>
-        </div>
-
-        <!-- 商品画像: 白背景・クリーンカット -->
+        <!-- ① 商品画像を最上部に（広告構図の再現） -->
         <div class="tt-visual">
             <picture>
                 <source type="image/webp" srcset="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/a_luxury_perfume_bottle_surrounded_by_soft_white_flowers_light_musky_smoke_and_sandalwood_textures__6uvb7fggwj2b4f320yph_0.webp?&width=600">
@@ -309,7 +303,17 @@
             <div class="tt-overlay">香水初心者の91%が「これでよかった」と回答</div>
         </div>
 
-        <!-- 巨大CTA（FV内・スクロール不要） -->
+        <!-- ② 評価星（画像直下で信頼を補強） -->
+        <div class="tt-stars">★★★★★ 4.8 / 124件のレビュー</div>
+
+        <!-- ③ コピー（画像を見た後に「体験談」として読ませる） -->
+        <div class="tt-copy">
+            <h1 class="tt-h1">「これ、なんの香水？」と、<br>職場で3人に聞かれた。</h1>
+            <span class="tt-h1-attr">— Yukiさん / 20代男性（購入済み）</span>
+            <p class="tt-sub">強い香りじゃないのに、なぜか印象に残る。<br>「シャンプーみたいでいい匂い」と褒められた清潔感。</p>
+        </div>
+
+        <!-- ④ 巨大CTA（コピー直後で衝動を逃さない） -->
         <div class="tt-cta-area">
             <button type="button" id="trial-cta" class="btn-tt">今すぐ ¥1,750 で体験する</button>
             <div class="tt-cta-note">送料無料 · 最短明日届く · 30日間返金保証</div>
@@ -457,6 +461,7 @@
     <script src="script.js" defer></script>
 </body>
 </html>
+
 
 
 <script>
