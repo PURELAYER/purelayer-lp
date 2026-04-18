@@ -63,21 +63,30 @@
             text-align:center;
         }
 
-        /* レビュー行（画像直下） */
-        .tt-stars{font-size:12px;color:#555;padding:8px 0 2px;letter-spacing:.02em;font-weight:500}
-
         /* メインコピー */
-        .tt-copy{padding:0 20px 6px}
+        .tt-copy{padding:0 20px 4px}
         .tt-h1{
             font-family:var(--sys-sans);
             font-size:21px;font-weight:800;
             line-height:1.3;letter-spacing:-.02em;
             color:var(--text);
-            margin-bottom:4px;
+            margin-bottom:0;
         }
-        .tt-sub{
-            font-size:12px;color:#888;font-weight:400;
-            line-height:1.5;letter-spacing:.02em;
+
+        /* ベネフィットリスト（アイコン付き箇条書き） */
+        .tt-benefits{
+            display:flex;flex-direction:column;gap:4px;
+            padding:6px 28px 6px;
+            text-align:left;
+        }
+        .tt-benefit-item{
+            display:flex;align-items:center;gap:6px;
+            font-size:12px;color:#555;font-weight:400;
+            letter-spacing:.02em;
+        }
+        .tt-benefit-item svg{
+            width:14px;height:14px;flex-shrink:0;
+            color:#3B6D11;
         }
 
         /* 商品画像 */
@@ -251,13 +260,25 @@
             </picture>
         </div>
 
-        <!-- ② 評価（人数を際立たせる表現） -->
-        <div class="tt-stars">124人が星5評価 ★★★★★</div>
-
-        <!-- ③ H1（広告のCTR 9%フックをそのまま移植） -->
+        <!-- ② H1（広告のCTR 9%フックをそのまま移植） -->
         <div class="tt-copy">
             <h1 class="tt-h1">学校・職場で「いい匂い」と<br>褒められまくった。</h1>
-            <p class="tt-sub">香水初心者が選ぶ、さりげなく香る1本。<br>1,000本突破の理由がわかります。</p>
+        </div>
+
+        <!-- ③ ベネフィットリスト（スキャン速度に合わせた箇条書き） -->
+        <div class="tt-benefits">
+            <div class="tt-benefit-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>お風呂上がりの香り</span>
+            </div>
+            <div class="tt-benefit-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>一日中匂い続く</span>
+            </div>
+            <div class="tt-benefit-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>さりげない強さ</span>
+            </div>
         </div>
 
         <!-- ④ エビデンス（CTA直上で最後の背中を押す） -->
