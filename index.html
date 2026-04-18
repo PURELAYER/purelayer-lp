@@ -59,17 +59,17 @@
            ======================================================== */
         .tiktok-fv{
             background:#fff;
-            padding:0;
+            padding:0 0 24px;
             text-align:center;
             min-height:calc(100vh - 38px);
             min-height:calc(100dvh - 38px);
             display:flex;
             flex-direction:column;
-            justify-content:center;
+            justify-content:flex-start; /* 重心を上部へ移動 */
         }
 
         /* メインコピー */
-        .tt-copy{padding:0 20px;margin-bottom:10px}
+        .tt-copy{padding:0 20px;margin-bottom:24px} /* 余白を空け、視線の「間」を作る */
         .tt-h1{
             font-family:var(--sys-sans);
             font-size:21px;font-weight:800;
@@ -83,7 +83,7 @@
             display:flex;flex-direction:column;gap:7px;
             padding:0;
             width:max-content;
-            margin:0 auto 14px;
+            margin:0 auto 24px; /* エビデンスとの間に一呼吸おく */
         }
         .tt-benefit-item{
             display:flex;align-items:center;gap:8px;
@@ -103,7 +103,7 @@
             display:flex;justify-content:center;align-items:center;
             aspect-ratio:4/3;
             overflow:hidden;
-            margin-bottom:8px;
+            margin-bottom:16px; /* 画像とコピーの間のゆとり */
         }
         .tt-visual picture{display:block;width:75%;max-width:320px;margin:0 auto}
         .tt-visual img{width:100%;height:auto;display:block;object-fit:contain}
@@ -111,7 +111,8 @@
         /* CTA直上のエビデンス行 */
         .tt-evidence{
             font-size:11px;color:#555;font-weight:500;
-            padding:0 0 6px;letter-spacing:.02em;
+            padding:0;margin-bottom:6px; /* CTAとセットに見せるため狭く */
+            letter-spacing:.02em;
         }
 
         /* 巨大CTA */
