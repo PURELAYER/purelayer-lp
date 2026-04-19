@@ -126,9 +126,10 @@
             cursor:pointer;border-radius:3px;
         }
         .btn-tt:active{opacity:.85}
+        .btn-tt:active{opacity:.85}
         .tt-cta-note{
-            font-size:9px;color:#aaa;text-align:center;
-            margin-top:5px;letter-spacing:.02em;font-weight:400;
+            font-size:10px;color:#888;text-align:center;
+            margin-top:8px;letter-spacing:.02em;font-weight:400;
         }
 
         /* ========================================================
@@ -189,7 +190,8 @@
             letter-spacing:.12em;cursor:pointer;border-radius:2px;
         }
         .btn-final:active{opacity:.85}
-        .final-note{font-size:9px;color:#aaa;text-align:center;margin-top:8px}
+        .btn-final:active{opacity:.85}
+        .final-note{font-size:10px;color:#888;text-align:center;margin-top:10px;letter-spacing:.02em}
 
         /* Sticky CTA */
         .sticky-cta{
@@ -200,30 +202,7 @@
         .sticky-cta.visible{display:block}
         .sticky-cta .btn-tt{padding:13px;font-size:12px;border-radius:2px}
 
-        /* サイズ選択（Proof内に移動） */
-        .plan-selector{padding:0 0 16px;text-align:left}
-        .plan-label{font-size:10px;color:#888;margin-bottom:6px;display:block;letter-spacing:.08em}
-        .plan-list{display:flex;flex-direction:column;gap:0}
-        .plan-row{
-            display:flex;align-items:center;gap:10px;
-            padding:11px 14px;border:.5px solid #E2DFD8;border-bottom:none;
-            cursor:pointer;transition:background .15s;
-        }
-        .plan-row:first-child{border-radius:3px 3px 0 0}
-        .plan-row:last-child{border-bottom:.5px solid #E2DFD8;border-radius:0 0 3px 3px}
-        .plan-row.active{background:#fff;border-color:var(--text)}
-        .plan-radio{
-            width:15px;height:15px;border:1.5px solid #ccc;border-radius:50%;
-            flex-shrink:0;display:flex;align-items:center;justify-content:center;
-        }
-        .plan-row.active .plan-radio{border-color:var(--text)}
-        .plan-radio-dot{width:7px;height:7px;border-radius:50%;background:var(--text);display:none}
-        .plan-row.active .plan-radio-dot{display:block}
-        .plan-info{flex:1;display:flex;justify-content:space-between;align-items:center}
-        .plan-size{font-size:12px;color:var(--text);font-weight:400;letter-spacing:.04em}
-        .plan-tag{font-size:8px;color:#888;letter-spacing:.06em;margin-left:5px}
-        .plan-price{font-family:var(--brand-serif);font-size:15px;color:var(--text);font-weight:400}
-
+        /* (Removed plan-selector styles) */
         .cta-area{padding:4px 0 10px}
         .btn-main{
             width:100%;padding:16px;
@@ -296,7 +275,7 @@
         <!-- ⑤ CTA -->
         <div class="tt-cta-area">
             <button type="button" id="trial-cta" class="btn-tt">今すぐ ¥1,750 で体験する</button>
-            <div class="tt-cta-note">送料無料 · 最短明日届く · 30日間返金保証</div>
+            <div class="tt-cta-note">住所入力不要。Apple Pay / Google Pay 対応</div>
         </div>
     </section>
 
@@ -353,36 +332,8 @@
             </div>
         </div>
 
-        <!-- サイズ選択（Proof内に配置） -->
-        <div class="plan-selector">
-            <span class="plan-label">サイズを選ぶ</span>
-            <div class="plan-list">
-                <div class="plan-row" data-plan="10ml">
-                    <div class="plan-radio"><div class="plan-radio-dot"></div></div>
-                    <div class="plan-info">
-                        <span class="plan-size">10ml</span>
-                        <span class="plan-price">¥1,750</span>
-                    </div>
-                </div>
-                <div class="plan-row active" data-plan="50ml">
-                    <div class="plan-radio"><div class="plan-radio-dot"></div></div>
-                    <div class="plan-info">
-                        <span class="plan-size">50ml <span class="plan-tag">人気 No.1</span></span>
-                        <span class="plan-price">¥8,980</span>
-                    </div>
-                </div>
-                <div class="plan-row" data-plan="100ml">
-                    <div class="plan-radio"><div class="plan-radio-dot"></div></div>
-                    <div class="plan-info">
-                        <span class="plan-size">100ml <span class="plan-tag">コスパ最高</span></span>
-                        <span class="plan-price">¥14,800</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="cta-area">
-            <button type="button" id="main-cta" class="btn-main">成功体験を予約する</button>
+            <button type="button" id="main-cta" class="btn-main">今すぐ ¥1,750 で体験する</button>
             <div class="cta-assurance">
                 <div class="cta-assurance-item">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -421,8 +372,8 @@
         </div>
 
         <div class="final-cta">
-            <button type="button" id="final-cta" class="btn-final">今すぐ体験する</button>
-            <div class="final-note">¥1,750〜 · 送料無料 · リスクゼロ</div>
+            <button type="button" id="final-cta" class="btn-final">今すぐ ¥1,750 で体験する</button>
+            <div class="final-note">住所入力不要。Apple Pay / Google Pay 対応</div>
         </div>
     </section>
 
@@ -442,46 +393,29 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ===== 1. Plan Selection (Radio List) =====
-    const planRows = document.querySelectorAll('.plan-row');
-    let selectedPlan = '50ml';
+    // ===== 1. Single Path Checkout Logic (10ml Fixed) =====
+    const checkoutVariant = '53230989574512:1';
 
-    planRows.forEach(row => {
-        row.addEventListener('click', () => {
-            planRows.forEach(r => r.classList.remove('active'));
-            row.classList.add('active');
-            selectedPlan = row.dataset.plan;
-        });
-    });
-
-    // ===== 2. Checkout Redirect =====
-    const checkoutVariants = {
-        '10ml':  '53230989574512:1',
-        '50ml':  '53230989181296:1,53231016182128:1',
-        '100ml': '53230989214064:1,53231016182128:1,53230989541744:1'
-    };
-
-    function goCheckout(plan) {
-        const p = plan || selectedPlan;
-        const variants = checkoutVariants[p];
-        if (variants) {
-            window.location.href = 'https://nemveil.com/cart/' + variants + '?checkout';
+    function goCheckout() {
+        // Capture "InitiateCheckout" intent
+        if (window.clarity) {
+            window.clarity("set", "InitiateCheckout", "true");
         }
+        if (window.ttq) {
+            window.ttq.track('InitiateCheckout', {});
+        }
+
+        // Direct to Shopify Checkout (Bypass Cart)
+        window.location.href = `https://nemveil.com/cart/${checkoutVariant}?checkout=true`;
     }
 
-    // Main CTA & Final CTA → 選択中のプランで決済
-    ['main-cta', 'final-cta', 'sticky-cta-btn'].forEach(id => {
+    // Bind to all CTA buttons
+    ['trial-cta', 'main-cta', 'final-cta', 'sticky-cta-btn'].forEach(id => {
         const el = document.getElementById(id);
-        if (el) el.addEventListener('click', () => goCheckout());
+        if (el) el.addEventListener('click', goCheckout);
     });
 
-    // FV内の10ml専用ボタン → 常に10mlで決済
-    const trialBtn = document.getElementById('trial-cta');
-    if (trialBtn) {
-        trialBtn.addEventListener('click', () => goCheckout('10ml'));
-    }
-
-    // ===== 3. Sticky CTA Visibility =====
+    // ===== 2. Sticky CTA Visibility =====
     const stickyCta = document.getElementById('sticky-cta');
     const trialArea = document.getElementById('trial-cta');
 
