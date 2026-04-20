@@ -64,7 +64,8 @@
         <!-- 4. Product Info Architecture -->
         <section class="nf-product-info">
             <h1 class="nf-title">ウードスタリオン<br>エクストレ ド パルファム</h1>
-            <p class="nf-desc">朝の1プッシュで丸一日香りが持続する、洗練されたウッディフローラル。<br><br>強い香水が苦手な方に向けた、シャンプーしたての清潔感を纏うマスターピース。すれ違う時に「いい匂い」と振り返られる、そんな非日常を日常に与えます。</p>
+            <p class="nf-lead">まとうのではなく、<br>にじみ出る清潔感。</p>
+            <p class="nf-desc">お風呂上がりの肌に、空気がそっと触れるような香り。香水をつけているのに、香水らしくない。「何かいい匂いがする」と感じさせながら、その正体はわからせない。それが、PURELAYERが目指した透明なひと重ねです。<br><br>狙っていないタイミングで、「なんかいい匂いするね」と言われた日のことを、あなたは一日中覚えていると思います。そういう距離の縮め方が、あります。</p>
             
             <div class="nf-price-row">
                 <span class="nf-price" id="dynamic-price">¥1,750</span>
@@ -101,18 +102,25 @@
         <!-- 5. Accordion Section -->
         <section class="nf-accordions">
             <details class="nf-accordion">
-                <summary>Shopping Bag <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></summary>
+                <summary>SCENT DESCRIPTION <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></summary>
                 <div class="nf-ac-content">
-                    カートに追加されました。Apple Pay / Google Payでの決済に対応しています。
+                    <strong>TOP:</strong> ベルガモット、ホワイトムスク<br>
+                    洗い立てのシャツが日差しに乾いていくような、混じりけのない白。肌に触れた瞬間、「清潔な人だ」という印象を静かに刷り込む。<br><br>
+                    
+                    <strong>MIDDLE:</strong> ウード（沈香）、サンダルウッド<br>
+                    ウードというと重く感じるかもしれないが、ここでのウードは違う。石鹸の泡の奥に、ほのかな温もりが溶けているような、清潔な深み。<br><br>
+                    
+                    <strong>BASE:</strong> アンバー、シダーウッド<br>
+                    香りが消えた後でも、あなたがその場にいたことだけは、わかる。主張しないまま、記憶には残る。
                 </div>
             </details>
             <details class="nf-accordion">
-                <summary>SCENT DESCRIPTION <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></summary>
+                <summary>HOW TO USE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></summary>
                 <div class="nf-ac-content">
-                    トップノート：ベルガモット、カルダモン<br>
-                    ミドルノート：ジャスミン、ホワイトティー、アイリス<br>
-                    ベースノート：シダーウッド、サンダルウッド、ホワイトムスク<br><br>
-                    肌の温度に馴染むように香る、透明感のある仕上がりです。
+                    <strong>手順01:</strong> 空中にワンプッシュして、その下をくぐるだけ。それだけで、あなたは一日中「清潔な人」として記憶されます。<br><br>
+                    <strong>手順02:</strong> つけすぎが心配な方は、手首の内側にごく軽くひと吹き。擦らないでください。香りは、熱で自然にほどけます。<br><br>
+                    <strong>手順03:</strong> 慣れてきたら、胸元か耳の後ろへ。「香水をしている」とは気づかれません。ただ、「なんかいい感じの人だな」とだけ、思われます。<br><br>
+                    <em>Note: はじめてで不安なら、最初は1プッシュから。香りは足すことはできても、引くことはできないから。</em>
                 </div>
             </details>
             <details class="nf-accordion">
@@ -461,7 +469,16 @@ ul { list-style: none; }
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0.04em;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
+    color: var(--nf-text);
+}
+.nf-lead {
+    font-size: 15px;
+    font-weight: 500;
+    font-family: var(--nf-serif);
+    line-height: 1.6;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
     color: var(--nf-text);
 }
 .nf-desc {
@@ -711,5 +728,6 @@ ul { list-style: none; }
     text-align: center;
     letter-spacing: 0.05em;
 }
+
 
 </style>
