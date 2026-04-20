@@ -606,7 +606,8 @@ ul { list-style: none; }
 
 /* ===== 6. Reviews ===== */
 .nf-reviews {
-    padding: 0 24px;
+    padding: 60px 24px 0;
+    border-top: 1px solid var(--nf-border);
 }
 .nf-section-title {
     font-family: var(--nf-serif);
@@ -661,4 +662,54 @@ ul { list-style: none; }
     border-radius: 2px;
     border: 1px solid var(--nf-border);
 }
+
+/* ===== 7. Footer ===== */
+.nf-footer {
+    border-top: 1px solid var(--nf-border);
+    background: #fafafa; /* 薄いグレー/上質なオフホワイト */
+    padding: 80px 24px 60px; /* たっぷりとした余白 */
+    font-family: var(--nf-sans);
+}
+.nf-footer-logo {
+    font-family: var(--nf-serif);
+    font-size: 15px; /* 小さく配置 */
+    letter-spacing: 0.2em;
+    margin-bottom: 40px;
+    text-align: center;
+    color: #1a1a1a;
+}
+.nf-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 24px;
+    row-gap: 16px;
+    margin-bottom: 32px;
+}
+.nf-footer-link {
+    font-size: 10px; /* 極小サイズ */
+    color: #1a1a1a; /* 漆黒ではなく深いチャコールグレー */
+    text-decoration: none;
+    letter-spacing: 0.1em;
+}
+.nf-footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 60px;
+}
+.nf-footer-social-link {
+    font-size: 10px;
+    color: #1a1a1a;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.nf-footer-copy {
+    font-size: 10px;
+    color: #999;
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
 </style>
