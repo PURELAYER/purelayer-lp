@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oud Stallion | PURELAYER</title>
 
-    <!-- Clarity: 同期読み込みで早期離脱者も確実に捕捉 -->
+    <!-- Clarity -->
     <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -14,377 +14,385 @@
     })(window, document, "clarity", "script", "vvn8p99ehp");
     </script>
 
-    <!-- Fonts: Cormorant Garamond (Latin) — FVはシステムフォントで即時描画。display=swap適用済み -->
+    <!-- Fonts: Brand Serif (Cormorant Garamond) & System Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
 
     <meta name="description" content="学校や職場で『どこの香水？』と聞かれた香り。累計販売1,000本突破、満足度98.2%。¥1,750からお試し。">
 
-    <!-- Cloudflare: deferでLCPを妨げない -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
 
     <style>
-        *{box-sizing:border-box;margin:0;padding:0}
-        html{scroll-behavior:smooth}
-
-        /* ===== System Font Stack（FOUT完全排除） ===== */
-        :root{
-            --sys-sans:'Hiragino Kaku Gothic ProN','Hiragino Sans','BIZ UDPGothic','Meiryo',sans-serif;
-            --brand-serif:'Cormorant Garamond','Yu Mincho','Hiragino Mincho ProN',serif;
-            --bg-brand:#FAF7F2;
-            --text:#1A1A1A;
-        }
-
-        body{
-            font-family:var(--sys-sans);
-            font-weight:300;background:var(--bg-brand);color:var(--text);
-            line-height:1.7;letter-spacing:.04em;
-            -webkit-font-smoothing:antialiased;overflow-x:hidden;
-        }
-
-        /* ===== HEADER ===== */
-        .header{
-            display:flex;justify-content:center;align-items:center;
-            height:38px;background:#fff;
-            position:sticky;top:0;z-index:100;
-            border-bottom:.5px solid #eee;
-        }
-        .header-logo{font-family:var(--sys-sans);font-size:11px;font-weight:700;letter-spacing:.25em}
-
         /* ========================================================
-           SECTION 0: FV — ノイズゼロ・広告直結構造
+           NONFICTION Design System
            ======================================================== */
-        .tiktok-fv{
-            background:#fff;
-            padding:0 0 24px;
-            text-align:center;
-            min-height:calc(100vh - 38px);
-            min-height:calc(100dvh - 38px);
-            display:flex;
-            flex-direction:column;
-            justify-content:flex-start; /* 重心を上部へ移動 */
+        :root {
+            /* 抜け感のあるクリーンなサンセリフと、優美なセリフ体の対比 */
+            --nf-sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", "Meiryo", sans-serif;
+            --nf-serif: 'Cormorant Garamond', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+            --nf-bg: #FFFFFF;
+            --nf-text: #1a1a1a;
+            --nf-border: #E8E5E1;
+            --nf-gray: #666666;
         }
 
-        /* メインコピー */
-        .tt-copy{padding:0 20px;margin-bottom:24px} /* 余白を空け、視線の「間」を作る */
-        .tt-h1{
-            font-family:var(--sys-sans);
-            font-size:21px;font-weight:800;
-            line-height:1.3;letter-spacing:-.02em;
-            color:var(--text);
-            margin:0;
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--nf-sans);
+            font-weight: 300;
+            background: var(--nf-bg);
+            color: var(--nf-text);
+            line-height: 1.8;
+            letter-spacing: 0.04em;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        /* ベネフィットリスト（アイコン付き箇条書き） */
-        .tt-benefits{
-            display:flex;flex-direction:column;gap:7px;
-            padding:0;
-            width:max-content;
-            margin:0 auto 24px; /* エビデンスとの間に一呼吸おく */
-        }
-        .tt-benefit-item{
-            display:flex;align-items:center;gap:8px;
-            text-align:left;
-            font-size:12px;color:#444;font-weight:400;
-            letter-spacing:.02em;
-        }
-        .tt-benefit-item svg{
-            width:14px;height:14px;flex-shrink:0;
-            color:#333;
+        svg { display: block; }
+        ul { list-style: none; }
+
+        /* ===== 1. Announcement Bar ===== */
+        .nf-announcement {
+            background: #000;
+            color: #fff;
+            font-size: 10px;
+            text-align: center;
+            padding: 10px 20px;
+            letter-spacing: 0.05em;
+            font-weight: 300;
         }
 
-        /* 商品画像 */
-        .tt-visual{
-            width:100%;
-            background:#fff;
-            display:flex;justify-content:center;align-items:center;
-            aspect-ratio:4/3;
-            overflow:hidden;
-            margin-bottom:16px; /* 画像とコピーの間のゆとり */
+        /* ===== 2. Header (Minimal / Icon driven) ===== */
+        .nf-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .tt-visual picture{display:block;width:75%;max-width:320px;margin:0 auto}
-        .tt-visual img{width:100%;height:auto;display:block;object-fit:contain}
-
-        /* CTA直上のエビデンス行 */
-        .tt-evidence{
-            font-size:11px;color:#555;font-weight:500;
-            padding:0;margin-bottom:6px; /* CTAとセットに見せるため狭く */
-            letter-spacing:.02em;
+        .nf-header-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
-
-        /* 巨大CTA */
-        .tt-cta-area{padding:0 20px}
-        .btn-tt{
-            width:100%;padding:16px;
-            background:var(--text);color:#fff;border:none;
-            font-family:var(--sys-sans);
-            font-size:14px;font-weight:700;
-            letter-spacing:.06em;
-            cursor:pointer;border-radius:3px;
-        }
-        .btn-tt:active{opacity:.85}
-        .btn-tt:active{opacity:.85}
-        .tt-cta-note{
-            font-size:10px;color:#888;text-align:center;
-            margin-top:8px;letter-spacing:.02em;font-weight:400;
+        .nf-icon { width: 22px; height: 22px; color: var(--nf-text); stroke-width: 1.2; }
+        .nf-logo {
+            font-family: var(--nf-serif);
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: 0.15em;
         }
 
-        /* ========================================================
-           SECTION 2: PROOF — ブランドLP（ベージュ + Serif）
-           ======================================================== */
-        .proof{padding:32px 24px;background:var(--bg-brand);border-top:.5px solid #E2DFD8}
-        .proof-section-title{
-            font-family:var(--brand-serif);
-            font-size:14px;font-weight:400;letter-spacing:.1em;
-            text-align:center;margin-bottom:20px;color:var(--text);
+        /* ===== 3. Hero Visual ====== */
+        .nf-main { padding-bottom: 80px; }
+        .nf-visual {
+            width: 100%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px 0 32px;
         }
-        .proof-benefits{margin-bottom:24px}
-        .benefit-item{
-            display:flex;gap:8px;align-items:flex-start;
-            margin-bottom:10px;font-size:12.5px;color:#333;line-height:1.55;
-        }
-        .benefit-check{flex-shrink:0;font-size:12px;color:#3B6D11;margin-top:2px}
+        .nf-visual picture { display: block; width: 85%; max-width: 400px; margin: 0 auto; }
+        .nf-visual img { width: 100%; height: auto; display: block; object-fit: contain; }
 
-        .ugc-cards{display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
-        .ugc-card{background:#fff;border:.5px solid #E8E5DE;padding:13px 15px;border-radius:2px}
-        .ugc-quote{font-size:12.5px;color:#333;line-height:1.6;margin-bottom:5px;font-weight:300}
-        .ugc-attr{font-size:9px;color:#aaa;letter-spacing:.04em}
+        /* ===== 4. Product Info (Typography heavy) ===== */
+        .nf-product-info { padding: 0 24px; }
+        .nf-title {
+            font-size: 19px;
+            font-weight: 400;
+            line-height: 1.5;
+            letter-spacing: 0.04em;
+            margin-bottom: 20px;
+            color: var(--nf-text);
+        }
+        .nf-desc {
+            font-size: 13px;
+            color: var(--nf-gray);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        .nf-price-row {
+            margin-bottom: 32px;
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .nf-price {
+            font-family: var(--nf-sans);
+            font-size: 14px;
+            font-weight: 400;
+        }
+        .nf-guarantee {
+            font-size: 11px;
+            color: var(--nf-gray);
+        }
 
-        .trust-row{
-            display:flex;justify-content:center;gap:18px;
-            font-size:9px;color:#888;letter-spacing:.04em;text-align:center;
+        /* ===== Dropdown UI ===== */
+        .nf-field-group { margin-bottom: 24px; }
+        .nf-label {
+            font-size: 11px;
+            color: var(--nf-text);
+            margin-bottom: 8px;
+            display: block;
         }
-        .trust-cell{display:flex;flex-direction:column;align-items:center;gap:5px;line-height:1.3}
-        .trust-cell svg{width:16px;height:16px;color:#bbb}
+        .nf-select-box {
+            border: 1px solid var(--nf-border);
+            padding: 14px 16px;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--nf-text);
+            cursor: pointer;
+        }
+        .nf-select-box svg { width: 14px; height: 14px; color: #999; }
 
-        /* ===== SECTION 3: CLOSING ===== */
-        .closing{padding:32px 24px;background:var(--bg-brand);border-top:.5px solid #E2DFD8}
-        .closing-title{
-            font-family:var(--brand-serif);
-            font-size:15px;font-weight:400;
-            text-align:center;margin-bottom:22px;letter-spacing:.08em;
+        /* ===== CTA ===== */
+        .nf-btn {
+            width: 100%;
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            padding: 18px;
+            font-family: var(--nf-sans);
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            margin-bottom: 16px;
         }
-        .faq-list{margin-bottom:24px}
-        .faq-item{margin-bottom:14px}
-        .faq-q{font-size:12.5px;color:#333;margin-bottom:4px;font-weight:400}
-        .faq-a{font-size:11.5px;color:#888;line-height:1.6;font-weight:300}
+        .nf-btn:active { opacity: 0.8; }
+        
+        .nf-gift-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            color: var(--nf-text);
+            margin-bottom: 40px;
+        }
+        .nf-checkbox {
+            width: 16px;
+            height: 16px;
+            border: 1px solid var(--nf-border);
+            border-radius: 2px;
+        }
 
-        .guarantee-box{
-            text-align:center;padding:18px;
-            border:.5px solid #E2DFD8;border-radius:2px;margin-bottom:18px;
+        /* ===== 5. Accordions ===== */
+        .nf-accordions {
+            border-top: 1px solid var(--nf-border);
+            margin: 0 24px 60px;
         }
-        .guarantee-headline{
-            font-family:var(--brand-serif);
-            font-size:16px;font-weight:400;margin-bottom:5px;
+        .nf-accordion {
+            border-bottom: 1px solid var(--nf-border);
         }
-        .guarantee-sub{font-size:10px;color:#888;font-weight:300}
+        .nf-accordion summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            font-size: 12px;
+            font-family: var(--nf-sans);
+            letter-spacing: 0.06em;
+            cursor: pointer;
+            list-style: none; /* remove default arrow */
+        }
+        .nf-accordion summary::-webkit-details-marker { display: none; }
+        .nf-accordion summary svg { width: 12px; height: 12px; transition: transform 0.3s; stroke-width: 1.5; }
+        .nf-accordion[open] summary svg { transform: rotate(45deg); }
+        .nf-ac-content {
+            padding: 0 0 24px;
+            font-size: 12px;
+            color: var(--nf-gray);
+            line-height: 1.8;
+        }
 
-        .final-cta{padding:0 0 60px}
-        .btn-final{
-            width:100%;padding:18px;
-            background:var(--text);color:#FAF7F2;border:none;
-            font-family:inherit;font-size:14px;font-weight:300;
-            letter-spacing:.12em;cursor:pointer;border-radius:2px;
+        /* ===== 6. Reviews ===== */
+        .nf-reviews {
+            padding: 0 24px;
         }
-        .btn-final:active{opacity:.85}
-        .btn-final:active{opacity:.85}
-        .final-note{font-size:10px;color:#888;text-align:center;margin-top:10px;letter-spacing:.02em}
-
-        /* Sticky CTA */
-        .sticky-cta{
-            position:fixed;bottom:0;left:0;right:0;
-            background:#fff;padding:8px 16px;
-            border-top:.5px solid #eee;z-index:200;display:none;
+        .nf-section-title {
+            font-family: var(--nf-serif);
+            font-size: 18px;
+            text-align: center;
+            letter-spacing: 0.15em;
+            margin-bottom: 30px;
+            font-weight: 400;
         }
-        .sticky-cta.visible{display:block}
-        .sticky-cta .btn-tt{padding:13px;font-size:12px;border-radius:2px}
-
-        /* (Removed plan-selector styles) */
-        .cta-area{padding:4px 0 10px}
-        .btn-main{
-            width:100%;padding:16px;
-            background:var(--text);color:#FAF7F2;border:none;
-            font-family:inherit;font-size:13px;font-weight:300;
-            letter-spacing:.12em;cursor:pointer;border-radius:2px;
+        .nf-tiktok-badge {
+            display: inline-block;
+            font-size: 10px;
+            background: #f4f4f4;
+            padding: 4px 10px;
+            border-radius: 12px;
+            color: #555;
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
         }
-        .btn-main:active{opacity:.85}
-        .cta-assurance{
-            display:flex;justify-content:center;gap:12px;
-            padding:8px 0 0;font-size:8px;color:#999;letter-spacing:.04em;
+        
+        .nf-review-card {
+            border-bottom: 1px solid var(--nf-border);
+            padding: 24px 0;
         }
-        .cta-assurance-item{display:flex;align-items:center;gap:3px;white-space:nowrap}
-        .cta-assurance-item svg{width:11px;height:11px;flex-shrink:0;color:#bbb}
+        .nf-review-card:last-child { border-bottom: none; }
+        .nf-review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .nf-stars { display: flex; gap: 2px; }
+        .nf-stars svg { width: 12px; height: 12px; color: #a39589; }
+        .nf-reviewer-meta {
+            font-size: 11px;
+            color: #999;
+        }
+        .nf-review-text {
+            font-size: 13px;
+            color: var(--nf-text);
+            line-height: 1.7;
+        }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <div class="header-logo">PURELAYER</div>
+    <!-- 1. Announcement Bar -->
+    <div class="nf-announcement">
+        14時までのご注文で当日発送。30日間全額返金保証。
     </div>
 
-    <main>
+    <!-- 2. Header -->
+    <header class="nf-header">
+        <div class="nf-header-group">
+            <!-- Hamburger -->
+            <svg class="nf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            <!-- Search -->
+            <svg class="nf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+        <div class="nf-logo">PURELAYER</div>
+        <div class="nf-header-group">
+            <!-- User -->
+            <svg class="nf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <!-- Bag -->
+            <svg class="nf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        </div>
+    </header>
 
-    <!-- =====================================================
-         SECTION 0: TikTok PASSPORT — 広告の視覚文法を完全移植
-         ===================================================== -->
-    <section class="tiktok-fv">
-
-        <!-- ① 商品画像（ノイズなし、即座に商品を見せる） -->
-        <div class="tt-visual">
+    <main class="nf-main">
+        
+        <!-- 3. Hero Visual -->
+        <section class="nf-visual">
             <picture>
                 <source type="image/webp" srcset="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/a_luxury_perfume_bottle_surrounded_by_soft_white_flowers_light_musky_smoke_and_sandalwood_textures__6uvb7fggwj2b4f320yph_0.webp?&width=600">
-                <img
-                    src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/a_luxury_perfume_bottle_surrounded_by_soft_white_flowers_light_musky_smoke_and_sandalwood_textures__6uvb7fggwj2b4f320yph_0.webp?&width=600"
-                    alt="Oud Stallion by Maison Crivelli"
-                    fetchpriority="high"
-                    loading="eager"
-                    width="600"
-                    height="600"
-                    style="width:100%;height:auto;"
-                >
+                <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/a_luxury_perfume_bottle_surrounded_by_soft_white_flowers_light_musky_smoke_and_sandalwood_textures__6uvb7fggwj2b4f320yph_0.webp?&width=600" alt="PURELAYER Oud Stallion" fetchpriority="high" loading="eager">
             </picture>
-        </div>
+        </section>
 
-        <!-- ② H1（広告のCTR 9%フックをそのまま移植） -->
-        <div class="tt-copy">
-            <h1 class="tt-h1">学校・職場で「いい匂い」と<br>褒められまくった。</h1>
-        </div>
+        <!-- 4. Product Info Architecture -->
+        <section class="nf-product-info">
+            <h1 class="nf-title">ウードスタリオン<br>エクストレ ド パルファム</h1>
+            <p class="nf-desc">朝の1プッシュで丸一日香りが持続する、洗練されたウッディフローラル。<br><br>強い香水が苦手な方に向けた、シャンプーしたての清潔感を纏うマスターピース。すれ違う時に「いい匂い」と振り返られる、そんな非日常を日常に与えます。</p>
+            
+            <div class="nf-price-row">
+                <span class="nf-price">¥1,750</span>
+                <span class="nf-guarantee">※30日間全額返金保証</span>
+            </div>
 
-        <!-- ③ ベネフィットリスト（スキャン速度に合わせた箇条書き） -->
-        <div class="tt-benefits">
-            <div class="tt-benefit-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
-                <span>お風呂上がりの香り</span>
-            </div>
-            <div class="tt-benefit-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>一日中匂い続く</span>
-            </div>
-            <div class="tt-benefit-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
-                <span>さりげない強さ</span>
-            </div>
-        </div>
-
-        <!-- ④ エビデンス（CTA直上で最後の背中を押す） -->
-        <div class="tt-evidence">＼購入した方の93%が満足しています／</div>
-
-        <!-- ⑤ CTA -->
-        <div class="tt-cta-area">
-            <button type="button" id="trial-cta" class="btn-tt">今すぐ ¥1,750 で体験する</button>
-            <div class="tt-cta-note">住所入力不要。Apple Pay / Google Pay 対応</div>
-        </div>
-    </section>
-
-    <!-- ===================== SECTION 2: PROOF ===================== -->
-    <section class="proof">
-        <div class="proof-section-title">選ばれる理由</div>
-
-        <div class="proof-benefits">
-            <div class="benefit-item">
-                <span class="benefit-check">✓</span>
-                <span>シャンプーしたての清潔感 — 強い香りが苦手な人に選ばれています</span>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-check">✓</span>
-                <span>朝の1プッシュで丸一日持続 — つけ直す手間なし</span>
-            </div>
-            <div class="benefit-item">
-                <span class="benefit-check">✓</span>
-                <span>学校・職場・デートまで全シーン対応 — 場所を選ばない</span>
-            </div>
-        </div>
-
-        <div class="ugc-cards">
-            <div class="ugc-card">
-                <div class="ugc-quote">「職場で3人に『どこの香水？』と聞かれました。清潔感の塊です。」</div>
-                <div class="ugc-attr">— Yukiさん · 20代男性 · 購入者</div>
-            </div>
-            <div class="ugc-card">
-                <div class="ugc-quote">「デパコスの強い匂いが無理な自分には神。柔軟剤の延長みたいな自然さ。」</div>
-                <div class="ugc-attr">— Sotaさん · 20代男性 · 購入者</div>
-            </div>
-            <div class="ugc-card">
-                <div class="ugc-quote">「デートで『いい匂いする』って毎回言われる。これ一本で勝ち確。」</div>
-                <div class="ugc-attr">— Aoiさん · 20代女性 · 購入者</div>
-            </div>
-        </div>
-
-        <div class="trust-row" style="margin-bottom:28px">
-            <div class="trust-cell">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                <span>評価 4.8 / 5.0</span>
-            </div>
-            <div class="trust-cell">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <span>30日間<br>全額返金保証</span>
-            </div>
-            <div class="trust-cell">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                <span>翌営業日<br>発送</span>
-            </div>
-            <div class="trust-cell">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-                <span>全国<br>送料無料</span>
-            </div>
-        </div>
-
-        <div class="cta-area">
-            <button type="button" id="main-cta" class="btn-main">今すぐ ¥1,750 で体験する</button>
-            <div class="cta-assurance">
-                <div class="cta-assurance-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    30日間返金保証
-                </div>
-                <div class="cta-assurance-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                    最短明日届く
-                </div>
-                <div class="cta-assurance-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-                    送料無料
+            <div class="nf-field-group">
+                <span class="nf-label">Size</span>
+                <div class="nf-select-box">
+                    <span>10ml (Trial Size)</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- ===================== SECTION 3: CLOSING ===================== -->
-    <section class="closing">
-        <div class="closing-title">買わない理由を、なくす。</div>
-
-        <div class="faq-list">
-            <div class="faq-item">
-                <div class="faq-q">Q. 香りはきつくないですか？</div>
-                <div class="faq-a">A. 「強い香りが苦手な方」のために開発しました。石鹸のような清潔感がふんわり続き、学校でも職場でも浮きません。広告でも紹介した通り「シャンプーしたての匂い」が一番近い表現です。</div>
+            <!-- CTA -->
+            <button type="button" id="main-cta" class="nf-btn">今すぐ体験する</button>
+            
+            <!-- Microcopy Checkbox -->
+            <div class="nf-gift-wrap">
+                <div class="nf-checkbox"></div>
+                <span>ギフトラッピングをご希望の方はこちらを選択してください</span>
             </div>
-            <div class="faq-item">
-                <div class="faq-q">Q. 届くのはいつですか？</div>
-                <div class="faq-a">A. 14時までのご注文で当日発送。最短翌日にお届けします。中身が分からない無地の段ボールで配送します。</div>
+        </section>
+
+        <!-- 5. Accordion Section -->
+        <section class="nf-accordions">
+            <details class="nf-accordion">
+                <summary>Shopping Bag <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></summary>
+                <div class="nf-ac-content">
+                    カートに追加されました。Apple Pay / Google Payでの決済に対応しています。
+                </div>
+            </details>
+            <details class="nf-accordion">
+                <summary>SCENT DESCRIPTION <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></summary>
+                <div class="nf-ac-content">
+                    トップノート：ベルガモット、カルダモン<br>
+                    ミドルノート：ジャスミン、ホワイトティー、アイリス<br>
+                    ベースノート：シダーウッド、サンダルウッド、ホワイトムスク<br><br>
+                    肌の温度に馴染むように香る、透明感のある仕上がりです。
+                </div>
+            </details>
+            <details class="nf-accordion">
+                <summary>INGREDIENTS <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></summary>
+                <div class="nf-ac-content">
+                    植物由来の香料を贅沢に使用し、アルコールのツンとしたにおいを極限まで抑えた特別な調香です。<br>
+                    ※天然由来成分、エタノール、水、香料
+                </div>
+            </details>
+        </section>
+
+        <!-- 6. Stylized Reviews -->
+        <section class="nf-reviews">
+            <h2 class="nf-section-title">REVIEWS</h2>
+            <div style="text-align:center;">
+                <span class="nf-tiktok-badge">TikTokで話題</span>
             </div>
-        </div>
 
-        <div class="guarantee-box">
-            <div class="guarantee-headline">30日間 全額返金保証</div>
-            <div class="guarantee-sub">合わなかったら返金できます。リスクはゼロです。</div>
-        </div>
+            <div class="nf-review-card">
+                <div class="nf-review-header">
+                    <div class="nf-stars">
+                        <!-- 5 solid stars -->
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <div class="nf-reviewer-meta">Yuki (25) • 2024.11.20</div>
+                </div>
+                <p class="nf-review-text">強すぎる香水が苦手でしたが、これは本当に「お風呂上がりの香り」そのものです。朝つけて夕方までふんわり香るので付け直しの手間もありません。</p>
+            </div>
 
-        <div class="final-cta">
-            <button type="button" id="final-cta" class="btn-final">今すぐ ¥1,750 で体験する</button>
-            <div class="final-note">住所入力不要。Apple Pay / Google Pay 対応</div>
-        </div>
-    </section>
-
+            <div class="nf-review-card">
+                <div class="nf-review-header">
+                    <div class="nf-stars">
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <div class="nf-reviewer-meta">Shota (22) • 2024.11.18</div>
+                </div>
+                <p class="nf-review-text">初めての香水として買いました。職場で「柔軟剤変えた？」と聞かれるくらい自然な香りです。パッケージのデザインも美しく、そのまま部屋に置いていても様になります。</p>
+            </div>
+            
+        </section>
     </main>
 
-    <!-- Sticky CTA -->
-    <div class="sticky-cta" id="sticky-cta">
-        <button type="button" id="sticky-cta-btn" class="btn-tt">今すぐ ¥1,750 で体験する</button>
-    </div>
-
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>
 
@@ -409,29 +417,12 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = `https://nemveil.com/cart/${checkoutVariant}?checkout=true`;
     }
 
-    // Bind to all CTA buttons
-    ['trial-cta', 'main-cta', 'final-cta', 'sticky-cta-btn'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.addEventListener('click', goCheckout);
-    });
-
-    // ===== 2. Sticky CTA Visibility =====
-    const stickyCta = document.getElementById('sticky-cta');
-    const trialArea = document.getElementById('trial-cta');
-
-    if (trialArea && stickyCta) {
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
-                    stickyCta.classList.add('visible');
-                } else {
-                    stickyCta.classList.remove('visible');
-                }
-            });
-        }, { threshold: 0 });
-
-        observer.observe(trialArea);
+    // Bind to the single main CTA button in the new layout
+    const mainBtn = document.getElementById('main-cta');
+    if (mainBtn) {
+        mainBtn.addEventListener('click', goCheckout);
     }
+    
 });
 
 </script>
