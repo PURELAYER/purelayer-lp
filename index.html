@@ -295,6 +295,22 @@
         </section>
     </main>
 
+    <!-- 7. Footer -->
+    <footer class="nf-footer">
+        <div class="nf-footer-logo">PURELAYER</div>
+        <div class="nf-footer-links">
+            <a href="#" class="nf-footer-link">特定商取引法に基づく表記</a>
+            <a href="#" class="nf-footer-link">プライバシーポリシー</a>
+            <a href="#" class="nf-footer-link">返金ポリシー</a>
+            <a href="#" class="nf-footer-link">利用規約</a>
+        </div>
+        <div class="nf-footer-social">
+            <a href="#" class="nf-footer-social-link">Instagram</a>
+            <a href="#" class="nf-footer-social-link">TikTok</a>
+        </div>
+        <div class="nf-footer-copy">© 2026 PURELAYER. All rights reserved.</div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
@@ -338,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.clarity) { window.clarity("set", "InitiateCheckout", "true"); }
         if (window.ttq) { window.ttq.track('InitiateCheckout', {}); }
 
-        window.location.href = `https://nemveil.com/cart/${currentCheckoutVariant}?checkout=true`;
+        window.location.href = `https://nemveil.com/cart/${currentCheckoutVariant}`;
     }
 
     const mainBtn = document.getElementById('main-cta');
@@ -645,5 +661,4 @@ ul { list-style: none; }
     border-radius: 2px;
     border: 1px solid var(--nf-border);
 }
-
 </style>
