@@ -137,7 +137,7 @@
             color: var(--nf-gray);
         }
 
-        /* ===== Dropdown UI ===== */
+        /* ===== Dropdown UI / Variants ===== */
         .nf-field-group { margin-bottom: 24px; }
         .nf-label {
             font-size: 11px;
@@ -145,17 +145,53 @@
             margin-bottom: 8px;
             display: block;
         }
-        .nf-select-box {
+        .nf-variants { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+        .nf-variant-btn {
             border: 1px solid var(--nf-border);
             padding: 14px 16px;
+            background: #fff;
+            color: var(--nf-text);
+            font-family: var(--nf-sans);
             font-size: 13px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--nf-text);
-            cursor: pointer;
         }
-        .nf-select-box svg { width: 14px; height: 14px; color: #999; }
+        .nf-variant-btn.active { border-color: var(--nf-text); border-width: 1.5px; }
+        .nf-badge {
+            font-size: 10px;
+            color: #3b6d11;
+            font-style: italic;
+            letter-spacing: 0.05em;
+        }
+        .nf-dynamic-benefit {
+            font-size: 11px;
+            color: #3b6d11;
+            margin-bottom: 12px;
+            text-align: center;
+            min-height: 16px; /* reserve space */
+            font-style: italic;
+            letter-spacing: 0.05em;
+        }
+        .nf-btn-outline {
+            width: 100%;
+            background: #fff;
+            color: var(--nf-text);
+            border: 1px solid var(--nf-text);
+            padding: 16px;
+            font-family: var(--nf-sans);
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 16px;
+        }
+        .nf-btn-outline:active { background: #f9f9f9; }
+        .nf-hidden { display: none !important; }
 
         /* ===== CTA ===== */
         .nf-btn {
@@ -263,6 +299,18 @@
             color: var(--nf-text);
             line-height: 1.7;
         }
+        .nf-review-img-grid {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .nf-review-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 2px;
+            border: 1px solid var(--nf-border);
+        }
     </style>
 </head>
 <body>
@@ -305,17 +353,26 @@
             <p class="nf-desc">朝の1プッシュで丸一日香りが持続する、洗練されたウッディフローラル。<br><br>強い香水が苦手な方に向けた、シャンプーしたての清潔感を纏うマスターピース。すれ違う時に「いい匂い」と振り返られる、そんな非日常を日常に与えます。</p>
             
             <div class="nf-price-row">
-                <span class="nf-price">¥1,750</span>
+                <span class="nf-price" id="dynamic-price">¥1,750</span>
                 <span class="nf-guarantee">※30日間全額返金保証</span>
             </div>
 
             <div class="nf-field-group">
                 <span class="nf-label">Size</span>
-                <div class="nf-select-box">
-                    <span>10ml (Trial Size)</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <div class="nf-variants">
+                    <button type="button" class="nf-variant-btn active" data-variant="53230989574512:1" data-price="¥1,750" data-benefit="">
+                        <span>10ml (Trial Size)</span><span></span>
+                    </button>
+                    <button type="button" class="nf-variant-btn" data-variant="53230989181296:1,53231016182128:1" data-price="¥8,980" data-benefit="【期間限定】今だけ無料特典付き（アトマイザー）">
+                        <span>50ml</span><span class="nf-badge">特典あり</span>
+                    </button>
+                    <button type="button" class="nf-variant-btn" data-variant="53230989214064:1,53231016182128:1,53230989541744:1" data-price="¥14,800" data-benefit="【期間限定】今だけ無料特典付き（アトマイザー＆ポーチ）">
+                        <span>100ml</span><span class="nf-badge">W特典あり</span>
+                    </button>
                 </div>
             </div>
+
+            <div id="dynamic-benefit" class="nf-dynamic-benefit"></div>
 
             <!-- CTA -->
             <button type="button" id="main-cta" class="nf-btn">今すぐ体験する</button>
@@ -373,6 +430,9 @@
                     <div class="nf-reviewer-meta">Yuki (25) • 2024.11.20</div>
                 </div>
                 <p class="nf-review-text">強すぎる香水が苦手でしたが、これは本当に「お風呂上がりの香り」そのものです。朝つけて夕方までふんわり香るので付け直しの手間もありません。</p>
+                <div class="nf-review-img-grid">
+                    <img class="nf-review-img" src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=200&h=200" alt="Review Image 1" loading="lazy">
+                </div>
             </div>
 
             <div class="nf-review-card">
@@ -388,6 +448,27 @@
                 </div>
                 <p class="nf-review-text">初めての香水として買いました。職場で「柔軟剤変えた？」と聞かれるくらい自然な香りです。パッケージのデザインも美しく、そのまま部屋に置いていても様になります。</p>
             </div>
+
+            <!-- Hidden Extra Reviews -->
+            <div class="nf-review-card nf-hidden" id="extra-review-1">
+                <div class="nf-review-header">
+                    <div class="nf-stars">
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <div class="nf-reviewer-meta">Momoko (28) • 2024.11.10</div>
+                </div>
+                <p class="nf-review-text">SNSで見かけて購入。本当にいい匂いで癒やされます！アトマイザー付きだったのも嬉しかったです。お出かけの必須アイテムになりました。</p>
+                <div class="nf-review-img-grid">
+                    <img class="nf-review-img" src="https://images.unsplash.com/photo-1595425970377-c9703bc48b12?auto=format&fit=crop&q=80&w=200&h=200" alt="Review Image 2" loading="lazy">
+                    <img class="nf-review-img" src="https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?auto=format&fit=crop&q=80&w=200&h=200" alt="Review Image 3" loading="lazy">
+                </div>
+            </div>
+
+            <button type="button" id="load-more-btn" class="nf-btn-outline">レビューをさらに見る</button>
             
         </section>
     </main>
@@ -397,33 +478,62 @@
 </html>
 
 
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ===== 1. Single Path Checkout Logic (10ml Fixed) =====
-    const checkoutVariant = '53230989574512:1';
+    // ===== 1. Variant Selection & Dynamic Updates =====
+    const variantBtns = document.querySelectorAll('.nf-variant-btn');
+    const dynamicPrice = document.getElementById('dynamic-price');
+    const dynamicBenefit = document.getElementById('dynamic-benefit');
+    
+    // Default to the initially active variant
+    let currentCheckoutVariant = '53230989574512:1';
 
+    variantBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update UI State
+            variantBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Update Data & View
+            currentCheckoutVariant = btn.dataset.variant;
+            
+            if (dynamicPrice) {
+                dynamicPrice.textContent = btn.dataset.price;
+            }
+            
+            if (dynamicBenefit) {
+                dynamicBenefit.textContent = btn.dataset.benefit || '';
+            }
+        });
+    });
+
+    // ===== 2. Checkout Direct Link =====
     function goCheckout() {
-        // Capture "InitiateCheckout" intent
-        if (window.clarity) {
-            window.clarity("set", "InitiateCheckout", "true");
-        }
-        if (window.ttq) {
-            window.ttq.track('InitiateCheckout', {});
-        }
+        // Intent Tracking
+        if (window.clarity) { window.clarity("set", "InitiateCheckout", "true"); }
+        if (window.ttq) { window.ttq.track('InitiateCheckout', {}); }
 
-        // Direct to Shopify Checkout (Bypass Cart)
-        window.location.href = `https://nemveil.com/cart/${checkoutVariant}?checkout=true`;
+        window.location.href = `https://nemveil.com/cart/${currentCheckoutVariant}?checkout=true`;
     }
 
-    // Bind to the single main CTA button in the new layout
     const mainBtn = document.getElementById('main-cta');
     if (mainBtn) {
         mainBtn.addEventListener('click', goCheckout);
     }
     
+    // ===== 3. Reviews Expansion =====
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const hiddenReviews = document.querySelectorAll('.nf-review-card.nf-hidden');
+
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => {
+            hiddenReviews.forEach(card => card.classList.remove('nf-hidden'));
+            loadMoreBtn.style.display = 'none'; // Hide button once expanded
+        });
+    }
 });
+
 
 </script>
 
