@@ -56,7 +56,7 @@
         <!-- 3. Hero Visual -->
         <section class="nf-visual">
             <picture>
-                <source type="image/webp" srcset="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/a_luxury_perfume_bottle_surrounded_by_soft_white_flowers_light_musky_smoke_and_sandalwood_textures__6uvb7fggwj2b4f320yph_0.webp?&width=600">
+                <source type="image/webp" srcset="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/PURELAYER_3.webp?v=1776738501">
                 <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/PURELAYER_3.webp?v=1776738501" alt="PURELAYER Oud Stallion" fetchpriority="high" loading="eager">
             </picture>
         </section>
@@ -460,7 +460,13 @@ ul { list-style: none; }
     padding: 0;     /* Removed margin/padding */
 }
 .nf-visual picture { display: block; width: 100%; max-width: none; margin: 0; }
-.nf-visual img { width: 100%; height: auto; display: block; object-fit: cover; }
+.nf-visual img { 
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    object-fit: cover; 
+    object-position: top center; 
+}
 
 /* ===== 4. Product Info (Typography heavy) ===== */
 .nf-product-info { padding: 0 24px; margin-top: 32px; }
@@ -728,6 +734,5 @@ ul { list-style: none; }
     text-align: center;
     letter-spacing: 0.05em;
 }
-
 
 </style>
