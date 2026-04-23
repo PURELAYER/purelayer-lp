@@ -31,6 +31,11 @@
     <!-- Article -->
     <article class="note-article">
 
+        <!-- Cover Image -->
+        <figure class="note-cover">
+            <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731" alt="Oud Stallion">
+        </figure>
+
         <!-- Title -->
         <h1 class="note-title">
             ガチ検証レビュー<br>
@@ -490,13 +495,21 @@ a:hover { text-decoration: underline; }
 
 /* ===== Cover Image ===== */
 .note-cover {
-    max-width: 800px;
+    max-width: var(--note-content-width);
     margin: 0 auto;
-    padding-top: 0;
 }
 .note-cover img {
     width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
     border-radius: 0;
+}
+@media (max-width: 640px) {
+    .note-cover {
+        margin-left: -20px;
+        width: calc(100% + 40px);
+        max-width: none;
+    }
 }
 
 /* ===== Title ===== */
@@ -974,5 +987,4 @@ a:hover { text-decoration: underline; }
     .quick-summary { padding: 20px; }
     .note-actions { gap: 24px; }
 }
-
 </style>
