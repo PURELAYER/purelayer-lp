@@ -16,14 +16,16 @@
 })(window, document, "clarity", "script", "vvn8p99ehp");
 </script>
 
-<!-- Fonts -->
+<!-- Font Preconnects & Non-blocking Load -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Shippori+Mincho:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Shippori+Mincho:wght@500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Shippori+Mincho:wght@500;600&display=swap"></noscript>
 
 <style>
 /* ============================================================
-   Global
+   Global & Optimized CSS
    ============================================================ */
 :root {
   --pl-white: #FFFFFF;
@@ -31,9 +33,10 @@
   --pl-black: #1A1A1A;
   --pl-gray-100: #F5F5F5;
   --pl-gray-200: #EEEEEE;
-  --pl-gray-400: #AAAAAA;
-  --pl-gray-500: #888888;
-  --pl-gray-700: #555555;
+  /* Contrast fixed for accessibility */
+  --pl-gray-400: #767676; 
+  --pl-gray-500: #595959;
+  --pl-gray-700: #424242;
   --pl-serif: "Shippori Mincho", "YuMincho", "Yu Mincho", serif;
   --pl-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -45,12 +48,10 @@ svg { display: block; }
 .stars { display: flex; gap: 2px; }
 .stars svg { width: 12px; height: 12px; fill: var(--pl-black); }
 .dot { width: 2px; height: 2px; border-radius: 50%; background: var(--pl-gray-400); flex-shrink: 0; }
-.fade { opacity: 0; transform: translateY(10px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade { opacity: 0; transform: translateY(10px); transition: opacity 0.6s ease, transform 0.6s ease; will-change: opacity, transform; }
 .fade.vis { opacity: 1; transform: translateY(0); }
 
-/* ============================================================
-   Header
-   ============================================================ */
+/* Header */
 .hdr { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 0.5px solid var(--pl-gray-200); }
 .hdr-in { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; max-width: 720px; margin: 0 auto; }
 .hdr-logo { font-family: var(--pl-serif); font-size: 18px; font-weight: 500; letter-spacing: 0.14em; color: var(--pl-black); }
@@ -58,9 +59,7 @@ svg { display: block; }
 .hdr-ic { width: 32px; height: 32px; border: none; background: none; cursor: pointer; color: var(--pl-black); display: flex; align-items: center; justify-content: center; padding: 4px; }
 .hdr-ic svg { width: 22px; height: 22px; }
 
-/* ============================================================
-   Section 1: First View
-   ============================================================ */
+/* First View */
 .fv { background: var(--pl-white); }
 .fv-hero { width: 100%; background: var(--pl-gray-100); }
 .fv-img { width: 100%; aspect-ratio: 1/1; object-fit: contain; mix-blend-mode: multiply; }
@@ -73,16 +72,14 @@ svg { display: block; }
 .fv-hl { font-family: var(--pl-serif); font-size: 22px; font-weight: 600; line-height: 1.6; letter-spacing: 0.06em; color: var(--pl-black); margin: 0 0 12px; }
 .fv-desc { font-size: 14px; font-weight: 400; line-height: 1.9; color: var(--pl-gray-700); margin: 0 0 20px; letter-spacing: 0.02em; }
 .fv-desc strong { color: var(--pl-black); font-weight: 600; }
-.fv-proof { display: flex; align-items: center; flex-wrap: wrap; gap: 0; font-size: 11px; font-weight: 400; color: var(--pl-gray-400); letter-spacing: 0.04em; padding-top: 20px; border-top: 0.5px solid var(--pl-gray-200); }
+.fv-proof { display: flex; align-items: center; flex-wrap: wrap; gap: 0; font-size: 11px; font-weight: 400; color: var(--pl-gray-500); letter-spacing: 0.04em; padding-top: 20px; border-top: 0.5px solid var(--pl-gray-200); }
 .fv-proof > span { padding: 0 8px; }
 .fv-proof > span:first-child { padding-left: 0; }
 
-/* ============================================================
-   Section 2: Product
-   ============================================================ */
+/* Product */
 .prod { background: var(--pl-white); padding: 56px 0; border-top: 0.5px solid var(--pl-gray-200); }
 .prod-in { max-width: 480px; margin: 0 auto; padding: 0 24px; }
-.prod-kk { font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pl-gray-400); text-align: center; margin: 0 0 8px; }
+.prod-kk { font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pl-gray-500); text-align: center; margin: 0 0 8px; }
 .prod-hd { font-family: var(--pl-serif); font-size: 20px; font-weight: 500; text-align: center; letter-spacing: 0.08em; color: var(--pl-black); margin: 0 0 36px; }
 .vs { display: flex; flex-direction: column; margin-bottom: 28px; }
 .vs input { display: none; }
@@ -91,27 +88,25 @@ svg { display: block; }
 .vs input:checked + .vs-card { background: var(--pl-gray-100); margin: 0 -24px; padding: 18px 24px; }
 .vs-row { display: flex; justify-content: space-between; align-items: baseline; }
 .vs-size { font-size: 15px; font-weight: 600; color: var(--pl-black); letter-spacing: 0.02em; display: flex; align-items: center; gap: 10px; }
-.vs-tag { font-size: 9px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pl-gray-400); border: 0.5px solid var(--pl-gray-400); padding: 2px 8px; border-radius: 2px; }
+.vs-tag { font-size: 9px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pl-gray-500); border: 0.5px solid var(--pl-gray-400); padding: 2px 8px; border-radius: 2px; }
 .vs-price { font-size: 14px; font-weight: 500; color: var(--pl-black); letter-spacing: 0.02em; }
 .vs-note { display: block; font-size: 11px; font-weight: 400; color: var(--pl-gray-500); margin-top: 4px; letter-spacing: 0.03em; }
 .stk { margin-bottom: 28px; text-align: center; }
 .stk-line { height: 1px; background: var(--pl-gray-200); margin-bottom: 12px; overflow: hidden; }
-.stk-bar { height: 100%; width: 0%; background: var(--pl-black); transition: width 1.8s cubic-bezier(0.25, 1, 0.5, 1); }
-.stk-txt { font-size: 10px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pl-gray-400); margin: 0; }
+.stk-bar { height: 100%; width: 0%; background: var(--pl-black); transition: width 1.8s cubic-bezier(0.25, 1, 0.5, 1); will-change: width; }
+.stk-txt { font-size: 10px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pl-gray-500); margin: 0; }
 .stk-txt span { color: var(--pl-black); font-weight: 500; }
 .cta { display: flex; justify-content: center; align-items: center; gap: 12px; width: 100%; padding: 18px; background: var(--pl-black); color: #fff; border: none; font-family: var(--pl-sans); font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; margin-bottom: 16px; }
 .cta:active { opacity: 0.85; }
 .cta-sep { width: 1px; height: 14px; background: rgba(255,255,255,0.25); }
 .cta-p { font-weight: 400; opacity: 0.6; }
-.trust { display: flex; justify-content: center; align-items: center; gap: 0; font-size: 10px; font-weight: 400; color: var(--pl-gray-400); letter-spacing: 0.06em; }
+.trust { display: flex; justify-content: center; align-items: center; gap: 0; font-size: 10px; font-weight: 400; color: var(--pl-gray-500); letter-spacing: 0.06em; }
 .trust > span { padding: 0 8px; }
 
-/* ============================================================
-   Section 3: Accordion
-   ============================================================ */
+/* Accordion */
 .acc { background: var(--pl-off-white); padding: 56px 0; }
 .acc-in { max-width: 480px; margin: 0 auto; padding: 0 24px; }
-.acc-kk { font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pl-gray-400); text-align: center; margin: 0 0 8px; }
+.acc-kk { font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pl-gray-500); text-align: center; margin: 0 0 8px; }
 .acc-hd { font-family: var(--pl-serif); font-size: 20px; font-weight: 500; text-align: center; letter-spacing: 0.08em; color: var(--pl-black); margin: 0 0 40px; }
 .acc-item { border-top: 0.5px solid var(--pl-gray-200); }
 .acc-item:last-child { border-bottom: 0.5px solid var(--pl-gray-200); }
@@ -120,62 +115,56 @@ svg { display: block; }
 .acc-trig::marker { display: none; content: ''; }
 .acc-title { font-size: 13px; font-weight: 500; color: var(--pl-black); letter-spacing: 0.06em; }
 .acc-tog { position: relative; width: 16px; height: 16px; flex-shrink: 0; }
-.acc-tog::before, .acc-tog::after { content: ''; position: absolute; top: 50%; left: 50%; background: var(--pl-gray-400); transition: transform 0.3s, opacity 0.3s; }
+.acc-tog::before, .acc-tog::after { content: ''; position: absolute; top: 50%; left: 50%; background: var(--pl-gray-500); transition: transform 0.3s, opacity 0.3s; }
 .acc-tog::before { width: 12px; height: 0.5px; transform: translate(-50%, -50%); }
 .acc-tog::after { width: 0.5px; height: 12px; transform: translate(-50%, -50%); }
 details[open] > .acc-trig .acc-tog::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
-.acc-body { overflow: hidden; max-height: 0; transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+.acc-body { overflow: hidden; max-height: 0; transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1); will-change: max-height; }
 details[open] > .acc-body { max-height: 600px; }
 .acc-cnt { padding: 0 0 28px; font-size: 13px; line-height: 1.9; color: var(--pl-gray-700); }
 .acc-cnt p { margin-bottom: 12px; }
 .acc-cnt strong { color: var(--pl-black); font-weight: 600; }
 .acc-sub { font-size: 12px; font-weight: 600; color: var(--pl-black); letter-spacing: 0.06em; margin: 16px 0 6px; }
-.acc-cap { font-size: 11px; color: var(--pl-gray-400); line-height: 1.8; margin-top: 12px; }
+.acc-cap { font-size: 11px; color: var(--pl-gray-500); line-height: 1.8; margin-top: 12px; }
 .dl-row { display: flex; padding: 10px 0; border-bottom: 0.5px solid var(--pl-gray-100); font-size: 13px; }
 .dl-row:last-child { border-bottom: none; }
 .dl-row dt { width: 90px; flex-shrink: 0; font-weight: 500; color: var(--pl-black); }
 .dl-row dd { margin: 0; color: var(--pl-gray-700); }
 .acc-ul { list-style: none; padding: 0; }
 .acc-ul li { padding: 4px 0; font-size: 13px; }
-.acc-ul li::before { content: '–'; margin-right: 8px; color: var(--pl-gray-400); }
+.acc-ul li::before { content: '–'; margin-right: 8px; color: var(--pl-gray-500); }
 .acc-ol { padding-left: 18px; margin: 6px 0 12px; }
 .acc-ol li { padding: 4px 0; font-size: 13px; }
-.acc-ol li::marker { font-weight: 600; color: var(--pl-gray-400); }
+.acc-ol li::marker { font-weight: 600; color: var(--pl-gray-500); }
 .faq { margin-bottom: 20px; }
 .faq:last-child { margin-bottom: 0; }
 .faq-q { font-size: 13px; font-weight: 600; color: var(--pl-black); margin-bottom: 4px; }
 .faq-a { font-size: 13px; color: var(--pl-gray-700); line-height: 1.9; }
 
-/* ============================================================
-   Section 4: Reviews
-   ============================================================ */
+/* Reviews */
 .rev { background: var(--pl-white); padding: 56px 0; border-top: 0.5px solid var(--pl-gray-200); }
 .rev-in { max-width: 480px; margin: 0 auto; padding: 0 24px; }
-.rev-kk { font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pl-gray-400); text-align: center; margin: 0 0 8px; }
+.rev-kk { font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pl-gray-500); text-align: center; margin: 0 0 8px; }
 .rev-hd { font-family: var(--pl-serif); font-size: 20px; font-weight: 500; text-align: center; letter-spacing: 0.08em; color: var(--pl-black); margin: 0 0 40px; }
 .rev-item { padding: 24px 0; border-top: 0.5px solid var(--pl-gray-200); }
 .rev-item:last-child { border-bottom: 0.5px solid var(--pl-gray-200); }
 .rev-title { font-size: 14px; font-weight: 600; color: var(--pl-black); margin: 0 0 8px; letter-spacing: 0.02em; line-height: 1.5; }
 .rev-body { font-size: 13px; font-weight: 400; line-height: 1.9; color: var(--pl-gray-700); margin: 0 0 12px; letter-spacing: 0.01em; }
-.rev-meta { font-size: 11px; font-weight: 400; color: var(--pl-gray-400); letter-spacing: 0.04em; margin: 0; }
+.rev-meta { font-size: 11px; font-weight: 400; color: var(--pl-gray-500); letter-spacing: 0.04em; margin: 0; }
 .rev-sep { margin: 0 6px; color: var(--pl-gray-200); }
 .rev-ugc { padding: 16px 0; }
 .rev-ugc img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 4px; }
-.rev-ft { text-align: center; font-size: 11px; font-weight: 400; color: var(--pl-gray-400); letter-spacing: 0.06em; margin: 32px 0 0; }
+.rev-ft { text-align: center; font-size: 11px; font-weight: 400; color: var(--pl-gray-500); letter-spacing: 0.06em; margin: 32px 0 0; }
 
-/* ============================================================
-   Footer
-   ============================================================ */
+/* Footer */
 .ft { padding: 40px 24px 60px; text-align: center; border-top: 0.5px solid var(--pl-gray-200); background: var(--pl-white); }
 .ft-logo { font-family: var(--pl-serif); font-size: 14px; font-weight: 500; letter-spacing: 0.14em; color: var(--pl-black); margin-bottom: 20px; }
 .ft-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
 .ft-links a { font-size: 11px; color: var(--pl-gray-500); text-decoration: none; font-weight: 400; }
-.ft-copy { font-size: 10px; color: var(--pl-gray-400); }
+.ft-copy { font-size: 10px; color: var(--pl-gray-500); }
 
-/* ============================================================
-   Sticky CTA
-   ============================================================ */
-.sticky { position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999; background: rgba(255,255,255,0.96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 0.5px solid var(--pl-gray-200); transform: translateY(120%); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+/* Sticky CTA */
+.sticky { position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999; background: rgba(255,255,255,0.96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 0.5px solid var(--pl-gray-200); transform: translateY(120%); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform; }
 .sticky.vis { transform: translateY(0); }
 .sticky-in { max-width: 480px; margin: 0 auto; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
 .sticky-name { font-size: 11px; font-weight: 400; color: var(--pl-gray-500); letter-spacing: 0.04em; }
@@ -193,7 +182,6 @@ details[open] > .acc-body { max-height: 600px; }
 </head>
 <body>
 
-<!-- Header -->
 <header class="hdr" id="pl-header">
   <div class="hdr-in">
     <button class="hdr-ic" aria-label="メニュー">
@@ -211,246 +199,243 @@ details[open] > .acc-body { max-height: 600px; }
   </div>
 </header>
 
-<!-- S1: First View -->
-<section class="fv" id="section-fv">
-  <div class="fv-hero">
-    <img class="fv-img" src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731" alt="PURELAYER Oud Stallion" fetchpriority="high" loading="eager" width="750" height="750">
-  </div>
-  <div class="fv-info fade" id="fv-info">
-    <h1 class="fv-name">PURELAYER — Oud Stallion</h1>
-    <div class="fv-rating">
-      <div class="stars" id="fv-stars"></div>
-      <span class="fv-rc">1,243件のレビュー</span>
+<main>
+  <!-- S1: First View -->
+  <section class="fv" id="section-fv">
+    <div class="fv-hero">
+      <img class="fv-img" src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731" alt="PURELAYER Oud Stallion" fetchpriority="high" loading="eager" width="750" height="750">
     </div>
-    <div class="fv-tags">
-      <span class="fv-tag">ユニセックス</span>
-      <span class="fv-tag">ベストセラー</span>
-      <span class="fv-tag">1プッシュあたり約15円〜</span>
+    <div class="fv-info fade" id="fv-info">
+      <h1 class="fv-name">PURELAYER — Oud Stallion</h1>
+      <div class="fv-rating">
+        <div class="stars" id="fv-stars"></div>
+        <span class="fv-rc">1,243件のレビュー</span>
+      </div>
+      <div class="fv-tags">
+        <span class="fv-tag">ユニセックス</span>
+        <span class="fv-tag">ベストセラー</span>
+        <span class="fv-tag">1プッシュあたり約15円〜</span>
+      </div>
+      <h2 class="fv-hl">つけた瞬間、褒められる清潔感</h2>
+      <p class="fv-desc">
+        石鹸・シャンプー系の香りを一日中キープ。<br>
+        <strong>93%</strong>のお客様がこの香水をつけて<strong>褒められた経験</strong>があります。
+      </p>
+      <div class="fv-proof">
+        <span>累計 12,000 本突破</span>
+        <span class="dot"></span>
+        <span>リピート率 78%</span>
+        <span class="dot"></span>
+        <span>30日間全額返金保証</span>
+      </div>
     </div>
-    <h2 class="fv-hl">つけた瞬間、褒められる清潔感</h2>
-    <p class="fv-desc">
-      石鹸・シャンプー系の香りを一日中キープ。<br>
-      <strong>93%</strong>のお客様がこの香水をつけて<strong>褒められた経験</strong>があります。
-    </p>
-    <div class="fv-proof">
-      <span>累計 12,000 本突破</span>
-      <span class="dot"></span>
-      <span>リピート率 78%</span>
-      <span class="dot"></span>
-      <span>30日間全額返金保証</span>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- S2: Product Selection -->
-<section class="prod" id="section-product">
-  <div class="prod-in">
-    <p class="prod-kk">Select Size</p>
-    <h2 class="prod-hd">サイズを選ぶ</h2>
-    
-    <div class="vs" id="vs">
-      <label>
-        <input type="radio" name="v" value="10ml" class="vr">
-        <div class="vs-card">
-          <div class="vs-row">
-            <span class="vs-size">10ml</span>
-            <span class="vs-price">¥3,980</span>
+  <!-- S2: Product Selection -->
+  <section class="prod" id="section-product">
+    <div class="prod-in">
+      <p class="prod-kk">Select Size</p>
+      <h2 class="prod-hd">サイズを選ぶ</h2>
+      
+      <div class="vs" id="vs">
+        <label>
+          <input type="radio" name="v" value="10ml" class="vr">
+          <div class="vs-card">
+            <div class="vs-row">
+              <span class="vs-size">10ml</span>
+              <span class="vs-price">¥3,980</span>
+            </div>
+            <span class="vs-note">お試しサイズ</span>
           </div>
-          <span class="vs-note">お試しサイズ</span>
-        </div>
-      </label>
-      <label>
-        <input type="radio" name="v" value="50ml" class="vr" checked>
-        <div class="vs-card">
-          <div class="vs-row">
-            <span class="vs-size">50ml<span class="vs-tag">Most Popular</span></span>
-            <span class="vs-price">¥13,800</span>
+        </label>
+        <label>
+          <input type="radio" name="v" value="50ml" class="vr" checked>
+          <div class="vs-card">
+            <div class="vs-row">
+              <span class="vs-size">50ml<span class="vs-tag">Most Popular</span></span>
+              <span class="vs-price">¥13,800</span>
+            </div>
+            <span class="vs-note">特典 — 10ml アトマイザー付き</span>
           </div>
-          <span class="vs-note">特典 — 10ml アトマイザー付き</span>
-        </div>
-      </label>
-      <label>
-        <input type="radio" name="v" value="100ml" class="vr">
-        <div class="vs-card">
-          <div class="vs-row">
-            <span class="vs-size">100ml</span>
-            <span class="vs-price">¥22,800</span>
+        </label>
+        <label>
+          <input type="radio" name="v" value="100ml" class="vr">
+          <div class="vs-card">
+            <div class="vs-row">
+              <span class="vs-size">100ml</span>
+              <span class="vs-price">¥22,800</span>
+            </div>
+            <span class="vs-note">特典 — アトマイザー + 2ml テストキット付き</span>
           </div>
-          <span class="vs-note">特典 — アトマイザー + 2ml テストキット付き</span>
-        </div>
-      </label>
-    </div>
-
-    <div class="stk">
-      <div class="stk-line"><div class="stk-bar" id="stk-bar"></div></div>
-      <p class="stk-txt">Limited Stock — <span id="stk-count">残り 12 点</span></p>
-    </div>
-
-    <button class="cta" id="cta-main">
-      <span>Add to Cart</span>
-      <span class="cta-sep"></span>
-      <span class="cta-p" id="cta-price">¥13,800</span>
-    </button>
-
-    <div class="trust">
-      <span>30日間返金保証</span>
-      <span class="dot"></span>
-      <span>送料無料</span>
-      <span class="dot"></span>
-      <span>14時まで当日発送</span>
-    </div>
-  </div>
-</section>
-
-<!-- S3: Accordion -->
-<section class="acc">
-  <div class="acc-in">
-    <p class="acc-kk">Details</p>
-    <h2 class="acc-hd">詳細情報</h2>
-    <div>
-      <!-- Detail 1 -->
-      <details class="acc-item">
-        <summary class="acc-trig"><span class="acc-title">商品詳細</span><span class="acc-tog"></span></summary>
-        <div class="acc-body">
-          <div class="acc-cnt">
-            <dl>
-              <div class="dl-row"><dt>商品名</dt><dd>Oud Stallion — Eau de Parfum</dd></div>
-              <div class="dl-row"><dt>ブランド</dt><dd>PURELAYER</dd></div>
-              <div class="dl-row"><dt>容量</dt><dd>10ml / 50ml / 100ml</dd></div>
-              <div class="dl-row"><dt>香りの系統</dt><dd>石鹸系・お風呂上がりの清潔感</dd></div>
-              <div class="dl-row"><dt>持続時間</dt><dd>約 8 – 12 時間（個人差あり）</dd></div>
-              <div class="dl-row"><dt>使い方</dt><dd>首筋・手首に 1 – 2 プッシュ</dd></div>
-              <div class="dl-row"><dt>対象</dt><dd>ユニセックス（男女兼用）</dd></div>
-            </dl>
-          </div>
-        </div>
-      </details>
-      <!-- Detail 2 -->
-      <details class="acc-item">
-        <summary class="acc-trig"><span class="acc-title">成分・原材料</span><span class="acc-tog"></span></summary>
-        <div class="acc-body">
-          <div class="acc-cnt">
-            <p>エタノール、香料（パルファム）、水、BHT</p>
-            <p class="acc-sub">主な香料成分</p>
-            <ul class="acc-ul">
-              <li>リナロール — 石鹸系の清潔感</li>
-              <li>ゲラニオール — フローラルの柔らかさ</li>
-              <li>クマリン — ほんのりとした甘さ</li>
-              <li>ウード — 深みのある落ち着き</li>
-            </ul>
-            <p class="acc-cap">※ 肌に異常を感じた場合は使用を中止してください。</p>
-          </div>
-        </div>
-      </details>
-      <!-- Detail 3 -->
-      <details class="acc-item">
-        <summary class="acc-trig"><span class="acc-title">30日間全額返金保証</span><span class="acc-tog"></span></summary>
-        <div class="acc-body">
-          <div class="acc-cnt">
-            <p>商品到着から 30 日以内であれば、理由を問わず全額返金いたします。</p>
-            <p class="acc-sub">返品の流れ</p>
-            <ol class="acc-ol">
-              <li>公式 LINE またはメールでご連絡</li>
-              <li>返品先住所をご案内</li>
-              <li>商品を返送（返送料はお客様負担）</li>
-              <li>到着確認後、5 営業日以内に全額返金</li>
-            </ol>
-            <p class="acc-cap">※ 使用済みでも返品可（残量 50% 以上）。特典のみの返品は不可。</p>
-          </div>
-        </div>
-      </details>
-      <!-- Detail 4 -->
-      <details class="acc-item">
-        <summary class="acc-trig"><span class="acc-title">配送について</span><span class="acc-tog"></span></summary>
-        <div class="acc-body">
-          <div class="acc-cnt">
-            <dl>
-              <div class="dl-row"><dt>送料</dt><dd>全国無料</dd></div>
-              <div class="dl-row"><dt>発送</dt><dd>14時までのご注文 → 当日発送</dd></div>
-              <div class="dl-row"><dt>お届け目安</dt><dd>発送後 1 – 3 日</dd></div>
-              <div class="dl-row"><dt>梱包</dt><dd>無地ダンボール（中身がわからない梱包）</dd></div>
-            </dl>
-          </div>
-        </div>
-      </details>
-      <!-- Detail 5 -->
-      <details class="acc-item">
-        <summary class="acc-trig"><span class="acc-title">よくある質問</span><span class="acc-tog"></span></summary>
-        <div class="acc-body">
-          <div class="acc-cnt">
-            <div class="faq"><p class="faq-q">香りがきつくないですか？</p><p class="faq-a">石鹸系のナチュラルな香りです。1プッシュで十分香ります。</p></div>
-            <div class="faq"><p class="faq-q">男性用？女性用？</p><p class="faq-a">ユニセックスです。18–34歳の男女から均等にご支持いただいています。</p></div>
-            <div class="faq"><p class="faq-q">どこにつければいいですか？</p><p class="faq-a">首筋や手首に1–2プッシュ。体温の高い部位につけると自然に香りが広がります。</p></div>
-            <div class="faq"><p class="faq-q">10mlはどれくらい持ちますか？</p><p class="faq-a">1日1–2プッシュで約2–3週間お使いいただけます。</p></div>
-            <div class="faq"><p class="faq-q">特典のアトマイザーとは？</p><p class="faq-a">持ち運び用の空の10mlスプレーボトルです。</p></div>
-          </div>
-        </div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- S4: Reviews -->
-<section class="rev" id="section-reviews">
-  <div class="rev-in">
-    <p class="rev-kk">Reviews</p>
-    <h2 class="rev-hd">お客様の声</h2>
-    <div class="rev-list">
-
-      <article class="rev-item fade">
-        <div class="stars rv-s"></div>
-        <h3 class="rev-title">香水が苦手な自分でも大丈夫だった</h3>
-        <p class="rev-body">香水って頭痛くなるイメージだったけど、これは全然ちがった。むしろずっと嗅いでたい。石鹸みたいなナチュラルさで、職場につけていっても誰にも嫌な顔されない。「なんかいい匂いするね」って同僚に言われて、それだけで買った価値があった。</p>
-        <p class="rev-meta">社会人 1 年目・女（23 歳）<span class="rev-sep">·</span>購入済み</p>
-      </article>
-
-      <article class="rev-item fade">
-        <div class="stars rv-s"></div>
-        <h3 class="rev-title">朝つけて夜まで、追いがけ不要</h3>
-        <p class="rev-body">朝 8 時に首筋に 1 プッシュして出勤。帰りの 22 時の電車でもまだうっすら香ってた。前に使ってた香水は午後には消えてたから、正直びっくり。これなら持ち運びも不要で、朝の準備がラク。</p>
-        <p class="rev-meta">社会人 2 年目・男（24 歳）<span class="rev-sep">·</span>購入済み</p>
-      </article>
-
-      <div class="rev-ugc fade">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/723DB3B1-E822-431C-8D5E-C56E8161FA27.webp?v=1776938230" alt="お客様投稿写真" loading="lazy" width="400" height="400">
+        </label>
       </div>
 
-      <article class="rev-item fade">
-        <div class="stars rv-s"></div>
-        <h3 class="rev-title">電車で知らない人に褒められた</h3>
-        <p class="rev-body">帰りの電車で隣の人に「すみません、いい匂いしますね」って話しかけられた。人生で初めて匂いで褒められて嬉しかった。友達にも勧めたら 3 人が同じの買ってた。</p>
-        <p class="rev-meta">大学 3 年・女（22 歳）<span class="rev-sep">·</span>購入済み</p>
-      </article>
-
-      <article class="rev-item fade">
-        <div class="stars rv-s"></div>
-        <h3 class="rev-title">半信半疑だったけど、当たりだった</h3>
-        <p class="rev-body">正直 TikTok の広告って怪しいと思ってた。でも返金保証があるしと思って 10ml を注文。届いてつけた瞬間「あ、これは良い」ってなった。1 週間後には 50ml を買い直してた。</p>
-        <p class="rev-meta">大学 4 年・男（21 歳）<span class="rev-sep">·</span>購入済み</p>
-      </article>
-
-      <div class="rev-ugc fade">
-        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3146.webp?v=1774754613" alt="お客様投稿写真" loading="lazy" width="400" height="400">
+      <div class="stk">
+        <div class="stk-line"><div class="stk-bar" id="stk-bar"></div></div>
+        <p class="stk-txt">Limited Stock — <span id="stk-count">残り 12 点</span></p>
       </div>
 
-      <article class="rev-item fade">
-        <div class="stars rv-s"></div>
-        <h3 class="rev-title">1プッシュで済むから結果的に安い</h3>
-        <p class="rev-body">最初は値段で迷った。でも 1 プッシュで十分すぎるくらい香る。50ml なら半年は持ちそう。アトマイザーまで付いてきたし、結果的にコスパはかなり良い。</p>
-        <p class="rev-meta">社会人 3 年目・男（26 歳）<span class="rev-sep">·</span>購入済み</p>
-      </article>
+      <button class="cta" id="cta-main">
+        <span>Add to Cart</span>
+        <span class="cta-sep"></span>
+        <span class="cta-p" id="cta-price">¥13,800</span>
+      </button>
 
-      <article class="rev-item fade">
-        <div class="stars rv-s"></div>
-        <h3 class="rev-title">香水を変えただけで「雰囲気変わったね」</h3>
-        <p class="rev-body">先輩に「最近雰囲気変わったね」って聞かれた。髪型も服も変えてない。変えたのは香水だけ。デートの帰り際に「今日の匂い好き」って言われたのも嬉しかった。</p>
-        <p class="rev-meta">社会人 4 年目・女（27 歳）<span class="rev-sep">·</span>購入済み</p>
-      </article>
-
+      <div class="trust">
+        <span>30日間返金保証</span>
+        <span class="dot"></span>
+        <span>送料無料</span>
+        <span class="dot"></span>
+        <span>14時まで当日発送</span>
+      </div>
     </div>
-    <p class="rev-ft">1,243 件のレビューに基づく</p>
-  </div>
-</section>
+  </section>
+
+  <!-- S3: Accordion -->
+  <section class="acc">
+    <div class="acc-in">
+      <p class="acc-kk">Details</p>
+      <h2 class="acc-hd">詳細情報</h2>
+      <div>
+        <details class="acc-item">
+          <summary class="acc-trig"><span class="acc-title">商品詳細</span><span class="acc-tog"></span></summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <dl>
+                <div class="dl-row"><dt>商品名</dt><dd>Oud Stallion — Eau de Parfum</dd></div>
+                <div class="dl-row"><dt>ブランド</dt><dd>PURELAYER</dd></div>
+                <div class="dl-row"><dt>容量</dt><dd>10ml / 50ml / 100ml</dd></div>
+                <div class="dl-row"><dt>香りの系統</dt><dd>石鹸系・お風呂上がりの清潔感</dd></div>
+                <div class="dl-row"><dt>持続時間</dt><dd>約 8 – 12 時間（個人差あり）</dd></div>
+                <div class="dl-row"><dt>使い方</dt><dd>首筋・手首に 1 – 2 プッシュ</dd></div>
+                <div class="dl-row"><dt>対象</dt><dd>ユニセックス（男女兼用）</dd></div>
+              </dl>
+            </div>
+          </div>
+        </details>
+        <details class="acc-item">
+          <summary class="acc-trig"><span class="acc-title">成分・原材料</span><span class="acc-tog"></span></summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p>エタノール、香料（パルファム）、水、BHT</p>
+              <p class="acc-sub">主な香料成分</p>
+              <ul class="acc-ul">
+                <li>リナロール — 石鹸系の清潔感</li>
+                <li>ゲラニオール — フローラルの柔らかさ</li>
+                <li>クマリン — ほんのりとした甘さ</li>
+                <li>ウード — 深みのある落ち着き</li>
+              </ul>
+              <p class="acc-cap">※ 肌に異常を感じた場合は使用を中止してください。</p>
+            </div>
+          </div>
+        </details>
+        <details class="acc-item">
+          <summary class="acc-trig"><span class="acc-title">30日間全額返金保証</span><span class="acc-tog"></span></summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p>商品到着から 30 日以内であれば、理由を問わず全額返金いたします。</p>
+              <p class="acc-sub">返品の流れ</p>
+              <ol class="acc-ol">
+                <li>公式 LINE またはメールでご連絡</li>
+                <li>返品先住所をご案内</li>
+                <li>商品を返送（返送料はお客様負担）</li>
+                <li>到着確認後、5 営業日以内に全額返金</li>
+              </ol>
+              <p class="acc-cap">※ 使用済みでも返品可（残量 50% 以上）。特典のみの返品は不可。</p>
+            </div>
+          </div>
+        </details>
+        <details class="acc-item">
+          <summary class="acc-trig"><span class="acc-title">配送について</span><span class="acc-tog"></span></summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <dl>
+                <div class="dl-row"><dt>送料</dt><dd>全国無料</dd></div>
+                <div class="dl-row"><dt>発送</dt><dd>14時までのご注文 → 当日発送</dd></div>
+                <div class="dl-row"><dt>お届け目安</dt><dd>発送後 1 – 3 日</dd></div>
+                <div class="dl-row"><dt>梱包</dt><dd>無地ダンボール（中身がわからない梱包）</dd></div>
+              </dl>
+            </div>
+          </div>
+        </details>
+        <details class="acc-item">
+          <summary class="acc-trig"><span class="acc-title">よくある質問</span><span class="acc-tog"></span></summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <div class="faq"><p class="faq-q">香りがきつくないですか？</p><p class="faq-a">石鹸系のナチュラルな香りです。1プッシュで十分香ります。</p></div>
+              <div class="faq"><p class="faq-q">男性用？女性用？</p><p class="faq-a">ユニセックスです。18–34歳の男女から均等にご支持いただいています。</p></div>
+              <div class="faq"><p class="faq-q">どこにつければいいですか？</p><p class="faq-a">首筋や手首に1–2プッシュ。体温の高い部位につけると自然に香りが広がります。</p></div>
+              <div class="faq"><p class="faq-q">10mlはどれくらい持ちますか？</p><p class="faq-a">1日1–2プッシュで約2–3週間お使いいただけます。</p></div>
+              <div class="faq"><p class="faq-q">特典のアトマイザーとは？</p><p class="faq-a">持ち運び用の空の10mlスプレーボトルです。</p></div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- S4: Reviews -->
+  <section class="rev" id="section-reviews">
+    <div class="rev-in">
+      <p class="rev-kk">Reviews</p>
+      <h2 class="rev-hd">お客様の声</h2>
+      <div class="rev-list">
+
+        <article class="rev-item fade">
+          <div class="stars rv-s"></div>
+          <h3 class="rev-title">香水が苦手な自分でも大丈夫だった</h3>
+          <p class="rev-body">香水って頭痛くなるイメージだったけど、これは全然ちがった。むしろずっと嗅いでたい。石鹸みたいなナチュラルさで、職場につけていっても誰にも嫌な顔されない。「なんかいい匂いするね」って同僚に言われて、それだけで買った価値があった。</p>
+          <p class="rev-meta">社会人 1 年目・女（23 歳）<span class="rev-sep">·</span>購入済み</p>
+        </article>
+
+        <article class="rev-item fade">
+          <div class="stars rv-s"></div>
+          <h3 class="rev-title">朝つけて夜まで、追いがけ不要</h3>
+          <p class="rev-body">朝 8 時に首筋に 1 プッシュして出勤。帰りの 22 時の電車でもまだうっすら香ってた。前に使ってた香水は午後には消えてたから、正直びっくり。これなら持ち運びも不要で、朝の準備がラク。</p>
+          <p class="rev-meta">社会人 2 年目・男（24 歳）<span class="rev-sep">·</span>購入済み</p>
+        </article>
+
+        <div class="rev-ugc fade">
+          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/723DB3B1-E822-431C-8D5E-C56E8161FA27.webp?v=1776938230" alt="お客様投稿写真" loading="lazy" width="400" height="400">
+        </div>
+
+        <article class="rev-item fade">
+          <div class="stars rv-s"></div>
+          <h3 class="rev-title">電車で知らない人に褒められた</h3>
+          <p class="rev-body">帰りの電車で隣の人に「すみません、いい匂いしますね」って話しかけられた。人生で初めて匂いで褒められて嬉しかった。友達にも勧めたら 3 人が同じの買ってた。</p>
+          <p class="rev-meta">大学 3 年・女（22 歳）<span class="rev-sep">·</span>購入済み</p>
+        </article>
+
+        <article class="rev-item fade">
+          <div class="stars rv-s"></div>
+          <h3 class="rev-title">半信半疑だったけど、当たりだった</h3>
+          <p class="rev-body">正直 TikTok の広告って怪しいと思ってた。でも返金保証があるしと思って 10ml を注文。届いてつけた瞬間「あ、これは良い」ってなった。1 週間後には 50ml を買い直してた。</p>
+          <p class="rev-meta">大学 4 年・男（21 歳）<span class="rev-sep">·</span>購入済み</p>
+        </article>
+
+        <div class="rev-ugc fade">
+          <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3146.webp?v=1774754613" alt="お客様投稿写真" loading="lazy" width="400" height="400">
+        </div>
+
+        <article class="rev-item fade">
+          <div class="stars rv-s"></div>
+          <h3 class="rev-title">1プッシュで済むから結果的に安い</h3>
+          <p class="rev-body">最初は値段で迷った。でも 1 プッシュで十分すぎるくらい香る。50ml なら半年は持ちそう。アトマイザーまで付いてきたし、結果的にコスパはかなり良い。</p>
+          <p class="rev-meta">社会人 3 年目・男（26 歳）<span class="rev-sep">·</span>購入済み</p>
+        </article>
+
+        <article class="rev-item fade">
+          <div class="stars rv-s"></div>
+          <h3 class="rev-title">香水を変えただけで「雰囲気変わったね」</h3>
+          <p class="rev-body">先輩に「最近雰囲気変わったね」って聞かれた。髪型も服も変えてない。変えたのは香水だけ。デートの帰り際に「今日の匂い好き」って言われたのも嬉しかった。</p>
+          <p class="rev-meta">社会人 4 年目・女（27 歳）<span class="rev-sep">·</span>購入済み</p>
+        </article>
+
+      </div>
+      <p class="rev-ft">1,243 件のレビューに基づく</p>
+    </div>
+  </section>
+</main>
 
 <!-- Footer -->
 <footer class="ft">
@@ -476,15 +461,12 @@ details[open] > .acc-body { max-height: 600px; }
 (function(){
   'use strict';
 
-  /* 1. Stars Helper */
+  /* 1. Stars Optimization (Avoiding innerHTML in loops for better perf) */
   var starSVG = '<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
-  function fillStars(sel, n) {
-    document.querySelectorAll(sel).forEach(function(el) {
-      for(var i=0; i<n; i++) el.innerHTML += starSVG;
-    });
-  }
-  fillStars('#fv-stars', 5);
-  fillStars('.rv-s', 5);
+  var fiveStars = starSVG + starSVG + starSVG + starSVG + starSVG;
+  document.querySelectorAll('#fv-stars, .rv-s').forEach(function(el) {
+    el.innerHTML = fiveStars;
+  });
 
   /* 2. Variant Logic */
   var VM = {
@@ -494,7 +476,6 @@ details[open] > .acc-body { max-height: 600px; }
   };
   
   var cur = '50ml';
-  var radios = document.querySelectorAll('.vr');
   var ctaPrice = document.getElementById('cta-price');
   var stickyName = document.getElementById('sticky-name');
   var stickyPrice = document.getElementById('sticky-price');
@@ -507,8 +488,8 @@ details[open] > .acc-body { max-height: 600px; }
     if (stickyPrice) stickyPrice.textContent = d.price;
   }
   
-  radios.forEach(function(r) {
-    r.addEventListener('change', function() { upd(this.value); });
+  document.getElementById('vs').addEventListener('change', function(e) {
+    if(e.target.classList.contains('vr')) upd(e.target.value);
   });
 
   /* 3. Add to Cart (Ajax + Fallback) */
@@ -516,11 +497,9 @@ details[open] > .acc-body { max-height: 600px; }
     var d = VM[cur];
     if (!d) return;
     
-    // Tracking
     if (window.clarity) window.clarity('set', 'InitiateCheckout', 'true');
     if (window.ttq) window.ttq.track('AddToCart', {});
     
-    // Shopify Cart API
     fetch('/cart/add.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -538,45 +517,52 @@ details[open] > .acc-body { max-height: 600px; }
   document.getElementById('cta-main').addEventListener('click', addToCart);
   document.getElementById('sticky-btn').addEventListener('click', addToCart);
 
-  /* 4. Animations & Interactions */
-  // Stock Bar
+  /* 4. Lightweight Animations & Interactivity */
+  
+  // Stock Bar Animation (requestAnimationFrame for performance)
   var sb = document.getElementById('stk-bar');
-  if (sb) setTimeout(function(){ sb.style.width = '28%'; }, 500);
-
-  // Sticky CTA
-  var sw = document.getElementById('sticky-cta');
-  var fv = document.getElementById('section-fv');
-  if (sw && fv && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function(e) {
-      e.forEach(function(en) { sw.classList.toggle('vis', !en.isIntersecting); });
-    }, { threshold: 0.05 }).observe(fv);
+  if (sb) {
+    requestAnimationFrame(function() {
+      setTimeout(function(){ sb.style.width = '28%'; }, 100);
+    });
   }
 
-  // Accordion Exclusive Open
-  var items = document.querySelectorAll('.acc-item');
-  items.forEach(function(it) {
-    it.addEventListener('toggle', function() {
-      if (this.open) {
-        items.forEach(function(o) { if (o !== it && o.open) o.removeAttribute('open'); });
-      }
-    });
-  });
-
-  // Scroll Fade-in
-  var fades = document.querySelectorAll('.fade');
+  // Intersection Observers (Lightweight)
   if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function(entries) {
+    
+    // Sticky CTA Observer
+    var sw = document.getElementById('sticky-cta');
+    var fv = document.getElementById('section-fv');
+    if (sw && fv) {
+      new IntersectionObserver(function(e) {
+        sw.classList.toggle('vis', !e[0].isIntersecting);
+      }, { threshold: 0 }).observe(fv);
+    }
+
+    // Scroll Fade-in Observer
+    var ioFade = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
         if (e.isIntersecting) {
           e.target.classList.add('vis');
-          io.unobserve(e.target);
+          ioFade.unobserve(e.target);
         }
       });
-    }, { threshold: 0.08 });
-    fades.forEach(function(el){ io.observe(el); });
+    }, { rootMargin: "50px", threshold: 0 });
+    
+    document.querySelectorAll('.fade').forEach(function(el){ ioFade.observe(el); });
+    
   } else {
-    fades.forEach(function(el){ el.classList.add('vis'); });
+    document.querySelectorAll('.fade').forEach(function(el){ el.classList.add('vis'); });
   }
+
+  // Accordion Exclusive Open (Event delegation to avoid binding multiple listeners)
+  document.querySelector('.acc').addEventListener('toggle', function(e) {
+    if (e.target.open) {
+      document.querySelectorAll('.acc-item').forEach(function(o) { 
+        if (o !== e.target && o.open) o.removeAttribute('open'); 
+      });
+    }
+  }, true);
 
   // Initialize UI
   upd(cur);
