@@ -4,332 +4,582 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oud Stallion | PURELAYER</title>
-<meta name="description" content="つけた瞬間、褒められる清潔感。石鹸系の香りが一日中続く。累計12,000本突破。¥3,980からお試し。">縺､縺代◆迸ｬ髢薙∬､偵ａ繧峨ｌ繧区ｸ・ｽ疲─縲ら浹鮖ｸ邉ｻ縺ｮ鬥吶ｊ縺御ｸ譌･荳ｭ邯壹￥縲らｴｯ險・2,000譛ｬ遯∫ｴ縲つ･3,980縺九ｉ縺願ｩｦ縺励・>
+<meta name="description" content="つけた瞬間、褒められる清潔感。石鹸系の香りが一日中続く。累計12,000本突破。¥3,980からお試し。">
+
+<!-- Analytics -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}'></script>
 <script type="text/javascript">
 (function(c,l,a,r,i,t,y){
-c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 })(window, document, "clarity", "script", "vvn8p99ehp");
 </script>
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-:root{--white:#FFF;--off:#FAFAFA;--bk:#1A1A1A;--g1:#F5F5F5;--g2:#EEE;--g4:#AAA;--g5:#888;--g7:#555;--acc:#3B6D11;--serif:"Shippori Mincho","YuMincho",serif;--sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{font-family:var(--sans);background:var(--white);color:var(--bk);line-height:1.6;overflow-x:hidden;padding-bottom:72px}
-img{max-width:100%;height:auto;display:block}
-svg{display:block}
-.stars{display:flex;gap:2px}.stars svg{width:12px;height:12px;fill:var(--bk)}
+/* ============================================================
+   Global
+   ============================================================ */
+:root {
+  --pl-white: #FFFFFF;
+  --pl-off-white: #FAFAFA;
+  --pl-black: #1A1A1A;
+  --pl-gray-100: #F5F5F5;
+  --pl-gray-200: #EEEEEE;
+  --pl-gray-400: #AAAAAA;
+  --pl-gray-500: #888888;
+  --pl-gray-700: #555555;
+  --pl-serif: "Shippori Mincho", "YuMincho", "Yu Mincho", serif;
+  --pl-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body { font-family: var(--pl-sans); background: var(--pl-white); color: var(--pl-black); line-height: 1.6; overflow-x: hidden; padding-bottom: 72px; }
+img { max-width: 100%; height: auto; display: block; }
+svg { display: block; }
+.stars { display: flex; gap: 2px; }
+.stars svg { width: 12px; height: 12px; fill: var(--pl-black); }
+.dot { width: 2px; height: 2px; border-radius: 50%; background: var(--pl-gray-400); flex-shrink: 0; }
+.fade { opacity: 0; transform: translateY(10px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade.vis { opacity: 1; transform: translateY(0); }
 
-/* Header */
-.hdr{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:.5px solid var(--g2)}
-.hdr-in{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;max-width:720px;margin:0 auto}
-.hdr-logo{font-family:var(--serif);font-size:18px;font-weight:500;letter-spacing:.14em;color:var(--bk)}
-.hdr-r{display:flex;gap:8px;align-items:center}
-.hdr-ic{width:32px;height:32px;border:none;background:none;cursor:pointer;color:var(--bk);display:flex;align-items:center;justify-content:center;padding:4px}
-.hdr-ic svg{width:22px;height:22px}
+/* ============================================================
+   Header
+   ============================================================ */
+.hdr { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 0.5px solid var(--pl-gray-200); }
+.hdr-in { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; max-width: 720px; margin: 0 auto; }
+.hdr-logo { font-family: var(--pl-serif); font-size: 18px; font-weight: 500; letter-spacing: 0.14em; color: var(--pl-black); }
+.hdr-r { display: flex; gap: 8px; align-items: center; }
+.hdr-ic { width: 32px; height: 32px; border: none; background: none; cursor: pointer; color: var(--pl-black); display: flex; align-items: center; justify-content: center; padding: 4px; }
+.hdr-ic svg { width: 22px; height: 22px; }
 
-/* FV */
-.fv{background:var(--white)}
-.fv-hero{width:100%;background:var(--g1)}
-.fv-img{width:100%;aspect-ratio:1/1;object-fit:contain;mix-blend-mode:multiply}
-.fv-info{padding:28px 24px 40px;max-width:720px;margin:0 auto}
-.fv-name{font-family:var(--sans);font-size:18px;font-weight:500;color:var(--bk);letter-spacing:.02em;margin:0 0 10px;line-height:1.4}
-.fv-rating{display:flex;align-items:center;gap:8px;margin-bottom:16px}
-.fv-rc{font-size:12px;font-weight:400;color:var(--g5);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--g2)}
-.fv-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
-.fv-tag{font-size:11px;font-weight:400;color:var(--g7);border:.5px solid var(--g2);padding:5px 12px;border-radius:20px;letter-spacing:.02em}
-.fv-hl{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.6;letter-spacing:.06em;color:var(--bk);margin:0 0 12px}
-.fv-desc{font-size:14px;font-weight:400;line-height:1.9;color:var(--g7);margin:0 0 20px;letter-spacing:.02em}
-.fv-desc strong{color:var(--bk);font-weight:600}
-.fv-proof{display:flex;align-items:center;flex-wrap:wrap;gap:0;font-size:11px;font-weight:400;color:var(--g4);letter-spacing:.04em;padding-top:20px;border-top:.5px solid var(--g2)}
-.fv-proof>span{padding:0 8px}.fv-proof>span:first-child{padding-left:0}
-.dot{width:2px;height:2px;border-radius:50%;background:var(--g4);flex-shrink:0}
+/* ============================================================
+   Section 1: First View
+   ============================================================ */
+.fv { background: var(--pl-white); }
+.fv-hero { width: 100%; background: var(--pl-gray-100); }
+.fv-img { width: 100%; aspect-ratio: 1/1; object-fit: contain; mix-blend-mode: multiply; }
+.fv-info { padding: 28px 24px 40px; max-width: 720px; margin: 0 auto; }
+.fv-name { font-family: var(--pl-sans); font-size: 18px; font-weight: 500; color: var(--pl-black); letter-spacing: 0.02em; margin: 0 0 10px; line-height: 1.4; }
+.fv-rating { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+.fv-rc { font-size: 12px; font-weight: 400; color: var(--pl-gray-500); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--pl-gray-200); }
+.fv-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.fv-tag { font-size: 11px; font-weight: 400; color: var(--pl-gray-700); border: 0.5px solid var(--pl-gray-200); padding: 5px 12px; border-radius: 20px; letter-spacing: 0.02em; }
+.fv-hl { font-family: var(--pl-serif); font-size: 22px; font-weight: 600; line-height: 1.6; letter-spacing: 0.06em; color: var(--pl-black); margin: 0 0 12px; }
+.fv-desc { font-size: 14px; font-weight: 400; line-height: 1.9; color: var(--pl-gray-700); margin: 0 0 20px; letter-spacing: 0.02em; }
+.fv-desc strong { color: var(--pl-black); font-weight: 600; }
+.fv-proof { display: flex; align-items: center; flex-wrap: wrap; gap: 0; font-size: 11px; font-weight: 400; color: var(--pl-gray-400); letter-spacing: 0.04em; padding-top: 20px; border-top: 0.5px solid var(--pl-gray-200); }
+.fv-proof > span { padding: 0 8px; }
+.fv-proof > span:first-child { padding-left: 0; }
 
-/* Product */
-.prod{background:var(--white);padding:56px 0;border-top:.5px solid var(--g2)}
-.prod-in{max-width:480px;margin:0 auto;padding:0 24px}
-.prod-kk{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--g4);text-align:center;margin:0 0 8px}
-.prod-hd{font-family:var(--serif);font-size:20px;font-weight:500;text-align:center;letter-spacing:.08em;color:var(--bk);margin:0 0 36px}
-.vs{display:flex;flex-direction:column;margin-bottom:28px}
-.vs input{display:none}
-.vs-card{padding:18px 0;border-top:.5px solid var(--g2);cursor:pointer;transition:background .2s}
-.vs label:last-child .vs-card{border-bottom:.5px solid var(--g2)}
-.vs input:checked+.vs-card{background:var(--g1);margin:0 -24px;padding:18px 24px}
-.vs-row{display:flex;justify-content:space-between;align-items:baseline}
-.vs-size{font-size:15px;font-weight:600;color:var(--bk);letter-spacing:.02em;display:flex;align-items:center;gap:10px}
-.vs-tag{font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--g4);border:.5px solid var(--g4);padding:2px 8px;border-radius:2px}
-.vs-price{font-size:14px;font-weight:500;color:var(--bk);letter-spacing:.02em}
-.vs-note{display:block;font-size:11px;font-weight:400;color:var(--g5);margin-top:4px;letter-spacing:.03em}
-.stk{margin-bottom:28px;text-align:center}
-.stk-line{height:1px;background:var(--g2);margin-bottom:12px;overflow:hidden}
-.stk-bar{height:100%;width:0%;background:var(--bk);transition:width 1.8s cubic-bezier(.25,1,.5,1)}
-.stk-txt{font-size:10px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--g4);margin:0}
-.stk-txt span{color:var(--bk);font-weight:500}
-.cta{display:flex;justify-content:center;align-items:center;gap:12px;width:100%;padding:18px;background:var(--bk);color:#fff;border:none;font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:opacity .2s;margin-bottom:16px}
-.cta:active{opacity:.85}
-.cta-sep{width:1px;height:14px;background:rgba(255,255,255,.25)}
-.cta-p{font-weight:400;opacity:.6}
-.trust{display:flex;justify-content:center;align-items:center;gap:0;font-size:10px;font-weight:400;color:var(--g4);letter-spacing:.06em}
-.trust>span{padding:0 8px}
+/* ============================================================
+   Section 2: Product
+   ============================================================ */
+.prod { background: var(--pl-white); padding: 56px 0; border-top: 0.5px solid var(--pl-gray-200); }
+.prod-in { max-width: 480px; margin: 0 auto; padding: 0 24px; }
+.prod-kk { font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pl-gray-400); text-align: center; margin: 0 0 8px; }
+.prod-hd { font-family: var(--pl-serif); font-size: 20px; font-weight: 500; text-align: center; letter-spacing: 0.08em; color: var(--pl-black); margin: 0 0 36px; }
+.vs { display: flex; flex-direction: column; margin-bottom: 28px; }
+.vs input { display: none; }
+.vs-card { padding: 18px 0; border-top: 0.5px solid var(--pl-gray-200); cursor: pointer; transition: background 0.2s; }
+.vs label:last-child .vs-card { border-bottom: 0.5px solid var(--pl-gray-200); }
+.vs input:checked + .vs-card { background: var(--pl-gray-100); margin: 0 -24px; padding: 18px 24px; }
+.vs-row { display: flex; justify-content: space-between; align-items: baseline; }
+.vs-size { font-size: 15px; font-weight: 600; color: var(--pl-black); letter-spacing: 0.02em; display: flex; align-items: center; gap: 10px; }
+.vs-tag { font-size: 9px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pl-gray-400); border: 0.5px solid var(--pl-gray-400); padding: 2px 8px; border-radius: 2px; }
+.vs-price { font-size: 14px; font-weight: 500; color: var(--pl-black); letter-spacing: 0.02em; }
+.vs-note { display: block; font-size: 11px; font-weight: 400; color: var(--pl-gray-500); margin-top: 4px; letter-spacing: 0.03em; }
+.stk { margin-bottom: 28px; text-align: center; }
+.stk-line { height: 1px; background: var(--pl-gray-200); margin-bottom: 12px; overflow: hidden; }
+.stk-bar { height: 100%; width: 0%; background: var(--pl-black); transition: width 1.8s cubic-bezier(0.25, 1, 0.5, 1); }
+.stk-txt { font-size: 10px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pl-gray-400); margin: 0; }
+.stk-txt span { color: var(--pl-black); font-weight: 500; }
+.cta { display: flex; justify-content: center; align-items: center; gap: 12px; width: 100%; padding: 18px; background: var(--pl-black); color: #fff; border: none; font-family: var(--pl-sans); font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; margin-bottom: 16px; }
+.cta:active { opacity: 0.85; }
+.cta-sep { width: 1px; height: 14px; background: rgba(255,255,255,0.25); }
+.cta-p { font-weight: 400; opacity: 0.6; }
+.trust { display: flex; justify-content: center; align-items: center; gap: 0; font-size: 10px; font-weight: 400; color: var(--pl-gray-400); letter-spacing: 0.06em; }
+.trust > span { padding: 0 8px; }
 
-/* Sticky */
-.sticky{position:fixed;bottom:0;left:0;width:100%;z-index:999;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:.5px solid var(--g2);transform:translateY(120%);transition:transform .5s cubic-bezier(.16,1,.3,1)}
-.sticky.vis{transform:translateY(0)}
-.sticky-in{max-width:480px;margin:0 auto;padding:12px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px}
-.sticky-name{font-size:11px;font-weight:400;color:var(--g5);letter-spacing:.04em}
-.sticky-btn{flex-shrink:0;padding:12px 24px;background:var(--bk);color:#fff;border:none;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:opacity .2s}
-.sticky-btn:active{opacity:.85}
+/* ============================================================
+   Section 3: Accordion
+   ============================================================ */
+.acc { background: var(--pl-off-white); padding: 56px 0; }
+.acc-in { max-width: 480px; margin: 0 auto; padding: 0 24px; }
+.acc-kk { font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pl-gray-400); text-align: center; margin: 0 0 8px; }
+.acc-hd { font-family: var(--pl-serif); font-size: 20px; font-weight: 500; text-align: center; letter-spacing: 0.08em; color: var(--pl-black); margin: 0 0 40px; }
+.acc-item { border-top: 0.5px solid var(--pl-gray-200); }
+.acc-item:last-child { border-bottom: 0.5px solid var(--pl-gray-200); }
+.acc-trig { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; cursor: pointer; list-style: none; user-select: none; -webkit-user-select: none; }
+.acc-trig::-webkit-details-marker { display: none; }
+.acc-trig::marker { display: none; content: ''; }
+.acc-title { font-size: 13px; font-weight: 500; color: var(--pl-black); letter-spacing: 0.06em; }
+.acc-tog { position: relative; width: 16px; height: 16px; flex-shrink: 0; }
+.acc-tog::before, .acc-tog::after { content: ''; position: absolute; top: 50%; left: 50%; background: var(--pl-gray-400); transition: transform 0.3s, opacity 0.3s; }
+.acc-tog::before { width: 12px; height: 0.5px; transform: translate(-50%, -50%); }
+.acc-tog::after { width: 0.5px; height: 12px; transform: translate(-50%, -50%); }
+details[open] > .acc-trig .acc-tog::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+.acc-body { overflow: hidden; max-height: 0; transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+details[open] > .acc-body { max-height: 600px; }
+.acc-cnt { padding: 0 0 28px; font-size: 13px; line-height: 1.9; color: var(--pl-gray-700); }
+.acc-cnt p { margin-bottom: 12px; }
+.acc-cnt strong { color: var(--pl-black); font-weight: 600; }
+.acc-sub { font-size: 12px; font-weight: 600; color: var(--pl-black); letter-spacing: 0.06em; margin: 16px 0 6px; }
+.acc-cap { font-size: 11px; color: var(--pl-gray-400); line-height: 1.8; margin-top: 12px; }
+.dl-row { display: flex; padding: 10px 0; border-bottom: 0.5px solid var(--pl-gray-100); font-size: 13px; }
+.dl-row:last-child { border-bottom: none; }
+.dl-row dt { width: 90px; flex-shrink: 0; font-weight: 500; color: var(--pl-black); }
+.dl-row dd { margin: 0; color: var(--pl-gray-700); }
+.acc-ul { list-style: none; padding: 0; }
+.acc-ul li { padding: 4px 0; font-size: 13px; }
+.acc-ul li::before { content: '–'; margin-right: 8px; color: var(--pl-gray-400); }
+.acc-ol { padding-left: 18px; margin: 6px 0 12px; }
+.acc-ol li { padding: 4px 0; font-size: 13px; }
+.acc-ol li::marker { font-weight: 600; color: var(--pl-gray-400); }
+.faq { margin-bottom: 20px; }
+.faq:last-child { margin-bottom: 0; }
+.faq-q { font-size: 13px; font-weight: 600; color: var(--pl-black); margin-bottom: 4px; }
+.faq-a { font-size: 13px; color: var(--pl-gray-700); line-height: 1.9; }
 
-/* Accordion */
-.acc{background:var(--off);padding:56px 0}
-.acc-in{max-width:480px;margin:0 auto;padding:0 24px}
-.acc-kk{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--g4);text-align:center;margin:0 0 8px}
-.acc-hd{font-family:var(--serif);font-size:20px;font-weight:500;text-align:center;letter-spacing:.08em;color:var(--bk);margin:0 0 40px}
-.acc-item{border-top:.5px solid var(--g2)}
-.acc-item:last-child{border-bottom:.5px solid var(--g2)}
-.acc-trig{display:flex;justify-content:space-between;align-items:center;padding:20px 0;cursor:pointer;list-style:none;user-select:none;-webkit-user-select:none}
-.acc-trig::-webkit-details-marker{display:none}
-.acc-trig::marker{display:none;content:''}
-.acc-title{font-size:13px;font-weight:500;color:var(--bk);letter-spacing:.06em}
-.acc-tog{position:relative;width:16px;height:16px;flex-shrink:0}
-.acc-tog::before,.acc-tog::after{content:'';position:absolute;top:50%;left:50%;background:var(--g4);transition:transform .3s,opacity .3s}
-.acc-tog::before{width:12px;height:.5px;transform:translate(-50%,-50%)}
-.acc-tog::after{width:.5px;height:12px;transform:translate(-50%,-50%)}
-details[open]>.acc-trig .acc-tog::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
-.acc-body{overflow:hidden;max-height:0;transition:max-height .4s cubic-bezier(.25,1,.5,1)}
-details[open]>.acc-body{max-height:600px}
-.acc-cnt{padding:0 0 28px;font-size:13px;line-height:1.9;color:var(--g7)}
-.acc-cnt p{margin-bottom:12px}
-.acc-cnt strong{color:var(--bk);font-weight:600}
-.acc-sub{font-size:12px;font-weight:600;color:var(--bk);letter-spacing:.06em;margin:16px 0 6px}
-.acc-cap{font-size:11px;color:var(--g4);line-height:1.8;margin-top:12px}
-.dl-row{display:flex;padding:10px 0;border-bottom:.5px solid var(--g1);font-size:13px}
-.dl-row:last-child{border-bottom:none}
-.dl-row dt{width:90px;flex-shrink:0;font-weight:500;color:var(--bk)}
-.dl-row dd{margin:0;color:var(--g7)}
-.acc-ul{list-style:none;padding:0}.acc-ul li{padding:4px 0;font-size:13px}.acc-ul li::before{content:'窶・;margin-right:8px;color:var(--g4)}
-.acc-ol{padding-left:18px;margin:6px 0 12px}.acc-ol li{padding:4px 0;font-size:13px}.acc-ol li::marker{font-weight:600;color:var(--g4)}
-.faq{margin-bottom:20px}.faq:last-child{margin-bottom:0}
-.faq-q{font-size:13px;font-weight:600;color:var(--bk);margin-bottom:4px}
-.faq-a{font-size:13px;color:var(--g7);line-height:1.9}
+/* ============================================================
+   Section 4: Reviews
+   ============================================================ */
+.rev { background: var(--pl-white); padding: 56px 0; border-top: 0.5px solid var(--pl-gray-200); }
+.rev-in { max-width: 480px; margin: 0 auto; padding: 0 24px; }
+.rev-kk { font-size: 10px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pl-gray-400); text-align: center; margin: 0 0 8px; }
+.rev-hd { font-family: var(--pl-serif); font-size: 20px; font-weight: 500; text-align: center; letter-spacing: 0.08em; color: var(--pl-black); margin: 0 0 40px; }
+.rev-item { padding: 24px 0; border-top: 0.5px solid var(--pl-gray-200); }
+.rev-item:last-child { border-bottom: 0.5px solid var(--pl-gray-200); }
+.rev-title { font-size: 14px; font-weight: 600; color: var(--pl-black); margin: 0 0 8px; letter-spacing: 0.02em; line-height: 1.5; }
+.rev-body { font-size: 13px; font-weight: 400; line-height: 1.9; color: var(--pl-gray-700); margin: 0 0 12px; letter-spacing: 0.01em; }
+.rev-meta { font-size: 11px; font-weight: 400; color: var(--pl-gray-400); letter-spacing: 0.04em; margin: 0; }
+.rev-sep { margin: 0 6px; color: var(--pl-gray-200); }
+.rev-ugc { padding: 16px 0; }
+.rev-ugc img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 4px; }
+.rev-ft { text-align: center; font-size: 11px; font-weight: 400; color: var(--pl-gray-400); letter-spacing: 0.06em; margin: 32px 0 0; }
 
-/* Reviews */
-.rev{background:var(--white);padding:56px 0;border-top:.5px solid var(--g2)}
-.rev-in{max-width:480px;margin:0 auto;padding:0 24px}
-.rev-kk{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--g4);text-align:center;margin:0 0 8px}
-.rev-hd{font-family:var(--serif);font-size:20px;font-weight:500;text-align:center;letter-spacing:.08em;color:var(--bk);margin:0 0 40px}
-.rev-item{padding:24px 0;border-top:.5px solid var(--g2)}
-.rev-item:last-child{border-bottom:.5px solid var(--g2)}
-.rev-title{font-size:14px;font-weight:600;color:var(--bk);margin:0 0 8px;letter-spacing:.02em;line-height:1.5}
-.rev-body{font-size:13px;font-weight:400;line-height:1.9;color:var(--g7);margin:0 0 12px;letter-spacing:.01em}
-.rev-meta{font-size:11px;font-weight:400;color:var(--g4);letter-spacing:.04em;margin:0}
-.rev-sep{margin:0 6px;color:var(--g2)}
-.rev-ugc{padding:16px 0}
-.rev-ugc img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:4px}
-.rev-ft{text-align:center;font-size:11px;font-weight:400;color:var(--g4);letter-spacing:.06em;margin:32px 0 0}
+/* ============================================================
+   Footer
+   ============================================================ */
+.ft { padding: 40px 24px 60px; text-align: center; border-top: 0.5px solid var(--pl-gray-200); background: var(--pl-white); }
+.ft-logo { font-family: var(--pl-serif); font-size: 14px; font-weight: 500; letter-spacing: 0.14em; color: var(--pl-black); margin-bottom: 20px; }
+.ft-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+.ft-links a { font-size: 11px; color: var(--pl-gray-500); text-decoration: none; font-weight: 400; }
+.ft-copy { font-size: 10px; color: var(--pl-gray-400); }
 
-/* Footer */
-.ft{padding:40px 24px 60px;text-align:center;border-top:.5px solid var(--g2)}
-.ft-logo{font-family:var(--serif);font-size:14px;font-weight:500;letter-spacing:.14em;color:var(--bk);margin-bottom:20px}
-.ft-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}
-.ft-links a{font-size:11px;color:var(--g5);text-decoration:none;font-weight:400}
-.ft-copy{font-size:10px;color:var(--g4)}
+/* ============================================================
+   Sticky CTA
+   ============================================================ */
+.sticky { position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999; background: rgba(255,255,255,0.96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 0.5px solid var(--pl-gray-200); transform: translateY(120%); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.sticky.vis { transform: translateY(0); }
+.sticky-in { max-width: 480px; margin: 0 auto; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.sticky-name { font-size: 11px; font-weight: 400; color: var(--pl-gray-500); letter-spacing: 0.04em; }
+.sticky-btn { flex-shrink: 0; padding: 12px 24px; background: var(--pl-black); color: #fff; border: none; font-family: var(--pl-sans); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; }
+.sticky-btn:active { opacity: 0.85; }
 
-/* Animations */
-.fade{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease}
-.fade.vis{opacity:1;transform:translateY(0)}
-
-@media(min-width:768px){
-.fv-img{aspect-ratio:4/3}
-.fv-name{font-size:22px}
-.fv-hl{font-size:28px}
-.fv-info{padding:40px 40px 56px}
-.prod,.acc,.rev{padding:72px 0}
+@media (min-width: 768px) {
+  .fv-img { aspect-ratio: 4/3; }
+  .fv-name { font-size: 22px; }
+  .fv-hl { font-size: 28px; }
+  .fv-info { padding: 40px 40px 56px; }
+  .prod, .acc, .rev { padding: 72px 0; }
 }
 </style>
 </head>
 <body>
-<!-- HEADER -->
+
+<!-- Header -->
 <header class="hdr" id="pl-header">
-<div class="hdr-in">
-<button class="hdr-ic" aria-label="繝｡繝九Η繝ｼ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg></button>
-<div class="hdr-logo">PURELAYER</div>
-<div class="hdr-r">
-<button class="hdr-ic" aria-label="讀懃ｴ｢"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
-<button class="hdr-ic" aria-label="繧ｫ繝ｼ繝・><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></button>
-</div>
-</div>
+  <div class="hdr-in">
+    <button class="hdr-ic" aria-label="メニュー">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg>
+    </button>
+    <div class="hdr-logo">PURELAYER</div>
+    <div class="hdr-r">
+      <button class="hdr-ic" aria-label="検索">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="hdr-ic" aria-label="カート">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      </button>
+    </div>
+  </div>
 </header>
 
-<!-- S1: FIRST VIEW -->
+<!-- S1: First View -->
 <section class="fv" id="section-fv">
-<div class="fv-hero"><img class="fv-img" src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731" alt="PURELAYER Oud Stallion" fetchpriority="high" loading="eager" width="750" height="750"></div>
-<div class="fv-info fade" id="fv-info">
-<h1 class="fv-name">PURELAYER 窶・Oud Stallion</h1>
-<div class="fv-rating"><div class="stars" id="fv-stars"></div><span class="fv-rc">1,243莉ｶ縺ｮ繝ｬ繝薙Η繝ｼ</span></div>
-<div class="fv-tags"><span class="fv-tag">繝ｦ繝九そ繝・け繧ｹ</span><span class="fv-tag">繝吶せ繝医そ繝ｩ繝ｼ</span><span class="fv-tag">1繝励ャ繧ｷ繝･縺ゅ◆繧顔ｴ・5蜀・・/span></div>
-<h2 class="fv-hl">縺､縺代◆迸ｬ髢薙∬､偵ａ繧峨ｌ繧区ｸ・ｽ疲─</h2>
-<p class="fv-desc">遏ｳ鮖ｸ繝ｻ繧ｷ繝｣繝ｳ繝励・邉ｻ縺ｮ鬥吶ｊ繧剃ｸ譌･荳ｭ繧ｭ繝ｼ繝励・br><strong>93%</strong>縺ｮ縺雁ｮ｢讒倥′縺薙・鬥呎ｰｴ繧偵▽縺代※<strong>隍偵ａ繧峨ｌ縺溽ｵ碁ｨ・/strong>縺後≠繧翫∪縺吶・/p>
-<div class="fv-proof"><span>邏ｯ險・12,000 譛ｬ遯∫ｴ</span><span class="dot"></span><span>繝ｪ繝斐・繝育紫 78%</span><span class="dot"></span><span>30譌･髢灘・鬘崎ｿ秘≡菫晁ｨｼ</span></div>
-</div>
+  <div class="fv-hero">
+    <img class="fv-img" src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731" alt="PURELAYER Oud Stallion" fetchpriority="high" loading="eager" width="750" height="750">
+  </div>
+  <div class="fv-info fade" id="fv-info">
+    <h1 class="fv-name">PURELAYER — Oud Stallion</h1>
+    <div class="fv-rating">
+      <div class="stars" id="fv-stars"></div>
+      <span class="fv-rc">1,243件のレビュー</span>
+    </div>
+    <div class="fv-tags">
+      <span class="fv-tag">ユニセックス</span>
+      <span class="fv-tag">ベストセラー</span>
+      <span class="fv-tag">1プッシュあたり約15円〜</span>
+    </div>
+    <h2 class="fv-hl">つけた瞬間、褒められる清潔感</h2>
+    <p class="fv-desc">
+      石鹸・シャンプー系の香りを一日中キープ。<br>
+      <strong>93%</strong>のお客様がこの香水をつけて<strong>褒められた経験</strong>があります。
+    </p>
+    <div class="fv-proof">
+      <span>累計 12,000 本突破</span>
+      <span class="dot"></span>
+      <span>リピート率 78%</span>
+      <span class="dot"></span>
+      <span>30日間全額返金保証</span>
+    </div>
+  </div>
 </section>
 
-<!-- S2: PRODUCT SELECTION -->
+<!-- S2: Product Selection -->
 <section class="prod" id="section-product">
-<div class="prod-in">
-<p class="prod-kk">Select Size</p>
-<h2 class="prod-hd">繧ｵ繧､繧ｺ繧帝∈縺ｶ</h2>
-<div class="vs" id="vs">
-<label><input type="radio" name="v" value="10ml" class="vr"><div class="vs-card"><div class="vs-row"><span class="vs-size">10ml</span><span class="vs-price">ﾂ･3,980</span></div><span class="vs-note">縺願ｩｦ縺励し繧､繧ｺ</span></div></label>
-<label><input type="radio" name="v" value="50ml" class="vr" checked><div class="vs-card"><div class="vs-row"><span class="vs-size">50ml<span class="vs-tag">Most Popular</span></span><span class="vs-price">ﾂ･13,800</span></div><span class="vs-note">迚ｹ蜈ｸ 窶・10ml 繧｢繝医・繧､繧ｶ繝ｼ莉倥″</span></div></label>
-<label><input type="radio" name="v" value="100ml" class="vr"><div class="vs-card"><div class="vs-row"><span class="vs-size">100ml</span><span class="vs-price">ﾂ･22,800</span></div><span class="vs-note">迚ｹ蜈ｸ 窶・繧｢繝医・繧､繧ｶ繝ｼ + 2ml 繝・せ繝医く繝・ヨ莉倥″</span></div></label>
-</div>
-<div class="stk"><div class="stk-line"><div class="stk-bar" id="stk-bar"></div></div><p class="stk-txt">Limited Stock 窶・<span id="stk-count">谿九ｊ 12 轤ｹ</span></p></div>
-<button class="cta" id="cta-main"><span>Add to Cart</span><span class="cta-sep"></span><span class="cta-p" id="cta-price">ﾂ･13,800</span></button>
-<div class="trust"><span>30譌･髢楢ｿ秘≡菫晁ｨｼ</span><span class="dot"></span><span>騾∵侭辟｡譁・/span><span class="dot"></span><span>14譎ゅ∪縺ｧ蠖捺律逋ｺ騾・/span></div>
-</div>
+  <div class="prod-in">
+    <p class="prod-kk">Select Size</p>
+    <h2 class="prod-hd">サイズを選ぶ</h2>
+    
+    <div class="vs" id="vs">
+      <label>
+        <input type="radio" name="v" value="10ml" class="vr">
+        <div class="vs-card">
+          <div class="vs-row">
+            <span class="vs-size">10ml</span>
+            <span class="vs-price">¥3,980</span>
+          </div>
+          <span class="vs-note">お試しサイズ</span>
+        </div>
+      </label>
+      <label>
+        <input type="radio" name="v" value="50ml" class="vr" checked>
+        <div class="vs-card">
+          <div class="vs-row">
+            <span class="vs-size">50ml<span class="vs-tag">Most Popular</span></span>
+            <span class="vs-price">¥13,800</span>
+          </div>
+          <span class="vs-note">特典 — 10ml アトマイザー付き</span>
+        </div>
+      </label>
+      <label>
+        <input type="radio" name="v" value="100ml" class="vr">
+        <div class="vs-card">
+          <div class="vs-row">
+            <span class="vs-size">100ml</span>
+            <span class="vs-price">¥22,800</span>
+          </div>
+          <span class="vs-note">特典 — アトマイザー + 2ml テストキット付き</span>
+        </div>
+      </label>
+    </div>
+
+    <div class="stk">
+      <div class="stk-line"><div class="stk-bar" id="stk-bar"></div></div>
+      <p class="stk-txt">Limited Stock — <span id="stk-count">残り 12 点</span></p>
+    </div>
+
+    <button class="cta" id="cta-main">
+      <span>Add to Cart</span>
+      <span class="cta-sep"></span>
+      <span class="cta-p" id="cta-price">¥13,800</span>
+    </button>
+
+    <div class="trust">
+      <span>30日間返金保証</span>
+      <span class="dot"></span>
+      <span>送料無料</span>
+      <span class="dot"></span>
+      <span>14時まで当日発送</span>
+    </div>
+  </div>
 </section>
 
-<!-- S3: ACCORDION -->
+<!-- S3: Accordion -->
 <section class="acc">
-<div class="acc-in">
-<p class="acc-kk">Details</p>
-<h2 class="acc-hd">隧ｳ邏ｰ諠・ｱ</h2>
-<div>
-<details class="acc-item"><summary class="acc-trig"><span class="acc-title">蝠・刀隧ｳ邏ｰ</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt">
-<dl><div class="dl-row"><dt>蝠・刀蜷・/dt><dd>Oud Stallion 窶・Eau de Parfum</dd></div><div class="dl-row"><dt>繝悶Λ繝ｳ繝・/dt><dd>PURELAYER</dd></div><div class="dl-row"><dt>螳ｹ驥・/dt><dd>10ml / 50ml / 100ml</dd></div><div class="dl-row"><dt>鬥吶ｊ縺ｮ邉ｻ邨ｱ</dt><dd>遏ｳ鮖ｸ邉ｻ繝ｻ縺企｢ｨ蜻ゆｸ翫′繧翫・貂・ｽ疲─</dd></div><div class="dl-row"><dt>謖∫ｶ壽凾髢・/dt><dd>邏・8 窶・12 譎る俣・亥倶ｺｺ蟾ｮ縺ゅｊ・・/dd></div><div class="dl-row"><dt>菴ｿ縺・婿</dt><dd>鬥也ｭ九・謇矩ｦ悶↓ 1 窶・2 繝励ャ繧ｷ繝･</dd></div><div class="dl-row"><dt>蟇ｾ雎｡</dt><dd>繝ｦ繝九そ繝・け繧ｹ・育塙螂ｳ蜈ｼ逕ｨ・・/dd></div></dl>
-</div></div></details>
-<details class="acc-item"><summary class="acc-trig"><span class="acc-title">謌仙・繝ｻ蜴滓攝譁・/span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt">
-<p>繧ｨ繧ｿ繝弱・繝ｫ縲・ｦ呎侭・医ヱ繝ｫ繝輔ぃ繝・峨∵ｰｴ縲。HT</p>
-<p class="acc-sub">荳ｻ縺ｪ鬥呎侭謌仙・</p>
-<ul class="acc-ul"><li>繝ｪ繝翫Ο繝ｼ繝ｫ 窶・遏ｳ鮖ｸ邉ｻ縺ｮ貂・ｽ疲─</li><li>繧ｲ繝ｩ繝九が繝ｼ繝ｫ 窶・繝輔Ο繝ｼ繝ｩ繝ｫ縺ｮ譟斐ｉ縺九＆</li><li>繧ｯ繝槭Μ繝ｳ 窶・縺ｻ繧薙・繧翫→縺励◆逕倥＆</li><li>繧ｦ繝ｼ繝・窶・豺ｱ縺ｿ縺ｮ縺ゅｋ關ｽ縺｡逹縺・/li></ul>
-<p class="acc-cap">窶ｻ 閧後↓逡ｰ蟶ｸ繧呈─縺倥◆蝣ｴ蜷医・菴ｿ逕ｨ繧剃ｸｭ豁｢縺励※縺上□縺輔＞縲・/p>
-</div></div></details>
-<details class="acc-item"><summary class="acc-trig"><span class="acc-title">30譌･髢灘・鬘崎ｿ秘≡菫晁ｨｼ</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt">
-<p>蝠・刀蛻ｰ逹縺九ｉ 30 譌･莉･蜀・〒縺ゅｌ縺ｰ縲∫炊逕ｱ繧貞撫繧上★蜈ｨ鬘崎ｿ秘≡縺・◆縺励∪縺吶・/p>
-<p class="acc-sub">霑泌刀縺ｮ豬√ｌ</p>
-<ol class="acc-ol"><li>蜈ｬ蠑・LINE 縺ｾ縺溘・繝｡繝ｼ繝ｫ縺ｧ縺秘｣邨｡</li><li>霑泌刀蜈井ｽ乗園繧偵＃譯亥・</li><li>蝠・刀繧定ｿ秘・ｼ郁ｿ秘∵侭縺ｯ縺雁ｮ｢讒倩ｲ諡・ｼ・/li><li>蛻ｰ逹遒ｺ隱榊ｾ後・ 蝟ｶ讌ｭ譌･莉･蜀・↓蜈ｨ鬘崎ｿ秘≡</li></ol>
-<p class="acc-cap">窶ｻ 菴ｿ逕ｨ貂医∩縺ｧ繧りｿ泌刀蜿ｯ・域ｮ矩㍼ 50% 莉･荳奇ｼ峨ら音蜈ｸ縺ｮ縺ｿ縺ｮ霑泌刀縺ｯ荳榊庄縲・/p>
-</div></div></details>
-<details class="acc-item"><summary class="acc-trig"><span class="acc-title">驟埼√↓縺､縺・※</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt">
-<dl><div class="dl-row"><dt>騾∵侭</dt><dd>蜈ｨ蝗ｽ辟｡譁・/dd></div><div class="dl-row"><dt>逋ｺ騾・/dt><dd>14譎ゅ∪縺ｧ縺ｮ縺疲ｳｨ譁・竊・蠖捺律逋ｺ騾・/dd></div><div class="dl-row"><dt>縺雁ｱ翫￠逶ｮ螳・/dt><dd>逋ｺ騾∝ｾ・1 窶・3 譌･</dd></div><div class="dl-row"><dt>譴ｱ蛹・/dt><dd>辟｡蝨ｰ繝繝ｳ繝懊・繝ｫ・井ｸｭ霄ｫ縺後ｏ縺九ｉ縺ｪ縺・｢ｱ蛹・ｼ・/dd></div></dl>
-</div></div></details>
-<details class="acc-item"><summary class="acc-trig"><span class="acc-title">繧医￥縺ゅｋ雉ｪ蝠・/span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt">
-<div class="faq"><p class="faq-q">鬥吶ｊ縺後″縺､縺上↑縺・〒縺吶°・・/p><p class="faq-a">遏ｳ鮖ｸ邉ｻ縺ｮ繝翫メ繝･繝ｩ繝ｫ縺ｪ鬥吶ｊ縺ｧ縺吶・繝励ャ繧ｷ繝･縺ｧ蜊∝・鬥吶ｊ縺ｾ縺吶・/p></div>
-<div class="faq"><p class="faq-q">逕ｷ諤ｧ逕ｨ・溷･ｳ諤ｧ逕ｨ・・/p><p class="faq-a">繝ｦ繝九そ繝・け繧ｹ縺ｧ縺吶・8窶・4豁ｳ縺ｮ逕ｷ螂ｳ縺九ｉ蝮・ｭ峨↓縺疲髪謖√＞縺溘□縺・※縺・∪縺吶・/p></div>
-<div class="faq"><p class="faq-q">縺ｩ縺薙↓縺､縺代ｌ縺ｰ縺・＞縺ｧ縺吶°・・/p><p class="faq-a">鬥也ｭ九ｄ謇矩ｦ悶↓1窶・繝励ャ繧ｷ繝･縲ゆｽ捺ｸｩ縺ｮ鬮倥＞驛ｨ菴阪↓縺､縺代ｋ縺ｨ閾ｪ辟ｶ縺ｫ鬥吶ｊ縺悟ｺ・′繧翫∪縺吶・/p></div>
-<div class="faq"><p class="faq-q">10ml縺ｯ縺ｩ繧後￥繧峨＞謖√■縺ｾ縺吶°・・/p><p class="faq-a">1譌･1窶・繝励ャ繧ｷ繝･縺ｧ邏・窶・騾ｱ髢薙♀菴ｿ縺・＞縺溘□縺代∪縺吶・/p></div>
-<div class="faq"><p class="faq-q">迚ｹ蜈ｸ縺ｮ繧｢繝医・繧､繧ｶ繝ｼ縺ｨ縺ｯ・・/p><p class="faq-a">謖√■驕九・逕ｨ縺ｮ遨ｺ縺ｮ10ml繧ｹ繝励Ξ繝ｼ繝懊ヨ繝ｫ縺ｧ縺吶・/p></div>
-</div></div></details>
-</div>
-</div>
+  <div class="acc-in">
+    <p class="acc-kk">Details</p>
+    <h2 class="acc-hd">詳細情報</h2>
+    <div>
+      <!-- Detail 1 -->
+      <details class="acc-item">
+        <summary class="acc-trig"><span class="acc-title">商品詳細</span><span class="acc-tog"></span></summary>
+        <div class="acc-body">
+          <div class="acc-cnt">
+            <dl>
+              <div class="dl-row"><dt>商品名</dt><dd>Oud Stallion — Eau de Parfum</dd></div>
+              <div class="dl-row"><dt>ブランド</dt><dd>PURELAYER</dd></div>
+              <div class="dl-row"><dt>容量</dt><dd>10ml / 50ml / 100ml</dd></div>
+              <div class="dl-row"><dt>香りの系統</dt><dd>石鹸系・お風呂上がりの清潔感</dd></div>
+              <div class="dl-row"><dt>持続時間</dt><dd>約 8 – 12 時間（個人差あり）</dd></div>
+              <div class="dl-row"><dt>使い方</dt><dd>首筋・手首に 1 – 2 プッシュ</dd></div>
+              <div class="dl-row"><dt>対象</dt><dd>ユニセックス（男女兼用）</dd></div>
+            </dl>
+          </div>
+        </div>
+      </details>
+      <!-- Detail 2 -->
+      <details class="acc-item">
+        <summary class="acc-trig"><span class="acc-title">成分・原材料</span><span class="acc-tog"></span></summary>
+        <div class="acc-body">
+          <div class="acc-cnt">
+            <p>エタノール、香料（パルファム）、水、BHT</p>
+            <p class="acc-sub">主な香料成分</p>
+            <ul class="acc-ul">
+              <li>リナロール — 石鹸系の清潔感</li>
+              <li>ゲラニオール — フローラルの柔らかさ</li>
+              <li>クマリン — ほんのりとした甘さ</li>
+              <li>ウード — 深みのある落ち着き</li>
+            </ul>
+            <p class="acc-cap">※ 肌に異常を感じた場合は使用を中止してください。</p>
+          </div>
+        </div>
+      </details>
+      <!-- Detail 3 -->
+      <details class="acc-item">
+        <summary class="acc-trig"><span class="acc-title">30日間全額返金保証</span><span class="acc-tog"></span></summary>
+        <div class="acc-body">
+          <div class="acc-cnt">
+            <p>商品到着から 30 日以内であれば、理由を問わず全額返金いたします。</p>
+            <p class="acc-sub">返品の流れ</p>
+            <ol class="acc-ol">
+              <li>公式 LINE またはメールでご連絡</li>
+              <li>返品先住所をご案内</li>
+              <li>商品を返送（返送料はお客様負担）</li>
+              <li>到着確認後、5 営業日以内に全額返金</li>
+            </ol>
+            <p class="acc-cap">※ 使用済みでも返品可（残量 50% 以上）。特典のみの返品は不可。</p>
+          </div>
+        </div>
+      </details>
+      <!-- Detail 4 -->
+      <details class="acc-item">
+        <summary class="acc-trig"><span class="acc-title">配送について</span><span class="acc-tog"></span></summary>
+        <div class="acc-body">
+          <div class="acc-cnt">
+            <dl>
+              <div class="dl-row"><dt>送料</dt><dd>全国無料</dd></div>
+              <div class="dl-row"><dt>発送</dt><dd>14時までのご注文 → 当日発送</dd></div>
+              <div class="dl-row"><dt>お届け目安</dt><dd>発送後 1 – 3 日</dd></div>
+              <div class="dl-row"><dt>梱包</dt><dd>無地ダンボール（中身がわからない梱包）</dd></div>
+            </dl>
+          </div>
+        </div>
+      </details>
+      <!-- Detail 5 -->
+      <details class="acc-item">
+        <summary class="acc-trig"><span class="acc-title">よくある質問</span><span class="acc-tog"></span></summary>
+        <div class="acc-body">
+          <div class="acc-cnt">
+            <div class="faq"><p class="faq-q">香りがきつくないですか？</p><p class="faq-a">石鹸系のナチュラルな香りです。1プッシュで十分香ります。</p></div>
+            <div class="faq"><p class="faq-q">男性用？女性用？</p><p class="faq-a">ユニセックスです。18–34歳の男女から均等にご支持いただいています。</p></div>
+            <div class="faq"><p class="faq-q">どこにつければいいですか？</p><p class="faq-a">首筋や手首に1–2プッシュ。体温の高い部位につけると自然に香りが広がります。</p></div>
+            <div class="faq"><p class="faq-q">10mlはどれくらい持ちますか？</p><p class="faq-a">1日1–2プッシュで約2–3週間お使いいただけます。</p></div>
+            <div class="faq"><p class="faq-q">特典のアトマイザーとは？</p><p class="faq-a">持ち運び用の空の10mlスプレーボトルです。</p></div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
 </section>
 
-<!-- S4: REVIEWS -->
+<!-- S4: Reviews -->
 <section class="rev" id="section-reviews">
-<div class="rev-in">
-<p class="rev-kk">Reviews</p>
-<h2 class="rev-hd">縺雁ｮ｢讒倥・螢ｰ</h2>
-<div class="rev-list">
+  <div class="rev-in">
+    <p class="rev-kk">Reviews</p>
+    <h2 class="rev-hd">お客様の声</h2>
+    <div class="rev-list">
 
-<article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">鬥呎ｰｴ縺瑚協謇九↑閾ｪ蛻・〒繧ょ､ｧ荳亥､ｫ縺縺｣縺・/h3><p class="rev-body">鬥呎ｰｴ縺｣縺ｦ鬆ｭ逞帙￥縺ｪ繧九う繝｡繝ｼ繧ｸ縺縺｣縺溘￠縺ｩ縲√％繧後・蜈ｨ辟ｶ縺｡縺後▲縺溘ゅ・縺励ｍ縺壹▲縺ｨ蝸・＞縺ｧ縺溘＞縲ら浹鮖ｸ縺ｿ縺溘＞縺ｪ繝翫メ繝･繝ｩ繝ｫ縺輔〒縲∬・蝣ｴ縺ｫ縺､縺代※縺・▲縺ｦ繧りｪｰ縺ｫ繧ょｫ後↑鬘斐＆繧後↑縺・ゅ後↑繧薙°縺・＞蛹ゅ＞縺吶ｋ縺ｭ縲阪▲縺ｦ蜷悟・縺ｫ險繧上ｌ縺ｦ縲√◎繧後□縺代〒雋ｷ縺｣縺滉ｾ｡蛟､縺後≠縺｣縺溘・/p><p class="rev-meta">遉ｾ莨壻ｺｺ 1 蟷ｴ逶ｮ繝ｻ螂ｳ・・3 豁ｳ・・span class="rev-sep">ﾂｷ</span>雉ｼ蜈･貂医∩</p></article>
+      <article class="rev-item fade">
+        <div class="stars rv-s"></div>
+        <h3 class="rev-title">香水が苦手な自分でも大丈夫だった</h3>
+        <p class="rev-body">香水って頭痛くなるイメージだったけど、これは全然ちがった。むしろずっと嗅いでたい。石鹸みたいなナチュラルさで、職場につけていっても誰にも嫌な顔されない。「なんかいい匂いするね」って同僚に言われて、それだけで買った価値があった。</p>
+        <p class="rev-meta">社会人 1 年目・女（23 歳）<span class="rev-sep">·</span>購入済み</p>
+      </article>
 
-<article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">譛昴▽縺代※螟懊∪縺ｧ縲∬ｿｽ縺・′縺台ｸ崎ｦ・/h3><p class="rev-body">譛・8 譎ゅ↓鬥也ｭ九↓ 1 繝励ャ繧ｷ繝･縺励※蜃ｺ蜍､縲ょｸｰ繧翫・ 22 譎ゅ・髮ｻ霆翫〒繧ゅ∪縺縺・▲縺吶ｉ鬥吶▲縺ｦ縺溘ょ燕縺ｫ菴ｿ縺｣縺ｦ縺滄ｦ呎ｰｴ縺ｯ蜊亥ｾ後↓縺ｯ豸医∴縺ｦ縺溘°繧峨∵ｭ｣逶ｴ縺ｳ縺｣縺上ｊ縲ゅ％繧後↑繧画戟縺｡驕九・繧ゆｸ崎ｦ√〒縲∵悃縺ｮ貅門ｙ縺後Λ繧ｯ縲・/p><p class="rev-meta">遉ｾ莨壻ｺｺ 2 蟷ｴ逶ｮ繝ｻ逕ｷ・・4 豁ｳ・・span class="rev-sep">ﾂｷ</span>雉ｼ蜈･貂医∩</p></article>
+      <article class="rev-item fade">
+        <div class="stars rv-s"></div>
+        <h3 class="rev-title">朝つけて夜まで、追いがけ不要</h3>
+        <p class="rev-body">朝 8 時に首筋に 1 プッシュして出勤。帰りの 22 時の電車でもまだうっすら香ってた。前に使ってた香水は午後には消えてたから、正直びっくり。これなら持ち運びも不要で、朝の準備がラク。</p>
+        <p class="rev-meta">社会人 2 年目・男（24 歳）<span class="rev-sep">·</span>購入済み</p>
+      </article>
 
-<div class="rev-ugc fade"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/723DB3B1-E822-431C-8D5E-C56E8161FA27.webp?v=1776938230" alt="縺雁ｮ｢讒俶兜遞ｿ蜀咏悄" loading="lazy" width="400" height="400"></div>
+      <div class="rev-ugc fade">
+        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/723DB3B1-E822-431C-8D5E-C56E8161FA27.webp?v=1776938230" alt="お客様投稿写真" loading="lazy" width="400" height="400">
+      </div>
 
-<article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">髮ｻ霆翫〒遏･繧峨↑縺・ｺｺ縺ｫ隍偵ａ繧峨ｌ縺・/h3><p class="rev-body">蟶ｰ繧翫・髮ｻ霆翫〒髫｣縺ｮ莠ｺ縺ｫ縲後☆縺ｿ縺ｾ縺帙ｓ縲√＞縺・撃縺・＠縺ｾ縺吶・縲阪▲縺ｦ隧ｱ縺励°縺代ｉ繧後◆縲ゆｺｺ逕溘〒蛻昴ａ縺ｦ蛹ゅ＞縺ｧ隍偵ａ繧峨ｌ縺ｦ螫峨＠縺九▲縺溘ょ暑驕斐↓繧ょ匡繧√◆繧・3 莠ｺ縺悟酔縺倥・雋ｷ縺｣縺ｦ縺溘・/p><p class="rev-meta">螟ｧ蟄ｦ 3 蟷ｴ繝ｻ螂ｳ・・2 豁ｳ・・span class="rev-sep">ﾂｷ</span>雉ｼ蜈･貂医∩</p></article>
+      <article class="rev-item fade">
+        <div class="stars rv-s"></div>
+        <h3 class="rev-title">電車で知らない人に褒められた</h3>
+        <p class="rev-body">帰りの電車で隣の人に「すみません、いい匂いしますね」って話しかけられた。人生で初めて匂いで褒められて嬉しかった。友達にも勧めたら 3 人が同じの買ってた。</p>
+        <p class="rev-meta">大学 3 年・女（22 歳）<span class="rev-sep">·</span>購入済み</p>
+      </article>
 
-<article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">蜊贋ｿ｡蜊顔桝縺縺｣縺溘￠縺ｩ縲∝ｽ薙◆繧翫□縺｣縺・/h3><p class="rev-body">豁｣逶ｴ TikTok 縺ｮ蠎・相縺｣縺ｦ諤ｪ縺励＞縺ｨ諤昴▲縺ｦ縺溘ゅ〒繧りｿ秘≡菫晁ｨｼ縺後≠繧九＠縺ｨ諤昴▲縺ｦ 10ml 繧呈ｳｨ譁・ょｱ翫＞縺ｦ縺､縺代◆迸ｬ髢薙後≠縲√％繧後・濶ｯ縺・阪▲縺ｦ縺ｪ縺｣縺溘・ 騾ｱ髢灘ｾ後↓縺ｯ 50ml 繧定ｲｷ縺・峩縺励※縺溘・/p><p class="rev-meta">螟ｧ蟄ｦ 4 蟷ｴ繝ｻ逕ｷ・・1 豁ｳ・・span class="rev-sep">ﾂｷ</span>雉ｼ蜈･貂医∩</p></article>
+      <article class="rev-item fade">
+        <div class="stars rv-s"></div>
+        <h3 class="rev-title">半信半疑だったけど、当たりだった</h3>
+        <p class="rev-body">正直 TikTok の広告って怪しいと思ってた。でも返金保証があるしと思って 10ml を注文。届いてつけた瞬間「あ、これは良い」ってなった。1 週間後には 50ml を買い直してた。</p>
+        <p class="rev-meta">大学 4 年・男（21 歳）<span class="rev-sep">·</span>購入済み</p>
+      </article>
 
-<div class="rev-ugc fade"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3146.webp?v=1774754613" alt="縺雁ｮ｢讒俶兜遞ｿ蜀咏悄" loading="lazy" width="400" height="400"></div>
+      <div class="rev-ugc fade">
+        <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_3146.webp?v=1774754613" alt="お客様投稿写真" loading="lazy" width="400" height="400">
+      </div>
 
-<article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">1繝励ャ繧ｷ繝･縺ｧ貂医・縺九ｉ邨先棡逧・↓螳峨＞</h3><p class="rev-body">譛蛻昴・蛟､谿ｵ縺ｧ霑ｷ縺｣縺溘ゅ〒繧・1 繝励ャ繧ｷ繝･縺ｧ蜊∝・縺吶℃繧九￥繧峨＞鬥吶ｋ縲・0ml 縺ｪ繧牙濠蟷ｴ縺ｯ謖√■縺昴≧縲ゅい繝医・繧､繧ｶ繝ｼ縺ｾ縺ｧ莉倥＞縺ｦ縺阪◆縺励∫ｵ先棡逧・↓繧ｳ繧ｹ繝代・縺九↑繧願憶縺・・/p><p class="rev-meta">遉ｾ莨壻ｺｺ 3 蟷ｴ逶ｮ繝ｻ逕ｷ・・6 豁ｳ・・span class="rev-sep">ﾂｷ</span>雉ｼ蜈･貂医∩</p></article>
+      <article class="rev-item fade">
+        <div class="stars rv-s"></div>
+        <h3 class="rev-title">1プッシュで済むから結果的に安い</h3>
+        <p class="rev-body">最初は値段で迷った。でも 1 プッシュで十分すぎるくらい香る。50ml なら半年は持ちそう。アトマイザーまで付いてきたし、結果的にコスパはかなり良い。</p>
+        <p class="rev-meta">社会人 3 年目・男（26 歳）<span class="rev-sep">·</span>購入済み</p>
+      </article>
 
-<article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">鬥呎ｰｴ繧貞､峨∴縺溘□縺代〒縲碁峅蝗ｲ豌怜､峨ｏ縺｣縺溘・縲・/h3><p class="rev-body">蜈郁ｼｩ縺ｫ縲梧怙霑鷹峅蝗ｲ豌怜､峨ｏ縺｣縺溘・縲阪▲縺ｦ閨槭°繧後◆縲るｫｪ蝙九ｂ譛阪ｂ螟峨∴縺ｦ縺ｪ縺・ょ､峨∴縺溘・縺ｯ鬥呎ｰｴ縺縺代ゅョ繝ｼ繝医・蟶ｰ繧企圀縺ｫ縲御ｻ頑律縺ｮ蛹ゅ＞螂ｽ縺阪阪▲縺ｦ險繧上ｌ縺溘・繧ょｬ峨＠縺九▲縺溘・/p><p class="rev-meta">遉ｾ莨壻ｺｺ 4 蟷ｴ逶ｮ繝ｻ螂ｳ・・7 豁ｳ・・span class="rev-sep">ﾂｷ</span>雉ｼ蜈･貂医∩</p></article>
+      <article class="rev-item fade">
+        <div class="stars rv-s"></div>
+        <h3 class="rev-title">香水を変えただけで「雰囲気変わったね」</h3>
+        <p class="rev-body">先輩に「最近雰囲気変わったね」って聞かれた。髪型も服も変えてない。変えたのは香水だけ。デートの帰り際に「今日の匂い好き」って言われたのも嬉しかった。</p>
+        <p class="rev-meta">社会人 4 年目・女（27 歳）<span class="rev-sep">·</span>購入済み</p>
+      </article>
 
-</div>
-<p class="rev-ft">1,243 莉ｶ縺ｮ繝ｬ繝薙Η繝ｼ縺ｫ蝓ｺ縺･縺・/p>
-</div>
+    </div>
+    <p class="rev-ft">1,243 件のレビューに基づく</p>
+  </div>
 </section>
 
-<!-- FOOTER -->
+<!-- Footer -->
 <footer class="ft">
-<div class="ft-logo">PURELAYER</div>
-<div class="ft-links"><a href="#">迚ｹ螳壼膚蜿門ｼ墓ｳ輔↓蝓ｺ縺･縺剰｡ｨ險・/a><a href="#">繝励Λ繧､繝舌す繝ｼ繝昴Μ繧ｷ繝ｼ</a><a href="#">霑秘≡繝昴Μ繧ｷ繝ｼ</a><a href="#">蛻ｩ逕ｨ隕冗ｴ・/a></div>
-<div class="ft-copy">&copy; 2026 PURELAYER. All rights reserved.</div>
+  <div class="ft-logo">PURELAYER</div>
+  <div class="ft-links">
+    <a href="#">特定商取引法に基づく表記</a>
+    <a href="#">プライバシーポリシー</a>
+    <a href="#">返金ポリシー</a>
+    <a href="#">利用規約</a>
+  </div>
+  <div class="ft-copy">&copy; 2026 PURELAYER. All rights reserved.</div>
 </footer>
 
-<!-- STICKY CTA -->
+<!-- Sticky CTA -->
 <div class="sticky" id="sticky-cta">
-<div class="sticky-in">
-<span class="sticky-name" id="sticky-name">Oud Stallion 窶・50ml</span>
-<button class="sticky-btn" id="sticky-btn">Add to Cart ﾂｷ <span id="sticky-price">ﾂ･13,800</span></button>
-</div>
+  <div class="sticky-in">
+    <span class="sticky-name" id="sticky-name">Oud Stallion — 50ml</span>
+    <button class="sticky-btn" id="sticky-btn">Add to Cart · <span id="sticky-price">¥13,800</span></button>
+  </div>
 </div>
 
 <script>
 (function(){
-'use strict';
+  'use strict';
 
-/* Stars helper */
-var starSVG='<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
-function fillStars(sel,n){document.querySelectorAll(sel).forEach(function(el){for(var i=0;i<n;i++)el.innerHTML+=starSVG;})}
-fillStars('#fv-stars',5);
-fillStars('.rv-s',5);
+  /* 1. Stars Helper */
+  var starSVG = '<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+  function fillStars(sel, n) {
+    document.querySelectorAll(sel).forEach(function(el) {
+      for(var i=0; i<n; i++) el.innerHTML += starSVG;
+    });
+  }
+  fillStars('#fv-stars', 5);
+  fillStars('.rv-s', 5);
 
-/* Variant map */
-var VM={
-'10ml':{price:'ﾂ･3,980',label:'10ml',items:[{id:53230989574512,quantity:1}]},
-'50ml':{price:'ﾂ･13,800',label:'50ml',items:[{id:53230989181296,quantity:1},{id:53231016182128,quantity:1}]},
-'100ml':{price:'ﾂ･22,800',label:'100ml',items:[{id:53230989214064,quantity:1},{id:53231016182128,quantity:1},{id:53230989541744,quantity:1}]}
-};
-var cur='50ml';
-var radios=document.querySelectorAll('.vr');
-var ctaPrice=document.getElementById('cta-price');
-var stickyName=document.getElementById('sticky-name');
-var stickyPrice=document.getElementById('sticky-price');
+  /* 2. Variant Logic */
+  var VM = {
+    '10ml':  { price: '¥3,980',  label: '10ml',  items: [{ id: 53230989574512, quantity: 1 }] },
+    '50ml':  { price: '¥13,800', label: '50ml',  items: [{ id: 53230989181296, quantity: 1 }, { id: 53231016182128, quantity: 1 }] },
+    '100ml': { price: '¥22,800', label: '100ml', items: [{ id: 53230989214064, quantity: 1 }, { id: 53231016182128, quantity: 1 }, { id: 53230989541744, quantity: 1 }] }
+  };
+  
+  var cur = '50ml';
+  var radios = document.querySelectorAll('.vr');
+  var ctaPrice = document.getElementById('cta-price');
+  var stickyName = document.getElementById('sticky-name');
+  var stickyPrice = document.getElementById('sticky-price');
 
-function upd(v){cur=v;var d=VM[v];if(ctaPrice)ctaPrice.textContent=d.price;if(stickyName)stickyName.textContent='Oud Stallion 窶・'+d.label;if(stickyPrice)stickyPrice.textContent=d.price;}
-radios.forEach(function(r){r.addEventListener('change',function(){upd(this.value);});});
+  function upd(v) {
+    cur = v;
+    var d = VM[v];
+    if (ctaPrice) ctaPrice.textContent = d.price;
+    if (stickyName) stickyName.textContent = 'Oud Stallion — ' + d.label;
+    if (stickyPrice) stickyPrice.textContent = d.price;
+  }
+  
+  radios.forEach(function(r) {
+    r.addEventListener('change', function() { upd(this.value); });
+  });
 
-function addToCart(){
-var d=VM[cur];if(!d)return;
-if(window.clarity)window.clarity('set','InitiateCheckout','true');
-if(window.ttq)window.ttq.track('AddToCart',{});
-fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:d.items})})
-.then(function(r){if(r.ok){window.location.href='/checkout';}else{window.location.href='/cart/'+d.items.map(function(i){return i.id+':'+i.quantity}).join(',');}})
-.catch(function(){window.location.href='/cart/'+d.items.map(function(i){return i.id+':'+i.quantity}).join(',');});
-}
-document.getElementById('cta-main').addEventListener('click',addToCart);
-document.getElementById('sticky-btn').addEventListener('click',addToCart);
+  /* 3. Add to Cart (Ajax + Fallback) */
+  function addToCart() {
+    var d = VM[cur];
+    if (!d) return;
+    
+    // Tracking
+    if (window.clarity) window.clarity('set', 'InitiateCheckout', 'true');
+    if (window.ttq) window.ttq.track('AddToCart', {});
+    
+    // Shopify Cart API
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: d.items })
+    })
+    .then(function(r) {
+      if (r.ok) { window.location.href = '/checkout'; }
+      else { window.location.href = '/cart/' + d.items.map(function(i){return i.id+':'+i.quantity}).join(','); }
+    })
+    .catch(function() {
+      window.location.href = '/cart/' + d.items.map(function(i){return i.id+':'+i.quantity}).join(',');
+    });
+  }
+  
+  document.getElementById('cta-main').addEventListener('click', addToCart);
+  document.getElementById('sticky-btn').addEventListener('click', addToCart);
 
-/* Stock bar */
-var sb=document.getElementById('stk-bar');if(sb)setTimeout(function(){sb.style.width='28%';},500);
+  /* 4. Animations & Interactions */
+  // Stock Bar
+  var sb = document.getElementById('stk-bar');
+  if (sb) setTimeout(function(){ sb.style.width = '28%'; }, 500);
 
-/* Sticky CTA */
-var sw=document.getElementById('sticky-cta'),fv=document.getElementById('section-fv');
-if(sw&&fv&&'IntersectionObserver' in window){
-new IntersectionObserver(function(e){e.forEach(function(en){sw.classList.toggle('vis',!en.isIntersecting);});},{threshold:0.05}).observe(fv);
-}
+  // Sticky CTA
+  var sw = document.getElementById('sticky-cta');
+  var fv = document.getElementById('section-fv');
+  if (sw && fv && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function(e) {
+      e.forEach(function(en) { sw.classList.toggle('vis', !en.isIntersecting); });
+    }, { threshold: 0.05 }).observe(fv);
+  }
 
-/* Accordion exclusive */
-var items=document.querySelectorAll('.acc-item');
-items.forEach(function(it){it.addEventListener('toggle',function(){if(this.open)items.forEach(function(o){if(o!==it&&o.open)o.removeAttribute('open');});});});
+  // Accordion Exclusive Open
+  var items = document.querySelectorAll('.acc-item');
+  items.forEach(function(it) {
+    it.addEventListener('toggle', function() {
+      if (this.open) {
+        items.forEach(function(o) { if (o !== it && o.open) o.removeAttribute('open'); });
+      }
+    });
+  });
 
-/* Scroll fade-in */
-var fades=document.querySelectorAll('.fade');
-if('IntersectionObserver' in window){
-var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});},{threshold:0.08});
-fades.forEach(function(el){io.observe(el);});
-}else{fades.forEach(function(el){el.classList.add('vis');});}
+  // Scroll Fade-in
+  var fades = document.querySelectorAll('.fade');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('vis');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    fades.forEach(function(el){ io.observe(el); });
+  } else {
+    fades.forEach(function(el){ el.classList.add('vis'); });
+  }
 
-upd(cur);
+  // Initialize UI
+  upd(cur);
 })();
 </script>
 </body>
