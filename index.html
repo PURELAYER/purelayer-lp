@@ -10,8 +10,17 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}body{font-family:var(--ss);background:var(--w);color:var(--bk);line-height:1.6;overflow-x:hidden;padding-bottom:72px}img{max-width:100%;height:auto;display:block}svg{display:block}
 .stars{display:flex;gap:2px}.stars svg{width:12px;height:12px;fill:var(--bk)}.dot{width:2px;height:2px;border-radius:50%;background:var(--g4);flex-shrink:0}
 .fade{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease;will-change:opacity,transform}.fade.vis{opacity:1;transform:translateY(0)}
-/* Swipe LP */
-.swlp{position:relative;background:var(--g1)}.swlp-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}.swlp-track::-webkit-scrollbar{display:none}.swlp-slide{min-width:100%;scroll-snap-align:start}.swlp-slide img{width:100%;aspect-ratio:9/16;object-fit:cover}.swlp-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2}.swlp-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4);border:none;padding:0;cursor:pointer;transition:background .3s,transform .3s}.swlp-dot.act{background:#fff;transform:scale(1.3)}
+/* ===== Swipe LP (Stories Style) ===== */
+.swlp{position:relative;background:var(--bk);overflow:hidden;touch-action:pan-y}
+.swlp-progress{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:4px;z-index:10}
+.swlp-progress-bar{flex:1;height:2px;background:rgba(255,255,255,.3);border-radius:2px;overflow:hidden}
+.swlp-progress-fill{width:0%;height:100%;background:#fff;transform-origin:left;will-change:width}
+.swlp-track{display:flex;flex-wrap:nowrap;width:100%;overflow:hidden;transform:translateX(0);transition:transform .3s cubic-bezier(.25,1,.5,1);will-change:transform}
+.swlp-slide{flex:0 0 100%;width:100%}
+.swlp-slide img{width:100%;aspect-ratio:9/16;object-fit:cover;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.swlp-nav{position:absolute;top:0;bottom:0;z-index:5;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.swlp-nav.prev{left:0;width:40%}
+.swlp-nav.next{right:0;width:60%}
 /* FV */
 .fv{background:var(--w)}.fv-hero{width:100%;background:var(--g1)}.fv-img{width:100%;aspect-ratio:1/1;object-fit:contain;mix-blend-mode:multiply}.fv-info{padding:28px 24px 40px;max-width:720px;margin:0 auto}.fv-name{font-family:var(--ss);font-size:18px;font-weight:500;color:var(--bk);letter-spacing:.02em;margin:0 0 10px;line-height:1.4}.fv-rating{display:flex;align-items:center;gap:8px;margin-bottom:16px}.fv-rc{font-size:12px;font-weight:400;color:var(--g5);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--g2)}.fv-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}.fv-tag{font-size:11px;font-weight:400;color:var(--g7);border:.5px solid var(--g2);padding:5px 12px;border-radius:20px;letter-spacing:.02em}
 /* FV Trust */
@@ -31,33 +40,28 @@
 </style>
 </head>
 <body>
-
-<!-- ===== SWIPE LP CAROUSEL ===== -->
+  
+<!-- ===== SWIPE LP CAROUSEL (Stories Style) ===== -->
 <section class="swlp" id="swipe-lp">
+  <div class="swlp-progress" id="swlp-progress">
+    <div class="swlp-progress-bar"><div class="swlp-progress-fill"></div></div>
+    <div class="swlp-progress-bar"><div class="swlp-progress-fill"></div></div>
+    <div class="swlp-progress-bar"><div class="swlp-progress-fill"></div></div>
+    <div class="swlp-progress-bar"><div class="swlp-progress-fill"></div></div>
+    <div class="swlp-progress-bar"><div class="swlp-progress-fill"></div></div>
+    <div class="swlp-progress-bar"><div class="swlp-progress-fill"></div></div>
+  </div>
   <div class="swlp-track" id="swlp-track">
-    <!-- ここにCanvaの画像URLを挿入 (1枚目) -->
-    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/21.webp?v=1778465936#" alt="LP Page 1" loading="eager" width="375" height="667"></div>
-    <!-- ここにCanvaの画像URLを挿入 (2枚目) -->
-    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/20.webp?v=1778410711" alt="LP Page 2" loading="lazy" width="375" height="667"></div>
-    <!-- ここにCanvaの画像URLを挿入 (3枚目) -->
-    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/3._ca667bcd-1322-4f3c-ac5e-353b7291d460.webp?v=1778410711" alt="LP Page 3" loading="lazy" width="375" height="667"></div>
-    <!-- ここにCanvaの画像URLを挿入 (4枚目) -->
-    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/2..webp?v=1778410711" alt="LP Page 4" loading="lazy" width="375" height="667"></div>
-    <!-- ここにCanvaの画像URLを挿入 (5枚目) -->
-    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/3..webp?v=1778410711" alt="LP Page 5" loading="lazy" width="375" height="667"></div>
-    <!-- ここにCanvaの画像URLを挿入 (6枚目) -->
-    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/webp.webp?v=1778410711" alt="LP Page 6" loading="lazy" width="375" height="667"></div>
+    <div class="swlp-slide"><img src="IMAGE_URL_PAGE_1" alt="LP Page 1" loading="eager" width="375" height="667"></div>
+    <div class="swlp-slide"><img src="IMAGE_URL_PAGE_2" alt="LP Page 2" loading="lazy" width="375" height="667"></div>
+    <div class="swlp-slide"><img src="IMAGE_URL_PAGE_3" alt="LP Page 3" loading="lazy" width="375" height="667"></div>
+    <div class="swlp-slide"><img src="IMAGE_URL_PAGE_4" alt="LP Page 4" loading="lazy" width="375" height="667"></div>
+    <div class="swlp-slide"><img src="IMAGE_URL_PAGE_5" alt="LP Page 5" loading="lazy" width="375" height="667"></div>
+    <div class="swlp-slide"><img src="IMAGE_URL_PAGE_6" alt="LP Page 6" loading="lazy" width="375" height="667"></div>
   </div>
-  <div class="swlp-dots" id="swlp-dots">
-    <button class="swlp-dot act" aria-label="Slide 1"></button>
-    <button class="swlp-dot" aria-label="Slide 2"></button>
-    <button class="swlp-dot" aria-label="Slide 3"></button>
-    <button class="swlp-dot" aria-label="Slide 4"></button>
-    <button class="swlp-dot" aria-label="Slide 5"></button>
-    <button class="swlp-dot" aria-label="Slide 6"></button>
-  </div>
+  <div class="swlp-nav prev" id="swlp-prev"></div>
+  <div class="swlp-nav next" id="swlp-next"></div>
 </section>
-
 <main>
   <!-- ===== SECTION 1: FIRST VIEW ===== -->
   <section class="fv" id="section-fv">
@@ -66,7 +70,6 @@
       <h1 class="fv-name">PURELAYER — Oud Stallion</h1>
       <div class="fv-rating"><div class="stars" id="fv-stars"></div><span class="fv-rc">1,243件のレビュー</span></div>
       <div class="fv-tags"><span class="fv-tag">ユニセックス</span><span class="fv-tag">ベストセラー</span><span class="fv-tag">1プッシュあたり約15円〜</span></div>
-      <!-- 信頼情報リスト -->
       <div class="fv-trust">
         <div class="fv-trust-item">
           <div class="fv-trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg></div>
@@ -83,7 +86,6 @@
       </div>
     </div>
   </section>
-
   <!-- ===== SECTION 2: PRODUCT SELECTION ===== -->
   <section class="prod" id="section-product">
     <div class="prod-in">
@@ -99,8 +101,7 @@
       <div class="trust"><span>30日間返金保証</span><span class="dot"></span><span>送料無料</span><span class="dot"></span><span>14時まで当日発送</span></div>
     </div>
   </section>
-
-  <!-- ===== SECTION 3: REVIEWS (プレースホルダー) ===== -->
+  <!-- ===== SECTION 3: REVIEWS ===== -->
   <section class="rev" id="section-reviews">
     <div class="rev-in">
       <p class="rev-kk">Reviews</p>
@@ -108,18 +109,15 @@
       <div class="rev-list">
         <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">石鹸系なのに一切「安っぽさ」がない</h3><p class="rev-body">今までサボン系は芳香剤っぽく感じて苦手でしたが、これは別格。高級ホテルのような上品な香りで、時間が経つほど色気が出てきます。まさに大人のための石鹸。ようやく理想の香りに出会えました。</p><p class="rev-meta">ちょんみ<span class="rev-sep">·</span>購入済み</p></article>
         <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">公式で買って正解。届いた瞬間の安心感が違う</h3><p class="rev-body">他サイトの「香りが薄い」という噂が不安で公式サイトで購入。梱包も丁寧で、届いた本物は香りの奥行きが違います。変な安物を買って後悔するより、最初から正規品を選ぶのが一番安全です。</p><p class="rev-meta">にゃんこせんせぃ<span class="rev-sep">·</span>購入済み</p></article>
-      
         <div class="rev-ugc fade"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/723DB3B1-E822-431C-8D5E-C56E8161FA27.webp?v=1776938230#" alt="お客様投稿写真" loading="lazy" width="400" height="400"></div>
         <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">朝の1プッシュで夜のデートまで褒められる</h3><p class="rev-body">石鹸系はすぐ消えるイメージでしたが、これは12時間近く持ちます。朝付けて、夜の帰宅時に友人から「ずっと良い匂いするね」と驚かれました。特典の専用アトマイザーが使いやすく、持ち運びにも便利です。</p><p class="rev-meta">あゆ<span class="rev-sep">·</span>購入済み</p></article>
         <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">『香水つけてる感』がないのに、すれ違いざまに振り返られる</h3><p class="rev-body">キツい匂いはNGな職場ですが、これはお風呂上がりの清潔感そのもの。付けてから同僚に「柔軟剤変えた？」と聞かれることが増えました。嫌味がないので、香水初心者の男性・女性にもおすすめできます。</p><p class="rev-meta">ひらめ<span class="rev-sep">·</span>購入済み</p></article>
-       
         <div class="rev-ugc fade"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670#" alt="お客様投稿写真" loading="lazy" width="400" height="400"></div>
         <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">SHIROやマルジェラから乗り換え。スペックはこっちが上</h3><p class="rev-body">長年SHIROを愛用していましたが、上品さと持続力は完全にこちらが上。少し値段は張りますが、朝から晩まで付け直し不要なのを考えればコスパ最強です。在庫がなくなる前に100mlを買っておけば良かった。</p><p class="rev-meta">かずさん<span class="rev-sep">·</span>購入済み</p></article>
       </div>
       <p class="rev-ft">1,349件</p>
     </div>
   </section>
-
   <!-- ===== SECTION 4: ACCORDION ===== -->
   <section class="acc">
     <div class="acc-in">
@@ -135,7 +133,6 @@
     </div>
   </section>
 </main>
-
 <footer class="ft">
   <div class="ft-logo">PURELAYER</div>
   <div class="ft-links"><a href="#">特定商取引法に基づく表記</a><a href="#">プライバシーポリシー</a><a href="#">返金ポリシー</a><a href="#">利用規約</a></div>
@@ -151,11 +148,115 @@
 <script>
 (function(){
   'use strict';
+  
+  /* =========================================
+     Swipe LP Stories Carousel
+  ========================================= */
+  var track = document.getElementById('swlp-track'),
+      prevBtn = document.getElementById('swlp-prev'),
+      nextBtn = document.getElementById('swlp-next'),
+      fills = document.querySelectorAll('.swlp-progress-fill'),
+      slides = document.querySelectorAll('.swlp-slide');
+  if(track && slides.length > 0) {
+    var currentIndex = 0;
+    var duration = 7000; // 7秒
+    var isPaused = false;
+    var currentFillWidth = 0;
+    var lastTime = 0;
+    var animationFrameId = null;
+    // UIを更新（スライド位置とバーの色）
+    function goTo(index) {
+      currentIndex = index;
+      track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+      fills.forEach(function(fill, idx) {
+        if (idx < currentIndex) {
+          fill.style.width = '100%';
+        } else if (idx > currentIndex) {
+          fill.style.width = '0%';
+        } else {
+          fill.style.width = currentFillWidth + '%';
+        }
+      });
+    }
+    // アニメーションループ
+    function loop(time) {
+      if (!lastTime) lastTime = time;
+      var deltaTime = time - lastTime;
+      lastTime = time;
+      if (!isPaused) {
+        currentFillWidth += (deltaTime / duration) * 100;
+        
+        if (currentFillWidth >= 100) {
+          currentFillWidth = 0;
+          if (currentIndex < slides.length - 1) {
+            currentIndex++;
+          } else {
+            currentIndex = 0; // ループ
+          }
+          goTo(currentIndex);
+        } else {
+          fills[currentIndex].style.width = currentFillWidth + '%';
+        }
+      }
+      animationFrameId = requestAnimationFrame(loop);
+    }
+    // ホールド（長押し）の検知ロジック
+    var holdTimer;
+    var isLongPress = false;
+    var swlpContainer = document.getElementById('swipe-lp');
+    function handleStart() {
+      isPaused = true;
+      isLongPress = false;
+      // 200ms以上のタッチを「ホールド」と判定し、タップ(遷移)させない
+      holdTimer = setTimeout(function() {
+        isLongPress = true; 
+      }, 200);
+    }
+    function handleEnd() {
+      isPaused = false;
+      clearTimeout(holdTimer);
+    }
+    // マウスとタッチ両方のイベントをリッスン
+    swlpContainer.addEventListener('mousedown', handleStart);
+    swlpContainer.addEventListener('mouseup', handleEnd);
+    swlpContainer.addEventListener('mouseleave', handleEnd);
+    swlpContainer.addEventListener('touchstart', handleStart, {passive: true});
+    swlpContainer.addEventListener('touchend', handleEnd);
+    // 次へ・前へタップ時の処理
+    nextBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (isLongPress) return; // ホールド後の離上は遷移しない
+      if (currentIndex < slides.length - 1) {
+        currentIndex++;
+      } else {
+        currentIndex = 0;
+      }
+      currentFillWidth = 0;
+      goTo(currentIndex);
+    });
+    prevBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (isLongPress) return; // ホールド後の離上は遷移しない
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = slides.length - 1; // 1枚目から戻る場合は最後にループさせる
+      }
+      currentFillWidth = 0;
+      goTo(currentIndex);
+    });
+    // 初期化とアニメーション開始
+    goTo(0);
+    animationFrameId = requestAnimationFrame(loop);
+  }
+  /* =========================================
+     Other Existing Logic (Cart, Reviews, etc.)
+  ========================================= */
+  
   /* Stars */
   var starSVG='<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
       fiveStars=starSVG+starSVG+starSVG+starSVG+starSVG;
   document.querySelectorAll('#fv-stars, .rv-s').forEach(function(e){e.innerHTML=fiveStars});
-
   /* Variant Map & Cart Permalink */
   var VM={'10ml':{price:'¥3,980',label:'10ml',items:[{id:53230989574512,quantity:1}]},'50ml':{price:'¥13,800',label:'50ml',items:[{id:53230989181296,quantity:1},{id:53231016182128,quantity:1}]},'100ml':{price:'¥22,800',label:'100ml',items:[{id:53230989214064,quantity:1},{id:53231016182128,quantity:1},{id:53230989541744,quantity:1}]}};
   var cur='50ml',cP=document.getElementById('cta-price'),sN=document.getElementById('sticky-name'),sP=document.getElementById('sticky-price');
@@ -164,11 +265,9 @@
   function addToCart(){var d=VM[cur];if(!d)return;if(window.clarity)window.clarity('set','InitiateCheckout','true');if(window.ttq)window.ttq.track('AddToCart',{});window.location.href='https://nemveil.com/cart/'+d.items.map(function(i){return i.id+':'+i.quantity}).join(',')}
   document.getElementById('cta-main').addEventListener('click',addToCart);
   document.getElementById('sticky-btn').addEventListener('click',addToCart);
-
   /* Stock Bar */
   var sb=document.getElementById('stk-bar');
   if(sb){requestAnimationFrame(function(){setTimeout(function(){sb.style.transform='scaleX(0.28)'},100)})}
-
   /* Sticky CTA & Fade-in */
   if('IntersectionObserver' in window){
     var sw=document.getElementById('sticky-cta'),fv=document.getElementById('section-fv');
@@ -176,19 +275,9 @@
     var ioFade=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');ioFade.unobserve(e.target)}})},{rootMargin:"50px",threshold:0});
     document.querySelectorAll('.fade').forEach(function(el){ioFade.observe(el)});
   }else{document.querySelectorAll('.fade').forEach(function(el){el.classList.add('vis')})}
-
   /* Accordion Exclusive */
   document.querySelector('.acc').addEventListener('toggle',function(e){if(e.target.open){document.querySelectorAll('.acc-item').forEach(function(o){if(o!==e.target&&o.open)o.removeAttribute('open')})}},true);
   upd(cur);
-
-  /* Swipe LP Carousel */
-  var track=document.getElementById('swlp-track'),dots=document.querySelectorAll('.swlp-dot'),slides=document.querySelectorAll('.swlp-slide');
-  if(track&&slides.length){
-    var ioSlide=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){var idx=Array.prototype.indexOf.call(slides,en.target);dots.forEach(function(d,i){d.classList.toggle('act',i===idx)})}})},{root:track,threshold:0.6});
-    slides.forEach(function(s){ioSlide.observe(s)});
-    dots.forEach(function(d,i){d.addEventListener('click',function(){slides[i].scrollIntoView({behavior:'smooth',inline:'start',block:'nearest'})})});
-  }
-
   /* 3rd-party Lazy Load */
   var lzt=false;
   function ld3rd(){if(lzt)return;lzt=true;window.removeEventListener('scroll',ld3rd);window.removeEventListener('mousemove',ld3rd);window.removeEventListener('touchstart',ld3rd);var cfb=document.createElement('script');cfb.defer=true;cfb.src='https://static.cloudflareinsights.com/beacon.min.js';cfb.setAttribute('data-cf-beacon','{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}');document.body.appendChild(cfb);(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vvn8p99ehp")}
