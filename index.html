@@ -11,11 +11,11 @@
 .stars{display:flex;gap:2px}.stars svg{width:12px;height:12px;fill:var(--bk)}.dot{width:2px;height:2px;border-radius:50%;background:var(--g4);flex-shrink:0}
 .fade{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease;will-change:opacity,transform}.fade.vis{opacity:1;transform:translateY(0)}
 /* ===== Swipe LP (Stories Style) ===== */
-.swlp{position:relative;background:var(--bk);overflow:hidden;touch-action:pan-y}
+.swlp{position:relative;background:var(--bk);width:100%;overflow:hidden;touch-action:pan-y}
 .swlp-progress{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:4px;z-index:10}
 .swlp-progress-bar{flex:1;height:2px;background:rgba(255,255,255,.3);border-radius:2px;overflow:hidden}
 .swlp-progress-fill{width:0%;height:100%;background:#fff;transform-origin:left;will-change:width}
-.swlp-track{display:flex;flex-wrap:nowrap;width:100%;overflow:hidden;transform:translateX(0);transition:transform .3s cubic-bezier(.25,1,.5,1);will-change:transform}
+.swlp-track{display:flex;flex-wrap:nowrap;width:100%;transform:translateX(0);transition:transform .3s cubic-bezier(.25,1,.5,1);will-change:transform}
 .swlp-slide{flex:0 0 100%;width:100%}
 .swlp-slide img{width:100%;aspect-ratio:9/16;object-fit:cover;pointer-events:none;user-select:none;-webkit-user-drag:none}
 .swlp-nav{position:absolute;top:0;bottom:0;z-index:5;cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -40,7 +40,6 @@
 </style>
 </head>
 <body>
-  
 <!-- ===== SWIPE LP CAROUSEL (Stories Style) ===== -->
 <section class="swlp" id="swipe-lp">
   <div class="swlp-progress" id="swlp-progress">
@@ -53,11 +52,11 @@
   </div>
   <div class="swlp-track" id="swlp-track">
     <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/21.webp?v=1778465936#" alt="LP Page 1" loading="eager" width="375" height="667"></div>
-    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/20.webp?v=1778410711#" alt="LP Page 2" loading="lazy" width="375" height="667"></div>
-    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/3._ca667bcd-1322-4f3c-ac5e-353b7291d460.webp?v=1778410711#" alt="LP Page 3" loading="lazy" width="375" height="667"></div>
-    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/2..webp?v=1778410711#" alt="LP Page 4" loading="lazy" width="375" height="667"></div>
-    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/3..webp?v=1778410711#" alt="LP Page 5" loading="lazy" width="375" height="667"></div>
-    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/webp.webp?v=1778410711#" alt="LP Page 6" loading="lazy" width="375" height="667"></div>
+    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/20.webp?v=1778410711" alt="LP Page 2" loading="eager" width="375" height="667"></div>
+    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/3._ca667bcd-1322-4f3c-ac5e-353b7291d460.webp?v=1778410711" alt="LP Page 3" loading="eager" width="375" height="667"></div>
+    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/2..webp?v=1778410711" alt="LP Page 4" loading="eager" width="375" height="667"></div>
+    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/3..webp?v=1778410711" alt="LP Page 5" loading="eager" width="375" height="667"></div>
+    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/webp.webp?v=1778410711" alt="LP Page 6" loading="eager" width="375" height="667"></div>
   </div>
   <div class="swlp-nav prev" id="swlp-prev"></div>
   <div class="swlp-nav next" id="swlp-next"></div>
@@ -144,7 +143,6 @@
     <button class="sticky-btn" id="sticky-btn">Add to Cart · <span id="sticky-price">¥13,800</span></button>
   </div>
 </div>
-
 <script>
 (function(){
   'use strict';
@@ -164,7 +162,7 @@
     var currentFillWidth = 0;
     var lastTime = 0;
     var animationFrameId = null;
-    // UIを更新（スライド位置とバーの色）
+    // UIの更新処理（親要素であるtrackを動かし、バーの色を更新）
     function goTo(index) {
       currentIndex = index;
       track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
@@ -178,7 +176,7 @@
         }
       });
     }
-    // アニメーションループ
+    // バーを滑らかに進めるアニメーションループ
     function loop(time) {
       if (!lastTime) lastTime = time;
       var deltaTime = time - lastTime;
@@ -200,7 +198,7 @@
       }
       animationFrameId = requestAnimationFrame(loop);
     }
-    // ホールド（長押し）の検知ロジック
+    // ホールド（長押し）検知による一時停止ロジック
     var holdTimer;
     var isLongPress = false;
     var swlpContainer = document.getElementById('swipe-lp');
@@ -216,27 +214,26 @@
       isPaused = false;
       clearTimeout(holdTimer);
     }
-    // マウスとタッチ両方のイベントをリッスン
     swlpContainer.addEventListener('mousedown', handleStart);
     swlpContainer.addEventListener('mouseup', handleEnd);
     swlpContainer.addEventListener('mouseleave', handleEnd);
     swlpContainer.addEventListener('touchstart', handleStart, {passive: true});
     swlpContainer.addEventListener('touchend', handleEnd);
-    // 次へ・前へタップ時の処理
+    // 次へ・前へ タップ時の処理
     nextBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      if (isLongPress) return; // ホールド後の離上は遷移しない
+      if (isLongPress) return; // 長押し後の離上は遷移しない
       if (currentIndex < slides.length - 1) {
         currentIndex++;
       } else {
-        currentIndex = 0;
+        currentIndex = 0; // ループ
       }
       currentFillWidth = 0;
       goTo(currentIndex);
     });
     prevBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      if (isLongPress) return; // ホールド後の離上は遷移しない
+      if (isLongPress) return; // 長押し後の離上は遷移しない
       if (currentIndex > 0) {
         currentIndex--;
       } else {
@@ -250,14 +247,11 @@
     animationFrameId = requestAnimationFrame(loop);
   }
   /* =========================================
-     Other Existing Logic (Cart, Reviews, etc.)
+     Other Existing Logic
   ========================================= */
-  
-  /* Stars */
   var starSVG='<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
       fiveStars=starSVG+starSVG+starSVG+starSVG+starSVG;
   document.querySelectorAll('#fv-stars, .rv-s').forEach(function(e){e.innerHTML=fiveStars});
-  /* Variant Map & Cart Permalink */
   var VM={'10ml':{price:'¥3,980',label:'10ml',items:[{id:53230989574512,quantity:1}]},'50ml':{price:'¥13,800',label:'50ml',items:[{id:53230989181296,quantity:1},{id:53231016182128,quantity:1}]},'100ml':{price:'¥22,800',label:'100ml',items:[{id:53230989214064,quantity:1},{id:53231016182128,quantity:1},{id:53230989541744,quantity:1}]}};
   var cur='50ml',cP=document.getElementById('cta-price'),sN=document.getElementById('sticky-name'),sP=document.getElementById('sticky-price');
   function upd(v){cur=v;var d=VM[v];if(cP)cP.textContent=d.price;if(sN)sN.textContent='Oud Stallion — '+d.label;if(sP)sP.textContent=d.price}
@@ -265,20 +259,16 @@
   function addToCart(){var d=VM[cur];if(!d)return;if(window.clarity)window.clarity('set','InitiateCheckout','true');if(window.ttq)window.ttq.track('AddToCart',{});window.location.href='https://nemveil.com/cart/'+d.items.map(function(i){return i.id+':'+i.quantity}).join(',')}
   document.getElementById('cta-main').addEventListener('click',addToCart);
   document.getElementById('sticky-btn').addEventListener('click',addToCart);
-  /* Stock Bar */
   var sb=document.getElementById('stk-bar');
   if(sb){requestAnimationFrame(function(){setTimeout(function(){sb.style.transform='scaleX(0.28)'},100)})}
-  /* Sticky CTA & Fade-in */
   if('IntersectionObserver' in window){
     var sw=document.getElementById('sticky-cta'),fv=document.getElementById('section-fv');
     if(sw&&fv)new IntersectionObserver(function(e){sw.classList.toggle('vis',!e[0].isIntersecting)},{threshold:0}).observe(fv);
     var ioFade=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');ioFade.unobserve(e.target)}})},{rootMargin:"50px",threshold:0});
     document.querySelectorAll('.fade').forEach(function(el){ioFade.observe(el)});
   }else{document.querySelectorAll('.fade').forEach(function(el){el.classList.add('vis')})}
-  /* Accordion Exclusive */
   document.querySelector('.acc').addEventListener('toggle',function(e){if(e.target.open){document.querySelectorAll('.acc-item').forEach(function(o){if(o!==e.target&&o.open)o.removeAttribute('open')})}},true);
   upd(cur);
-  /* 3rd-party Lazy Load */
   var lzt=false;
   function ld3rd(){if(lzt)return;lzt=true;window.removeEventListener('scroll',ld3rd);window.removeEventListener('mousemove',ld3rd);window.removeEventListener('touchstart',ld3rd);var cfb=document.createElement('script');cfb.defer=true;cfb.src='https://static.cloudflareinsights.com/beacon.min.js';cfb.setAttribute('data-cf-beacon','{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}');document.body.appendChild(cfb);(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vvn8p99ehp")}
   window.addEventListener('scroll',ld3rd,{once:true,passive:true});window.addEventListener('mousemove',ld3rd,{once:true,passive:true});window.addEventListener('touchstart',ld3rd,{once:true,passive:true});setTimeout(ld3rd,5000);
