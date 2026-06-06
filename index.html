@@ -123,13 +123,71 @@
   }
 }
 
-  .stry-tutorial-hand {
-  display: block;
-  font-size: 36px;
-  line-height: 1;
-  margin-bottom: 4px;
+  /* ===== Stories Tutorial ===== */
+.stry-tutorial {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  pointer-events: none; /* タッチやクリック操作を透過させ、カルーセルへの干渉を防ぐ */
+  transition: opacity 0.4s ease;
+  opacity: 1;
 }
-  
+.stry-tutorial-box {
+  background: rgba(0, 0, 0, 0.75);
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  width: 130px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.stry-tutorial-hand {
+  width: 40px;
+  height: 40px;
+  animation: strySwipeLeft 1.8s infinite ease-in-out; /* ループアニメーション */
+}
+.stry-tutorial-hand svg {
+  width: 100%;
+  height: 100%;
+}
+.stry-tutorial-arrow {
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: bold;
+}
+.stry-tutorial-text {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--ss);
+  letter-spacing: 0.05em;
+}
+/* 右から左へ指が動くスワイプ促進アニメーション */
+@keyframes strySwipeLeft {
+  0% {
+    transform: translateX(15px);
+    opacity: 0;
+  }
+  30% {
+    transform: translateX(8px);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(-15px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-25px);
+    opacity: 0;
+  }
+}
 </style>
 </head>
 <body>
@@ -143,19 +201,29 @@
     <div class="stry-seg"><div class="stry-fill"></div></div>
     <div class="stry-seg"><div class="stry-fill"></div></div>
   </div>
-  <!-- 右上ページカウンター -->
+    <!-- 右上ページカウンター -->
   <div class="stry-counter" id="stry-counter">1 / 6</div>
-  <!-- 左スライド指示チュートリアル -->
+  
+  <!-- ★【新規追加】左スライド指示チュートリアル -->
   <div class="stry-tutorial" id="stry-tutorial">
     <div class="stry-tutorial-box">
-   <div class="stry-tutorial-hand">👈</div>
+      <div class="stry-tutorial-hand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v5" />
+          <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
+          <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v9" />
+          <path d="M6 13a4 4 0 0 0 4 4h4a6 6 0 0 0 6-6V9a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v3" />
+        </svg>
+      </div>
       <div class="stry-tutorial-arrow">&larr;</div>
       <div class="stry-tutorial-text">左にスライド</div>
     </div>
   </div>
+  
+  <div class="stry-viewport" id="stry-vp">
   <div class="stry-viewport" id="stry-vp">
     <!-- ここにCanvaの画像URLを挿入 (1枚目) -->
-    <div class="stry-slide act"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/e6456a543f9ff6c675c11a365855d89c.webp?v=1780623016#" alt="LP 1" loading="eager" width="375" height="667"></div>
+    <div class="stry-slide act"><img src="IMAGE_URL_PAGE_1" alt="LP 1" loading="eager" width="375" height="667"></div>
     <!-- ここにCanvaの画像URLを挿入 (2枚目) -->
     <div class="stry-slide"><img src="IMAGE_URL_PAGE_2" alt="LP 2" loading="lazy" width="375" height="667"></div>
     <!-- ここにCanvaの画像URLを挿入 (3枚目) -->
