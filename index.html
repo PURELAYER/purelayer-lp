@@ -10,24 +10,20 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}body{font-family:var(--ss);background:var(--w);color:var(--bk);line-height:1.6;overflow-x:hidden;padding-bottom:72px}img{max-width:100%;height:auto;display:block}svg{display:block}
 .stars{display:flex;gap:2px}.stars svg{width:12px;height:12px;fill:var(--bk)}.dot{width:2px;height:2px;border-radius:50%;background:var(--g4);flex-shrink:0}
 .fade{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease;will-change:opacity,transform}.fade.vis{opacity:1;transform:translateY(0)}
-/* ===== Stories Carousel ===== */
-.stry{position:relative;width:100%;background:#000;overflow:hidden;-webkit-user-select:none;user-select:none}
-.stry-viewport{position:relative;width:100%;aspect-ratio:9/16}
-.stry-slide{position:absolute;inset:0;opacity:0;transition:opacity .3s ease;pointer-events:none;will-change:opacity}
-.stry-slide.act{opacity:1;pointer-events:auto}
-.stry-slide img{width:100%;height:100%;object-fit:cover}
-/* Progress bars */
-.stry-bars{position:absolute;top:0;left:0;right:0;display:flex;gap:3px;padding:10px 8px 0;z-index:10}
-.stry-seg{flex:1;height:2px;background:rgba(255,255,255,.3);border-radius:1px;overflow:hidden}
-.stry-fill{width:0%;height:100%;background:#fff;border-radius:1px;will-change:width}
-.stry-seg.done .stry-fill{width:100%!important;transition:none}
-.stry-seg.active .stry-fill{transition:width linear}
-/* Tap zones */
-.stry-tap{position:absolute;top:0;bottom:0;z-index:5;cursor:pointer}
-.stry-tap--l{left:0;width:35%}
-.stry-tap--r{right:0;width:65%}
+/* ===== Swipe LP (Stories Style) ===== */
+.swlp{position:relative;background:var(--bk);width:100%;overflow:hidden;touch-action:pan-y}
+.swlp-progress{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:4px;z-index:10}
+.swlp-progress-bar{flex:1;height:2px;background:rgba(255,255,255,.3);border-radius:2px;overflow:hidden}
+.swlp-progress-fill{width:0%;height:100%;background:#fff;transform-origin:left;will-change:width}
+.swlp-track{display:flex;flex-wrap:nowrap;width:100%;transform:translateX(0);transition:transform .3s cubic-bezier(.25,1,.5,1);will-change:transform}
+.swlp-slide{flex:0 0 100%;width:100%}
+.swlp-slide img{width:100%;aspect-ratio:9/16;object-fit:cover;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.swlp-nav{position:absolute;top:0;bottom:0;z-index:5;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.swlp-nav.prev{left:0;width:40%}
+.swlp-nav.next{right:0;width:60%}
 /* FV */
 .fv{background:var(--w)}.fv-hero{width:100%;background:var(--g1)}.fv-img{width:100%;aspect-ratio:1/1;object-fit:contain;mix-blend-mode:multiply}.fv-info{padding:28px 24px 40px;max-width:720px;margin:0 auto}.fv-name{font-family:var(--ss);font-size:18px;font-weight:500;color:var(--bk);letter-spacing:.02em;margin:0 0 10px;line-height:1.4}.fv-rating{display:flex;align-items:center;gap:8px;margin-bottom:16px}.fv-rc{font-size:12px;font-weight:400;color:var(--g5);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--g2)}.fv-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}.fv-tag{font-size:11px;font-weight:400;color:var(--g7);border:.5px solid var(--g2);padding:5px 12px;border-radius:20px;letter-spacing:.02em}
+/* FV Trust */
 .fv-trust{padding-top:20px;border-top:.5px solid var(--g2);display:flex;flex-direction:column;gap:16px}.fv-trust-item{display:flex;gap:12px;align-items:flex-start}.fv-trust-icon{width:20px;height:20px;flex-shrink:0;color:var(--g5);margin-top:1px}.fv-trust-icon svg{width:20px;height:20px}.fv-trust-text{font-size:12px;color:var(--g7);line-height:1.7;letter-spacing:.02em}.fv-trust-label{display:block;font-size:12px;font-weight:600;color:var(--bk);letter-spacing:.04em;margin-bottom:2px}
 /* Product */
 .prod{background:var(--w);padding:56px 0;border-top:.5px solid var(--g2)}.prod-in{max-width:480px;margin:0 auto;padding:0 24px}.prod-kk{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--g5);text-align:center;margin:0 0 8px}.prod-hd{font-family:var(--sf);font-size:20px;font-weight:500;text-align:center;letter-spacing:.08em;color:var(--bk);margin:0 0 36px}.vs{display:flex;flex-direction:column;margin-bottom:28px}.vs input{display:none}.vs-card{padding:18px 0;border-top:.5px solid var(--g2);cursor:pointer;transition:background .2s}.vs label:last-child .vs-card{border-bottom:.5px solid var(--g2)}.vs input:checked+.vs-card{background:var(--g1);margin:0 -24px;padding:18px 24px}.vs-row{display:flex;justify-content:space-between;align-items:baseline}.vs-size{font-size:15px;font-weight:600;color:var(--bk);letter-spacing:.02em;display:flex;align-items:center;gap:10px}.vs-tag{font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--g5);border:.5px solid var(--g4);padding:2px 8px;border-radius:2px}.vs-price{font-size:14px;font-weight:500;color:var(--bk);letter-spacing:.02em}.vs-note{display:block;font-size:11px;font-weight:400;color:var(--g5);margin-top:4px;letter-spacing:.03em}
@@ -41,203 +37,43 @@
 .ft{padding:40px 24px 60px;text-align:center;border-top:.5px solid var(--g2);background:var(--w)}.ft-logo{font-family:var(--sf);font-size:14px;font-weight:500;letter-spacing:.14em;color:var(--bk);margin-bottom:20px}.ft-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}.ft-links a{font-size:11px;color:var(--g5);text-decoration:none;font-weight:400}.ft-copy{font-size:10px;color:var(--g5)}
 .sticky{position:fixed;bottom:0;left:0;width:100%;z-index:999;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:.5px solid var(--g2);transform:translateY(120%);transition:transform .5s cubic-bezier(.16,1,.3,1);will-change:transform}.sticky.vis{transform:translateY(0)}.sticky-in{max-width:480px;margin:0 auto;padding:12px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px}.sticky-name{font-size:11px;font-weight:400;color:var(--g5);letter-spacing:.04em}.sticky-btn{flex-shrink:0;padding:12px 24px;background:var(--bk);color:#fff;border:none;font-family:var(--ss);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:opacity .2s}.sticky-btn:active{opacity:.85}
 @media(min-width:768px){.fv-img{aspect-ratio:4/3}.fv-name{font-size:22px}.fv-info{padding:40px 40px 56px}.prod,.acc,.rev{padding:72px 0}}
-/* ===== Stories Counter ===== */
-.stry-counter {
-  position: absolute;
-  top: 24px;
-  right: 16px;
-  z-index: 11;
-  background: rgba(0, 0, 0, 0.55);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  font-family: var(--ss);
-  padding: 4px 10px;
-  border-radius: 12px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-.stry-counter.vis {
-  opacity: 1;
-}
-/* ===== Stories Tutorial ===== */
-.stry-tutorial {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-  opacity: 1;
-}
-.stry-tutorial-box {
-  background: rgba(0, 0, 0, 0.75);
-  padding: 20px;
-  border-radius: 16px;
-  text-align: center;
-  width: 130px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-.stry-tutorial-hand {
-  width: 40px;
-  height: 40px;
-  display: inline-block;
-  animation: strySwipeLeft 1.8s infinite ease-in-out;
-}
-.stry-tutorial-arrow {
-  color: #fff;
-  font-size: 20px;
-  line-height: 1;
-  font-weight: bold;
-}
-.stry-tutorial-text {
-  color: #fff;
-  font-size: 12px;
-  font-weight: 700;
-  font-family: var(--ss);
-  letter-spacing: 0.05em;
-}
-@keyframes strySwipeLeft {
-  0% {
-    transform: rotate(-90deg) translateX(15px);
-    opacity: 0;
-  }
-  30% {
-    transform: rotate(-90deg) translateX(8px);
-    opacity: 1;
-  }
-  70% {
-    transform: rotate(-90deg) translateX(-15px);
-    opacity: 1;
-  }
-  100% {
-    transform: rotate(-90deg) translateX(-25px);
-    opacity: 0;
-  }
+  /* Accordion Link Styles */
+.acc-link {
+  color: var(--bk);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--g5);
+  font-weight: 500;
+  transition: opacity 0.2s ease;
 }
 
-  /* ===== Stories Tutorial ===== */
-.stry-tutorial {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-  pointer-events: none; /* タッチやクリック操作を透過させ、カルーセルへの干渉を防ぐ */
-  transition: opacity 0.4s ease;
-  opacity: 1;
+.acc-link:active,
+.acc-link:hover {
+  opacity: 0.6;
 }
-.stry-tutorial-box {
-  background: rgba(0, 0, 0, 0.75);
-  padding: 20px;
-  border-radius: 16px;
-  text-align: center;
-  width: 130px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-.stry-tutorial-hand {
-  width: 40px;
-  height: 40px;
-  animation: strySwipeLeft 1.8s infinite ease-in-out; /* ループアニメーション */
-}
-.stry-tutorial-hand svg {
-  width: 100%;
-  height: 100%;
-}
-.stry-tutorial-arrow {
-  color: #fff;
-  font-size: 20px;
-  line-height: 1;
-  font-weight: bold;
-}
-.stry-tutorial-text {
-  color: #fff;
-  font-size: 12px;
-  font-weight: 700;
-  font-family: var(--ss);
-  letter-spacing: 0.05em;
-}
-/* 右から左へ指が動くスワイプ促進アニメーション */
-@keyframes strySwipeLeft {
-  0% {
-    transform: translateX(15px);
-    opacity: 0;
-  }
-  30% {
-    transform: translateX(8px);
-    opacity: 1;
-  }
-  70% {
-    transform: translateX(-15px);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-25px);
-    opacity: 0;
-  }
-}
-
-  .stry-tutorial-hand {
-  display: block;
-  font-size: 36px;
-  line-height: 1;
-  margin-bottom: 4px;
-}
-  
 </style>
 </head>
 <body>
-<!-- ===== STORIES CAROUSEL ===== -->
-<section class="stry" id="stry">
-  <div class="stry-bars" id="stry-bars">
-    <div class="stry-seg active"><div class="stry-fill"></div></div>
-    <div class="stry-seg"><div class="stry-fill"></div></div>
-    <div class="stry-seg"><div class="stry-fill"></div></div>
-    <div class="stry-seg"><div class="stry-fill"></div></div>
-    <div class="stry-seg"><div class="stry-fill"></div></div>
-    <div class="stry-seg"><div class="stry-fill"></div></div>
+<!-- ===== SWIPE LP CAROUSEL (Stories Style) ===== -->
+<section class="swlp" id="swipe-lp">
+  <div class="swlp-progress" id="swlp-progress">
+    <div class="swlp-progress-bar"><div class="swlp-progress-fill"></div></div>
+    <div class="swlp-progress-bar"><div class="swlp-progress-fill"></div></div>
+    <div class="swlp-progress-bar"><div class="swlp-progress-fill"></div></div>
+    <div class="swlp-progress-bar"><div class="swlp-progress-fill"></div></div>
+    <div class="swlp-progress-bar"><div class="swlp-progress-fill"></div></div>
+    <div class="swlp-progress-bar"><div class="swlp-progress-fill"></div></div>
   </div>
-    <!-- 右上ページカウンター -->
-  <div class="stry-counter" id="stry-counter">1 / 6</div>
-  
-  <!-- ★【新規追加】左スライド指示チュートリアル -->
-  <div class="stry-tutorial" id="stry-tutorial">
-    <div class="stry-tutorial-box">
-  <div class="stry-tutorial-hand">👈</div>
-      <div class="stry-tutorial-arrow">&larr;</div>
-      <div class="stry-tutorial-text">左にスライド</div>
-    </div>
+  <div class="swlp-track" id="swlp-track">
+    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/98029f8df024bfc240639a2bff1cba7c.webp?v=1780793169#" alt="LP Page 1" loading="eager" width="375" height="667"></div>
+    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/23.webp?v=1778635352" alt="LP Page 2" loading="eager" width="375" height="667"></div>
+    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/3._1_26d6c469-04ad-4b7e-826b-dfa19b1e2d01.webp?v=1778635353" alt="LP Page 3" loading="eager" width="375" height="667"></div>
+    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/2._1.webp?v=1778635353" alt="LP Page 4" loading="eager" width="375" height="667"></div>
+    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/3._1.webp?v=1778635353" alt="LP Page 5" loading="eager" width="375" height="667"></div>
+    <div class="swlp-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/4..webp?v=1778635594" alt="LP Page 6" loading="eager" width="375" height="667"></div>
   </div>
-  
-  <div class="stry-viewport" id="stry-vp">
-  <div class="stry-viewport" id="stry-vp">
-    <!-- ここにCanvaの画像URLを挿入 (1枚目) -->
-    <div class="stry-slide act"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/98029f8df024bfc240639a2bff1cba7c.webp?v=1780793169#" alt="LP 1" loading="eager" width="375" height="667"></div>
-    <!-- ここにCanvaの画像URLを挿入 (2枚目) -->
-    <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/473723fe444a9556.webp?v=1780622276#" alt="LP 2" loading="lazy" width="375" height="667"></div>
-    <!-- ここにCanvaの画像URLを挿入 (3枚目) -->
-    <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/6a29583f63111573.webp?v=1780622275#" alt="LP 3" loading="lazy" width="375" height="667"></div>
-    <!-- ここにCanvaの画像URLを挿入 (4枚目) -->
-    <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/6c36d142e6bb8516.webp?v=1780622275#" alt="LP 4" loading="lazy" width="375" height="667"></div>
-    <!-- ここにCanvaの画像URLを挿入 (5枚目) -->
-    <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/8d948f688679c6ea.webp?v=1780624533#" alt="LP 5" loading="lazy" width="375" height="667"></div>
-    <!-- ここにCanvaの画像URLを挿入 (6枚目) -->
-    <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/b0fffdcd1ba9f7fd.webp?v=1780622275#" alt="LP 6" loading="lazy" width="375" height="667"></div>
-    <div class="stry-tap stry-tap--l" id="stry-prev"></div>
-    <div class="stry-tap stry-tap--r" id="stry-next"></div>
-  </div>
+  <div class="swlp-nav prev" id="swlp-prev"></div>
+  <div class="swlp-nav next" id="swlp-next"></div>
 </section>
 <main>
   <!-- ===== SECTION 1: FIRST VIEW ===== -->
@@ -303,7 +139,7 @@
       <div>
         <details class="acc-item"><summary class="acc-trig"><span class="acc-title">商品詳細</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt"><dl><div class="dl-row"><dt>商品名</dt><dd>Oud Stallion — Eau de Parfum</dd></div><div class="dl-row"><dt>ブランド</dt><dd>PURELAYER</dd></div><div class="dl-row"><dt>容量</dt><dd>10ml / 50ml / 100ml</dd></div><div class="dl-row"><dt>香りの系統</dt><dd>石鹸系・お風呂上がりの清潔感</dd></div><div class="dl-row"><dt>持続時間</dt><dd>約 8 – 12 時間（個人差あり）</dd></div><div class="dl-row"><dt>使い方</dt><dd>首筋・手首に 1 – 2 プッシュ</dd></div><div class="dl-row"><dt>対象</dt><dd>ユニセックス（男女兼用）</dd></div></dl></div></div></details>
         <details class="acc-item"><summary class="acc-trig"><span class="acc-title">成分・原材料</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt"><p>エタノール、香料（パルファム）、水、BHT</p><p class="acc-sub">主な香料成分</p><ul class="acc-ul"><li>リナロール — 石鹸系の清潔感</li><li>ゲラニオール — フローラルの柔らかさ</li><li>クマリン — ほんのりとした甘さ</li><li>ウード — 深みのある落ち着き</li></ul><p class="acc-cap">※ 肌に異常を感じた場合は使用を中止してください。</p></div></div></details>
-        <details class="acc-item"><summary class="acc-trig"><span class="acc-title">30日間全額返金保証</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt"><p>商品到着から 30 日以内であれば、理由を問わず全額返金いたします。</p><p class="acc-sub">返品の流れ</p><ol class="acc-ol"><li>公式 LINE またはメールでご連絡</li><li>返品先住所をご案内</li><li>商品を返送（返送料はお客様負担）</li><li>到着確認後、5 営業日以内に全額返金</li></ol><p class="acc-cap">※ 使用済みでも返品可（残量 50% 以上）。特典のみの返品は不可。</p></div></div></details>
+        <details class="acc-item"><summary class="acc-trig"><span class="acc-title">30日間全額返金保証</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt"><p>商品到着から 30 日以内であれば、理由を問わず全額返金いたします。</p><p class="acc-sub">返品の流れ</p><ol class="acc-ol"><li><a href="https://line.me/R/ti/p/@165jpaof" class="acc-link" target="_blank" rel="noopener noreferrer">公式 LINE</a> またはメールでご連絡</li><li>返品先住所をご案内</li><li>商品を返送（返送料はお客様負担）</li><li>到着確認後、5 営業日以内に全額返金</li></ol><p class="acc-cap">※ 使用済みでも返品可（残量 50% 以上）。特典のみの返品は不可。</p></div></div></details>
         <details class="acc-item"><summary class="acc-trig"><span class="acc-title">配送について</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt"><dl><div class="dl-row"><dt>送料</dt><dd>全国無料</dd></div><div class="dl-row"><dt>発送</dt><dd>14時までのご注文 → 当日発送</dd></div><div class="dl-row"><dt>お届け目安</dt><dd>発送後 1 – 3 日</dd></div><div class="dl-row"><dt>梱包</dt><dd>無地ダンボール（中身がわからない梱包）</dd></div></dl></div></div></details>
         <details class="acc-item"><summary class="acc-trig"><span class="acc-title">よくある質問</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt"><div class="faq"><p class="faq-q">香りがきつくないですか？</p><p class="faq-a">石鹸系のナチュラルな香りです。1プッシュで十分香ります。</p></div><div class="faq"><p class="faq-q">男性用？女性用？</p><p class="faq-a">ユニセックスです。18–34歳の男女から均等にご支持いただいています。</p></div><div class="faq"><p class="faq-q">どこにつければいいですか？</p><p class="faq-a">首筋や手首に1–2プッシュ。体温の高い部位につけると自然に香りが広がります。</p></div><div class="faq"><p class="faq-q">10mlはどれくらい持ちますか？</p><p class="faq-a">1日1–2プッシュで約2–3週間お使いいただけます。</p></div><div class="faq"><p class="faq-q">特典のアトマイザーとは？</p><p class="faq-a">持ち運び用の空の10mlスプレーボトルです。</p></div></div></div></details>
       </div>
@@ -324,214 +160,129 @@
 <script>
 (function(){
   'use strict';
-  /* ===== Stories Carousel ===== */
-  var DURATION = 5000;
-  var slides = document.querySelectorAll('.stry-slide');
-  var segs = document.querySelectorAll('.stry-seg');
-  var total = slides.length;
-  var cur = 0, timer = null, paused = false, startTime = 0, elapsed = 0;
-  // Counter elements and timer
-  var counterEl = document.getElementById('stry-counter');
-  var counterTimer = null;
-  function showCounter() {
-    if (!counterEl) return;
-    counterEl.textContent = (cur + 1) + ' / ' + total;
-    counterEl.classList.add('vis');
-    
-    clearTimeout(counterTimer);
-    counterTimer = setTimeout(function() {
-      counterEl.classList.remove('vis');
-    }, 3000); // 3秒後にフェードアウト
-  }
-  // Sticky CTA control function
-  var sw = document.getElementById('sticky-cta');
-  var stry = document.getElementById('stry');
-  function updateStickyCTA() {
-    if (!sw) return;
-    var isFVActive = (cur === 0) && (window.scrollY < (stry ? stry.offsetHeight : window.innerHeight));
-    if (isFVActive) {
-      sw.classList.remove('vis');
-    } else {
-      sw.classList.add('vis');
+  
+  /* =========================================
+     Swipe LP Stories Carousel
+  ========================================= */
+  var track = document.getElementById('swlp-track'),
+      prevBtn = document.getElementById('swlp-prev'),
+      nextBtn = document.getElementById('swlp-next'),
+      fills = document.querySelectorAll('.swlp-progress-fill'),
+      slides = document.querySelectorAll('.swlp-slide');
+  if(track && slides.length > 0) {
+    var currentIndex = 0;
+    var duration = 7000; // 7秒
+    var isPaused = false;
+    var currentFillWidth = 0;
+    var lastTime = 0;
+    var animationFrameId = null;
+    // UIの更新処理（親要素であるtrackを動かし、バーの色を更新）
+    function goTo(index) {
+      currentIndex = index;
+      track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+      fills.forEach(function(fill, idx) {
+        if (idx < currentIndex) {
+          fill.style.width = '100%';
+        } else if (idx > currentIndex) {
+          fill.style.width = '0%';
+        } else {
+          fill.style.width = currentFillWidth + '%';
+        }
+      });
     }
-  }
-  function goTo(n) {
-    slides[cur].classList.remove('act');
-    segs[cur].classList.remove('active');
-    segs[cur].classList.add('done');
-    segs[cur].querySelector('.stry-fill').style.width = '100%';
-    cur = n;
-    if (cur >= total) { cur = 0; resetAllBars(); }
-    if (cur < 0) cur = total - 1;
-    // Mark previous as done, future as empty
-    for (var i = 0; i < total; i++) {
-      if (i < cur) { segs[i].classList.add('done'); segs[i].classList.remove('active'); segs[i].querySelector('.stry-fill').style.width = '100%'; }
-      else if (i > cur) { segs[i].classList.remove('done','active'); segs[i].querySelector('.stry-fill').style.width = '0%'; }
-    }
-    slides[cur].classList.add('act');
-    segs[cur].classList.remove('done');
-    segs[cur].classList.add('active');
-    elapsed = 0;
-    startFill();
-    showCounter(); // 遷移時にカウンターを表示
-    updateStickyCTA(); // 遷移時に常設CTAの表示状態を更新
-  }
-  function resetAllBars() {
-    for (var i = 0; i < total; i++) {
-      segs[i].classList.remove('done','active');
-      segs[i].querySelector('.stry-fill').style.width = '0%';
-      segs[i].querySelector('.stry-fill').style.transition = 'none';
-    }
-  }
-  function startFill() {
-    clearTimeout(timer);
-    var fill = segs[cur].querySelector('.stry-fill');
-    var remain = DURATION - elapsed;
-    fill.style.transition = 'none';
-    fill.style.width = (elapsed / DURATION * 100) + '%';
-    // Force reflow then animate
-    void fill.offsetWidth;
-    fill.style.transition = 'width ' + remain + 'ms linear';
-    fill.style.width = '100%';
-    startTime = Date.now();
-    timer = setTimeout(function() { goTo(cur + 1); }, remain);
-  }
-  function pauseStory() {
-    if (paused) return;
-    paused = true;
-    clearTimeout(timer);
-    elapsed += Date.now() - startTime;
-    var fill = segs[cur].querySelector('.stry-fill');
-    var computed = getComputedStyle(fill).width;
-    fill.style.transition = 'none';
-    fill.style.width = computed;
-  }
-  function resumeStory() {
-    if (!paused) return;
-    paused = false;
-    startFill();
-  }
-  var startX = 0, startY = 0;
-  var isSwipeAction = false;
-  var preventClick = false;
-  // Tap navigation
-  document.getElementById('stry-next').addEventListener('click', function(e) {
-    e.preventDefault();
-    if (preventClick) return;
-    goTo(cur + 1);
-  });
-  document.getElementById('stry-prev').addEventListener('click', function(e) {
-    e.preventDefault();
-    if (preventClick) return;
-    goTo(cur - 1);
-  });
-  // Touch handlers (Long-press & Swipe)
-  var vp = document.getElementById('stry-vp');
-  var holdTimer = null;
-  vp.addEventListener('touchstart', function(e) {
-    var touch = e.touches[0];
-    startX = touch.clientX;
-    startY = touch.clientY;
-    isSwipeAction = false;
-    
-    holdTimer = setTimeout(pauseStory, 200);
-    showCounter(); // 操作時にカウンター表示
-  }, {passive:true});
-  vp.addEventListener('touchmove', function(e) {
-    if (e.touches.length > 1) return;
-    var touch = e.touches[0];
-    var diffX = touch.clientX - startX;
-    var diffY = touch.clientY - startY;
-    // 横方向の動きが縦方向より大きく、一定のしきい値を超える場合
-    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
-      isSwipeAction = true;
-      clearTimeout(holdTimer);
-      pauseStory(); // スワイプ中は自動進行を一時停止
-      
-      // 縦スクロールを防止
-      if (e.cancelable) e.preventDefault();
-    }
-  }, {passive:false});
-  vp.addEventListener('touchend', function(e) {
-    clearTimeout(holdTimer);
-    
-    if (isSwipeAction) {
-      var touch = e.changedTouches[0];
-      var diffX = touch.clientX - startX;
-      if (diffX < -50) {
-        goTo(cur + 1); // 左スワイプ：次へ
-      } else if (diffX > 50) {
-        goTo(cur - 1); // 右スワイプ：前へ
-      } else {
-        resumeStory(); // しきい値未満は再開
+    // バーを滑らかに進めるアニメーションループ
+    function loop(time) {
+      if (!lastTime) lastTime = time;
+      var deltaTime = time - lastTime;
+      lastTime = time;
+      if (!isPaused) {
+        currentFillWidth += (deltaTime / duration) * 100;
+        
+        if (currentFillWidth >= 100) {
+          currentFillWidth = 0;
+          if (currentIndex < slides.length - 1) {
+            currentIndex++;
+          } else {
+            currentIndex = 0; // ループ
+          }
+          goTo(currentIndex);
+        } else {
+          fills[currentIndex].style.width = currentFillWidth + '%';
+        }
       }
-      // クリックの誤発火を防ぐ
-      preventClick = true;
-      setTimeout(function() { preventClick = false; }, 300);
-    } else {
-      resumeStory(); // 通常タップ時は長押し解除で再開
+      animationFrameId = requestAnimationFrame(loop);
     }
-  }, {passive:true});
-  vp.addEventListener('touchcancel', function() {
-    clearTimeout(holdTimer);
-    resumeStory();
-  }, {passive:true});
-  // Long-press pause (mouse)
-  vp.addEventListener('mousedown', function() {
-    holdTimer = setTimeout(pauseStory, 200);
-    showCounter(); // 操作時にカウンター表示
-  });
-  vp.addEventListener('mouseup', function() {
-    clearTimeout(holdTimer);
-    resumeStory();
-  });
-  vp.addEventListener('mouseleave', function() {
-    clearTimeout(holdTimer);
-    resumeStory();
-  });
-  // Init first slide
-  startFill();
-  showCounter(); // 初回カウンター表示
-  /* ===== Stars ===== */
+    // ホールド（長押し）検知による一時停止ロジック
+    var holdTimer;
+    var isLongPress = false;
+    var swlpContainer = document.getElementById('swipe-lp');
+    function handleStart() {
+      isPaused = true;
+      isLongPress = false;
+      // 200ms以上のタッチを「ホールド」と判定し、タップ(遷移)させない
+      holdTimer = setTimeout(function() {
+        isLongPress = true; 
+      }, 200);
+    }
+    function handleEnd() {
+      isPaused = false;
+      clearTimeout(holdTimer);
+    }
+    swlpContainer.addEventListener('mousedown', handleStart);
+    swlpContainer.addEventListener('mouseup', handleEnd);
+    swlpContainer.addEventListener('mouseleave', handleEnd);
+    swlpContainer.addEventListener('touchstart', handleStart, {passive: true});
+    swlpContainer.addEventListener('touchend', handleEnd);
+    // 次へ・前へ タップ時の処理
+    nextBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (isLongPress) return; // 長押し後の離上は遷移しない
+      if (currentIndex < slides.length - 1) {
+        currentIndex++;
+      } else {
+        currentIndex = 0; // ループ
+      }
+      currentFillWidth = 0;
+      goTo(currentIndex);
+    });
+    prevBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (isLongPress) return; // 長押し後の離上は遷移しない
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = slides.length - 1; // 1枚目から戻る場合は最後にループさせる
+      }
+      currentFillWidth = 0;
+      goTo(currentIndex);
+    });
+    // 初期化とアニメーション開始
+    goTo(0);
+    animationFrameId = requestAnimationFrame(loop);
+  }
+  /* =========================================
+     Other Existing Logic
+  ========================================= */
   var starSVG='<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
       fiveStars=starSVG+starSVG+starSVG+starSVG+starSVG;
   document.querySelectorAll('#fv-stars, .rv-s').forEach(function(e){e.innerHTML=fiveStars});
-  /* ===== Variant Map & Cart ===== */
   var VM={'10ml':{price:'¥3,980',label:'10ml',items:[{id:53230989574512,quantity:1}]},'50ml':{price:'¥13,800',label:'50ml',items:[{id:53230989181296,quantity:1},{id:53231016182128,quantity:1}]},'100ml':{price:'¥22,800',label:'100ml',items:[{id:53230989214064,quantity:1},{id:53231016182128,quantity:1},{id:53230989541744,quantity:1}]}};
-  var curV='50ml',cP=document.getElementById('cta-price'),sN=document.getElementById('sticky-name'),sP=document.getElementById('sticky-price');
-  function upd(v){curV=v;var d=VM[v];if(cP)cP.textContent=d.price;if(sN)sN.textContent='Oud Stallion — '+d.label;if(sP)sP.textContent=d.price}
+  var cur='50ml',cP=document.getElementById('cta-price'),sN=document.getElementById('sticky-name'),sP=document.getElementById('sticky-price');
+  function upd(v){cur=v;var d=VM[v];if(cP)cP.textContent=d.price;if(sN)sN.textContent='Oud Stallion — '+d.label;if(sP)sP.textContent=d.price}
   document.getElementById('vs').addEventListener('change',function(e){if(e.target.classList.contains('vr'))upd(e.target.value)});
-  function addToCart(){var d=VM[curV];if(!d)return;if(window.clarity)window.clarity('set','InitiateCheckout','true');if(window.ttq)window.ttq.track('AddToCart',{});window.location.href='https://nemveil.com/cart/'+d.items.map(function(i){return i.id+':'+i.quantity}).join(',')}
+  function addToCart(){var d=VM[cur];if(!d)return;if(window.clarity)window.clarity('set','InitiateCheckout','true');if(window.ttq)window.ttq.track('AddToCart',{});window.location.href='https://nemveil.com/cart/'+d.items.map(function(i){return i.id+':'+i.quantity}).join(',')}
   document.getElementById('cta-main').addEventListener('click',addToCart);
   document.getElementById('sticky-btn').addEventListener('click',addToCart);
-  /* ===== Stock Bar ===== */
   var sb=document.getElementById('stk-bar');
   if(sb){requestAnimationFrame(function(){setTimeout(function(){sb.style.transform='scaleX(0.28)'},100)})}
-  /* ===== Sticky CTA & Fade ===== */
-  if (sw) {
-    window.addEventListener('scroll', updateStickyCTA, {passive: true});
-    updateStickyCTA(); // 初期ロード時の反映
-  }
   if('IntersectionObserver' in window){
+    var sw=document.getElementById('sticky-cta'),fv=document.getElementById('section-fv');
+    if(sw&&fv)new IntersectionObserver(function(e){sw.classList.toggle('vis',!e[0].isIntersecting)},{threshold:0}).observe(fv);
     var ioFade=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');ioFade.unobserve(e.target)}})},{rootMargin:"50px",threshold:0});
     document.querySelectorAll('.fade').forEach(function(el){ioFade.observe(el)});
   }else{document.querySelectorAll('.fade').forEach(function(el){el.classList.add('vis')})}
-  // ===== Stories Tutorial Dismiss =====
-  var tutorialEl = document.getElementById('stry-tutorial');
-  if (tutorialEl) {
-    var removeTutorial = function() {
-      tutorialEl.style.opacity = '0';
-      setTimeout(function() {
-        if (tutorialEl.parentNode) tutorialEl.parentNode.removeChild(tutorialEl);
-      }, 400);
-    };
-    window.addEventListener('touchstart', removeTutorial, { once: true, passive: true });
-    window.addEventListener('click', removeTutorial, { once: true });
-  }
-  /* ===== Accordion ===== */
   document.querySelector('.acc').addEventListener('toggle',function(e){if(e.target.open){document.querySelectorAll('.acc-item').forEach(function(o){if(o!==e.target&&o.open)o.removeAttribute('open')})}},true);
-  upd(curV);
-  /* ===== 3rd-party Lazy Load ===== */
+  upd(cur);
   var lzt=false;
   function ld3rd(){if(lzt)return;lzt=true;window.removeEventListener('scroll',ld3rd);window.removeEventListener('mousemove',ld3rd);window.removeEventListener('touchstart',ld3rd);var cfb=document.createElement('script');cfb.defer=true;cfb.src='https://static.cloudflareinsights.com/beacon.min.js';cfb.setAttribute('data-cf-beacon','{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}');document.body.appendChild(cfb);(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vvn8p99ehp")}
   window.addEventListener('scroll',ld3rd,{once:true,passive:true});window.addEventListener('mousemove',ld3rd,{once:true,passive:true});window.addEventListener('touchstart',ld3rd,{once:true,passive:true});setTimeout(ld3rd,5000);
