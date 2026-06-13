@@ -7,13 +7,23 @@
 <meta name="description" content="つけた瞬間、褒められる清潔感。石鹸系の香りが一日中続く。累計12,000本突破。¥3,980からお試し。">
 <style>
 :root{--w:#FFF;--ow:#FAFAFA;--bk:#1A1A1A;--g1:#F5F5F5;--g2:#EEE;--g4:#767676;--g5:#595959;--g7:#424242;--sf:"Shippori Mincho","YuMincho","Hiragino Mincho ProN","MS PMincho",serif;--ss:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",sans-serif}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}body{font-family:var(--ss);background:var(--w);color:var(--bk);line-height:1.6;overflow-x:hidden}img{max-width:100%;height:auto;display:block}svg{display:block}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}body{font-family:var(--ss);background:var(--w);color:var(--bk);line-height:1.6;overflow-x:hidden;padding-bottom:72px}img{max-width:100%;height:auto;display:block}svg{display:block}
 .stars{display:flex;gap:2px}.stars svg{width:12px;height:12px;fill:var(--bk)}.dot{width:2px;height:2px;border-radius:50%;background:var(--g4);flex-shrink:0}
 .fade{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease;will-change:opacity,transform}.fade.vis{opacity:1;transform:translateY(0)}
-/* ===== Header ===== */
-.hdr{position:sticky;top:0;left:0;width:100%;z-index:999;background:var(--w);border-bottom:.5px solid var(--g2);backdrop-filter:blur(8px);background:rgba(255,255,255,0.95)}
-.hdr-in{max-width:480px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:center;padding:0 24px}
-.hdr-logo{font-family:var(--ss);font-size:16px;font-weight:700;letter-spacing:.18em;color:var(--bk);text-decoration:none;text-transform:uppercase}
+/* ===== Stories Carousel ===== */
+.stry{position:relative;width:100%;background:#000;overflow:hidden;-webkit-user-select:none;user-select:none}
+.stry-viewport{position:relative;width:100%;aspect-ratio:9/16}
+.stry-slide{position:absolute;inset:0;opacity:0;transition:opacity .3s ease;pointer-events:none;will-change:opacity}
+.stry-slide.act{opacity:1;pointer-events:auto}
+.stry-slide img{width:100%;height:100%;object-fit:cover}
+/* Progress bars */
+.stry-bars{position:absolute;top:0;left:0;right:0;display:flex;gap:3px;padding:10px 8px 0;z-index:10}
+.stry-seg{flex:1;height:2px;background:rgba(255,255,255,.3);border-radius:1px;overflow:hidden}
+.stry-fill{width:0%;height:100%;background:#fff;border-radius:1px;will-change:width}
+.stry-seg.done .stry-fill{width:100%!important;transition:none}
+.stry-seg.active .stry-fill{transition:width linear}
+/* Tap zones */
+.stry-viewport{cursor:pointer}
 /* FV */
 .fv{background:var(--w)}.fv-hero{width:100%;background:var(--g1)}.fv-img{width:100%;aspect-ratio:1/1;object-fit:contain;mix-blend-mode:multiply}.fv-info{padding:28px 24px 40px;max-width:720px;margin:0 auto}.fv-name{font-family:var(--ss);font-size:18px;font-weight:500;color:var(--bk);letter-spacing:.02em;margin:0 0 10px;line-height:1.4}.fv-rating{display:flex;align-items:center;gap:8px;margin-bottom:16px}.fv-rc{font-size:12px;font-weight:400;color:var(--g5);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--g2)}.fv-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}.fv-tag{font-size:11px;font-weight:400;color:var(--g7);border:.5px solid var(--g2);padding:5px 12px;border-radius:20px;letter-spacing:.02em}
 .fv-trust{padding-top:20px;border-top:.5px solid var(--g2);display:flex;flex-direction:column;gap:16px}.fv-trust-item{display:flex;gap:12px;align-items:flex-start}.fv-trust-icon{width:20px;height:20px;flex-shrink:0;color:var(--g5);margin-top:1px}.fv-trust-icon svg{width:20px;height:20px}.fv-trust-text{font-size:12px;color:var(--g7);line-height:1.7;letter-spacing:.02em}.fv-trust-label{display:block;font-size:12px;font-weight:600;color:var(--bk);letter-spacing:.04em;margin-bottom:2px}
@@ -28,15 +38,56 @@
 /* Footer & Sticky */
 .ft{padding:40px 24px 60px;text-align:center;border-top:.5px solid var(--g2);background:var(--w)}.ft-logo{font-family:var(--sf);font-size:14px;font-weight:500;letter-spacing:.14em;color:var(--bk);margin-bottom:20px}.ft-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}.ft-links a{font-size:11px;color:var(--g5);text-decoration:none;font-weight:400}.ft-copy{font-size:10px;color:var(--g5)}
 @media(min-width:768px){.fv-img{aspect-ratio:4/3}.fv-name{font-size:22px}.fv-info{padding:40px 40px 56px}.prod,.acc,.rev{padding:72px 0}}
+/* ===== Stories Counter ===== */
+.stry-counter {
+  position: absolute;
+  top: 24px;
+  right: 16px;
+  z-index: 11;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--ss);
+  padding: 4px 10px;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.stry-counter.vis {
+  opacity: 1;
+}
 </style>
 </head>
 <body>
-<!-- ===== HEADER ===== -->
-<header class="hdr">
-  <div class="hdr-in">
-    <a href="#" class="hdr-logo">PURELAYER</a>
+<!-- ===== STORIES CAROUSEL ===== -->
+<section class="stry" id="stry">
+  <div class="stry-bars" id="stry-bars">
+    <div class="stry-seg active"><div class="stry-fill"></div></div>
+    <div class="stry-seg"><div class="stry-fill"></div></div>
+    <div class="stry-seg"><div class="stry-fill"></div></div>
+    <div class="stry-seg"><div class="stry-fill"></div></div>
+    <div class="stry-seg"><div class="stry-fill"></div></div>
+    <div class="stry-seg"><div class="stry-fill"></div></div>
   </div>
-</header>
+  <!-- 右上ページカウンター -->
+  <div class="stry-counter" id="stry-counter">1 / 6</div>
+  <div class="stry-viewport" id="stry-vp">
+    <!-- ここにCanvaの画像URLを挿入 (1枚目) -->
+    <div class="stry-slide act"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/3027f94d3af029f52c5713b9d981c83b.webp?v=1778465937#" alt="LP 1" loading="eager" width="375" height="667"></div>
+    <!-- ここにCanvaの画像URLを挿入 (2枚目) -->
+    <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/23.webp?v=1778635353#" alt="LP 2" loading="lazy" width="375" height="667"></div>
+    <!-- ここにCanvaの画像URLを挿入 (3枚目) -->
+    <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/3._1_26d6c469-04ad-4b7e-826b-dfa19b1e2d01.webp?v=1778635353#" alt="LP 3" loading="lazy" width="375" height="667"></div>
+    <!-- ここにCanvaの画像URLを挿入 (4枚目) -->
+    <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/2._1.webp?v=1778635353#" alt="LP 4" loading="lazy" width="375" height="667"></div>
+    <!-- ここにCanvaの画像URLを挿入 (5枚目) -->
+    <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/3._1.webp?v=1778635353#" alt="LP 5" loading="lazy" width="375" height="667"></div>
+    <!-- ここにCanvaの画像URLを挿入 (6枚目) -->
+    <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/4..webp?v=1778635594#" alt="LP 6" loading="lazy" width="375" height="667"></div>
+  </div>
+</section>
 <main>
   <!-- ===== SECTION 1: FIRST VIEW ===== -->
   <section class="fv" id="section-fv">
@@ -116,6 +167,173 @@
 <script>
 (function(){
   'use strict';
+  /* ===== Stories Carousel ===== */
+  var DURATION = 5000;
+  var slides = document.querySelectorAll('.stry-slide');
+  var segs = document.querySelectorAll('.stry-seg');
+  var total = slides.length;
+  var cur = 0, timer = null, paused = false, startTime = 0, elapsed = 0;
+  // Counter elements and timer
+  var counterEl = document.getElementById('stry-counter');
+  var counterTimer = null;
+  function showCounter() {
+    if (!counterEl) return;
+    counterEl.textContent = (cur + 1) + ' / ' + total;
+    counterEl.classList.add('vis');
+    
+    clearTimeout(counterTimer);
+    counterTimer = setTimeout(function() {
+      counterEl.classList.remove('vis');
+    }, 3000); // 3秒後にフェードアウト
+  }
+  function goTo(n) {
+    slides[cur].classList.remove('act');
+    segs[cur].classList.remove('active');
+    segs[cur].classList.add('done');
+    segs[cur].querySelector('.stry-fill').style.width = '100%';
+    cur = n;
+    if (cur >= total) { cur = 0; resetAllBars(); }
+    if (cur < 0) cur = total - 1;
+    // Mark previous as done, future as empty
+    for (var i = 0; i < total; i++) {
+      if (i < cur) { segs[i].classList.add('done'); segs[i].classList.remove('active'); segs[i].querySelector('.stry-fill').style.width = '100%'; }
+      else if (i > cur) { segs[i].classList.remove('done','active'); segs[i].querySelector('.stry-fill').style.width = '0%'; }
+    }
+    slides[cur].classList.add('act');
+    segs[cur].classList.remove('done');
+    segs[cur].classList.add('active');
+    elapsed = 0;
+    startFill();
+    showCounter(); // 遷移時にカウンターを表示
+  }
+  function resetAllBars() {
+    for (var i = 0; i < total; i++) {
+      segs[i].classList.remove('done','active');
+      segs[i].querySelector('.stry-fill').style.width = '0%';
+      segs[i].querySelector('.stry-fill').style.transition = 'none';
+    }
+  }
+  function startFill() {
+    clearTimeout(timer);
+    var fill = segs[cur].querySelector('.stry-fill');
+    var remain = DURATION - elapsed;
+    fill.style.transition = 'none';
+    fill.style.width = (elapsed / DURATION * 100) + '%';
+    // Force reflow then animate
+    void fill.offsetWidth;
+    fill.style.transition = 'width ' + remain + 'ms linear';
+    fill.style.width = '100%';
+    startTime = Date.now();
+    timer = setTimeout(function() { goTo(cur + 1); }, remain);
+  }
+  function pauseStory() {
+    if (paused) return;
+    paused = true;
+    clearTimeout(timer);
+    elapsed += Date.now() - startTime;
+    var fill = segs[cur].querySelector('.stry-fill');
+    var computed = getComputedStyle(fill).width;
+    fill.style.transition = 'none';
+    fill.style.width = computed;
+  }
+  function resumeStory() {
+    if (!paused) return;
+    paused = false;
+    startFill();
+  }
+  var startX = 0, startY = 0;
+  var isSwipeAction = false;
+  var preventClick = false;
+  var vp = document.getElementById('stry-vp');
+  var holdTimer = null;
+  // 超広範囲タップ判定処理
+  function handleTap(clientX) {
+    if (!vp) return;
+    var rect = vp.getBoundingClientRect();
+    var x = clientX - rect.left;
+    var width = rect.width;
+    var ratio = x / width;
+    if (ratio < 0.3) {
+      goTo(cur - 1); // 左側30%未満なら戻る
+    } else {
+      goTo(cur + 1); // それ以外（右側70%）は進む
+    }
+  }
+  // PC等のクリック用
+  vp.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (preventClick) return;
+    handleTap(e.clientX);
+  });
+  // Touch handlers (Long-press & Swipe)
+  vp.addEventListener('touchstart', function(e) {
+    var touch = e.touches[0];
+    startX = touch.clientX;
+    startY = touch.clientY;
+    isSwipeAction = false;
+    
+    holdTimer = setTimeout(pauseStory, 200);
+    showCounter(); // 操作時にカウンター表示
+  }, {passive:true});
+  vp.addEventListener('touchmove', function(e) {
+    if (e.touches.length > 1) return;
+    var touch = e.touches[0];
+    var diffX = touch.clientX - startX;
+    var diffY = touch.clientY - startY;
+    // 横方向の動きが縦方向より大きく、一定のしきい値を超える場合
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
+      isSwipeAction = true;
+      clearTimeout(holdTimer);
+      pauseStory(); // スワイプ中は自動進行を一時停止
+      
+      // 縦スクロールを防止
+      if (e.cancelable) e.preventDefault();
+    }
+  }, {passive:false});
+  vp.addEventListener('touchend', function(e) {
+    clearTimeout(holdTimer);
+    
+    if (isSwipeAction) {
+      var touch = e.changedTouches[0];
+      var diffX = touch.clientX - startX;
+      if (diffX < -50) {
+        goTo(cur + 1); // 左スワイプ：次へ
+      } else if (diffX > 50) {
+        goTo(cur - 1); // 右スワイプ：前へ
+      } else {
+        resumeStory(); // しきい値未満は再開
+      }
+      // クリックの誤発火を防ぐ
+      preventClick = true;
+      setTimeout(function() { preventClick = false; }, 300);
+    } else {
+      resumeStory(); // 通常タップ時は長押し解除で再開
+      var touch = e.changedTouches[0];
+      handleTap(touch.clientX);
+      preventClick = true;
+      setTimeout(function() { preventClick = false; }, 300);
+    }
+  }, {passive:true});
+  vp.addEventListener('touchcancel', function() {
+    clearTimeout(holdTimer);
+    resumeStory();
+  }, {passive:true});
+  // Long-press pause (mouse)
+  vp.addEventListener('mousedown', function() {
+    holdTimer = setTimeout(pauseStory, 200);
+    showCounter(); // 操作時にカウンター表示
+  });
+  vp.addEventListener('mouseup', function() {
+    clearTimeout(holdTimer);
+    resumeStory();
+  });
+  vp.addEventListener('mouseleave', function() {
+    clearTimeout(holdTimer);
+    resumeStory();
+  });
+  // Init first slide
+  startFill();
+  showCounter(); // 初回カウンター表示
   /* ===== Stars ===== */
   var starSVG='<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
       fiveStars=starSVG+starSVG+starSVG+starSVG+starSVG;
