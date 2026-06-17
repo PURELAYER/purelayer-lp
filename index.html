@@ -136,6 +136,15 @@ img {
   padding: 16px 20px calc(16px + env(safe-area-inset-bottom, 0px));
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  /* 初期状態（最後のページ以外）は非表示にするための設定を追加 */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+/* 最後のページで付与するアクティブ用のクラスを追加 */
+.stry-sticky-cta.act {
+  opacity: 1;
+  pointer-events: auto;
 }
 .stry-sticky-btn {
   display: block;
@@ -222,11 +231,24 @@ img {
   // Counter elements and timer
   var counterEl = document.getElementById('stry-counter');
   var counterTimer = null;
+  // 常設CTAボタン要素を取得
+  var stickyCtaEl = document.getElementById('stry-sticky-cta');
+
+  // CTAボタンの表示状態をチェックする関数を追加
+  function checkCtaVisibility() {
+    if (!stickyCtaEl) return;
+    if (cur === total - 1) {
+      stickyCtaEl.classList.add('act'); // 最後のページなら表示
+    } else {
+      stickyCtaEl.classList.remove('act'); // それ以外は非表示
+    }
+  }
+
   function showCounter() {
     if (!counterEl) return;
     counterEl.textContent = (cur + 1) + ' / ' + total;
     counterEl.classList.add('vis');
-    
+      
     clearTimeout(counterTimer);
     counterTimer = setTimeout(function() {
       counterEl.classList.remove('vis');
@@ -251,6 +273,7 @@ img {
     elapsed = 0;
     startFill();
     showCounter(); // 遷移時にカウンターを表示
+    checkCtaVisibility(); // ページ遷移時にCTAの表示をチェック
   }
   function resetAllBars() {
     for (var i = 0; i < total; i++) {
@@ -317,7 +340,7 @@ img {
     startX = touch.clientX;
     startY = touch.clientY;
     isSwipeAction = false;
-    
+      
     holdTimer = setTimeout(pauseStory, 200);
     showCounter(); // 操作時にカウンター表示
   }, {passive:true});
@@ -338,7 +361,7 @@ img {
   }, {passive:false});
   vp.addEventListener('touchend', function(e) {
     clearTimeout(holdTimer);
-    
+      
     if (isSwipeAction) {
       var touch = e.changedTouches[0];
       var diffX = touch.clientX - startX;
@@ -399,6 +422,7 @@ img {
       startFill();
     }
     showCounter();
+    checkCtaVisibility(); // 初回読み込み時にもCTAの非表示状態を適用
   })();
   /* ===== Page Visibility API ===== */
   // ページが非表示（バックグラウンド、画面OFF等）になったらタイマーを完全停止
