@@ -377,8 +377,51 @@ img {
     clearTimeout(holdTimer);
     resumeStory();
   });
-  // Init first slide
-  goTo(0);
+  // Init first slide — goToを使わず安全に初期状態を確定させる
+  // HTMLで1枚目に.actが付いているため、JSは状態変数とプログレスバーのみ初期化
+  (function initFirstSlide() {
+    cur = 0;
+    elapsed = 0;
+    // 全バーをリセット
+    for (var i = 0; i < total; i++) {
+      segs[i].classList.remove('done', 'active');
+      segs[i].querySelector('.stry-fill').style.width = '0%';
+      segs[i].querySelector('.stry-fill').style.transition = 'none';
+    }
+    // 全スライドを非表示にしてから1枚目だけ表示
+    for (var j = 0; j < total; j++) {
+      slides[j].classList.remove('act');
+    }
+    slides[0].classList.add('act');
+    segs[0].classList.add('active');
+    // ページが最初からvisibleなら即座にタイマー開始、hiddenなら待機
+    if (!document.hidden) {
+      startFill();
+    }
+    showCounter();
+  })();
+  /* ===== Page Visibility API ===== */
+  // ページが非表示（バックグラウンド、画面OFF等）になったらタイマーを完全停止
+  // ページが再表示されたら elapsed=0 でタイマーを最初からリスタート
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      // --- ページが非表示になった ---
+      clearTimeout(timer);
+      timer = null;
+      // プログレスバーのアニメーションも止める
+      var fill = segs[cur].querySelector('.stry-fill');
+      var computed = getComputedStyle(fill).width;
+      fill.style.transition = 'none';
+      fill.style.width = computed;
+      // paused フラグは立てない（Visibility制御はpauseStory/resumeStoryと独立管理）
+    } else {
+      // --- ページが再表示された ---
+      elapsed = 0; // 0からリスタート
+      if (!paused) {
+        startFill();
+      }
+    }
+  });
   /* ===== 3rd-party Lazy Load ===== */
   var lzt=false;
   function ld3rd(){if(lzt)return;lzt=true;window.removeEventListener('scroll',ld3rd);window.removeEventListener('mousemove',ld3rd);window.removeEventListener('touchstart',ld3rd);var cfb=document.createElement('script');cfb.defer=true;cfb.src='https://static.cloudflareinsights.com/beacon.min.js';cfb.setAttribute('data-cf-beacon','{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}');document.body.appendChild(cfb);(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vvn8p99ehp")}
