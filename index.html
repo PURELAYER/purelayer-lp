@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J0FPNZCQQF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J0FPNZCQQF');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oud Stallion | PURELAYER</title>
@@ -188,7 +196,6 @@ img {
 </style>
 </head>
 <body>
-<!-- ===== STORIES CAROUSEL ===== -->
 <section class="stry" id="stry">
   <div class="stry-bars" id="stry-bars">
     <div class="stry-seg active"><div class="stry-fill"></div></div>
@@ -198,24 +205,16 @@ img {
     <div class="stry-seg"><div class="stry-fill"></div></div>
     <div class="stry-seg"><div class="stry-fill"></div></div>
   </div>
-  <!-- 右上ページカウンター -->
   <div class="stry-counter" id="stry-counter">1 / 6</div>
   <div class="stry-viewport" id="stry-vp">
-    <!-- ここにCanvaの画像URLを挿入 (1枚目) -->
     <div class="stry-slide act"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/98029f8df024bfc240639a2bff1cba7c.webp?v=1780793169#" alt="LP 1" loading="eager" width="375" height="667"></div>
-    <!-- ここにCanvaの画像URLを挿入 (2枚目) -->
     <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/23.webp?v=1778635353#" alt="LP 2" loading="lazy" width="375" height="667"></div>
-    <!-- ここにCanvaの画像URLを挿入 (3枚目) -->
     <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/3._1_26d6c469-04ad-4b7e-826b-dfa19b1e2d01.webp?v=1778635353#" alt="LP 3" loading="lazy" width="375" height="667"></div>
-    <!-- ここにCanvaの画像URLを挿入 (4枚目) -->
     <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/2._1.webp?v=1778635353#" alt="LP 4" loading="lazy" width="375" height="667"></div>
-    <!-- ここにCanvaの画像URLを挿入 (5枚目) -->
     <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/3._1.webp?v=1778635353#" alt="LP 5" loading="lazy" width="375" height="667"></div>
-    <!-- ここにCanvaの画像URLを挿入 (6枚目) -->
     <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/4..webp?v=1778635594#" alt="LP 6" loading="lazy" width="375" height="667"></div>
   </div>
 </section>
-<!-- ===== STICKY CTA ===== -->
 <div class="stry-sticky-cta" id="stry-sticky-cta">
   <a href="https://ec2ef467.purelayer-pdp.pages.dev/" class="stry-sticky-btn">公式ストアはここから！</a>
 </div>
@@ -254,6 +253,17 @@ img {
       counterEl.classList.remove('vis');
     }, 3000); // 3秒後にフェードアウト
   }
+
+  // GA4へページの切り替えを通知する関数を追加
+  function trackSlideView(slideIndex) {
+    if (typeof gtag === 'function') {
+      gtag('event', 'page_view', {
+        page_title: 'スライド ' + slideIndex,
+        page_location: window.location.origin + window.location.pathname + '#slide' + slideIndex
+      });
+    }
+  }
+
   function goTo(n) {
     slides[cur].classList.remove('act');
     segs[cur].classList.remove('active');
@@ -274,6 +284,7 @@ img {
     startFill();
     showCounter(); // 遷移時にカウンターを表示
     checkCtaVisibility(); // ページ遷移時にCTAの表示をチェック
+    trackSlideView(cur + 1); // ★遷移したタイミングでGA4に計測データを送る
   }
   function resetAllBars() {
     for (var i = 0; i < total; i++) {
@@ -423,6 +434,7 @@ img {
     }
     showCounter();
     checkCtaVisibility(); // 初回読み込み時にもCTAの非表示状態を適用
+    trackSlideView(1); // ★最初の1枚目に着地したデータをGA4へ送信
   })();
   /* ===== Page Visibility API ===== */
   // ページが非表示（バックグラウンド、画面OFF等）になったらタイマーを完全停止
