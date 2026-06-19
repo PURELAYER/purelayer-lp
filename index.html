@@ -216,7 +216,13 @@ img {
   </div>
 </section>
 <div class="stry-sticky-cta" id="stry-sticky-cta">
-  <a href="https://ec2ef467.purelayer-pdp.pages.dev/" class="stry-sticky-btn">公式ストアはここから！</a>
+  <a
+ href="https://ec2ef467.purelayer-pdp.pages.dev/"
+ class="stry-sticky-btn"
+ onclick="gtag('event','cta_click');"
+>
+公式ストアはここから！
+</a>
 </div>
 <script>
 (function(){
@@ -255,14 +261,11 @@ img {
   }
 
   // GA4へページの切り替えを通知する関数を追加
-  function trackSlideView(slideIndex) {
-    if (typeof gtag === 'function') {
-      gtag('event', 'page_view', {
-        page_title: 'スライド ' + slideIndex,
-        page_location: window.location.origin + window.location.pathname + '#slide' + slideIndex
-      });
-    }
+function trackSlideView(slideIndex) {
+  if (typeof gtag === 'function') {
+    gtag('event', 'slide_' + slideIndex);
   }
+}
 
   function goTo(n) {
     slides[cur].classList.remove('act');
