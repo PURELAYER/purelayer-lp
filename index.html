@@ -266,9 +266,7 @@ function trackSlideView(slideIndex) {
   console.log('slide fired:', slideIndex);
 
   if (typeof gtag === 'function') {
-    gtag('event', 'slide_' + slideIndex, {
-      debug_mode: true
-    });
+   gtag('event', 'slide_' + slideIndex);
   }
 }
 
