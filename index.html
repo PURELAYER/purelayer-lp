@@ -262,8 +262,13 @@ img {
 
   // GA4へページの切り替えを通知する関数を追加
 function trackSlideView(slideIndex) {
+
+  console.log('slide fired:', slideIndex);
+
   if (typeof gtag === 'function') {
-    gtag('event', 'slide_' + slideIndex);
+    gtag('event', 'slide_' + slideIndex, {
+      debug_mode: true
+    });
   }
 }
 
