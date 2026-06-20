@@ -205,7 +205,7 @@ img {
     <div class="stry-seg"><div class="stry-fill"></div></div>
     
   </div>
-  <div class="stry-counter" id="stry-counter">1 / 6</div>
+  <div class="stry-counter" id="stry-counter">1 / 5</div>
   <div class="stry-viewport" id="stry-vp">
     <div class="stry-slide act"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/7.webp?v=1781782959" alt="LP 1" loading="eager" width="375" height="667"></div>
     <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/8.webp?v=1781786146" alt="LP 2" loading="lazy" width="375" height="667"></div>
@@ -219,6 +219,7 @@ img {
   <a
  href="https://ec2ef467.purelayer-pdp.pages.dev/"
  class="stry-sticky-btn"
+ id="stry-cta-link"
  onclick="gtag('event','cta_click');"
 >
 公式ストアはここから！
@@ -227,6 +228,64 @@ img {
 <script>
 (function(){
   'use strict';
+
+  /* ==========================================================================
+     ★ 訴求別の画像切り替え管理リスト (5枚構成用)
+     ※ CanvaからShopifyにアップロードした新しい画像URLをここに順に当てはめてください。
+     ========================================================================== */
+  var IMAGE_SETS = {
+    'review': [
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/7.webp?v=1781782959', // レビュー訴求：1枚目
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/8.webp?v=1781786146', // レビュー訴求：2枚目
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/9.webp?v=1781786146', // レビュー訴求：3枚目
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/7a9c70c2d2b61ad4aa8fb3874449fc95.webp?v=1781786146', // レビュー訴求：4枚目
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/e0a736a28e56c3ede41ffd338562d29a.webp?v=1781786146'  // レビュー訴求：5枚目
+    ],
+    'scent': [
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/2026-06-18T204201.639.webp?v=1781782959#', // 香り訴求：1枚目（仮のままにしています。適宜差し替えてください）
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/a623775fe3307521a22dca82a540a788.webp?v=1781831342#', // 香り訴求：2枚目
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/86677ce12a04db54ad6087ce6b691b87.webp?v=1781831342#', // 香り訴求：3枚目
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/4c171a5da5531d60d32a337c8e8b031b.webp?v=1781831343#', // 香り訴求：4枚目
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/10ml_05ecb809-e523-4517-abf0-8257702a794a.webp?v=1781831343#'  // 香り訴求：5枚目
+    ],
+    'risk': [
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/2026-06-18T204211.464.webp?v=1781782958#', // 失敗回避訴求：1枚目
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/21d24ebaa4d1637f98ee5a248e77f64f.webp?v=1781835147#', // 失敗回避訴求：2枚目
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/c93e524e62877edb65c0f5f916526eb0.webp?v=1781835147#', // 失敗回避訴求：3枚目
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/45166413235ba5343565197eb4cd1076.webp?v=1781835146#', // 失敗回避訴求：4枚目
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/1_a6c99854-df30-4dd1-83a1-673604f94ac5.webp?v=1781835147#'  // 失敗回避訴求：5枚目
+    ]
+  };
+
+  /* ===== URLパラメータのチェックと自動実行処理 ===== */
+  (function applyDynamicContent() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var testParam = urlParams.get('test'); // 'review', 'scent', 'risk' などを取得
+
+    if (testParam) {
+      // 1. 画像の差し替えを実行
+      if (IMAGE_SETS[testParam]) {
+        var targetImages = IMAGE_SETS[testParam];
+        var slideImages = document.querySelectorAll('.stry-slide img');
+        for (var i = 0; i < slideImages.length; i++) {
+          if (targetImages[i]) {
+            slideImages[i].src = targetImages[i];
+          }
+        }
+      }
+      // 2. CTAのリンク先URLにもパラメータを引き継がせる
+      var ctaLinkEl = document.getElementById('stry-cta-link');
+      if (ctaLinkEl) {
+        var currentHref = ctaLinkEl.getAttribute('href');
+        // すでに?がついているか確認して結合
+        if (currentHref) {
+          var separator = currentHref.indexOf('?') !== -1 ? '&' : '?';
+          ctaLinkEl.setAttribute('href', currentHref + separator + 'test=' + testParam);
+        }
+      }
+    }
+  })();
+
   /* ===== Stories Carousel ===== */
   var DURATION = 5000;
   var slides = document.querySelectorAll('.stry-slide');
@@ -261,14 +320,12 @@ img {
   }
 
   // GA4へページの切り替えを通知する関数を追加
-function trackSlideView(slideIndex) {
-
-  console.log('slide fired:', slideIndex);
-
-  if (typeof gtag === 'function') {
-   gtag('event', 'slide_' + slideIndex);
+  function trackSlideView(slideIndex) {
+    console.log('slide fired:', slideIndex);
+    if (typeof gtag === 'function') {
+      gtag('event', 'slide_' + slideIndex);
+    }
   }
-}
 
   function goTo(n) {
     slides[cur].classList.remove('act');
