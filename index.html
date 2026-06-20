@@ -220,7 +220,6 @@ img {
  href="https://ec2ef467.purelayer-pdp.pages.dev/"
  class="stry-sticky-btn"
  id="stry-cta-link"
- onclick="gtag('event','cta_click');"
 >
 公式ストアはここから！
 </a>
@@ -231,15 +230,14 @@ img {
 
   /* ==========================================================================
      ★ 訴求別の画像切り替え管理リスト (5枚構成用)
-     ※ CanvaからShopifyにアップロードした新しい画像URLをここに順に当てはめてください。
      ========================================================================== */
   var IMAGE_SETS = {
     'review': [
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/7.webp?v=1781782959', // レビュー訴求：1枚目
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/8.webp?v=1781786146', // レビュー訴求：2枚目
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/9.webp?v=1781786146', // レビュー訴求：3枚目
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/7a9c70c2d2b61ad4aa8fb3874449fc95.webp?v=1781786146', // レビュー訴求：4枚目
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/e0a736a28e56c3ede41ffd338562d29a.webp?v=1781786146'  // レビュー訴求：5枚目
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/7.webp?v=1781782959',
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/8.webp?v=1781786146',
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/9.webp?v=1781786146',
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/7a9c70c2d2b61ad4aa8fb3874449fc95.webp?v=1781786146',
+      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/e0a736a28e56c3ede41ffd338562d29a.webp?v=1781786146'
     ],
     'scent': [
       'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/2026-06-18T204201.639.webp?v=1781782959#', // 香り訴求：1枚目（仮のままにしています。適宜差し替えてください）
@@ -257,54 +255,77 @@ img {
     ]
   };
 
-  /* ===== URLパラメータのチェックと自動実行処理 ===== */
-  (function applyDynamicContent() {
-    var urlParams = new URLSearchParams(window.location.search);
-    var testParam = urlParams.get('test'); // 'review', 'scent', 'risk' などを取得
 
-    if (testParam) {
-      // 1. 画像の差し替えを実行
-      if (IMAGE_SETS[testParam]) {
-        var targetImages = IMAGE_SETS[testParam];
-        var slideImages = document.querySelectorAll('.stry-slide img');
-        for (var i = 0; i < slideImages.length; i++) {
-          if (targetImages[i]) {
-            slideImages[i].src = targetImages[i];
-          }
+  // 現在のURLから ?test=〇〇 を取得（なければデフォルトを'review'に設定）
+  var urlParams = new URLSearchParams(window.location.search);
+  var testParam = urlParams.get('test') || 'review';
+
+  /* ===== URLパラメータに基づくコンテンツ動的適用 ===== */
+  (function applyDynamicContent() {
+    var rawParam = urlParams.get('test'); // 実際にURLについているかチェック
+    if (rawParam && IMAGE_SETS[rawParam]) {
+      var targetImages = IMAGE_SETS[rawParam];
+      var slideImages = document.querySelectorAll('.stry-slide img');
+      for (var i = 0; i < slideImages.length; i++) {
+        if (targetImages[i]) {
+          slideImages[i].src = targetImages[i];
         }
       }
-      // 2. CTAのリンク先URLにもパラメータを引き継がせる
-      var ctaLinkEl = document.getElementById('stry-cta-link');
-      if (ctaLinkEl) {
-        var currentHref = ctaLinkEl.getAttribute('href');
-        // すでに?がついているか確認して結合
-        if (currentHref) {
-          var separator = currentHref.indexOf('?') !== -1 ? '&' : '?';
-          ctaLinkEl.setAttribute('href', currentHref + separator + 'test=' + testParam);
-        }
+    }
+    // CTAボタンの遷移先リンクにもパラメータを引き継ぐ
+    var ctaLinkEl = document.getElementById('stry-cta-link');
+    if (ctaLinkEl) {
+      var currentHref = ctaLinkEl.getAttribute('href');
+      if (currentHref && rawParam) {
+        var separator = currentHref.indexOf('?') !== -1 ? '&' : '?';
+        ctaLinkEl.setAttribute('href', currentHref + separator + 'test=' + rawParam);
       }
     }
   })();
 
-  /* ===== Stories Carousel ===== */
+  /* ===== GA4 高度なイベント計測処理（ChatGPT推奨の設計） ===== */
+  // 1. LP表示イベント（初回読み込み時に1回だけ実行）
+  if (typeof gtag === 'function') {
+    gtag('event', 'lp_view', { 'lp_type': testParam });
+  }
+
+  // 2. スライド閲覧イベント
+  function trackSlideView(slideIndex) {
+    console.log('slide fired:', slideIndex, 'type:', testParam);
+    if (typeof gtag === 'function') {
+      gtag('event', 'slide_view', {
+        'slide_number': slideIndex,
+        'lp_type': testParam
+      });
+    }
+  }
+
+  // 3. CTAクリックイベントの設定
+  var ctaLinkEl = document.getElementById('stry-cta-link');
+  if (ctaLinkEl) {
+    ctaLinkEl.addEventListener('click', function() {
+      if (typeof gtag === 'function') {
+        gtag('event', 'cta_click', { 'lp_type': testParam });
+      }
+    });
+  }
+
+  /* ===== Stories Carousel 制御ロジック ===== */
   var DURATION = 5000;
   var slides = document.querySelectorAll('.stry-slide');
   var segs = document.querySelectorAll('.stry-seg');
   var total = slides.length;
   var cur = 0, timer = null, paused = false, startTime = 0, elapsed = 0;
-  // Counter elements and timer
   var counterEl = document.getElementById('stry-counter');
   var counterTimer = null;
-  // 常設CTAボタン要素を取得
   var stickyCtaEl = document.getElementById('stry-sticky-cta');
 
-  // CTAボタンの表示状態をチェックする関数を追加
   function checkCtaVisibility() {
     if (!stickyCtaEl) return;
     if (cur === total - 1) {
-      stickyCtaEl.classList.add('act'); // 最後のページなら表示
+      stickyCtaEl.classList.add('act');
     } else {
-      stickyCtaEl.classList.remove('act'); // それ以外は非表示
+      stickyCtaEl.classList.remove('act');
     }
   }
 
@@ -316,15 +337,7 @@ img {
     clearTimeout(counterTimer);
     counterTimer = setTimeout(function() {
       counterEl.classList.remove('vis');
-    }, 3000); // 3秒後にフェードアウト
-  }
-
-  // GA4へページの切り替えを通知する関数を追加
-  function trackSlideView(slideIndex) {
-    console.log('slide fired:', slideIndex);
-    if (typeof gtag === 'function') {
-      gtag('event', 'slide_' + slideIndex);
-    }
+    }, 3000);
   }
 
   function goTo(n) {
@@ -335,7 +348,6 @@ img {
     cur = n;
     if (cur >= total) { cur = 0; resetAllBars(); }
     if (cur < 0) cur = total - 1;
-    // Mark previous as done, future as empty
     for (var i = 0; i < total; i++) {
       if (i < cur) { segs[i].classList.add('done'); segs[i].classList.remove('active'); segs[i].querySelector('.stry-fill').style.width = '100%'; }
       else if (i > cur) { segs[i].classList.remove('done','active'); segs[i].querySelector('.stry-fill').style.width = '0%'; }
@@ -345,10 +357,11 @@ img {
     segs[cur].classList.add('active');
     elapsed = 0;
     startFill();
-    showCounter(); // 遷移時にカウンターを表示
-    checkCtaVisibility(); // ページ遷移時にCTAの表示をチェック
-    trackSlideView(cur + 1); // ★遷移したタイミングでGA4に計測データを送る
+    showCounter();
+    checkCtaVisibility();
+    trackSlideView(cur + 1);
   }
+
   function resetAllBars() {
     for (var i = 0; i < total; i++) {
       segs[i].classList.remove('done','active');
@@ -356,19 +369,20 @@ img {
       segs[i].querySelector('.stry-fill').style.transition = 'none';
     }
   }
+
   function startFill() {
     clearTimeout(timer);
     var fill = segs[cur].querySelector('.stry-fill');
     var remain = DURATION - elapsed;
     fill.style.transition = 'none';
     fill.style.width = (elapsed / DURATION * 100) + '%';
-    // Force reflow then animate
     void fill.offsetWidth;
     fill.style.transition = 'width ' + remain + 'ms linear';
     fill.style.width = '100%';
     startTime = Date.now();
     timer = setTimeout(function() { goTo(cur + 1); }, remain);
   }
+
   function pauseStory() {
     if (paused) return;
     paused = true;
@@ -379,17 +393,19 @@ img {
     fill.style.transition = 'none';
     fill.style.width = computed;
   }
+
   function resumeStory() {
     if (!paused) return;
     paused = false;
     startFill();
   }
+
   var startX = 0, startY = 0;
   var isSwipeAction = false;
   var preventClick = false;
   var vp = document.getElementById('stry-vp');
   var holdTimer = null;
-  // 超広範囲タップ判定処理
+
   function handleTap(clientX) {
     if (!vp) return;
     var rect = vp.getBoundingClientRect();
@@ -397,74 +413,71 @@ img {
     var width = rect.width;
     var ratio = x / width;
     if (ratio < 0.3) {
-      goTo(cur - 1); // 左側30%未満なら戻る
+      goTo(cur - 1);
     } else {
-      goTo(cur + 1); // それ以外（右側70%）は進む
+      goTo(cur + 1);
     }
   }
-  // PC等のクリック用
+
   vp.addEventListener('click', function(e) {
     e.preventDefault();
     if (preventClick) return;
     handleTap(e.clientX);
   });
-  // Touch handlers (Long-press & Swipe)
+
   vp.addEventListener('touchstart', function(e) {
     var touch = e.touches[0];
     startX = touch.clientX;
     startY = touch.clientY;
     isSwipeAction = false;
-      
     holdTimer = setTimeout(pauseStory, 200);
-    showCounter(); // 操作時にカウンター表示
+    showCounter();
   }, {passive:true});
+
   vp.addEventListener('touchmove', function(e) {
     if (e.touches.length > 1) return;
     var touch = e.touches[0];
     var diffX = touch.clientX - startX;
     var diffY = touch.clientY - startY;
-    // 横方向の動きが縦方向より大きく、一定のしきい値を超える場合
     if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
       isSwipeAction = true;
       clearTimeout(holdTimer);
-      pauseStory(); // スワイプ中は自動進行を一時停止
-      
-      // 縦スクロールを防止
+      pauseStory();
       if (e.cancelable) e.preventDefault();
     }
   }, {passive:false});
+
   vp.addEventListener('touchend', function(e) {
     clearTimeout(holdTimer);
-      
     if (isSwipeAction) {
       var touch = e.changedTouches[0];
       var diffX = touch.clientX - startX;
       if (diffX < -50) {
-        goTo(cur + 1); // 左スワイプ：次へ
+        goTo(cur + 1);
       } else if (diffX > 50) {
-        goTo(cur - 1); // 右スワイプ：前へ
+        goTo(cur - 1);
       } else {
-        resumeStory(); // しきい値未満は再開
+        resumeStory();
       }
-      // クリックの誤発火を防ぐ
       preventClick = true;
       setTimeout(function() { preventClick = false; }, 300);
     } else {
-      resumeStory(); // 通常タップ時は長押し解除で再開
+      resumeStory();
       var touch = e.changedTouches[0];
       handleTap(touch.clientX);
       preventClick = true;
       setTimeout(function() { preventClick = false; }, 300);
     }
   }, {passive:true});
+
   vp.addEventListener('touchcancel', function() {
     clearTimeout(holdTimer);
     resumeStory();
   }, {passive:true});
-  // Long-press pause (mouse)
+
   vp.addEventListener('mousedown', function() {
     holdTimer = setTimeout(pauseStory, 200);
-    showCounter(); // 操作時にカウンター表示
+    showCounter();
   });
   vp.addEventListener('mouseup', function() {
     clearTimeout(holdTimer);
@@ -474,54 +487,44 @@ img {
     clearTimeout(holdTimer);
     resumeStory();
   });
-  // Init first slide — goToを使わず安全に初期状態を確定させる
-  // HTMLで1枚目に.actが付いているため、JSは状態変数とプログレスバーのみ初期化
+
   (function initFirstSlide() {
     cur = 0;
     elapsed = 0;
-    // 全バーをリセット
     for (var i = 0; i < total; i++) {
       segs[i].classList.remove('done', 'active');
       segs[i].querySelector('.stry-fill').style.width = '0%';
       segs[i].querySelector('.stry-fill').style.transition = 'none';
     }
-    // 全スライドを非表示にしてから1枚目だけ表示
     for (var j = 0; j < total; j++) {
       slides[j].classList.remove('act');
     }
     slides[0].classList.add('act');
     segs[0].classList.add('active');
-    // ページが最初からvisibleなら即座にタイマー開始、hiddenなら待機
     if (!document.hidden) {
       startFill();
     }
     showCounter();
-    checkCtaVisibility(); // 初回読み込み時にもCTAの非表示状態を適用
-    trackSlideView(1); // ★最初の1枚目に着地したデータをGA4へ送信
+    checkCtaVisibility();
+    trackSlideView(1); // 最初の1枚目の計測も、新しい形式(lp_type付き)で送信されます
   })();
-  /* ===== Page Visibility API ===== */
-  // ページが非表示（バックグラウンド、画面OFF等）になったらタイマーを完全停止
-  // ページが再表示されたら elapsed=0 でタイマーを最初からリスタート
+
   document.addEventListener('visibilitychange', function() {
     if (document.hidden) {
-      // --- ページが非表示になった ---
       clearTimeout(timer);
       timer = null;
-      // プログレスバーのアニメーションも止める
       var fill = segs[cur].querySelector('.stry-fill');
       var computed = getComputedStyle(fill).width;
       fill.style.transition = 'none';
       fill.style.width = computed;
-      // paused フラグは立てない（Visibility制御はpauseStory/resumeStoryと独立管理）
     } else {
-      // --- ページが再表示された ---
-      elapsed = 0; // 0からリスタート
+      elapsed = 0;
       if (!paused) {
         startFill();
       }
     }
   });
-  /* ===== 3rd-party Lazy Load ===== */
+
   var lzt=false;
   function ld3rd(){if(lzt)return;lzt=true;window.removeEventListener('scroll',ld3rd);window.removeEventListener('mousemove',ld3rd);window.removeEventListener('touchstart',ld3rd);var cfb=document.createElement('script');cfb.defer=true;cfb.src='https://static.cloudflareinsights.com/beacon.min.js';cfb.setAttribute('data-cf-beacon','{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}');document.body.appendChild(cfb);(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vvn8p99ehp")}
   window.addEventListener('scroll',ld3rd,{once:true,passive:true});window.addEventListener('mousemove',ld3rd,{once:true,passive:true});window.addEventListener('touchstart',ld3rd,{once:true,passive:true});setTimeout(ld3rd,5000);
