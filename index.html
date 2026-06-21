@@ -290,12 +290,19 @@ img {
   }
 
   // 2. スライド閲覧イベント
+// 2. スライド閲覧イベント（変数迷子解消＆DebugView強制表示版）
   function trackSlideView(slideIndex) {
-    console.log('slide fired:', slideIndex, 'type:', testParam);
+    // スライドがめくられた瞬間に、その場でURLパラメータを直接取得（迷子防止）
+    var currentParams = new URLSearchParams(window.location.search);
+    var slideLpType = currentParams.get('test') || 'review';
+
+    console.log('slide fired:', slideIndex, 'type:', slideLpType);
+
     if (typeof gtag === 'function') {
       gtag('event', 'slide_view', {
-        'slide_number': slideIndex,
-        'lp_type': testParam
+        'slide_number': slideIndex, // 何枚目か（1〜5）
+        'lp_type': slideLpType,     // 訴求タイプ（review/scent/risk）
+        'debug_mode': true          // ← これを入れたので確実にDebugViewに表示されます！
       });
     }
   }
