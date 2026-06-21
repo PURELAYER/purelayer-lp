@@ -301,34 +301,41 @@ img {
   }
 
   // 3. CTAクリックイベントの設定
-// 3. CTAクリックイベントの設定（計測漏れ防止・完全版）
+// 3. CTAクリックイベントの設定（変数迷子・計測漏れ防止の完全版）
   var ctaLinkEl = document.getElementById('stry-cta-link');
   if (ctaLinkEl) {
     ctaLinkEl.addEventListener('click', function(e) {
-      // 1. 先に通常遷移をストップ
+      // 通常遷移を一旦ストップ
       e.preventDefault();
       var targetUrl = this.href;
 
-      // 2. GA4へのデータ送信を最優先で実行
+      // 【重要】ボタンを押した瞬間に、その場でURLパラメータを直接取得（迷子防止）
+      var currentParams = new URLSearchParams(window.location.search);
+      var clickLpType = currentParams.get('test') || 'review';
+
+      console.log('CTA CLICK START - type:', clickLpType);
+
+      // GA4へのデータ送信
       if (typeof gtag === 'function') {
         gtag('event', 'cta_click', {
-          'lp_type': testParam,
-          // 送信が完了したら公式ストアへ移動
+          'lp_type': clickLpType,
+          'debug_mode': true, // ←これを追加したことで、確実にDebugViewに光ります！
           'event_callback': function() {
+            console.log('GA4送信完了：公式ストアへ移動します');
             window.location.href = targetUrl;
           }
         });
       } else {
-        // 万が一gtagが読み込まれていなくても動くように
         window.location.href = targetUrl;
       }
 
-      // 3. 念のための保険（1秒経っても動かなければ強制遷移）
+      // 念のための保険（1秒経っても動かなければ強制遷移）
       setTimeout(function() {
         window.location.href = targetUrl;
       }, 1000);
     });
   }
+  
   /* ===== Stories Carousel 制御ロジック ===== */
   var DURATION = 5000;
   var slides = document.querySelectorAll('.stry-slide');
