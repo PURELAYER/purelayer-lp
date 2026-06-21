@@ -301,32 +301,34 @@ img {
   }
 
   // 3. CTAクリックイベントの設定
-var ctaLinkEl = document.getElementById('stry-cta-link');
+// 3. CTAクリックイベントの設定（計測漏れ防止・完全版）
+  var ctaLinkEl = document.getElementById('stry-cta-link');
+  if (ctaLinkEl) {
+    ctaLinkEl.addEventListener('click', function(e) {
+      // 1. 先に通常遷移をストップ
+      e.preventDefault();
+      var targetUrl = this.href;
 
-if (ctaLinkEl) {
-
-  ctaLinkEl.addEventListener('click', function(e){
-
-    e.preventDefault();
-
-    var targetUrl = this.href;
-
-    gtag('event', 'cta_click', {
-      lp_type: testParam || 'review',
-
-      event_callback: function(){
+      // 2. GA4へのデータ送信を最優先で実行
+      if (typeof gtag === 'function') {
+        gtag('event', 'cta_click', {
+          'lp_type': testParam,
+          // 送信が完了したら公式ストアへ移動
+          'event_callback': function() {
+            window.location.href = targetUrl;
+          }
+        });
+      } else {
+        // 万が一gtagが読み込まれていなくても動くように
         window.location.href = targetUrl;
       }
+
+      // 3. 念のための保険（1秒経っても動かなければ強制遷移）
+      setTimeout(function() {
+        window.location.href = targetUrl;
+      }, 1000);
     });
-
-    // 念のため保険
-    setTimeout(function(){
-      window.location.href = targetUrl;
-    }, 1000);
-
-  });
-
-}
+  }
   /* ===== Stories Carousel 制御ロジック ===== */
   var DURATION = 5000;
   var slides = document.querySelectorAll('.stry-slide');
