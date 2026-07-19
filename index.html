@@ -6,7 +6,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-J0FPNZCQQF');
 </script>
 <meta charset="UTF-8">
@@ -29,6 +28,8 @@
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  /* 縦方向のバウンス（引っ張り）を防止 */
+  overscroll-behavior: none;
 }
 body {
   font-family: var(--ss);
@@ -37,6 +38,8 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   padding-bottom: 96px; /* 常設CTAとコンテンツ被り防止用の底面余白 */
+  /* 縦方向のスクロールや引っ張りを防止 */
+  overscroll-behavior: none;
 }
 img {
   max-width: 100%;
@@ -53,6 +56,9 @@ img {
   overflow: hidden;
   -webkit-user-select: none;
   user-select: none;
+  /* 縦方向のスクロールやジェスチャーによるブレをブラウザレベルで無効化し、横スワイプのみ許容 */
+  touch-action: pan-x;
+  overscroll-behavior: none;
 }
 .stry-viewport {
   position: relative;
@@ -227,7 +233,6 @@ img {
 <script>
 (function(){
   'use strict';
-
   /* ==========================================================================
      ★ 訴求別の画像切り替え管理リスト (5枚構成用)
      ========================================================================== */
@@ -254,12 +259,9 @@ img {
       'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/1_a6c99854-df30-4dd1-83a1-673604f94ac5.webp?v=1781835147#'  // 失敗回避訴求：5枚目
     ]
   };
-
-
   // 現在のURLから ?test=〇〇 を取得（なければデフォルトを'review'に設定）
   var urlParams = new URLSearchParams(window.location.search);
   var testParam = urlParams.get('test') || 'review';
-
   /* ===== URLパラメータに基づくコンテンツ動的適用 ===== */
   (function applyDynamicContent() {
     var rawParam = urlParams.get('test'); // 実際にURLについているかチェック
@@ -282,22 +284,18 @@ img {
       }
     }
   })();
-
   /* ===== GA4 高度なイベント計測処理（ChatGPT推奨の設計） ===== */
   // 1. LP表示イベント（初回読み込み時に1回だけ実行）
   if (typeof gtag === 'function') {
     gtag('event', 'lp_view', { 'lp_type': testParam });
   }
-
   // 2. スライド閲覧イベント
 // 2. スライド閲覧イベント（変数迷子解消＆DebugView強制表示版）
   function trackSlideView(slideIndex) {
     // スライドがめくられた瞬間に、その場でURLパラメータを直接取得（迷子防止）
     var currentParams = new URLSearchParams(window.location.search);
     var slideLpType = currentParams.get('test') || 'review';
-
     console.log('slide fired:', slideIndex, 'type:', slideLpType);
-
     if (typeof gtag === 'function') {
       gtag('event', 'slide_view', {
         'slide_number': slideIndex, // 何枚目か（1〜5）
@@ -306,7 +304,6 @@ img {
       });
     }
   }
-
   // 3. CTAクリックイベントの設定
 // 3. CTAクリックイベントの設定（変数迷子・計測漏れ防止の完全版）
   var ctaLinkEl = document.getElementById('stry-cta-link');
@@ -315,13 +312,10 @@ img {
       // 通常遷移を一旦ストップ
       e.preventDefault();
       var targetUrl = this.href;
-
       // 【重要】ボタンを押した瞬間に、その場でURLパラメータを直接取得（迷子防止）
       var currentParams = new URLSearchParams(window.location.search);
       var clickLpType = currentParams.get('test') || 'review';
-
       console.log('CTA CLICK START - type:', clickLpType);
-
       // GA4へのデータ送信
       if (typeof gtag === 'function') {
         gtag('event', 'cta_click', {
@@ -335,7 +329,6 @@ img {
       } else {
         window.location.href = targetUrl;
       }
-
       // 念のための保険（1秒経っても動かなければ強制遷移）
       setTimeout(function() {
         window.location.href = targetUrl;
@@ -352,7 +345,6 @@ img {
   var counterEl = document.getElementById('stry-counter');
   var counterTimer = null;
   var stickyCtaEl = document.getElementById('stry-sticky-cta');
-
   function checkCtaVisibility() {
     if (!stickyCtaEl) return;
     if (cur === total - 1) {
@@ -361,7 +353,6 @@ img {
       stickyCtaEl.classList.remove('act');
     }
   }
-
   function showCounter() {
     if (!counterEl) return;
     counterEl.textContent = (cur + 1) + ' / ' + total;
@@ -372,13 +363,27 @@ img {
       counterEl.classList.remove('vis');
     }, 3000);
   }
-
   function goTo(n) {
+    // ページ番号が 0 〜 total - 1 (最終ページ) の範囲を超えないように制限 (クランプ処理)
+    var next = Math.max(0, Math.min(n, total - 1));
+    if (next === cur) {
+      // 既に最終ページに達しており、さらに次へ進もうとした場合、
+      // プログレスバーを100%にしたままタイマーをクリアして停止させる
+      if (cur === total - 1) {
+        clearTimeout(timer);
+        var fill = segs[cur].querySelector('.stry-fill');
+        if (fill) {
+          fill.style.transition = 'none';
+          fill.style.width = '100%';
+        }
+      }
+      return;
+    }
     slides[cur].classList.remove('act');
     segs[cur].classList.remove('active');
     segs[cur].classList.add('done');
     segs[cur].querySelector('.stry-fill').style.width = '100%';
-    cur = n;
+    cur = next;
     if (cur >= total) { cur = 0; resetAllBars(); }
     if (cur < 0) cur = total - 1;
     for (var i = 0; i < total; i++) {
@@ -394,7 +399,6 @@ img {
     checkCtaVisibility();
     trackSlideView(cur + 1);
   }
-
   function resetAllBars() {
     for (var i = 0; i < total; i++) {
       segs[i].classList.remove('done','active');
@@ -402,7 +406,6 @@ img {
       segs[i].querySelector('.stry-fill').style.transition = 'none';
     }
   }
-
   function startFill() {
     clearTimeout(timer);
     var fill = segs[cur].querySelector('.stry-fill');
@@ -415,7 +418,6 @@ img {
     startTime = Date.now();
     timer = setTimeout(function() { goTo(cur + 1); }, remain);
   }
-
   function pauseStory() {
     if (paused) return;
     paused = true;
@@ -426,19 +428,16 @@ img {
     fill.style.transition = 'none';
     fill.style.width = computed;
   }
-
   function resumeStory() {
     if (!paused) return;
     paused = false;
     startFill();
   }
-
   var startX = 0, startY = 0;
   var isSwipeAction = false;
   var preventClick = false;
   var vp = document.getElementById('stry-vp');
   var holdTimer = null;
-
   function handleTap(clientX) {
     if (!vp) return;
     var rect = vp.getBoundingClientRect();
@@ -451,13 +450,11 @@ img {
       goTo(cur + 1);
     }
   }
-
   vp.addEventListener('click', function(e) {
     e.preventDefault();
     if (preventClick) return;
     handleTap(e.clientX);
   });
-
   vp.addEventListener('touchstart', function(e) {
     var touch = e.touches[0];
     startX = touch.clientX;
@@ -466,9 +463,12 @@ img {
     holdTimer = setTimeout(pauseStory, 200);
     showCounter();
   }, {passive:true});
-
   vp.addEventListener('touchmove', function(e) {
     if (e.touches.length > 1) return;
+    
+    // TikTokなどのアプリ内ブラウザで確実に縦スクロールやバウンスを防ぐため、
+    // タッチ移動操作のデフォルトスクロール挙動を強制的にキャンセル
+    if (e.cancelable) e.preventDefault();
     var touch = e.touches[0];
     var diffX = touch.clientX - startX;
     var diffY = touch.clientY - startY;
@@ -476,10 +476,8 @@ img {
       isSwipeAction = true;
       clearTimeout(holdTimer);
       pauseStory();
-      if (e.cancelable) e.preventDefault();
     }
   }, {passive:false});
-
   vp.addEventListener('touchend', function(e) {
     clearTimeout(holdTimer);
     if (isSwipeAction) {
@@ -502,12 +500,10 @@ img {
       setTimeout(function() { preventClick = false; }, 300);
     }
   }, {passive:true});
-
   vp.addEventListener('touchcancel', function() {
     clearTimeout(holdTimer);
     resumeStory();
   }, {passive:true});
-
   vp.addEventListener('mousedown', function() {
     holdTimer = setTimeout(pauseStory, 200);
     showCounter();
@@ -520,7 +516,6 @@ img {
     clearTimeout(holdTimer);
     resumeStory();
   });
-
   (function initFirstSlide() {
     cur = 0;
     elapsed = 0;
@@ -541,7 +536,6 @@ img {
     checkCtaVisibility();
     trackSlideView(1); // 最初の1枚目の計測も、新しい形式(lp_type付き)で送信されます
   })();
-
   document.addEventListener('visibilitychange', function() {
     if (document.hidden) {
       clearTimeout(timer);
@@ -557,7 +551,6 @@ img {
       }
     }
   });
-
   var lzt=false;
   function ld3rd(){if(lzt)return;lzt=true;window.removeEventListener('scroll',ld3rd);window.removeEventListener('mousemove',ld3rd);window.removeEventListener('touchstart',ld3rd);var cfb=document.createElement('script');cfb.defer=true;cfb.src='https://static.cloudflareinsights.com/beacon.min.js';cfb.setAttribute('data-cf-beacon','{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}');document.body.appendChild(cfb);(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vvn8p99ehp")}
   window.addEventListener('scroll',ld3rd,{once:true,passive:true});window.addEventListener('mousemove',ld3rd,{once:true,passive:true});window.addEventListener('touchstart',ld3rd,{once:true,passive:true});setTimeout(ld3rd,5000);
