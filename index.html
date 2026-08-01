@@ -1,558 +1,153 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-J0FPNZCQQF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-J0FPNZCQQF');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oud Stallion | PURELAYER</title>
 <meta name="description" content="つけた瞬間、褒められる清潔感。石鹸系の香りが一日中続く。累計12,000本突破。¥3,980からお試し。">
 <style>
-:root {
-  --w: #FFF;
-  --bk: #1A1A1A;
-  --g2: #EEE;
-  --g5: #595959;
-  --ss: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", sans-serif;
-}
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  /* 縦方向のバウンス（引っ張り）を防止 */
-  overscroll-behavior: none;
-}
-body {
-  font-family: var(--ss);
-  background: #000;
-  color: var(--bk);
-  line-height: 1.6;
-  overflow-x: hidden;
-  padding-bottom: 96px; /* 常設CTAとコンテンツ被り防止用の底面余白 */
-  /* 縦方向のスクロールや引っ張りを防止 */
-  overscroll-behavior: none;
-}
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-/* ===== Stories Carousel ===== */
-.stry {
-  position: relative;
-  width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
-  background: #000;
-  overflow: hidden;
-  -webkit-user-select: none;
-  user-select: none;
-  /* 縦方向のスクロールやジェスチャーによるブレをブラウザレベルで無効化し、横スワイプのみ許容 */
-  touch-action: pan-x;
-  overscroll-behavior: none;
-}
-.stry-viewport {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 9/16;
-  cursor: pointer;
-}
-.stry-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  will-change: opacity;
-}
-.stry-slide.act {
-  opacity: 1;
-  pointer-events: auto;
-}
-.stry-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-/* Progress bars */
-.stry-bars {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  gap: 3px;
-  padding: 10px 8px 0;
-  z-index: 10;
-}
-.stry-seg {
-  flex: 1;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 1px;
-  overflow: hidden;
-}
-.stry-fill {
-  width: 0%;
-  height: 100%;
-  background: #fff;
-  border-radius: 1px;
-  will-change: width;
-}
-.stry-seg.done .stry-fill {
-  width: 100% !important;
-  transition: none;
-}
-.stry-seg.active .stry-fill {
-  transition: width linear;
-}
-/* ===== Stories Counter ===== */
-.stry-counter {
-  position: absolute;
-  top: 24px;
-  right: 16px;
-  z-index: 11;
-  background: rgba(0, 0, 0, 0.55);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  font-family: var(--ss);
-  padding: 4px 10px;
-  border-radius: 12px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-.stry-counter.vis {
-  opacity: 1;
-}
-/* ===== Sticky CTA ===== */
-.stry-sticky-cta {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 480px;
-  z-index: 999;
-  background: rgba(255, 255, 255, 0.97);
-  border-top: .5px solid var(--g2);
-  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
-  padding: 16px 20px calc(16px + env(safe-area-inset-bottom, 0px));
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  /* 初期状態（最後のページ以外）は非表示にするための設定を追加 */
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-/* 最後のページで付与するアクティブ用のクラスを追加 */
-.stry-sticky-cta.act {
-  opacity: 1;
-  pointer-events: auto;
-}
-.stry-sticky-btn {
-  display: block;
-  width: 100%;
-  padding: 16px;
-  background: var(--bk);
-  color: #fff;
-  text-align: center;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.1em;
-  border-radius: 30px;
-  text-transform: uppercase;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
-  position: relative;
-  overflow: hidden;
-}
-.stry-sticky-btn::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-  animation: shine 3s infinite;
-}
-.stry-sticky-btn:hover {
-  transform: scale(1.02);
-  opacity: 0.95;
-}
-.stry-sticky-btn:active {
-  transform: scale(0.98);
-}
-@keyframes shine {
-  0% { left: -100%; }
-  25% { left: 150%; }
-  100% { left: 150%; }
-}
+:root{--w:#FFF;--ow:#FAFAFA;--bk:#1A1A1A;--g1:#F5F5F5;--g2:#EEE;--g4:#767676;--g5:#595959;--g7:#424242;--sf:"Shippori Mincho","YuMincho","Hiragino Mincho ProN","MS PMincho",serif;--ss:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}body{font-family:var(--ss);background:var(--w);color:var(--bk);line-height:1.6;overflow-x:hidden}img{max-width:100%;height:auto;display:block}svg{display:block}
+.stars{display:flex;gap:2px}.stars svg{width:12px;height:12px;fill:var(--bk)}.dot{width:2px;height:2px;border-radius:50%;background:var(--g4);flex-shrink:0}
+.fade{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease;will-change:opacity,transform}.fade.vis{opacity:1;transform:translateY(0)}
+/* ===== Header ===== */
+.hdr{position:sticky;top:0;left:0;width:100%;z-index:999;background:var(--w);border-bottom:.5px solid var(--g2);backdrop-filter:blur(8px);background:rgba(255,255,255,0.95)}
+.hdr-in{max-width:480px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:center;padding:0 24px}
+.hdr-logo{font-family:var(--ss);font-size:16px;font-weight:700;letter-spacing:.18em;color:var(--bk);text-decoration:none;text-transform:uppercase}
+/* FV */
+.fv{background:var(--w)}.fv-hero{width:100%;background:var(--g1)}.fv-img{width:100%;aspect-ratio:1/1;object-fit:contain;mix-blend-mode:multiply}.fv-info{padding:28px 24px 40px;max-width:720px;margin:0 auto}.fv-name{font-family:var(--ss);font-size:18px;font-weight:500;color:var(--bk);letter-spacing:.02em;margin:0 0 10px;line-height:1.4}.fv-rating{display:flex;align-items:center;gap:8px;margin-bottom:16px}.fv-rc{font-size:12px;font-weight:400;color:var(--g5);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--g2)}.fv-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}.fv-tag{font-size:11px;font-weight:400;color:var(--g7);border:.5px solid var(--g2);padding:5px 12px;border-radius:20px;letter-spacing:.02em}
+.fv-trust{padding-top:20px;border-top:.5px solid var(--g2);display:flex;flex-direction:column;gap:16px}.fv-trust-item{display:flex;gap:12px;align-items:flex-start}.fv-trust-icon{width:20px;height:20px;flex-shrink:0;color:var(--g5);margin-top:1px}.fv-trust-icon svg{width:20px;height:20px}.fv-trust-text{font-size:12px;color:var(--g7);line-height:1.7;letter-spacing:.02em}.fv-trust-label{display:block;font-size:12px;font-weight:600;color:var(--bk);letter-spacing:.04em;margin-bottom:2px}
+/* Product */
+.prod{background:var(--w);padding:56px 0;border-top:.5px solid var(--g2)}.prod-in{max-width:480px;margin:0 auto;padding:0 24px}.prod-kk{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--g5);text-align:center;margin:0 0 8px}.prod-hd{font-family:var(--sf);font-size:20px;font-weight:500;text-align:center;letter-spacing:.08em;color:var(--bk);margin:0 0 36px}.vs{display:flex;flex-direction:column;margin-bottom:28px}.vs input{display:none}.vs-card{padding:18px 0;border-top:.5px solid var(--g2);cursor:pointer;transition:background .2s}.vs label:last-child .vs-card{border-bottom:.5px solid var(--g2)}.vs input:checked+.vs-card{background:var(--g1);margin:0 -24px;padding:18px 24px}.vs-row{display:flex;justify-content:space-between;align-items:baseline}.vs-size{font-size:15px;font-weight:600;color:var(--bk);letter-spacing:.02em;display:flex;align-items:center;gap:10px}.vs-tag{font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--g5);border:.5px solid var(--g4);padding:2px 8px;border-radius:2px}.vs-price{font-size:14px;font-weight:500;color:var(--bk);letter-spacing:.02em}.vs-note{display:block;font-size:11px;font-weight:400;color:var(--g5);margin-top:4px;letter-spacing:.03em}
+.stk{margin-bottom:28px;text-align:center}.stk-line{height:1px;background:var(--g2);margin-bottom:12px;overflow:hidden}.stk-bar{height:100%;width:100%;background:var(--bk);transform:scaleX(0);transform-origin:left;transition:transform 1.8s cubic-bezier(.25,1,.5,1);will-change:transform}.stk-txt{font-size:10px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--g5);margin:0}.stk-txt span{color:var(--bk);font-weight:500}
+.cta{display:flex;justify-content:center;align-items:center;gap:12px;width:100%;padding:18px;background:var(--bk);color:#fff;border:none;font-family:var(--ss);font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:opacity .2s;margin-bottom:16px}.cta:active{opacity:.85}.cta-sep{width:1px;height:14px;background:rgba(255,255,255,.25)}.cta-p{font-weight:400;opacity:.6}.trust{display:flex;justify-content:center;align-items:center;gap:0;font-size:10px;font-weight:400;color:var(--g5);letter-spacing:.06em}.trust>span{padding:0 8px}
+/* Reviews */
+.rev{background:var(--w);padding:56px 0;border-top:.5px solid var(--g2)}.rev-in{max-width:480px;margin:0 auto;padding:0 24px}.rev-kk{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--g5);text-align:center;margin:0 0 8px}.rev-hd{font-family:var(--sf);font-size:20px;font-weight:500;text-align:center;letter-spacing:.08em;color:var(--bk);margin:0 0 40px}.rev-item{padding:24px 0;border-top:.5px solid var(--g2)}.rev-item:last-child{border-bottom:.5px solid var(--g2)}.rev-title{font-size:14px;font-weight:600;color:var(--bk);margin:0 0 8px;letter-spacing:.02em;line-height:1.5}.rev-body{font-size:13px;font-weight:400;line-height:1.9;color:var(--g7);margin:0 0 12px;letter-spacing:.01em}.rev-meta{font-size:11px;font-weight:400;color:var(--g5);letter-spacing:.04em;margin:0}.rev-sep{margin:0 6px;color:var(--g2)}.rev-ugc{padding:16px 0}.rev-ugc img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:4px}.rev-ft{text-align:center;font-size:11px;font-weight:400;color:var(--g5);letter-spacing:.06em;margin:32px 0 0}
+/* Accordion */
+.acc{background:var(--ow);padding:56px 0}.acc-in{max-width:480px;margin:0 auto;padding:0 24px}.acc-kk{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--g5);text-align:center;margin:0 0 8px}.acc-hd{font-family:var(--sf);font-size:20px;font-weight:500;text-align:center;letter-spacing:.08em;color:var(--bk);margin:0 0 40px}.acc-item{border-top:.5px solid var(--g2)}.acc-item:last-child{border-bottom:.5px solid var(--g2)}.acc-trig{display:flex;justify-content:space-between;align-items:center;padding:20px 0;cursor:pointer;list-style:none;user-select:none;-webkit-user-select:none}.acc-trig::-webkit-details-marker{display:none}.acc-trig::marker{display:none;content:''}.acc-title{font-size:13px;font-weight:500;color:var(--bk);letter-spacing:.06em}.acc-tog{position:relative;width:16px;height:16px;flex-shrink:0}.acc-tog::before,.acc-tog::after{content:'';position:absolute;top:50%;left:50%;background:var(--g5);transition:transform .3s,opacity .3s}.acc-tog::before{width:12px;height:.5px;transform:translate(-50%,-50%)}.acc-tog::after{width:.5px;height:12px;transform:translate(-50%,-50%)}details[open]>.acc-trig .acc-tog::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}.acc-body{overflow:hidden;max-height:0;transition:max-height .4s cubic-bezier(.25,1,.5,1);will-change:max-height}details[open]>.acc-body{max-height:600px}.acc-cnt{padding:0 0 28px;font-size:13px;line-height:1.9;color:var(--g7)}.acc-cnt p{margin-bottom:12px}.acc-cnt strong{color:var(--bk);font-weight:600}.acc-sub{font-size:12px;font-weight:600;color:var(--bk);letter-spacing:.06em;margin:16px 0 6px}.acc-cap{font-size:11px;color:var(--g5);line-height:1.8;margin-top:12px}.dl-row{display:flex;padding:10px 0;border-bottom:.5px solid var(--g1);font-size:13px}.dl-row:last-child{border-bottom:none}.dl-row dt{width:90px;flex-shrink:0;font-weight:500;color:var(--bk)}.dl-row dd{margin:0;color:var(--g7)}.acc-ul{list-style:none;padding:0}.acc-ul li{padding:4px 0;font-size:13px}.acc-ul li::before{content:'–';margin-right:8px;color:var(--g5)}.acc-ol{padding-left:18px;margin:6px 0 12px}.acc-ol li{padding:4px 0;font-size:13px}.acc-ol li::marker{font-weight:600;color:var(--g5)}.faq{margin-bottom:20px}.faq:last-child{margin-bottom:0}.faq-q{font-size:13px;font-weight:600;color:var(--bk);margin-bottom:4px}.faq-a{font-size:13px;color:var(--g7);line-height:1.9}
+/* Footer & Sticky */
+.ft{padding:40px 24px 60px;text-align:center;border-top:.5px solid var(--g2);background:var(--w)}.ft-logo{font-family:var(--sf);font-size:14px;font-weight:500;letter-spacing:.14em;color:var(--bk);margin-bottom:20px}.ft-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}.ft-links a{font-size:11px;color:var(--g5);text-decoration:none;font-weight:400}.ft-copy{font-size:10px;color:var(--g5)}
+@media(min-width:768px){.fv-img{aspect-ratio:4/3}.fv-name{font-size:22px}.fv-info{padding:40px 40px 56px}.prod,.acc,.rev{padding:72px 0}}
 </style>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "x7usup3miy");
+</script>
 </head>
 <body>
-<section class="stry" id="stry">
-  <div class="stry-bars" id="stry-bars">
-    <div class="stry-seg active"><div class="stry-fill"></div></div>
-    <div class="stry-seg"><div class="stry-fill"></div></div>
-    <div class="stry-seg"><div class="stry-fill"></div></div>
-    <div class="stry-seg"><div class="stry-fill"></div></div>
-    <div class="stry-seg"><div class="stry-fill"></div></div>
-    
+<!-- ===== HEADER ===== -->
+<header class="hdr">
+  <div class="hdr-in">
+    <a href="#" class="hdr-logo">PURELAYER</a>
   </div>
-  <div class="stry-counter" id="stry-counter">1 / 5</div>
-  <div class="stry-viewport" id="stry-vp">
-    <div class="stry-slide act"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/7.webp?v=1781782959" alt="LP 1" loading="eager" width="375" height="667"></div>
-    <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/8.webp?v=1781786146" alt="LP 2" loading="lazy" width="375" height="667"></div>
-    <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/9.webp?v=1781786146" alt="LP 3" loading="lazy" width="375" height="667"></div>
-    <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/7a9c70c2d2b61ad4aa8fb3874449fc95.webp?v=1781786146" alt="LP 4" loading="lazy" width="375" height="667"></div>
-    <div class="stry-slide"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/e0a736a28e56c3ede41ffd338562d29a.webp?v=1781786146" alt="LP 5" loading="lazy" width="375" height="667"></div>
-    
-  </div>
-</section>
-<div class="stry-sticky-cta" id="stry-sticky-cta">
-  <a
- href="https://ec2ef467.purelayer-pdp.pages.dev/"
- class="stry-sticky-btn"
- id="stry-cta-link"
->
-公式ストアはここから！
-</a>
-</div>
+</header>
+<main>
+  <!-- ===== SECTION 1: FIRST VIEW ===== -->
+  <section class="fv" id="section-fv">
+    <div class="fv-hero"><img class="fv-img" src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_t13lht13lht13lht.webp?v=1770866731&format=webp&quality=75" alt="PURELAYER Oud Stallion" fetchpriority="high" loading="eager" width="750" height="750"></div>
+    <div class="fv-info fade" id="fv-info">
+      <h1 class="fv-name">PURELAYER — Oud Stallion</h1>
+      <div class="fv-rating"><div class="stars" id="fv-stars"></div><span class="fv-rc">1,243件のレビュー</span></div>
+      <div class="fv-tags"><span class="fv-tag">ユニセックス</span><span class="fv-tag">ベストセラー</span><span class="fv-tag">1プッシュあたり約15円〜</span></div>
+      <div class="fv-trust">
+        <div class="fv-trust-item">
+          <div class="fv-trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg></div>
+          <div class="fv-trust-text"><span class="fv-trust-label">購入特典</span>50ml購入で10mlアトマイザー無料同封<br>100ml購入で10mlアトマイザー+2mlテストキット無料同封</div>
+        </div>
+        <div class="fv-trust-item">
+          <div class="fv-trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+          <div class="fv-trust-text"><span class="fv-trust-label">配送・返品</span>全国送料無料 / 7〜15日でお届け</div>
+        </div>
+        <div class="fv-trust-item">
+          <div class="fv-trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <div class="fv-trust-text"><span class="fv-trust-label">お支払い方法</span>Apple Pay / Google Pay / あと払い(ペイディ)等、各種決済対応</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===== SECTION 2: PRODUCT SELECTION ===== -->
+  <section class="prod" id="section-product">
+    <div class="prod-in">
+      <p class="prod-kk">Select Size</p>
+      <h2 class="prod-hd">サイズを選ぶ</h2>
+      <div class="vs" id="vs">
+        <label><input type="radio" name="v" value="10ml" class="vr"><div class="vs-card"><div class="vs-row"><span class="vs-size">10ml</span><span class="vs-price">¥3,980</span></div><span class="vs-note">お試しサイズ</span></div></label>
+        <label><input type="radio" name="v" value="50ml" class="vr" checked><div class="vs-card"><div class="vs-row"><span class="vs-size">50ml<span class="vs-tag">Most Popular</span></span><span class="vs-price">¥13,800</span></div><span class="vs-note">特典 — 10ml アトマイザー付き</span></div></label>
+        <label><input type="radio" name="v" value="100ml" class="vr"><div class="vs-card"><div class="vs-row"><span class="vs-size">100ml</span><span class="vs-price">¥22,800</span></div><span class="vs-note">特典 — アトマイザー + 2ml テストキット付き</span></div></label>
+      </div>
+      <div class="stk"><div class="stk-line"><div class="stk-bar" id="stk-bar"></div></div><p class="stk-txt">Limited Stock — <span id="stk-count">残り 12 点</span></p></div>
+      <button class="cta" id="cta-main"><span>Add to Cart</span><span class="cta-sep"></span><span class="cta-p" id="cta-price">¥13,800</span></button>
+      <div class="trust"><span>30日間返金保証</span><span class="dot"></span><span>送料無料</span><span class="dot"></span><span>PayPay・コンビニ決済対応</span></div>
+    </div>
+  </section>
+  <!-- ===== SECTION 3: REVIEWS ===== -->
+  <section class="rev" id="section-reviews">
+    <div class="rev-in">
+      <p class="rev-kk">Reviews</p>
+      <h2 class="rev-hd">お客様の声</h2>
+      <div class="rev-list">
+        <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">石鹸系なのに一切「安っぽさ」がない</h3><p class="rev-body">今までサボン系は芳香剤っぽく感じて苦手でしたが、これは別格。高級ホテルのような上品な香りで、時間が経つほど色気が出てきます。まさに大人のための石鹸。ようやく理想の香りに出会えました。</p><p class="rev-meta">ちょんみ<span class="rev-sep">·</span>購入済み</p></article>
+        <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">公式で買って正解。届いた瞬間の安心感が違う</h3><p class="rev-body">他サイトの「香りが薄い」という噂が不安で公式サイトで購入。梱包も丁寧で、届いた本物は香りの奥行きが違います。変な安物を買って後悔するより、最初から正規品を選ぶのが一番安全です。</p><p class="rev-meta">にゃんこせんせぃ<span class="rev-sep">·</span>購入済み</p></article>
+        <div class="rev-ugc fade"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/723DB3B1-E822-431C-8D5E-C56E8161FA27.webp?v=1776938230#" alt="お客様投稿写真" loading="lazy" width="400" height="400"></div>
+        <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">朝の1プッシュで夜のデートまで褒められる</h3><p class="rev-body">石鹸系はすぐ消えるイメージでしたが、これは12時間近く持ちます。朝付けて、夜の帰宅時に友人から「ずっと良い匂いするね」と驚かれました。特典の専用アトマイザーが使いやすく、持ち運びにも便利です。</p><p class="rev-meta">あゆ<span class="rev-sep">·</span>購入済み</p></article>
+        <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">『香水つけてる感』がないのに、すれ違いざまに振り返られる</h3><p class="rev-body">キツい匂いはNGな職場ですが、これはお風呂上がりの清潔感そのもの。付けてから同僚に「柔軟剤変えた？」と聞かれることが増えました。嫌味がないので、香水初心者の男性・女性にもおすすめできます。</p><p class="rev-meta">ひらめ<span class="rev-sep">·</span>購入済み</p></article>
+        <div class="rev-ugc fade"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/IMG_2603.webp?v=1773367670#" alt="お客様投稿写真" loading="lazy" width="400" height="400"></div>
+        <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">SHIROやマルジェラから乗り換え。スペックはこっちが上</h3><p class="rev-body">長年SHIROを愛用していましたが、上品さと持続力は完全にこちらが上。少し値段は張りますが、朝から晩まで付け直し不要なのを考えればコスパ最強です。在庫がなくなる前に100mlを買っておけば良かった。</p><p class="rev-meta">かずさん<span class="rev-sep">·</span>購入済み</p></article>
+      </div>
+      <p class="rev-ft">1,349件</p>
+    </div>
+  </section>
+  <!-- ===== SECTION 4: ACCORDION ===== -->
+  <section class="acc">
+    <div class="acc-in">
+      <p class="acc-kk">Details</p>
+      <h2 class="acc-hd">詳細情報</h2>
+      <div>
+        <details class="acc-item"><summary class="acc-trig"><span class="acc-title">商品詳細</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt"><dl><div class="dl-row"><dt>商品名</dt><dd>Oud Stallion — Eau de Parfum</dd></div><div class="dl-row"><dt>ブランド</dt><dd>PURELAYER</dd></div><div class="dl-row"><dt>容量</dt><dd>10ml / 50ml / 100ml</dd></div><div class="dl-row"><dt>香りの系統</dt><dd>石鹸系・お風呂上がりの清潔感</dd></div><div class="dl-row"><dt>持続時間</dt><dd>約 8 – 12 時間（個人差あり）</dd></div><div class="dl-row"><dt>使い方</dt><dd>首筋・手首に 1 – 2 プッシュ</dd></div><div class="dl-row"><dt>対象</dt><dd>ユニセックス（男女兼用）</dd></div></dl></div></div></details>
+        <details class="acc-item"><summary class="acc-trig"><span class="acc-title">成分・原材料</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt"><p>エタノール、香料（パルファム）、水、BHT</p><p class="acc-sub">主な香料成分</p><ul class="acc-ul"><li>リナロール — 石鹸系の清潔感</li><li>ゲラニオール — フローラルの柔らかさ</li><li>クマリン — ほんのりとした甘さ</li><li>ウード — 深みのある落ち着き</li></ul><p class="acc-cap">※ 肌に異常を感じた場合は使用を中止してください。</p></div></div></details>
+        <details class="acc-item"><summary class="acc-trig"><span class="acc-title">30日間全額返金保証</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt"><p>商品到着から 30 日以内であれば、理由を問わず全額返金いたします。</p><p class="acc-sub">返品の流れ</p><ol class="acc-ol"><li>公式 LINE またはメールでご連絡</li><li>返品先住所をご案内</li><li>商品を返送（返送料はお客様負担）</li><li>到着確認後、5 営業日以内に全額返金</li></ol><p class="acc-cap">※ 使用済みでも返品可（残量 50% 以上）。特典のみの返品は不可。</p></div></div></details>
+        <details class="acc-item"><summary class="acc-trig"><span class="acc-title">配送について</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt"><dl><div class="dl-row"><dt>送料</dt><dd>全国無料</dd></div><div class="dl-row"><dt>発送</dt><dd>14時までのご注文 → 当日発送</dd></div><div class="dl-row"><dt>お届け目安</dt><dd>発送後 1 – 3 日</dd></div><div class="dl-row"><dt>梱包</dt><dd>無地ダンボール（中身がわからない梱包）</dd></div></dl></div></div></details>
+        <details class="acc-item"><summary class="acc-trig"><span class="acc-title">よくある質問</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt"><div class="faq"><p class="faq-q">香りがきつくないですか？</p><p class="faq-a">石鹸系のナチュラルな香りです。1プッシュで十分香ります。</p></div><div class="faq"><p class="faq-q">男性用？女性用？</p><p class="faq-a">ユニセックスです。18–34歳の男女から均等にご支持いただいています。</p></div><div class="faq"><p class="faq-q">どこにつければいいですか？</p><p class="faq-a">首筋や手首に1–2プッシュ。体温の高い部位につけると自然に香りが広がります。</p></div><div class="faq"><p class="faq-q">10mlはどれくらい持ちますか？</p><p class="faq-a">1日1–2プッシュで約2–3週間お使いいただけます。</p></div><div class="faq"><p class="faq-q">特典のアトマイザーとは？</p><p class="faq-a">持ち運び用の空の10mlスプレーボトルです。</p></div></div></div></details>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="ft">
+  <div class="ft-logo">PURELAYER</div>
+  <div class="ft-links"><a href="#">特定商取引法に基づく表記</a><a href="#">プライバシーポリシー</a><a href="#">返金ポリシー</a><a href="#">利用規約</a></div>
+  <div class="ft-copy">&copy; 2026 PURELAYER. All rights reserved.</div>
+</footer>
 <script>
 (function(){
   'use strict';
-  /* ==========================================================================
-     ★ 訴求別の画像切り替え管理リスト (5枚構成用)
-     ========================================================================== */
-  var IMAGE_SETS = {
-    'review': [
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/fdb572c06cf81e00.webp?v=1784629504',
-     'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/21d24ebaa4d1637f98ee5a248e77f64f.webp?v=1781835147#', // 失敗回避訴求：2枚目
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/c93e524e62877edb65c0f5f916526eb0.webp?v=1781835147#', // 失敗回避訴求：3枚目
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/45166413235ba5343565197eb4cd1076.webp?v=1781835146#', // 失敗回避訴求：4枚目
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/1_a6c99854-df30-4dd1-83a1-673604f94ac5.webp?v=1781835147#'  // 失敗回避訴求：5枚目
-    ],
-    'scent': [
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/86694b0f940cf143.webp?v=1784508473', // 失敗回避訴求：1枚目
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/21d24ebaa4d1637f98ee5a248e77f64f.webp?v=1781835147#', // 失敗回避訴求：2枚目
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/c93e524e62877edb65c0f5f916526eb0.webp?v=1781835147#', // 失敗回避訴求：3枚目
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/45166413235ba5343565197eb4cd1076.webp?v=1781835146#', // 失敗回避訴求：4枚目
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/1_a6c99854-df30-4dd1-83a1-673604f94ac5.webp?v=1781835147#'  // 失敗回避訴求：5枚目
-    ],
-    'risk': [
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/1c3500c8a6c360c0.webp?v=1784629504',
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/21d24ebaa4d1637f98ee5a248e77f64f.webp?v=1781835147#', // 失敗回避訴求：2枚目
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/c93e524e62877edb65c0f5f916526eb0.webp?v=1781835147#', // 失敗回避訴求：3枚目
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/45166413235ba5343565197eb4cd1076.webp?v=1781835146#', // 失敗回避訴求：4枚目
-      'https://cdn.shopify.com/s/files/1/0957/4570/4304/files/1_a6c99854-df30-4dd1-83a1-673604f94ac5.webp?v=1781835147#'  // 失敗回避訴求：5枚目
-    ]
-  };
-  // 現在のURLから ?test=〇〇 を取得（なければデフォルトを'review'に設定）
-  var urlParams = new URLSearchParams(window.location.search);
-  var testParam = urlParams.get('test') || 'review';
-  /* ===== URLパラメータに基づくコンテンツ動的適用 ===== */
-  (function applyDynamicContent() {
-    var rawParam = urlParams.get('test'); // 実際にURLについているかチェック
-    if (rawParam && IMAGE_SETS[rawParam]) {
-      var targetImages = IMAGE_SETS[rawParam];
-      var slideImages = document.querySelectorAll('.stry-slide img');
-      for (var i = 0; i < slideImages.length; i++) {
-        if (targetImages[i]) {
-          slideImages[i].src = targetImages[i];
-        }
-      }
-    }
-    // CTAボタンの遷移先リンクにもパラメータを引き継ぐ
-    var ctaLinkEl = document.getElementById('stry-cta-link');
-    if (ctaLinkEl) {
-      var currentHref = ctaLinkEl.getAttribute('href');
-      if (currentHref && rawParam) {
-        var separator = currentHref.indexOf('?') !== -1 ? '&' : '?';
-        ctaLinkEl.setAttribute('href', currentHref + separator + 'test=' + rawParam);
-      }
-    }
-  })();
-  /* ===== GA4 高度なイベント計測処理（ChatGPT推奨の設計） ===== */
-  // 1. LP表示イベント（初回読み込み時に1回だけ実行）
-  if (typeof gtag === 'function') {
-    gtag('event', 'lp_view', { 'lp_type': testParam });
-  }
-  // 2. スライド閲覧イベント
-// 2. スライド閲覧イベント（変数迷子解消＆DebugView強制表示版）
-  function trackSlideView(slideIndex) {
-    // スライドがめくられた瞬間に、その場でURLパラメータを直接取得（迷子防止）
-    var currentParams = new URLSearchParams(window.location.search);
-    var slideLpType = currentParams.get('test') || 'review';
-    console.log('slide fired:', slideIndex, 'type:', slideLpType);
-    if (typeof gtag === 'function') {
-      gtag('event', 'slide_view', {
-        'slide_number': slideIndex, // 何枚目か（1〜5）
-        'lp_type': slideLpType,     // 訴求タイプ（review/scent/risk）
-        'debug_mode': true          // ← これを入れたので確実にDebugViewに表示されます！
-      });
-    }
-  }
-  // 3. CTAクリックイベントの設定
-// 3. CTAクリックイベントの設定（変数迷子・計測漏れ防止の完全版）
-  var ctaLinkEl = document.getElementById('stry-cta-link');
-  if (ctaLinkEl) {
-    ctaLinkEl.addEventListener('click', function(e) {
-      // 通常遷移を一旦ストップ
-      e.preventDefault();
-      var targetUrl = this.href;
-      // 【重要】ボタンを押した瞬間に、その場でURLパラメータを直接取得（迷子防止）
-      var currentParams = new URLSearchParams(window.location.search);
-      var clickLpType = currentParams.get('test') || 'review';
-      console.log('CTA CLICK START - type:', clickLpType);
-      // GA4へのデータ送信
-      if (typeof gtag === 'function') {
-        gtag('event', 'cta_click', {
-          'lp_type': clickLpType,
-          'debug_mode': true, // ←これを追加したことで、確実にDebugViewに光ります！
-          'event_callback': function() {
-            console.log('GA4送信完了：公式ストアへ移動します');
-            window.location.href = targetUrl;
-          }
-        });
-      } else {
-        window.location.href = targetUrl;
-      }
-      // 念のための保険（1秒経っても動かなければ強制遷移）
-      setTimeout(function() {
-        window.location.href = targetUrl;
-      }, 1000);
-    });
-  }
-  
-  /* ===== Stories Carousel 制御ロジック ===== */
-  var DURATION = 5000;
-  var slides = document.querySelectorAll('.stry-slide');
-  var segs = document.querySelectorAll('.stry-seg');
-  var total = slides.length;
-  var cur = 0, timer = null, paused = false, startTime = 0, elapsed = 0;
-  var counterEl = document.getElementById('stry-counter');
-  var counterTimer = null;
-  var stickyCtaEl = document.getElementById('stry-sticky-cta');
-  function checkCtaVisibility() {
-    if (!stickyCtaEl) return;
-    if (cur === total - 1) {
-      stickyCtaEl.classList.add('act');
-    } else {
-      stickyCtaEl.classList.remove('act');
-    }
-  }
-  function showCounter() {
-    if (!counterEl) return;
-    counterEl.textContent = (cur + 1) + ' / ' + total;
-    counterEl.classList.add('vis');
-      
-    clearTimeout(counterTimer);
-    counterTimer = setTimeout(function() {
-      counterEl.classList.remove('vis');
-    }, 3000);
-  }
-  function goTo(n) {
-    // ページ番号が 0 〜 total - 1 (最終ページ) の範囲を超えないように制限 (クランプ処理)
-    var next = Math.max(0, Math.min(n, total - 1));
-    if (next === cur) {
-      // 既に最終ページに達しており、さらに次へ進もうとした場合、
-      // プログレスバーを100%にしたままタイマーをクリアして停止させる
-      if (cur === total - 1) {
-        clearTimeout(timer);
-        var fill = segs[cur].querySelector('.stry-fill');
-        if (fill) {
-          fill.style.transition = 'none';
-          fill.style.width = '100%';
-        }
-      }
-      return;
-    }
-    slides[cur].classList.remove('act');
-    segs[cur].classList.remove('active');
-    segs[cur].classList.add('done');
-    segs[cur].querySelector('.stry-fill').style.width = '100%';
-    cur = next;
-    if (cur >= total) { cur = 0; resetAllBars(); }
-    if (cur < 0) cur = total - 1;
-    for (var i = 0; i < total; i++) {
-      if (i < cur) { segs[i].classList.add('done'); segs[i].classList.remove('active'); segs[i].querySelector('.stry-fill').style.width = '100%'; }
-      else if (i > cur) { segs[i].classList.remove('done','active'); segs[i].querySelector('.stry-fill').style.width = '0%'; }
-    }
-    slides[cur].classList.add('act');
-    segs[cur].classList.remove('done');
-    segs[cur].classList.add('active');
-    elapsed = 0;
-    startFill();
-    showCounter();
-    checkCtaVisibility();
-    trackSlideView(cur + 1);
-  }
-  function resetAllBars() {
-    for (var i = 0; i < total; i++) {
-      segs[i].classList.remove('done','active');
-      segs[i].querySelector('.stry-fill').style.width = '0%';
-      segs[i].querySelector('.stry-fill').style.transition = 'none';
-    }
-  }
-  function startFill() {
-    clearTimeout(timer);
-    var fill = segs[cur].querySelector('.stry-fill');
-    var remain = DURATION - elapsed;
-    fill.style.transition = 'none';
-    fill.style.width = (elapsed / DURATION * 100) + '%';
-    void fill.offsetWidth;
-    fill.style.transition = 'width ' + remain + 'ms linear';
-    fill.style.width = '100%';
-    startTime = Date.now();
-    timer = setTimeout(function() { goTo(cur + 1); }, remain);
-  }
-  function pauseStory() {
-    if (paused) return;
-    paused = true;
-    clearTimeout(timer);
-    elapsed += Date.now() - startTime;
-    var fill = segs[cur].querySelector('.stry-fill');
-    var computed = getComputedStyle(fill).width;
-    fill.style.transition = 'none';
-    fill.style.width = computed;
-  }
-  function resumeStory() {
-    if (!paused) return;
-    paused = false;
-    startFill();
-  }
-  var startX = 0, startY = 0;
-  var isSwipeAction = false;
-  var preventClick = false;
-  var vp = document.getElementById('stry-vp');
-  var holdTimer = null;
-  function handleTap(clientX) {
-    if (!vp) return;
-    var rect = vp.getBoundingClientRect();
-    var x = clientX - rect.left;
-    var width = rect.width;
-    var ratio = x / width;
-    if (ratio < 0.3) {
-      goTo(cur - 1);
-    } else {
-      goTo(cur + 1);
-    }
-  }
-  vp.addEventListener('click', function(e) {
-    e.preventDefault();
-    if (preventClick) return;
-    handleTap(e.clientX);
-  });
-  vp.addEventListener('touchstart', function(e) {
-    var touch = e.touches[0];
-    startX = touch.clientX;
-    startY = touch.clientY;
-    isSwipeAction = false;
-    holdTimer = setTimeout(pauseStory, 200);
-    showCounter();
-  }, {passive:true});
-  vp.addEventListener('touchmove', function(e) {
-    if (e.touches.length > 1) return;
-    
-    // TikTokなどのアプリ内ブラウザで確実に縦スクロールやバウンスを防ぐため、
-    // タッチ移動操作のデフォルトスクロール挙動を強制的にキャンセル
-    if (e.cancelable) e.preventDefault();
-    var touch = e.touches[0];
-    var diffX = touch.clientX - startX;
-    var diffY = touch.clientY - startY;
-    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
-      isSwipeAction = true;
-      clearTimeout(holdTimer);
-      pauseStory();
-    }
-  }, {passive:false});
-  vp.addEventListener('touchend', function(e) {
-    clearTimeout(holdTimer);
-    if (isSwipeAction) {
-      var touch = e.changedTouches[0];
-      var diffX = touch.clientX - startX;
-      if (diffX < -50) {
-        goTo(cur + 1);
-      } else if (diffX > 50) {
-        goTo(cur - 1);
-      } else {
-        resumeStory();
-      }
-      preventClick = true;
-      setTimeout(function() { preventClick = false; }, 300);
-    } else {
-      resumeStory();
-      var touch = e.changedTouches[0];
-      handleTap(touch.clientX);
-      preventClick = true;
-      setTimeout(function() { preventClick = false; }, 300);
-    }
-  }, {passive:true});
-  vp.addEventListener('touchcancel', function() {
-    clearTimeout(holdTimer);
-    resumeStory();
-  }, {passive:true});
-  vp.addEventListener('mousedown', function() {
-    holdTimer = setTimeout(pauseStory, 200);
-    showCounter();
-  });
-  vp.addEventListener('mouseup', function() {
-    clearTimeout(holdTimer);
-    resumeStory();
-  });
-  vp.addEventListener('mouseleave', function() {
-    clearTimeout(holdTimer);
-    resumeStory();
-  });
-  (function initFirstSlide() {
-    cur = 0;
-    elapsed = 0;
-    for (var i = 0; i < total; i++) {
-      segs[i].classList.remove('done', 'active');
-      segs[i].querySelector('.stry-fill').style.width = '0%';
-      segs[i].querySelector('.stry-fill').style.transition = 'none';
-    }
-    for (var j = 0; j < total; j++) {
-      slides[j].classList.remove('act');
-    }
-    slides[0].classList.add('act');
-    segs[0].classList.add('active');
-    if (!document.hidden) {
-      startFill();
-    }
-    showCounter();
-    checkCtaVisibility();
-    trackSlideView(1); // 最初の1枚目の計測も、新しい形式(lp_type付き)で送信されます
-  })();
-  document.addEventListener('visibilitychange', function() {
-    if (document.hidden) {
-      clearTimeout(timer);
-      timer = null;
-      var fill = segs[cur].querySelector('.stry-fill');
-      var computed = getComputedStyle(fill).width;
-      fill.style.transition = 'none';
-      fill.style.width = computed;
-    } else {
-      elapsed = 0;
-      if (!paused) {
-        startFill();
-      }
-    }
-  });
+  /* ===== Stars ===== */
+  var starSVG='<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+      fiveStars=starSVG+starSVG+starSVG+starSVG+starSVG;
+  document.querySelectorAll('#fv-stars, .rv-s').forEach(function(e){e.innerHTML=fiveStars});
+  /* ===== Variant Map & Cart ===== */
+  var VM={'10ml':{price:'¥3,980',label:'10ml',items:[{id:53230989574512,quantity:1}]},'50ml':{price:'¥13,800',label:'50ml',items:[{id:53230989181296,quantity:1},{id:53231016182128,quantity:1}]},'100ml':{price:'¥22,800',label:'100ml',items:[{id:53230989214064,quantity:1},{id:53231016182128,quantity:1},{id:53230989541744,quantity:1}]}};
+  var curV='50ml',cP=document.getElementById('cta-price');
+  function upd(v){curV=v;var d=VM[v];if(cP)cP.textContent=d.price}
+  document.getElementById('vs').addEventListener('change',function(e){if(e.target.classList.contains('vr'))upd(e.target.value)});
+  function addToCart(){var d=VM[curV];if(!d)return;if(window.clarity)window.clarity('set','InitiateCheckout','true');if(window.ttq)window.ttq.track('AddToCart',{});window.location.href='https://nemveil.com/cart/'+d.items.map(function(i){return i.id+':'+i.quantity}).join(',')}
+  document.getElementById('cta-main').addEventListener('click',addToCart);
+  /* ===== Stock Bar ===== */
+  var sb=document.getElementById('stk-bar');
+  if(sb){requestAnimationFrame(function(){setTimeout(function(){sb.style.transform='scaleX(0.28)'},100)})}
+  /* ===== Fade ===== */
+  if('IntersectionObserver' in window){
+    var ioFade=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');ioFade.unobserve(e.target)}})},{rootMargin:"50px",threshold:0});
+    document.querySelectorAll('.fade').forEach(function(el){ioFade.observe(el)});
+  }else{document.querySelectorAll('.fade').forEach(function(el){el.classList.add('vis')})}
+  /* ===== Accordion ===== */
+  document.querySelector('.acc').addEventListener('toggle',function(e){if(e.target.open){document.querySelectorAll('.acc-item').forEach(function(o){if(o!==e.target&&o.open)o.removeAttribute('open')})}},true);
+  upd(curV);
+  /* ===== 3rd-party Lazy Load ===== */
   var lzt=false;
-  function ld3rd(){if(lzt)return;lzt=true;window.removeEventListener('scroll',ld3rd);window.removeEventListener('mousemove',ld3rd);window.removeEventListener('touchstart',ld3rd);var cfb=document.createElement('script');cfb.defer=true;cfb.src='https://static.cloudflareinsights.com/beacon.min.js';cfb.setAttribute('data-cf-beacon','{"token": "25e0254bb3894f9d8c94ce95ffba2b5b"}');document.body.appendChild(cfb);(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vvn8p99ehp")}
+  function ld3rd(){if(lzt)return;lzt=true;window.removeEventListener('scroll',ld3rd);window.removeEventListener('mousemove',ld3rd);window.removeEventListener('touchstart',ld3rd);var cfb=document.createElement('script');cfb.defer=true;cfb.src='https://static.cloudflareinsights.com/beacon.min.js';cfb.setAttribute('data-cf-beacon','{"token": "8ea9ff4db23e489587540327ecf52eec"}');document.body.appendChild(cfb);(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","x7usup3miy")}
   window.addEventListener('scroll',ld3rd,{once:true,passive:true});window.addEventListener('mousemove',ld3rd,{once:true,passive:true});window.addEventListener('touchstart',ld3rd,{once:true,passive:true});setTimeout(ld3rd,5000);
 })();
 </script>
