@@ -55,7 +55,7 @@
       <div class="fv-trust">
         <div class="fv-trust-item">
           <div class="fv-trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg></div>
-          <div class="fv-trust-text"><span class="fv-trust-label">購入特典</span>50ml購入で10mlアトマイザー無料同封<br>100ml購入で10mlアトマイザー+2mlテストキット無料同封</div>
+          <div class="fv-trust-text"><span class="fv-trust-label">購入特典</span>50ml購入で10mlアトマイザー無料同封<br>50ml×2本セット購入で10mlアトマイザー+2mlテストキット無料同封</div>
         </div>
         <div class="fv-trust-item">
           <div class="fv-trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
@@ -76,7 +76,7 @@
       <div class="vs" id="vs">
         <label><input type="radio" name="v" value="10ml" class="vr"><div class="vs-card"><div class="vs-row"><span class="vs-size">10ml</span><span class="vs-price">¥3,980</span></div><span class="vs-note">お試しサイズ</span></div></label>
         <label><input type="radio" name="v" value="50ml" class="vr" checked><div class="vs-card"><div class="vs-row"><span class="vs-size">50ml<span class="vs-tag">Most Popular</span></span><span class="vs-price">¥13,800</span></div><span class="vs-note">特典 — 10ml アトマイザー付き</span></div></label>
-        <label><input type="radio" name="v" value="100ml" class="vr"><div class="vs-card"><div class="vs-row"><span class="vs-size">100ml</span><span class="vs-price">¥22,800</span></div><span class="vs-note">特典 — アトマイザー + 2ml テストキット付き</span></div></label>
+        <label><input type="radio" name="v" value="50ml×2本セット" class="vr"><div class="vs-card"><div class="vs-row"><span class="vs-size">100ml</span><span class="vs-price">¥22,800</span></div><span class="vs-note">特典 — アトマイザー + 2ml テストキット付き</span></div></label>
       </div>
       <div class="stk"><div class="stk-line"><div class="stk-bar" id="stk-bar"></div></div><p class="stk-txt">Limited Stock — <span id="stk-count">残り 12 点</span></p></div>
       <button class="cta" id="cta-main"><span>Add to Cart</span><span class="cta-sep"></span><span class="cta-p" id="cta-price">¥13,800</span></button>
@@ -128,7 +128,7 @@
       fiveStars=starSVG+starSVG+starSVG+starSVG+starSVG;
   document.querySelectorAll('#fv-stars, .rv-s').forEach(function(e){e.innerHTML=fiveStars});
   /* ===== Variant Map & Cart ===== */
-  var VM={'10ml':{price:'¥3,980',label:'10ml',items:[{id:53230989574512,quantity:1}]},'50ml':{price:'¥13,800',label:'50ml',items:[{id:53230989181296,quantity:1},{id:53231016182128,quantity:1}]},'100ml':{price:'¥22,800',label:'100ml',items:[{id:53230989214064,quantity:1},{id:53231016182128,quantity:1},{id:53230989541744,quantity:1}]}};
+  var VM={'10ml':{price:'¥3,980',label:'10ml',items:[{id:53230989574512,quantity:1}]},'50ml':{price:'¥13,800',label:'50ml',items:[{id:54079235916144,quantity:1},{id:53231016182128,quantity:1}]},'50ml×2本セット':{price:'¥22,800',label:'50ml×2本セット',items:[{id:54079235916144,quantity:2},{id:53231016182128,quantity:1},{id:53230989541744,quantity:1}]}};
   var curV='50ml',cP=document.getElementById('cta-price');
   function upd(v){curV=v;var d=VM[v];if(cP)cP.textContent=d.price}
   document.getElementById('vs').addEventListener('change',function(e){if(e.target.classList.contains('vr'))upd(e.target.value)});
