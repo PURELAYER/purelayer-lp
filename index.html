@@ -8,7 +8,7 @@
 <style>
 :root{--w:#FFF;--ow:#FAFAFA;--bk:#1A1A1A;--g1:#F5F5F5;--g2:#EEE;--g4:#767676;--g5:#595959;--g7:#424242;--sf:"Shippori Mincho","YuMincho","Hiragino Mincho ProN","MS PMincho",serif;--ss:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",sans-serif}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}body{font-family:var(--ss);background:var(--w);color:var(--bk);line-height:1.6;overflow-x:hidden}img{max-width:100%;height:auto;display:block}svg{display:block}
-.stars{display:flex;gap:2px}.stars svg{width:12px;height:12px;fill:var(--bk)}.dot{width:2px;height:2px;border-radius:50%;background:var(--g4);flex-shrink:0}
+.stars{display:flex;gap:2px}.stars svg{width:12px;height:12px;fill:var(--bk)}.stars svg.star-empty{fill:none;stroke:var(--g4);stroke-width:1.5}.dot{width:2px;height:2px;border-radius:50%;background:var(--g4);flex-shrink:0}
 .fade{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease;will-change:opacity,transform}.fade.vis{opacity:1;transform:translateY(0)}
 /* ===== Header ===== */
 .hdr{position:sticky;top:0;left:0;width:100%;z-index:999;background:var(--w);border-bottom:.5px solid var(--g2);backdrop-filter:blur(8px);background:rgba(255,255,255,0.95)}
@@ -22,7 +22,51 @@
 .stk{margin-bottom:28px;text-align:center}.stk-line{height:1px;background:var(--g2);margin-bottom:12px;overflow:hidden}.stk-bar{height:100%;width:100%;background:var(--bk);transform:scaleX(0);transform-origin:left;transition:transform 1.8s cubic-bezier(.25,1,.5,1);will-change:transform}.stk-txt{font-size:10px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--g5);margin:0}.stk-txt span{color:var(--bk);font-weight:500}
 .cta{display:flex;justify-content:center;align-items:center;gap:12px;width:100%;padding:18px;background:var(--bk);color:#fff;border:none;font-family:var(--ss);font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:opacity .2s;margin-bottom:16px}.cta:active{opacity:.85}.cta-sep{width:1px;height:14px;background:rgba(255,255,255,.25)}.cta-p{font-weight:400;opacity:.6}.trust{display:flex;justify-content:center;align-items:center;gap:0;font-size:10px;font-weight:400;color:var(--g5);letter-spacing:.06em}.trust>span{padding:0 8px}
 /* Reviews */
-.rev{background:var(--w);padding:56px 0;border-top:.5px solid var(--g2)}.rev-in{max-width:480px;margin:0 auto;padding:0 24px}.rev-kk{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--g5);text-align:center;margin:0 0 8px}.rev-hd{font-family:var(--sf);font-size:20px;font-weight:500;text-align:center;letter-spacing:.08em;color:var(--bk);margin:0 0 40px}.rev-item{padding:24px 0;border-top:.5px solid var(--g2)}.rev-item:last-child{border-bottom:.5px solid var(--g2)}.rev-title{font-size:14px;font-weight:600;color:var(--bk);margin:0 0 8px;letter-spacing:.02em;line-height:1.5}.rev-body{font-size:13px;font-weight:400;line-height:1.9;color:var(--g7);margin:0 0 12px;letter-spacing:.01em}.rev-meta{font-size:11px;font-weight:400;color:var(--g5);letter-spacing:.04em;margin:0}.rev-sep{margin:0 6px;color:var(--g2)}.rev-ugc{padding:16px 0}.rev-ugc img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:4px}.rev-ft{text-align:center;font-size:11px;font-weight:400;color:var(--g5);letter-spacing:.06em;margin:32px 0 0}
+.rev{background:var(--w);padding:56px 0;border-top:.5px solid var(--g2)}.rev-in{max-width:480px;margin:0 auto;padding:0 24px}.rev-kk{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--g5);text-align:center;margin:0 0 8px}.rev-hd{font-family:var(--sf);font-size:20px;font-weight:500;text-align:center;letter-spacing:.08em;color:var(--bk);margin:0 0 40px}.rev-item{padding:24px 0;border-top:.5px solid var(--g2)}.rev-item:last-child{border-bottom:.5px solid var(--g2)}.rev-item .stars{margin-bottom:12px}.rev-title{font-size:14px;font-weight:600;color:var(--bk);margin:0 0 8px;letter-spacing:.02em;line-height:1.5}.rev-body{font-size:13px;font-weight:400;line-height:1.9;color:var(--g7);margin:0 0 12px;letter-spacing:.01em}.rev-meta{font-size:11px;font-weight:400;color:var(--g5);letter-spacing:.04em;margin:0}.rev-sep{margin:0 6px;color:var(--g2)}.rev-ugc{padding:16px 0}.rev-ugc img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:4px}.rev-more-wrap{
+  text-align:center;
+  margin:28px 0 0;
+}
+
+.rev-more{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  min-width:180px;
+  padding:13px 24px;
+  background:var(--w);
+  border:.5px solid var(--g2);
+  color:var(--bk);
+  font-family:var(--ss);
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:.08em;
+  cursor:pointer;
+  transition:background .2s,opacity .2s;
+}
+
+.rev-more:active{
+  opacity:.7;
+}
+
+.rev-more::after{
+  content:"+";
+  font-size:16px;
+  font-weight:300;
+  line-height:1;
+}
+
+.rev-more.is-open::after{
+  content:"−";
+}
+
+.rev-extra{
+  display:none;
+}
+
+.rev-extra.vis-rev{
+  display:block;
+}.rev-ft{text-align:center;font-size:11px;font-weight:400;color:var(--g5);letter-spacing:.06em;margin:32px 0 0}
 /* Accordion */
 .acc{background:var(--ow);padding:56px 0}.acc-in{max-width:480px;margin:0 auto;padding:0 24px}.acc-kk{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--g5);text-align:center;margin:0 0 8px}.acc-hd{font-family:var(--sf);font-size:20px;font-weight:500;text-align:center;letter-spacing:.08em;color:var(--bk);margin:0 0 40px}.acc-item{border-top:.5px solid var(--g2)}.acc-item:last-child{border-bottom:.5px solid var(--g2)}.acc-trig{display:flex;justify-content:space-between;align-items:center;padding:20px 0;cursor:pointer;list-style:none;user-select:none;-webkit-user-select:none}.acc-trig::-webkit-details-marker{display:none}.acc-trig::marker{display:none;content:''}.acc-title{font-size:13px;font-weight:500;color:var(--bk);letter-spacing:.06em}.acc-tog{position:relative;width:16px;height:16px;flex-shrink:0}.acc-tog::before,.acc-tog::after{content:'';position:absolute;top:50%;left:50%;background:var(--g5);transition:transform .3s,opacity .3s}.acc-tog::before{width:12px;height:.5px;transform:translate(-50%,-50%)}.acc-tog::after{width:.5px;height:12px;transform:translate(-50%,-50%)}details[open]>.acc-trig .acc-tog::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}.acc-body{overflow:hidden;max-height:0;transition:max-height .4s cubic-bezier(.25,1,.5,1);will-change:max-height}details[open]>.acc-body{max-height:600px}.acc-cnt{padding:0 0 28px;font-size:13px;line-height:1.9;color:var(--g7)}.acc-cnt p{margin-bottom:12px}.acc-cnt strong{color:var(--bk);font-weight:600}.acc-sub{font-size:12px;font-weight:600;color:var(--bk);letter-spacing:.06em;margin:16px 0 6px}.acc-cap{font-size:11px;color:var(--g5);line-height:1.8;margin-top:12px}.dl-row{display:flex;padding:10px 0;border-bottom:.5px solid var(--g1);font-size:13px}.dl-row:last-child{border-bottom:none}.dl-row dt{width:90px;flex-shrink:0;font-weight:500;color:var(--bk)}.dl-row dd{margin:0;color:var(--g7)}.acc-ul{list-style:none;padding:0}.acc-ul li{padding:4px 0;font-size:13px}.acc-ul li::before{content:'–';margin-right:8px;color:var(--g5)}.acc-ol{padding-left:18px;margin:6px 0 12px}.acc-ol li{padding:4px 0;font-size:13px}.acc-ol li::marker{font-weight:600;color:var(--g5)}.faq{margin-bottom:20px}.faq:last-child{margin-bottom:0}.faq-q{font-size:13px;font-weight:600;color:var(--bk);margin-bottom:4px}.faq-a{font-size:13px;color:var(--g7);line-height:1.9}
 /* Footer & Sticky */
@@ -89,22 +133,23 @@
       <p class="rev-kk">Reviews</p>
       <h2 class="rev-hd">お客様の声</h2>
       <div class="rev-list">
-        <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">TikTokで見かけて気になって購入</h3><p class="rev-body">TikTokのおすすめに流れてきて、香水初心者でも使いやすそうだったので気になって購入しました。実際につけてみると、思っていたより爽やかで清潔感のある香り。香水っぽさが強すぎないので、普段使いしやすいです。</p><p class="rev-meta">ちょんみ<span class="rev-sep">·</span>購入済み</p></article>
-        <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">香水が苦手な自分でも使いやすかった</h3><p class="rev-body">香水の強い匂いがあまり得意じゃないのですが、これはかなり使いやすかったです。つけた直後は少し香りますが、時間が経つとふわっとした感じになって、近づいたときにほんのり分かるくらい。こういう香りを探してました。</p><p class="rev-meta">にゃんこせんせぃ<span class="rev-sep">·</span>購入済み</p></article>
+        <article class="rev-item fade" data-rating="5"><div class="stars rv-s"></div><h3 class="rev-title">TikTokで見かけて気になって購入</h3><p class="rev-body">TikTokのおすすめに流れてきて、香水初心者でも使いやすそうだったので気になって購入しました。実際につけてみると、思っていたより爽やかで清潔感のある香り。香水っぽさが強すぎないので、普段使いしやすいです。</p><p class="rev-meta">ちょんみ<span class="rev-sep">·</span>購入済み</p></article>
+        <article class="rev-item fade" data-rating="5"><div class="stars rv-s"></div><h3 class="rev-title">香水が苦手な自分でも使いやすかった</h3><p class="rev-body">香水の強い匂いがあまり得意じゃないのですが、これはかなり使いやすかったです。つけた直後は少し香りますが、時間が経つとふわっとした感じになって、近づいたときにほんのり分かるくらい。こういう香りを探してました。</p><p class="rev-meta">にゃんこせんせぃ<span class="rev-sep">·</span>購入済み</p></article>
         <div class="rev-ugc fade"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/image042342.webp?v=1789090857" alt="お客様投稿写真" loading="lazy" width="400" height="400"></div>
-        <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">清潔感のある香りで普段使いしやすい</h3><p class="rev-body">甘すぎたりクセが強かったりする香水は苦手なんですが、これは爽やかで清潔感のある香りでした。学校や出かけるときにも使いやすそう。香水をあまり持っていない人にもいいと思います。</p><p class="rev-meta">あゆ<span class="rev-sep">·</span>購入済み</p></article>
-        <article class="rev-item fade"><div class="stars rv-4"></div><h3 class="rev-title">思ってたより爽やかでした</h3><p class="rev-body">TikTokで見て気になって購入しました。最初はどんな香りなのか少し不安でしたが、実際はかなり爽やか。つけたては少し香りが強く感じましたが、少し時間が経つとちょうどよくなりました。</p><p class="rev-meta">ひらめ<span class="rev-sep">·</span>購入済み</p></article>
+        <article class="rev-item fade" data-rating="5"><div class="stars rv-s"></div><h3 class="rev-title">清潔感のある香りで普段使いしやすい</h3><p class="rev-body">甘すぎたりクセが強かったりする香水は苦手なんですが、これは爽やかで清潔感のある香りでした。学校や出かけるときにも使いやすそう。香水をあまり持っていない人にもいいと思います。</p><p class="rev-meta">あゆ<span class="rev-sep">·</span>購入済み</p></article>
+        <article class="rev-item fade" data-rating="4"><div class="stars rv-5"></div><h3 class="rev-title">思ってたより爽やかでした</h3><p class="rev-body">TikTokで見て気になって購入しました。最初はどんな香りなのか少し不安でしたが、実際はかなり爽やか。つけたては少し香りが強く感じましたが、少し時間が経つとちょうどよくなりました。</p><p class="rev-meta">ひらめ<span class="rev-sep">·</span>購入済み</p></article>
         <div class="rev-ugc fade"><img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/image0.webp?v=1789090857" alt="お客様投稿写真" loading="lazy" width="400" height="400"></div>
-        <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">職場でも使いやすい香り</h3><p class="rev-body">仕事の日にも使える香水を探していました。香りが重すぎないので、個人的にはかなり使いやすいです。近づいたときにふわっと香る感じが好き。仕事用の香水を探している人には合うと思います。</p><p class="rev-meta">Nana<span class="rev-sep">·</span>購入済み</p></article>
-        <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">TikTokからそのまま購入しました</h3><p class="rev-body">TikTokで何回か見かけて、レビューが気になったので購入。香りをネットで買うのは少し不安でしたが、実際につけてみると爽やかで上品な感じでした。毎日使いやすい香りなので買ってよかったです。</p><p class="rev-meta">さき<span class="rev-sep">·</span>購入済み</p></article>
-        <article class="rev-item fade"><div class="stars rv-4"></div><h3 class="rev-title">男女どちらでも使いやすそう</h3><p class="rev-body">最初は女性向けかなと思っていましたが、実際はかなりユニセックスな印象。爽やかさがあるので男性でも普通に使えると思います。香りが甘すぎないところが個人的にはよかったです。</p><p class="rev-meta">R<span class="rev-sep">·</span>購入済み</p></article>
-        <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">香水初心者にはかなり使いやすい</h3><p class="rev-body">今まで香水を買ったことがほとんどなく、何を選べばいいか分からなかったので購入しました。クセの強い香りではなく、爽やかで清潔感があります。香水初心者が最初に使うものとしてはかなり使いやすいと思います</p><p class="rev-meta">たくみ<span class="rev-sep">·</span>購入済み</p></article>
-        <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">お風呂上がりっぽい清潔感</h3><p class="rev-body">個人的には、爽やかで清潔感のある香りという印象でした。甘ったるい感じではなく、すっきりしていて好きです。香水をつけてる感を出しすぎたくない日に使っています。</p><p class="rev-meta">mii<span class="rev-sep">·</span>購入済み</p></article>
-        <article class="rev-item fade"><div class="stars rv-4"></div><h3 class="rev-title">つけすぎなければちょうどいい</h3><p class="rev-body">香り自体はかなり好きです。つけた直後は思ったよりしっかり香るので、最初は少なめにつけるのがおすすめ。時間が経つと落ち着いてきて、個人的にはそのくらいの香り方が一番好きでした。</p><p class="rev-meta">しょう<span class="rev-sep">·</span>購入済み</p></article>       
-        <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">他の香水より出番が多い</h3><p class="rev-body">香水はいくつか持っていますが、結局こういう爽やかな香りが一番使いやすいです。出かけるときはもちろん、普段の日にもつけやすい。香りで失敗したくない人には候補に入れていいと思います。</p><p class="rev-meta">yuna<span class="rev-sep">·</span>購入済み</p></article>
-    　  <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">香水っぽすぎないところが好き</h3><p class="rev-body">香水特有の濃い匂いが苦手だったので、こういうタイプはかなり好きです。爽やかさがあって、ちゃんと上品な感じもある。自分の中では「香水をつけてます」感が強くないところが一番よかったです。</p><p class="rev-meta">れい<span class="rev-sep">·</span>購入済み</p></article>
-     　 <article class="rev-item fade"><div class="stars rv-s"></div><h3 class="rev-title">なくなったらまた買いたい</h3><p class="rev-body">普段使いしやすい香りなので、最近こればかり使っています。爽やかだけど普通のシンプルな香りという感じでもなく、個人的にはちょうどいいバランス。使い切ったらまた購入したいです。</p><p class="rev-meta">M<span class="rev-sep">·</span>購入済み</p></article>
-     　 <article class="rev-item fade"><div class="stars rv-3"></div><h3 class="rev-title">香りは好きだけど好みは分かれそう</h3><p class="rev-body">爽やかで清潔感のある香りですが、個人的にはもう少し軽くてもよかったかなと思いました。香りそのものは好きなので、少量から使っています。爽やかな香りが好きな人なら試してみてもいいと思います。</p><p class="rev-meta">ゆき<span class="rev-sep">·</span>購入済み</p></article>
+        <article class="rev-item fade" data-rating="5"><div class="stars rv-s"></div><h3 class="rev-title">職場でも使いやすい香り</h3><p class="rev-body">仕事の日にも使える香水を探していました。香りが重すぎないので、個人的にはかなり使いやすいです。近づいたときにふわっと香る感じが好き。仕事用の香水を探している人には合うと思います。</p><p class="rev-meta">Nana<span class="rev-sep">·</span>購入済み</p></article>
+       <div class="rev-more-wrap"><button type="button" class="rev-more" id="rev-more">もっと見る</button></div>
+        <article class="rev-item rev-extra fade" data-rating="5"><div class="stars rv-s"></div><h3 class="rev-title">TikTokからそのまま購入しました</h3><p class="rev-body">TikTokで何回か見かけて、レビューが気になったので購入。香りをネットで買うのは少し不安でしたが、実際につけてみると爽やかで上品な感じでした。毎日使いやすい香りなので買ってよかったです。</p><p class="rev-meta">さき<span class="rev-sep">·</span>購入済み</p></article>
+        <article class="rev-item rev-extra fade" data-rating="4"><div class="stars rv-5"></div><h3 class="rev-title">男女どちらでも使いやすそう</h3><p class="rev-body">最初は女性向けかなと思っていましたが、実際はかなりユニセックスな印象。爽やかさがあるので男性でも普通に使えると思います。香りが甘すぎないところが個人的にはよかったです。</p><p class="rev-meta">R<span class="rev-sep">·</span>購入済み</p></article>
+        <article class="rev-item rev-extra fade" data-rating="5" ><div class="stars rv-s"></div><h3 class="rev-title">香水初心者にはかなり使いやすい</h3><p class="rev-body">今まで香水を買ったことがほとんどなく、何を選べばいいか分からなかったので購入しました。クセの強い香りではなく、爽やかで清潔感があります。香水初心者が最初に使うものとしてはかなり使いやすいと思います</p><p class="rev-meta">たくみ<span class="rev-sep">·</span>購入済み</p></article>
+        <article class="rev-item rev-extra fade" data-rating="5"><div class="stars rv-s"></div><h3 class="rev-title">お風呂上がりっぽい清潔感</h3><p class="rev-body">個人的には、爽やかで清潔感のある香りという印象でした。甘ったるい感じではなく、すっきりしていて好きです。香水をつけてる感を出しすぎたくない日に使っています。</p><p class="rev-meta">mii<span class="rev-sep">·</span>購入済み</p></article>
+        <article class="rev-item rev-extra fade" data-rating="4"><div class="stars rv-5"></div><h3 class="rev-title">つけすぎなければちょうどいい</h3><p class="rev-body">香り自体はかなり好きです。つけた直後は思ったよりしっかり香るので、最初は少なめにつけるのがおすすめ。時間が経つと落ち着いてきて、個人的にはそのくらいの香り方が一番好きでした。</p><p class="rev-meta">しょう<span class="rev-sep">·</span>購入済み</p></article>       
+        <article class="rev-item rev-extra fade" data-rating="5"><div class="stars rv-s"></div><h3 class="rev-title">他の香水より出番が多い</h3><p class="rev-body">香水はいくつか持っていますが、結局こういう爽やかな香りが一番使いやすいです。出かけるときはもちろん、普段の日にもつけやすい。香りで失敗したくない人には候補に入れていいと思います。</p><p class="rev-meta">yuna<span class="rev-sep">·</span>購入済み</p></article>
+    　  <article class="rev-item rev-extra fade" data-rating="5"><div class="stars rv-s"></div><h3 class="rev-title">香水っぽすぎないところが好き</h3><p class="rev-body">香水特有の濃い匂いが苦手だったので、こういうタイプはかなり好きです。爽やかさがあって、ちゃんと上品な感じもある。自分の中では「香水をつけてます」感が強くないところが一番よかったです。</p><p class="rev-meta">れい<span class="rev-sep">·</span>購入済み</p></article>
+     　 <article class="rev-item rev-extra fade" data-rating="5"><div class="stars rv-s"></div><h3 class="rev-title">なくなったらまた買いたい</h3><p class="rev-body">普段使いしやすい香りなので、最近こればかり使っています。爽やかだけど普通のシンプルな香りという感じでもなく、個人的にはちょうどいいバランス。使い切ったらまた購入したいです。</p><p class="rev-meta">M<span class="rev-sep">·</span>購入済み</p></article>
+     　 <article class="rev-item rev-extra fade" data-rating="3"><div class="stars rv-5"></div><h3 class="rev-title">香りは好きだけど好みは分かれそう</h3><p class="rev-body">爽やかで清潔感のある香りですが、個人的にはもう少し軽くてもよかったかなと思いました。香りそのものは好きなので、少量から使っています。爽やかな香りが好きな人なら試してみてもいいと思います。</p><p class="rev-meta">ゆき<span class="rev-sep">·</span>購入済み</p></article>
     
       <p class="rev-ft">221件</p>
     </div>
@@ -133,9 +178,23 @@
 (function(){
   'use strict';
   /* ===== Stars ===== */
-  var starSVG='<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
-      fiveStars=starSVG+starSVG+starSVG+starSVG+starSVG;
-  document.querySelectorAll('#fv-stars, .rv-s').forEach(function(e){e.innerHTML=fiveStars});
+var starSVG='<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+
+function renderStars(el,rating){
+  var full=starSVG.repeat(rating);
+  var empty='<svg viewBox="0 0 24 24" class="star-empty"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+  el.innerHTML=full+empty.repeat(5-rating);
+}
+
+renderStars(document.getElementById('fv-stars'),5);
+
+document.querySelectorAll('.rev-item .rv-s').forEach(function(e){
+  var item=e.closest('.rev-item');
+  renderStars(
+    e,
+    Math.max(1,Math.min(5,Number(item.getAttribute('data-rating'))||5))
+  );
+});
   /* ===== Variant Map & Cart ===== */
   var VM={'2ml':{price:'¥2,980',label:'10ml',items:[{id:53230989705584,quantity:1}]},'50ml':{price:'¥13,800',label:'50ml',items:[{id:54079235916144,quantity:1},{id:53231016182128,quantity:1}]},'50ml×2本セット':{price:'¥24,800',label:'50ml×2本セット',items:[{id:54269547250032,quantity:2},{id:53231016182128,quantity:1},{id:53230989541744,quantity:1}]}};
   var curV='50ml',cP=document.getElementById('cta-price');
@@ -143,6 +202,33 @@
   document.getElementById('vs').addEventListener('change',function(e){if(e.target.classList.contains('vr'))upd(e.target.value)});
   function addToCart(){var d=VM[curV];if(!d)return;if(window.clarity)window.clarity('set','InitiateCheckout','true');if(window.ttq)window.ttq.track('AddToCart',{});window.location.href='https://nemveil.com/cart/'+d.items.map(function(i){return i.id+':'+i.quantity}).join(',')}
   document.getElementById('cta-main').addEventListener('click',addToCart);
+  /* ===== Review More ===== */
+var revMore=document.getElementById('rev-more');
+
+if(revMore){
+  revMore.addEventListener('click',function(){
+    var extras=document.querySelectorAll('.rev-extra');
+    var opening=!revMore.classList.contains('is-open');
+
+    extras.forEach(function(el){
+      if(opening){
+        el.classList.add('vis-rev');
+
+        if(el.classList.contains('fade')){
+          requestAnimationFrame(function(){
+            el.classList.add('vis');
+          });
+        }
+      }else{
+        el.classList.remove('vis-rev');
+        el.classList.remove('vis');
+      }
+    });
+
+    revMore.classList.toggle('is-open',opening);
+    revMore.textContent=opening?'閉じる':'もっと見る';
+  });
+}
   /* ===== Stock Bar ===== */
   var sb=document.getElementById('stk-bar');
   if(sb){requestAnimationFrame(function(){setTimeout(function(){sb.style.transform='scaleX(0.28)'},100)})}
