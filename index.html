@@ -107,7 +107,7 @@
         </div>
         <div class="fv-trust-item">
           <div class="fv-trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
-          <div class="fv-trust-text"><span class="fv-trust-label">お支払い方法</span>Apple Pay / Google Pay / あと払い(ペイディ)等、各種決済対応</div>
+          <div class="fv-trust-text"><span class="fv-trust-label">お支払い方法</span>PayPay / Apple Pay / Google Pay / コンビニ決済等、各種決済対応</div>
         </div>
       </div>
     </div>
@@ -120,9 +120,9 @@
       <div class="vs" id="vs">
         <label><input type="radio" name="v" value="2ml" class="vr"><div class="vs-card"><div class="vs-row"><span class="vs-size">2ml</span><span class="vs-price">¥2,980</span></div><span class="vs-note">お試しサイズ</span></div></label>
         <label><input type="radio" name="v" value="50ml" class="vr" checked><div class="vs-card"><div class="vs-row"><span class="vs-size">50ml<span class="vs-tag">一番人気</span></span><span class="vs-price">¥13,800</span></div><span class="vs-note">特典 — 10ml アトマイザー付き</span></div></label>
-        <label><input type="radio" name="v" value="50ml×2本セット" class="vr"><div class="vs-card"><div class="vs-row"><span class="vs-size">50ml×2本セット<span class="vs-tag">一番お得</span></span><span class="vs-price">¥24,800</span></div><span class="vs-note">特典 — アトマイザー + 2ml テストキット付き</span></div></label>
+        <label><input type="radio" name="v" value="50ml×2本セット" class="vr"><div class="vs-card"><div class="vs-row"><span class="vs-size">50ml×2本セット<span class="vs-tag">一番お得</span></span><span class="vs-price">¥19,760</span></div><span class="vs-note">特典 — アトマイザー + 2ml テストキット付き</span></div></label>
       </div>
-      <div class="stk"><div class="stk-line"><div class="stk-bar" id="stk-bar"></div></div><p class="stk-txt">Limited Stock — <span id="stk-count">残り 12 点</span></p></div>
+      <div class="stk"><div class="stk-line"><div class="stk-bar" id="stk-bar"></div></div><p class="stk-txt">Limited Stock — <span id="stk-count">残り 25 点</span></p></div>
       <button class="cta" id="cta-main"><span>Add to Cart</span><span class="cta-sep"></span><span class="cta-p" id="cta-price">¥13,800</span></button>
       <div class="trust"><span>30日間返金保証</span><span class="dot"></span><span>送料無料</span><span class="dot"></span><span>PayPay・コンビニ決済対応</span></div>
     </div>
@@ -196,7 +196,7 @@ document.querySelectorAll('.rev-item .rv-s').forEach(function(e){
   );
 });
   /* ===== Variant Map & Cart ===== */
-  var VM={'2ml':{price:'¥2,980',label:'10ml',items:[{id:53230989705584,quantity:1}]},'50ml':{price:'¥13,800',label:'50ml',items:[{id:54079235916144,quantity:1},{id:53231016182128,quantity:1}]},'50ml×2本セット':{price:'¥24,800',label:'50ml×2本セット',items:[{id:54269547250032,quantity:2},{id:53231016182128,quantity:1},{id:53230989541744,quantity:1}]}};
+  var VM={'2ml':{price:'¥2,980',label:'10ml',items:[{id:53230989705584,quantity:1}]},'50ml':{price:'¥13,800',label:'50ml',items:[{id:54079235916144,quantity:1},{id:53231016182128,quantity:1}]},'50ml×2本セット':{price:'¥19,760',label:'50ml×2本セット',items:[{id:54269547250032,quantity:2},{id:53231016182128,quantity:1},{id:53230989541744,quantity:1}]}};
   var curV='50ml',cP=document.getElementById('cta-price');
   function upd(v){curV=v;var d=VM[v];if(cP)cP.textContent=d.price}
   document.getElementById('vs').addEventListener('change',function(e){if(e.target.classList.contains('vr'))upd(e.target.value)});
