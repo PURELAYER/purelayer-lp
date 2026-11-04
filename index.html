@@ -120,7 +120,7 @@
       <div class="vs" id="vs">
         <label><input type="radio" name="v" value="2ml" class="vr"><div class="vs-card"><div class="vs-row"><span class="vs-size">2ml</span><span class="vs-price">¥2,980</span></div><span class="vs-note">お試しサイズ</span></div></label>
         <label><input type="radio" name="v" value="50ml" class="vr" checked><div class="vs-card"><div class="vs-row"><span class="vs-size">50ml<span class="vs-tag">一番人気</span></span><span class="vs-price">¥13,800</span></div><span class="vs-note">特典 — 10ml アトマイザー付き</span></div></label>
-        <label><input type="radio" name="v" value="50ml×2本セット" class="vr"><div class="vs-card"><div class="vs-row"><span class="vs-size">50ml×2本セット<span class="vs-tag">一番お得</span></span><span class="vs-price">¥19,760</span></div><span class="vs-note">特典 — アトマイザー + 2ml テストキット付き</span></div></label>
+        <label><input type="radio" name="v" value="50ml×2本セット" class="vr"><div class="vs-card"><div class="vs-row"><span class="vs-size">50ml×2本セット<span class="vs-tag">一番お得</span></span><span class="vs-price">¥19,320</span></div><span class="vs-note">特典 — アトマイザー + 2ml テストキット付き</span></div></label>
       </div>
       <div class="stk"><div class="stk-line"><div class="stk-bar" id="stk-bar"></div></div><p class="stk-txt">Limited Stock — <span id="stk-count">残り 25 点</span></p></div>
       <button class="cta" id="cta-main"><span>Add to Cart</span><span class="cta-sep"></span><span class="cta-p" id="cta-price">¥13,800</span></button>
@@ -196,7 +196,7 @@ document.querySelectorAll('.rev-item .rv-s').forEach(function(e){
   );
 });
   /* ===== Variant Map & Cart ===== */
-  var VM={'2ml':{price:'¥2,980',label:'10ml',items:[{id:53230989705584,quantity:1}]},'50ml':{price:'¥13,800',label:'50ml',items:[{id:54079235916144,quantity:1},{id:53231016182128,quantity:1}]},'50ml×2本セット':{price:'¥19,760',label:'50ml×2本セット',items:[{id:54269547250032,quantity:2},{id:53231016182128,quantity:1},{id:53230989541744,quantity:1}]}};
+  var VM={'2ml':{price:'¥2,980',label:'10ml',items:[{id:53230989705584,quantity:1}]},'50ml':{price:'¥13,800',label:'50ml',items:[{id:68143030403440,quantity:1},{id:53231016182128,quantity:1}]},'50ml×2本セット':{price:'¥19,320',label:'50ml×2本セット',items:[{id:68143035122032,quantity:2},{id:53231016182128,quantity:1},{id:53230989541744,quantity:1}]}};
   var curV='50ml',cP=document.getElementById('cta-price');
   function upd(v){curV=v;var d=VM[v];if(cP)cP.textContent=d.price}
   document.getElementById('vs').addEventListener('change',function(e){if(e.target.classList.contains('vr'))upd(e.target.value)});
