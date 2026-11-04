@@ -93,13 +93,13 @@
   <section class="fv" id="section-fv">
     <div class="fv-hero"><img class="fv-img" src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_y00gtvy00gtvy00g.webp?v=1788662525" alt="PURELAYER Oud Stallion" fetchpriority="high" loading="eager" width="750" height="750"></div>
     <div class="fv-info fade" id="fv-info">
-      <h1 class="fv-name">PURELAYER — MARÉLIA / マレリア</h1>
+      <h1 class="fv-name">PURELAYER — COCOSTLIYA / ココストリヤ</h1>
       <div class="fv-rating"><div class="stars" id="fv-stars"></div><span class="fv-rc">221件のレビュー</span></div>
       <div class="fv-tags"><span class="fv-tag">ユニセックス</span><span class="fv-tag">ベストセラー</span><span class="fv-tag">1プッシュあたり約15円〜</span></div>
       <div class="fv-trust">
         <div class="fv-trust-item">
           <div class="fv-trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg></div>
-          <div class="fv-trust-text"><span class="fv-trust-label">購入特典</span>50ml購入で10mlアトマイザー無料同封<br>50ml×2本セット購入で10mlアトマイザー+2mlテストキット無料同封</div>
+          <div class="fv-trust-text"><span class="fv-trust-label">購入特典</span>50ml購入で10ml10mlアトマイザー+香水詰め替えセット無料同封<br>50ml×2本セット購入で10mlアトマイザー+香水詰め替えセット無料同封</div>
         </div>
         <div class="fv-trust-item">
           <div class="fv-trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
@@ -118,7 +118,7 @@
       <p class="prod-kk">Select Size</p>
       <h2 class="prod-hd">サイズを選ぶ</h2>
       <div class="vs" id="vs">
-        <label><input type="radio" name="v" value="2ml" class="vr"><div class="vs-card"><div class="vs-row"><span class="vs-size">2ml</span><span class="vs-price">¥2,980</span></div><span class="vs-note">お試しサイズ</span></div></label>
+        <label><input type="radio" name="v" value="10ml" class="vr"><div class="vs-card"><div class="vs-row"><span class="vs-size">2ml</span><span class="vs-price">¥1,480</span></div><span class="vs-note">お試しサイズ</span></div></label>
         <label><input type="radio" name="v" value="50ml" class="vr" checked><div class="vs-card"><div class="vs-row"><span class="vs-size">50ml<span class="vs-tag">一番人気</span></span><span class="vs-price">¥13,800</span></div><span class="vs-note">特典 — 10ml アトマイザー付き</span></div></label>
         <label><input type="radio" name="v" value="50ml×2本セット" class="vr"><div class="vs-card"><div class="vs-row"><span class="vs-size">50ml×2本セット<span class="vs-tag">一番お得</span></span><span class="vs-price">¥19,320</span></div><span class="vs-note">特典 — アトマイザー + 香水詰め替えセット付き</span></div></label>
       </div>
@@ -196,7 +196,7 @@ document.querySelectorAll('.rev-item .rv-s').forEach(function(e){
   );
 });
   /* ===== Variant Map & Cart ===== */
-  var VM={'2ml':{price:'¥2,980',label:'10ml',items:[{id:53230989705584,quantity:1}]},'50ml':{price:'¥13,800',label:'50ml',items:[{id:68143030403440,quantity:1},{id:53231016182128,quantity:1}]},'50ml×2本セット':{price:'¥19,320',label:'50ml×2本セット',items:[{id:68143035122032,quantity:2},{id:53231016182128,quantity:1},{id:68143124283760,quantity:1}]}};
+  var VM={'10ml':{price:'¥1,480',label:'10ml',items:[{id:53230989705584,quantity:1}]},'50ml':{price:'¥13,800',label:'50ml',items:[{id:68143030403440,quantity:1},{id:53231016182128,quantity:1}]},'50ml×2本セット':{price:'¥19,320',label:'50ml×2本セット',items:[{id:68143035122032,quantity:2},{id:53231016182128,quantity:1},{id:68143124283760,quantity:1}]}};
   var curV='50ml',cP=document.getElementById('cta-price');
   function upd(v){curV=v;var d=VM[v];if(cP)cP.textContent=d.price}
   document.getElementById('vs').addEventListener('change',function(e){if(e.target.classList.contains('vr'))upd(e.target.value)});
