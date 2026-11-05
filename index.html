@@ -14,12 +14,12 @@
 .hdr{position:sticky;top:0;left:0;width:100%;z-index:999;background:var(--w);border-bottom:.5px solid var(--g2);backdrop-filter:blur(8px);background:rgba(255,255,255,0.95)}
 .hdr-in{max-width:480px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:center;padding:0 24px}
 .hdr-logo{font-family:var(--ss);font-size:16px;font-weight:700;letter-spacing:.18em;color:var(--bk);text-decoration:none;text-transform:uppercase}
-/* FV */
-.fv{background:var(--w)}.fv-hero{width:100%;background:var(--g1)}.fv-img{width:100%;aspect-ratio:1/1;object-fit:contain;mix-blend-mode:multiply}.fv-info{padding:28px 24px 40px;max-width:720px;margin:0 auto}.fv-name{font-family:var(--ss);font-size:18px;font-weight:500;color:var(--bk);letter-spacing:.02em;margin:0 0 10px;line-height:1.4}.fv-rating{display:flex;align-items:center;gap:8px;margin-bottom:16px}.fv-rc{font-size:12px;font-weight:400;color:var(--g5);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--g2)}.fv-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}.fv-tag{font-size:11px;font-weight:400;color:var(--g7);border:.5px solid var(--g2);padding:5px 12px;border-radius:20px;letter-spacing:.02em}
-.fv-trust{padding-top:20px;border-top:.5px solid var(--g2);display:flex;flex-direction:column;gap:16px}.fv-trust-item{display:flex;gap:12px;align-items:flex-start}.fv-trust-icon{width:20px;height:20px;flex-shrink:0;color:var(--g5);margin-top:1px}.fv-trust-icon svg{width:20px;height:20px}.fv-trust-text{font-size:12px;color:var(--g7);line-height:1.7;letter-spacing:.02em}.fv-trust-label{display:block;font-size:12px;font-weight:600;color:var(--bk);letter-spacing:.04em;margin-bottom:2px}
+/* FV (修正後) */
 .fv{background:var(--w)}
 .fv-hero{width:100%;background:var(--g1);position:relative;overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none}
 .fv-img{width:100%;aspect-ratio:1/1;object-fit:contain;mix-blend-mode:multiply;pointer-events:none}
+.fv-info{padding:28px 24px 40px;max-width:720px;margin:0 auto}.fv-name{font-family:var(--ss);font-size:18px;font-weight:500;color:var(--bk);letter-spacing:.02em;margin:0 0 16px;line-height:1.4}
+.fv-trust{padding-top:20px;border-top:.5px solid var(--g2);display:flex;flex-direction:column;gap:16px}.fv-trust-item{display:flex;gap:12px;align-items:flex-start}.fv-trust-icon{width:20px;height:20px;flex-shrink:0;color:var(--g5);margin-top:1px}.fv-trust-icon svg{width:20px;height:20px}.fv-trust-text{font-size:12px;color:var(--g7);line-height:1.7;letter-spacing:.02em}.fv-trust-label{display:block;font-size:12px;font-weight:600;color:var(--bk);letter-spacing:.04em;margin-bottom:2px}
 /* Carousel & FV Desc */
 .carousel-track{display:flex;width:100%;transition:transform .3s ease;will-change:transform}
 .carousel-slide{min-width:100%;flex-shrink:0}
@@ -102,7 +102,7 @@
   </div>
 </header>
 <main>
- <!-- ===== SECTION 1: FIRST VIEW ===== -->
+  <!-- ===== SECTION 1: FIRST VIEW ===== -->
   <section class="fv" id="section-fv">
     <div class="fv-hero">
       <div class="carousel-track" id="carousel-track">
@@ -184,11 +184,11 @@
         <article class="rev-item rev-extra fade" data-rating="4"><div class="stars rv-s"></div><h3 class="rev-title">男女どちらでも使いやすそう</h3><p class="rev-body">最初は女性向けかなと思っていましたが、実際はかなりユニセックスな印象。爽やかさがあるので男性でも普通に使えると思います。香りが甘すぎないところが個人的にはよかったです。</p><p class="rev-meta">R<span class="rev-sep">·</span>購入済み</p></article>
         <article class="rev-item rev-extra fade" data-rating="5" ><div class="stars rv-s"></div><h3 class="rev-title">香水初心者にはかなり使いやすい</h3><p class="rev-body">今まで香水を買ったことがほとんどなく、何を選べばいいか分からなかったので購入しました。クセの強い香りではなく、爽やかで清潔感があります。香水初心者が最初に使うものとしてはかなり使いやすいと思います</p><p class="rev-meta">たくみ<span class="rev-sep">·</span>購入済み</p></article>
         <article class="rev-item rev-extra fade" data-rating="5"><div class="stars rv-s"></div><h3 class="rev-title">お風呂上がりっぽい清潔感</h3><p class="rev-body">個人的には、爽やかで清潔感のある香りという印象でした。甘ったるい感じではなく、すっきりしていて好きです。香水をつけてる感を出しすぎたくない日に使っています。</p><p class="rev-meta">mii<span class="rev-sep">·</span>購入済み</p></article>
-        <article class="rev-item rev-extra fade" data-rating="4"><div class="stars rv-s"></div><h3 class="rev-title">つけすぎなければちょうどいい</h3><p class="rev-body">香り自体はかなり好きです。つけた直後は思ったよりしっかり香るので、最初は少なめにつけるのがおすすめ。時間が経つと落ち着いてきて、個人的にはそのくらいの香り方が一番好きでした。</p><p class="rev-meta">しょう<span class="rev-sep">·</span>購入済み</p></article>       
+        <article class="rev-item rev-extra fade" data-rating="4"><div class="stars rv-s"></div><h3 class="rev-title">つけすぎなければちょうどいい</h3><p class="rev-body">香り自体はかなり好きです。つけた直後は思ったよりしっかり香りますが、最初は少なめにつけるのがおすすめ。時間が経つと落ち着いてきて、個人的にはそのくらいの香り方が一番好きでした。</p><p class="rev-meta">しょう<span class="rev-sep">·</span>購入済み</p></article>       
         <article class="rev-item rev-extra fade" data-rating="5"><div class="stars rv-s"></div><h3 class="rev-title">他の香水より出番が多い</h3><p class="rev-body">香水はいくつか持っていますが、結局こういう爽やかな香りが一番使いやすいです。出かけるときはもちろん、普段の日にもつけやすい。香りで失敗したくない人には候補に入れていいと思います。</p><p class="rev-meta">yuna<span class="rev-sep">·</span>購入済み</p></article>
-    　  <article class="rev-item rev-extra fade" data-rating="5"><div class="stars rv-s"></div><h3 class="rev-title">香水っぽすぎないところが好き</h3><p class="rev-body">香水特有の濃い匂いが苦手だったので、こういうタイプはかなり好きです。爽やかさがあって、ちゃんと上品な感じもある。自分の中では「香水をつけてます」感が強くないところが一番よかったです。</p><p class="rev-meta">れい<span class="rev-sep">·</span>購入済み</p></article>
-     　 <article class="rev-item rev-extra fade" data-rating="5"><div class="stars rv-s"></div><h3 class="rev-title">なくなったらまた買いたい</h3><p class="rev-body">普段使いしやすい香りなので、最近こればかり使っています。爽やかだけど普通のシンプルな香りという感じでもなく、個人的にはちょうどいいバランス。使い切ったらまた購入したいです。</p><p class="rev-meta">M<span class="rev-sep">·</span>購入済み</p></article>
-     　 <article class="rev-item rev-extra fade" data-rating="3"><div class="stars rv-s"></div><h3 class="rev-title">香りは好きだけど好みは分かれそう</h3><p class="rev-body">爽やかで清潔感のある香りですが、個人的にはもう少し軽くてもよかったかなと思いました。香りそのものは好きなので、少量から使っています。爽やかな香りが好きな人なら試してみてもいいと思います。</p><p class="rev-meta">ゆき<span class="rev-sep">·</span>購入済み</p></article>
+       <article class="rev-item rev-extra fade" data-rating="5"><div class="stars rv-s"></div><h3 class="rev-title">香水っぽすぎないところが好き</h3><p class="rev-body">香水特有の濃い匂いがあまり得意だったので、こういうタイプはかなり好きです。爽やかさがあって、ちゃんと上品な感じもある。自分の中では「香水をつけてます」感が強くないところが一番よかったです。</p><p class="rev-meta">れい<span class="rev-sep">·</span>購入済み</p></article>
+       <article class="rev-item rev-extra fade" data-rating="5"><div class="stars rv-s"></div><h3 class="rev-title">なくなったらまた買いたい</h3><p class="rev-body">普段使いしやすい香りなので、最近こればかり使っています。爽やかだけど普通のシンプルな香りという感じでもなく、個人的にはちょうどいいバランス。使い切ったらまた購入したいです。</p><p class="rev-meta">M<span class="rev-sep">·</span>購入済み</p></article>
+       <article class="rev-item rev-extra fade" data-rating="3"><div class="stars rv-s"></div><h3 class="rev-title">香りは好きだけど好みは分かれそう</h3><p class="rev-body">爽やかで清潔感のある香りですが、個人的にはもう少し軽くてもよかったかなと思いました。香りそのものは好きなので、少量から使っています。爽やかな香りが好きな人なら試してみてもいいと思います。</p><p class="rev-meta">ゆき<span class="rev-sep">·</span>購入済み</p></article>
     
       <p class="rev-ft">221件</p>
     </div>
@@ -225,7 +225,14 @@ function renderStars(el,rating){
   el.innerHTML=full+empty.repeat(5-rating);
 }
 
-/* ===== Carousel ===== */
+document.querySelectorAll('.rev-item .rv-s').forEach(function(e){
+  var item=e.closest('.rev-item');
+  renderStars(
+    e,
+    Math.max(1,Math.min(5,Number(item.getAttribute('data-rating'))||5))
+  );
+});
+  /* ===== Carousel ===== */
   var track = document.getElementById('carousel-track');
   var dots = document.querySelectorAll('.carousel-dot');
   var currentSlide = 0;
@@ -281,14 +288,6 @@ function renderStars(el,rating){
     track.addEventListener('pointerup', endDrag);
     track.addEventListener('pointercancel', endDrag);
   }
-
-document.querySelectorAll('.rev-item .rv-s').forEach(function(e){
-  var item=e.closest('.rev-item');
-  renderStars(
-    e,
-    Math.max(1,Math.min(5,Number(item.getAttribute('data-rating'))||5))
-  );
-});
   /* ===== Variant Map & Cart ===== */
   var VM={'10ml':{price:'¥1,480',label:'10ml',items:[{id:68143208857968,quantity:1}]},'50ml':{price:'¥13,800',label:'50ml',items:[{id:68143030403440,quantity:1},{id:53231016182128,quantity:1}]},'50ml×2本セット':{price:'¥19,320',label:'50ml×2本セット',items:[{id:68143035122032,quantity:2},{id:53231016182128,quantity:1},{id:68143124283760,quantity:1}]}};
   var curV='50ml',cP=document.getElementById('cta-price');
