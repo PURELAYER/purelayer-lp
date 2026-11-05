@@ -17,6 +17,19 @@
 /* FV */
 .fv{background:var(--w)}.fv-hero{width:100%;background:var(--g1)}.fv-img{width:100%;aspect-ratio:1/1;object-fit:contain;mix-blend-mode:multiply}.fv-info{padding:28px 24px 40px;max-width:720px;margin:0 auto}.fv-name{font-family:var(--ss);font-size:18px;font-weight:500;color:var(--bk);letter-spacing:.02em;margin:0 0 10px;line-height:1.4}.fv-rating{display:flex;align-items:center;gap:8px;margin-bottom:16px}.fv-rc{font-size:12px;font-weight:400;color:var(--g5);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--g2)}.fv-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}.fv-tag{font-size:11px;font-weight:400;color:var(--g7);border:.5px solid var(--g2);padding:5px 12px;border-radius:20px;letter-spacing:.02em}
 .fv-trust{padding-top:20px;border-top:.5px solid var(--g2);display:flex;flex-direction:column;gap:16px}.fv-trust-item{display:flex;gap:12px;align-items:flex-start}.fv-trust-icon{width:20px;height:20px;flex-shrink:0;color:var(--g5);margin-top:1px}.fv-trust-icon svg{width:20px;height:20px}.fv-trust-text{font-size:12px;color:var(--g7);line-height:1.7;letter-spacing:.02em}.fv-trust-label{display:block;font-size:12px;font-weight:600;color:var(--bk);letter-spacing:.04em;margin-bottom:2px}
+.fv{background:var(--w)}
+.fv-hero{width:100%;background:var(--g1);position:relative;overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.fv-img{width:100%;aspect-ratio:1/1;object-fit:contain;mix-blend-mode:multiply;pointer-events:none}
+/* Carousel & FV Desc */
+.carousel-track{display:flex;width:100%;transition:transform .3s ease;will-change:transform}
+.carousel-slide{min-width:100%;flex-shrink:0}
+.carousel-dots{display:flex;justify-content:center;align-items:center;gap:6px;padding:12px 0 8px;background:var(--g1)}
+.carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--g4);opacity:.35;transition:opacity .2s,transform .2s;cursor:pointer}
+.carousel-dot.is-active{opacity:1;background:var(--bk);transform:scale(1.2)}
+.fv-desc{margin-bottom:24px}
+.fv-desc-title{font-size:14px;font-weight:600;color:var(--bk);letter-spacing:.02em;margin-bottom:10px;line-height:1.5}
+.fv-desc-body{font-size:13px;font-weight:400;color:var(--g7);line-height:1.85;letter-spacing:.01em;margin-bottom:10px}
+.fv-desc-body:last-child{margin-bottom:0}
 /* Product */
 .prod{background:var(--w);padding:56px 0;border-top:.5px solid var(--g2)}.prod-in{max-width:480px;margin:0 auto;padding:0 24px}.prod-kk{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--g5);text-align:center;margin:0 0 8px}.prod-hd{font-family:var(--sf);font-size:20px;font-weight:500;text-align:center;letter-spacing:.08em;color:var(--bk);margin:0 0 36px}.vs{display:flex;flex-direction:column;margin-bottom:28px}.vs input{display:none}.vs-card{padding:18px 0;border-top:.5px solid var(--g2);cursor:pointer;transition:background .2s}.vs label:last-child .vs-card{border-bottom:.5px solid var(--g2)}.vs input:checked+.vs-card{background:var(--g1);margin:0 -24px;padding:18px 24px}.vs-row{display:flex;justify-content:space-between;align-items:baseline}.vs-size{font-size:15px;font-weight:600;color:var(--bk);letter-spacing:.02em;display:flex;align-items:center;gap:10px}.vs-tag{font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--g5);border:.5px solid var(--g4);padding:2px 8px;border-radius:2px}.vs-price{font-size:14px;font-weight:500;color:var(--bk);letter-spacing:.02em}.vs-note{display:block;font-size:11px;font-weight:400;color:var(--g5);margin-top:4px;letter-spacing:.03em}
 .stk{margin-bottom:28px;text-align:center}.stk-line{height:1px;background:var(--g2);margin-bottom:12px;overflow:hidden}.stk-bar{height:100%;width:100%;background:var(--bk);transform:scaleX(0);transform-origin:left;transition:transform 1.8s cubic-bezier(.25,1,.5,1);will-change:transform}.stk-txt{font-size:10px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--g5);margin:0}.stk-txt span{color:var(--bk);font-weight:500}
@@ -89,13 +102,39 @@
   </div>
 </header>
 <main>
-  <!-- ===== SECTION 1: FIRST VIEW ===== -->
+ <!-- ===== SECTION 1: FIRST VIEW ===== -->
   <section class="fv" id="section-fv">
-    <div class="fv-hero"><img class="fv-img" src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Gemini_Generated_Image_y00gtvy00gtvy00g.webp?v=1788662525" alt="PURELAYER Oud Stallion" fetchpriority="high" loading="eager" width="750" height="750"></div>
+    <div class="fv-hero">
+      <div class="carousel-track" id="carousel-track">
+        <div class="carousel-slide">
+          <img class="fv-img" src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/Sb637b07aaf754ed08a9ca0038f56b8e4G.webp?v=1793760843" alt="COCOSTLIYA 香水ボトル" fetchpriority="high" loading="eager" width="750" height="750">
+        </div>
+        <div class="carousel-slide">
+          <img class="fv-img" src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/779895.webp?v=1793844839" alt="COCOSTLIYA 使用イメージ" loading="lazy" width="750" height="750">
+        </div>
+        <div class="carousel-slide">
+          <img class="fv-img" src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/tertery.webp?v=1793845038" alt="COCOSTLIYA ディテール" loading="lazy" width="750" height="750">
+        </div>
+      </div>
+      <div class="carousel-dots" id="carousel-dots">
+        <span class="carousel-dot is-active"></span>
+        <span class="carousel-dot"></span>
+        <span class="carousel-dot"></span>
+      </div>
+    </div>
     <div class="fv-info fade" id="fv-info">
-      <h1 class="fv-name">PURELAYER — COCOSTLIYA / ココストリヤ</h1>
-      <div class="fv-rating"><div class="stars" id="fv-stars"></div><span class="fv-rc">221件のレビュー</span></div>
-      <div class="fv-tags"><span class="fv-tag">ユニセックス</span><span class="fv-tag">ベストセラー</span><span class="fv-tag">1プッシュあたり約15円〜</span></div>
+      <h1 class="fv-name">COCOSTLIYA</h1>
+      <div class="fv-desc">
+        <p class="fv-desc-title">柑橘の爽やかさと、上品な清潔感。</p>
+        <p class="fv-desc-body">
+          つけた瞬間は、オレンジの明るく爽やかな香り。<br>
+          やがてローズとジャスミンの上品なフローラルが広がり、最後はホワイトムスクのやわらかな清潔感に包まれます。
+        </p>
+        <p class="fv-desc-body">
+          華やかすぎず、落ち着いた印象の香り。<br>
+          オフィスや普段のお出かけなど、日常のさまざまなシーンに取り入れやすい香りです。
+        </p>
+      </div>
       <div class="fv-trust">
         <div class="fv-trust-item">
           <div class="fv-trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg></div>
@@ -186,7 +225,62 @@ function renderStars(el,rating){
   el.innerHTML=full+empty.repeat(5-rating);
 }
 
-renderStars(document.getElementById('fv-stars'),5);
+/* ===== Carousel ===== */
+  var track = document.getElementById('carousel-track');
+  var dots = document.querySelectorAll('.carousel-dot');
+  var currentSlide = 0;
+  var totalSlides = 3;
+  var startX = 0;
+  var currentTranslate = 0;
+  var isDragging = false;
+  var moved = false;
+  function updateSlide(idx) {
+    currentSlide = Math.max(0, Math.min(totalSlides - 1, idx));
+    track.style.transition = 'transform .3s ease';
+    track.style.transform = 'translateX(' + (-currentSlide * 100) + '%)';
+    dots.forEach(function(dot, i) {
+      dot.classList.toggle('is-active', i === currentSlide);
+    });
+  }
+  dots.forEach(function(dot, i) {
+    dot.addEventListener('click', function() {
+      updateSlide(i);
+    });
+  });
+  if (track) {
+    track.addEventListener('pointerdown', function(e) {
+      isDragging = true;
+      moved = false;
+      startX = e.clientX;
+      track.style.transition = 'none';
+      if (track.setPointerCapture) track.setPointerCapture(e.pointerId);
+    });
+    track.addEventListener('pointermove', function(e) {
+      if (!isDragging) return;
+      var diffX = e.clientX - startX;
+      if (Math.abs(diffX) > 5) moved = true;
+      var baseTranslate = -currentSlide * track.offsetWidth;
+      track.style.transform = 'translateX(' + (baseTranslate + diffX) + 'px)';
+    });
+    var endDrag = function(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      if (track.releasePointerCapture) {
+        try { track.releasePointerCapture(e.pointerId); } catch (_) {}
+      }
+      var diffX = e.clientX - startX;
+      if (moved && Math.abs(diffX) > 40) {
+        if (diffX < 0 && currentSlide < totalSlides - 1) {
+          currentSlide++;
+        } else if (diffX > 0 && currentSlide > 0) {
+          currentSlide--;
+        }
+      }
+      updateSlide(currentSlide);
+    };
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+  }
 
 document.querySelectorAll('.rev-item .rv-s').forEach(function(e){
   var item=e.closest('.rev-item');
