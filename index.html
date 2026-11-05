@@ -29,6 +29,74 @@
 .fv-desc-body:last-child{margin-bottom:0}
 .fv-info{padding:28px 24px 40px;max-width:720px;margin:0 auto}.fv-name{font-family:var(--ss);font-size:18px;font-weight:500;color:var(--bk);letter-spacing:.02em;margin:0 0 16px;line-height:1.4}
 .fv-trust{padding-top:20px;border-top:.5px solid var(--g2);display:flex;flex-direction:column;gap:16px}.fv-trust-item{display:flex;gap:12px;align-items:flex-start}.fv-trust-icon{width:20px;height:20px;flex-shrink:0;color:var(--g5);margin-top:1px}.fv-trust-icon svg{width:20px;height:20px}.fv-trust-text{font-size:12px;color:var(--g7);line-height:1.7;letter-spacing:.02em}.fv-trust-label{display:block;font-size:12px;font-weight:600;color:var(--bk);letter-spacing:.04em;margin-bottom:2px}
+/* ===== Benefits Section (追加) ===== */
+.benefits{
+  background: var(--ow);
+  border: .5px solid var(--g2);
+  border-radius: 6px;
+  padding: 16px 14px;
+  margin-bottom: 4px;
+}
+.benefits-group-title{
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--bk);
+  letter-spacing: .04em;
+  margin-bottom: 10px;
+}
+.benefits-list{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.benefits-item{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.benefits-thumb{
+  width: 52px;
+  height: 52px;
+  border-radius: 4px;
+  background: var(--w);
+  border: .5px solid var(--g2);
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.benefits-thumb img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+.benefits-info{
+  flex: 1;
+  min-width: 0;
+}
+.benefits-name{
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--bk);
+  line-height: 1.4;
+  letter-spacing: .02em;
+  margin: 0 0 2px;
+}
+.benefits-desc{
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--g5);
+  line-height: 1.4;
+  letter-spacing: .01em;
+  margin: 0;
+}
+.benefits-sep{
+  border: none;
+  border-top: .5px solid var(--g2);
+  margin: 14px 0;
+}
 /* Product */
 .prod{background:var(--w);padding:56px 0;border-top:.5px solid var(--g2)}.prod-in{max-width:480px;margin:0 auto;padding:0 24px}.prod-kk{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--g5);text-align:center;margin:0 0 8px}.prod-hd{font-family:var(--sf);font-size:20px;font-weight:500;text-align:center;letter-spacing:.08em;color:var(--bk);margin:0 0 36px}.vs{display:flex;flex-direction:column;margin-bottom:28px}.vs input{display:none}.vs-card{padding:18px 0;border-top:.5px solid var(--g2);cursor:pointer;transition:background .2s}.vs label:last-child .vs-card{border-bottom:.5px solid var(--g2)}.vs input:checked+.vs-card{background:var(--g1);margin:0 -24px;padding:18px 24px}.vs-row{display:flex;justify-content:space-between;align-items:baseline}.vs-size{font-size:15px;font-weight:600;color:var(--bk);letter-spacing:.02em;display:flex;align-items:center;gap:10px}.vs-tag{font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--g5);border:.5px solid var(--g4);padding:2px 8px;border-radius:2px}.vs-price{font-size:14px;font-weight:500;color:var(--bk);letter-spacing:.02em}.vs-note{display:block;font-size:11px;font-weight:400;color:var(--g5);margin-top:4px;letter-spacing:.03em}
 .stk{margin-bottom:28px;text-align:center}.stk-line{height:1px;background:var(--g2);margin-bottom:12px;overflow:hidden}.stk-bar{height:100%;width:100%;background:var(--bk);transform:scaleX(0);transform-origin:left;transition:transform 1.8s cubic-bezier(.25,1,.5,1);will-change:transform}.stk-txt{font-size:10px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--g5);margin:0}.stk-txt span{color:var(--bk);font-weight:500}
@@ -141,10 +209,51 @@
         </p>
       </div>
       <div class="fv-trust">
-        <div class="fv-trust-item">
-          <div class="fv-trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg></div>
-          <div class="fv-trust-text"><span class="fv-trust-label">購入特典</span>50ml購入で10mlアトマイザー+香水詰め替えセット無料同封<br>50ml×2本セット購入で10mlアトマイザー+香水詰め替えセット+専用ポーチ無料同封</div>
+        <!-- ===== 新・購入特典エリア ===== -->
+        <div class="benefits">
+          <!-- 50ml購入者向け特典（上段） -->
+          <div class="benefits-group">
+            <p class="benefits-group-title">50mlをご購入の方</p>
+            <div class="benefits-list">
+              <div class="benefits-item">
+                <div class="benefits-thumb">
+                  <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/H409fecaf90ca4ecd99bda8abbcc106c5y.webp?v=1770291622" alt="10mlアトマイザー" loading="lazy" width="120" height="120">
+                </div>
+                <div class="benefits-info">
+                  <p class="benefits-name">10mlアトマイザー</p>
+                  <p class="benefits-desc">お気に入りの香りを持ち運べる</p>
+                </div>
+              </div>
+              <div class="benefits-item">
+                <div class="benefits-thumb">
+                  <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/S2c587f7a8f934f5eb6c1e03135ccbfc9D_926c39b8-8fc5-4a60-ac3d-b906282acfe6.webp?v=1793763026" alt="香水詰め替えセット" loading="lazy" width="120" height="120">
+                </div>
+                <div class="benefits-info">
+                  <p class="benefits-name">香水詰め替えセット</p>
+                  <p class="benefits-desc">香水の移し替えに便利なツール</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 区切り線 -->
+          <hr class="benefits-sep">
+          <!-- 50ml×2本セット限定特典（下段） -->
+          <div class="benefits-group">
+            <p class="benefits-group-title">50ml×2本セット限定</p>
+            <div class="benefits-list">
+              <div class="benefits-item">
+                <div class="benefits-thumb">
+                  <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/image0675567.webp?v=1793845392" alt="専用ポーチ" loading="lazy" width="120" height="120">
+                </div>
+                <div class="benefits-info">
+                  <p class="benefits-name">専用ポーチ</p>
+                  <p class="benefits-desc">2本セットだけの追加特典</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <!-- 既存の「配送・返品」「お支払い方法」はそのまま維持 -->
         <div class="fv-trust-item">
           <div class="fv-trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
           <div class="fv-trust-text"><span class="fv-trust-label">配送・返品</span>全国送料無料 / 通常5〜10日、地域や配送状況によって最大17日</div>
