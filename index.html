@@ -37,6 +37,32 @@
   padding: 16px 14px;
   margin-bottom: 4px;
 }
+/* 購入特典 見出しヘッダー */
+.benefits-header{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.benefits-header-icon{
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--g5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.benefits-header-icon svg{
+  width: 20px;
+  height: 20px;
+}
+.benefits-header-title{
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--bk);
+  letter-spacing: .04em;
+}
 .benefits-group-title{
   font-size: 11px;
   font-weight: 600;
@@ -211,6 +237,19 @@
       <div class="fv-trust">
         <!-- ===== 新・購入特典エリア ===== -->
         <div class="benefits">
+          <!-- 見出しヘッダー -->
+          <div class="benefits-header">
+            <div class="benefits-header-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 12 20 22 4 22 4 12"/>
+                <rect x="2" y="7" width="20" height="5"/>
+                <line x1="12" y1="22" x2="12" y2="7"/>
+                <path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/>
+                <path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/>
+              </svg>
+            </div>
+            <span class="benefits-header-title">購入特典</span>
+          </div>
           <!-- 50ml購入者向け特典（上段） -->
           <div class="benefits-group">
             <p class="benefits-group-title">50mlをご購入の方</p>
