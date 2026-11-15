@@ -14,7 +14,7 @@
 .hdr{position:sticky;top:0;left:0;width:100%;z-index:999;background:var(--w);border-bottom:.5px solid var(--g2);backdrop-filter:blur(8px);background:rgba(255,255,255,0.95)}
 .hdr-in{max-width:480px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:center;padding:0 24px}
 .hdr-logo{font-family:var(--ss);font-size:16px;font-weight:700;letter-spacing:.18em;color:var(--bk);text-decoration:none;text-transform:uppercase}
-/* ===== FV & Carousel (整理・修正後) ===== */
+/* ===== FV & Carousel ===== */
 .fv{background:var(--w)}
 .fv-hero{width:100%;background:var(--g1);position:relative;overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none}
 .carousel-track{display:flex;width:100%;transition:transform .3s ease;will-change:transform}
@@ -29,7 +29,7 @@
 .fv-desc-body:last-child{margin-bottom:0}
 .fv-info{padding:28px 24px 40px;max-width:720px;margin:0 auto}.fv-name{font-family:var(--ss);font-size:18px;font-weight:500;color:var(--bk);letter-spacing:.02em;margin:0 0 16px;line-height:1.4}
 .fv-trust{padding-top:20px;border-top:.5px solid var(--g2);display:flex;flex-direction:column;gap:16px}.fv-trust-item{display:flex;gap:12px;align-items:flex-start}.fv-trust-icon{width:20px;height:20px;flex-shrink:0;color:var(--g5);margin-top:1px}.fv-trust-icon svg{width:20px;height:20px}.fv-trust-text{font-size:12px;color:var(--g7);line-height:1.7;letter-spacing:.02em}.fv-trust-label{display:block;font-size:12px;font-weight:600;color:var(--bk);letter-spacing:.04em;margin-bottom:2px}
-/* ===== Benefits Section (追加) ===== */
+/* ===== Benefits Section ===== */
 .benefits{
   background: var(--ow);
   border: .5px solid var(--g2);
@@ -37,7 +37,6 @@
   padding: 16px 14px;
   margin-bottom: 4px;
 }
-/* 購入特典 見出しヘッダー */
 .benefits-header{
   display: flex;
   align-items: center;
@@ -127,7 +126,7 @@
 .prod{background:var(--w);padding:56px 0;border-top:.5px solid var(--g2)}.prod-in{max-width:480px;margin:0 auto;padding:0 24px}.prod-kk{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--g5);text-align:center;margin:0 0 8px}.prod-hd{font-family:var(--sf);font-size:20px;font-weight:500;text-align:center;letter-spacing:.08em;color:var(--bk);margin:0 0 36px}.vs{display:flex;flex-direction:column;margin-bottom:28px}.vs input{display:none}.vs-card{padding:18px 0;border-top:.5px solid var(--g2);cursor:pointer;transition:background .2s}.vs label:last-child .vs-card{border-bottom:.5px solid var(--g2)}.vs input:checked+.vs-card{background:var(--g1);margin:0 -24px;padding:18px 24px}.vs-row{display:flex;justify-content:space-between;align-items:baseline}.vs-size{font-size:15px;font-weight:600;color:var(--bk);letter-spacing:.02em;display:flex;align-items:center;gap:10px}.vs-tag{font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--g5);border:.5px solid var(--g4);padding:2px 8px;border-radius:2px}.vs-price{font-size:14px;font-weight:500;color:var(--bk);letter-spacing:.02em}.vs-note{display:block;font-size:11px;font-weight:400;color:var(--g5);margin-top:4px;letter-spacing:.03em}
 .cta{display:flex;justify-content:center;align-items:center;gap:12px;width:100%;padding:18px;background:var(--bk);color:#fff;border:none;font-family:var(--ss);font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:opacity .2s;margin-bottom:16px}.cta:active{opacity:.85}.cta-sep{width:1px;height:14px;background:rgba(255,255,255,.25)}.cta-p{font-weight:400;opacity:.6}.trust{display:flex;justify-content:center;align-items:center;gap:0;font-size:10px;font-weight:400;color:var(--g5);letter-spacing:.06em}.trust>span{padding:0 8px}
 /* Accordion */
-.acc{background:var(--ow);padding:56px 0}.acc-in{max-width:480px;margin:0 auto;padding:0 24px}.acc-kk{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--g5);text-align:center;margin:0 0 8px}.acc-hd{font-family:var(--sf);font-size:20px;font-weight:500;text-align:center;letter-spacing:.08em;color:var(--bk);margin:0 0 40px}.acc-item{border-top:.5px solid var(--g2)}.acc-item:last-child{border-bottom:.5px solid var(--g2)}.acc-trig{display:flex;justify-content:space-between;align-items:center;padding:20px 0;cursor:pointer;list-style:none;user-select:none;-webkit-user-select:none}.acc-trig::-webkit-details-marker{display:none}.acc-trig::marker{display:none;content:''}.acc-title{font-size:13px;font-weight:500;color:var(--bk);letter-spacing:.06em}.acc-tog{position:relative;width:16px;height:16px;flex-shrink:0}.acc-tog::before,.acc-tog::after{content:'';position:absolute;top:50%;left:50%;background:var(--g5);transition:transform .3s,opacity .3s}.acc-tog::before{width:12px;height:.5px;transform:translate(-50%,-50%)}.acc-tog::after{width:.5px;height:12px;transform:translate(-50%,-50%)}details[open]>.acc-trig .acc-tog::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}.acc-body{overflow:hidden;max-height:0;transition:max-height .4s cubic-bezier(.25,1,.5,1);will-change:max-height}details[open]>.acc-body{max-height:600px}.acc-cnt{padding:0 0 28px;font-size:13px;line-height:1.9;color:var(--g7)}.acc-cnt p{margin-bottom:12px}.acc-cnt strong{color:var(--bk);font-weight:600}.acc-sub{font-size:12px;font-weight:600;color:var(--bk);letter-spacing:.06em;margin:16px 0 6px}.acc-cap{font-size:11px;color:var(--g5);line-height:1.8;margin-top:12px}.dl-row{display:flex;padding:10px 0;border-bottom:.5px solid var(--g1);font-size:13px}.dl-row:last-child{border-bottom:none}.dl-row dt{width:90px;flex-shrink:0;font-weight:500;color:var(--bk)}.dl-row dd{margin:0;color:var(--g7)}.acc-ul{list-style:none;padding:0}.acc-ul li{padding:4px 0;font-size:13px}.acc-ul li::before{content:'–';margin-right:8px;color:var(--g5)}.acc-ol{padding-left:18px;margin:6px 0 12px}.acc-ol li{padding:4px 0;font-size:13px}.acc-ol li::marker{font-weight:600;color:var(--g5)}.faq{margin-bottom:20px}.faq:last-child{margin-bottom:0}.faq-q{font-size:13px;font-weight:600;color:var(--bk);margin-bottom:4px}.faq-a{font-size:13px;color:var(--g7);line-height:1.9}
+.acc{background:var(--ow);padding:56px 0;border-top:.5px solid var(--g2)}.acc-in{max-width:480px;margin:0 auto;padding:0 24px}.acc-kk{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--g5);text-align:center;margin:0 0 8px}.acc-hd{font-family:var(--sf);font-size:20px;font-weight:500;text-align:center;letter-spacing:.08em;color:var(--bk);margin:0 0 40px}.acc-item{border-top:.5px solid var(--g2)}.acc-item:last-child{border-bottom:.5px solid var(--g2)}.acc-trig{display:flex;justify-content:space-between;align-items:center;padding:20px 0;cursor:pointer;list-style:none;user-select:none;-webkit-user-select:none}.acc-trig::-webkit-details-marker{display:none}.acc-trig::marker{display:none;content:''}.acc-title{font-size:13px;font-weight:500;color:var(--bk);letter-spacing:.06em}.acc-tog{position:relative;width:16px;height:16px;flex-shrink:0}.acc-tog::before,.acc-tog::after{content:'';position:absolute;top:50%;left:50%;background:var(--g5);transition:transform .3s,opacity .3s}.acc-tog::before{width:12px;height:.5px;transform:translate(-50%,-50%)}.acc-tog::after{width:.5px;height:12px;transform:translate(-50%,-50%)}details[open]>.acc-trig .acc-tog::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}.acc-body{overflow:hidden;max-height:0;transition:max-height .4s cubic-bezier(.25,1,.5,1);will-change:max-height}details[open]>.acc-body{max-height:800px}.acc-cnt{padding:0 0 28px;font-size:13px;line-height:1.9;color:var(--g7)}.acc-cnt p{margin-bottom:12px}.acc-cnt strong{color:var(--bk);font-weight:600}.acc-sub{font-size:12px;font-weight:600;color:var(--bk);letter-spacing:.06em;margin:16px 0 6px}.acc-cap{font-size:11px;color:var(--g5);line-height:1.8;margin-top:12px}.dl-row{display:flex;padding:10px 0;border-bottom:.5px solid var(--g1);font-size:13px}.dl-row:last-child{border-bottom:none}.dl-row dt{width:90px;flex-shrink:0;font-weight:500;color:var(--bk)}.dl-row dd{margin:0;color:var(--g7)}.acc-ul{list-style:none;padding:0}.acc-ul li{padding:4px 0;font-size:13px}.acc-ul li::before{content:'–';margin-right:8px;color:var(--g5)}.acc-ol{padding-left:18px;margin:6px 0 12px}.acc-ol li{padding:4px 0;font-size:13px}.acc-ol li::marker{font-weight:600;color:var(--g5)}.faq{margin-bottom:20px}.faq:last-child{margin-bottom:0}.faq-q{font-size:13px;font-weight:600;color:var(--bk);margin-bottom:4px}.faq-a{font-size:13px;color:var(--g7);line-height:1.9}
 /* 返品の流れのLINEリンク用スタイル */
 .refund-line-link {
   color: var(--bk);
@@ -149,12 +148,12 @@
   .prod,.acc{padding:72px 0}
 }
 </style>
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "x7usup3miy");
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "x7usup3miy");
 </script>
 </head>
 <body>
@@ -198,69 +197,8 @@
           オフィスや普段のお出かけなど、日常のさまざまなシーンに取り入れやすい香りです。
         </p>
       </div>
+      <!-- FV内には「お支払い方法」を維持（案1） -->
       <div class="fv-trust">
-        <!-- ===== 新・購入特典エリア ===== -->
-        <div class="benefits">
-          <!-- 見出しヘッダー -->
-          <div class="benefits-header">
-            <div class="benefits-header-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 12 20 22 4 22 4 12"/>
-                <rect x="2" y="7" width="20" height="5"/>
-                <line x1="12" y1="22" x2="12" y2="7"/>
-                <path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/>
-                <path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/>
-              </svg>
-            </div>
-            <span class="benefits-header-title">購入特典</span>
-          </div>
-          <!-- 50ml購入者向け特典（上段） -->
-          <div class="benefits-group">
-            <p class="benefits-group-title">50mlをご購入の方</p>
-            <div class="benefits-list">
-              <div class="benefits-item">
-                <div class="benefits-thumb">
-                  <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/H409fecaf90ca4ecd99bda8abbcc106c5y.webp?v=1770291622" alt="10mlアトマイザー" loading="lazy" width="120" height="120">
-                </div>
-                <div class="benefits-info">
-                  <p class="benefits-name">10mlアトマイザー</p>
-                  <p class="benefits-desc">お気に入りの香りを持ち運べる</p>
-                </div>
-              </div>
-              <div class="benefits-item">
-                <div class="benefits-thumb">
-                  <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/S2c587f7a8f934f5eb6c1e03135ccbfc9D_926c39b8-8fc5-4a60-ac3d-b906282acfe6.webp?v=1793763026" alt="香水詰め替えセット" loading="lazy" width="120" height="120">
-                </div>
-                <div class="benefits-info">
-                  <p class="benefits-name">香水詰め替えセット</p>
-                  <p class="benefits-desc">香水の移し替えに便利なツール</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- 区切り線 -->
-          <hr class="benefits-sep">
-          <!-- 50ml×2本セット限定特典（下段） -->
-          <div class="benefits-group">
-            <p class="benefits-group-title">50ml×2本セット限定</p>
-            <div class="benefits-list">
-              <div class="benefits-item">
-                <div class="benefits-thumb">
-                  <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/image0675567.webp?v=1793845392" alt="専用ポーチ" loading="lazy" width="120" height="120">
-                </div>
-                <div class="benefits-info">
-                  <p class="benefits-name">専用ポーチ</p>
-                  <p class="benefits-desc">2本セットだけの追加特典</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- 既存の「配送・返品」「お支払い方法」はそのまま維持 -->
-        <div class="fv-trust-item">
-          <div class="fv-trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-          <div class="fv-trust-text"><span class="fv-trust-label">配送・返品</span>全国送料無料 / 通常5〜10日、地域や配送状況によって最大17日</div>
-        </div>
         <div class="fv-trust-item">
           <div class="fv-trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
           <div class="fv-trust-text"><span class="fv-trust-label">お支払い方法</span>PayPay / Apple Pay / Google Pay / コンビニ決済等、各種決済対応</div>
@@ -268,6 +206,7 @@
       </div>
     </div>
   </section>
+
   <!-- ===== SECTION 2: PRODUCT SELECTION ===== -->
   <section class="prod" id="section-product">
     <div class="prod-in">
@@ -282,26 +221,357 @@
       <div class="trust"><span>30日間返金保証</span><span class="dot"></span><span>送料無料</span><span class="dot"></span><span>PayPay・コンビニ決済対応</span></div>
     </div>
   </section>
-  <!-- ===== SECTION 4: ACCORDION ===== -->
-  <section class="acc">
+
+  <!-- ===== SECTION 3: BEFORE PURCHASE FAQ (購入前アコーディオン) ===== -->
+  <section class="acc" id="section-faq-before">
     <div class="acc-in">
-      <p class="acc-kk">Details</p>
-      <h2 class="acc-hd">詳細情報</h2>
+      <p class="acc-kk">FAQ & Details</p>
+      <h2 class="acc-hd">購入前のご確認</h2>
       <div>
-        <details class="acc-item"><summary class="acc-trig"><span class="acc-title">商品詳細</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt"><dl><div class="dl-row"><dt>商品名</dt><dd>COCOSTLIYA / ココストリヤ</dd></div><div class="dl-row"><dt>ブランド</dt><dd>PURELAYER</dd></div><div class="dl-row"><dt>容量</dt><dd>10ml / 50ml / 50ml×2本セット</dd></div><div class="dl-row"><dt>香りの系統</dt><dd>上品な清潔感・高級ホテルのような香り</dd></div><div class="dl-row"><dt>持続時間</dt><dd>約 3 – 5 時間（個人差あり）</dd></div><div class="dl-row"><dt>使い方</dt><dd>首筋・手首に 1 – 2 プッシュ</dd></div><div class="dl-row"><dt>対象</dt><dd>ユニセックス（男女兼用）</dd></div></dl></div></div></details>
-        <details class="acc-item"><summary class="acc-trig"><span class="acc-title">成分・原材料</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt"><p>エタノール、香料（パルファム）、水、BHT</p><p class="acc-sub">主な香料成分</p><ul class="acc-ul"><li>オレンジ — 明るく爽やかな香り</li><li>ローズ＆ジャスミン — 上品なフローラル</li><li>ホワイトムスク — 柔らかな清潔感</li></ul><p class="acc-cap">※ 肌に異常を感じた場合は使用を中止してください。</p></div></div></details>
-        <details class="acc-item"><summary class="acc-trig"><span class="acc-title">30日間全額返金保証</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt"><p>商品到着から 30 日以内であれば、理由を問わず全額返金いたします。</p><p class="acc-sub">返品の流れ</p><ol class="acc-ol"><li><a href="https://line.me/R/ti/p/@086yhskp" target="_blank" rel="noopener noreferrer" class="refund-line-link">公式LINE</a>でご連絡</li><li>返品先住所をご案内</li><li>商品を返送（返送料はお客様負担）</li><li>到着確認後、5 営業日以内に全額返金</li></ol><p class="acc-cap">※ 使用済みでも返品可（残量 50% 以上）。特典のみの返品は不可。</p></div></div></details>
-        <details class="acc-item"><summary class="acc-trig"><span class="acc-title">配送について</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt"><dl><div class="dl-row"><dt>送料</dt><dd>全国無料</dd></div><div class="dl-row"><dt>発送</dt><dd>ご注文確認後、順次発送</dd></div><div class="dl-row"><dt>お届け目安</dt><dd>発送後 5〜17営業日</dd></div><div class="dl-row"><dt>梱包</dt><dd>無地ダンボール（中身がわからない梱包）</dd></div></dl></div></div></details>
-        <details class="acc-item"><summary class="acc-trig"><span class="acc-title">よくある質問</span><span class="acc-tog"></span></summary><div class="acc-body"><div class="acc-cnt"><div class="faq"><p class="faq-q">香りがきつくないですか？</p><p class="faq-a">石鹸系のナチュラルな香りです。1プッシュでほどよく香ります。</p></div><div class="faq"><p class="faq-q">男性用？女性用？</p><p class="faq-a">ユニセックスです。18–34歳の男女から均等にご支持いただいています。</p></div><div class="faq"><p class="faq-q">どこにつければいいですか？</p><p class="faq-a">首筋や手首に1–2プッシュ。体温の高い部位につけると自然に香りが広がります。</p></div><div class="faq"><p class="faq-q">10mlはどれくらい持ちますか？</p><p class="faq-a">1日1–2プッシュで約2–3週間お使いいただけます。</p></div><div class="faq"><p class="faq-q">特典のアトマイザーとは？</p><p class="faq-a">持ち運び用の空の10mlスプレーボトルです。</p></div></div></div></details>
+        <!-- Q1 -->
+        <details class="acc-item">
+          <summary class="acc-trig">
+            <span class="acc-title">どんな香りですか？</span>
+            <span class="acc-tog"></span>
+          </summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p><strong>10mlと50mlは容量違いではなく、香りが異なる別の商品です。</strong></p>
+              <p>
+                <strong>50ml（COCOSTLIYA）：</strong><br>
+                ベルガモットやマンダリンの爽やかな柑橘系から始まり、ローズやジャスミンの上品なフローラル、最後はアンバーやムスク、ウードの落ち着いた深みへと変化するオードパルファムです。華やかすぎず、日常使いしやすい落ち着いた清潔感のある香りです。
+              </p>
+              <p>
+                <strong>10ml：</strong><br>
+                お選びいただくバリエーションごとに香りが異なります。石鹸系やフローラル系など、選択されたタイプに応じた香りをお楽しみいただけます（詳細は商品選択欄をご確認ください）。
+              </p>
+              <p class="acc-cap">
+                ※ 香水はつけた直後と時間が経ってからで香りが変化します。実店舗のように事前のお試しができないため、記載の香調をご確認の上でお選びください。香りの強さの感じ方には個人差がありますので、使い始めは少量からお試しいただくことをおすすめします。
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Q2 -->
+        <details class="acc-item">
+          <summary class="acc-trig">
+            <span class="acc-title">10mlと50mlは何が違いますか？</span>
+            <span class="acc-tog"></span>
+          </summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p><strong>容量だけでなく、ボトルの形状・製造元（ブランド）・香りが異なる「別の商品」です。</strong></p>
+              <p>
+                ・<strong>10ml：</strong> 携帯しやすいスリムなガラスボトル（高さ約11〜12cm）で、香りは選択するバリエーションごとに異なります。<br>
+                ・<strong>50ml（COCOSTLIYA）：</strong> 据え置き型のスクエアガラスボトルで、柑橘からフローラル、ウードへと移ろうオードパルファムです。
+              </p>
+              <p class="acc-cap">
+                ※ 同じ香りではないため、10mlの香りで50mlの香りを判断することはできません。用途や香りの好みに合わせてお選びください。
+              </p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Q3 -->
+        <details class="acc-item">
+          <summary class="acc-trig">
+            <span class="acc-title">どこで製造されていますか？</span>
+            <span class="acc-tog"></span>
+          </summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p>10ml・50mlともに、原産国（製造国）は中国です。</p>
+              <p>ボトルや外装に「French Perfume」「PARIS」などの表記が見られる場合がありますが、これらはデザインや香調コンセプトを表したものであり、フランス製を意味するものではありません。</p>
+              <p class="acc-cap">※ 欧州の化粧品届出（CPNP）を行っているサプライヤーから仕入れ、海外の提携倉庫から発送しています。なお、CPNPは届出制度であり、品質や安全性を個別に保証・認証するものではありません。</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Q4 -->
+        <details class="acc-item">
+          <summary class="acc-trig">
+            <span class="acc-title">肌につけても大丈夫ですか？</span>
+            <span class="acc-tog"></span>
+          </summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p>一般的な香水と同様にアルコールや香料等を含む製品です。現在、外箱に記載されている正確な全成分表示の確認作業を進めております。</p>
+              <p>肌への反応や相性には個人差があり、すべての方に肌トラブルが起きないことを保証するものではありません。敏感肌の方やアルコールに弱い体質の方は、ご使用前に腕の内側などで必ずパッチテストを行ってください。</p>
+              <p class="acc-cap">※ 顔・粘膜・傷や湿疹のある部位、皮膚が敏感な部位への直接の使用は避けてください。肌に異常を感じた場合は直ちに使用を中止してください。</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Q5 -->
+        <details class="acc-item">
+          <summary class="acc-trig">
+            <span class="acc-title">男性用ですか？女性用ですか？</span>
+            <span class="acc-tog"></span>
+          </summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p>ユニセックス（男女兼用）仕様です。</p>
+              <p>甘すぎず落ち着きのある清潔感を重視した調香となっておりますので、性別を問わず、またお仕事やお出かけなどシーンを選ばずにお使いいただけます。</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Q6 -->
+        <details class="acc-item">
+          <summary class="acc-trig">
+            <span class="acc-title">どこにつければいいですか？</span>
+            <span class="acc-tog"></span>
+          </summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p>手首や耳の後ろ、首筋（うなじ付近）など、体温が高く直射日光の当たらない部位に1〜2プッシュつけていただくと、自然に香りが広がります。</p>
+              <p>より穏やかに香らせたい場合は、ウエスト回りや足首など下半身につけるのもおすすめです。</p>
+              <p class="acc-cap">※ 顔や粘膜、皮膚が薄く荒れやすい部位への噴霧は避けてください。また、白い衣服やシルク、革製品に直接スプレーするとシミの原因になりますのでご注意ください。</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Q7 -->
+        <details class="acc-item">
+          <summary class="acc-trig">
+            <span class="acc-title">返品・交換・返金はできますか？</span>
+            <span class="acc-tog"></span>
+          </summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p><strong>【配送中の破損・初期不良】</strong><br>配送途中の破損、液漏れ、届いた商品が異なる場合は、交換または返金にて対応いたします。状態を確認できる写真を添えてご連絡ください。</p>
+              <p><strong>【30日間全額返金保証について】</strong><br>安心してお試しいただくため、商品到着後30日以内の返金窓口を設けております。</p>
+              <ol class="acc-ol">
+                <li><a href="https://line.me/R/ti/p/@086yhskp" target="_blank" rel="noopener noreferrer" class="refund-line-link">公式LINE</a>よりご注文番号とお名前をご連絡ください。</li>
+                <li>担当者より返送先住所および適用手順をご案内いたします。</li>
+                <li>商品をご返送いただき、到着・確認完了後に返金処理を行います。</li>
+              </ol>
+              <p class="acc-cap">※ 返金保証の適用条件（開封済み商品の取り扱い、送料負担等）につきましては、確認・変更の可能性があるため、ご連絡時に公式LINEにて最新の詳細条件をご案内いたします。特典のみの返品は不可となります。</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Q8 -->
+        <details class="acc-item">
+          <summary class="acc-trig">
+            <span class="acc-title">お支払い情報は安全ですか？</span>
+            <span class="acc-tog"></span>
+          </summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p>当サイトでの通信は、すべてSSL/TLS暗号化により保護されています。</p>
+              <p>クレジットカード等の決済処理は、国際的なセキュリティ基準（PCI DSS）に準拠した外部の決済代行事業者を通じて安全に行われます。</p>
+              <p class="acc-cap">※ 当店でお客様のクレジットカード番号を保持・保管・閲覧することは一切ございません。</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 4: BENEFITS & SHIPPING (無料特典・配送情報) ===== -->
+  <section class="sec-benefits-shipping" id="section-benefits-shipping" style="background:var(--w);padding:48px 0;border-top:.5px solid var(--g2)">
+    <div class="prod-in">
+      <!-- 購入特典ボックス -->
+      <div class="benefits">
+        <div class="benefits-header">
+          <div class="benefits-header-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 12 20 22 4 22 4 12"/>
+              <rect x="2" y="7" width="20" height="5"/>
+              <line x1="12" y1="22" x2="12" y2="7"/>
+              <path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/>
+              <path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/>
+            </svg>
+          </div>
+          <span class="benefits-header-title">購入特典</span>
+        </div>
+
+        <!-- 50ml購入者向け特典（上段） -->
+        <div class="benefits-group">
+          <p class="benefits-group-title">50mlをご購入の方</p>
+          <div class="benefits-list">
+            <div class="benefits-item">
+              <div class="benefits-thumb">
+                <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/H409fecaf90ca4ecd99bda8abbcc106c5y.webp?v=1770291622" alt="10mlアトマイザー" loading="lazy" width="120" height="120">
+              </div>
+              <div class="benefits-info">
+                <p class="benefits-name">10mlアトマイザー</p>
+                <p class="benefits-desc">お気に入りの香りを持ち運べる（空の10mlスプレーボトル）</p>
+              </div>
+            </div>
+            <div class="benefits-item">
+              <div class="benefits-thumb">
+                <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/S2c587f7a8f934f5eb6c1e03135ccbfc9D_926c39b8-8fc5-4a60-ac3d-b906282acfe6.webp?v=1793763026" alt="香水詰め替えセット" loading="lazy" width="120" height="120">
+              </div>
+              <div class="benefits-info">
+                <p class="benefits-name">香水詰め替えセット</p>
+                <p class="benefits-desc">香水の移し替えに便利なツール</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 区切り線 -->
+        <hr class="benefits-sep">
+
+        <!-- 50ml×2本セット限定特典（下段） -->
+        <div class="benefits-group">
+          <p class="benefits-group-title">50ml×2本セット限定</p>
+          <div class="benefits-list">
+            <div class="benefits-item">
+              <div class="benefits-thumb">
+                <img src="https://cdn.shopify.com/s/files/1/0957/4570/4304/files/image0675567.webp?v=1793845392" alt="専用ポーチ" loading="lazy" width="120" height="120">
+              </div>
+              <div class="benefits-info">
+                <p class="benefits-name">専用ポーチ</p>
+                <p class="benefits-desc">2本セットだけの追加特典</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 配送情報（配送日数の二段階表記） -->
+      <div style="margin-top:16px;">
+        <div class="fv-trust-item">
+          <div class="fv-trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="3" width="15" height="13"/>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+              <circle cx="5.5" cy="18.5" r="2.5"/>
+              <circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+          </div>
+          <div class="fv-trust-text">
+            <span class="fv-trust-label">配送について</span>
+            全国送料無料<br>
+            ・出荷目安：ご注文・決済確認後、5営業日以内<br>
+            ・お届け目安：出荷後 6〜18日程度
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 5: AFTER PURCHASE FAQ (購入後アコーディオン) ===== -->
+  <section class="acc" id="section-faq-after">
+    <div class="acc-in">
+      <p class="acc-kk">After Purchase</p>
+      <h2 class="acc-hd">購入後のよくある質問</h2>
+      <div>
+        <!-- Q1 -->
+        <details class="acc-item">
+          <summary class="acc-trig">
+            <span class="acc-title">注文後、いつ・どこから発送されますか？</span>
+            <span class="acc-tog"></span>
+          </summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p>ご注文および決済の完了確認後、<strong>5営業日以内</strong>に中国の提携海外物流倉庫より出荷いたします。</p>
+              <p>出荷後のお届け目安は<strong>6〜18日程度</strong>です。</p>
+              <p class="acc-cap">※ 国内発送ではなく国際配送を経由するため、国内通販よりも日数を要します。土日祝日、国際配送の混雑状況、天候、税関での通関審査などにより前後する場合がございますので、あらかじめご了承ください。</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Q2 -->
+        <details class="acc-item">
+          <summary class="acc-trig">
+            <span class="acc-title">届くのが遅いとき、どうすればいいですか？</span>
+            <span class="acc-tog"></span>
+          </summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p>出荷後のお届け目安は6〜18日程度となっておりますが、通関手続きや輸送状況により一時的に日数を要する場合がございます。</p>
+              <p>現在の国際配送システム上、個別のお荷物追跡番号をご案内することができません。お待たせしてしまい誠に申し訳ございません。</p>
+              <p>万が一、ご注文決済完了から<strong>60日を経過しても届かない場合</strong>は、全額返金または再送にて責任を持って対応いたします。お届け目安を大幅に過ぎてご不安な場合は、ご注文完了メールに記載の「ご注文番号」を添えて、公式LINEまたはお問い合わせ窓口へご連絡ください。</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Q3 -->
+        <details class="acc-item">
+          <summary class="acc-trig">
+            <span class="acc-title">破損・液漏れ・違う商品が届いたらどうなりますか？</span>
+            <span class="acc-tog"></span>
+          </summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p>万全を期して緩衝材で丁寧に梱包して発送しておりますが、配送中の破損・液漏れ、初期不良、届いた商品が異なる場合は、交換または返金の対象となります。</p>
+              <p>恐れ入りますが、商品到着後7日以内に、お届け時の外箱・梱包・商品の破損状態がわかる写真を添えて、ご注文番号とともに公式LINEへご連絡ください。</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Q4 -->
+        <details class="acc-item">
+          <summary class="acc-trig">
+            <span class="acc-title">使い始めにアルコールの匂いが強いのですが？</span>
+            <span class="acc-tog"></span>
+          </summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p>開封直後やスプレーした瞬間は、ベースとなるエタノール（アルコール）の香りを一時的に強く感じられる場合がございます。</p>
+              <p>スプレー後数十秒〜数分程度でアルコール分が自然に空気中に揮発し、本来の調香された香りへと移り変わります。スプレー直後に強く吸い込まず、少し時間を置いてから香りをお楽しみください。</p>
+              <p class="acc-cap">※ 初めて使用する際は少なめにつけて様子を見てください。また、顔や粘膜への直接噴霧は避けてください。</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Q5 -->
+        <details class="acc-item">
+          <summary class="acc-trig">
+            <span class="acc-title">肌に合わなかった場合はどうすればいいですか？</span>
+            <span class="acc-tog"></span>
+          </summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p>万が一、使用中や使用後に赤み、かゆみ、ヒリヒリ感、刺激などの異常が生じた場合は、直ちに使用を中止し、流水でよく洗い流してください。</p>
+              <p>症状が続く場合は、製品をお手元にお控えの上、皮膚科専門医にご相談されることをおすすめいたします。肌トラブルによるご相談につきましては、ご注文番号を添えて公式LINEまでお問い合わせください。</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Q6 -->
+        <details class="acc-item">
+          <summary class="acc-trig">
+            <span class="acc-title">保管方法と使用期限を教えてください</span>
+            <span class="acc-tog"></span>
+          </summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p>直射日光や高温多湿、温度変化の激しい場所（窓際、車内、浴室付近など）を避け、キャップをしっかり閉めて冷暗所で立てた状態で保管してください。</p>
+              <p>開封後は空気や光に触れることで徐々に香りの変化が進むため、<strong>開封後12ヶ月以内</strong>を目安にお使いいただくことをおすすめします。</p>
+            </div>
+          </div>
+        </details>
+
+        <!-- Q7 -->
+        <details class="acc-item">
+          <summary class="acc-trig">
+            <span class="acc-title">個人情報はどう取り扱われますか？</span>
+            <span class="acc-tog"></span>
+          </summary>
+          <div class="acc-body">
+            <div class="acc-cnt">
+              <p>お客様の氏名・ご住所・電話番号等の個人情報は、SSL暗号化通信により保護され、商品の発送手配およびご注文に関するサポート対応にのみ利用いたします。</p>
+              <p>当店の商品は海外の提携倉庫から直送されるため、<strong>配送に必要な情報（氏名・お届け先住所・電話番号）に限り、提携先の海外物流倉庫および配送業者へ安全に共有・提供されます。</strong></p>
+              <p class="acc-cap">※ 配送およびサポート以外の目的で第三者へ個人情報を提供することはございません。詳細につきましては、ページ下部の「プライバシーポリシー」をご確認ください。</p>
+            </div>
+          </div>
+        </details>
       </div>
     </div>
   </section>
 </main>
+
 <footer class="ft">
   <div class="ft-logo">PURELAYER</div>
   <div class="ft-links"><a href="https://nemveil.com/policies/legal-notice">特定商取引法に基づく表記</a><a href="https://nemveil.com/policies/privacy-policy">プライバシーポリシー</a><a href="https://nemveil.com/policies/refund-policy">返金ポリシー</a><a href="https://nemveil.com/policies/terms-of-service">利用規約</a></div>
   <div class="ft-copy">&copy; 2026 PURELAYER. All rights reserved.</div>
 </footer>
+
 <script>
 (function(){
   'use strict';
@@ -361,6 +631,7 @@
     track.addEventListener('pointerup', endDrag);
     track.addEventListener('pointercancel', endDrag);
   }
+
   /* ===== Variant Map & Cart ===== */
   var VM = {
     '10ml': {
@@ -395,14 +666,15 @@
   document.getElementById('vs').addEventListener('change',function(e){if(e.target.classList.contains('vr'))upd(e.target.value)});
   function addToCart(){var d=VM[curV];if(!d)return;if(window.clarity)window.clarity('set','InitiateCheckout','true');if(window.ttq)window.ttq.track('AddToCart',{});window.location.href='https://nemveil.com/cart/'+d.items.map(function(i){return i.id+':'+i.quantity}).join(',')}
   document.getElementById('cta-main').addEventListener('click',addToCart);
+
   /* ===== Fade ===== */
   if('IntersectionObserver' in window){
     var ioFade=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');ioFade.unobserve(e.target)}})},{rootMargin:"50px",threshold:0});
     document.querySelectorAll('.fade').forEach(function(el){ioFade.observe(el)});
   }else{document.querySelectorAll('.fade').forEach(function(el){el.classList.add('vis')})}
-  /* ===== Accordion ===== */
-  document.querySelector('.acc').addEventListener('toggle',function(e){if(e.target.open){document.querySelectorAll('.acc-item').forEach(function(o){if(o!==e.target&&o.open)o.removeAttribute('open')})}},true);
+
   upd(curV);
+
   /* ===== 3rd-party Lazy Load ===== */
   var lzt=false;
   function ld3rd(){if(lzt)return;lzt=true;window.removeEventListener('scroll',ld3rd);window.removeEventListener('mousemove',ld3rd);window.removeEventListener('touchstart',ld3rd);var cfb=document.createElement('script');cfb.defer=true;cfb.src='https://static.cloudflareinsights.com/beacon.min.js';cfb.setAttribute('data-cf-beacon','{"token": "8ea9ff4db23e489587540327ecf52eec"}');document.body.appendChild(cfb);(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","x7usup3miy")}
