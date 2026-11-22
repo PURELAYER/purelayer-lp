@@ -39,7 +39,7 @@
 .fv-desc-body{font-size:13px;font-weight:400;color:var(--g7);line-height:1.85;letter-spacing:.01em;margin:0}
 .fv-desc-note{font-size:11px;color:var(--g5);line-height:1.6;letter-spacing:.02em;margin-top:12px}
 
-/* ===== Payment & Shipping Section ===== */
+/* ===== Payment & Shipping Section (Legacy CSS) ===== */
 .sec-info{background:var(--ow);padding:24px 0;border-top:.5px solid var(--g2)}
 .sec-info-in{max-width:480px;margin:0 auto;padding:0 24px}
 .info-grid{display:flex;flex-direction:column;gap:18px}
@@ -191,6 +191,10 @@ details[open]>.acc-body{max-height:800px}
 .ft-links a{font-size:11px;color:var(--g5);text-decoration:none;font-weight:400}
 .ft-copy{font-size:10px;color:var(--g5)}
 
+/* ===== Info Accordion Section ===== */
+.sec-info-acc{background:var(--ow);padding:24px 0;border-top:.5px solid var(--g2)}
+.sec-info-acc-in{max-width:480px;margin:0 auto;padding:0 24px}
+
 /* ===== Responsive (PC) ===== */
 @media(min-width:768px){
   .carousel-slide{aspect-ratio:4/3}
@@ -198,6 +202,8 @@ details[open]>.acc-body{max-height:800px}
   .fv-info{padding:40px 40px 56px}
   .sec-info{padding:32px 0}
   .sec-info-in{max-width:640px}
+  .sec-info-acc{padding:32px 0}
+  .sec-info-acc-in{max-width:640px}
   .info-grid{flex-direction:row;gap:32px}
   .info-item{flex:1}
   .prod,.sec-edu,.acc{padding:72px 0}
@@ -313,42 +319,65 @@ details[open]>.acc-body{max-height:800px}
     </div>
   </section>
 
-  <!-- ===== SECTION: PAYMENT & SHIPPING ===== -->
-  <section class="sec-info" id="section-info-pay-ship">
-    <div class="sec-info-in">
-      <div class="info-grid">
-        <!-- お支払い方法 -->
-        <div class="info-item">
-          <div class="info-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
-              <line x1="1" y1="10" x2="23" y2="10"/>
-            </svg>
-          </div>
-          <div class="info-cnt">
-            <span class="info-label">お支払い方法</span>
-            PayPay / Apple Pay / Google Pay / コンビニ決済等、各種決済対応
+  <!-- ===== SECTION: INFO ACCORDION (配送・返品・決済) ===== -->
+  <section class="sec-info-acc" id="section-info-accordion">
+    <div class="sec-info-acc-in">
+      <!-- ① 配送・送料について -->
+      <details class="acc-item">
+        <summary class="acc-trig">
+          <span class="acc-title">配送・送料について</span>
+          <span class="acc-tog"></span>
+        </summary>
+        <div class="acc-body">
+          <div class="acc-cnt">
+            <p>
+              ・全国送料無料<br>
+              ・出荷目安：ご注文・決済確認後、5営業日以内<br>
+              ・お届け目安：出荷後 6〜18日程度<br>
+              ・中国倉庫より発送<br>
+              ・現在の配送方法では追跡番号の発行はありません
+            </p>
           </div>
         </div>
+      </details>
 
-        <!-- 配送について -->
-        <div class="info-item">
-          <div class="info-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="1" y="3" width="15" height="13"/>
-              <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
-              <circle cx="5.5" cy="18.5" r="2.5"/>
-              <circle cx="18.5" cy="18.5" r="2.5"/>
-            </svg>
-          </div>
-          <div class="info-cnt">
-            <span class="info-label">配送について</span>
-            全国送料無料<br>
-            ・出荷目安：ご注文・決済確認後、5営業日以内<br>
-            ・お届け目安：出荷後 6〜18日程度
+      <!-- ② 返品・返金について -->
+      <details class="acc-item">
+        <summary class="acc-trig">
+          <span class="acc-title">返品・返金について</span>
+          <span class="acc-tog"></span>
+        </summary>
+        <div class="acc-body">
+          <div class="acc-cnt">
+            <p>
+              <strong>【配送中の破損・初期不良】</strong><br>
+              配送途中の破損、液漏れ、届いた商品が異なる場合は、交換または返金にて対応いたします。状態を確認できる写真を添えてご連絡ください。
+            </p>
+            <p>
+              <strong>【30日間全額返金保証について】</strong><br>
+              商品到着後30日以内の返金窓口を設けています。<a href="https://line.me/R/ti/p/@086yhskp" target="_blank" rel="noopener noreferrer" class="refund-line-link">公式LINE</a>よりご注文番号とお名前をご連絡いただき、担当者から案内される手順に沿って返送・返金を進める形式です。
+            </p>
+            <p class="acc-cap">
+              ※ 返品条件（開封済み商品の取り扱い、送料負担等）の詳細は、公式LINEにてご案内いたします。特典のみの返品は不可です。
+            </p>
           </div>
         </div>
-      </div>
+      </details>
+
+      <!-- ③ お支払い方法について -->
+      <details class="acc-item">
+        <summary class="acc-trig">
+          <span class="acc-title">お支払い方法について</span>
+          <span class="acc-tog"></span>
+        </summary>
+        <div class="acc-body">
+          <div class="acc-cnt">
+            <p>
+              PayPay / Apple Pay / Google Pay / コンビニ決済等、各種決済対応
+            </p>
+          </div>
+        </div>
+      </details>
     </div>
   </section>
 
