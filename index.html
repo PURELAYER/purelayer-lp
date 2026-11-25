@@ -121,10 +121,18 @@
 .plan-benefit-thumb img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
 .plan-benefit-text{font-size:11px;font-weight:400;color:var(--g7);line-height:1.3}
 
-.cta{display:flex;justify-content:center;align-items:center;gap:12px;width:100%;padding:18px;background:var(--bk);color:#fff;border:none;font-family:var(--ss);font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:opacity .2s;margin-bottom:16px}
+.cta{display:flex;justify-content:center;align-items:center;gap:12px;width:100%;padding:18px;background:var(--bk);color:#fff;border:none;font-family:var(--ss);font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:opacity .2s;margin-bottom:8px}
 .cta:active{opacity:.85}
+.cta:disabled,.cta.is-loading{opacity:.8;cursor:not-allowed}
+.cta-default{display:inline-flex;justify-content:center;align-items:center;gap:12px}
+.cta.is-loading .cta-default{display:none}
+.cta-loading{display:none;justify-content:center;align-items:center;gap:8px}
+.cta.is-loading .cta-loading{display:inline-flex}
+.cta-spinner{width:14px;height:14px;border:1.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;flex-shrink:0;animation:cta-spin .75s linear infinite}
+@keyframes cta-spin{to{transform:rotate(360deg)}}
 .cta-sep{width:1px;height:14px;background:rgba(255,255,255,.25)}
 .cta-p{font-weight:400;opacity:.6}
+.cta-note{font-size:11px;font-weight:400;color:var(--g5);text-align:center;letter-spacing:.04em;line-height:1.5;margin:0 0 14px}
 .trust{display:flex;justify-content:center;align-items:center;gap:0;font-size:10px;font-weight:400;color:var(--g5);letter-spacing:.06em}
 .trust>span{padding:0 8px}
 
@@ -319,7 +327,7 @@ details[open]>.acc-body{max-height:800px}
     </div>
   </section>
 
-  <!-- ===== SECTION: INFO ACCORDION (配送・返品・決済) ===== -->
+  <!-- ===== SECTION: INFO ACCORDION (配送・返品・決済・注文の流れ・お問い合わせ) ===== -->
   <section class="sec-info-acc" id="section-info-accordion">
     <div class="sec-info-acc-in">
       <!-- ① 配送・送料について -->
@@ -351,12 +359,19 @@ details[open]>.acc-body{max-height:800px}
           <div class="acc-cnt">
             <p>
               <strong>【配送中の破損・初期不良】</strong><br>
-              配送途中の破損、液漏れ、届いた商品が異なる場合は、交換または返金にて対応いたします。状態を確認できる写真を添えてご連絡ください。
+              配送中の破損、液漏れ、ご注文と異なる商品が届いた場合は、交換または返金にて対応いたします。商品の状態を確認できる写真を添えてご連絡ください。
             </p>
             <p>
               <strong>【30日間全額返金保証について】</strong><br>
-              商品到着後30日以内の返金窓口を設けています。<a href="https://line.me/R/ti/p/@086yhskp" target="_blank" rel="noopener noreferrer" class="refund-line-link">公式LINE</a>よりご注文番号とお名前をご連絡いただき、担当者から案内される手順に沿って返送・返金を進める形式です。
+              商品到着後30日以内に<a href="https://line.me/R/ti/p/@086yhskp" target="_blank" rel="noopener noreferrer" class="refund-line-link">公式LINE</a>よりご連絡ください。以下の手順に沿って返送・返金を進めます。
             </p>
+            <ol class="acc-ol">
+              <li><a href="https://line.me/R/ti/p/@086yhskp" target="_blank" rel="noopener noreferrer" class="refund-line-link">公式LINE</a>に連絡する</li>
+              <li>ご注文番号とお名前を送る</li>
+              <li>担当者から返送先住所と返品手順の案内を受ける</li>
+              <li>案内に沿って商品を返送する</li>
+              <li>返送品の到着・確認後に返金手続きを行う</li>
+            </ol>
             <p class="acc-cap">
               ※ 返品条件（開封済み商品の取り扱い、送料負担等）の詳細は、公式LINEにてご案内いたします。特典のみの返品は不可です。
             </p>
@@ -374,6 +389,48 @@ details[open]>.acc-body{max-height:800px}
           <div class="acc-cnt">
             <p>
               PayPay / Apple Pay / Google Pay / コンビニ決済等、各種決済対応
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <!-- ④ ご注文からお届けまで -->
+      <details class="acc-item">
+        <summary class="acc-trig">
+          <span class="acc-title">ご注文からお届けまで</span>
+          <span class="acc-tog"></span>
+        </summary>
+        <div class="acc-body">
+          <div class="acc-cnt">
+            <ol class="acc-ol">
+              <li>商品ページの購入ボタンをタップする</li>
+              <li>チェックアウト画面へ移動する</li>
+              <li>メールアドレス・お名前・お届け先住所など必要な情報を入力する</li>
+              <li>お支払い方法を選択し、注文を確定する</li>
+              <li>注文完了画面が表示されたら、注文手続きが完了する</li>
+              <li>ご注文・決済確認後、5営業日以内に出荷される</li>
+              <li>出荷後、6〜18日程度で商品が届く</li>
+            </ol>
+            <p class="acc-cap">
+              ※ 購入ボタンを押しただけでは注文は完了しません。移動後のチェックアウト画面にて必要事項をご入力のうえ、注文を確定してください。
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <!-- ⑤ お問い合わせについて -->
+      <details class="acc-item">
+        <summary class="acc-trig">
+          <span class="acc-title">お問い合わせについて</span>
+          <span class="acc-tog"></span>
+        </summary>
+        <div class="acc-body">
+          <div class="acc-cnt">
+            <p>
+              ご購入前・ご購入後のご質問やご相談は、<a href="https://line.me/R/ti/p/@086yhskp" target="_blank" rel="noopener noreferrer" class="refund-line-link">公式LINE</a>よりお問い合わせください。
+            </p>
+            <p class="acc-cap">
+              ※ すでにご注文済みの場合は、「ご注文番号」と「お名前」を添えてご連絡ください。
             </p>
           </div>
         </div>
@@ -488,7 +545,11 @@ details[open]>.acc-body{max-height:800px}
       </div>
 
       <!-- 購入ボタン（初期表示は50ml単品の¥9,890） -->
-      <button class="cta" id="cta-main"><span>今すぐ購入する</span><span class="cta-sep"></span><span class="cta-p" id="cta-price">¥9,890</span></button>
+      <button type="button" class="cta" id="cta-main" aria-live="polite">
+        <span class="cta-default"><span>今すぐ購入する</span><span class="cta-sep"></span><span class="cta-p" id="cta-price">¥9,890</span></span>
+        <span class="cta-loading" aria-hidden="true"><span class="cta-spinner"></span><span>チェックアウトへ移動しています...</span></span>
+      </button>
+      <p class="cta-note">タップするとチェックアウト画面に進みます</p>
       <div class="trust"><span>30日間返金保証</span><span class="dot"></span><span>送料無料</span><span class="dot"></span><span>PayPay・コンビニ決済対応</span></div>
     </div>
   </section>
@@ -887,6 +948,27 @@ details[open]>.acc-body{max-height:800px}
     }
   };
   var curV = '50ml', cP = document.getElementById('cta-price');
+  var ctaBtn = document.getElementById('cta-main');
+  var isSubmitting = false;
+  var hasTrackedCheckout = false;
+  var loadingTimer = null;
+
+  function setCtaLoading(loading) {
+    if (!ctaBtn) return;
+    isSubmitting = loading;
+    ctaBtn.disabled = loading;
+    ctaBtn.classList.toggle('is-loading', loading);
+    var loadingEl = ctaBtn.querySelector('.cta-loading');
+    if (loadingEl) loadingEl.setAttribute('aria-hidden', loading ? 'false' : 'true');
+  }
+
+  function resetCtaState() {
+    if (loadingTimer) {
+      clearTimeout(loadingTimer);
+      loadingTimer = null;
+    }
+    setCtaLoading(false);
+  }
 
   function upd(v) {
     curV = v;
@@ -899,16 +981,31 @@ details[open]>.acc-body{max-height:800px}
   });
 
   function addToCart() {
+    if (isSubmitting) return;
     var d = VM[curV];
     if (!d) return;
-    if (window.clarity) window.clarity('set', 'InitiateCheckout', 'true');
-    if (window.ttq) window.ttq.track('AddToCart', {});
+
+    setCtaLoading(true);
+    loadingTimer = setTimeout(function() {
+      loadingTimer = null;
+      setCtaLoading(false);
+    }, 10000);
+
+    if (!hasTrackedCheckout) {
+      hasTrackedCheckout = true;
+      if (window.clarity) window.clarity('set', 'InitiateCheckout', 'true');
+      if (window.ttq) window.ttq.track('AddToCart', {});
+    }
+
     window.location.href = 'https://nemveil.com/cart/' + d.items.map(function(i) {
       return i.id + ':' + i.quantity;
     }).join(',');
   }
 
-  document.getElementById('cta-main').addEventListener('click', addToCart);
+  if (ctaBtn) {
+    ctaBtn.addEventListener('click', addToCart);
+  }
+  window.addEventListener('pageshow', resetCtaState);
 
   /* ===== Fade ===== */
   if ('IntersectionObserver' in window) {
